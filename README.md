@@ -16,7 +16,8 @@ Also, the engine is now running at dynamic FPS, because MainLoops repaints whene
 - renamed packages from starboard to edgelord
 - added all those fancy new abstract methods to GameObject
 
-**TODO** - Music and Sound
+**TODO** 
+- Music and Sound
 - Vector2f integration
 - Hitbox integration
 - Item, ItemContainer and Inventory
