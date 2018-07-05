@@ -1,0 +1,5 @@
+===
+This is just a simple text file.
+The text file can be read e.g. by a Java file programmatically.
+The import point is that the resources needs to be added to the JAR file on building.
+===
