@@ -29,7 +29,7 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
     public DummyDisplayKeyHandler() {
 
-            StaticSystem.currentScene.addFixedTask(cameraMovement);
+        StaticSystem.currentScene.addFixedTask(cameraMovement);
     }
 
     @Override
@@ -61,18 +61,18 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
                 cameraDown = true;
             }
 
-            if (e.getKeyCode() == KeyEvent.VK_Z){
+            if (e.getKeyCode() == KeyEvent.VK_Z) {
                 zoomIn = true;
                 System.out.println("Zoom!");
             }
 
-            if (e.getKeyCode() == KeyEvent.VK_U){
+            if (e.getKeyCode() == KeyEvent.VK_U) {
 
                 zoomOut = true;
                 System.out.println("Zoom out!");
             }
 
-            if (e.getKeyCode() == KeyEvent.VK_R){
+            if (e.getKeyCode() == KeyEvent.VK_R) {
 
                 resetZoom = true;
                 System.out.println("Reset Zoom!");
@@ -112,19 +112,19 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
             cameraDown = false;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_Z){
+        if (e.getKeyCode() == KeyEvent.VK_Z) {
 
             zoomIn = false;
             System.out.println("Zoom!");
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_U){
+        if (e.getKeyCode() == KeyEvent.VK_U) {
 
             zoomOut = false;
             System.out.println("Zoom out!");
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_R){
+        if (e.getKeyCode() == KeyEvent.VK_R) {
 
             resetZoom = false;
             System.out.println("Reset Zoom!");

@@ -12,7 +12,6 @@ import de.edgelord.stdf.reading.ValueToListConverter;
 import de.me.edgelord.sjgl.StaticVars.Quadrant;
 import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.display.DisplayManager;
-import de.me.edgelord.sjgl.hitbox.Hitbox;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
@@ -215,14 +214,14 @@ public abstract class GameObject {
         return getCoordinates().getX();
     }
 
-    public int getY() {
-
-        return getCoordinates().getY();
-    }
-
     public void setX(int x) {
 
         getCoordinates().setX(x);
+    }
+
+    public int getY() {
+
+        return getCoordinates().getY();
     }
 
     public void setY(int y) {

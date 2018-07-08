@@ -31,27 +31,27 @@ public class SimpleHitbox implements Hitbox {
 
     }
 
-    public void recalculate(){
+    public void recalculate() {
 
         this.position = new Vector2f(parent.getVector2f().getX() + offsetX, parent.getVector2f().getY() + offsetY);
     }
 
-    public boolean isRight(GameObject other){
+    public boolean isRight(GameObject other) {
 
         return position.getX() + getWidth() < other.getHitbox().getPosition().getX();
     }
 
-    public boolean isLeft(GameObject other){
+    public boolean isLeft(GameObject other) {
 
         return position.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
     }
 
-    public boolean isAbove(GameObject other){
+    public boolean isAbove(GameObject other) {
 
         return position.getY() + getHeight() > other.getHitbox().getPosition().getY();
     }
 
-    public boolean isBelow(GameObject other){
+    public boolean isBelow(GameObject other) {
 
         return position.getY() < other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
     }

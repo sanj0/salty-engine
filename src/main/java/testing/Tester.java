@@ -7,8 +7,8 @@
 package testing;
 
 import de.me.edgelord.sjgl.StaticVars.StaticSystem;
-import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.camera.Camera;
+import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.main.MainLoops;
 import de.me.edgelord.sjgl.resource.OuterResource;
 import de.me.edgelord.sjgl.utils.FPSViewer;
@@ -16,14 +16,21 @@ import testing.dummys.DummyDisplayKeyHandler;
 import testing.dummys.DummyScene;
 
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Tester {
 
     public static Camera camera;
-    public  static DisplayManager displayManager;
+    public static DisplayManager displayManager;
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        final URL url = Tester.class.getResource("/info/renderTimeInfo28|06|2018_19:36:28.txt");
+        final Path path = Paths.get(url.toURI());
+        Files.readAllLines(path).forEach(System.out::println);
 
         System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!");
 

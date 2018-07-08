@@ -48,14 +48,14 @@ public class Bird extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (fixedTicks == 15){
+        if (fixedTicks == 15) {
 
-            if (getCoordinates().getY() >= windowHeight){
+            if (getCoordinates().getY() >= windowHeight) {
 
                 getCoordinates().setY(0);
             }
 
-            if (getCoordinates().getX() >= windowWidth){
+            if (getCoordinates().getX() >= windowWidth) {
 
                 getCoordinates().setX(-getWidth());
                 getCoordinates().changeY(getHeight());
@@ -67,7 +67,7 @@ public class Bird extends GameObject {
             return;
         }
 
-        if (ticks == 100){
+        if (ticks == 100) {
 
             animation.nextFrame();
 
