@@ -6,11 +6,11 @@
 
 package testing.dummys;
 
-import de.me.edgelord.sjgl.StaticVars.Directions;
-import de.me.edgelord.sjgl.StaticVars.GameStats;
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.gameobject.FixedTask;
 import de.me.edgelord.sjgl.input.DisplayKeyHandler;
+import de.me.edgelord.sjgl.utils.Directions;
+import de.me.edgelord.sjgl.utils.GameStats;
+import de.me.edgelord.sjgl.utils.StaticSystem;
 import testing.Tester;
 
 import java.awt.event.KeyEvent;

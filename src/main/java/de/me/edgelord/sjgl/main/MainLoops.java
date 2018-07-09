@@ -1,9 +1,9 @@
 package de.me.edgelord.sjgl.main;
 
-import de.me.edgelord.sjgl.StaticVars.GameStats;
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
-import de.me.edgelord.sjgl.StaticVars.Time;
 import de.me.edgelord.sjgl.display.DisplayManager;
+import de.me.edgelord.sjgl.utils.GameStats;
+import de.me.edgelord.sjgl.utils.StaticSystem;
+import de.me.edgelord.sjgl.utils.Time;
 
 import java.awt.*;
 import java.util.Timer;

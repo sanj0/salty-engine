@@ -6,8 +6,8 @@
 
 package de.me.edgelord.sjgl.periodical;
 
-import de.me.edgelord.sjgl.StaticVars.GameStats;
 import de.me.edgelord.sjgl.display.DisplayManager;
+import de.me.edgelord.sjgl.utils.GameStats;
 
 public class PeriodicalRepaint extends Periodical {
 

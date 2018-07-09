@@ -8,14 +8,59 @@ package de.me.edgelord.sjgl.resource;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
-public class OuterResource {
+public class OuterResource implements Resource {
+
+    @Override
+    public BufferedImage getImageResource(String relativePath) {
+
+        if (relativePath.startsWith("/")) {
+
+            try {
+                return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + relativePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            try {
+                return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // If the return statement above fails, return a new empty BufferedImage with 314 x 314 pixels and ImageType 1
+
+        return new BufferedImage(314, 314, 1);
+    }
+
+    @Override
+    public Clip getAudioResource(String relativePath) {
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(getFile(relativePath));
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return clip;
+    }
 
     public enum OperatingSystems {
 
@@ -69,7 +114,7 @@ public class OuterResource {
         }
     }
 
-    public File getFile(String relativePath) {
+    private File getFile(String relativePath) {
 
         if (relativePath.startsWith("/")) {
 
@@ -89,28 +134,6 @@ public class OuterResource {
 
             return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath));
         }
-    }
-
-    @Deprecated
-    public AudioClip getAudioClip(String relativePath) throws MalformedURLException {
-
-        if (relativePath.startsWith("/")) {
-
-            return Applet.newAudioClip(new File(sourceDirectory.getAbsolutePath() + relativePath).toURI().toURL());
-        } else {
-
-            return Applet.newAudioClip(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath).toURI().toURL());
-        }
-    }
-
-    public Clip getClip(String relativePath) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getFile(relativePath));
-        Clip clip = AudioSystem.getClip();
-
-        clip.open(audioInputStream);
-
-        return clip;
     }
 
     private void readProperties() {

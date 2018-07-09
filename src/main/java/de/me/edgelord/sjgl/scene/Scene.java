@@ -6,10 +6,10 @@
 
 package de.me.edgelord.sjgl.scene;
 
-import de.me.edgelord.sjgl.StaticVars.Directions;
 import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.gameobject.FixedTask;
 import de.me.edgelord.sjgl.gameobject.GameObject;
+import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.util.LinkedList;

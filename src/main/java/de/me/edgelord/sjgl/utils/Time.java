@@ -1,4 +1,4 @@
-package de.me.edgelord.sjgl.StaticVars;
+package de.me.edgelord.sjgl.utils;
 
 public class Time {
 

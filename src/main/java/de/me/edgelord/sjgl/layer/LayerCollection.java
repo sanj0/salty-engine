@@ -6,8 +6,8 @@
 
 package de.me.edgelord.sjgl.layer;
 
-import de.me.edgelord.sjgl.StaticVars.Directions;
 import de.me.edgelord.sjgl.gameobject.GameObject;
+import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.util.LinkedList;

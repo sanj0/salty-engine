@@ -6,12 +6,10 @@
 
 package de.me.edgelord.sjgl.cosmetic;
 
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Frame implements Cosmetic {
 
@@ -24,16 +22,8 @@ public class Frame implements Cosmetic {
     private BufferedImage image = null;
     //private AdvancedCosmetics advancedCosmetics = null;
 
-    public Frame(String relativePath) {
-
-        try {
-            this.image = StaticSystem.getOuterResource().getImage(relativePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Frame(BufferedImage image) {
+
         this.image = image;
     }
 

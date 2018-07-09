@@ -6,9 +6,9 @@
 
 package de.me.edgelord.sjgl.camera;
 
-import de.me.edgelord.sjgl.StaticVars.Directions;
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.main.MainLoops;
+import de.me.edgelord.sjgl.utils.Directions;
+import de.me.edgelord.sjgl.utils.StaticSystem;
 
 public class Camera {
 

@@ -10,7 +10,6 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToDataConverter;
 import de.edgelord.stdf.reading.ValueToListConverter;
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 
 import java.awt.*;
 import java.io.File;
@@ -24,9 +23,9 @@ public class SpritePattern {
 
     private Rectangle[][] rectangles;
 
-    public SpritePattern(String relativePathToSpritePattern) {
+    public SpritePattern(File file) {
 
-        spritePattern = StaticSystem.getOuterResource().getFile(relativePathToSpritePattern);
+        spritePattern = file;
     }
 
     public void loadPattern() throws Exception {

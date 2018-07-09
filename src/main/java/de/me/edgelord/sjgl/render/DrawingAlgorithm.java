@@ -6,9 +6,9 @@
 
 package de.me.edgelord.sjgl.render;
 
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.layer.LayerCollection;
 import de.me.edgelord.sjgl.scene.Scene;
+import de.me.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.*;
 import java.util.Random;

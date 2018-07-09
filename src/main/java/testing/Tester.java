@@ -6,20 +6,17 @@
 
 package testing;
 
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.camera.Camera;
 import de.me.edgelord.sjgl.display.DisplayManager;
+import de.me.edgelord.sjgl.factory.ImageFactory;
 import de.me.edgelord.sjgl.main.MainLoops;
-import de.me.edgelord.sjgl.resource.OuterResource;
-import de.me.edgelord.sjgl.utils.FPSViewer;
+import de.me.edgelord.sjgl.resource.InnerResource;
+import de.me.edgelord.sjgl.utils.StaticSystem;
 import testing.dummys.DummyDisplayKeyHandler;
 import testing.dummys.DummyScene;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Tester {
 
@@ -28,15 +25,8 @@ public class Tester {
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
 
     public static void main(String[] args) throws Exception {
-        final URL url = Tester.class.getResource("/info/renderTimeInfo28|06|2018_19:36:28.txt");
-        final Path path = Paths.get(url.toURI());
-        Files.readAllLines(path).forEach(System.out::println);
 
         System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!");
-
-        OuterResource outerResource = new OuterResource("sjgl testing", false);
-
-        StaticSystem.setOuterResource(outerResource);
 
         MainLoops mainLoops = new MainLoops(1);
         StaticSystem.currentScene = new DummyScene();
@@ -57,42 +47,34 @@ public class Tester {
 
     private static void initGameObjects() throws IOException {
 
-        Bird bird1 = new Bird(0, 0);
-        Bird bird2 = new Bird(0, 1);
-        Bird bird3 = new Bird(0, 2);
-        Bird bird4 = new Bird(0, 3);
-        Bird bird5 = new Bird(0, 4);
-        Bird bird6 = new Bird(0, 5);
-        Bird bird7 = new Bird(0, 6);
-        Bird bird8 = new Bird(0, 7);
-        Bird bird10 = new Bird(1, 0);
-        Bird bird11 = new Bird(1, 1);
-        Bird bird12 = new Bird(1, 2);
-        Bird bird13 = new Bird(1, 3);
-        Bird bird14 = new Bird(1, 4);
-        Bird bird15 = new Bird(1, 5);
-        Bird bird16 = new Bird(1, 6);
-        Bird bird17 = new Bird(1, 7);
-        HugeImagerenderingTest hugeImagerenderingTest = new HugeImagerenderingTest();
-        FPSViewer fpsViewer = new FPSViewer();
+        ImageFactory imageFactory = new ImageFactory(new InnerResource());
+
+        HugeImagerenderingTest hugeImagerenderingTest = new HugeImagerenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
 
         StaticSystem.currentScene.addGameObject(hugeImagerenderingTest);
-        StaticSystem.currentScene.addGameObject(bird1);
-        StaticSystem.currentScene.addGameObject(bird2);
-        StaticSystem.currentScene.addGameObject(bird3);
-        StaticSystem.currentScene.addGameObject(bird4);
-        StaticSystem.currentScene.addGameObject(bird5);
-        StaticSystem.currentScene.addGameObject(bird6);
-        StaticSystem.currentScene.addGameObject(bird7);
-        StaticSystem.currentScene.addGameObject(bird8);
-        StaticSystem.currentScene.addGameObject(bird10);
-        StaticSystem.currentScene.addGameObject(bird11);
-        StaticSystem.currentScene.addGameObject(bird12);
-        StaticSystem.currentScene.addGameObject(bird13);
-        StaticSystem.currentScene.addGameObject(bird14);
-        StaticSystem.currentScene.addGameObject(bird15);
-        StaticSystem.currentScene.addGameObject(bird16);
-        StaticSystem.currentScene.addGameObject(bird17);
-        StaticSystem.currentScene.addGameObject(fpsViewer);
+
+        BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+
+        // Adding all those cute birds to the Scene
+
+        int index = 0;
+        int xPos = 0;
+        int yPos = 0;
+
+        while (index < 16) {
+
+            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
+
+            if (index == 7) {
+
+                xPos++;
+                yPos = 0;
+            } else {
+
+                yPos++;
+            }
+
+            index++;
+        }
     }
 }

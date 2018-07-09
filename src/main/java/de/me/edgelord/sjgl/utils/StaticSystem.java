@@ -4,26 +4,15 @@
  * All rights reserved
  */
 
-package de.me.edgelord.sjgl.StaticVars;
+package de.me.edgelord.sjgl.utils;
 
 import de.me.edgelord.sjgl.layer.LayerCollection;
 import de.me.edgelord.sjgl.output.Output;
-import de.me.edgelord.sjgl.resource.OuterResource;
 import de.me.edgelord.sjgl.scene.Scene;
 import testing.dummys.DummyLayerCollection;
 import testing.dummys.DummyScene;
 
 public class StaticSystem {
-
-    static OuterResource outerResource;
-
-    public static OuterResource getOuterResource() {
-        return outerResource;
-    }
-
-    public static void setOuterResource(OuterResource outerResource) {
-        StaticSystem.outerResource = outerResource;
-    }
 
     public enum Mode {
         layerCollection, scene

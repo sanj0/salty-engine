@@ -6,7 +6,7 @@
 
 package de.me.edgelord.sjgl.display;
 
-import de.me.edgelord.sjgl.StaticVars.GameStats;
+import de.me.edgelord.sjgl.utils.GameStats;
 
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;

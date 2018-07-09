@@ -9,12 +9,11 @@ package de.me.edgelord.sjgl.gameobject;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
-import de.me.edgelord.sjgl.StaticVars.Quadrant;
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
+import de.me.edgelord.sjgl.utils.Quadrant;
 
 import java.awt.*;
 import java.io.File;
@@ -61,9 +60,9 @@ public abstract class GameObject {
 
     public abstract void draw(Graphics2D graphics);
 
-    public void initPropertiesFile(String relativePath) {
+    public void initPropertiesFile(File file) {
 
-        this.propertiesFile = StaticSystem.getOuterResource().getFile(relativePath);
+        this.propertiesFile = file;
     }
 
     public void addProperty(String key, String value) {

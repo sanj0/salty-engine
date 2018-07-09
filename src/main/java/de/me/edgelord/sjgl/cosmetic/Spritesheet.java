@@ -6,12 +6,11 @@
 
 package de.me.edgelord.sjgl.cosmetic;
 
-import de.me.edgelord.sjgl.StaticVars.StaticSystem;
 import de.me.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -23,15 +22,16 @@ public class Spritesheet {
 
     private SpritePattern spritePattern;
 
-    public Spritesheet(String relativePathToImage, int spriteWidth, int spriteHeight) {
+    public Spritesheet(BufferedImage image, int spriteWidth, int spriteHeight) {
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
 
-        try {
-            this.image = StaticSystem.getOuterResource().getImage(relativePathToImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.image = image;
+    }
+
+    public Spritesheet(File spritePatternFile) {
+
+        this.spritePattern = new SpritePattern(spritePatternFile);
     }
 
     public List<Frame> getManualFrames(Coordinates... coordinates) {
@@ -51,11 +51,6 @@ public class Spritesheet {
         Rectangle rectangle = spritePattern.getRectangle(id);
 
         return image.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-    }
-
-    public Spritesheet(String relativePathToSpritePattern) {
-
-        this.spritePattern = new SpritePattern(relativePathToSpritePattern);
     }
 
     public BufferedImage getManualSprite(int x, int y) {

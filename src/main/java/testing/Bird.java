@@ -6,6 +6,7 @@ import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject {
 
@@ -20,14 +21,14 @@ public class Bird extends GameObject {
     private int fixedTicks = 0;
     private int ticks = 0;
 
-    public Bird(int xPos, int yPos) {
+    public Bird(BufferedImage image, int xPos, int yPos) {
         super(new Coordinates(xPos * 150, yPos * 101), 150, 101);
 
         this.yPos = yPos;
         this.xPos = xPos;
 
         animation = new Animation(this);
-        spritesheet = new Spritesheet("/res/pictures/spritesheets/bird_spritesheet.png", getWidth(), getHeight());
+        spritesheet = new Spritesheet(image, getWidth(), getHeight());
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
     }
