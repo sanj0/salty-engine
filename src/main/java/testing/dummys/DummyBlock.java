@@ -40,6 +40,6 @@ public class DummyBlock extends GameObject {
     @Override
     public void draw(Graphics2D graphics) {
 
-        graphics.drawRect(getX(), getY(), getWidth(), getHeight());
+        graphics.drawRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight());
     }
 }

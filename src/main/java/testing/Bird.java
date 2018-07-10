@@ -4,6 +4,7 @@ import de.me.edgelord.sjgl.cosmetic.Animation;
 import de.me.edgelord.sjgl.cosmetic.Spritesheet;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.location.Coordinates;
+import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -44,6 +45,7 @@ public class Bird extends GameObject {
     @Override
     public void onCollision(GameObject other) {
 
+        System.out.println("A bird collided!");
     }
 
     @Override
@@ -53,16 +55,16 @@ public class Bird extends GameObject {
 
             if (getCoordinates().getY() >= windowHeight) {
 
-                getCoordinates().setY(0);
+                getVector2f().setY(0);
             }
 
             if (getCoordinates().getX() >= windowWidth) {
 
-                getCoordinates().setX(-getWidth());
-                getCoordinates().changeY(getHeight());
+                getVector2f().setX(-getWidth());
+                getVector2f().setY(getY() - getHeight());
             }
 
-            getCoordinates().changeX(moveSpeed);
+            getPhysics().addUnstackingForce(1f, Directions.BasicDirection.x);
 
             fixedTicks = 0;
             return;

@@ -14,8 +14,6 @@ import de.me.edgelord.sjgl.utils.Directions;
 import java.awt.*;
 import java.util.LinkedList;
 
-// TODO: 02.07.18 the collision detection in onFixedTick
-
 public class Scene {
 
     private LinkedList<GameObject> gameObjects = new LinkedList<>();
@@ -40,6 +38,14 @@ public class Scene {
         }
     }
 
+    public void doCollsisionDetection(){
+
+        for (GameObject gameObject : gameObjects){
+
+            gameObject.doCollisionDetection(getGameObjects());
+        }
+    }
+
     public void resetPosition() {
 
         for (GameObject gameObject : getGameObjects()) {
@@ -57,6 +63,7 @@ public class Scene {
     public void draw(Graphics2D graphics) {
 
         for (GameObject gameObject : gameObjects) {
+            gameObject.doComponentDrawing(graphics);
             gameObject.draw(graphics);
         }
     }
@@ -73,19 +80,13 @@ public class Scene {
         }
     }
 
-    public void zoom(int zoom, DisplayManager displayManager) {
-
-        for (GameObject gameObject : getGameObjects()) {
-
-            gameObject.zoom(zoom, displayManager);
-        }
-    }
-
     public void onFixedTick() {
 
         doFixedTasks();
+        doCollsisionDetection();
 
         for (GameObject gameObject : getGameObjects()) {
+            gameObject.doComponentOnFixedTick();
             gameObject.onFixedTick();
         }
     }
@@ -112,7 +113,7 @@ public class Scene {
         }
     }
 
-    public void moveCamera(Directions.BasicDirection direction, int delta) {
+    public void moveCamera(Directions.BasicDirection direction, float delta) {
 
         if (direction == Directions.BasicDirection.x) {
 

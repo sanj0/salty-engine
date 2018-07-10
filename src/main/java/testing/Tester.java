@@ -24,9 +24,9 @@ public class Tester {
     public static DisplayManager displayManager;
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!");
+        System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!\n");
 
         MainLoops mainLoops = new MainLoops(1);
         StaticSystem.currentScene = new DummyScene();
@@ -49,9 +49,9 @@ public class Tester {
 
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        HugeImagerenderingTest hugeImagerenderingTest = new HugeImagerenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
+        HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
 
-        StaticSystem.currentScene.addGameObject(hugeImagerenderingTest);
+        StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
 
         BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 

@@ -24,7 +24,6 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
     private boolean cameraLeft = false;
     private boolean cameraUp = false;
     private boolean cameraDown = false;
-    private boolean zoomIn, zoomOut, resetZoom;
     private FixedTask cameraMovement = this::doCameraMovement;
 
     public DummyDisplayKeyHandler() {
@@ -60,23 +59,6 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
                 cameraDown = true;
             }
-
-            if (e.getKeyCode() == KeyEvent.VK_Z) {
-                zoomIn = true;
-                System.out.println("Zoom!");
-            }
-
-            if (e.getKeyCode() == KeyEvent.VK_U) {
-
-                zoomOut = true;
-                System.out.println("Zoom out!");
-            }
-
-            if (e.getKeyCode() == KeyEvent.VK_R) {
-
-                resetZoom = true;
-                System.out.println("Reset Zoom!");
-            }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -111,25 +93,6 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
             cameraDown = false;
         }
-
-        if (e.getKeyCode() == KeyEvent.VK_Z) {
-
-            zoomIn = false;
-            System.out.println("Zoom!");
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_U) {
-
-            zoomOut = false;
-            System.out.println("Zoom out!");
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_R) {
-
-            resetZoom = false;
-            System.out.println("Reset Zoom!");
-        }
-
     }
 
     public void doCameraMovement() {
@@ -144,26 +107,6 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
                 cameraUp = false;
                 cameraLeft = false;
                 cameraRight = false;
-                zoomIn = false;
-                zoomOut = false;
-            }
-
-            if (zoomIn) {
-
-                //StaticSystem.currentScene.zoom(2, Tester.displayManager);
-                currentZoom += 0.001;
-            }
-
-            if (zoomOut) {
-
-                //StaticSystem.currentScene.zoom(-2, Tester.displayManager);
-                currentZoom -= 0.001;
-            }
-
-            if (resetZoom) {
-
-                StaticSystem.currentScene.resetZoom();
-                Tester.camera.resetPosition();
             }
 
             if (cameraRight) {
@@ -182,8 +125,6 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
                 Tester.camera.moveCamera(Directions.BasicDirection.y, -cameraSpeed);
             }
-
-            // Tester.displayManager.scale(currentZoom);
         } else {
 
             fixedTicks++;

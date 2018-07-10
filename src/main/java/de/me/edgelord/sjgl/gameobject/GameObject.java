@@ -10,6 +10,9 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
 import de.me.edgelord.sjgl.display.DisplayManager;
+import de.me.edgelord.sjgl.gameobjectComponent.Component;
+import de.me.edgelord.sjgl.gameobjectComponent.RecalculateHitbox;
+import de.me.edgelord.sjgl.gameobjectComponent.SimplePhysics;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
@@ -19,23 +22,31 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /*
-    TODO: Everything having to do with zooming (e.g. zoom() and resetZoom()) and Properties + real position (subpixel position) with Vector2f
+    TODO: Properties
  */
 
 public abstract class GameObject {
 
     private Coordinates coordinates;
     private Vector2f vector2f = new Vector2f(0, 0);
-    private Coordinates middle;
+    private float friction = 0.2f;
+    private float gravity = 0.981f;
+    private float airFriction = 0.1f;
     private int width, height;
     private int startWidth, startHeight;
     private Quadrant.Quadrants quadrant;
     private HashMap<String, String> properties = new HashMap<>();
+    private List<GameObject> touchingGameObjects = new LinkedList<>();
+    private List<Component> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
+
+    private SimplePhysics physics;
+    private RecalculateHitbox recalculateHitbox;
 
     public GameObject(Coordinates coordinates, int width, int height) {
         this.coordinates = coordinates;
@@ -46,8 +57,11 @@ public abstract class GameObject {
         this.startHeight = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
+        physics = new SimplePhysics(this, 0, airFriction);
+        recalculateHitbox = new RecalculateHitbox(this);
 
-        middle = new Coordinates(getX() + (width / 2), getY() + (height / 2));
+        components.add(physics);
+        components.add(recalculateHitbox);
     }
 
     public abstract void initialize();
@@ -59,6 +73,45 @@ public abstract class GameObject {
     public abstract void onTick();
 
     public abstract void draw(Graphics2D graphics);
+
+    public void addComponent(Component component) {
+
+        this.components.add(component);
+    }
+
+    public void doComponentOnFixedTick() {
+
+        for (Component component : components) {
+
+            if (component.isEnabled()) {
+                component.onFixedTick();
+            }
+        }
+    }
+
+    public void doComponentDrawing(Graphics2D graphics) {
+
+        for (Component component : components) {
+
+            if (component.isEnabled()) {
+                component.draw(graphics);
+            }
+        }
+    }
+
+    public void doCollisionDetection(List<GameObject> gameObjects) {
+
+        setTouchingGameObjects(new LinkedList<>());
+
+        for (GameObject other : gameObjects) {
+
+            if (this.getHitbox().collides(other)) {
+
+                onCollision(other);
+                getTouchingGameObjects().add(other);
+            }
+        }
+    }
 
     public void initPropertiesFile(File file) {
 
@@ -117,7 +170,14 @@ public abstract class GameObject {
         this.properties = properties;
     }
 
+    public void updateCoordinates() {
+
+        coordinates.parseCoordinates(vector2f);
+    }
+
     public Coordinates getCoordinates() {
+        updateCoordinates();
+
         return coordinates;
     }
 
@@ -155,51 +215,6 @@ public abstract class GameObject {
         setHeight(startHeight);
     }
 
-    public void zoom(int zoom, DisplayManager displayManager) {
-
-        int zoomX = zoom;
-        int zoomY = zoom;
-
-        calculateQuadrant(displayManager);
-
-        this.setWidth(getWidth() + zoomX);
-        this.setHeight(getHeight() + zoomY);
-
-        if (quadrant == Quadrant.Quadrants.topLeft) {
-
-            setX(getX() - (zoomX / 2));
-            setY(getY() - (zoomY / 2));
-
-            return;
-        }
-
-        if (quadrant == Quadrant.Quadrants.topRight) {
-
-            setX(getX() + (zoomX / 2));
-            setY(getY() - (zoomY / 2));
-
-            return;
-        }
-
-        if (quadrant == Quadrant.Quadrants.bottomLeft) {
-
-            setX(getX() - (zoomX / 2));
-            setY(getY() + (zoomY / 2));
-
-            return;
-        }
-
-        if (quadrant == Quadrant.Quadrants.bottomRight) {
-
-            setX(getX() + (zoomX / 2));
-            setY(getY() + (zoomY / 2));
-
-            return;
-        }
-
-        return;
-    }
-
     public Vector2f getVector2f() {
         return vector2f;
     }
@@ -208,59 +223,63 @@ public abstract class GameObject {
         this.vector2f = vector2f;
     }
 
-    public int getX() {
+    public float getX() {
 
-        return getCoordinates().getX();
+        return getVector2f().getX();
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
 
-        getCoordinates().setX(x);
+        getVector2f().setX(x);
     }
 
-    public int getY() {
+    public float getY() {
 
-        return getCoordinates().getY();
+        return getVector2f().getY();
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
 
-        getCoordinates().setY(y);
+        getVector2f().setY(y);
     }
 
-    public Coordinates getMiddle() {
-        return middle;
+    public float getFriction() {
+        return friction;
+    }
+
+    public void setFriction(float friction) {
+        this.friction = friction;
+    }
+
+    public float getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(float gravity) {
+        this.gravity = gravity;
+    }
+
+    public List<GameObject> getTouchingGameObjects() {
+        return touchingGameObjects;
+    }
+
+    public void setTouchingGameObjects(List<GameObject> touchingGameObjects) {
+        this.touchingGameObjects = touchingGameObjects;
     }
 
     public Quadrant.Quadrants getQuadrant() {
         return quadrant;
     }
 
-    public void calculateQuadrant(DisplayManager displayManager) {
-
-        recalculateMiddle();
-
-        if (this.getMiddle().getX() < (displayManager.getWidth() / 2)) {
-
-            if (this.getMiddle().getY() < (displayManager.getHeight() / 2)) {
-                quadrant = Quadrant.Quadrants.topLeft;
-            } else {
-                quadrant = Quadrant.Quadrants.bottomLeft;
-            }
-
-        } else {
-
-            if (this.getMiddle().getY() < (displayManager.getHeight() / 2)) {
-                quadrant = Quadrant.Quadrants.topRight;
-            } else {
-                quadrant = Quadrant.Quadrants.bottomRight;
-            }
-        }
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void recalculateMiddle() {
+    public SimplePhysics getPhysics() {
+        return physics;
+    }
 
-        middle.setX(getCoordinates().getX() + (width / 2));
-        middle.setY(getCoordinates().getY() + (height / 2));
+    public RecalculateHitbox getRecalculateHitbox() {
+        return recalculateHitbox;
     }
 }

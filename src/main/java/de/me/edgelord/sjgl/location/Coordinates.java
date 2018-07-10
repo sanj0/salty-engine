@@ -15,6 +15,12 @@ public class Coordinates {
         this.y = y;
     }
 
+    public void parseCoordinates(Vector2f vector2f){
+
+        this.setX((int) vector2f.getX());
+        this.setY((int) vector2f.getY());
+    }
+
     public int getX() {
         return x;
     }

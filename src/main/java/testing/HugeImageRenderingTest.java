@@ -6,12 +6,14 @@ import de.me.edgelord.sjgl.location.Coordinates;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class HugeImagerenderingTest extends GameObject {
+public class HugeImageRenderingTest extends GameObject {
 
     private BufferedImage image;
 
-    public HugeImagerenderingTest(BufferedImage image, int width, int height) {
+    public HugeImageRenderingTest(BufferedImage image, int width, int height) {
         super(new Coordinates(0, 0), width, height);
+
+        setFriction(200f);
 
         this.image = image;
     }
@@ -22,6 +24,8 @@ public class HugeImagerenderingTest extends GameObject {
 
     @Override
     public void onCollision(GameObject other) {
+
+        System.out.println("Something collided with the biogasplant");
     }
 
     @Override
@@ -35,6 +39,6 @@ public class HugeImagerenderingTest extends GameObject {
     @Override
     public void draw(Graphics2D graphics) {
 
-        graphics.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+        graphics.drawImage(image, getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight(), null);
     }
 }
