@@ -6,16 +6,18 @@ import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 
-public class SimplePhysics extends Component {
+public class SimplePhysicsComponent extends Component {
 
     private float currentXForce = 0f;
     private float currentYForce = 0f;
+    private float magicXForce = 0f;
+    private float magicYForce = 0f;
     private float gravity;
     private float airFriction;
     private float currentGravityForce = 0f;
 
-    public SimplePhysics(GameObject parent, float gravity, float airFriction) {
-        super(parent);
+    public SimplePhysicsComponent(GameObject parent, String name, float gravity, float airFriction) {
+        super(parent, name);
 
         this.gravity = gravity;
         this.airFriction = airFriction;
@@ -27,6 +29,19 @@ public class SimplePhysics extends Component {
 
             currentXForce -= gameObject.getFriction();
             currentYForce -= gameObject.getFriction();
+
+            if (magicXForce < 0){
+                magicXForce += gameObject.getFriction();
+            } else {
+                magicXForce -= gameObject.getFriction();
+            }
+
+            if (magicYForce < 0){
+                magicYForce += gameObject.getFriction();
+            } else {
+                magicYForce -= gameObject.getFriction();
+            }
+
             currentGravityForce = gravity - gameObject.getFriction();
         }
 
@@ -64,6 +79,7 @@ public class SimplePhysics extends Component {
         // Add forces to GameObject
 
         getParent().setVector2f(new Vector2f(getParent().getVector2f().getX() + currentXForce, getParent().getVector2f().getY() + currentYForce));
+        getParent().setVector2f(new Vector2f(getParent().getVector2f().getX() + magicXForce, getParent().getVector2f().getY() + magicYForce));
 
     }
 
@@ -75,6 +91,17 @@ public class SimplePhysics extends Component {
     @Override
     public void onCollision(GameObject other) {
 
+    }
+
+    public void addMagicForce(float magic, Directions.BasicDirection direction){
+
+        if (direction == Directions.BasicDirection.x){
+
+            magicXForce += magic;
+        } else{
+
+            magicYForce += magic;
+        }
     }
 
     public void addForce(float force, Directions.BasicDirection direction) {

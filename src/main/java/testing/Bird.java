@@ -3,6 +3,8 @@ package testing;
 import de.me.edgelord.sjgl.cosmetic.Animation;
 import de.me.edgelord.sjgl.cosmetic.Spritesheet;
 import de.me.edgelord.sjgl.gameobject.GameObject;
+import de.me.edgelord.sjgl.gameobjectComponent.DrawHitboxComponent;
+import de.me.edgelord.sjgl.gameobjectComponent.DrawPositionComponent;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.utils.Directions;
 
@@ -32,6 +34,9 @@ public class Bird extends GameObject {
         spritesheet = new Spritesheet(image, getWidth(), getHeight());
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
+
+        this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
+        this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     @Override
@@ -53,6 +58,8 @@ public class Bird extends GameObject {
 
         if (fixedTicks == 15) {
 
+            getPhysics().addUnstackingForce(0.75f, Directions.BasicDirection.x);
+
             if (getCoordinates().getY() >= windowHeight) {
 
                 getVector2f().setY(0);
@@ -61,16 +68,14 @@ public class Bird extends GameObject {
             if (getCoordinates().getX() >= windowWidth) {
 
                 getVector2f().setX(-getWidth());
-                getVector2f().setY(getY() - getHeight());
+                // getVector2f().setY(getY() + getHeight());
             }
-
-            getPhysics().addUnstackingForce(1f, Directions.BasicDirection.x);
 
             fixedTicks = 0;
             return;
         }
 
-        if (ticks == 100) {
+        if (ticks == 75) {
 
             animation.nextFrame();
 

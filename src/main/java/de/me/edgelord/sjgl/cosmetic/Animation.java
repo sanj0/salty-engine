@@ -9,6 +9,7 @@ package de.me.edgelord.sjgl.cosmetic;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class Animation {
     public void drawCurrentFrame(Graphics2D graphics) {
 
         frames.get(currentFrame).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidth(), parentGameObject.getHeight());
+    }
+
+    public void drawCurrentFrame(Graphics2D graphics, AffineTransform transform) {
+
+        frames.get(currentFrame).draw(graphics, transform);
     }
 
     public void resetFrameNumber() {

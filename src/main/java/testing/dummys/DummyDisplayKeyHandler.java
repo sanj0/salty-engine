@@ -111,19 +111,19 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
             if (cameraRight) {
 
-                Tester.camera.moveCamera(Directions.BasicDirection.x, -cameraSpeed);
+                // Tester.camera.moveCamera(Directions.BasicDirection.x, -cameraSpeed);
             }
             if (cameraLeft) {
 
-                Tester.camera.moveCamera(Directions.BasicDirection.x, cameraSpeed);
+                // Tester.camera.moveCamera(Directions.BasicDirection.x, cameraSpeed);
             }
             if (cameraUp) {
 
-                Tester.camera.moveCamera(Directions.BasicDirection.y, cameraSpeed);
+                // Tester.camera.moveCamera(Directions.BasicDirection.y, cameraSpeed);
             }
             if (cameraDown) {
 
-                Tester.camera.moveCamera(Directions.BasicDirection.y, -cameraSpeed);
+                // Tester.camera.moveCamera(Directions.BasicDirection.y, -cameraSpeed);
             }
         } else {
 

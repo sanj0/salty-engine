@@ -9,6 +9,7 @@ package de.me.edgelord.sjgl.cosmetic;
 import de.me.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Frame implements Cosmetic {
@@ -55,6 +56,18 @@ public class Frame implements Cosmetic {
         if (getAutomaticMode() == Mode.image) {
 
             graphics.drawImage(image, coordinates.getX(), coordinates.getY(), width, height, null);
+        } else {
+
+            //advancedCosmetics.draw(graphics, coordinates);
+            return;
+        }
+    }
+
+    public void draw(Graphics2D graphics, AffineTransform transform){
+
+        if (getAutomaticMode() == Mode.image) {
+
+            graphics.drawImage(image, transform, null);
         } else {
 
             //advancedCosmetics.draw(graphics, coordinates);

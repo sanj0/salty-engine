@@ -9,6 +9,8 @@ package de.me.edgelord.sjgl.hitbox;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.location.Vector2f;
 
+import java.awt.*;
+
 public class SimpleHitbox implements Hitbox {
 
     private GameObject parent;
@@ -36,30 +38,42 @@ public class SimpleHitbox implements Hitbox {
         this.position = new Vector2f(parent.getVector2f().getX() + offsetX, parent.getVector2f().getY() + offsetY);
     }
 
-    public boolean isRight(GameObject other) {
-
-        return position.getX() + getWidth() < other.getHitbox().getPosition().getX();
-    }
-
     public boolean isLeft(GameObject other) {
 
-        return position.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
+        return (int) position.getX() + getWidth() < (int) other.getHitbox().getPosition().getX();
+    }
+
+    public boolean isRight(GameObject other) {
+
+        return (int) position.getX() > (int) other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
     }
 
     public boolean isAbove(GameObject other) {
 
-        return position.getY() + getHeight() > other.getHitbox().getPosition().getY();
+        return (int) position.getY() + getHeight() > (int) other.getHitbox().getPosition().getY();
     }
 
     public boolean isBelow(GameObject other) {
 
-        return position.getY() < other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
+        return (int) position.getY() < (int) other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
     }
 
     @Override
     public boolean collides(GameObject other) {
 
-        return !isRight(other) && !isLeft(other) && !isAbove(other) && !isBelow(other);
+        if (isBelow(other)){
+            return false;
+        } else if(isAbove(other)){
+            return false;
+        } else if (isLeft(other)){
+            return false;
+        } else if (isRight(other)){
+            return false;
+        }
+
+        System.err.println("Hey Dude! I am trolling you! " + other.getClass() + " collided with " + getParent().getClass());
+
+        return true;
     }
 
     public Vector2f getPosition() {
@@ -84,5 +98,9 @@ public class SimpleHitbox implements Hitbox {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public GameObject getParent() {
+        return parent;
     }
 }

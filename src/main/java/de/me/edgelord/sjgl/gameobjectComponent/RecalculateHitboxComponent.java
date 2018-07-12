@@ -4,10 +4,10 @@ import de.me.edgelord.sjgl.gameobject.GameObject;
 
 import java.awt.*;
 
-public class RecalculateHitbox extends Component {
+public class RecalculateHitboxComponent extends Component {
 
-    public RecalculateHitbox(GameObject parent) {
-        super(parent);
+    public RecalculateHitboxComponent(GameObject parent, String name) {
+        super(parent, name);
     }
 
     @Override

@@ -9,14 +9,12 @@ package de.me.edgelord.sjgl.gameobject;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
-import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.gameobjectComponent.Component;
-import de.me.edgelord.sjgl.gameobjectComponent.RecalculateHitbox;
-import de.me.edgelord.sjgl.gameobjectComponent.SimplePhysics;
+import de.me.edgelord.sjgl.gameobjectComponent.RecalculateHitboxComponent;
+import de.me.edgelord.sjgl.gameobjectComponent.SimplePhysicsComponent;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
-import de.me.edgelord.sjgl.utils.Quadrant;
 
 import java.awt.*;
 import java.io.File;
@@ -38,15 +36,14 @@ public abstract class GameObject {
     private float airFriction = 0.1f;
     private int width, height;
     private int startWidth, startHeight;
-    private Quadrant.Quadrants quadrant;
     private HashMap<String, String> properties = new HashMap<>();
     private List<GameObject> touchingGameObjects = new LinkedList<>();
     private List<Component> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
 
-    private SimplePhysics physics;
-    private RecalculateHitbox recalculateHitbox;
+    private SimplePhysicsComponent physics;
+    private RecalculateHitboxComponent recalculateHitboxComponent;
 
     public GameObject(Coordinates coordinates, int width, int height) {
         this.coordinates = coordinates;
@@ -57,11 +54,11 @@ public abstract class GameObject {
         this.startHeight = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
-        physics = new SimplePhysics(this, 0, airFriction);
-        recalculateHitbox = new RecalculateHitbox(this);
+        physics = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
+        recalculateHitboxComponent = new RecalculateHitboxComponent(this, "defaultRecalculateHitbox");
 
         components.add(physics);
-        components.add(recalculateHitbox);
+        components.add(recalculateHitboxComponent);
     }
 
     public abstract void initialize();
@@ -105,11 +102,17 @@ public abstract class GameObject {
 
         for (GameObject other : gameObjects) {
 
+            if (other == this){
+                break;
+            }
+
             if (this.getHitbox().collides(other)) {
 
-                onCollision(other);
+                this.onCollision(other);
+                other.onCollision(this);
                 getTouchingGameObjects().add(other);
             }
+
         }
     }
 
@@ -251,6 +254,14 @@ public abstract class GameObject {
         this.friction = friction;
     }
 
+    public float getAirFriction() {
+        return airFriction;
+    }
+
+    public void setAirFriction(float airFriction) {
+        this.airFriction = airFriction;
+    }
+
     public float getGravity() {
         return gravity;
     }
@@ -267,19 +278,15 @@ public abstract class GameObject {
         this.touchingGameObjects = touchingGameObjects;
     }
 
-    public Quadrant.Quadrants getQuadrant() {
-        return quadrant;
-    }
-
     public List<Component> getComponents() {
         return components;
     }
 
-    public SimplePhysics getPhysics() {
+    public SimplePhysicsComponent getPhysics() {
         return physics;
     }
 
-    public RecalculateHitbox getRecalculateHitbox() {
-        return recalculateHitbox;
+    public RecalculateHitboxComponent getRecalculateHitboxComponent() {
+        return recalculateHitboxComponent;
     }
 }

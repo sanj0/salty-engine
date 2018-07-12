@@ -10,8 +10,9 @@ public abstract class Component {
     private String name;
     private boolean enabled = true;
 
-    public Component(GameObject parent) {
+    public Component(GameObject parent, String name) {
         this.parent = parent;
+        this.name = name;
     }
 
     public GameObject getParent() {

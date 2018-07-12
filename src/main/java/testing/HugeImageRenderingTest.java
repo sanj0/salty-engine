@@ -13,7 +13,7 @@ public class HugeImageRenderingTest extends GameObject {
     public HugeImageRenderingTest(BufferedImage image, int width, int height) {
         super(new Coordinates(0, 0), width, height);
 
-        setFriction(200f);
+        setFriction(8954678943569834568934576845f);
 
         this.image = image;
     }
@@ -25,7 +25,7 @@ public class HugeImageRenderingTest extends GameObject {
     @Override
     public void onCollision(GameObject other) {
 
-        System.out.println("Something collided with the biogasplant");
+        System.out.println("Something collided with the biogas plant");
     }
 
     @Override

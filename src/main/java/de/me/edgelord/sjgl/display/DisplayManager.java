@@ -22,7 +22,16 @@ public class DisplayManager {
     private KeyListener nativeKeyListener;
     private DisplayKeyHandler displayKeyHandler;
 
-    private KeyEvent currentKey;
+    // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
+
+    private char currentKey;
+
+    // The following four booleans are for standart input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
+
+    private boolean inputUp = false;
+    private boolean inputDown = false;
+    private boolean inputRight = false;
+    private boolean inputLeft = false;
 
     private int width, height;
 
@@ -57,7 +66,25 @@ public class DisplayManager {
 
                 displayKeyHandler.keyPressed(e);
 
-                currentKey = e;
+                currentKey = e.getKeyChar();
+
+                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP){
+
+                    inputUp = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN){
+
+                    inputDown = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT){
+
+                    inputLeft = true;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
+
+                    inputRight = true;
+                }
+
             }
 
             @Override
@@ -65,11 +92,29 @@ public class DisplayManager {
 
                 displayKeyHandler.keyReleased(e);
 
-                currentKey = null;
+                currentKey = '*';
+
+                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP){
+
+                    inputUp = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN){
+
+                    inputDown = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT){
+
+                    inputLeft = false;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
+
+                    inputRight = false;
+                }
             }
         };
 
         display.addKeyListener(nativeKeyListener);
+        currentKey = '*';
     }
 
     public void scale(double zoomX, double zoomY) {
@@ -85,7 +130,7 @@ public class DisplayManager {
         this.displayKeyHandler = displayKeyHandler;
     }
 
-    public KeyEvent getCurrentKey() {
+    public char getCurrentKey() {
         return currentKey;
     }
 
@@ -102,6 +147,22 @@ public class DisplayManager {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean isInputUp() {
+        return inputUp;
+    }
+
+    public boolean isInputDown() {
+        return inputDown;
+    }
+
+    public boolean isInputRight() {
+        return inputRight;
+    }
+
+    public boolean isInputLeft() {
+        return inputLeft;
     }
 
     public boolean isCloseRequested() {

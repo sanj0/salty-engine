@@ -33,7 +33,7 @@ public class Vector2f {
 
     public void parseVector2f(Coordinates coordinates) {
 
-        setX(Float.valueOf(coordinates.getX()));
-        setY(Float.valueOf(coordinates.getY()));
+        setX((float) coordinates.getX());
+        setY((float) coordinates.getY());
     }
 }
