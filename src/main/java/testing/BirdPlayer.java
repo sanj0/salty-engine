@@ -57,7 +57,7 @@ public class BirdPlayer extends GameObject {
 
         if (displayManager.isInputUp()){
 
-            getVector2f().setY(getVector2f().getY() - 0.75f);
+            moveY(-0.75f);
             if (ticks == 75){
                 animation.nextFrame();
             }
@@ -65,7 +65,7 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputDown()){
 
-            getVector2f().setY(getVector2f().getY() + 0.75f);
+            moveY(0.75f);
             if (ticks == 75){
                 animation.nextFrame();
             }
@@ -73,7 +73,7 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputLeft()){
 
-            getVector2f().setX(getVector2f().getX() - 0.75f);
+            moveX(-0.75f);
             if (ticks == 75){
                 animation.nextFrame();
             }
@@ -81,7 +81,7 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputRight()){
 
-            getVector2f().setX(getVector2f().getX() + 0.75f);
+            moveX(0.75f);
             if (ticks == 75){
                 animation.nextFrame();
             }

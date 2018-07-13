@@ -15,6 +15,7 @@ import de.me.edgelord.sjgl.gameobjectComponent.SimplePhysicsComponent;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
+import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.io.File;
@@ -35,7 +36,6 @@ public abstract class GameObject {
     private float gravity = 0.981f;
     private float airFriction = 0.1f;
     private int width, height;
-    private int startWidth, startHeight;
     private HashMap<String, String> properties = new HashMap<>();
     private List<GameObject> touchingGameObjects = new LinkedList<>();
     private List<Component> components = new LinkedList<>();
@@ -49,9 +49,7 @@ public abstract class GameObject {
         this.coordinates = coordinates;
         this.vector2f.parseVector2f(coordinates);
         this.width = width;
-        this.startWidth = width;
         this.height = height;
-        this.startHeight = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physics = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
@@ -165,6 +163,23 @@ public abstract class GameObject {
         }
     }
 
+    public void move(float delta, Directions.BasicDirection direction){
+
+        if (direction == Directions.BasicDirection.x){
+            vector2f.setX(getX() + delta);
+        } else {
+            vector2f.setY(getY() + delta);
+        }
+    }
+
+    public void moveY(float delta){
+        vector2f.setY(getY() + delta);
+    }
+
+    public void moveX(float delta){
+        vector2f.setX(getX() + delta);
+    }
+
     public HashMap<String, String> getProperties() {
         return properties;
     }
@@ -210,12 +225,6 @@ public abstract class GameObject {
 
     public void setHitbox(SimpleHitbox hitbox) {
         this.hitbox = hitbox;
-    }
-
-    public void resetZoom() {
-
-        setWidth(startWidth);
-        setHeight(startHeight);
     }
 
     public Vector2f getVector2f() {

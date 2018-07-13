@@ -6,7 +6,6 @@
 
 package de.me.edgelord.sjgl.scene;
 
-import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.gameobject.FixedTask;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.utils.Directions;
@@ -18,7 +17,7 @@ public class Scene {
 
     private LinkedList<GameObject> gameObjects = new LinkedList<>();
     private LinkedList<FixedTask> fixedTasks = new LinkedList<>();
-    private int xDelta, yDelta;
+    private float xDelta, yDelta;
     private boolean initialized = false;
 
     public Scene() {
@@ -70,14 +69,6 @@ public class Scene {
 
     public LinkedList<GameObject> getGameObjects() {
         return gameObjects;
-    }
-
-    public void resetZoom() {
-
-        for (GameObject gameObject : gameObjects) {
-
-            gameObject.resetZoom();
-        }
     }
 
     public void onFixedTick() {

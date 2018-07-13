@@ -56,21 +56,18 @@ public class LayerCollection {
         }
     }
 
-    public void moveCamera(Directions.BasicDirection direction, int delta) {
-
-        if (delta == 1 || delta == -1)
-            System.err.println("sjgl 0.2 > LayerCollection > \"INFO: The camera movement of 1 or -1 will effect ALL Layers the same way!\"");
+    public void moveCamera(Directions.BasicDirection direction, float delta) {
 
         if (direction == Directions.BasicDirection.y) {
             for (Layer layer : layers) {
                 for (GameObject gameObject : layer.getGameObjects()) {
-                    gameObject.getCoordinates().changeY((int) (delta * layer.getSpeed()));
+                    gameObject.moveY(delta * layer.getSpeed());
                 }
             }
         } else {
             for (Layer layer : layers) {
                 for (GameObject gameObject : layer.getGameObjects()) {
-                    gameObject.getCoordinates().changeX((int) (delta * layer.getSpeed()));
+                    gameObject.moveX(delta * layer.getSpeed());
                 }
             }
         }
@@ -80,14 +77,6 @@ public class LayerCollection {
 
         for (Layer layer : layers)
             layer.draw(graphics);
-    }
-
-    public void resetZoomOfAllLayers() {
-
-        for (Layer layer : layers) {
-
-            layer.resetZoom();
-        }
     }
 
     public void resetPositionOfAllLayers() {

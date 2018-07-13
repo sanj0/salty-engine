@@ -13,7 +13,7 @@ public class HugeImageRenderingTest extends GameObject {
     public HugeImageRenderingTest(BufferedImage image, int width, int height) {
         super(new Coordinates(0, 0), width, height);
 
-        setFriction(8954678943569834568934576845f);
+        setFriction(10f);
 
         this.image = image;
     }
