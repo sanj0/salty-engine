@@ -50,12 +50,12 @@ public class SimpleHitbox implements Hitbox {
 
     public boolean isAbove(GameObject other) {
 
-        return (int) position.getY() + getHeight() > (int) other.getHitbox().getPosition().getY();
+        return (int) position.getY() > (int) other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
     }
 
     public boolean isBelow(GameObject other) {
 
-        return (int) position.getY() < (int) other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
+        return (int) position.getY() + getHeight() < (int) other.getHitbox().getPosition().getY();
     }
 
     @Override
@@ -70,8 +70,6 @@ public class SimpleHitbox implements Hitbox {
         } else if (isRight(other)){
             return false;
         }
-
-        System.err.println("Hey Dude! I am trolling you! " + other.getClass() + " collided with " + getParent().getClass());
 
         return true;
     }

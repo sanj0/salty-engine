@@ -8,6 +8,7 @@ import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.gameobjectComponent.DrawHitboxComponent;
 import de.me.edgelord.sjgl.gameobjectComponent.DrawPositionComponent;
 import de.me.edgelord.sjgl.location.Coordinates;
+import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
