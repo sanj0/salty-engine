@@ -3,8 +3,8 @@ package testing;
 import de.me.edgelord.sjgl.cosmetic.Animation;
 import de.me.edgelord.sjgl.cosmetic.Spritesheet;
 import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.gameobjectComponent.DrawHitboxComponent;
-import de.me.edgelord.sjgl.gameobjectComponent.DrawPositionComponent;
+import de.me.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
+import de.me.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.utils.Directions;
 

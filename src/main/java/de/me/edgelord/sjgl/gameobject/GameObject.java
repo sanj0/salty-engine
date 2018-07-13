@@ -9,9 +9,8 @@ package de.me.edgelord.sjgl.gameobject;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
-import de.me.edgelord.sjgl.gameobjectComponent.Component;
-import de.me.edgelord.sjgl.gameobjectComponent.RecalculateHitboxComponent;
-import de.me.edgelord.sjgl.gameobjectComponent.SimplePhysicsComponent;
+import de.me.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
+import de.me.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.me.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.location.Vector2f;
@@ -38,11 +37,11 @@ public abstract class GameObject {
     private int width, height;
     private HashMap<String, String> properties = new HashMap<>();
     private List<GameObject> touchingGameObjects = new LinkedList<>();
-    private List<Component> components = new LinkedList<>();
+    private List<GameObjectComponent> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
 
-    private SimplePhysicsComponent physics;
+    private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
 
     public GameObject(Coordinates coordinates, int width, int height) {
@@ -52,10 +51,10 @@ public abstract class GameObject {
         this.height = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
-        physics = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
+        physicsComponent = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, "defaultRecalculateHitbox");
 
-        components.add(physics);
+        components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
     }
 
@@ -69,27 +68,27 @@ public abstract class GameObject {
 
     public abstract void draw(Graphics2D graphics);
 
-    public void addComponent(Component component) {
+    public void addComponent(GameObjectComponent gameObjectComponent) {
 
-        this.components.add(component);
+        this.components.add(gameObjectComponent);
     }
 
     public void doComponentOnFixedTick() {
 
-        for (Component component : components) {
+        for (GameObjectComponent gameObjectComponent : components) {
 
-            if (component.isEnabled()) {
-                component.onFixedTick();
+            if (gameObjectComponent.isEnabled()) {
+                gameObjectComponent.onFixedTick();
             }
         }
     }
 
     public void doComponentDrawing(Graphics2D graphics) {
 
-        for (Component component : components) {
+        for (GameObjectComponent gameObjectComponent : components) {
 
-            if (component.isEnabled()) {
-                component.draw(graphics);
+            if (gameObjectComponent.isEnabled()) {
+                gameObjectComponent.draw(graphics);
             }
         }
     }
@@ -287,12 +286,12 @@ public abstract class GameObject {
         this.touchingGameObjects = touchingGameObjects;
     }
 
-    public List<Component> getComponents() {
+    public List<GameObjectComponent> getComponents() {
         return components;
     }
 
     public SimplePhysicsComponent getPhysics() {
-        return physics;
+        return physicsComponent;
     }
 
     public RecalculateHitboxComponent getRecalculateHitboxComponent() {

@@ -1,12 +1,13 @@
-package de.me.edgelord.sjgl.gameobjectComponent;
+package de.me.edgelord.sjgl.gameobject.components;
 
+import de.me.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.location.Vector2f;
 import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 
-public class SimplePhysicsComponent extends Component {
+public class SimplePhysicsComponent extends GameObjectComponent {
 
     private float currentXForce = 0f;
     private float currentYForce = 0f;

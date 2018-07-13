@@ -1,16 +1,16 @@
-package de.me.edgelord.sjgl.gameobjectComponent;
+package de.me.edgelord.sjgl.gameobject;
 
 import de.me.edgelord.sjgl.gameobject.GameObject;
 
 import java.awt.*;
 
-public abstract class Component {
+public abstract class GameObjectComponent {
 
     private GameObject parent;
     private String name;
     private boolean enabled = true;
 
-    public Component(GameObject parent, String name) {
+    public GameObjectComponent(GameObject parent, String name) {
         this.parent = parent;
         this.name = name;
     }

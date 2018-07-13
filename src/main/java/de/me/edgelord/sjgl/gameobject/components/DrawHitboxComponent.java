@@ -1,10 +1,11 @@
-package de.me.edgelord.sjgl.gameobjectComponent;
+package de.me.edgelord.sjgl.gameobject.components;
 
+import de.me.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 
 import java.awt.*;
 
-public class DrawHitboxComponent extends Component {
+public class DrawHitboxComponent extends GameObjectComponent {
 
     public DrawHitboxComponent(GameObject parent, String name) {
         super(parent, name);

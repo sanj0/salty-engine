@@ -1,10 +1,11 @@
-package de.me.edgelord.sjgl.gameobjectComponent;
+package de.me.edgelord.sjgl.gameobject.components;
 
+import de.me.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 
 import java.awt.*;
 
-public class DrawPositionComponent extends Component {
+public class DrawPositionComponent extends GameObjectComponent {
 
     public DrawPositionComponent(GameObject parent, String name) {
         super(parent, name);
