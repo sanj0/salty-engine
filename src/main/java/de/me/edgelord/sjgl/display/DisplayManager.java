@@ -20,13 +20,14 @@ public class DisplayManager {
     private Stage stage;
     private DisplayListener displayListener;
     private KeyListener nativeKeyListener;
-    private DisplayKeyHandler displayKeyHandler;
+    private DisplayKeyHandler displayKeyHandler = null;
 
     // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
 
     private char currentKey;
 
-    // The following four booleans are for standart input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
+    // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
+    // this supports multi-input!
 
     private boolean inputUp = false;
     private boolean inputDown = false;
@@ -58,13 +59,17 @@ public class DisplayManager {
             @Override
             public void keyTyped(KeyEvent e) {
 
-                displayKeyHandler.keyTyped(e);
+                if (displayKeyHandler != null) {
+                    displayKeyHandler.keyTyped(e);
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
 
-                displayKeyHandler.keyPressed(e);
+                if (displayKeyHandler != null) {
+                    displayKeyHandler.keyPressed(e);
+                }
 
                 currentKey = e.getKeyChar();
 
@@ -90,7 +95,9 @@ public class DisplayManager {
             @Override
             public void keyReleased(KeyEvent e) {
 
-                displayKeyHandler.keyReleased(e);
+                if (displayKeyHandler != null) {
+                    displayKeyHandler.keyReleased(e);
+                }
 
                 currentKey = '*';
 
