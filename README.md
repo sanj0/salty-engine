@@ -20,7 +20,7 @@ Also, the engine is now running at dynamic FPS, because MainLoops repaints whene
 - Music and Sound
 - improve physics system (impulse, bounce, rotation, integration of mass and acceleration)
 - Item, ItemContainer and Inventory
-- a font engine
+- a font engine (I thought of using Spritesheets)
 - (textboxes)
 
 **NOTE** for help with how to use, please check out the files in 
