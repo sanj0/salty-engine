@@ -10,6 +10,7 @@ import de.me.edgelord.sjgl.input.DisplayKeyHandler;
 import de.me.edgelord.sjgl.input.DisplayListener;
 import de.me.edgelord.sjgl.main.MainLoops;
 import de.me.edgelord.sjgl.stage.Stage;
+import de.me.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -62,6 +63,10 @@ public class DisplayManager {
                 if (displayKeyHandler != null) {
                     displayKeyHandler.keyTyped(e);
                 }
+
+                if (StaticSystem.currentScene.getUI() != null){
+                    StaticSystem.currentScene.getUI().keyTyped(e);
+                }
             }
 
             @Override
@@ -90,6 +95,9 @@ public class DisplayManager {
                     inputRight = true;
                 }
 
+                if (StaticSystem.currentScene.getUI() != null){
+                    StaticSystem.currentScene.getUI().keyPressed(e);
+                }
             }
 
             @Override
@@ -116,6 +124,10 @@ public class DisplayManager {
                 if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
 
                     inputRight = false;
+                }
+
+                if (StaticSystem.currentScene.getUI() != null){
+                    StaticSystem.currentScene.getUI().keyReleased(e);
                 }
             }
         };

@@ -37,6 +37,7 @@ public class BirdPlayer extends GameObject {
 
         this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
         this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        setFriction(0f);
     }
 
     @Override

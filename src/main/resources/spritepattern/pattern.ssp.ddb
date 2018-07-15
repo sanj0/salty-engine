@@ -10,8 +10,6 @@
 
     {pattern}
 
-        ()
-
         (rectangle1)    
             0,0,100,100,1
         (*rectangle1)

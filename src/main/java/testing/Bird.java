@@ -37,6 +37,7 @@ public class Bird extends GameObject {
 
         this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
         this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        setFriction(0f);
     }
 
     @Override
@@ -50,7 +51,6 @@ public class Bird extends GameObject {
     @Override
     public void onCollision(GameObject other) {
 
-        System.out.println("A bird collided!");
     }
 
     @Override

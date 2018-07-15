@@ -21,6 +21,14 @@ public class MainLoops {
         this.fixedLoopMillis = fixedLoopMillis;
     }
 
+    public void start(DisplayManager displayManager){
+
+        this.displayManager = displayManager;
+
+        startFixedTicks();
+        startRepainting();
+    }
+
     public void startRendering(DisplayManager displayManager) {
 
         this.displayManager = displayManager;

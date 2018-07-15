@@ -12,6 +12,8 @@ import de.me.edgelord.sjgl.scene.Scene;
 import testing.dummys.DummyLayerCollection;
 import testing.dummys.DummyScene;
 
+import java.awt.*;
+
 public class StaticSystem {
 
     public enum Mode {
@@ -20,6 +22,8 @@ public class StaticSystem {
 
     public static Mode currentMode = Mode.scene;
     public static Output systemOutput = new Output(System.out);
+
+    public static Font font = new Font(Font.SERIF, 0, 15);
 
     public static Scene currentScene = new DummyScene();
     public static LayerCollection currentLayerCollection = new DummyLayerCollection();

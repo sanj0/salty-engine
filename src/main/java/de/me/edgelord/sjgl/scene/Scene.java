@@ -8,6 +8,7 @@ package de.me.edgelord.sjgl.scene;
 
 import de.me.edgelord.sjgl.gameobject.FixedTask;
 import de.me.edgelord.sjgl.gameobject.GameObject;
+import de.me.edgelord.sjgl.ui.UISystem;
 import de.me.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
@@ -17,6 +18,7 @@ public class Scene {
 
     private LinkedList<GameObject> gameObjects = new LinkedList<>();
     private LinkedList<FixedTask> fixedTasks = new LinkedList<>();
+    private UISystem ui = null;
     private float xDelta, yDelta;
     private boolean initialized = false;
 
@@ -65,6 +67,18 @@ public class Scene {
             gameObject.doComponentDrawing(graphics);
             gameObject.draw(graphics);
         }
+
+        if (ui != null){
+            ui.drawUI(graphics);
+        }
+    }
+
+    public void setUI(UISystem uiSystem){
+        this.ui = uiSystem;
+    }
+
+    public UISystem getUI() {
+        return ui;
     }
 
     public LinkedList<GameObject> getGameObjects() {

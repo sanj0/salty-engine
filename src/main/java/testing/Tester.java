@@ -12,10 +12,16 @@ import de.me.edgelord.sjgl.factory.ImageFactory;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.main.MainLoops;
 import de.me.edgelord.sjgl.resource.InnerResource;
+import de.me.edgelord.sjgl.ui.Button;
+import de.me.edgelord.sjgl.ui.UISystem;
+import de.me.edgelord.sjgl.utils.GameStats;
 import de.me.edgelord.sjgl.utils.StaticSystem;
 import testing.dummys.DummyDisplayKeyHandler;
 import testing.dummys.DummyScene;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -37,16 +43,47 @@ public class Tester {
 
         try {
             initGameObjects();
+            addUI();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        mainLoops.startFixedTicks();
-        mainLoops.startRendering(displayManager);
+        mainLoops.start(displayManager);
 
         camera = new Camera(mainLoops);
         dummyDisplayKeyHandler = new DummyDisplayKeyHandler();
         displayManager.setDisplayKeyHandler(dummyDisplayKeyHandler);
+    }
+
+    private static void addUI(){
+
+        StaticSystem.font = StaticSystem.font.deriveFont(20f);
+
+        UISystem uiSystem = new UISystem();
+
+        Button button = new Button("Pause", new Coordinates(550, 500), 100, 35) {
+            @Override
+            public void onClick(MouseEvent e) {
+
+                if (e.getClickCount() == 2){
+                    System.out.println("Exit Game due to double-click onto that pause button");
+                    System.exit(0);
+                }
+
+                if (GameStats.isPaused()){
+
+                    System.out.println("Unpause game!");
+                    GameStats.setPaused(false);
+                } else {
+                    System.out.println("Pause game!");
+                    GameStats.setPaused(true);
+                }
+            }
+        };
+
+        uiSystem.addElement(button);
+
+        StaticSystem.currentScene.setUI(uiSystem);
     }
 
     private static void initGameObjects() throws IOException {
@@ -69,7 +106,7 @@ public class Tester {
 
         while (index < 16) {
 
-            // StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
+            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
 
             if (index == 7) {
 
