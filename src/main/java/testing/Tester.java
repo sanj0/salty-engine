@@ -61,7 +61,7 @@ public class Tester {
 
         UISystem uiSystem = new UISystem();
 
-        Button button = new Button("Pause", new Coordinates(550, 500), 100, 35) {
+        Button button = new Button("Pause", new Coordinates(550, 500), 100, 350) {
             @Override
             public void onClick(MouseEvent e) {
 
@@ -80,6 +80,9 @@ public class Tester {
                 }
             }
         };
+
+        button.setBackgroundColor(Color.orange);
+        button.setForegroundColor(Color.white);
 
         uiSystem.addElement(button);
 

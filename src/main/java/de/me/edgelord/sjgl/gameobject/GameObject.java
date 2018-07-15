@@ -113,6 +113,14 @@ public abstract class GameObject {
         }
     }
 
+    public void removeComponent(String name){
+        for (int i = 0; i < components.size(); i++) {
+            if (components.get(i).getName().equals(name)){
+                components.remove(i);
+            }
+        }
+    }
+
     public void initPropertiesFile(File file) {
 
         this.propertiesFile = file;
