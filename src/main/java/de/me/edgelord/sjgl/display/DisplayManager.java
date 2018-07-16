@@ -10,6 +10,7 @@ import de.me.edgelord.sjgl.input.DisplayKeyHandler;
 import de.me.edgelord.sjgl.input.DisplayListener;
 import de.me.edgelord.sjgl.main.MainLoops;
 import de.me.edgelord.sjgl.stage.Stage;
+import de.me.edgelord.sjgl.utils.GameStats;
 import de.me.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
@@ -66,6 +67,14 @@ public class DisplayManager {
 
                 if (StaticSystem.currentScene.getUI() != null){
                     StaticSystem.currentScene.getUI().keyTyped(e);
+                }
+
+                if (e.getKeyCode() == KeyEvent.VK_P){
+                    if (GameStats.isPaused()){
+                        GameStats.setPaused(false);
+                    } else {
+                        GameStats.setPaused(true);
+                    }
                 }
             }
 

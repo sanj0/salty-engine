@@ -82,6 +82,8 @@ public class Display extends JFrame {
                 if (displayMouseHandler != null){
                     displayMouseHandler.mouseEntered(e);
                 }
+
+                GameStats.setPaused(false);
             }
 
             @Override
