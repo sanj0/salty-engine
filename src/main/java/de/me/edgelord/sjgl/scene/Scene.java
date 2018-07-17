@@ -39,7 +39,7 @@ public class Scene {
         }
     }
 
-    public void doCollsisionDetection(){
+    public void doCollisionDetection(){
 
         for (GameObject gameObject : gameObjects){
 
@@ -64,8 +64,8 @@ public class Scene {
     public void draw(Graphics2D graphics) {
 
         for (GameObject gameObject : gameObjects) {
-            gameObject.doComponentDrawing(graphics);
             gameObject.draw(graphics);
+            gameObject.doComponentDrawing(graphics);
         }
 
         if (ui != null){
@@ -88,7 +88,7 @@ public class Scene {
     public void onFixedTick() {
 
         doFixedTasks();
-        doCollsisionDetection();
+        doCollisionDetection();
 
         for (GameObject gameObject : getGameObjects()) {
             gameObject.doComponentOnFixedTick();

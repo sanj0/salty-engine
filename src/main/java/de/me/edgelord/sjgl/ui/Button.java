@@ -1,7 +1,6 @@
 package de.me.edgelord.sjgl.ui;
 
-import de.me.edgelord.sjgl.location.Coordinates;
-import de.me.edgelord.sjgl.utils.StaticSystem;
+import de.me.edgelord.sjgl.location.Coordinates;;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -10,7 +9,7 @@ import java.awt.event.MouseEvent;
 public abstract class Button extends UIElement {
 
     private String text;
-    private int textWidht, textHeight;
+    private int textWidth, textHeight;
     private Color backgroundColor = Color.white;
     private Color foregroundColor = Color.black;
 
@@ -22,10 +21,10 @@ public abstract class Button extends UIElement {
 
     @Override
     public void draw(Graphics2D graphics) {
-        graphics.setFont(StaticSystem.font);
+        graphics.setFont(getFont());
 
-        textWidht = graphics.getFontMetrics().stringWidth(text);
-        textHeight = (int) graphics.getFontMetrics(StaticSystem.font).getStringBounds(text, graphics).getHeight();
+        textWidth = graphics.getFontMetrics(getFont()).stringWidth(text);
+        textHeight = (int) graphics.getFontMetrics(getFont()).getStringBounds(text, graphics).getHeight();
 
         graphics.setColor(backgroundColor);
 
@@ -33,7 +32,7 @@ public abstract class Button extends UIElement {
 
         graphics.setColor(foregroundColor);
 
-        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidht) / 2),  getCoordinates().getY() + textHeight);
+        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2),  getCoordinates().getY() + textHeight);
     }
 
     public abstract void onClick(MouseEvent e);
