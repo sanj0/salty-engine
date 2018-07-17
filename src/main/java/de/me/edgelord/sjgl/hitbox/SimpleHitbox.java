@@ -74,6 +74,22 @@ public class SimpleHitbox implements Hitbox {
         return true;
     }
 
+    public float getOffsetX() {
+        return offsetX;
+    }
+
+    public void setOffsetX(float offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    public float getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(float offsetY) {
+        this.offsetY = offsetY;
+    }
+
     public Vector2f getPosition() {
         return position;
     }
