@@ -64,8 +64,8 @@ public class Scene {
     public void draw(Graphics2D graphics) {
 
         for (GameObject gameObject : gameObjects) {
-            gameObject.doComponentDrawing(graphics);
             gameObject.draw(graphics);
+            gameObject.doComponentDrawing(graphics);
         }
 
         if (ui != null){
