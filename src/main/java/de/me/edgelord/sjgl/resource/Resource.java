@@ -1,6 +1,7 @@
 package de.me.edgelord.sjgl.resource;
 
 import javax.sound.sampled.Clip;
+import java.applet.AudioClip;
 import java.awt.image.BufferedImage;
 
 public interface Resource {

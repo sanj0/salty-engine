@@ -6,8 +6,10 @@
 
 package testing;
 
+import de.me.edgelord.sjgl.audio.AudioSystem;
 import de.me.edgelord.sjgl.camera.Camera;
 import de.me.edgelord.sjgl.display.DisplayManager;
+import de.me.edgelord.sjgl.factory.AudioFactory;
 import de.me.edgelord.sjgl.factory.ImageFactory;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.main.MainLoops;
@@ -20,7 +22,6 @@ import testing.dummys.DummyDisplayKeyHandler;
 import testing.dummys.DummyScene;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -30,8 +31,9 @@ public class Tester {
     public static Camera camera;
     public static DisplayManager displayManager;
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
+    private static AudioSystem audioSystem;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!\n");
 
@@ -53,6 +55,13 @@ public class Tester {
         camera = new Camera(mainLoops);
         dummyDisplayKeyHandler = new DummyDisplayKeyHandler();
         displayManager.setDisplayKeyHandler(dummyDisplayKeyHandler);
+
+        audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
+
+        audioSystem.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
+        audioSystem.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
+
+        audioSystem.loop("joy_sticky");
     }
 
     private static void addUI(){
@@ -81,6 +90,9 @@ public class Tester {
             }
         };
 
+        button.setBackgroundColor(Color.orange);
+        button.setForegroundColor(Color.white);
+
         uiSystem.addElement(button);
 
         StaticSystem.currentScene.setUI(uiSystem);
@@ -91,7 +103,7 @@ public class Tester {
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
         HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
-        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, camera, new Coordinates(0, 0));
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, camera, new Coordinates(1, 1));
 
         StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
         StaticSystem.currentScene.addGameObject(player);
@@ -119,5 +131,9 @@ public class Tester {
 
             index++;
         }
+    }
+
+    public static AudioSystem getAudioSystem() {
+        return audioSystem;
     }
 }

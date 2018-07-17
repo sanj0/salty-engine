@@ -2,6 +2,8 @@ package de.me.edgelord.sjgl.resource;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,12 +15,9 @@ public class InnerResource implements Resource {
     @Override
     public BufferedImage getImageResource(String relativePath) {
 
-        if (relativePath.startsWith("/")) {
+        String arrangedPath = arrangePath(relativePath);
 
-            relativePath = relativePath.replaceFirst("/", "");
-        }
-
-        try (InputStream inputStream = classLoader.getResourceAsStream(relativePath)) {
+        try (InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
 
             return ImageIO.read(inputStream);
         } catch (IOException e) {
@@ -35,13 +34,11 @@ public class InnerResource implements Resource {
 
         AudioInputStream audioInput = null;
 
-        if (relativePath.startsWith("/")) {
+        String arrangedPath = arrangePath(relativePath);
 
-            relativePath = relativePath.replaceFirst("/", "");
-        }
+        try {
 
-        try (InputStream inputStream = classLoader.getResourceAsStream(relativePath)) {
-
+            InputStream inputStream = classLoader.getResourceAsStream(arrangedPath);
             audioInput = AudioSystem.getAudioInputStream(inputStream);
         } catch (IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
@@ -56,5 +53,14 @@ public class InnerResource implements Resource {
         }
 
         return clip;
+    }
+
+    private String arrangePath(String path){
+        if (path.startsWith("/")) {
+
+            return path.replaceFirst("/", "");
+        }
+
+        return path;
     }
 }

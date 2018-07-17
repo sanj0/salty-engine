@@ -19,7 +19,8 @@ public class BirdPlayer extends GameObject {
     private Spritesheet spritesheet;
     private DisplayManager displayManager;
     private Camera camera;
-    private int ticks = 0;
+    private int ticksForAnim = 0;
+    private int ticksForSound = 0;
 
     private AffineTransform rotation = new AffineTransform();
     private int rotationDegrees = 0;
@@ -56,47 +57,92 @@ public class BirdPlayer extends GameObject {
     @Override
     public void onFixedTick() {
 
+        if (ticksForSound == 250) {
+            if (getCoordinates().getY() >= displayManager.getHeight()) {
+
+                getVector2f().setY(0);
+            }
+
+            if (getCoordinates().getX() >= displayManager.getWidth()) {
+
+                getVector2f().setX(-getWidth());
+            }
+
+            if (getCoordinates().getY() <= -getHeight()) {
+
+                getVector2f().setY(displayManager.getHeight() + getHeight());
+            }
+
+            if (getCoordinates().getX() <= -getWidth()) {
+
+                getVector2f().setX(displayManager.getWidth() + getWidth());
+            }
+        }
+
         if (displayManager.isInputUp()){
 
             moveY(-0.75f);
-            if (ticks == 75){
+            if (ticksForAnim == 75){
                 animation.nextFrame();
+
             }
+
+            if (ticksForSound == 250){
+                Tester.getAudioSystem().play("bird_flap");
+            }
+
             rotationDegrees = -90;
         }
         if (displayManager.isInputDown()){
 
             moveY(0.75f);
-            if (ticks == 75){
+            if (ticksForAnim == 75){
                 animation.nextFrame();
+            }
+
+            if (ticksForSound == 250){
+                Tester.getAudioSystem().play("bird_flap");
             }
             rotationDegrees = 90;
         }
         if (displayManager.isInputLeft()){
 
             moveX(-0.75f);
-            if (ticks == 75){
+            if (ticksForAnim == 75){
                 animation.nextFrame();
+            }
+
+            if (ticksForSound == 250){
+                Tester.getAudioSystem().play("bird_flap");
             }
             rotationDegrees = 180;
         }
         if (displayManager.isInputRight()){
 
             moveX(0.75f);
-            if (ticks == 75){
+            if (ticksForAnim == 75){
                 animation.nextFrame();
+            }
+
+            if (ticksForSound == 250){
+                Tester.getAudioSystem().play("bird_flap");
             }
             rotationDegrees = 0;
         }
 
-        if (ticks == 75) {
+        if (ticksForAnim == 75) {
 
-            ticks = 0;
-            return;
+            ticksForAnim = 0;
+        } else {
+            ticksForAnim++;
         }
 
-        ticks++;
+        if (ticksForSound == 250) {
 
+            ticksForSound = 0;
+        } else {
+            ticksForSound++;
+        }
     }
 
     @Override

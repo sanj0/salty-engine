@@ -24,7 +24,6 @@ public class MainLoops {
     public void start(DisplayManager displayManager){
 
         this.displayManager = displayManager;
-
         startFixedTicks();
         startRepainting();
     }

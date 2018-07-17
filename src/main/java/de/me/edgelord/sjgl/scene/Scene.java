@@ -39,7 +39,7 @@ public class Scene {
         }
     }
 
-    public void doCollsisionDetection(){
+    public void doCollisionDetection(){
 
         for (GameObject gameObject : gameObjects){
 
@@ -88,7 +88,7 @@ public class Scene {
     public void onFixedTick() {
 
         doFixedTasks();
-        doCollsisionDetection();
+        doCollisionDetection();
 
         for (GameObject gameObject : getGameObjects()) {
             gameObject.doComponentOnFixedTick();
