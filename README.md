@@ -25,7 +25,7 @@ stdf (github.com/edgelord314/stdf)
 - Components (behave like extensions to GameObjects)
 - Collsion detection with hitboxes
 - Keyboard and mouse input as simple as possible for the developer
-- **examples for almost all of those features within the library** (``` testing.Tester as main ```)
+- **examples for almost all of those features within the library** (```testing.Tester``` as main)
 
 **Version Description** v0.3 Zeus (after 0.1 Apollo and 0.2 Hermes) This version has heavy performance improves, mainly because all of the repainting and updating is now in a single class, split into only two threads. Class GameObject has got heavy improves, too. Some abstract methods were added, like onFixedTick(), which gets called every x milliseconds, and which is for things that should be the same, doesn't matter how much FPS the game is running, like movement, animations and physics, onCollision(GameObject other) which gets called whenever this GameObject's hitbox collides with another and onTick() which gets called whenever the stage gets repainted.
 Also, the engine is now running at dynamic FPS, because MainLoops repaints whenever the last rendering finishes, so heavy improves there, too.  
