@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 /**
  * <code>AudioPlayer</code> is basically a collection of <code>Audio</code>.
- * It has evey necessary method of <code>Audio</code> implemented ina way that it searches for the id.name
- * and then does the specific action, e.g. play it.
+ * It has evey necessary method of <code>Audio</code> implemented in a way that it searches for the id-name
+ * and then does the specific action, e.g. playing it.
  */
 public class AudioPlayer {
 
@@ -30,7 +30,7 @@ public class AudioPlayer {
      * The only constructor of AudioPlayer, taking in the <code>AudioFactory</code>
      * from which the Clips will be loaded.
      *
-     * @param audioFactory the <code>Factory from which to get the Clips for the Audio</code>
+     * @param audioFactory the <code>Factory</code> from which to get the Clips for the <code>Audio</code>
      * @see #loadNewAudio(String, String)
      * @see de.me.edgelord.sjgl.factory.Factory
      * @see AudioFactory
@@ -41,7 +41,7 @@ public class AudioPlayer {
 
     /**
      * This method loads a new <code>Clip</code> from the <code>AudioFactory</code> into a new <code>Audio</code>
-     * together with the name and adds that to the list.
+     * together with the name and adds it to the list.
      *
      * @param name the id-name for the new <code>Audio</code>
      * @param relativePath the relative path from which the <code>AudioFactory</code> should read the <code>Clip</code>
@@ -57,9 +57,9 @@ public class AudioPlayer {
     }
 
     /**
-     * Searches for a <code>Audio</code> with the the given name in the list and when found playing it.
+     * Searches for an <code>Audio</code> with the given name in the list and when found playing it.
      * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
-     * <code>play()</code> method, so adding <code>Audio</code>s with the same name won't act as maybe excepted.
+     * <code>play()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be played
      *
@@ -77,9 +77,9 @@ public class AudioPlayer {
     }
 
     /**
-     * Searches for a <code>Audio</code> with the the given name in the list and when found looping it.
+     * Searches for a <code>Audio</code> with the given name in the list and when found looping it.
      * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
-     * <code>loop()</code> method, so adding <code>Audio</code>s with the same name won't act as maybe excepted.
+     * <code>loop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be looped
      *
@@ -97,9 +97,9 @@ public class AudioPlayer {
     }
 
     /**
-     * Searches for a <code>Audio</code> with the the given name in the list and when found stopping it.
+     * Searches for a <code>Audio</code> with the given name in the list and when found stopping it.
      * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
-     * <code>stop()</code> method, so adding <code>Audio</code>s with the same name won't act as maybe excepted.
+     * <code>stop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be stopped
      *

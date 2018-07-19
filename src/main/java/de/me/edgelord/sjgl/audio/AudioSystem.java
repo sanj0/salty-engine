@@ -15,7 +15,7 @@ public class AudioSystem {
     private AudioFactory audioFactory;
 
     /**
-     * A overload constructor, with <code>AudioFactory</code> with an <code>InnerResource</code> as default.
+     * A overload constructor, with an <code>AudioFactory</code> with an <code>InnerResource</code> as default.
      */
     public AudioSystem() {
         this(new AudioFactory(new InnerResource()));
