@@ -31,6 +31,7 @@ public abstract class GameObject {
 
     private Coordinates coordinates;
     private Vector2f vector2f = new Vector2f(0, 0);
+    private String name;
     private float friction = 0.2f;
     private float gravity = 0.981f;
     private float airFriction = 0.1f;
@@ -44,12 +45,13 @@ public abstract class GameObject {
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
 
-    public GameObject(Coordinates coordinates, int width, int height) {
+    public GameObject(Coordinates coordinates, int width, int height, String name) {
         this.coordinates = coordinates;
         this.vector2f.parseVector2f(coordinates);
         this.width = width;
         this.height = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
+        this.name = name;
 
         physicsComponent = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, "defaultRecalculateHitbox");
@@ -304,5 +306,13 @@ public abstract class GameObject {
 
     public RecalculateHitboxComponent getRecalculateHitboxComponent() {
         return recalculateHitboxComponent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

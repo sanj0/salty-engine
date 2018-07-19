@@ -25,7 +25,7 @@ public class Bird extends GameObject {
     private int ticks = 0;
 
     public Bird(BufferedImage image, int xPos, int yPos) {
-        super(new Coordinates(xPos * 150, yPos * 101), 150, 101);
+        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "bird");
 
         this.yPos = yPos;
         this.xPos = xPos;

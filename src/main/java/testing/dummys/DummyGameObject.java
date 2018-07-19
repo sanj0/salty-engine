@@ -18,7 +18,7 @@ public class DummyGameObject extends GameObject {
     private boolean makeMove = true;
 
     public DummyGameObject(Coordinates coordinates) {
-        super(coordinates, 100, 100);
+        super(coordinates, 100, 100, "dumbest_game-object_ever");
     }
 
     @Override

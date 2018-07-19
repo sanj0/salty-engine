@@ -1,4 +1,4 @@
-package de.me.edgelord.sjgl.main;
+package de.me.edgelord.sjgl.core;
 
 import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.utils.GameStats;
@@ -107,6 +107,8 @@ public class MainLoops {
                     displayManager.repaintStage();
 
                     Time.setDeltaMillis(System.currentTimeMillis() - millisBefore);
+
+                    Thread.yield();
                 }
             }
         }, 0);

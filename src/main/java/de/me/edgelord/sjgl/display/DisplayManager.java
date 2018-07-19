@@ -6,9 +6,10 @@
 
 package de.me.edgelord.sjgl.display;
 
+import de.me.edgelord.sjgl.core.MainLoops;
 import de.me.edgelord.sjgl.input.DisplayKeyHandler;
 import de.me.edgelord.sjgl.input.DisplayListener;
-import de.me.edgelord.sjgl.main.MainLoops;
+import de.me.edgelord.sjgl.input.DisplayMouseHandler;
 import de.me.edgelord.sjgl.stage.Stage;
 import de.me.edgelord.sjgl.utils.GameStats;
 import de.me.edgelord.sjgl.utils.StaticSystem;
@@ -23,6 +24,7 @@ public class DisplayManager {
     private DisplayListener displayListener;
     private KeyListener nativeKeyListener;
     private DisplayKeyHandler displayKeyHandler = null;
+    private DisplayMouseHandler displayMouseHandler = null;
 
     // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
 
@@ -150,12 +152,14 @@ public class DisplayManager {
         stage.scale(zoomX, zoomY);
     }
 
-    public DisplayKeyHandler getDisplayKeyHandler() {
-        return displayKeyHandler;
-    }
-
     public void setDisplayKeyHandler(DisplayKeyHandler displayKeyHandler) {
         this.displayKeyHandler = displayKeyHandler;
+    }
+
+    public void setDisplayMouseHandler(DisplayMouseHandler displayMouseHandler) {
+        this.displayMouseHandler = displayMouseHandler;
+
+        this.stage.setMouseHandler(displayMouseHandler);
     }
 
     public char getCurrentKey() {
@@ -164,7 +168,7 @@ public class DisplayManager {
 
     public void repaintStage() {
 
-        //System.out.println("sjgl 0.0.2 > DisplayManager > \"The stage were repainted\"");
+        //System.out.println("sjgl 0.3 Zeus > DisplayManager > \"The stage were repainted\"");
 
         stage.repaint();
     }

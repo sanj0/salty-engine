@@ -8,11 +8,11 @@ package testing;
 
 import de.me.edgelord.sjgl.audio.AudioSystem;
 import de.me.edgelord.sjgl.camera.Camera;
+import de.me.edgelord.sjgl.core.MainLoops;
 import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.factory.AudioFactory;
 import de.me.edgelord.sjgl.factory.ImageFactory;
 import de.me.edgelord.sjgl.location.Coordinates;
-import de.me.edgelord.sjgl.main.MainLoops;
 import de.me.edgelord.sjgl.resource.InnerResource;
 import de.me.edgelord.sjgl.ui.Button;
 import de.me.edgelord.sjgl.ui.UISystem;
@@ -33,7 +33,7 @@ public class Tester {
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
     private static AudioSystem audioSystem;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!\n");
 
@@ -98,7 +98,7 @@ public class Tester {
         StaticSystem.currentScene.setUI(uiSystem);
     }
 
-    private static void initGameObjects() throws IOException {
+    private static void initGameObjects() {
 
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 

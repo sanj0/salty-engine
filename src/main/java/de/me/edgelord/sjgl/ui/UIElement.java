@@ -13,7 +13,7 @@ public abstract class UIElement extends GameObject {
     private Font font = StaticSystem.font;
 
     public UIElement(Coordinates coordinates, int width, int height) {
-        super(coordinates, width, height);
+        super(coordinates, width, height, "UIElement");
     }
 
     @Override

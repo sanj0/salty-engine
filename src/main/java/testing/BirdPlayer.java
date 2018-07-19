@@ -26,7 +26,7 @@ public class BirdPlayer extends GameObject {
     private int rotationDegrees = 0;
 
     public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Camera camera, Coordinates coordinates) {
-        super(coordinates, 150, 101);
+        super(coordinates, 150, 101, "bird_player");
 
         this.displayManager = displayManager;
         this.camera = camera;

@@ -6,7 +6,7 @@
 
 package de.me.edgelord.sjgl.camera;
 
-import de.me.edgelord.sjgl.main.MainLoops;
+import de.me.edgelord.sjgl.core.MainLoops;
 import de.me.edgelord.sjgl.utils.Directions;
 import de.me.edgelord.sjgl.utils.StaticSystem;
 
