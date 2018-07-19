@@ -16,7 +16,7 @@ void \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_playe
 
 
 \subsection{Detailed Description}
-{\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player}{Audio\+Player}}} is basically a collection of {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}}. It has evey necessary method of {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} implemented ina way that it searches for the id.\+name and then does the specific action, e.\+g. play it. 
+{\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player}{Audio\+Player}}} is basically a collection of {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}}. It has evey necessary method of {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} implemented in a way that it searches for the id-\/name and then does the specific action, e.\+g. playing it. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_aa2ce9d41080a96a25e09f9b0830e7b04}\label{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_aa2ce9d41080a96a25e09f9b0830e7b04}} 
@@ -29,7 +29,7 @@ The only constructor of \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1au
 
 
 \begin{DoxyParams}{Parameters}
-{\em audio\+Factory} & the {\ttfamily Factory from which to get the Clips for the \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} \\
+{\em audio\+Factory} & the {\ttfamily Factory} from which to get the Clips for the {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
@@ -48,7 +48,7 @@ Audio\+Factory
 \subsubsection{\texorpdfstring{load\+New\+Audio()}{loadNewAudio()}}
 {\footnotesize\ttfamily void de.\+me.\+edgelord.\+sjgl.\+audio.\+Audio\+Player.\+load\+New\+Audio (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{relative\+Path }\end{DoxyParamCaption})}
 
-This method loads a new {\ttfamily Clip} from the {\ttfamily Audio\+Factory} into a new {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} together with the name and adds that to the list.
+This method loads a new {\ttfamily Clip} from the {\ttfamily Audio\+Factory} into a new {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} together with the name and adds it to the list.
 
 
 \begin{DoxyParams}{Parameters}
@@ -72,7 +72,7 @@ javax.\+sound.\+sampled.\+Clip
 \subsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily void de.\+me.\+edgelord.\+sjgl.\+audio.\+Audio\+Player.\+loop (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
 
-Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the the given name in the list and when found looping it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_a4773c3bc2054fcb5f7892ebf330c68b8}{loop()}}} method, so adding {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}}s with the same name won\textquotesingle{}t act as maybe excepted.
+Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the given name in the list and when found looping it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_a4773c3bc2054fcb5f7892ebf330c68b8}{loop()}}} method, so adding multiple {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the same name won\textquotesingle{}t act as maybe excepted.
 
 
 \begin{DoxyParams}{Parameters}
@@ -88,7 +88,7 @@ Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1
 \subsubsection{\texorpdfstring{play()}{play()}}
 {\footnotesize\ttfamily void de.\+me.\+edgelord.\+sjgl.\+audio.\+Audio\+Player.\+play (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
 
-Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the the given name in the list and when found playing it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_aecce0a524758259586949e7fb0c477d6}{play()}}} method, so adding {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}}s with the same name won\textquotesingle{}t act as maybe excepted.
+Searches for an {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the given name in the list and when found playing it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_aecce0a524758259586949e7fb0c477d6}{play()}}} method, so adding multiple {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the same name won\textquotesingle{}t act as maybe excepted.
 
 
 \begin{DoxyParams}{Parameters}
@@ -104,7 +104,7 @@ Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1
 \subsubsection{\texorpdfstring{stop()}{stop()}}
 {\footnotesize\ttfamily void de.\+me.\+edgelord.\+sjgl.\+audio.\+Audio\+Player.\+stop (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
 
-Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the the given name in the list and when found stopping it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_a52bd650d815c823dc0a5e99b4aeba927}{stop()}}} method, so adding {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}}s with the same name won\textquotesingle{}t act as maybe excepted.
+Searches for a {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the given name in the list and when found stopping it. For performance reasons, the methods returns after the first found {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} and triggering its {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player_a52bd650d815c823dc0a5e99b4aeba927}{stop()}}} method, so adding multiple {\ttfamily \mbox{\hyperlink{classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio}{Audio}}} with the same name won\textquotesingle{}t act as maybe excepted.
 
 
 \begin{DoxyParams}{Parameters}
