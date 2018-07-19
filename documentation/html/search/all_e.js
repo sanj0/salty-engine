@@ -10,5 +10,6 @@ var searchData=
   ['spritesheetfactory',['SpritesheetFactory',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1factory_1_1_spritesheet_factory.html',1,'de::me::edgelord::sjgl::factory']]],
   ['stage',['Stage',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1stage_1_1_stage.html',1,'de::me::edgelord::sjgl::stage']]],
   ['staticgameobjectsmanager',['StaticGameObjectsManager',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1management_1_1_static_game_objects_manager.html',1,'de::me::edgelord::sjgl::management']]],
-  ['staticsystem',['StaticSystem',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1utils_1_1_static_system.html',1,'de::me::edgelord::sjgl::utils']]]
+  ['staticsystem',['StaticSystem',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1utils_1_1_static_system.html',1,'de::me::edgelord::sjgl::utils']]],
+  ['stop',['stop',['../classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio.html#a2e9d9c2e43c4bab399c7f360c8f90ce2',1,'de.me.edgelord.sjgl.audio.Audio.stop()'],['../classde_1_1me_1_1edgelord_1_1sjgl_1_1audio_1_1_audio_player.html#a52bd650d815c823dc0a5e99b4aeba927',1,'de.me.edgelord.sjgl.audio.AudioPlayer.stop()']]]
 ];

@@ -1,6 +1,6 @@
 var classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object =
 [
-    [ "GameObject", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a32686dc9b7279c915914179ae020512b", null ],
+    [ "GameObject", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#aafac6f204bd6af93e6cc220c1d713575", null ],
     [ "addComponent", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a255595cb63b17130620f5a1810c274c6", null ],
     [ "addProperty", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a61b0d6ebf7446865f0d94b46025d4117", null ],
     [ "changeProperty", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#af1d74ef479c70ea4a855380bfef522cb", null ],
@@ -16,6 +16,7 @@ var classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object =
     [ "getHeight", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#aa198a5eace88a7020a11029ef31ff86f", null ],
     [ "getHitbox", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#aa8d42faf768c467fa5f0fd7a28f53d23", null ],
     [ "getLocalProperty", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#ade5b0ff2e297472f871702f3bc6e8c5f", null ],
+    [ "getName", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a47d015acbbdf269d2fc09be07deaf22c", null ],
     [ "getPhysics", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#ac943a6d1be86e4381333cd0f7237353d", null ],
     [ "getProperties", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a6543956ac49aa7205ac12e54b94f0397", null ],
     [ "getPropertyAsInteger", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#aa876edb40d8637e94c4cd360cc531610", null ],
@@ -42,6 +43,7 @@ var classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object =
     [ "setGravity", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a8fd829c7af63b1d71e98d7df15bd9e12", null ],
     [ "setHeight", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a8d5c3610b42f23893c9e2d928fba0273", null ],
     [ "setHitbox", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#ada04fc37d0d047056f6d0363ac8467a2", null ],
+    [ "setName", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a990aa5133444fe6eef67c26fb8ea80d9", null ],
     [ "setProperties", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a6d9296fec3a2a90646673d00b5d7bfe5", null ],
     [ "setTouchingGameObjects", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a3433057c07896876674379d74c629a8e", null ],
     [ "setVector2f", "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_game_object.html#a2a5e8cac35a860d6f72a3bcb2d8efb4f", null ],

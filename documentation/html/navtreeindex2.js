@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"hierarchy.html":[0,2],
+"index.html":[],
+"interfacede_1_1me_1_1edgelord_1_1sjgl_1_1cosmetic_1_1_cosmetic.html":[0,0,0,0,0,0,3,1],
+"interfacede_1_1me_1_1edgelord_1_1sjgl_1_1cosmetic_1_1_cosmetic.html#a07b6d84b7267383a047492f604c07ff8":[0,0,0,0,0,0,3,1,0],
 "interfacede_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_fixed_task.html":[0,0,0,0,0,0,6,1],
 "interfacede_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1_fixed_task.html#ac20cc77135baf926df5d21f7e83305ac":[0,0,0,0,0,0,6,1,0],
 "interfacede_1_1me_1_1edgelord_1_1sjgl_1_1hitbox_1_1_hitbox.html":[0,0,0,0,0,0,7,0],

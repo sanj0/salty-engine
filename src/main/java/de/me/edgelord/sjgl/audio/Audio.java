@@ -40,7 +40,7 @@ public class Audio {
     }
 
     /**
-     * Sets the position within the clip roght to the beginning and plays it one time
+     * Sets the position within the clip right to the beginning and plays it one time
      *
      * @see Clip#start()
      * @see AudioPlayer

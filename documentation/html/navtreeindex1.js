@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1components_1_1rendering_1_1_simple_render_component.html#a7513032b4d5bfe60626f40e7fc6234e6":[0,0,0,0,0,0,6,0,0,2,1],
+"classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1components_1_1rendering_1_1_simple_render_component.html#aa0ee6e7f100eb4f9758fdaafe95f4bd7":[0,0,0,0,0,0,6,0,0,2,3],
+"classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1components_1_1rendering_1_1_simple_render_component.html#ada43709d4645c06418293fab20f9f642":[0,0,0,0,0,0,6,0,0,2,0],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1components_1_1rendering_1_1_simple_render_component.html#add45c1287d41b0ff926ee774da5bc30d":[0,0,0,0,0,0,6,0,0,2,5],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1gameobject_1_1components_1_1rendering_1_1_simple_render_component.html#af7776cde140c51362801271fc056fa55":[0,0,0,0,0,0,6,0,0,2,6],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1hitbox_1_1_simple_hitbox.html":[0,0,0,0,0,0,7,1],
@@ -125,6 +128,7 @@ var NAVTREEINDEX1 =
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1stage_1_1_stage.html#a07c65f09fff666e05392f54f28c63b60":[0,0,0,0,0,0,17,0,0],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1stage_1_1_stage.html#a383c81825eb6fc2184b0b713575c5ded":[0,0,0,0,0,0,17,0,2],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1stage_1_1_stage.html#a6355bf55cb39b9bb5c5112f86decfb76":[0,0,0,0,0,0,17,0,1],
+"classde_1_1me_1_1edgelord_1_1sjgl_1_1stage_1_1_stage.html#a79759c764d83f4d7074c347c23758392":[0,0,0,0,0,0,17,0,3],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1ui_1_1_button.html":[0,0,0,0,0,0,18,0],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1ui_1_1_button.html#a0543ffe4d0723c8aaea197b17cd33b53":[0,0,0,0,0,0,18,0,0],
 "classde_1_1me_1_1edgelord_1_1sjgl_1_1ui_1_1_button.html#a10a2c442e7f4094461adaa4562f98f4a":[0,0,0,0,0,0,18,0,4],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "enumde_1_1me_1_1edgelord_1_1sjgl_1_1utils_1_1_static_system_1_1_mode.html#a721303adf68f9d9d86fec41ea185b998":[0,0,0,0,0,0,19,3,0,1],
 "enumde_1_1me_1_1edgelord_1_1sjgl_1_1utils_1_1_static_system_1_1_mode.html#a828cdedce3802ee6da60db046eb6a506":[0,0,0,0,0,0,19,3,0,0],
 "functions.html":[0,3,0],
-"functions_func.html":[0,3,1],
-"hierarchy.html":[0,2],
-"index.html":[],
-"interfacede_1_1me_1_1edgelord_1_1sjgl_1_1cosmetic_1_1_cosmetic.html":[0,0,0,0,0,0,3,1],
-"interfacede_1_1me_1_1edgelord_1_1sjgl_1_1cosmetic_1_1_cosmetic.html#a07b6d84b7267383a047492f604c07ff8":[0,0,0,0,0,0,3,1,0]
+"functions_func.html":[0,3,1]
 };
