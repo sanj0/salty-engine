@@ -11,6 +11,7 @@ import de.me.edgelord.sjgl.display.Display;
 import de.me.edgelord.sjgl.input.DisplayMouseHandler;
 import de.me.edgelord.sjgl.utils.GameStats;
 import de.me.edgelord.sjgl.utils.StaticSystem;
+import de.me.edgelord.sjgl.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,8 @@ public class Stage extends JPanel {
     private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
     private DisplayMouseHandler mouseHandler = null;
+
+    private boolean drawFPS;
 
     public Stage(Display display, MainLoops mainLoops) {
         this.display = display;
@@ -128,6 +131,27 @@ public class Stage extends JPanel {
         graphics2D.scale(currentZoomX, currentZoomY);
 
         mainLoops.render(graphics2D);
+
+        // Compute fps
+
+        float fps;
+        float deltaNanos;
+        float nanosToSeconds = 1000000;
+        String fpsString;
+
+        deltaNanos = Time.getDeltaNanos();
+
+        fps = 1 / (deltaNanos / nanosToSeconds);
+
+        Time.setFps(fps);
+
+        if (StaticSystem.drawFPS) {
+            fpsString = String.valueOf(fps);
+
+            graphics2D.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
+            graphics2D.setColor(Color.RED);
+            graphics2D.drawString(String.valueOf(Time.getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
+        }
     }
 
     public void scale(double zoomX, double zoomY) {

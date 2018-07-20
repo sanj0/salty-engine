@@ -23,12 +23,11 @@ public class MainLoops {
 
     public void start(DisplayManager displayManager){
 
-        this.displayManager = displayManager;
         startFixedTicks();
-        startRepainting();
+        startRendering(displayManager);
     }
 
-    public void startRendering(DisplayManager displayManager) {
+    private void startRendering(DisplayManager displayManager) {
 
         this.displayManager = displayManager;
 
@@ -94,19 +93,19 @@ public class MainLoops {
 
         repaintTimer.schedule(new TimerTask() {
 
-            long millisBefore;
+            long nanosBefore;
 
             @Override
             public void run() {
 
                 while (!isCloseRequested) {
 
-                    millisBefore = System.currentTimeMillis();
+                    nanosBefore = System.nanoTime();
 
                     onTick();
                     displayManager.repaintStage();
 
-                    Time.setDeltaMillis(System.currentTimeMillis() - millisBefore);
+                    Time.setDeltaNanos(System.nanoTime() - nanosBefore);
 
                     Thread.yield();
                 }

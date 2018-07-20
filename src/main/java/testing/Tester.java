@@ -24,7 +24,6 @@ import testing.dummys.DummyScene;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Tester {
 
@@ -42,13 +41,8 @@ public class Tester {
 
         displayManager = new DisplayManager(1200, 909, mainLoops);
         displayManager.create();
-
-        try {
-            initGameObjects();
-            addUI();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initGameObjects();
+        addUI();
 
         mainLoops.start(displayManager);
 
