@@ -8,7 +8,7 @@
   <artifactId>sjgl</artifactId>
   <version>0.3-SNAPSHOT</version>
 
-  <name>sjgl</name>
+    <tag>sjgl</tag>
   <url>https://github.com/edgelord314/sjgl/</url>
 
   <properties>

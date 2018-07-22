@@ -12,14 +12,14 @@ public abstract class Button extends UIElement {
     private int textWidth, textHeight;
     private Color backgroundColor = Color.white;
     private Color foregroundColor = Color.black;
-    private MouseEvent currentMouseEvent = null;
+    // private MouseEvent currentMouseEvent = null;
 
     public Button(String text, Coordinates coordinates, int width, int height) {
         super(coordinates, width, height);
 
         this.text = text;
 
-        this.setName("button");
+        this.setTag("button");
     }
 
     @Override
@@ -37,10 +37,12 @@ public abstract class Button extends UIElement {
 
         graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2),  getCoordinates().getY() + textHeight);
 
+        /*
         if (currentMouseEvent != null) {
             graphics.drawOval(currentMouseEvent.getX() - 157, currentMouseEvent.getY() - 157, 314, 314);
             graphics.drawRect(currentMouseEvent.getX(), currentMouseEvent.getY(), 314, 314);
         }
+        */
     }
 
     public abstract void onClick(MouseEvent e);
@@ -58,7 +60,7 @@ public abstract class Button extends UIElement {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        this.currentMouseEvent = e;
+        // this.currentMouseEvent = e;
 
         if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())){
             onClick(e);

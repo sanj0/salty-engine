@@ -23,15 +23,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-/*
-    TODO: Properties
- */
-
 public abstract class GameObject {
 
     private Coordinates coordinates;
-    private Vector2f vector2f = new Vector2f(0, 0);
-    private String name;
+    private Vector2f position = new Vector2f(0, 0);
+    private String tag;
     private float friction = 0.2f;
     private float gravity = 0.981f;
     private float airFriction = 0.1f;
@@ -45,16 +41,16 @@ public abstract class GameObject {
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
 
-    public GameObject(Coordinates coordinates, int width, int height, String name) {
+    public GameObject(Coordinates coordinates, int width, int height, String tag) {
         this.coordinates = coordinates;
-        this.vector2f.parseVector2f(coordinates);
+        this.position.parseVector2f(coordinates);
         this.width = width;
         this.height = height;
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
-        this.name = name;
+        this.tag = tag;
 
-        physicsComponent = new SimplePhysicsComponent(this, "defaultPhysics", 0, airFriction);
-        recalculateHitboxComponent = new RecalculateHitboxComponent(this, "defaultRecalculateHitbox");
+        physicsComponent = new SimplePhysicsComponent(this, "default_physics", 0, airFriction);
+        recalculateHitboxComponent = new RecalculateHitboxComponent(this, "default_recalculateHitbox");
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
@@ -175,18 +171,18 @@ public abstract class GameObject {
     public void move(float delta, Directions.BasicDirection direction){
 
         if (direction == Directions.BasicDirection.x){
-            vector2f.setX(getX() + delta);
+            position.setX(getX() + delta);
         } else {
-            vector2f.setY(getY() + delta);
+            position.setY(getY() + delta);
         }
     }
 
     public void moveY(float delta){
-        vector2f.setY(getY() + delta);
+        position.setY(getY() + delta);
     }
 
     public void moveX(float delta){
-        vector2f.setX(getX() + delta);
+        position.setX(getX() + delta);
     }
 
     public HashMap<String, String> getProperties() {
@@ -199,7 +195,7 @@ public abstract class GameObject {
 
     public void updateCoordinates() {
 
-        coordinates.parseCoordinates(vector2f);
+        coordinates.parseCoordinates(position);
     }
 
     public Coordinates getCoordinates() {
@@ -236,32 +232,32 @@ public abstract class GameObject {
         this.hitbox = hitbox;
     }
 
-    public Vector2f getVector2f() {
-        return vector2f;
+    public Vector2f getPosition() {
+        return position;
     }
 
-    public void setVector2f(Vector2f vector2f) {
-        this.vector2f = vector2f;
+    public void setPosition(Vector2f position) {
+        this.position = position;
     }
 
     public float getX() {
 
-        return getVector2f().getX();
+        return getPosition().getX();
     }
 
     public void setX(float x) {
 
-        getVector2f().setX(x);
+        getPosition().setX(x);
     }
 
     public float getY() {
 
-        return getVector2f().getY();
+        return getPosition().getY();
     }
 
     public void setY(float y) {
 
-        getVector2f().setY(y);
+        getPosition().setY(y);
     }
 
     public float getFriction() {
@@ -308,11 +304,11 @@ public abstract class GameObject {
         return recalculateHitboxComponent;
     }
 
-    public String getName() {
-        return name;
+    public String getTag() {
+        return tag;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

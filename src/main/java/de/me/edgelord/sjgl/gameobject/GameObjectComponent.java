@@ -1,9 +1,12 @@
 package de.me.edgelord.sjgl.gameobject;
 
-import de.me.edgelord.sjgl.gameobject.GameObject;
-
 import java.awt.*;
 
+/**
+ * GameObjectComponents are a way of modifying what happens every fixed tick to a GameObject, or how to draw a GameObject
+ * The methods which can be used for that are #onFixedTick() #draw(Graphics2D) and
+ * #onCollision(GameObject) (for example used for Physics)
+ */
 public abstract class GameObjectComponent {
 
     private GameObject parent;
@@ -20,7 +23,9 @@ public abstract class GameObjectComponent {
     }
 
     public abstract void onFixedTick();
+
     public abstract void draw(Graphics2D graphics);
+
     public abstract void onCollision(GameObject other);
 
     public String getName() {

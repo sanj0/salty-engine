@@ -5,6 +5,7 @@ import de.me.edgelord.sjgl.cosmetic.Spritesheet;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
 import de.me.edgelord.sjgl.gameobject.components.DrawPositionComponent;
+import de.me.edgelord.sjgl.gameobject.components.rendering.AnimationRender;
 import de.me.edgelord.sjgl.location.Coordinates;
 import de.me.edgelord.sjgl.utils.Directions;
 
@@ -35,8 +36,9 @@ public class Bird extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        this.addComponent(new DrawPositionComponent(this, "dev_DrawPosition"));
+        this.addComponent(new DrawHitboxComponent(this, "dev_DrawHitbox"));
+        this.addComponent(new AnimationRender(this, "standard_animationRender", animation, 90));
         setFriction(0f);
     }
 
@@ -62,28 +64,18 @@ public class Bird extends GameObject {
 
             if (getCoordinates().getY() >= windowHeight) {
 
-                getVector2f().setY(0);
+                getPosition().setY(0);
             }
 
             if (getCoordinates().getX() >= windowWidth) {
 
-                getVector2f().setX(-getWidth());
-                // getVector2f().setY(getY() + getHeight());
+                getPosition().setX(-getWidth());
+                // getPosition().setY(getY() + getHeight());
             }
 
             fixedTicks = 0;
             return;
         }
-
-        if (ticks == 75) {
-
-            animation.nextFrame();
-
-            ticks = 0;
-            return;
-        }
-
-        ticks++;
 
         fixedTicks++;
     }

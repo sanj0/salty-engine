@@ -18,9 +18,9 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
 
     /**
      * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific Components out of an list
+     * name, used as an id, for fishing specific Components out of a list
      *
-     * @param parent the paren of the Component, so where to the e.g. the Coordinate info
+     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
      * @param name   the id-name for this Component
      * @see GameObjectComponent
      */
@@ -35,7 +35,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
     }
 
     /**
-     * Any classes extending SimpleRenderComponent have to override this method
+     * Any classes extending SimpleRenderComponent has to override this method
      * for drawing e.g. a primitives like a Rectangle in RectangleRender
      *
      * @param graphics the Graphics2D to which the component should draw

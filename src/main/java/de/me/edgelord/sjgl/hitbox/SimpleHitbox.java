@@ -9,8 +9,6 @@ package de.me.edgelord.sjgl.hitbox;
 import de.me.edgelord.sjgl.gameobject.GameObject;
 import de.me.edgelord.sjgl.location.Vector2f;
 
-import java.awt.*;
-
 public class SimpleHitbox implements Hitbox {
 
     private GameObject parent;
@@ -26,8 +24,8 @@ public class SimpleHitbox implements Hitbox {
         this.width = width;
         this.height = height;
 
-        float parentXPos = parent.getVector2f().getX();
-        float parentYPos = parent.getVector2f().getY();
+        float parentXPos = parent.getPosition().getX();
+        float parentYPos = parent.getPosition().getY();
 
         this.position = new Vector2f(parentXPos + offsetX, parentYPos + offsetY);
 
@@ -35,7 +33,7 @@ public class SimpleHitbox implements Hitbox {
 
     public void recalculate() {
 
-        this.position = new Vector2f(parent.getVector2f().getX() + offsetX, parent.getVector2f().getY() + offsetY);
+        this.position = new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY);
     }
 
     public boolean isLeft(GameObject other) {
@@ -67,11 +65,8 @@ public class SimpleHitbox implements Hitbox {
             return false;
         } else if (isLeft(other)){
             return false;
-        } else if (isRight(other)){
-            return false;
-        }
+        } else return !isRight(other);
 
-        return true;
     }
 
     public float getOffsetX() {

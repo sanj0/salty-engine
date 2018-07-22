@@ -1,7 +1,7 @@
 package de.me.edgelord.sjgl.gameobject.components;
 
-import de.me.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.me.edgelord.sjgl.gameobject.GameObject;
+import de.me.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.me.edgelord.sjgl.location.Vector2f;
 import de.me.edgelord.sjgl.utils.Directions;
 
@@ -74,13 +74,13 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
         // Do gravity stuff
 
-        getParent().setVector2f(new Vector2f(getParent().getVector2f().getX(), getParent().getVector2f().getY() + currentGravityForce));
+        getParent().setPosition(new Vector2f(getParent().getPosition().getX(), getParent().getPosition().getY() + currentGravityForce));
 
 
         // Add forces to GameObject
 
-        getParent().setVector2f(new Vector2f(getParent().getVector2f().getX() + currentXForce, getParent().getVector2f().getY() + currentYForce));
-        getParent().setVector2f(new Vector2f(getParent().getVector2f().getX() + magicXForce, getParent().getVector2f().getY() + magicYForce));
+        getParent().setPosition(new Vector2f(getParent().getPosition().getX() + currentXForce, getParent().getPosition().getY() + currentYForce));
+        getParent().setPosition(new Vector2f(getParent().getPosition().getX() + magicXForce, getParent().getPosition().getY() + magicYForce));
 
     }
 

@@ -60,22 +60,22 @@ public class BirdPlayer extends GameObject {
         if (ticksForSound == 250) {
             if (getCoordinates().getY() >= displayManager.getHeight()) {
 
-                getVector2f().setY(0);
+                getPosition().setY(0);
             }
 
             if (getCoordinates().getX() >= displayManager.getWidth()) {
 
-                getVector2f().setX(-getWidth());
+                getPosition().setX(-getWidth());
             }
 
             if (getCoordinates().getY() <= -getHeight()) {
 
-                getVector2f().setY(displayManager.getHeight() + getHeight());
+                getPosition().setY(displayManager.getHeight() + getHeight());
             }
 
             if (getCoordinates().getX() <= -getWidth()) {
 
-                getVector2f().setX(displayManager.getWidth() + getWidth());
+                getPosition().setX(displayManager.getWidth() + getWidth());
             }
         }
 

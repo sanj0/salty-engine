@@ -11,7 +11,6 @@ import de.me.edgelord.sjgl.display.Display;
 import de.me.edgelord.sjgl.input.DisplayMouseHandler;
 import de.me.edgelord.sjgl.utils.GameStats;
 import de.me.edgelord.sjgl.utils.StaticSystem;
-import de.me.edgelord.sjgl.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
+
+import static de.me.edgelord.sjgl.utils.Time.*;
 
 public class Stage extends JPanel {
 
@@ -29,7 +30,11 @@ public class Stage extends JPanel {
     private MouseListener nativeMouseListener = null;
     private DisplayMouseHandler mouseHandler = null;
 
-    private boolean drawFPS;
+    private float fps;
+    private String fpsString = "";
+    private float deltaNanos;
+    private float nanosToSeconds = 1000000f;
+    private int ticks = 0;
 
     public Stage(Display display, MainLoops mainLoops) {
         this.display = display;
@@ -134,23 +139,23 @@ public class Stage extends JPanel {
 
         // Compute fps
 
-        float fps;
-        float deltaNanos;
-        float nanosToSeconds = 1000000;
-        String fpsString;
+        deltaNanos = getDeltaNanos();
 
-        deltaNanos = Time.getDeltaNanos();
+        if (ticks == 50) {
+            fps = 1 / (deltaNanos / nanosToSeconds);
+            ticks = 0;
+        } else {
+            ticks++;
+        }
 
-        fps = 1 / (deltaNanos / nanosToSeconds);
-
-        Time.setFps(fps);
+        setFps(fps);
 
         if (StaticSystem.drawFPS) {
             fpsString = String.valueOf(fps);
 
             graphics2D.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
             graphics2D.setColor(Color.RED);
-            graphics2D.drawString(String.valueOf(Time.getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
+            graphics2D.drawString(String.valueOf("FPS: " + (int) getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
         }
     }
 
