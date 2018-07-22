@@ -10,11 +10,16 @@ resource management, but also support for scene and
 stage management and saving with 
 stdf (github.com/edgelord314/stdf)
 
-**Version Description** v0.3 Zeus (after 0.1 Apollo and 0.2 Hermes) This version has heavy performance improves, mainly because all fo the repainting and Updating is now in a single class, split into only two threads. Class GameObject has gotten heavy improves, too. Some abstract methods were added, like onFixedTick(), which gets called every x milliseconds, and which is for things that should be the same, doesn't matter how much FPS the game is running, like movement, animations, physics, onCollision(GameObject other) which gets called whenever this GameObject's hitbox collides with an other (not used yet) and onTick() which gets called whenever the stage gets repainted.
-Also, the engine is now running at dynamic FPS, because MainLoops repaints whenever the last rendering finishes, so heavy improves there, too.  
-
-- renamed packages from starboard to edgelord
-- added all those fancy new abstract methods to GameObject
+**Milestones**
+- mavenized project (thanks to maggu2810)
+- added all the abstract methods to GameObject (instead of GameUpdating)
+- heavily improved the performance, due to move every Thread-thing to one class (core.MainLoops) into only two different Threads
+- been able to add InnerResource (again; thanks to maggu2810)
+- changed almost everything having to do with positioning to floats instead of integers
+- added GameObjectComponents (for exampe a not working physics-components)
+- added audio
+- FPS-computing (after almost a year of working on a Java game library)
+- added a UI
 
 **TODO** 
 - Music and Sound
