@@ -10,18 +10,6 @@ resource management, but also support for scene and
 stage management as well as saving with 
 stdf (github.com/edgelord314/stdf)
 
-**Milestones**
-- mavenized project (thanks to maggu2810)
-- added all the abstract methods to GameObject (instead of GameUpdating)
-- heavily improved the performance, due to move every Thread-thing to one class (core.MainLoops) into only two different Threads
-- been able to add InnerResource (again; thanks to maggu2810)
-- changed almost everything having to do with positioning to floats instead of integers
-- added GameObjectComponents (for exampe a not working physics-components)
-- added audio
-- FPS-computing (after almost a year of working on a Java game library)
-- added a UI
-
-
 **Features**
 - simple Display management
 - rendering
@@ -39,6 +27,17 @@ stdf (github.com/edgelord314/stdf)
 - Collision detection with hitboxes
 - Keyboard and mouse input as simple as possible for the developer
 - **examples for almost all of those features within the library** (```testing.Tester``` as main)
+
+**Milestones**
+- mavenized project (thanks to maggu2810)
+- added all the abstract methods to GameObject (instead of GameUpdating)
+- heavily improved the performance, due to move every Thread-thing to one class (core.MainLoops) into only two different Threads
+- been able to add InnerResource (again; thanks to maggu2810)
+- changed almost everything having to do with positioning to floats instead of integers
+- added GameObjectComponents (for exampe a not working physics-components)
+- added audio
+- FPS-computing (after almost a year of working on a Java game library)
+- added a UI
 
 **Known bugs/glitches/issues**
 - all that has to do with physics (force, friction, gravity)
