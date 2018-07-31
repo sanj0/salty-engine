@@ -7,8 +7,7 @@
 package testing;
 
 import de.me.edgelord.sjgl.audio.AudioSystem;
-import de.me.edgelord.sjgl.camera.Camera;
-import de.me.edgelord.sjgl.core.MainLoops;
+import de.me.edgelord.sjgl.core.Engine;
 import de.me.edgelord.sjgl.display.DisplayManager;
 import de.me.edgelord.sjgl.factory.AudioFactory;
 import de.me.edgelord.sjgl.factory.ImageFactory;
@@ -27,7 +26,6 @@ import java.awt.image.BufferedImage;
 
 public class Tester {
 
-    public static Camera camera;
     public static DisplayManager displayManager;
     private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
     private static AudioSystem audioSystem;
@@ -36,17 +34,16 @@ public class Tester {
 
         System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!\n");
 
-        MainLoops mainLoops = new MainLoops(1);
+        Engine engine = new Engine(1);
         StaticSystem.currentScene = new DummyScene();
 
-        displayManager = new DisplayManager(1200, 909, mainLoops);
+        displayManager = new DisplayManager(1200, 909, engine);
         displayManager.create();
         initGameObjects();
         addUI();
 
-        mainLoops.start(displayManager);
+        engine.start(displayManager);
 
-        camera = new Camera(mainLoops);
         dummyDisplayKeyHandler = new DummyDisplayKeyHandler();
         displayManager.setDisplayKeyHandler(dummyDisplayKeyHandler);
 
@@ -97,7 +94,7 @@ public class Tester {
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
         HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
-        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, camera, new Coordinates(1, 1));
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, new Coordinates(1, 1));
 
         StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
         StaticSystem.currentScene.addGameObject(player);

@@ -6,7 +6,7 @@
 
 package de.me.edgelord.sjgl.stage;
 
-import de.me.edgelord.sjgl.core.MainLoops;
+import de.me.edgelord.sjgl.core.Engine;
 import de.me.edgelord.sjgl.display.Display;
 import de.me.edgelord.sjgl.input.DisplayMouseHandler;
 import de.me.edgelord.sjgl.utils.GameStats;
@@ -24,7 +24,7 @@ import static de.me.edgelord.sjgl.utils.Time.*;
 public class Stage extends JPanel {
 
     private Display display;
-    private MainLoops mainLoops;
+    private Engine engine;
     private double currentZoomX = 1;
     private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
@@ -36,9 +36,9 @@ public class Stage extends JPanel {
     private float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
-    public Stage(Display display, MainLoops mainLoops) {
+    public Stage(Display display, Engine engine) {
         this.display = display;
-        this.mainLoops = mainLoops;
+        this.engine = engine;
 
         init();
     }
@@ -135,7 +135,7 @@ public class Stage extends JPanel {
 
         graphics2D.scale(currentZoomX, currentZoomY);
 
-        mainLoops.render(graphics2D);
+        engine.render(graphics2D);
 
         // Compute fps
 

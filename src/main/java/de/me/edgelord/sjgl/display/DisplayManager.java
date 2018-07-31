@@ -6,7 +6,7 @@
 
 package de.me.edgelord.sjgl.display;
 
-import de.me.edgelord.sjgl.core.MainLoops;
+import de.me.edgelord.sjgl.core.Engine;
 import de.me.edgelord.sjgl.input.DisplayKeyHandler;
 import de.me.edgelord.sjgl.input.DisplayListener;
 import de.me.edgelord.sjgl.input.DisplayMouseHandler;
@@ -40,10 +40,10 @@ public class DisplayManager {
 
     private int width, height;
 
-    public DisplayManager(int width, int height, MainLoops mainLoops) {
+    public DisplayManager(int width, int height, Engine engine) {
 
         display = new Display(width, height, this);
-        stage = new Stage(display, mainLoops);
+        stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
         this.width = width;

@@ -1,6 +1,5 @@
 package testing;
 
-import de.me.edgelord.sjgl.camera.Camera;
 import de.me.edgelord.sjgl.cosmetic.Animation;
 import de.me.edgelord.sjgl.cosmetic.Spritesheet;
 import de.me.edgelord.sjgl.display.DisplayManager;
@@ -18,18 +17,16 @@ public class BirdPlayer extends GameObject {
     private Animation animation;
     private Spritesheet spritesheet;
     private DisplayManager displayManager;
-    private Camera camera;
     private int ticksForAnim = 0;
     private int ticksForSound = 0;
 
     private AffineTransform rotation = new AffineTransform();
     private int rotationDegrees = 0;
 
-    public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Camera camera, Coordinates coordinates) {
+    public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Coordinates coordinates) {
         super(coordinates, 150, 101, "bird_player");
 
         this.displayManager = displayManager;
-        this.camera = camera;
 
         animation = new Animation(this);
         spritesheet = new Spritesheet(spriteSheetImage, getWidth(), getHeight());

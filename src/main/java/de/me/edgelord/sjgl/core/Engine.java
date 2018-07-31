@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainLoops {
+public class Engine {
 
     private long fixedLoopMillis;
     private Timer fixedTimer = new Timer();
@@ -17,7 +17,7 @@ public class MainLoops {
     private boolean isCloseRequested = false;
     private DisplayManager displayManager = null;
 
-    public MainLoops(long fixedLoopMillis) {
+    public Engine(long fixedLoopMillis) {
         this.fixedLoopMillis = fixedLoopMillis;
     }
 

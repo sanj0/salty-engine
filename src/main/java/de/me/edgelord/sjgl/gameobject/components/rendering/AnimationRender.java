@@ -10,7 +10,7 @@ public class AnimationRender extends SimpleRenderComponent {
     // The Animation which should be drawn
     private Animation animation = null;
 
-    // The number of fixed ticks (default would be something like 1 milli; set i the MainLoops constructor)
+    // The number of fixed ticks (default would be something like 1 milli; set i the Engine constructor)
     // after which the next frame should be drawn
     private int ticksPerFrame = 75;
 

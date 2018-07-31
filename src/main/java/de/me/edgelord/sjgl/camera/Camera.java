@@ -6,20 +6,15 @@
 
 package de.me.edgelord.sjgl.camera;
 
-import de.me.edgelord.sjgl.core.MainLoops;
 import de.me.edgelord.sjgl.utils.Directions;
 import de.me.edgelord.sjgl.utils.StaticSystem;
 
 public class Camera {
 
-    private MainLoops mainLoops;
-
-    public Camera(MainLoops mainLoops) {
-
-        this.mainLoops = mainLoops;
+    public Camera() {
     }
 
-    public void resetPosition() {
+    public static void resetPosition() {
 
         if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 
@@ -33,7 +28,7 @@ public class Camera {
         }
     }
 
-    public void moveCamera(Directions.BasicDirection direction, int delta) {
+    public static void moveCamera(Directions.BasicDirection direction, int delta) {
 
         if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 
