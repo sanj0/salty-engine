@@ -1,7 +1,7 @@
 package testing;
 
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

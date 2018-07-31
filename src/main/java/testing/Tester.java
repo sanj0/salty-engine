@@ -6,17 +6,17 @@
 
 package testing;
 
-import de.me.edgelord.sjgl.audio.AudioSystem;
-import de.me.edgelord.sjgl.core.Engine;
-import de.me.edgelord.sjgl.display.DisplayManager;
-import de.me.edgelord.sjgl.factory.AudioFactory;
-import de.me.edgelord.sjgl.factory.ImageFactory;
-import de.me.edgelord.sjgl.location.Coordinates;
-import de.me.edgelord.sjgl.resource.InnerResource;
-import de.me.edgelord.sjgl.ui.Button;
-import de.me.edgelord.sjgl.ui.UISystem;
-import de.me.edgelord.sjgl.utils.GameStats;
-import de.me.edgelord.sjgl.utils.StaticSystem;
+import de.edgelord.sjgl.audio.AudioSystem;
+import de.edgelord.sjgl.core.Engine;
+import de.edgelord.sjgl.display.DisplayManager;
+import de.edgelord.sjgl.factory.AudioFactory;
+import de.edgelord.sjgl.factory.ImageFactory;
+import de.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.resource.InnerResource;
+import de.edgelord.sjgl.ui.Button;
+import de.edgelord.sjgl.ui.UISystem;
+import de.edgelord.sjgl.utils.GameStats;
+import de.edgelord.sjgl.utils.StaticSystem;
 import testing.dummys.DummyDisplayKeyHandler;
 import testing.dummys.DummyScene;
 

@@ -1,12 +1,12 @@
 package testing;
 
-import de.me.edgelord.sjgl.cosmetic.Animation;
-import de.me.edgelord.sjgl.cosmetic.Spritesheet;
-import de.me.edgelord.sjgl.display.DisplayManager;
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
-import de.me.edgelord.sjgl.gameobject.components.DrawPositionComponent;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.cosmetic.Animation;
+import de.edgelord.sjgl.cosmetic.Spritesheet;
+import de.edgelord.sjgl.display.DisplayManager;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
+import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
+import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

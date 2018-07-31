@@ -6,8 +6,8 @@
 
 package testing.dummys;
 
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.util.Random;
@@ -54,7 +54,7 @@ public class DummyGameObject extends GameObject {
 
         int direction = random.nextInt(4);
 
-        System.out.println("sjgl 1.0.devel > DummyGameObject > \"Random number for direction is: " + direction + ", we will move the GameObject " + makeMove + "\"");
+        System.out.println("sjgl 1.0.devel > DummyGameObject > \"Random number for direction is: " + direction + ", we will basicMove the GameObject " + makeMove + "\"");
 
         if (makeMove) {
             if (direction == 0 && getCoordinates().getX() != 1100)

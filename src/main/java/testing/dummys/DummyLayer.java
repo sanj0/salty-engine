@@ -6,8 +6,8 @@
 
 package testing.dummys;
 
-import de.me.edgelord.sjgl.layer.Layer;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.layer.Layer;
+import de.edgelord.sjgl.location.Coordinates;
 
 public class DummyLayer extends Layer {
 

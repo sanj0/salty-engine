@@ -6,7 +6,7 @@
 
 package testing.dummys;
 
-import de.me.edgelord.sjgl.layer.LayerCollection;
+import de.edgelord.sjgl.layer.LayerCollection;
 
 public class DummyLayerCollection extends LayerCollection {
 

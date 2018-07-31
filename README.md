@@ -43,7 +43,7 @@ stdf (github.com/edgelord314/stdf)
 - all that has to do with physics (force, friction, gravity)
 
 **TODO** (sort by relevance)
-- improve physics system (velocity, impulse, bounce, rotation, integration of mass and acceleration)
+- improve physics system (targetVelocity, impulse, bounce, rotation, integration of mass and acceleration)
 - add more UIElements
 - Item, ItemContainer and Inventory
 

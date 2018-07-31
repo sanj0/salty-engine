@@ -6,9 +6,9 @@
 
 package testing.dummys;
 
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.gameobject.components.rendering.RectangleRender;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.rendering.RectangleRender;
+import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 
