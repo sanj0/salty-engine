@@ -44,3 +44,6 @@ Also, the engine is now running at dynamic FPS, because MainLoops repaints whene
 src/main/java/testing
 
 **Coming soon:** (or not so soon) Javadoc for all public methods but getters and setters
+
+ # Join the team 
+ Do you want to collaborate? Join the project at https://crowdforge.io/projects/447
