@@ -1,7 +1,7 @@
 package testing;
 
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ public class HugeImageRenderingTest extends GameObject {
     private BufferedImage image;
 
     public HugeImageRenderingTest(BufferedImage image, int width, int height) {
-        super(new Coordinates(0, 0), width, height);
+        super(new Coordinates(0, 0), width, height, "huge_image_rendering_test");
 
         setFriction(0f);
 

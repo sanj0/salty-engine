@@ -8,7 +8,7 @@
   <artifactId>sjgl</artifactId>
   <version>0.3-SNAPSHOT</version>
 
-  <name>sjgl</name>
+    <tag>sjgl</tag>
   <url>https://github.com/edgelord314/sjgl/</url>
 
   <properties>
@@ -78,7 +78,21 @@
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>testing.Tester</mainClass>
+            </manifest>
+          </archive>
         </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

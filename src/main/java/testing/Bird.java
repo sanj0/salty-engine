@@ -1,12 +1,14 @@
 package testing;
 
-import de.me.edgelord.sjgl.cosmetic.Animation;
-import de.me.edgelord.sjgl.cosmetic.Spritesheet;
-import de.me.edgelord.sjgl.gameobject.GameObject;
-import de.me.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
-import de.me.edgelord.sjgl.gameobject.components.DrawPositionComponent;
-import de.me.edgelord.sjgl.location.Coordinates;
-import de.me.edgelord.sjgl.utils.Directions;
+import de.edgelord.sjgl.core.physics.SimpleForce;
+import de.edgelord.sjgl.cosmetic.Animation;
+import de.edgelord.sjgl.cosmetic.Spritesheet;
+import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
+import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
+import de.edgelord.sjgl.gameobject.components.rendering.AnimationRender;
+import de.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +27,7 @@ public class Bird extends GameObject {
     private int ticks = 0;
 
     public Bird(BufferedImage image, int xPos, int yPos) {
-        super(new Coordinates(xPos * 150, yPos * 101), 150, 101);
+        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "bird");
 
         this.yPos = yPos;
         this.xPos = xPos;
@@ -35,14 +37,17 @@ public class Bird extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        this.addComponent(new DrawPositionComponent(this, "dev_DrawPosition"));
+        this.addComponent(new DrawHitboxComponent(this, "dev_DrawHitbox"));
+        this.addComponent(new AnimationRender(this, "standard_animationRender", animation, 90));
+        setFriction(0f);
     }
 
     @Override
     public void initialize() {
 
         animation.nextFrame();
+        getPhysics().addForce(new SimpleForce(this, "constant_forwardForce", 0.25f, Directions.Direction.right));
 
         System.out.println("INFO: Initialized " + this.getClass());
     }
@@ -50,7 +55,6 @@ public class Bird extends GameObject {
     @Override
     public void onCollision(GameObject other) {
 
-        System.out.println("A bird collided!");
     }
 
     @Override
@@ -58,32 +62,20 @@ public class Bird extends GameObject {
 
         if (fixedTicks == 15) {
 
-            getPhysics().addUnstackingForce(0.75f, Directions.BasicDirection.x);
-
             if (getCoordinates().getY() >= windowHeight) {
 
-                getVector2f().setY(0);
+                getPosition().setY(0);
             }
 
             if (getCoordinates().getX() >= windowWidth) {
 
-                getVector2f().setX(-getWidth());
-                // getVector2f().setY(getY() + getHeight());
+                getPosition().setX(-getWidth());
+                // getPosition().setY(getY() + getHeight());
             }
 
             fixedTicks = 0;
             return;
         }
-
-        if (ticks == 75) {
-
-            animation.nextFrame();
-
-            ticks = 0;
-            return;
-        }
-
-        ticks++;
 
         fixedTicks++;
     }
