@@ -6,7 +6,9 @@
 
 package de.edgelord.sjgl.gameobject;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
+import de.edgelord.sjgl.gameobject.components.RecalculateMiddleComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.edgelord.sjgl.location.Coordinates;
@@ -26,6 +28,7 @@ import java.util.List;
 public abstract class GameObject {
 
     private Coordinates coordinates;
+    private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
     private String tag;
     private float friction = 0.2f;
@@ -44,6 +47,11 @@ public abstract class GameObject {
 
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
+    private RecalculateMiddleComponent recalculateMiddleComponent;
+
+    public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.sjgl.coreComponents.physics";
+    public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
+    public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
 
     public GameObject(Coordinates coordinates, int width, int height, String tag) {
         this.coordinates = coordinates;
@@ -53,16 +61,20 @@ public abstract class GameObject {
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
         this.tag = tag;
 
-        physicsComponent = new SimplePhysicsComponent(this, "default_physics");
-        recalculateHitboxComponent = new RecalculateHitboxComponent(this, "default_recalculateHitbox");
+        this.middle = new Coordinates(getCoordinates().getX() + (getWidth() / 2), getCoordinates().getY() + (getHeight() / 2));
+
+        physicsComponent = new SimplePhysicsComponent(this, DEFAULT_PHYSICS_NAME);
+        recalculateHitboxComponent = new RecalculateHitboxComponent(this, DEFAULT_RECALCULATE_HITBOX_NAME);
+        recalculateMiddleComponent = new RecalculateMiddleComponent(this, DEFAULT_RECALCULATE_MIDDLE_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
+        components.add(recalculateMiddleComponent);
     }
 
     public abstract void initialize();
 
-    public abstract void onCollision(GameObject other);
+    public abstract void onCollision(CollisionEvent event);
 
     public abstract void onFixedTick();
 
@@ -107,12 +119,58 @@ public abstract class GameObject {
 
             if (this.getHitbox().collides(other)) {
 
-                this.onCollision(other);
-                other.onCollision(this);
+                CollisionEvent e = new CollisionEvent(other);
+                CollisionEvent eSelf = new CollisionEvent(this);
+
+                addCollisionDirections(e, other, false);
+                addCollisionDirections(eSelf, this, true);
+
+                other.onCollision(e);
+                this.onCollision(eSelf);
+
                 getTouchingGameObjects().add(other);
+
+                for (GameObjectComponent component : getComponents()) {
+                    component.onCollision(e);
+                }
+
+                for (GameObjectComponent component : other.getComponents()) {
+                    component.onCollision(eSelf);
+                }
             }
 
         }
+    }
+
+    private void addCollisionDirections(CollisionEvent e, GameObject other, boolean mirror) {
+
+        List<Directions.Direction> directionsList = new LinkedList<>();
+        Directions.Direction[] collisionDirections;
+
+        if (e.getRoot().getMiddle().isRight(other.getMiddle())) {
+            directionsList.add(Directions.Direction.right);
+        } else if (e.getRoot().getMiddle().isLeft(other.getMiddle())) {
+            directionsList.add(Directions.Direction.left);
+        }
+
+        if (e.getRoot().getMiddle().isAbove(other.getMiddle())) {
+            directionsList.add(Directions.Direction.up);
+        } else if (e.getRoot().getMiddle().isBelow(other.getMiddle())) {
+            directionsList.add(Directions.Direction.down);
+        }
+
+        collisionDirections = new Directions.Direction[directionsList.size()];
+        int currentIndex = 0;
+
+        for (Directions.Direction d : directionsList) {
+            if (mirror) {
+                collisionDirections[currentIndex] = Directions.mirrorDirection(d);
+            } else {
+                collisionDirections[currentIndex] = d;
+            }
+        }
+
+        e.setCollisionDirections(collisionDirections);
     }
 
     public void removeComponent(String name){
@@ -157,7 +215,6 @@ public abstract class GameObject {
 
     public void syncPropertiesToFile() {
 
-
     }
 
     public void readKeyProperties() throws IOException {
@@ -194,7 +251,7 @@ public abstract class GameObject {
                 basicMove(delta, Directions.BasicDirection.x);
                 break;
             case left:
-                basicMove(-delta, Directions.BasicDirection.y);
+                basicMove(-delta, Directions.BasicDirection.x);
                 break;
             case up:
                 basicMove(-delta, Directions.BasicDirection.y);
@@ -354,5 +411,13 @@ public abstract class GameObject {
 
     public void setMass(float mass) {
         this.mass = mass;
+    }
+
+    public Coordinates getMiddle() {
+        return middle;
+    }
+
+    public void setMiddle(Coordinates middle) {
+        this.middle = middle;
     }
 }

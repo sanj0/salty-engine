@@ -5,7 +5,7 @@ import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.utils.Directions;
 
 /**
- * This class represents a kinetic force for SimplePhysicsComponents.
+ * This class represents a constant kinetic force for SimplePhysicsComponents.
  * The main idea is, that it tries to reach the <code>targetVelocity</code> and then raises straight with it.
  * If <code>accelerate</code> is set to <code>false</code> <code>targetVelocity</code> is reached right at the first step.
  * If <code>infinitePower</code> is set to <code>true</code> the force will accelerate over and over again until
@@ -13,7 +13,7 @@ import de.edgelord.sjgl.utils.Directions;
  *
  * @see SimplePhysicsComponent
  */
-public class SimpleForce {
+public class SimpleConstantForce implements Force {
 
     private GameObject parent;
     private float targetVelocity;
@@ -21,9 +21,10 @@ public class SimpleForce {
     // A id-name for editing or removing Forces from a List
     private String name;
 
-    private float airFrcition = SimplePhysicsComponent.DEFAULT_AIRFRICTION;
+    private float airFriction = SimplePhysicsComponent.DEFAULT_AIRFRICTION;
 
-    private boolean enabled;
+    private boolean enabled = true;
+    private boolean interrupted = false;
     // If this is true, the Force will not have the target velocity right at the beginning but will accelerate towards it
     private boolean accelerate;
     private boolean reachedTargetVelocity = false;
@@ -42,7 +43,7 @@ public class SimpleForce {
      * @param targetVelocity the target velocity of this force, it will never accelerate further
      * @param direction      the direction in which this force should move the <code>parent</code>
      */
-    public SimpleForce(GameObject parent, String name, float targetVelocity, Directions.Direction direction) {
+    public SimpleConstantForce(GameObject parent, String name, float targetVelocity, Directions.Direction direction) {
         this.parent = parent;
         this.name = name;
         this.targetVelocity = targetVelocity;
@@ -59,7 +60,7 @@ public class SimpleForce {
      * @param acceleration   the steps until reaching <code>targetVelocity</code>
      * @param direction      the direction in which the force should move the <code>parent</code>
      */
-    public SimpleForce(GameObject parent, String name, float targetVelocity, float acceleration, Directions.Direction direction) {
+    public SimpleConstantForce(GameObject parent, String name, float targetVelocity, float acceleration, Directions.Direction direction) {
         this.parent = parent;
         this.name = name;
         this.targetVelocity = targetVelocity;
@@ -72,40 +73,41 @@ public class SimpleForce {
     /**
      * Calculate the next step for this force
      */
+    @Override
     public void nextStep() {
 
-        doAcceleration();
+        if (enabled && !interrupted) {
+            doAcceleration();
 
-        // Check if  currentVelocity if negative, and if so, make it 0
-        if (currentVelocity < 0f) {
-            currentVelocity = 0f;
-        }
+            // Check if currentVelocity if negative, and if so, make it 0
+            if (currentVelocity < 0f) {
+                currentVelocity = 0f;
+            }
 
-        // Remove the friction between all touching gameObject but make sure
-        // that the targetVelocity cannot get negative
+            // Remove the friction between all touching gameObject but make sure
+            // that the targetVelocity cannot get negative
 
-        for (GameObject gameObject : parent.getTouchingGameObjects()) {
-            if (currentVelocity >= gameObject.getFriction()) {
-                currentVelocity -= gameObject.getFriction();
+            for (GameObject gameObject : parent.getTouchingGameObjects()) {
+                if (currentVelocity >= gameObject.getFriction()) {
+                    currentVelocity -= gameObject.getFriction();
+                } else {
+                    currentVelocity = 0f;
+                }
+            }
+
+            // Remove the air friction but make sure
+            // that the targetVelocity cannot get negative
+
+            if (currentVelocity >= airFriction) {
+                currentVelocity -= airFriction;
             } else {
                 currentVelocity = 0f;
-                break;
             }
+
+            // Finally, move the GameObject
+
+            parent.move(currentVelocity, direction);
         }
-
-        // Remove the air friction but make sure
-        // that the targetVelocity cannot get negative
-
-        if (currentVelocity >= airFrcition) {
-            currentVelocity -= airFrcition;
-        } else {
-            currentVelocity = 0f;
-        }
-
-        // Finally, move the GameObject
-
-        parent.move(targetVelocity, direction);
-
     }
 
     /**
@@ -125,6 +127,7 @@ public class SimpleForce {
     private void doAcceleration() {
 
         float accelerationStep = targetVelocity / acceleration;
+        System.out.println(accelerationStep + getParent().getTag());
 
         if (accelerate) {
             if (infinitePower) {
@@ -144,7 +147,7 @@ public class SimpleForce {
 
     private void accelerate(float accelerationStep) {
 
-        if ((currentVelocity + accelerationStep) > targetVelocity) {
+        if ((currentVelocity + accelerationStep) >= targetVelocity) {
             currentVelocity = targetVelocity;
             reachedTargetVelocity = true;
         } else {
@@ -152,13 +155,18 @@ public class SimpleForce {
         }
     }
 
-    /**
-     * When this method gets called, the current velocity gets set to 0.
-     * This method gets called when e.g. the parent GameObject collides with another
-     */
     public void interrupt() {
 
-        currentVelocity = 0f;
+        System.err.println("Interrupted Force " + getName() + " of GameObject " + parent.getTag());
+
+        interrupted = true;
+    }
+
+    public void deInterrupt() {
+
+        System.err.println("Deinterrupted Force " + getName() + " of GameObject " + parent.getTag());
+
+        interrupted = false;
     }
 
     public GameObject getParent() {

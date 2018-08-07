@@ -15,6 +15,22 @@ public class Coordinates {
         this.y = y;
     }
 
+    public boolean isAbove(Coordinates other) {
+        return this.getY() < other.getY();
+    }
+
+    public boolean isBelow(Coordinates other) {
+        return this.getY() > other.getY();
+    }
+
+    public boolean isLeft(Coordinates other) {
+        return this.getX() < other.getX();
+    }
+
+    public boolean isRight(Coordinates other) {
+        return this.getX() > other.getX();
+    }
+
     public void parseCoordinates(Vector2f vector2f){
 
         this.setX((int) vector2f.getX());

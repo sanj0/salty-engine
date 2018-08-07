@@ -1,5 +1,6 @@
 package testing;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
@@ -47,7 +48,7 @@ public class BirdPlayer extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
     }
 

@@ -1,6 +1,6 @@
 package testing;
 
-import de.edgelord.sjgl.core.physics.SimpleForce;
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.gameobject.GameObject;
@@ -22,12 +22,10 @@ public class Bird extends GameObject {
     private int xPos;
     private final int windowWidth = 1200;
     private final int windowHeight = 909;
-    private final int moveSpeed = 1;
     private int fixedTicks = 0;
-    private int ticks = 0;
 
     public Bird(BufferedImage image, int xPos, int yPos) {
-        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "bird");
+        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "de.edgelord.sjgl.testing.bird");
 
         this.yPos = yPos;
         this.xPos = xPos;
@@ -37,24 +35,27 @@ public class Bird extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.addComponent(new DrawPositionComponent(this, "dev_DrawPosition"));
-        this.addComponent(new DrawHitboxComponent(this, "dev_DrawHitbox"));
-        this.addComponent(new AnimationRender(this, "standard_animationRender", animation, 90));
-        setFriction(0f);
+        this.addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
+        this.addComponent(new DrawHitboxComponent(this, "de.edgelord.sjgl.testing.bird.drawHitbox"));
+        this.addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
+        setFriction(10000000000000000000000f);
     }
 
     @Override
     public void initialize() {
 
         animation.nextFrame();
-        getPhysics().addForce(new SimpleForce(this, "constant_forwardForce", 0.25f, Directions.Direction.right));
+        // getPhysics().addForce(new SimpleConstantForce(this, "de.edgelord.sjgl.testing.bird.constantForwardForce", 0.25f, Directions.Direction.right));
 
         System.out.println("INFO: Initialized " + this.getClass());
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
+        for (Directions.Direction direction : e.getCollisionDirections()) {
+            System.out.println("GameObject " + this.getTag() + " collided " + direction.toString());
+        }
     }
 
     @Override

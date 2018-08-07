@@ -42,11 +42,7 @@ public class Stage extends JPanel {
         init();
     }
 
-    private void init() {
-
-        setBounds(0, 0, display.getWidth(), display.getHeight());
-        setBackground(Color.WHITE);
-        display.add(this);
+    protected void initNativeMouseListener() {
 
         nativeMouseListener = new MouseAdapter() {
             @Override
@@ -123,6 +119,15 @@ public class Stage extends JPanel {
         };
 
         this.addMouseListener(nativeMouseListener);
+    }
+
+    protected void init() {
+
+        setBounds(0, 0, display.getWidth(), display.getHeight());
+        setBackground(Color.WHITE);
+        display.add(this);
+
+        initNativeMouseListener();
     }
 
     @Override

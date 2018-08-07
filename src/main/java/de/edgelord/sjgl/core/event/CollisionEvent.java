@@ -34,6 +34,10 @@ public class CollisionEvent {
         return rootPhysics;
     }
 
+    public void setCollisionDirections(Directions.Direction[] collisionDirections) {
+        this.collisionDirections = collisionDirections;
+    }
+
     public Directions.Direction[] getCollisionDirections() {
         return collisionDirections;
     }

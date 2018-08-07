@@ -1,5 +1,6 @@
 package testing;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.location.Coordinates;
 
@@ -15,6 +16,8 @@ public class HugeImageRenderingTest extends GameObject {
 
         setFriction(0f);
 
+        getPhysics().setAffectByGravity(false);
+
         this.image = image;
     }
 
@@ -23,7 +26,7 @@ public class HugeImageRenderingTest extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
         // System.out.println("Something collided with the biogas plant");
     }

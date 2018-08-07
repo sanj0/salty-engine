@@ -11,14 +11,14 @@ import java.util.TimerTask;
 
 public class Engine {
 
-    private long fixedLoopMillis;
+    private long fixedTickMillis;
     private Timer fixedTimer = new Timer();
     private Timer repaintTimer = new Timer();
     private boolean isCloseRequested = false;
     private DisplayManager displayManager = null;
 
-    public Engine(long fixedLoopMillis) {
-        this.fixedLoopMillis = fixedLoopMillis;
+    public Engine(long fixedTickMillis) {
+        this.fixedTickMillis = fixedTickMillis;
     }
 
     public void start(DisplayManager displayManager){
@@ -70,6 +70,7 @@ public class Engine {
     public void startFixedTicks() {
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
+
             @Override
             public void run() {
 
@@ -86,7 +87,7 @@ public class Engine {
                     }
                 }
             }
-        }, 0, fixedLoopMillis);
+        }, 0, fixedTickMillis);
     }
 
     public void startRepainting() {

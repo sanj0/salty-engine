@@ -1,5 +1,6 @@
 package de.edgelord.sjgl.ui;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
@@ -21,7 +22,7 @@ public abstract class UIElement extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
     }
 
     @Override

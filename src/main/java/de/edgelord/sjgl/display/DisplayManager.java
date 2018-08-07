@@ -40,14 +40,15 @@ public class DisplayManager {
 
     private int width, height;
 
-    public DisplayManager(int width, int height, Engine engine) {
+    public DisplayManager(int width, int height, String gameName, Engine engine) {
 
-        display = new Display(width, height, this);
+        display = new Display(width, height, gameName, this);
         stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
         this.width = width;
         this.height = height;
+        StaticSystem.gameName = gameName;
     }
 
     public void create() {
@@ -160,6 +161,14 @@ public class DisplayManager {
         this.displayMouseHandler = displayMouseHandler;
 
         this.stage.setMouseHandler(displayMouseHandler);
+    }
+
+    public DisplayListener getDisplayListener() {
+        return displayListener;
+    }
+
+    public void setDisplayListener(DisplayListener displayListener) {
+        this.displayListener = displayListener;
     }
 
     public char getCurrentKey() {

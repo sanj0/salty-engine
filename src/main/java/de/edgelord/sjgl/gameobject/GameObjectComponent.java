@@ -1,5 +1,7 @@
 package de.edgelord.sjgl.gameobject;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
+
 import java.awt.*;
 
 /**
@@ -26,7 +28,7 @@ public abstract class GameObjectComponent {
 
     public abstract void draw(Graphics2D graphics);
 
-    public abstract void onCollision(GameObject other);
+    public abstract void onCollision(CollisionEvent e);
 
     public String getName() {
         return name;

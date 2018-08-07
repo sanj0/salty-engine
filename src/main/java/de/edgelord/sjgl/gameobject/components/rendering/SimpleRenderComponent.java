@@ -1,5 +1,6 @@
 package de.edgelord.sjgl.gameobject.components.rendering;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.GameObjectComponent;
 
@@ -44,7 +45,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
     public abstract void draw(Graphics2D graphics);
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
         // Is not needed for renderComponents, so prevent unnecessary Code
     }

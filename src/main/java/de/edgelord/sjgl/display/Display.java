@@ -8,6 +8,7 @@ package de.edgelord.sjgl.display;
 
 import de.edgelord.sjgl.input.DisplayMouseHandler;
 import de.edgelord.sjgl.utils.GameStats;
+import de.edgelord.sjgl.utils.StaticSystem;
 
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
@@ -17,6 +18,7 @@ import java.awt.event.ComponentListener;
 public class Display extends JFrame {
 
     private int width, height;
+    private String windowTitle;
     private boolean closeRequested = false;
     private int oldWidth;
     private int oldHeight;
@@ -25,10 +27,11 @@ public class Display extends JFrame {
     private DisplayManager displayManager;
     private DisplayMouseHandler displayMouseHandler = null;
 
-    public Display(int width, int height, DisplayManager displayManager) {
+    public Display(int width, int height, String windowTitle, DisplayManager displayManager) {
 
         this.width = width;
         this.height = height;
+        this.windowTitle = windowTitle;
         this.oldHeight = height;
         this.oldWidth = width;
         this.displayManager = displayManager;
@@ -38,6 +41,7 @@ public class Display extends JFrame {
     public void create() {
 
         setSize(width, height);
+        setTitle(windowTitle + "    -- sjgl " + StaticSystem.versionTag);
         setLocationRelativeTo(null);
         setResizable(GameStats.withExperimentalFeatures);
         setVisible(true);

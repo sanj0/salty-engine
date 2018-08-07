@@ -1,5 +1,6 @@
 package de.edgelord.sjgl.sgs;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.edgelord.sjgl.resource.Resource;
@@ -89,7 +90,7 @@ public class ScriptInterpreter extends GameObjectComponent {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
     }
 
