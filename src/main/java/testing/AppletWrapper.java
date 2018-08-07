@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package testing;
 
 import java.applet.Applet;

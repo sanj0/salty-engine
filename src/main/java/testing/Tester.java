@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -8,10 +8,8 @@ package testing;
 
 import de.edgelord.sjgl.audio.AudioSystem;
 import de.edgelord.sjgl.core.Game;
-import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.factory.AudioFactory;
 import de.edgelord.sjgl.factory.ImageFactory;
-import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.resource.InnerResource;
 import de.edgelord.sjgl.ui.Button;
@@ -25,7 +23,6 @@ import java.awt.image.BufferedImage;
 
 public class Tester extends Game {
 
-    public static DisplayManager displayManager;
     private static AudioSystem audioSystem;
 
     public static void main(String[] args) {
@@ -40,7 +37,7 @@ public class Tester extends Game {
 
         System.out.println("INFO: Welcome to sjgl version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
 
-        initPhysicsTest();
+        initForcesTest();
         addUI();
 
         audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
@@ -90,20 +87,15 @@ public class Tester extends Game {
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
         BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
-        Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
-        Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
-        Bird bird1_3 = new Bird(birdSpritesheet, 1, 3);
-        Bird bird3_3 = new Bird(birdSpritesheet, 3, 3);
+        Bird bird1_1 = new Bird(birdSpritesheet, 1, 1, getDisplayManager());
+        Bird bird3_1 = new Bird(birdSpritesheet, 3, 1, getDisplayManager());
+        Bird bird1_3 = new Bird(birdSpritesheet, 1, 3, getDisplayManager());
+        Bird bird3_3 = new Bird(birdSpritesheet, 3, 3, getDisplayManager());
 
-        bird1_1.getPhysics().getForce(SimplePhysicsComponent.DEFAULT_GRAVITY_NAME).setTargetVelocity(2f);
-        bird3_1.getPhysics().getForce(SimplePhysicsComponent.DEFAULT_GRAVITY_NAME).setTargetVelocity(2f);
         bird1_1.setTag("de.edgelord.sjgl.testing.bird1_1");
         bird3_1.setTag("de.edgelord.sjgl.testing.bird3_1");
         bird1_3.setTag("de.edgelord.sjgl.testing.bird1_3");
         bird3_3.setTag("de.edgelord.sjgl.testing.bird3_3");
-
-        bird1_3.getPhysics().setAffectByGravity(false);
-        bird3_3.getPhysics().setAffectByGravity(false);
 
         StaticSystem.currentScene.addGameObject(bird1_1);
         StaticSystem.currentScene.addGameObject(bird1_3);
@@ -111,12 +103,26 @@ public class Tester extends Game {
         StaticSystem.currentScene.addGameObject(bird3_3);
     }
 
+    private static void initForcesTest() {
+
+        ImageFactory imageFactory = new ImageFactory(new InnerResource());
+        BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+
+        Bird upperBird = new Bird(birdSpritesheet, 2, 2, getDisplayManager());
+        Bird bottomBird = new Bird(birdSpritesheet, 2, 4, getDisplayManager());
+
+        bottomBird.getPhysics().removeGravity();
+
+        StaticSystem.currentScene.addGameObject(upperBird);
+        StaticSystem.currentScene.addGameObject(bottomBird);
+    }
+
     private static void initSampleScene() {
 
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
         HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
-        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, new Coordinates(1, 1));
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), getDisplayManager(), new Coordinates(1, 1));
 
         StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
         StaticSystem.currentScene.addGameObject(player);
@@ -131,7 +137,7 @@ public class Tester extends Game {
 
         while (index < 16) {
 
-            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
+            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos, getDisplayManager()));
 
             if (index == 7) {
 

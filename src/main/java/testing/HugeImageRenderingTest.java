@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package testing;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
@@ -13,10 +19,6 @@ public class HugeImageRenderingTest extends GameObject {
 
     public HugeImageRenderingTest(BufferedImage image, int width, int height) {
         super(new Coordinates(0, 0), width, height, "huge_image_rendering_test");
-
-        setFriction(0f);
-
-        getPhysics().setAffectByGravity(false);
 
         this.image = image;
     }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -31,19 +31,14 @@ public abstract class GameObject {
     private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
     private String tag;
-    private float friction = 0.2f;
-    private float gravity = 0.981f;
-    private float airFriction = 0.1f;
-    // Used for moving via RotateComponent and for CollisionEvents
-    private float velocity;
-    // Used for Physics and CollisionEvents
-    private float mass;
     private int width, height;
     private HashMap<String, String> properties = new HashMap<>();
-    private List<GameObject> touchingGameObjects = new LinkedList<>();
+    private final List<GameObject> touchingGameObjects = new LinkedList<>();
     private List<GameObjectComponent> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
+
+    private float mass = 1f;
 
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
@@ -109,7 +104,7 @@ public abstract class GameObject {
 
     public void doCollisionDetection(List<GameObject> gameObjects) {
 
-        setTouchingGameObjects(new LinkedList<>());
+        touchingGameObjects.clear();
 
         for (GameObject other : gameObjects) {
 
@@ -119,8 +114,8 @@ public abstract class GameObject {
 
             if (this.getHitbox().collides(other)) {
 
-                CollisionEvent e = new CollisionEvent(other);
-                CollisionEvent eSelf = new CollisionEvent(this);
+                CollisionEvent e = new CollisionEvent(this);
+                CollisionEvent eSelf = new CollisionEvent(other);
 
                 addCollisionDirections(e, other, false);
                 addCollisionDirections(eSelf, this, true);
@@ -345,36 +340,8 @@ public abstract class GameObject {
         getPosition().setY(y);
     }
 
-    public float getFriction() {
-        return friction;
-    }
-
-    public void setFriction(float friction) {
-        this.friction = friction;
-    }
-
-    public float getAirFriction() {
-        return airFriction;
-    }
-
-    public void setAirFriction(float airFriction) {
-        this.airFriction = airFriction;
-    }
-
-    public float getGravity() {
-        return gravity;
-    }
-
-    public void setGravity(float gravity) {
-        this.gravity = gravity;
-    }
-
     public List<GameObject> getTouchingGameObjects() {
         return touchingGameObjects;
-    }
-
-    public void setTouchingGameObjects(List<GameObject> touchingGameObjects) {
-        this.touchingGameObjects = touchingGameObjects;
     }
 
     public List<GameObjectComponent> getComponents() {
@@ -397,12 +364,12 @@ public abstract class GameObject {
         this.tag = tag;
     }
 
-    public float getVelocity() {
-        return velocity;
+    public Coordinates getMiddle() {
+        return middle;
     }
 
-    public void setVelocity(float velocity) {
-        this.velocity = velocity;
+    public void setMiddle(Coordinates middle) {
+        this.middle = middle;
     }
 
     public float getMass() {
@@ -411,13 +378,5 @@ public abstract class GameObject {
 
     public void setMass(float mass) {
         this.mass = mass;
-    }
-
-    public Coordinates getMiddle() {
-        return middle;
-    }
-
-    public void setMiddle(Coordinates middle) {
-        this.middle = middle;
     }
 }

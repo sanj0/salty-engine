@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package testing;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
@@ -5,8 +11,6 @@ import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
-import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
-import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.edgelord.sjgl.location.Coordinates;
 
 import java.awt.*;
@@ -34,9 +38,8 @@ public class BirdPlayer extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
-        setFriction(0f);
+        // this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
+        // this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     @Override

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2028
+ * Germany, 8.2018
  * All rights reserved
  */
 

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.core;
 
 import de.edgelord.sjgl.display.DisplayManager;
@@ -27,5 +33,13 @@ public class Game {
         }
 
         engine.start(displayManager);
+    }
+
+    public static DisplayManager getDisplayManager() {
+        return displayManager;
+    }
+
+    public static Engine getEngine() {
+        return engine;
     }
 }

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.gameobject.components.rendering;
 
 import de.edgelord.sjgl.gameobject.GameObject;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -22,6 +22,7 @@ public class StaticSystem {
     public static String versionName = "Zeus";
     public static String gameName = "My name is Nym. Arno Nym.";
 
+    public static long fixedTicksMillis = 1;
 
     public enum Mode {
         layerCollection, scene

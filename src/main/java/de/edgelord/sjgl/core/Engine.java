@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.core;
 
 import de.edgelord.sjgl.display.DisplayManager;
@@ -68,6 +74,8 @@ public class Engine {
     }
 
     public void startFixedTicks() {
+
+        StaticSystem.fixedTicksMillis = fixedTickMillis;
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
 

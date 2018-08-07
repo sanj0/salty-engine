@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -27,8 +27,9 @@ public class DisplayManager {
     private DisplayMouseHandler displayMouseHandler = null;
 
     // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
+    // The 'z' is a dumb value to prevent NullPointerExceptions
 
-    private char currentKey;
+    private char currentKey = 'z';
 
     // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
     // this supports multi-input!
