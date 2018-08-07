@@ -1,0 +1,4 @@
+-scenesInit
+add Scene startScreen 
+add Scene game
+--scenesInit

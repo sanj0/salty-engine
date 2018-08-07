@@ -1,0 +1,6 @@
+
+{sSources}
+    (gameInitScript)sgs/scripts/system/gameInit.sgs(*gameInitScript)
+    (gameObjectsPath)sgs/scripts/gameObjects(*gameObjectsPath)
+    (scenesInitScript)sgs/scripts/system/sceneInit.sgs(*scenesInitScript)
+{*sSources}

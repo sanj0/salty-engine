@@ -1,0 +1,6 @@
+-sceneInit
+
+addGameObject sgs/scripts/gameObjects/simple_interactive_gameObject image=path=res/pictures/bg.png,properties=path=gameObjectProperties/playerProperties.sdb
+
+loadScene 
+--
