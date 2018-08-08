@@ -16,7 +16,7 @@ scripting language with which you can script GameObject and Scenes in sjgl.
 So you can make a whole game **without any coding knowledge**. SGS is currently not usable,
 but I will focus on that after the Ludum Dare jam and when the Physics are working. <p>
 [Documentation](https://github.com/edgelord314/sjgl/tree/master/SGS.md) - 
-[Examples](https://github.com/edgelord314/sjgl/tree/master/src/main/java/resources/sgs)
+[Examples](https://github.com/edgelord314/sjgl/tree/master/src/main/resources/sgs)
 
 **Features**
 - simple Display management
