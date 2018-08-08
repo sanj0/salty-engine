@@ -21,6 +21,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
     private List<Force> forces = new LinkedList<>();
     public static final String DEFAULT_GRAVITY = "de.edgelord.sjgl.core.physics.default_gravityForce";
+    public static final float DEFAULT_GRAVITY_ACCELERATION = 0.005f;
     public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultUpwardsForce";
     public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultDownwardsForce";
     public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultRightwardsForce";
@@ -34,7 +35,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
     private void addGravityForce() {
 
-        forces.add(new Force(0.005f, getParent(), Directions.Direction.down, DEFAULT_GRAVITY));
+        forces.add(new Force(DEFAULT_GRAVITY_ACCELERATION, getParent(), Directions.Direction.down, DEFAULT_GRAVITY));
     }
 
     private void addDefaultForces() {

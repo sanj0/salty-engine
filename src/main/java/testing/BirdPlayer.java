@@ -29,7 +29,7 @@ public class BirdPlayer extends GameObject {
     private int ticksForSound = 0;
 
     public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Coordinates coordinates) {
-        super(coordinates, 150, 101, "bird_player");
+        super(coordinates, 150, 101, "testing.birdPlayer");
 
         this.displayManager = displayManager;
 

@@ -30,7 +30,7 @@ public class Bird extends GameObject {
     private int fixedTicks = 0;
 
     public Bird(BufferedImage image, int xPos, int yPos) {
-        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "de.edgelord.sjgl.testing.bird");
+        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "testing.bird");
 
         animation = new Animation(this);
         spritesheet = new Spritesheet(image, getWidth(), getHeight());

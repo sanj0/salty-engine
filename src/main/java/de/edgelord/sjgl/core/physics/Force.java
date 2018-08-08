@@ -7,6 +7,7 @@
 package de.edgelord.sjgl.core.physics;
 
 import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.utils.Directions;
 
 public class Force {
@@ -51,6 +52,12 @@ public class Force {
         if (countersCollision) {
             acceleration = 0;
             velocity = 0;
+
+            if (getParent().getTag().equals("testing.birdPlayer")) {
+                System.out.println("Beep! " + getName());
+            }
+        } else if (getName().equals(SimplePhysicsComponent.DEFAULT_GRAVITY)) {
+            setAcceleration(SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION);
         }
 
         float accelerationRes = acceleration + counterAcceleration;
