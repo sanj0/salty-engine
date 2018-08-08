@@ -7,7 +7,6 @@
 package de.edgelord.sjgl.display;
 
 import de.edgelord.sjgl.input.DisplayMouseHandler;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 
 import javax.swing.*;
@@ -43,7 +42,7 @@ public class Display extends JFrame {
         setSize(width, height);
         setTitle(windowTitle + "    -- sjgl " + StaticSystem.versionTag);
         setLocationRelativeTo(null);
-        setResizable(GameStats.withExperimentalFeatures);
+        setResizable(StaticSystem.withExperimentalFeatures);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
@@ -58,7 +57,7 @@ public class Display extends JFrame {
 
                 System.out.println("Display trying to scale the graphics to " + (double) newHeight / oldHeight);
 
-                if (GameStats.withExperimentalFeatures) {
+                if (StaticSystem.withExperimentalFeatures) {
 
                     displayManager.scale((double) newWidth / oldWidth, (double) newHeight / oldHeight);
                 }

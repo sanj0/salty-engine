@@ -54,7 +54,7 @@ public class Bird extends GameObject {
 
         animation.nextFrame();
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.right);
-        // accelerator.accelerate("testing.Bird.testingForce", 0.01f, 1000);
+        accelerator.accelerate("testing.Bird.testingForce", 0.01f, 1000);
 
         System.out.println("INFO: Initialized " + this.getClass());
     }

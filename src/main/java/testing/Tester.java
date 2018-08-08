@@ -14,7 +14,6 @@ import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.resource.InnerResource;
 import de.edgelord.sjgl.ui.Button;
 import de.edgelord.sjgl.ui.UISystem;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.*;
@@ -63,13 +62,13 @@ public class Tester extends Game {
                     System.exit(0);
                 }
 
-                if (GameStats.isPaused()){
+                if (StaticSystem.isPaused()) {
 
                     System.out.println("Unpause game!");
-                    GameStats.setPaused(false);
+                    StaticSystem.setPaused(false);
                 } else {
                     System.out.println("Pause game!");
-                    GameStats.setPaused(true);
+                    StaticSystem.setPaused(true);
                 }
             }
         };

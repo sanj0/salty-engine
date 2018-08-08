@@ -17,6 +17,7 @@ public class Accelerator extends GameObjectComponent {
     private long ticks;
     private long duration;
     private String forceName;
+    private boolean accelerationFinished = true;
 
     public Accelerator(GameObject parent, String name) {
         super(parent, name);
@@ -25,12 +26,15 @@ public class Accelerator extends GameObjectComponent {
     @Override
     public void onFixedTick() {
 
-        ticks++;
+        if (!accelerationFinished) {
+            ticks++;
+        }
 
         if (ticks == duration) {
             getParent().getPhysics().getForce(forceName).setAcceleration(0f);
             ticks = 0;
             duration = 0;
+            accelerationFinished = true;
         }
     }
 
@@ -47,6 +51,7 @@ public class Accelerator extends GameObjectComponent {
     public void accelerate(String forceName, float acceleration, long duration) {
         getParent().getPhysics().getForce(forceName).setAcceleration(acceleration);
 
+        this.accelerationFinished = false;
         this.forceName = forceName;
         this.duration = duration;
     }

@@ -11,7 +11,6 @@ import de.edgelord.sjgl.input.DisplayKeyHandler;
 import de.edgelord.sjgl.input.DisplayListener;
 import de.edgelord.sjgl.input.DisplayMouseHandler;
 import de.edgelord.sjgl.stage.Stage;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
@@ -74,10 +73,10 @@ public class DisplayManager {
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P){
-                    if (GameStats.isPaused()){
-                        GameStats.setPaused(false);
+                    if (StaticSystem.isPaused()) {
+                        StaticSystem.setPaused(false);
                     } else {
-                        GameStats.setPaused(true);
+                        StaticSystem.setPaused(true);
                     }
                 }
             }

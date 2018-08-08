@@ -7,7 +7,7 @@
 package de.edgelord.sjgl.periodical;
 
 import de.edgelord.sjgl.display.DisplayManager;
-import de.edgelord.sjgl.utils.GameStats;
+import de.edgelord.sjgl.utils.StaticSystem;
 
 @Deprecated
 public class PeriodicalRepaint extends Periodical {
@@ -31,7 +31,7 @@ public class PeriodicalRepaint extends Periodical {
     @Override
     public void doMe() {
 
-        if (!GameStats.isPaused() && getGameUpdating() != null) {
+        if (!StaticSystem.isPaused() && getGameUpdating() != null) {
 
             gameUpdating.gameUpdating();
         }

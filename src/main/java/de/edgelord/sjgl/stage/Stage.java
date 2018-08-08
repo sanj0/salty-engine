@@ -9,7 +9,6 @@ package de.edgelord.sjgl.stage;
 import de.edgelord.sjgl.core.Engine;
 import de.edgelord.sjgl.display.Display;
 import de.edgelord.sjgl.input.DisplayMouseHandler;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.sjgl.utils.Time;
 
@@ -84,7 +83,7 @@ public class Stage extends JPanel {
                     mouseHandler.mouseEntered(e);
                 }
 
-                GameStats.setPaused(false);
+                StaticSystem.setPaused(false);
             }
 
             @Override
@@ -93,7 +92,7 @@ public class Stage extends JPanel {
                     mouseHandler.mouseExited(e);
                 }
 
-                GameStats.setPaused(true);
+                StaticSystem.setPaused(true);
             }
 
             @Override

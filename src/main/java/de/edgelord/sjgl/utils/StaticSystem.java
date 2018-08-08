@@ -23,6 +23,16 @@ public class StaticSystem {
     public static String gameName = "My name is Nym. Arno Nym.";
 
     public static long fixedTicksMillis = 1;
+    public static boolean paused = false;
+    public static boolean withExperimentalFeatures = false;
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        StaticSystem.paused = paused;
+    }
 
     public enum Mode {
         layerCollection, scene

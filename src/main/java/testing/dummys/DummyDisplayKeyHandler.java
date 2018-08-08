@@ -8,7 +8,6 @@ package testing.dummys;
 
 import de.edgelord.sjgl.gameobject.FixedTask;
 import de.edgelord.sjgl.input.DisplayKeyHandler;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
@@ -36,7 +35,7 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (!GameStats.isPaused()) {
+        if (!StaticSystem.isPaused()) {
 
             if (e.getKeyCode() == KeyEvent.VK_D) {
 
@@ -61,10 +60,10 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
 
-            if (GameStats.isPaused()) {
-                GameStats.setPaused(false);
+            if (StaticSystem.isPaused()) {
+                StaticSystem.setPaused(false);
             } else {
-                GameStats.setPaused(true);
+                StaticSystem.setPaused(true);
             }
         }
     }
@@ -99,7 +98,7 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
             fixedTicks = 0;
 
-            if (GameStats.isPaused()) {
+            if (StaticSystem.isPaused()) {
 
                 cameraDown = false;
                 cameraUp = false;

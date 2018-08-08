@@ -7,7 +7,6 @@
 package de.edgelord.sjgl.core;
 
 import de.edgelord.sjgl.display.DisplayManager;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.sjgl.utils.Time;
 
@@ -84,7 +83,7 @@ public class Engine {
 
                 doInitialising();
 
-                if (!GameStats.isPaused()) {
+                if (!StaticSystem.isPaused()) {
 
                     if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 
