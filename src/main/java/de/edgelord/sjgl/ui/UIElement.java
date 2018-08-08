@@ -1,5 +1,12 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.ui;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
@@ -21,7 +28,7 @@ public abstract class UIElement extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
     }
 
     @Override
@@ -36,10 +43,15 @@ public abstract class UIElement extends GameObject {
     public abstract void draw(Graphics2D graphics);
 
     public abstract void mousePressed(MouseEvent e);
+
     public abstract void mouseReleased(MouseEvent e);
+
     public abstract void mouseClicked(MouseEvent e);
+
     public abstract void keyPressed(KeyEvent e);
+
     public abstract void keyReleased(KeyEvent e);
+
     public abstract void keyTyped(KeyEvent e);
 
     public Font getFont() {

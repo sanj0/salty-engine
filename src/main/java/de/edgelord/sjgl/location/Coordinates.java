@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -13,6 +13,22 @@ public class Coordinates {
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public boolean isAbove(Coordinates other) {
+        return this.getY() < other.getY();
+    }
+
+    public boolean isBelow(Coordinates other) {
+        return this.getY() > other.getY();
+    }
+
+    public boolean isLeft(Coordinates other) {
+        return this.getX() < other.getX();
+    }
+
+    public boolean isRight(Coordinates other) {
+        return this.getX() > other.getX();
     }
 
     public void parseCoordinates(Vector2f vector2f){

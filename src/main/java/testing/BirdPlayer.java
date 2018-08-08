@@ -1,15 +1,23 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package testing;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
 import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
+import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class BirdPlayer extends GameObject {
@@ -20,11 +28,8 @@ public class BirdPlayer extends GameObject {
     private int ticksForAnim = 0;
     private int ticksForSound = 0;
 
-    private AffineTransform rotation = new AffineTransform();
-    private int rotationDegrees = 0;
-
     public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Coordinates coordinates) {
-        super(coordinates, 150, 101, "bird_player");
+        super(coordinates, 150, 101, "testing.birdPlayer");
 
         this.displayManager = displayManager;
 
@@ -35,7 +40,6 @@ public class BirdPlayer extends GameObject {
 
         this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
         this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
-        setFriction(0f);
     }
 
     @Override
@@ -47,12 +51,28 @@ public class BirdPlayer extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
     }
 
     @Override
     public void onFixedTick() {
+
+        if (StaticSystem.inputUp) {
+            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE, 0.005f, 1);
+        }
+
+        if (StaticSystem.inputDown) {
+            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE, 0.005f, 1);
+        }
+
+        if (StaticSystem.inputRight) {
+            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE, 0.005f, 1);
+        }
+
+        if (StaticSystem.inputLeft) {
+            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE, 0.005f, 1);
+        }
 
         if (ticksForSound == 250) {
             if (getCoordinates().getY() >= displayManager.getHeight()) {
@@ -88,7 +108,6 @@ public class BirdPlayer extends GameObject {
                 Tester.getAudioSystem().play("bird_flap");
             }
 
-            rotationDegrees = -90;
         }
         if (displayManager.isInputDown()){
 
@@ -100,7 +119,6 @@ public class BirdPlayer extends GameObject {
             if (ticksForSound == 250){
                 Tester.getAudioSystem().play("bird_flap");
             }
-            rotationDegrees = 90;
         }
         if (displayManager.isInputLeft()){
 
@@ -112,7 +130,6 @@ public class BirdPlayer extends GameObject {
             if (ticksForSound == 250){
                 Tester.getAudioSystem().play("bird_flap");
             }
-            rotationDegrees = 180;
         }
         if (displayManager.isInputRight()){
 
@@ -124,7 +141,6 @@ public class BirdPlayer extends GameObject {
             if (ticksForSound == 250){
                 Tester.getAudioSystem().play("bird_flap");
             }
-            rotationDegrees = 0;
         }
 
         if (ticksForAnim == 75) {
@@ -149,8 +165,6 @@ public class BirdPlayer extends GameObject {
 
     @Override
     public void draw(Graphics2D graphics) {
-
-        rotation.setToRotation(Math.toRadians(rotationDegrees));
 
         animation.drawCurrentFrame(graphics);
     }

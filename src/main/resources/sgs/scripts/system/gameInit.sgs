@@ -1,0 +1,5 @@
+-gameInit
+set displaySize width=1200,height=900
+set gameName testing
+set fixedTickMillis 1
+--gameInit

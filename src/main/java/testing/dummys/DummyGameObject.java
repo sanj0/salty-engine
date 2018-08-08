@@ -1,11 +1,12 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
 package testing.dummys;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.location.Coordinates;
 
@@ -27,7 +28,7 @@ public class DummyGameObject extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
     }
 

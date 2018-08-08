@@ -1,7 +1,12 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.core;
 
 import de.edgelord.sjgl.display.DisplayManager;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.sjgl.utils.Time;
 
@@ -11,14 +16,14 @@ import java.util.TimerTask;
 
 public class Engine {
 
-    private long fixedLoopMillis;
+    private long fixedTickMillis;
     private Timer fixedTimer = new Timer();
     private Timer repaintTimer = new Timer();
     private boolean isCloseRequested = false;
     private DisplayManager displayManager = null;
 
-    public Engine(long fixedLoopMillis) {
-        this.fixedLoopMillis = fixedLoopMillis;
+    public Engine(long fixedTickMillis) {
+        this.fixedTickMillis = fixedTickMillis;
     }
 
     public void start(DisplayManager displayManager){
@@ -69,13 +74,16 @@ public class Engine {
 
     public void startFixedTicks() {
 
+        StaticSystem.fixedTicksMillis = fixedTickMillis;
+
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
+
             @Override
             public void run() {
 
                 doInitialising();
 
-                if (!GameStats.isPaused()) {
+                if (!StaticSystem.isPaused()) {
 
                     if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 
@@ -86,7 +94,7 @@ public class Engine {
                     }
                 }
             }
-        }, 0, fixedLoopMillis);
+        }, 0, fixedTickMillis);
     }
 
     public void startRepainting() {

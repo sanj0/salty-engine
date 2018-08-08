@@ -1,5 +1,12 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package testing;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.location.Coordinates;
 
@@ -13,8 +20,6 @@ public class HugeImageRenderingTest extends GameObject {
     public HugeImageRenderingTest(BufferedImage image, int width, int height) {
         super(new Coordinates(0, 0), width, height, "huge_image_rendering_test");
 
-        setFriction(0f);
-
         this.image = image;
     }
 
@@ -23,7 +28,7 @@ public class HugeImageRenderingTest extends GameObject {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
         // System.out.println("Something collided with the biogas plant");
     }

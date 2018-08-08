@@ -1,51 +1,43 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
 package testing;
 
 import de.edgelord.sjgl.audio.AudioSystem;
-import de.edgelord.sjgl.core.Engine;
-import de.edgelord.sjgl.display.DisplayManager;
+import de.edgelord.sjgl.core.Game;
 import de.edgelord.sjgl.factory.AudioFactory;
 import de.edgelord.sjgl.factory.ImageFactory;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.resource.InnerResource;
 import de.edgelord.sjgl.ui.Button;
 import de.edgelord.sjgl.ui.UISystem;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
-import testing.dummys.DummyDisplayKeyHandler;
-import testing.dummys.DummyScene;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class Tester {
+public class Tester extends Game {
 
-    public static DisplayManager displayManager;
-    private static DummyDisplayKeyHandler dummyDisplayKeyHandler;
     private static AudioSystem audioSystem;
 
     public static void main(String[] args) {
 
-        System.out.println("INFO: Welcome to sjgl version 0.3 Zeus!\n");
+        Tester tester = new Tester(1200, 900, "testing", 1);
 
-        Engine engine = new Engine(1);
-        StaticSystem.currentScene = new DummyScene();
+        start();
+    }
 
-        displayManager = new DisplayManager(1200, 909, engine);
-        displayManager.create();
-        initGameObjects();
+    public Tester(int windowWidth, int windowHeight, String gameName, long fixedTickMillis) {
+        super(windowWidth, windowHeight, gameName, fixedTickMillis);
+
+        System.out.println("INFO: Welcome to sjgl version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
+
+        initForcesTest();
         addUI();
-
-        engine.start(displayManager);
-
-        dummyDisplayKeyHandler = new DummyDisplayKeyHandler();
-        displayManager.setDisplayKeyHandler(dummyDisplayKeyHandler);
 
         audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 
@@ -70,13 +62,13 @@ public class Tester {
                     System.exit(0);
                 }
 
-                if (GameStats.isPaused()){
+                if (StaticSystem.isPaused()) {
 
                     System.out.println("Unpause game!");
-                    GameStats.setPaused(false);
+                    StaticSystem.setPaused(false);
                 } else {
                     System.out.println("Pause game!");
-                    GameStats.setPaused(true);
+                    StaticSystem.setPaused(true);
                 }
             }
         };
@@ -89,12 +81,49 @@ public class Tester {
         StaticSystem.currentScene.setUI(uiSystem);
     }
 
-    private static void initGameObjects() {
+    private static void initPhysicsTest() {
+
+        ImageFactory imageFactory = new ImageFactory(new InnerResource());
+        BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+
+        Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
+        Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
+        Bird bird1_3 = new Bird(birdSpritesheet, 1, 3);
+        Bird bird3_3 = new Bird(birdSpritesheet, 3, 3);
+
+        bird1_1.setTag("de.edgelord.sjgl.testing.bird1_1");
+        bird3_1.setTag("de.edgelord.sjgl.testing.bird3_1");
+        bird1_3.setTag("de.edgelord.sjgl.testing.bird1_3");
+        bird3_3.setTag("de.edgelord.sjgl.testing.bird3_3");
+
+        StaticSystem.currentScene.addGameObject(bird1_1);
+        StaticSystem.currentScene.addGameObject(bird1_3);
+        StaticSystem.currentScene.addGameObject(bird3_1);
+        StaticSystem.currentScene.addGameObject(bird3_3);
+    }
+
+    private static void initForcesTest() {
+
+        ImageFactory imageFactory = new ImageFactory(new InnerResource());
+        BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+
+        Bird upperBird = new Bird(birdSpritesheet, 2, 2);
+        Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), getDisplayManager(), new Coordinates(1, 1));
+
+        bottomBird.getPhysics().removeGravity();
+
+        StaticSystem.currentScene.addGameObject(upperBird);
+        StaticSystem.currentScene.addGameObject(bottomBird);
+        StaticSystem.currentScene.addGameObject(player);
+    }
+
+    private static void initSampleScene() {
 
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
         HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
-        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), displayManager, new Coordinates(1, 1));
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), getDisplayManager(), new Coordinates(1, 1));
 
         StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
         StaticSystem.currentScene.addGameObject(player);

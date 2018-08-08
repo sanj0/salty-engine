@@ -1,9 +1,17 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.gameobject.components;
 
-import de.edgelord.sjgl.core.physics.SimpleForce;
+import de.edgelord.sjgl.core.event.CollisionEvent;
+import de.edgelord.sjgl.core.physics.Force;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.edgelord.sjgl.utils.Directions;
+import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -11,40 +19,41 @@ import java.util.List;
 
 public class SimplePhysicsComponent extends GameObjectComponent {
 
-    private List<SimpleForce> forces = new LinkedList<>();
-    private float gravityVelocity = DEFAULT_GRAVITY_VELOCITY;
-    private float gravityAcceleration = DEFAULT_GRAVITY_ACCELERATION;
-    private boolean gravityHasInfinitePower = DEFAULT_GRAVITY_HAS_INFINITE_POWER;
-    private boolean affectByGravity = true;
-
-    // This are the standard values (will maybe by changed after various testing), they are that low because it affects
-    // parent every fixed tick
-    public static final float DEFAULT_GRAVITY_VELOCITY = 0.5f;
-    public static final float DEFAULT_GRAVITY_ACCELERATION = 100f;
-    public static final boolean DEFAULT_GRAVITY_HAS_INFINITE_POWER = true;
-    public static final float DEFAULT_AIRFRICTION = 0.1f;
-    public static final String DEFAULT_GRAVITY_NAME = "de.edgelord.sjgl.core.physics.default_gravityForce";
-
-    public SimplePhysicsComponent(GameObject parent, String name, float gravityVelocity) {
-        super(parent, name);
-
-        this.gravityVelocity = gravityVelocity;
-        addGravityForce();
-    }
+    private List<Force> forces = new LinkedList<>();
+    public static final String DEFAULT_GRAVITY = "de.edgelord.sjgl.core.physics.default_gravityForce";
+    public static final float DEFAULT_GRAVITY_ACCELERATION = 0.005f;
+    public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultUpwardsForce";
+    public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultDownwardsForce";
+    public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultRightwardsForce";
+    public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultLeftwardsForce";
 
     public SimplePhysicsComponent(GameObject parent, String name) {
         super(parent, name);
 
+        addDefaultForces();
+    }
+
+    private void addGravityForce() {
+
+        forces.add(new Force(DEFAULT_GRAVITY_ACCELERATION, getParent(), Directions.Direction.down, DEFAULT_GRAVITY));
+    }
+
+    private void addDefaultForces() {
+
         addGravityForce();
+
+        addForce(DEFAULT_UPWARDS_FORCE, Directions.Direction.up);
+        addForce(DEFAULT_DOWNWARDS_FORCE, Directions.Direction.down);
+        addForce(DEFAULT_RIGHTWARDS_FORCE, Directions.Direction.right);
+        addForce(DEFAULT_LEFTWARDS_FORCE, Directions.Direction.left);
     }
 
     @Override
     public void onFixedTick() {
 
-        // Currently, first the forces and then the gravity affect the parent, may change this after various testing
+        for (Force force : forces) {
 
-        for (SimpleForce force : forces) {
-            force.nextStep();
+            getParent().move(force.deltaDistance((int) StaticSystem.fixedTicksMillis), force.getDirection());
         }
     }
 
@@ -54,22 +63,36 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     }
 
     @Override
-    public void onCollision(GameObject other) {
+    public void onCollision(CollisionEvent e) {
 
+        for (Force force : forces) {
+
+            for (Directions.Direction direction : e.getCollisionDirections()) {
+                if (force.getDirection() == direction) {
+                    force.setCountersCollision(true);
+                } else {
+                    force.setCountersCollision(false);
+                }
+            }
+        }
     }
 
-    private void addGravityForce() {
-
-        addForce(new SimpleForce(getParent(), DEFAULT_GRAVITY_NAME, gravityVelocity, gravityAcceleration, Directions.Direction.down));
+    public void removeForce(String name) {
+        forces.removeIf(force -> force.getName().equals(name));
     }
 
-    public void addForce(SimpleForce force) {
+    public void addForce(String name, Directions.Direction direction) {
+        forces.add(new Force(0, getParent(), direction, name));
+    }
+
+    public void addForce(Force force) {
 
         forces.add(force);
     }
 
-    public SimpleForce getForce(String name) {
-        for (SimpleForce force : forces) {
+    public Force getForce(String name) {
+        for (Force force : forces) {
+
             if (force.getName().equals(name)) {
                 return force;
             }
@@ -78,63 +101,8 @@ public class SimplePhysicsComponent extends GameObjectComponent {
         return null;
     }
 
-    public void removeForce(String name) {
+    public void removeGravity() {
 
-        int indexToRemove = -1;
-
-        for (int index = 0; index < forces.size() - 1; index++) {
-
-            if (forces.get(index).getName().equals(name)) {
-                indexToRemove = index;
-                break;
-            }
-        }
-
-        if (indexToRemove != -1) {
-            forces.remove(indexToRemove);
-        }
-    }
-
-    public List<SimpleForce> getForces() {
-        return forces;
-    }
-
-    public void setForces(List<SimpleForce> forces) {
-        this.forces = forces;
-    }
-
-    public float getGravityVelocity() {
-        return gravityVelocity;
-    }
-
-    public void setGravityVelocity(float gravityVelocity) {
-        this.gravityVelocity = gravityVelocity;
-        getForce(DEFAULT_GRAVITY_NAME).setTargetVelocity(gravityVelocity);
-    }
-
-    public float getGravityAcceleration() {
-        return gravityAcceleration;
-    }
-
-    public void setGravityAcceleration(float gravityAcceleration) {
-        this.gravityAcceleration = gravityAcceleration;
-        getForce(DEFAULT_GRAVITY_NAME).setAcceleration(gravityAcceleration);
-    }
-
-    public boolean isGravityHasInfinitePower() {
-        return gravityHasInfinitePower;
-    }
-
-    public void setGravityHasInfinitePower(boolean gravityHasInfinitePower) {
-        this.gravityHasInfinitePower = gravityHasInfinitePower;
-        getForce(DEFAULT_GRAVITY_NAME).setInfinitePower(gravityHasInfinitePower);
-    }
-
-    public boolean isAffectByGravity() {
-        return affectByGravity;
-    }
-
-    public void setAffectByGravity(boolean affectByGravity) {
-        this.affectByGravity = affectByGravity;
+        removeForce(DEFAULT_GRAVITY);
     }
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
@@ -11,7 +11,6 @@ import de.edgelord.sjgl.input.DisplayKeyHandler;
 import de.edgelord.sjgl.input.DisplayListener;
 import de.edgelord.sjgl.input.DisplayMouseHandler;
 import de.edgelord.sjgl.stage.Stage;
-import de.edgelord.sjgl.utils.GameStats;
 import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
@@ -27,12 +26,10 @@ public class DisplayManager {
     private DisplayMouseHandler displayMouseHandler = null;
 
     // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
-
     private char currentKey;
 
     // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
     // this supports multi-input!
-
     private boolean inputUp = false;
     private boolean inputDown = false;
     private boolean inputRight = false;
@@ -40,14 +37,15 @@ public class DisplayManager {
 
     private int width, height;
 
-    public DisplayManager(int width, int height, Engine engine) {
+    public DisplayManager(int width, int height, String gameName, Engine engine) {
 
-        display = new Display(width, height, this);
+        display = new Display(width, height, gameName, this);
         stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
         this.width = width;
         this.height = height;
+        StaticSystem.gameName = gameName;
     }
 
     public void create() {
@@ -72,10 +70,10 @@ public class DisplayManager {
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P){
-                    if (GameStats.isPaused()){
-                        GameStats.setPaused(false);
+                    if (StaticSystem.isPaused()) {
+                        StaticSystem.setPaused(false);
                     } else {
-                        GameStats.setPaused(true);
+                        StaticSystem.setPaused(true);
                     }
                 }
             }
@@ -109,6 +107,12 @@ public class DisplayManager {
                 if (StaticSystem.currentScene.getUI() != null){
                     StaticSystem.currentScene.getUI().keyPressed(e);
                 }
+
+                StaticSystem.inputKey = currentKey;
+                StaticSystem.inputUp = inputUp;
+                StaticSystem.inputDown = inputDown;
+                StaticSystem.inputRight = inputRight;
+                StaticSystem.inputLeft = inputLeft;
             }
 
             @Override
@@ -140,6 +144,12 @@ public class DisplayManager {
                 if (StaticSystem.currentScene.getUI() != null){
                     StaticSystem.currentScene.getUI().keyReleased(e);
                 }
+
+                StaticSystem.inputKey = currentKey;
+                StaticSystem.inputUp = inputUp;
+                StaticSystem.inputDown = inputDown;
+                StaticSystem.inputRight = inputRight;
+                StaticSystem.inputLeft = inputLeft;
             }
         };
 
@@ -160,6 +170,14 @@ public class DisplayManager {
         this.displayMouseHandler = displayMouseHandler;
 
         this.stage.setMouseHandler(displayMouseHandler);
+    }
+
+    public DisplayListener getDisplayListener() {
+        return displayListener;
+    }
+
+    public void setDisplayListener(DisplayListener displayListener) {
+        this.displayListener = displayListener;
     }
 
     public char getCurrentKey() {

@@ -1,12 +1,15 @@
 /*
  * Copyright (c) by Malte Dostal
- * Lindenberg, since 2018
+ * Germany, 8.2018
  * All rights reserved
  */
 
 package de.edgelord.sjgl.gameobject;
 
+import de.edgelord.sjgl.core.event.CollisionEvent;
+import de.edgelord.sjgl.gameobject.components.Accelerator;
 import de.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
+import de.edgelord.sjgl.gameobject.components.RecalculateMiddleComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.edgelord.sjgl.location.Coordinates;
@@ -26,24 +29,27 @@ import java.util.List;
 public abstract class GameObject {
 
     private Coordinates coordinates;
+    private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
     private String tag;
-    private float friction = 0.2f;
-    private float gravity = 0.981f;
-    private float airFriction = 0.1f;
-    // Used for moving via RotateComponent and for CollisionEvents
-    private float velocity;
-    // Used for Physics and CollisionEvents
-    private float mass;
     private int width, height;
     private HashMap<String, String> properties = new HashMap<>();
-    private List<GameObject> touchingGameObjects = new LinkedList<>();
+    private final List<GameObject> touchingGameObjects = new LinkedList<>();
     private List<GameObjectComponent> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
 
+    private float mass = 1f;
+
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
+    private RecalculateMiddleComponent recalculateMiddleComponent;
+    private Accelerator defaultAccelerator;
+
+    public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.sjgl.coreComponents.physics";
+    public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
+    public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
+    public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.sjgl.coreComponents.accelerator";
 
     public GameObject(Coordinates coordinates, int width, int height, String tag) {
         this.coordinates = coordinates;
@@ -53,16 +59,22 @@ public abstract class GameObject {
         this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
         this.tag = tag;
 
-        physicsComponent = new SimplePhysicsComponent(this, "default_physics");
-        recalculateHitboxComponent = new RecalculateHitboxComponent(this, "default_recalculateHitbox");
+        this.middle = new Coordinates(getCoordinates().getX() + (getWidth() / 2), getCoordinates().getY() + (getHeight() / 2));
+
+        physicsComponent = new SimplePhysicsComponent(this, DEFAULT_PHYSICS_NAME);
+        recalculateHitboxComponent = new RecalculateHitboxComponent(this, DEFAULT_RECALCULATE_HITBOX_NAME);
+        recalculateMiddleComponent = new RecalculateMiddleComponent(this, DEFAULT_RECALCULATE_MIDDLE_NAME);
+        defaultAccelerator = new Accelerator(this, DEFAULT_ACCELERATOR_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
+        components.add(recalculateMiddleComponent);
+        components.add(defaultAccelerator);
     }
 
     public abstract void initialize();
 
-    public abstract void onCollision(GameObject other);
+    public abstract void onCollision(CollisionEvent event);
 
     public abstract void onFixedTick();
 
@@ -97,7 +109,7 @@ public abstract class GameObject {
 
     public void doCollisionDetection(List<GameObject> gameObjects) {
 
-        setTouchingGameObjects(new LinkedList<>());
+        touchingGameObjects.clear();
 
         for (GameObject other : gameObjects) {
 
@@ -107,12 +119,58 @@ public abstract class GameObject {
 
             if (this.getHitbox().collides(other)) {
 
-                this.onCollision(other);
-                other.onCollision(this);
+                CollisionEvent e = new CollisionEvent(this);
+                CollisionEvent eSelf = new CollisionEvent(other);
+
+                addCollisionDirections(e, other, false);
+                addCollisionDirections(eSelf, this, true);
+
+                other.onCollision(e);
+                this.onCollision(eSelf);
+
                 getTouchingGameObjects().add(other);
+
+                for (GameObjectComponent component : getComponents()) {
+                    component.onCollision(e);
+                }
+
+                for (GameObjectComponent component : other.getComponents()) {
+                    component.onCollision(eSelf);
+                }
             }
 
         }
+    }
+
+    private void addCollisionDirections(CollisionEvent e, GameObject other, boolean mirror) {
+
+        List<Directions.Direction> directionsList = new LinkedList<>();
+        Directions.Direction[] collisionDirections;
+
+        if (e.getRoot().getMiddle().isRight(other.getMiddle())) {
+            directionsList.add(Directions.Direction.right);
+        } else if (e.getRoot().getMiddle().isLeft(other.getMiddle())) {
+            directionsList.add(Directions.Direction.left);
+        }
+
+        if (e.getRoot().getMiddle().isAbove(other.getMiddle())) {
+            directionsList.add(Directions.Direction.up);
+        } else if (e.getRoot().getMiddle().isBelow(other.getMiddle())) {
+            directionsList.add(Directions.Direction.down);
+        }
+
+        collisionDirections = new Directions.Direction[directionsList.size()];
+        int currentIndex = 0;
+
+        for (Directions.Direction d : directionsList) {
+            if (mirror) {
+                collisionDirections[currentIndex] = Directions.mirrorDirection(d);
+            } else {
+                collisionDirections[currentIndex] = d;
+            }
+        }
+
+        e.setCollisionDirections(collisionDirections);
     }
 
     public void removeComponent(String name){
@@ -157,7 +215,6 @@ public abstract class GameObject {
 
     public void syncPropertiesToFile() {
 
-
     }
 
     public void readKeyProperties() throws IOException {
@@ -194,7 +251,7 @@ public abstract class GameObject {
                 basicMove(delta, Directions.BasicDirection.x);
                 break;
             case left:
-                basicMove(-delta, Directions.BasicDirection.y);
+                basicMove(-delta, Directions.BasicDirection.x);
                 break;
             case up:
                 basicMove(-delta, Directions.BasicDirection.y);
@@ -288,36 +345,8 @@ public abstract class GameObject {
         getPosition().setY(y);
     }
 
-    public float getFriction() {
-        return friction;
-    }
-
-    public void setFriction(float friction) {
-        this.friction = friction;
-    }
-
-    public float getAirFriction() {
-        return airFriction;
-    }
-
-    public void setAirFriction(float airFriction) {
-        this.airFriction = airFriction;
-    }
-
-    public float getGravity() {
-        return gravity;
-    }
-
-    public void setGravity(float gravity) {
-        this.gravity = gravity;
-    }
-
     public List<GameObject> getTouchingGameObjects() {
         return touchingGameObjects;
-    }
-
-    public void setTouchingGameObjects(List<GameObject> touchingGameObjects) {
-        this.touchingGameObjects = touchingGameObjects;
     }
 
     public List<GameObjectComponent> getComponents() {
@@ -332,6 +361,10 @@ public abstract class GameObject {
         return recalculateHitboxComponent;
     }
 
+    public Accelerator getDefaultAccelerator() {
+        return defaultAccelerator;
+    }
+
     public String getTag() {
         return tag;
     }
@@ -340,12 +373,12 @@ public abstract class GameObject {
         this.tag = tag;
     }
 
-    public float getVelocity() {
-        return velocity;
+    public Coordinates getMiddle() {
+        return middle;
     }
 
-    public void setVelocity(float velocity) {
-        this.velocity = velocity;
+    public void setMiddle(Coordinates middle) {
+        this.middle = middle;
     }
 
     public float getMass() {
