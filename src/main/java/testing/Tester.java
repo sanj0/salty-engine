@@ -86,10 +86,10 @@ public class Tester extends Game {
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
         BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
-        Bird bird1_1 = new Bird(birdSpritesheet, 1, 1, getDisplayManager());
-        Bird bird3_1 = new Bird(birdSpritesheet, 3, 1, getDisplayManager());
-        Bird bird1_3 = new Bird(birdSpritesheet, 1, 3, getDisplayManager());
-        Bird bird3_3 = new Bird(birdSpritesheet, 3, 3, getDisplayManager());
+        Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
+        Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
+        Bird bird1_3 = new Bird(birdSpritesheet, 1, 3);
+        Bird bird3_3 = new Bird(birdSpritesheet, 3, 3);
 
         bird1_1.setTag("de.edgelord.sjgl.testing.bird1_1");
         bird3_1.setTag("de.edgelord.sjgl.testing.bird3_1");
@@ -107,13 +107,15 @@ public class Tester extends Game {
         ImageFactory imageFactory = new ImageFactory(new InnerResource());
         BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
-        Bird upperBird = new Bird(birdSpritesheet, 2, 2, getDisplayManager());
-        Bird bottomBird = new Bird(birdSpritesheet, 2, 4, getDisplayManager());
+        Bird upperBird = new Bird(birdSpritesheet, 2, 2);
+        Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
+        BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), getDisplayManager(), new Coordinates(1, 1));
 
         bottomBird.getPhysics().removeGravity();
 
         StaticSystem.currentScene.addGameObject(upperBird);
         StaticSystem.currentScene.addGameObject(bottomBird);
+        StaticSystem.currentScene.addGameObject(player);
     }
 
     private static void initSampleScene() {
@@ -136,7 +138,7 @@ public class Tester extends Game {
 
         while (index < 16) {
 
-            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos, getDisplayManager()));
+            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
 
             if (index == 7) {
 

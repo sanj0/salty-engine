@@ -1,8 +1,8 @@
 #SGS
 This documentation will explain all features of sgs, the "salty gameObject scripting" script language. It is a easy way of making games with the java library sjgl (https://github.com/edgelord314/sjgl) without any coding knowledge. SGS is made for beginners and is easy to learn and understand. Every sgs script is a simple text file (not with the ".txt" ending - for example: myScript.sgs) and stands for one single GameObject. We call this GameObject "parent".
 
-##1 The structur
-SGS has its own structur of code.
+##1 The structure
+SGS has its own structure of code.
 
 ###1.1 The segments
 All sgs scripts are basically made out of five different segments:
@@ -11,7 +11,7 @@ All sgs scripts are basically made out of five different segments:
 - The ```init``` segment which gets called once directly at the beginning
 - The ```collision``` segment which gets called whenever the parent collides with another GameObject
 - The ```fixedTick``` segment which gets called every fixed tick (usually every 1 millisecond (0.001 second))
-- The ```draw``` segment which gets called everytime the game renders, in here you define how to draw the parent
+- The ```draw``` segment which gets called every time the game renders, in here you define how to draw the parent
 
 ###1.2 The scriptLines
 Every line in a sgs script stands for one specific action, and is made out of three parts:
@@ -23,7 +23,7 @@ Every line in a sgs script stands for one specific action, and is made out of th
 ##2 Variables
 Variables have a name and can store values, for example text, numbers or Images. In sgs you have six different types of variables:
 
-| Type name| Value                                                               | Value example | Declaration example       | 
+| Type name| Value                                                               | Value example | Declaration example       |
 | -------- | ------------------------------------------------------------------- | ------------- | ------------------------  |
 | Text     | Text (String in Java)                                               | Hello World   | ```var Text myText```     |
 | Number   | All Integers from -2,147,483,648 to 2,147,483,647 (Integer in Java) | 314           | ```var Number myNumber``` |
@@ -48,7 +48,7 @@ To set a variable's value, use the ```set``` command which takes in the name of 
 In this segment, you can define variables. The ```vars``` segment is usually the first one in a sgs script, but it can be everywhere in the script.
 
 ###3.1 The surrounding
-To tell sgs where the single segments start and end, you have to sorround them in a specific way. The ```vars``` segment looks like this:
+To tell sgs where the single segments start and end, you have to surround them in a specific way. The ```vars``` segment looks like this:
 
 ```
 -vars
@@ -65,10 +65,10 @@ This is a list of all commands available for this segment:
 | ```set``` | Sets the value of a variable | The variable name | The new value            | ```set myNumber 314```    |
 
 ##4 The ```init``` segment
-The ```init``` segement is usually the second one in a sgs script but it can be everywhere. It gets called once right at the start and then never again, so you would use it to for example add Components to the GameObject or set some variable values.
+The ```init``` segment is usually the second one in a sgs script but it can be everywhere. It gets called once right at the start and then never again, so you would use it to for example add Components to the GameObject or set some variable values.
 
 ###4.1 The surrounding
-To tell sgs where the single segments start and end, you have to sorround them in a specific way. The ```init``` segment looks like this:
+To tell sgs where the single segments start and end, you have to surround them in a specific way. The ```init``` segment looks like this:
 
 ```
 -init

@@ -7,6 +7,7 @@
 package de.edgelord.sjgl.gameobject;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
+import de.edgelord.sjgl.gameobject.components.Accelerator;
 import de.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
 import de.edgelord.sjgl.gameobject.components.RecalculateMiddleComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
@@ -43,10 +44,12 @@ public abstract class GameObject {
     private SimplePhysicsComponent physicsComponent;
     private RecalculateHitboxComponent recalculateHitboxComponent;
     private RecalculateMiddleComponent recalculateMiddleComponent;
+    private Accelerator defaultAccelerator;
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.sjgl.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
     public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
+    public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.sjgl.coreComponents.accelerator";
 
     public GameObject(Coordinates coordinates, int width, int height, String tag) {
         this.coordinates = coordinates;
@@ -61,10 +64,12 @@ public abstract class GameObject {
         physicsComponent = new SimplePhysicsComponent(this, DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, DEFAULT_RECALCULATE_HITBOX_NAME);
         recalculateMiddleComponent = new RecalculateMiddleComponent(this, DEFAULT_RECALCULATE_MIDDLE_NAME);
+        defaultAccelerator = new Accelerator(this, DEFAULT_ACCELERATOR_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(recalculateMiddleComponent);
+        components.add(defaultAccelerator);
     }
 
     public abstract void initialize();
@@ -354,6 +359,10 @@ public abstract class GameObject {
 
     public RecalculateHitboxComponent getRecalculateHitboxComponent() {
         return recalculateHitboxComponent;
+    }
+
+    public Accelerator getDefaultAccelerator() {
+        return defaultAccelerator;
     }
 
     public String getTag() {

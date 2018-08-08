@@ -19,6 +19,7 @@ public class Force {
     private Directions.Direction direction;
     private String name;
     private GameObject parent;
+    private boolean countersCollision = false;
 
     public Force(final float acceleration, final GameObject parent, Directions.Direction direction, String name) {
         this(acceleration, 0, 0, parent, direction, name);
@@ -44,6 +45,11 @@ public class Force {
 
         if (velocity < 0) {
             counterAcceleration = 0;
+            velocity = 0;
+        }
+
+        if (countersCollision) {
+            acceleration = 0;
             velocity = 0;
         }
 
@@ -108,5 +114,13 @@ public class Force {
 
     public void setParent(GameObject parent) {
         this.parent = parent;
+    }
+
+    public boolean isCountersCollision() {
+        return countersCollision;
+    }
+
+    public void setCountersCollision(boolean countersCollision) {
+        this.countersCollision = countersCollision;
     }
 }

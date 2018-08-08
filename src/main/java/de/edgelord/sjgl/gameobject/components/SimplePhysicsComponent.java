@@ -20,17 +20,31 @@ import java.util.List;
 public class SimplePhysicsComponent extends GameObjectComponent {
 
     private List<Force> forces = new LinkedList<>();
-    public static final String DEFAULT_GRAVITY_NAME = "de.edgelord.sjgl.core.physics.default_gravityForce";
+    public static final String DEFAULT_GRAVITY = "de.edgelord.sjgl.core.physics.default_gravityForce";
+    public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultUpwardsForce";
+    public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultDownwardsForce";
+    public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultRightwardsForce";
+    public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.sjgl.core.physics.defaultLeftwardsForce";
 
     public SimplePhysicsComponent(GameObject parent, String name) {
         super(parent, name);
 
-        addGravityForce();
+        addDefaultForces();
     }
 
     private void addGravityForce() {
 
-        forces.add(new Force(0.005f, getParent(), Directions.Direction.down, DEFAULT_GRAVITY_NAME));
+        forces.add(new Force(0.005f, getParent(), Directions.Direction.down, DEFAULT_GRAVITY));
+    }
+
+    private void addDefaultForces() {
+
+        addGravityForce();
+
+        addForce(DEFAULT_UPWARDS_FORCE, Directions.Direction.up);
+        addForce(DEFAULT_DOWNWARDS_FORCE, Directions.Direction.down);
+        addForce(DEFAULT_RIGHTWARDS_FORCE, Directions.Direction.right);
+        addForce(DEFAULT_LEFTWARDS_FORCE, Directions.Direction.left);
     }
 
     @Override
@@ -54,8 +68,9 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
             for (Directions.Direction direction : e.getCollisionDirections()) {
                 if (force.getDirection() == direction) {
-                    force.setAcceleration(0f);
-                    force.setVelocity(0f);
+                    force.setCountersCollision(true);
+                } else {
+                    force.setCountersCollision(false);
                 }
             }
         }
@@ -87,6 +102,6 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
     public void removeGravity() {
 
-        removeForce(DEFAULT_GRAVITY_NAME);
+        removeForce(DEFAULT_GRAVITY);
     }
 }

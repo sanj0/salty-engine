@@ -28,13 +28,14 @@ public class Accelerator extends GameObjectComponent {
 
         if (!accelerationFinished) {
             ticks++;
-        }
 
-        if (ticks == duration) {
-            getParent().getPhysics().getForce(forceName).setAcceleration(0f);
-            ticks = 0;
-            duration = 0;
-            accelerationFinished = true;
+            if (ticks >= duration) {
+
+                getParent().getPhysics().getForce(forceName).setAcceleration(0f);
+                ticks = 0;
+                duration = 0;
+                accelerationFinished = true;
+            }
         }
     }
 

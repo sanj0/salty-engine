@@ -9,14 +9,13 @@ package testing;
 import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
-import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
-import de.edgelord.sjgl.gameobject.components.Accelerator;
 import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
 import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.edgelord.sjgl.gameobject.components.rendering.AnimationRender;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.Directions;
+import de.edgelord.sjgl.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,15 +24,12 @@ public class Bird extends GameObject {
 
     private Animation animation;
     private Spritesheet spritesheet;
-    private DisplayManager displayManager;
 
     private final int windowWidth = 1200;
     private final int windowHeight = 909;
     private int fixedTicks = 0;
 
-    private Accelerator accelerator = new Accelerator(this, "testing.Bird.accelerator");
-
-    public Bird(BufferedImage image, int xPos, int yPos, DisplayManager displayManager) {
+    public Bird(BufferedImage image, int xPos, int yPos) {
         super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "de.edgelord.sjgl.testing.bird");
 
         animation = new Animation(this);
@@ -44,9 +40,6 @@ public class Bird extends GameObject {
         this.addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
         this.addComponent(new DrawHitboxComponent(this, "de.edgelord.sjgl.testing.bird.drawHitbox"));
         this.addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
-        this.addComponent(accelerator);
-
-        this.displayManager = displayManager;
     }
 
     @Override
@@ -54,7 +47,7 @@ public class Bird extends GameObject {
 
         animation.nextFrame();
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.right);
-        accelerator.accelerate("testing.Bird.testingForce", 0.01f, 1000);
+        getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
 
         System.out.println("INFO: Initialized " + this.getClass());
     }
@@ -67,8 +60,8 @@ public class Bird extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (displayManager.getCurrentKey() == 'a') {
-            accelerator.accelerate("testing.Bird.testingForce", 0.01f, 1);
+        if (StaticSystem.inputKey == '-') {
+            getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 1);
         }
 
         if (fixedTicks == 15) {

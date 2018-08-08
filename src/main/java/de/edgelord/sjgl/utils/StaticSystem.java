@@ -26,6 +26,12 @@ public class StaticSystem {
     public static boolean paused = false;
     public static boolean withExperimentalFeatures = false;
 
+    public static boolean inputUp = false;
+    public static boolean inputDown = false;
+    public static boolean inputRight = false;
+    public static boolean inputLeft = false;
+    public static char inputKey;
+
     public static boolean isPaused() {
         return paused;
     }
