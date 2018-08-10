@@ -36,9 +36,9 @@ public class Bird extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
+        // addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
         addComponent(new DrawHitboxComponent(this, "de.edgelord.sjgl.testing.bird.drawHitbox"));
-        addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
+        // addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
     }
 
     @Override
@@ -91,6 +91,8 @@ public class Bird extends GameObject {
     @Override
     public void draw(final Graphics2D graphics) {
 
-        animation.drawCurrentFrame(graphics);
+        // animation.drawCurrentFrame(graphics);
+
+        graphics.drawOval(getMiddle().getX(), getMiddle().getY(), 1, 1);
     }
 }

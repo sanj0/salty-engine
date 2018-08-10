@@ -43,7 +43,7 @@ public class PushOutOnCollision extends GameObjectComponent {
                 case left:
                     getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
                     break;
-                case up:
+                case  up:
                     getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
                     break;
                 case down:

@@ -38,7 +38,7 @@ public class BirdPlayer extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
+        // getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
         getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 

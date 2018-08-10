@@ -114,7 +114,6 @@ public class Engine {
                     displayManager.repaintStage();
 
                     Time.setDeltaNanos(System.nanoTime() - nanosBefore);
-
                     Thread.yield();
                 }
             }

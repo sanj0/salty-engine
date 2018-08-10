@@ -26,19 +26,25 @@ public class Directions {
      */
     public static Direction getGameObjectRelation(final GameObject root, final GameObject other) {
 
-        if (root.getMiddle().isAbove(other.getMiddle())) {
+        // Be patient about 5 pixels
+
+        if (root.getY() + root.getHeight() - 5f < other.getY()){
             return Direction.up;
-        } else if (root.getMiddle().isBelow(other.getMiddle())) {
+        }
+
+        if (root.getY() - 5f > other.getY() + other.getHeight()){
             return Direction.down;
-        } else if (root.getMiddle().isRight(other.getMiddle())) {
-            System.out.println("right!");
-            return Direction.right;
-        } else if (root.getMiddle().isLeft(other.getMiddle())) {
-            System.out.println("left!");
+        }
+
+        if (root.getX() + root.getWidth() -5f < other.getX()){
             return Direction.left;
         }
 
-        return Direction.match;
+        if (root.getX() - 5f > other.getX() + other.getWidth()){
+            return Direction.right;
+        }
+
+        return null;
 
         /*
         if (root.getX() + root.getWidth() > other.getX() && root.getX() < other.getX() + other.getWidth()) {
@@ -106,7 +112,7 @@ public class Directions {
     }
 
     public enum Direction {
-        right, left, up, down, match
+        right, left, up, down
     }
 
     public enum BasicDirection {

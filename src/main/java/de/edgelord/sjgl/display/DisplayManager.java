@@ -218,4 +218,12 @@ public class DisplayManager {
     public boolean isCloseRequested() {
         return display.isCloseRequested();
     }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
 }
