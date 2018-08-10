@@ -10,6 +10,7 @@ import de.edgelord.sjgl.core.Engine;
 import de.edgelord.sjgl.input.DisplayKeyHandler;
 import de.edgelord.sjgl.input.DisplayListener;
 import de.edgelord.sjgl.input.DisplayMouseHandler;
+import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.stage.Stage;
 import de.edgelord.sjgl.utils.StaticSystem;
 
@@ -160,6 +161,18 @@ public class DisplayManager {
     public void scale(double zoomX, double zoomY) {
 
         stage.scale(zoomX, zoomY);
+    }
+
+    public int getHorizontalCenter(int width){
+        return (getWidth() / 2) - (width / 2);
+    }
+
+    public int getVerticalCenter(int height){
+        return (getHeight() / 2) - (height / 2);
+    }
+
+    public Coordinates getCenter(int width, int height){
+        return new Coordinates(getHorizontalCenter(width), getVerticalCenter(height));
     }
 
     public void setDisplayKeyHandler(DisplayKeyHandler displayKeyHandler) {
