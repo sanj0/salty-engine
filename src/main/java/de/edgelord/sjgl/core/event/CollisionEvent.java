@@ -15,10 +15,10 @@ import de.edgelord.sjgl.utils.Directions;
  */
 public class CollisionEvent {
 
-    private GameObject root;
-    private SimplePhysicsComponent rootPhysics;
+    private final GameObject root;
+    private final SimplePhysicsComponent rootPhysics;
     private Directions.Direction collisionDirection;
-    private float rootMass;
+    private final float rootMass;
 
     public CollisionEvent(final GameObject root) {
         this(root, null);
@@ -27,9 +27,9 @@ public class CollisionEvent {
     public CollisionEvent(final GameObject root, final Directions.Direction collisionDirection) {
 
         this.root = root;
-        this.rootPhysics = root.getPhysics();
+        rootPhysics = root.getPhysics();
         this.collisionDirection = collisionDirection;
-        this.rootMass = root.getMass();
+        rootMass = root.getMass();
     }
 
     public GameObject getRoot() {

@@ -31,20 +31,23 @@ public class PushOutOnCollision extends GameObjectComponent {
     @Override
     public void onCollision(final CollisionEvent e) {
 
-        switch (e.getCollisionDirection()) {
+        if (e.getCollisionDirection() != null) {
 
-            case right:
-                getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
-                break;
-            case left:
-                getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
-                break;
-            case up:
-                getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
-                break;
-            case down:
-                getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
-                break;
+            switch (e.getCollisionDirection()) {
+
+                case right:
+                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
+                    break;
+                case left:
+                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
+                    break;
+                case up:
+                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
+                    break;
+                case down:
+                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
+                    break;
+            }
         }
     }
 }
