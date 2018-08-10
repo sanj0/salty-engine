@@ -12,7 +12,7 @@ import de.edgelord.sjgl.factory.AudioFactory;
 import de.edgelord.sjgl.factory.ImageFactory;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.resource.InnerResource;
-import de.edgelord.sjgl.ui.Button;
+import de.edgelord.sjgl.ui.elements.Button;
 import de.edgelord.sjgl.ui.UISystem;
 import de.edgelord.sjgl.utils.StaticSystem;
 

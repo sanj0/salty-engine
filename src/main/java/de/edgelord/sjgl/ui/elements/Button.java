@@ -4,9 +4,10 @@
  * All rights reserved
  */
 
-package de.edgelord.sjgl.ui;
+package de.edgelord.sjgl.ui.elements;
 
 import de.edgelord.sjgl.location.Coordinates;
+import de.edgelord.sjgl.ui.UIElement;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -30,18 +31,9 @@ public abstract class Button extends UIElement {
 
     @Override
     public void draw(Graphics2D graphics) {
-        graphics.setFont(getFont());
 
-        textWidth = graphics.getFontMetrics(getFont()).stringWidth(text);
-        textHeight = (int) graphics.getFontMetrics(getFont()).getStringBounds(text, graphics).getHeight();
-
-        graphics.setColor(backgroundColor);
-
-        graphics.fillRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight());
-
-        graphics.setColor(foregroundColor);
-
-        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2),  getCoordinates().getY() + textHeight);
+        drawButton(graphics);
+        drawText(graphics);
 
         /*
         if (currentMouseEvent != null) {
@@ -49,6 +41,25 @@ public abstract class Button extends UIElement {
             graphics.drawRect(currentMouseEvent.getX(), currentMouseEvent.getY(), 314, 314);
         }
         */
+    }
+
+    public void drawText(Graphics2D graphics){
+
+        graphics.setFont(getFont());
+
+        textWidth = graphics.getFontMetrics(getFont()).stringWidth(text);
+        textHeight = graphics.getFontMetrics(getFont()).getAscent();
+
+        graphics.setColor(foregroundColor);
+
+        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2),  getCoordinates().getY() + ((getHeight() + textHeight) / 2));
+    }
+
+    public void drawButton(Graphics2D graphics){
+
+        graphics.setColor(backgroundColor);
+
+        graphics.fillRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight());
     }
 
     public abstract void onClick(MouseEvent e);
