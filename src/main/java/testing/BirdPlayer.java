@@ -22,13 +22,13 @@ import java.awt.image.BufferedImage;
 
 public class BirdPlayer extends GameObject {
 
-    private Animation animation;
-    private Spritesheet spritesheet;
-    private DisplayManager displayManager;
+    private final Animation animation;
+    private final Spritesheet spritesheet;
+    private final DisplayManager displayManager;
     private int ticksForAnim = 0;
     private int ticksForSound = 0;
 
-    public BirdPlayer(BufferedImage spriteSheetImage, DisplayManager displayManager, Coordinates coordinates) {
+    public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
         super(coordinates, 150, 101, "testing.birdPlayer");
 
         this.displayManager = displayManager;
@@ -38,8 +38,8 @@ public class BirdPlayer extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        this.getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
+        getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     @Override
@@ -47,11 +47,11 @@ public class BirdPlayer extends GameObject {
 
         animation.nextFrame();
 
-        System.out.println("INFO: Initialized " + this.getClass());
+        System.out.println("INFO: Initialized " + getClass());
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -59,19 +59,27 @@ public class BirdPlayer extends GameObject {
     public void onFixedTick() {
 
         if (StaticSystem.inputUp) {
-            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE, 0.005f, 1);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0.005f);
+        } else {
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
         }
 
         if (StaticSystem.inputDown) {
-            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE, 0.005f, 1);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0.005f);
+        } else {
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
         }
 
         if (StaticSystem.inputRight) {
-            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE, 0.005f, 1);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0.005f);
+        } else {
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
         }
 
         if (StaticSystem.inputLeft) {
-            getDefaultAccelerator().accelerate(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE, 0.005f, 1);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0.005f);
+        } else {
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
         }
 
         if (ticksForSound == 250) {
@@ -96,49 +104,49 @@ public class BirdPlayer extends GameObject {
             }
         }
 
-        if (displayManager.isInputUp()){
+        if (displayManager.isInputUp()) {
 
             moveY(-0.75f);
-            if (ticksForAnim == 75){
+            if (ticksForAnim == 75) {
                 animation.nextFrame();
 
             }
 
-            if (ticksForSound == 250){
+            if (ticksForSound == 250) {
                 Tester.getAudioSystem().play("bird_flap");
             }
 
         }
-        if (displayManager.isInputDown()){
+        if (displayManager.isInputDown()) {
 
             moveY(0.75f);
-            if (ticksForAnim == 75){
+            if (ticksForAnim == 75) {
                 animation.nextFrame();
             }
 
-            if (ticksForSound == 250){
+            if (ticksForSound == 250) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
-        if (displayManager.isInputLeft()){
+        if (displayManager.isInputLeft()) {
 
             moveX(-0.75f);
-            if (ticksForAnim == 75){
+            if (ticksForAnim == 75) {
                 animation.nextFrame();
             }
 
-            if (ticksForSound == 250){
+            if (ticksForSound == 250) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
-        if (displayManager.isInputRight()){
+        if (displayManager.isInputRight()) {
 
             moveX(0.75f);
-            if (ticksForAnim == 75){
+            if (ticksForAnim == 75) {
                 animation.nextFrame();
             }
 
-            if (ticksForSound == 250){
+            if (ticksForSound == 250) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
@@ -164,8 +172,9 @@ public class BirdPlayer extends GameObject {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
 
-        animation.drawCurrentFrame(graphics);
+        // animation.drawCurrentFrame(graphics);
+        graphics.drawOval(getMiddle().getX(), getMiddle().getY(), 1, 1);
     }
 }

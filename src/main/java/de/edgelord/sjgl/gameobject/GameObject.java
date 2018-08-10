@@ -7,10 +7,8 @@
 package de.edgelord.sjgl.gameobject;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
-import de.edgelord.sjgl.gameobject.components.Accelerator;
-import de.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
-import de.edgelord.sjgl.gameobject.components.RecalculateMiddleComponent;
-import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.sjgl.core.event.TouchingEvent;
+import de.edgelord.sjgl.gameobject.components.*;
 import de.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.location.Vector2f;
@@ -28,48 +26,52 @@ import java.util.List;
 
 public abstract class GameObject {
 
+    public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.sjgl.coreComponents.physics";
+    public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
+    public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
+    public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.sjgl.coreComponents.accelerator";
+    public static final String DEFAULT_PUSH_OUT_ON_COLLISION_NAME = "de.edgelord.coreComponents.pushOutOnCollision";
+
+    private final List<TouchingEvent> touchingEvents = new LinkedList<>();
+    private final List<GameObjectComponent> components = new LinkedList<>();
+
+    private final SimplePhysicsComponent physicsComponent;
+    private final RecalculateHitboxComponent recalculateHitboxComponent;
+    private final RecalculateMiddleComponent recalculateMiddleComponent;
+    private final Accelerator defaultAccelerator;
+    private final PushOutOnCollision pushOutOnCollision;
+
     private Coordinates coordinates;
     private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
     private String tag;
     private int width, height;
     private HashMap<String, String> properties = new HashMap<>();
-    private final List<GameObject> touchingGameObjects = new LinkedList<>();
-    private List<GameObjectComponent> components = new LinkedList<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
-
     private float mass = 1f;
 
-    private SimplePhysicsComponent physicsComponent;
-    private RecalculateHitboxComponent recalculateHitboxComponent;
-    private RecalculateMiddleComponent recalculateMiddleComponent;
-    private Accelerator defaultAccelerator;
-
-    public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.sjgl.coreComponents.physics";
-    public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
-    public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
-    public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.sjgl.coreComponents.accelerator";
-
-    public GameObject(Coordinates coordinates, int width, int height, String tag) {
+    public GameObject(final Coordinates coordinates, final int width, final int height, final String tag) {
         this.coordinates = coordinates;
-        this.position.parseVector2f(coordinates);
+        position.parseVector2f(coordinates);
         this.width = width;
         this.height = height;
-        this.hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
+        hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
         this.tag = tag;
 
-        this.middle = new Coordinates(getCoordinates().getX() + (getWidth() / 2), getCoordinates().getY() + (getHeight() / 2));
+        middle = new Coordinates(getCoordinates().getX() + (getWidth() / 2), getCoordinates().getY() + (getHeight() / 2));
 
-        physicsComponent = new SimplePhysicsComponent(this, DEFAULT_PHYSICS_NAME);
-        recalculateHitboxComponent = new RecalculateHitboxComponent(this, DEFAULT_RECALCULATE_HITBOX_NAME);
-        recalculateMiddleComponent = new RecalculateMiddleComponent(this, DEFAULT_RECALCULATE_MIDDLE_NAME);
-        defaultAccelerator = new Accelerator(this, DEFAULT_ACCELERATOR_NAME);
+        physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
+        recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
+        recalculateMiddleComponent = new RecalculateMiddleComponent(this, GameObject.DEFAULT_RECALCULATE_MIDDLE_NAME);
+        defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
+        pushOutOnCollision = new PushOutOnCollision(this, GameObject.DEFAULT_PUSH_OUT_ON_COLLISION_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(recalculateMiddleComponent);
         components.add(defaultAccelerator);
+        components.add(pushOutOnCollision);
     }
 
     public abstract void initialize();
@@ -82,14 +84,14 @@ public abstract class GameObject {
 
     public abstract void draw(Graphics2D graphics);
 
-    public void addComponent(GameObjectComponent gameObjectComponent) {
+    public void addComponent(final GameObjectComponent gameObjectComponent) {
 
-        this.components.add(gameObjectComponent);
+        components.add(gameObjectComponent);
     }
 
     public void doComponentOnFixedTick() {
 
-        for (GameObjectComponent gameObjectComponent : components) {
+        for (final GameObjectComponent gameObjectComponent : components) {
 
             if (gameObjectComponent.isEnabled()) {
                 gameObjectComponent.onFixedTick();
@@ -97,9 +99,9 @@ public abstract class GameObject {
         }
     }
 
-    public void doComponentDrawing(Graphics2D graphics) {
+    public void doComponentDrawing(final Graphics2D graphics) {
 
-        for (GameObjectComponent gameObjectComponent : components) {
+        for (final GameObjectComponent gameObjectComponent : components) {
 
             if (gameObjectComponent.isEnabled()) {
                 gameObjectComponent.draw(graphics);
@@ -107,108 +109,73 @@ public abstract class GameObject {
         }
     }
 
-    public void doCollisionDetection(List<GameObject> gameObjects) {
+    public void doCollisionDetection(final List<GameObject> gameObjects) {
 
-        touchingGameObjects.clear();
+        touchingEvents.clear();
 
-        for (GameObject other : gameObjects) {
+        for (final GameObject other : gameObjects) {
 
-            if (other == this){
+            if (other == this) {
                 break;
             }
 
-            if (this.getHitbox().collides(other)) {
+            if (getHitbox().collides(other)) {
 
-                CollisionEvent e = new CollisionEvent(this);
-                CollisionEvent eSelf = new CollisionEvent(other);
-
-                addCollisionDirections(e, other, false);
-                addCollisionDirections(eSelf, this, true);
+                final CollisionEvent e = new CollisionEvent(this, Directions.getGameObjectRelation(other, this));
+                final CollisionEvent eSelf = new CollisionEvent(other, Directions.getGameObjectRelation(this, other));
 
                 other.onCollision(e);
-                this.onCollision(eSelf);
+                onCollision(eSelf);
 
-                getTouchingGameObjects().add(other);
+                getTouchingEvents().add(new TouchingEvent(e, this));
 
-                for (GameObjectComponent component : getComponents()) {
-                    component.onCollision(e);
-                }
-
-                for (GameObjectComponent component : other.getComponents()) {
+                for (final GameObjectComponent component : getComponents()) {
                     component.onCollision(eSelf);
                 }
-            }
 
+                for (final GameObjectComponent component : other.getComponents()) {
+                    component.onCollision(e);
+                }
+            }
         }
     }
 
-    private void addCollisionDirections(CollisionEvent e, GameObject other, boolean mirror) {
-
-        List<Directions.Direction> directionsList = new LinkedList<>();
-        Directions.Direction[] collisionDirections;
-
-        if (e.getRoot().getMiddle().isRight(other.getMiddle())) {
-            directionsList.add(Directions.Direction.right);
-        } else if (e.getRoot().getMiddle().isLeft(other.getMiddle())) {
-            directionsList.add(Directions.Direction.left);
-        }
-
-        if (e.getRoot().getMiddle().isAbove(other.getMiddle())) {
-            directionsList.add(Directions.Direction.up);
-        } else if (e.getRoot().getMiddle().isBelow(other.getMiddle())) {
-            directionsList.add(Directions.Direction.down);
-        }
-
-        collisionDirections = new Directions.Direction[directionsList.size()];
-        int currentIndex = 0;
-
-        for (Directions.Direction d : directionsList) {
-            if (mirror) {
-                collisionDirections[currentIndex] = Directions.mirrorDirection(d);
-            } else {
-                collisionDirections[currentIndex] = d;
-            }
-        }
-
-        e.setCollisionDirections(collisionDirections);
-    }
-
-    public void removeComponent(String name){
+    public void removeComponent(final String name) {
         for (int i = 0; i < components.size(); i++) {
-            if (components.get(i).getName().equals(name)){
+            if (components.get(i).getName().equals(name)) {
                 components.remove(i);
             }
         }
     }
 
-    public void initPropertiesFile(File file) {
+    public void initPropertiesFile(final File file) {
 
-        this.propertiesFile = file;
+        propertiesFile = file;
     }
 
-    public void addProperty(String key, String value) {
+    public void addProperty(final String key, final String value) {
 
-        this.getProperties().put(key, value);
+        getProperties().put(key, value);
     }
 
-    public void changeProperty(String key, String newValue) {
+    public void changeProperty(final String key, final String newValue) {
 
-        this.getProperties().replace(key, this.getProperties().get(key), newValue);
+        getProperties().replace(key, getProperties().get(key), newValue);
     }
 
-    public String getLocalProperty(String key) {
+    public String getLocalProperty(final String key) {
 
-        return this.getProperties().get(key);
+        return getProperties().get(key);
     }
 
-    public int getPropertyAsInteger(String key) {
+    public int getPropertyAsInteger(final String key) {
 
         return Integer.valueOf(getLocalProperty(key));
     }
 
-    public String readProperty(String property) throws IOException {
+    public String readProperty(final String property) throws IOException {
 
-        DataReader propertiesReader = new DataReader(propertiesFile);
+        final DataReader propertiesReader = new DataReader(propertiesFile);
 
         return propertiesReader.getTagValue(property);
     }
@@ -219,26 +186,26 @@ public abstract class GameObject {
 
     public void readKeyProperties() throws IOException {
 
-        DataReader propertiesReader = new DataReader(propertiesFile);
-        Species keyProperties = propertiesReader.getSpecies("keyProperties");
+        final DataReader propertiesReader = new DataReader(propertiesFile);
+        final Species keyProperties = propertiesReader.getSpecies("keyProperties");
 
         if (keyProperties.getContent().contains("location")) {
 
-            List<Integer> readenCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
-            this.setCoordinates(new Coordinates(readenCoordinates.get(0), readenCoordinates.get(1)));
+            final List<Integer> readenCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
+            setCoordinates(new Coordinates(readenCoordinates.get(0), readenCoordinates.get(1)));
         }
     }
 
-    public void basicMove(float delta, Directions.BasicDirection direction) {
+    public void basicMove(final float delta, final Directions.BasicDirection direction) {
 
-        if (direction == Directions.BasicDirection.x){
+        if (direction == Directions.BasicDirection.x) {
             position.setX(getX() + delta);
         } else {
             position.setY(getY() + delta);
         }
     }
 
-    public void move(float delta, Directions.Direction direction) {
+    public void move(float delta, final Directions.Direction direction) {
 
         // Check if delta is negative and if so, mirror its value
         if (delta < 0f) {
@@ -262,11 +229,11 @@ public abstract class GameObject {
         }
     }
 
-    public void moveY(float delta){
+    public void moveY(final float delta) {
         position.setY(getY() + delta);
     }
 
-    public void moveX(float delta){
+    public void moveX(final float delta) {
         position.setX(getX() + delta);
     }
 
@@ -274,7 +241,7 @@ public abstract class GameObject {
         return properties;
     }
 
-    public void setProperties(HashMap<String, String> properties) {
+    public void setProperties(final HashMap<String, String> properties) {
         this.properties = properties;
     }
 
@@ -289,7 +256,7 @@ public abstract class GameObject {
         return coordinates;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
+    public void setCoordinates(final Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 
@@ -297,7 +264,7 @@ public abstract class GameObject {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -305,7 +272,7 @@ public abstract class GameObject {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
@@ -313,7 +280,7 @@ public abstract class GameObject {
         return hitbox;
     }
 
-    public void setHitbox(SimpleHitbox hitbox) {
+    public void setHitbox(final SimpleHitbox hitbox) {
         this.hitbox = hitbox;
     }
 
@@ -321,7 +288,7 @@ public abstract class GameObject {
         return position;
     }
 
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
         this.position = position;
     }
 
@@ -330,7 +297,7 @@ public abstract class GameObject {
         return getPosition().getX();
     }
 
-    public void setX(float x) {
+    public void setX(final float x) {
 
         getPosition().setX(x);
     }
@@ -340,13 +307,13 @@ public abstract class GameObject {
         return getPosition().getY();
     }
 
-    public void setY(float y) {
+    public void setY(final float y) {
 
         getPosition().setY(y);
     }
 
-    public List<GameObject> getTouchingGameObjects() {
-        return touchingGameObjects;
+    public List<TouchingEvent> getTouchingEvents() {
+        return touchingEvents;
     }
 
     public List<GameObjectComponent> getComponents() {
@@ -369,7 +336,7 @@ public abstract class GameObject {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(final String tag) {
         this.tag = tag;
     }
 
@@ -377,7 +344,7 @@ public abstract class GameObject {
         return middle;
     }
 
-    public void setMiddle(Coordinates middle) {
+    public void setMiddle(final Coordinates middle) {
         this.middle = middle;
     }
 
@@ -385,7 +352,7 @@ public abstract class GameObject {
         return mass;
     }
 
-    public void setMass(float mass) {
+    public void setMass(final float mass) {
         this.mass = mass;
     }
 }

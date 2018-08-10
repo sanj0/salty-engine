@@ -22,14 +22,13 @@ import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject {
 
-    private Animation animation;
-    private Spritesheet spritesheet;
-
     private final int windowWidth = 1200;
     private final int windowHeight = 909;
+    private final Animation animation;
+    private final Spritesheet spritesheet;
     private int fixedTicks = 0;
 
-    public Bird(BufferedImage image, int xPos, int yPos) {
+    public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "testing.bird");
 
         animation = new Animation(this);
@@ -37,9 +36,9 @@ public class Bird extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        this.addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
-        this.addComponent(new DrawHitboxComponent(this, "de.edgelord.sjgl.testing.bird.drawHitbox"));
-        this.addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
+        addComponent(new DrawPositionComponent(this, "de.edgelord.sjgl.testing.bird.drawPosition"));
+        addComponent(new DrawHitboxComponent(this, "de.edgelord.sjgl.testing.bird.drawHitbox"));
+        addComponent(new AnimationRender(this, "de.edgelord.sjgl.testing.bird.animationRender", animation, 90));
     }
 
     @Override
@@ -49,11 +48,11 @@ public class Bird extends GameObject {
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.right);
         getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
 
-        System.out.println("INFO: Initialized " + this.getClass());
+        System.out.println("INFO: Initialized " + getClass());
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -90,7 +89,7 @@ public class Bird extends GameObject {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
 
         animation.drawCurrentFrame(graphics);
     }

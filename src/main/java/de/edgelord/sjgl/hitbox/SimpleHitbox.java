@@ -11,12 +11,12 @@ import de.edgelord.sjgl.location.Vector2f;
 
 public class SimpleHitbox implements Hitbox {
 
-    private GameObject parent;
+    private final GameObject parent;
     private Vector2f position;
     private float offsetX, offsetY;
     private int width, height;
 
-    public SimpleHitbox(GameObject parent, int width, int height, float offsetX, float offsetY) {
+    public SimpleHitbox(final GameObject parent, final int width, final int height, final float offsetX, final float offsetY) {
 
         this.parent = parent;
         this.offsetX = offsetX;
@@ -24,48 +24,50 @@ public class SimpleHitbox implements Hitbox {
         this.width = width;
         this.height = height;
 
-        float parentXPos = parent.getPosition().getX();
-        float parentYPos = parent.getPosition().getY();
+        final float parentXPos = parent.getPosition().getX();
+        final float parentYPos = parent.getPosition().getY();
 
-        this.position = new Vector2f(parentXPos + offsetX, parentYPos + offsetY);
+        position = new Vector2f(parentXPos + offsetX, parentYPos + offsetY);
 
     }
 
     public void recalculate() {
 
-        this.position = new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY);
+        position = new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY);
     }
 
-    public boolean isLeft(GameObject other) {
+    public boolean isLeft(final GameObject other) {
 
-        return (int) position.getX() + getWidth() < (int) other.getHitbox().getPosition().getX();
+        return position.getX() + getWidth() < other.getHitbox().getPosition().getX();
     }
 
-    public boolean isRight(GameObject other) {
+    public boolean isRight(final GameObject other) {
 
-        return (int) position.getX() > (int) other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
+        return position.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
     }
 
-    public boolean isAbove(GameObject other) {
+    public boolean isBelow(final GameObject other) {
 
-        return (int) position.getY() > (int) other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
+        return position.getY() > other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
     }
 
-    public boolean isBelow(GameObject other) {
+    public boolean isAbove(final GameObject other) {
 
-        return (int) position.getY() + getHeight() < (int) other.getHitbox().getPosition().getY();
+        return position.getY() + getHeight() < other.getHitbox().getPosition().getY();
     }
 
     @Override
-    public boolean collides(GameObject other) {
+    public boolean collides(final GameObject other) {
 
-        if (isBelow(other)){
+        if (isBelow(other)) {
             return false;
-        } else if(isAbove(other)){
+        } else if (isAbove(other)) {
             return false;
-        } else if (isLeft(other)){
+        } else if (isLeft(other)) {
             return false;
-        } else return !isRight(other);
+        } else {
+            return !isRight(other);
+        }
 
     }
 
@@ -73,7 +75,7 @@ public class SimpleHitbox implements Hitbox {
         return offsetX;
     }
 
-    public void setOffsetX(float offsetX) {
+    public void setOffsetX(final float offsetX) {
         this.offsetX = offsetX;
     }
 
@@ -81,7 +83,7 @@ public class SimpleHitbox implements Hitbox {
         return offsetY;
     }
 
-    public void setOffsetY(float offsetY) {
+    public void setOffsetY(final float offsetY) {
         this.offsetY = offsetY;
     }
 
@@ -89,7 +91,7 @@ public class SimpleHitbox implements Hitbox {
         return position;
     }
 
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
         this.position = position;
     }
 
@@ -97,7 +99,7 @@ public class SimpleHitbox implements Hitbox {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -105,7 +107,7 @@ public class SimpleHitbox implements Hitbox {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
