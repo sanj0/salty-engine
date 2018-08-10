@@ -32,4 +32,20 @@ public abstract class TexturedButton extends Button {
     }
 
     public abstract void onClick(MouseEvent e);
+
+    public boolean isDrawText() {
+        return drawText;
+    }
+
+    public void setDrawText(boolean drawText) {
+        this.drawText = drawText;
+    }
+
+    public BufferedImage getTexture() {
+        return texture;
+    }
+
+    public void setTexture(BufferedImage texture) {
+        this.texture = texture;
+    }
 }
