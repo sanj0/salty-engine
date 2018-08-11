@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -44,7 +45,8 @@ public class InnerResource implements Resource {
         try {
 
             InputStream inputStream = classLoader.getResourceAsStream(arrangedPath);
-            audioInput = AudioSystem.getAudioInputStream(inputStream);
+            InputStream bufferedIn = new BufferedInputStream(inputStream);
+            audioInput = AudioSystem.getAudioInputStream(bufferedIn);
         } catch (IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }

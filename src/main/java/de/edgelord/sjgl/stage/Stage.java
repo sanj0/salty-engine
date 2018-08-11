@@ -129,6 +129,7 @@ public class Stage extends Canvas {
         setBackground(Color.WHITE);
         display.add(this);
         setIgnoreRepaint(true);
+        setFocusable(false);
 
         initNativeMouseListener();
     }

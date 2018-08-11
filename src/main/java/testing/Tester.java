@@ -15,6 +15,8 @@ import de.edgelord.sjgl.resource.InnerResource;
 import de.edgelord.sjgl.ui.elements.Button;
 import de.edgelord.sjgl.ui.UISystem;
 import de.edgelord.sjgl.utils.StaticSystem;
+import testing.dummys.DummyLayer;
+import testing.dummys.DummyScene;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
