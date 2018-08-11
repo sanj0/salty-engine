@@ -31,7 +31,7 @@ public class PushOutOnCollision extends GameObjectComponent {
     @Override
     public void onCollision(final CollisionEvent e) {
 
-        System.out.println(e.getCollisionDirection());
+        // System.out.println(e.getCollisionDirection());
 
         if (e.getCollisionDirection() != null) {
 
