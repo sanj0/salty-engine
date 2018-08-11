@@ -8,6 +8,7 @@ package de.edgelord.sjgl.resource;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;

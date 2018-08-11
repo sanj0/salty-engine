@@ -165,6 +165,9 @@ public class Stage extends JPanel {
             graphics2D.setColor(Color.RED);
             graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
         }
+
+        graphics.dispose();
+        graphics2D.dispose();
     }
 
     public void scale(double zoomX, double zoomY) {
