@@ -53,7 +53,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
         float horizontalDelta = 0f;
         float verticalDelta = 0f;
-        final int deltaT = (int) StaticSystem.fixedTicksMillis;
+        final int deltaT = (int) StaticSystem.fixedTickMillis;
 
         for (final Force force : forces) {
 

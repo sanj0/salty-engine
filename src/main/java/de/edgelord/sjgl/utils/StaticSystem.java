@@ -22,7 +22,7 @@ public class StaticSystem {
     public static String versionName = "Zeus";
     public static String gameName = "My name is Nym. Arno Nym.";
 
-    public static long fixedTicksMillis = 1;
+    public static long fixedTickMillis = 1;
     public static boolean paused = false;
     public static boolean withExperimentalFeatures = false;
 

@@ -44,7 +44,7 @@ public class Tester extends Game {
 
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
-        Game.start();
+        Game.start(60);
     }
 
     private static void addUI() {

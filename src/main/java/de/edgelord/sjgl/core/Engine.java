@@ -26,10 +26,18 @@ public class Engine {
         this.fixedTickMillis = fixedTickMillis;
     }
 
-    public void start(DisplayManager displayManager){
+    public void start(DisplayManager displayManager) {
 
         startFixedTicks();
         startRendering(displayManager);
+    }
+;
+    public void start(DisplayManager displayManager, long FPS) {
+        this.displayManager = displayManager;
+
+        startFixedTicks();
+        startRepainting(FPS);
+
     }
 
     private void startRendering(DisplayManager displayManager) {
@@ -74,7 +82,7 @@ public class Engine {
 
     public void startFixedTicks() {
 
-        StaticSystem.fixedTicksMillis = fixedTickMillis;
+        StaticSystem.fixedTickMillis = fixedTickMillis;
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -97,7 +105,28 @@ public class Engine {
         }, 0, fixedTickMillis);
     }
 
-    public void startRepainting() {
+    private void startRepainting(long FPS) {
+
+        repaintTimer.scheduleAtFixedRate(new TimerTask() {
+
+            long nanosBefore;
+
+            @Override
+            public void run() {
+
+                nanosBefore = System.nanoTime();
+
+                onTick();
+                displayManager.repaintStage();
+
+                Thread.yield();
+
+                Time.setDeltaNanos(System.nanoTime() - nanosBefore);
+            }
+        }, 0, 1000 / FPS);
+    }
+
+    private void startRepainting() {
 
         repaintTimer.schedule(new TimerTask() {
 

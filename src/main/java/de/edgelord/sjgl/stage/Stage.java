@@ -34,6 +34,8 @@ public class Stage extends JPanel {
     private float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
+    private boolean antialising = true;
+
     public Stage(Display display, Engine engine) {
         this.display = display;
         this.engine = engine;
@@ -134,7 +136,10 @@ public class Stage extends JPanel {
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics.create();
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        if (antialising) {
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        }
 
         graphics2D.scale(currentZoomX, currentZoomY);
 
@@ -170,5 +175,13 @@ public class Stage extends JPanel {
 
     public void setMouseHandler(DisplayMouseHandler mouseHandler) {
         this.mouseHandler = mouseHandler;
+    }
+
+    public boolean isAntialising() {
+        return antialising;
+    }
+
+    public void setAntialising(boolean antialising) {
+        this.antialising = antialising;
     }
 }

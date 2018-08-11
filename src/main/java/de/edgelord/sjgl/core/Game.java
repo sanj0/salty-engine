@@ -24,17 +24,15 @@ public class Game {
 
         displayManager.create();
 
-        // The Thread is supposed to sleep because otherwise the fixedTicks and the renderingProcess will start
-        // before the window shows up
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         engine.start(displayManager);
     }
 
+    public static void start(long fixedFPS) {
+
+        displayManager.create();
+
+        engine.start(displayManager, fixedFPS);
+    }
     public static DisplayManager getDisplayManager() {
         return displayManager;
     }
