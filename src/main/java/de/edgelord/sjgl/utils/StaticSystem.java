@@ -13,6 +13,7 @@ import testing.dummys.DummyLayerCollection;
 import testing.dummys.DummyScene;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class StaticSystem {
 
@@ -31,6 +32,10 @@ public class StaticSystem {
     public static boolean inputRight = false;
     public static boolean inputLeft = false;
     public static char inputKey;
+    /**
+     * You have to add a ifn check if you use this!
+     */
+    public static KeyEvent input;
 
     public static boolean isPaused() {
         return paused;

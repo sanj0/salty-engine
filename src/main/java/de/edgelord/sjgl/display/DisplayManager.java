@@ -114,6 +114,7 @@ public class DisplayManager {
                 StaticSystem.inputDown = inputDown;
                 StaticSystem.inputRight = inputRight;
                 StaticSystem.inputLeft = inputLeft;
+                StaticSystem.input = e;
             }
 
             @Override
@@ -151,6 +152,7 @@ public class DisplayManager {
                 StaticSystem.inputDown = inputDown;
                 StaticSystem.inputRight = inputRight;
                 StaticSystem.inputLeft = inputLeft;
+                StaticSystem.input = null;
             }
         };
 
