@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 
-public class Stage extends JPanel {
+public class Stage extends Canvas {
 
     private Display display;
     private Engine engine;
@@ -27,6 +27,7 @@ public class Stage extends JPanel {
     private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
     private DisplayMouseHandler mouseHandler = null;
+    private boolean doubleBufferCreated = false;
 
     private float fps;
     private String fpsString = "";
@@ -127,15 +128,22 @@ public class Stage extends JPanel {
         setBounds(0, 0, display.getWidth(), display.getHeight());
         setBackground(Color.WHITE);
         display.add(this);
+        setIgnoreRepaint(true);
 
         initNativeMouseListener();
     }
 
     @Override
-    protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
+    public void repaint(){
 
-        Graphics2D graphics2D = (Graphics2D) graphics.create();
+        if (!doubleBufferCreated) {
+            createBufferStrategy(2);
+            doubleBufferCreated = true;
+        }
+
+        Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
+
+        graphics2D.clearRect(0, 0, getWidth(), getHeight());
 
         if (antialising) {
             graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -166,8 +174,7 @@ public class Stage extends JPanel {
             graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
         }
 
-        graphics.dispose();
-        graphics2D.dispose();
+        getBufferStrategy().show();
     }
 
     public void scale(double zoomX, double zoomY) {
