@@ -41,6 +41,8 @@ public abstract class GameObject {
     private final Accelerator defaultAccelerator;
     private final PushOutOnCollision pushOutOnCollision;
 
+    private Directions.Direction lastDirection = null;
+
     private Coordinates coordinates;
     private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
@@ -207,6 +209,10 @@ public abstract class GameObject {
 
     public void move(float delta, final Directions.Direction direction) {
 
+        if (delta != 0) {
+            lastDirection = direction;
+        }
+
         // Check if delta is negative and if so, mirror its value
         if (delta < 0f) {
             delta = delta * (-1);
@@ -293,7 +299,6 @@ public abstract class GameObject {
     }
 
     public float getX() {
-
         return getPosition().getX();
     }
 
@@ -354,5 +359,13 @@ public abstract class GameObject {
 
     public void setMass(final float mass) {
         this.mass = mass;
+    }
+
+    public Directions.Direction getLastDirection() {
+        return lastDirection;
+    }
+
+    public void setLastDirection(Directions.Direction lastDirection) {
+        this.lastDirection = lastDirection;
     }
 }
