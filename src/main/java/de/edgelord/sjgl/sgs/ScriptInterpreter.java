@@ -57,7 +57,7 @@ public class ScriptInterpreter extends GameObjectComponent {
      * @see #loadScript(String, Resource, GameObject, String)
      */
     public ScriptInterpreter(VarsSegment varsSegment, DrawSegment drawSegment, InitSegment initSegment, FixedTickSegment fixedTickSegment, CollisionSegment collisionSegment, GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, SGS_COMPONNT);
         this.varsSegment = varsSegment;
         this.drawSegment = drawSegment;
         this.initSegment = initSegment;

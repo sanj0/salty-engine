@@ -23,6 +23,7 @@ public abstract class GameObjectComponent {
     public static final String TECHNICAL_DRAW_COMPONENT = "de.edgelord.sjgl.components.technicalDrawComponent";
     public static final String CORE_COMPONENT = "de.edgelord.sjgl.components.core";
     public static final String PHYSICS_COMPONENT = "de.edgelord.sjgl.components.physics";
+    public static final String SGS_COMPONNT = "de.edgelord.sjgl.components.sgs";
 
     private GameObject parent;
     private String name;

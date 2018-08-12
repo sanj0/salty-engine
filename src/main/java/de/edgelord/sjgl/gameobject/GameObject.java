@@ -126,20 +126,22 @@ public abstract class GameObject {
                 final CollisionEvent e = new CollisionEvent(this, Directions.getGameObjectRelation(other, this));
                 final CollisionEvent eSelf = new CollisionEvent(other, Directions.getGameObjectRelation(this, other));
 
-                other.onCollision(e);
+                // other.onCollision(e);
                 onCollision(eSelf);
 
                 getTouchingEvents().add(new TouchingEvent(e, this));
 
                 for (final GameObjectComponent component : getComponents()) {
-                    if (!component.getTag().equals(GameObjectComponent.PUSH_OUT_ON_COLLISION)){
                         component.onCollision(eSelf);
-                    }
                 }
 
+                /*
                 for (final GameObjectComponent component : other.getComponents()) {
-                    component.onCollision(e);
+                    if (!component.getTag().equals(GameObjectComponent.PUSH_OUT_ON_COLLISION)) {
+                        component.onCollision(e);
+                    }
                 }
+                */
             }
         }
     }

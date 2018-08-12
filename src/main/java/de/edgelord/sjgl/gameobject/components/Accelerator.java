@@ -20,7 +20,7 @@ public class Accelerator extends GameObjectComponent {
     private boolean accelerationFinished = true;
 
     public Accelerator(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, ACCELERATOR_COMPONENT);
     }
 
     @Override
