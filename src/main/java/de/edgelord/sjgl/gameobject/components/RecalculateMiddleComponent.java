@@ -21,7 +21,7 @@ public class RecalculateMiddleComponent extends GameObjectComponent {
 
 
     public RecalculateMiddleComponent(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, CORE_COMPONENT);
     }
 
     @Override

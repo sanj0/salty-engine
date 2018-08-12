@@ -132,7 +132,9 @@ public abstract class GameObject {
                 getTouchingEvents().add(new TouchingEvent(e, this));
 
                 for (final GameObjectComponent component : getComponents()) {
-                    component.onCollision(eSelf);
+                    if (!component.getTag().equals(GameObjectComponent.PUSH_OUT_ON_COLLISION)){
+                        component.onCollision(eSelf);
+                    }
                 }
 
                 for (final GameObjectComponent component : other.getComponents()) {

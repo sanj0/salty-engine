@@ -15,7 +15,7 @@ import java.awt.*;
 public class DrawPositionComponent extends GameObjectComponent {
 
     public DrawPositionComponent(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, TECHNICAL_DRAW_COMPONENT);
     }
 
     @Override

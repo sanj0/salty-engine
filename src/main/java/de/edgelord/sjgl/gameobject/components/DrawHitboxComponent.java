@@ -15,7 +15,7 @@ import java.awt.*;
 public class DrawHitboxComponent extends GameObjectComponent {
 
     public DrawHitboxComponent(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, TECHNICAL_DRAW_COMPONENT);
     }
 
     @Override

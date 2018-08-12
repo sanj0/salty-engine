@@ -32,7 +32,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * @see GameObjectComponent
      */
     public SimpleRenderComponent(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, SIMPLE_RENDER_COMPONENT);
     }
 
     @Override

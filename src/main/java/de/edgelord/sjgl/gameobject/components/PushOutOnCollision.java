@@ -16,7 +16,7 @@ import java.awt.*;
 public class PushOutOnCollision extends GameObjectComponent {
 
     public PushOutOnCollision(final GameObject parent, final String name) {
-        super(parent, name);
+        super(parent, name, PUSH_OUT_ON_COLLISION);
     }
 
     @Override

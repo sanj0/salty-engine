@@ -15,7 +15,7 @@ import java.awt.*;
 public class RecalculateHitboxComponent extends GameObjectComponent {
 
     public RecalculateHitboxComponent(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, CORE_COMPONENT);
     }
 
     @Override

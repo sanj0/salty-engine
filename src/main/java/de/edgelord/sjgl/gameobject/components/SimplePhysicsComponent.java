@@ -28,7 +28,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     private final List<Force> forces = new LinkedList<>();
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
-        super(parent, name);
+        super(parent, name, PHYSICS_COMPONENT);
 
         addDefaultForces();
     }

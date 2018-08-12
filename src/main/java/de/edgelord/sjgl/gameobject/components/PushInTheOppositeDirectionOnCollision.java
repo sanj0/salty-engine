@@ -10,7 +10,7 @@ import java.awt.*;
 public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
 
     public PushInTheOppositeDirectionOnCollision(GameObject parent, String name) {
-        super(parent, name);
+        super(parent, name, PUSH_OUT_ON_COLLISION);
     }
 
     @Override
