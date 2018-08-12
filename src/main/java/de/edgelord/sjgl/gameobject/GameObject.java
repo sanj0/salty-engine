@@ -13,6 +13,7 @@ import de.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.location.Vector2f;
 import de.edgelord.sjgl.utils.Directions;
+import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
@@ -236,6 +237,24 @@ public abstract class GameObject {
             case down:
                 basicMove(delta, Directions.BasicDirection.y);
                 break;
+        }
+    }
+
+    public void moveUntilCollision(float delta, Directions.Direction direction){
+        float currentDelta = 0f;
+
+        while (currentDelta <= delta) {
+
+            for (GameObject gameObject : StaticSystem.currentScene.getGameObjects()){
+                if (gameObject.getHitbox().collides(this)){
+                    if (Directions.getGameObjectRelation(this, gameObject) == direction){
+                        return;
+                    }
+                }
+            }
+
+            move(0.1f, direction);
+            currentDelta += 0.1f;
         }
     }
 
