@@ -51,7 +51,7 @@ public class StaticSystem {
 
     public static Mode currentMode = Mode.scene;
     public static Output systemOutput = new Output(System.out);
-    public static boolean drawFPS = true;
+    public static boolean drawFPS = false;
 
     public static Font font = new Font(Font.SERIF, 0, 15);
 

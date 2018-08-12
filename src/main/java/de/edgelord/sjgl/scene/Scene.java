@@ -15,11 +15,16 @@ import java.awt.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
 
+    /*
     private List<GameObject> gameObjects = Collections.synchronizedList(new LinkedList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new LinkedList<>());
+    */
+    private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
     private UISystem ui = null;
     private float xDelta, yDelta;
     private boolean initialized = false;
@@ -157,7 +162,7 @@ public class Scene {
         }
     }
 
-    public void setGameObjects(LinkedList<GameObject> gameObjects) {
+    public void setGameObjects(CopyOnWriteArrayList<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 
@@ -165,7 +170,7 @@ public class Scene {
         return fixedTasks;
     }
 
-    public void setFixedTasks(LinkedList<FixedTask> fixedTasks) {
+    public void setFixedTasks(CopyOnWriteArrayList<FixedTask> fixedTasks) {
         this.fixedTasks = fixedTasks;
     }
 }
