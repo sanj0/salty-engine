@@ -247,7 +247,7 @@ public abstract class GameObject {
 
             for (GameObject gameObject : StaticSystem.currentScene.getGameObjects()){
                 if (gameObject.getHitbox().collides(this)){
-                    if (Directions.getGameObjectRelation(this, gameObject) == direction){
+                    if (Directions.getGameObjectRelation(gameObject, this) == direction){
                         return;
                     }
                 }

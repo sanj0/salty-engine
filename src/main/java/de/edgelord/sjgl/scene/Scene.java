@@ -12,12 +12,14 @@ import de.edgelord.sjgl.ui.UISystem;
 import de.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Scene {
 
-    private LinkedList<GameObject> gameObjects = new LinkedList<>();
-    private LinkedList<FixedTask> fixedTasks = new LinkedList<>();
+    private List<GameObject> gameObjects = Collections.synchronizedList(new LinkedList<>());
+    private List<FixedTask> fixedTasks = Collections.synchronizedList(new LinkedList<>());
     private UISystem ui = null;
     private float xDelta, yDelta;
     private boolean initialized = false;
@@ -33,26 +35,32 @@ public class Scene {
 
     public void doFixedTasks() {
 
-        for (FixedTask fixedTask : fixedTasks) {
+        synchronized (getFixedTasks()) {
+            for (FixedTask fixedTask : fixedTasks) {
 
-            fixedTask.onFixedTick();
+                fixedTask.onFixedTick();
+            }
         }
     }
 
     public void doCollisionDetection(){
 
-        for (GameObject gameObject : gameObjects){
+        synchronized (getGameObjects()) {
+            for (GameObject gameObject : gameObjects) {
 
-            gameObject.doCollisionDetection(getGameObjects());
+                gameObject.doCollisionDetection(getGameObjects());
+            }
         }
     }
 
     public void resetPosition() {
 
-        for (GameObject gameObject : getGameObjects()) {
+        synchronized (getGameObjects()) {
+            for (GameObject gameObject : getGameObjects()) {
 
-            gameObject.setX(gameObject.getX() + xDelta);
-            gameObject.setY(gameObject.getY() + yDelta);
+                gameObject.setX(gameObject.getX() + xDelta);
+                gameObject.setY(gameObject.getY() + yDelta);
+            }
         }
     }
 
@@ -63,13 +71,15 @@ public class Scene {
 
     public void draw(Graphics2D graphics) {
 
-        for (GameObject gameObject : gameObjects) {
-            gameObject.draw(graphics);
-            gameObject.doComponentDrawing(graphics);
-        }
+        synchronized (getGameObjects()) {
+            for (GameObject gameObject : gameObjects) {
+                gameObject.draw(graphics);
+                gameObject.doComponentDrawing(graphics);
+            }
 
-        if (ui != null){
-            ui.drawUI(graphics);
+            if (ui != null) {
+                ui.drawUI(graphics);
+            }
         }
     }
 
@@ -81,7 +91,7 @@ public class Scene {
         return ui;
     }
 
-    public LinkedList<GameObject> getGameObjects() {
+    public List<GameObject> getGameObjects() {
         return gameObjects;
     }
 
@@ -90,16 +100,20 @@ public class Scene {
         doFixedTasks();
         doCollisionDetection();
 
-        for (GameObject gameObject : getGameObjects()) {
-            gameObject.doComponentOnFixedTick();
-            gameObject.onFixedTick();
+        synchronized (getGameObjects()) {
+            for (GameObject gameObject : getGameObjects()) {
+                gameObject.doComponentOnFixedTick();
+                gameObject.onFixedTick();
+            }
         }
     }
 
     public void onTick() {
 
-        for (GameObject gameObject : getGameObjects()) {
-            gameObject.onTick();
+        synchronized (getGameObjects()) {
+            for (GameObject gameObject : getGameObjects()) {
+                gameObject.onTick();
+            }
         }
     }
 
@@ -110,8 +124,10 @@ public class Scene {
             return;
         } else {
 
-            for (GameObject gameObject : getGameObjects()) {
-                gameObject.initialize();
+            synchronized (getGameObjects()) {
+                for (GameObject gameObject : getGameObjects()) {
+                    gameObject.initialize();
+                }
             }
 
             initialized = true;
@@ -120,21 +136,23 @@ public class Scene {
 
     public void moveCamera(Directions.BasicDirection direction, float delta) {
 
-        if (direction == Directions.BasicDirection.x) {
+        synchronized (getGameObjects()) {
+            if (direction == Directions.BasicDirection.x) {
 
-            xDelta += delta;
+                xDelta += delta;
 
-            for (GameObject gameObject : getGameObjects()) {
+                for (GameObject gameObject : getGameObjects()) {
 
-                gameObject.setX(gameObject.getX() + delta);
-            }
-        } else {
+                    gameObject.setX(gameObject.getX() + delta);
+                }
+            } else {
 
-            yDelta += delta;
+                yDelta += delta;
 
-            for (GameObject gameObject : getGameObjects()) {
+                for (GameObject gameObject : getGameObjects()) {
 
-                gameObject.setY(gameObject.getY() + delta);
+                    gameObject.setY(gameObject.getY() + delta);
+                }
             }
         }
     }
@@ -143,7 +161,7 @@ public class Scene {
         this.gameObjects = gameObjects;
     }
 
-    public LinkedList<FixedTask> getFixedTasks() {
+    public List<FixedTask> getFixedTasks() {
         return fixedTasks;
     }
 
