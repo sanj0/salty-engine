@@ -239,6 +239,41 @@ public abstract class GameObject {
         }
     }
 
+    public void moveIfNotTouchingAnything(float delta, final Directions.Direction direction) {
+
+        for (TouchingEvent touchingEvent : getTouchingEvents()){
+
+            if (touchingEvent.getCollisionEvent().getCollisionDirection() == direction){
+                return;
+            }
+        }
+
+            if (delta != 0) {
+                lastDirection = direction;
+            }
+
+            // Check if delta is negative and if so, mirror its value
+            if (delta < 0f) {
+                delta = delta * (-1);
+            }
+
+            switch (direction) {
+
+                case right:
+                    basicMove(delta, Directions.BasicDirection.x);
+                    break;
+                case left:
+                    basicMove(-delta, Directions.BasicDirection.x);
+                    break;
+                case up:
+                    basicMove(-delta, Directions.BasicDirection.y);
+                    break;
+                case down:
+                    basicMove(delta, Directions.BasicDirection.y);
+                    break;
+            }
+    }
+
     public void moveY(final float delta) {
         position.setY(getY() + delta);
     }
