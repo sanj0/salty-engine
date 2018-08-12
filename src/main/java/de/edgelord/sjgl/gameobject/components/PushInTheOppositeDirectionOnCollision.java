@@ -26,20 +26,23 @@ public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
     @Override
     public void onCollision(CollisionEvent e) {
 
-        switch (getParent().getLastDirection()) {
+        if (getParent().getLastDirection() != null) {
+            switch (getParent().getLastDirection()) {
 
-            case right:
-                getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
-                break;
-            case left:
-                getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
-                break;
-            case  up:
-                getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
-                break;
-            case down:
-                getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
-                break;
+                case right:
+                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
+                    break;
+                case left:
+                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
+                    break;
+                case up:
+                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
+                    break;
+                case down:
+                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
+                    break;
+            }
+
         }
     }
 }
