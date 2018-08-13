@@ -117,7 +117,7 @@ public abstract class GameObject {
         for (final GameObject other : gameObjects) {
 
             if (other == this) {
-                break;
+                continue;
             }
 
             if (getHitbox().collides(other)) {
