@@ -126,12 +126,12 @@ public abstract class GameObject {
                 final CollisionEvent eSelf = new CollisionEvent(other, Directions.getGameObjectRelation(this, other));
 
                 // other.onCollision(e);
-                onCollision(e);
+                onCollision(eSelf);
 
                 getTouchingEvents().add(new TouchingEvent(e, this));
 
                 for (final GameObjectComponent component : getComponents()) {
-                    component.onCollision(e);
+                    component.onCollision(eSelf);
                 }
 
                 /*

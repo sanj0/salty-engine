@@ -105,19 +105,19 @@ public class Directions {
         float rightCollision = otherRight - root.getX();
 
         if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision) {
-            returnDirections.setDirection(Direction.UP);
-        }
-
-        if (bottomCollision < topCollision && bottomCollision < leftCollision && bottomCollision < rightCollision) {
             returnDirections.setDirection(Direction.DOWN);
         }
 
+        if (bottomCollision < topCollision && bottomCollision < leftCollision && bottomCollision < rightCollision) {
+            returnDirections.setDirection(Direction.UP);
+        }
+
         if (rightCollision < leftCollision && rightCollision < topCollision && rightCollision < bottomCollision) {
-            returnDirections.setDirection(Direction.RIGHT);
+            returnDirections.setDirection(Direction.LEFT);
         }
 
         if (leftCollision < rightCollision && leftCollision < bottomCollision && leftCollision < topCollision) {
-            returnDirections.setDirection(Direction.LEFT);
+            returnDirections.setDirection(Direction.RIGHT);
         }
 
         /*if (root.getMiddle().isAbove(other.getMiddle())) {
