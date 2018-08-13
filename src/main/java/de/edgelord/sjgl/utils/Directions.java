@@ -10,12 +10,14 @@ import de.edgelord.sjgl.gameobject.GameObject;
 
 public class Directions {
 
+    private int directions;
+
     /**
      * This method returns the relation between two GameObject as a Direction.
-     * When <code>root</code> is truly right to <code>other</code>, then this method
-     * would return <code>Direction.right</code>.
-     * <code>root</code> is truly right to <code>other</code> when it's middle
-     * is right of it and at least one floating number of it's sides is in the dimension
+     * When <code>root</code> is truly RIGHT to <code>other</code>, then this method
+     * would return <code>Direction.RIGHT</code>.
+     * <code>root</code> is truly RIGHT to <code>other</code> when it's middle
+     * is RIGHT of it and at least one floating number of it's sides is in the dimension
      * of the sides of <code>other</code>.
      *
      * @param root  the <code>GameObject</code> from which perspective to view
@@ -24,70 +26,92 @@ public class Directions {
      * @return the relation between the two <code>GameObject</code>s as a Direction from
      * the perspective of <code>root</code>.
      */
-    public static Direction getGameObjectRelation(final GameObject root, final GameObject other) {
+    public static Directions getGameObjectRelation(final GameObject root, final GameObject other) {
 
-        // Be patient about 5 pixels
-
-        if (root.getY() + root.getHeight() - 5f < other.getY()){
-            return Direction.up;
+        /*if (root.getY() + root.getHeight() < other.getY()) {
+            direction.setDirection(Direction.UP);
         }
 
-        if (root.getY() - 5f > other.getY() + other.getHeight()){
-            return Direction.down;
+        if (root.getY() > other.getY() + other.getHeight()) {
+            direction.setDirection(Direction.DOWN);
         }
 
-        if (root.getX() + root.getWidth() -5f < other.getX()){
-            return Direction.left;
+        if (root.getX() + root.getWidth() < other.getX()) {
+            direction.setDirection(Direction.LEFT);
         }
 
-        if (root.getX() - 5f > other.getX() + other.getWidth()){
-            return Direction.right;
+        if (root.getX() > other.getX() + other.getWidth()) {
+            direction.setDirection(Direction.RIGHT);
         }
 
-        return null;
+        return direction;*/
 
-        /*
-        if (root.getX() + root.getWidth() > other.getX() && root.getX() < other.getX() + other.getWidth()) {
+
+        /*if (root.getX() + root.getWidth() > other.getX() && root.getX() < other.getX() + other.getWidth()) {
 
             if (root.getMiddle().isAbove(other.getMiddle())) {
-                return Direction.up;
+                return Direction.UP;
             } else {
-                return Direction.down;
+                return Direction.DOWN;
             }
         } else {
 
             if (root.getMiddle().isRight(other.getMiddle())) {
-                return Direction.right;
+                return Direction.RIGHT;
             } else {
-                return Direction.left;
+                return Direction.LEFT;
             }
+        }*/
+
+        Directions returnDirections = new Directions();
+
+        if (root.getMiddle().isAbove(other.getMiddle())) {
+            returnDirections.setDirection(Direction.UP);
+        } else {
+            returnDirections.setDirection(Direction.DOWN);
         }
-        */
+
+        if (root.getMiddle().isRight(other.getMiddle())) {
+            returnDirections.setDirection(Direction.RIGHT);
+        } else {
+            returnDirections.setDirection(Direction.LEFT);
+        }
+
+        return returnDirections;
     }
 
     /**
-     * This method is used for mirroring Directions, for example for input Direction.right,
-     * it would return Direction.left.
+     * This method is used for mirroring Directions, for example for input Direction.RIGHT,
+     * it would return Direction.LEFT.
      *
      * @param direction the Direction to mirror
      * @return the mirrored Direction
      */
-    public static Direction mirrorDirection(final Direction direction) {
+    public static Directions mirrorDirection(final Direction direction) {
 
-        switch (direction) {
+        Directions returnDirections = new Directions();
 
-            case right:
-                return Direction.left;
-            case left:
-                return Direction.right;
-            case up:
-                return Direction.down;
-            case down:
-                return Direction.up;
+        if (returnDirections.hasDirection(Direction.RIGHT)) {
+            returnDirections.removeDirection(Direction.RIGHT);
+            returnDirections.setDirection(Direction.LEFT);
         }
 
-        // If the switch statement above fails (impossible) return up
-        return Direction.up;
+        if (returnDirections.hasDirection(Direction.LEFT)) {
+            returnDirections.removeDirection(Direction.LEFT);
+            returnDirections.setDirection(Direction.RIGHT);
+        }
+
+        if (returnDirections.hasDirection(Direction.UP)) {
+            returnDirections.removeDirection(Direction.UP);
+            returnDirections.setDirection(Direction.DOWN);
+        }
+
+        if (returnDirections.hasDirection(Direction.DOWN)) {
+            returnDirections.removeDirection(Direction.DOWN);
+            returnDirections.setDirection(Direction.UP);
+        }
+
+        return returnDirections;
     }
 
     /**
@@ -111,11 +135,44 @@ public class Directions {
         return BasicDirection.x;
     }
 
-    public enum Direction {
-        right, left, up, down
-    }
-
     public enum BasicDirection {
         x, y
+    }
+
+    public enum Direction {
+        RIGHT, /* 1 */
+        LEFT,  /* 2 */
+        UP,    /* 4 */
+        DOWN   /* 8 */
+    }
+
+    public void setDirection(Direction direction) {
+        int dir = getDirNumber(direction);
+        this.directions |= dir;
+    }
+
+    public void removeDirection(Direction direction) {
+        int dir = getDirNumber(direction);
+        this.directions &= ~dir;
+    }
+
+    public boolean hasDirection(Direction direction) {
+        int dir = getDirNumber(direction);
+        return (this.directions & dir) == dir;
+    }
+
+    private int getDirNumber(Direction direction) {
+        switch (direction) {
+
+            case RIGHT:
+                return 1;
+            case LEFT:
+                return 2;
+            case UP:
+                return 4;
+            case DOWN:
+                return 8;
+        }
+        return 0;
     }
 }

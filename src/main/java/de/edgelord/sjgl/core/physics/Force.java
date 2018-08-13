@@ -49,6 +49,7 @@ public class Force {
         }
 
         if (countersCollision) {
+            counterAcceleration = 0;
             acceleration = 0;
             velocity = 0;
         }
@@ -58,6 +59,9 @@ public class Force {
         velocity += accelerationRes * deltaT;
         deltaDistance = velocity * deltaT;
         distance += deltaDistance;
+        if (countersCollision) {
+            return 0;
+        }
         return deltaDistance;
     }
 

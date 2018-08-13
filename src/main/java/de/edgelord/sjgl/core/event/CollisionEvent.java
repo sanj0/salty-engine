@@ -17,18 +17,18 @@ public class CollisionEvent {
 
     private final GameObject root;
     private final SimplePhysicsComponent rootPhysics;
-    private Directions.Direction collisionDirection;
+    private Directions collisionDirections;
     private final float rootMass;
 
     public CollisionEvent(final GameObject root) {
         this(root, null);
     }
 
-    public CollisionEvent(final GameObject root, final Directions.Direction collisionDirection) {
+    public CollisionEvent(final GameObject root, final Directions collisionDirections) {
 
         this.root = root;
         rootPhysics = root.getPhysics();
-        this.collisionDirection = collisionDirection;
+        this.collisionDirections = collisionDirections;
         rootMass = root.getMass();
     }
 
@@ -40,12 +40,12 @@ public class CollisionEvent {
         return rootPhysics;
     }
 
-    public Directions.Direction getCollisionDirection() {
-        return collisionDirection;
+    public Directions getCollisionDirections() {
+        return collisionDirections;
     }
 
-    public void setCollisionDirection(final Directions.Direction collisionDirection) {
-        this.collisionDirection = collisionDirection;
+    public void setCollisionDirections(final Directions collisionDirections) {
+        this.collisionDirections = collisionDirections;
     }
 
     public float getRootMass() {

@@ -31,8 +31,8 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * @param name   the id-name for this Component
      * @see GameObjectComponent
      */
-    public SimpleRenderComponent(GameObject parent, String name) {
-        super(parent, name, SIMPLE_RENDER_COMPONENT);
+    public SimpleRenderComponent(final GameObject parent, final String name) {
+        super(parent, name, GameObjectComponent.SIMPLE_RENDER_COMPONENT);
     }
 
     @Override
@@ -48,23 +48,24 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * @param graphics the Graphics2D to which the component should draw
      * @see GameObjectComponent
      */
+    @Override
     public abstract void draw(Graphics2D graphics);
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
         // Is not needed for renderComponents, so prevent unnecessary Code
     }
 
 
     /**
-     * Sets the color and stroke of the given Graphics2D to the ones set up in this class
+     * Sets the color and stroke of the given Graphics2D to the ones set UP in this class
      * So the user can always control how the component should render the primitives.
      *
      * @param graphics the Graphics2D which should be given the values
      * @see Graphics2D
      */
-    protected void setUpGraphics(Graphics2D graphics) {
+    protected void setUpGraphics(final Graphics2D graphics) {
 
         graphics.setColor(getColor());
         graphics.setStroke(getStroke());
@@ -74,7 +75,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         this.color = color;
     }
 
@@ -82,7 +83,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
         return fill;
     }
 
-    public void setFill(boolean fill) {
+    public void setFill(final boolean fill) {
         this.fill = fill;
     }
 
@@ -90,7 +91,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
         return stroke;
     }
 
-    public void setStroke(Stroke stroke) {
+    public void setStroke(final Stroke stroke) {
         this.stroke = stroke;
     }
 }

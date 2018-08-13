@@ -19,8 +19,8 @@ import java.awt.event.KeyListener;
 
 public class DisplayManager {
 
-    private Display display;
-    private Stage stage;
+    private final Display display;
+    private final Stage stage;
     private DisplayListener displayListener;
     private KeyListener nativeKeyListener;
     private DisplayKeyHandler displayKeyHandler = null;
@@ -29,16 +29,17 @@ public class DisplayManager {
     // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
     private char currentKey;
 
-    // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the up arrow is pressed)
+    // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the UP arrow is pressed)
     // this supports multi-input!
     private boolean inputUp = false;
     private boolean inputDown = false;
     private boolean inputRight = false;
     private boolean inputLeft = false;
 
-    private int width, height;
+    private final int width;
+    private final int height;
 
-    public DisplayManager(int width, int height, String gameName, Engine engine) {
+    public DisplayManager(final int width, final int height, final String gameName, final Engine engine) {
 
         display = new Display(width, height, gameName, this);
         stage = new Stage(display, engine);
@@ -60,17 +61,17 @@ public class DisplayManager {
         nativeKeyListener = new KeyListener() {
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(final KeyEvent e) {
 
                 if (displayKeyHandler != null) {
                     displayKeyHandler.keyTyped(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null){
+                if (StaticSystem.currentScene.getUI() != null) {
                     StaticSystem.currentScene.getUI().keyTyped(e);
                 }
 
-                if (e.getKeyCode() == KeyEvent.VK_P){
+                if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (StaticSystem.isPaused()) {
                         StaticSystem.setPaused(false);
                     } else {
@@ -80,7 +81,7 @@ public class DisplayManager {
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(final KeyEvent e) {
 
                 if (displayKeyHandler != null) {
                     displayKeyHandler.keyPressed(e);
@@ -88,24 +89,24 @@ public class DisplayManager {
 
                 currentKey = e.getKeyChar();
 
-                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP){
+                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
 
                     inputUp = true;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN){
+                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 
                     inputDown = true;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT){
+                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 
                     inputLeft = true;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
+                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
                     inputRight = true;
                 }
 
-                if (StaticSystem.currentScene.getUI() != null){
+                if (StaticSystem.currentScene.getUI() != null) {
                     StaticSystem.currentScene.getUI().keyPressed(e);
                 }
 
@@ -118,7 +119,7 @@ public class DisplayManager {
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(final KeyEvent e) {
 
                 if (displayKeyHandler != null) {
                     displayKeyHandler.keyReleased(e);
@@ -126,24 +127,24 @@ public class DisplayManager {
 
                 currentKey = '*';
 
-                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP){
+                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
 
                     inputUp = false;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN){
+                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 
                     inputDown = false;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT){
+                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 
                     inputLeft = false;
                 }
-                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
+                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
                     inputRight = false;
                 }
 
-                if (StaticSystem.currentScene.getUI() != null){
+                if (StaticSystem.currentScene.getUI() != null) {
                     StaticSystem.currentScene.getUI().keyReleased(e);
                 }
 
@@ -160,38 +161,38 @@ public class DisplayManager {
         currentKey = '*';
     }
 
-    public void scale(double zoomX, double zoomY) {
+    public void scale(final double zoomX, final double zoomY) {
 
         stage.scale(zoomX, zoomY);
     }
 
-    public int getHorizontalCenter(int width){
+    public int getHorizontalCenter(final int width) {
         return (getWidth() / 2) - (width / 2);
     }
 
-    public int getVerticalCenter(int height){
+    public int getVerticalCenter(final int height) {
         return (getHeight() / 2) - (height / 2);
     }
 
-    public Coordinates getCenter(int width, int height){
+    public Coordinates getCenter(final int width, final int height) {
         return new Coordinates(getHorizontalCenter(width), getVerticalCenter(height));
     }
 
-    public void setDisplayKeyHandler(DisplayKeyHandler displayKeyHandler) {
+    public void setDisplayKeyHandler(final DisplayKeyHandler displayKeyHandler) {
         this.displayKeyHandler = displayKeyHandler;
     }
 
-    public void setDisplayMouseHandler(DisplayMouseHandler displayMouseHandler) {
+    public void setDisplayMouseHandler(final DisplayMouseHandler displayMouseHandler) {
         this.displayMouseHandler = displayMouseHandler;
 
-        this.stage.setMouseHandler(displayMouseHandler);
+        stage.setMouseHandler(displayMouseHandler);
     }
 
     public DisplayListener getDisplayListener() {
         return displayListener;
     }
 
-    public void setDisplayListener(DisplayListener displayListener) {
+    public void setDisplayListener(final DisplayListener displayListener) {
         this.displayListener = displayListener;
     }
 

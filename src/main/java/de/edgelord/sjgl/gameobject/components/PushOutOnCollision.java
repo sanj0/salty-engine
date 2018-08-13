@@ -16,7 +16,7 @@ import java.awt.*;
 public class PushOutOnCollision extends GameObjectComponent {
 
     public PushOutOnCollision(final GameObject parent, final String name) {
-        super(parent, name, PUSH_OUT_ON_COLLISION);
+        super(parent, name, GameObjectComponent.PUSH_OUT_ON_COLLISION);
     }
 
     @Override
@@ -31,25 +31,41 @@ public class PushOutOnCollision extends GameObjectComponent {
     @Override
     public void onCollision(final CollisionEvent e) {
 
-        // System.out.println(e.getCollisionDirection());
+        // System.out.println(e.getCollisionDirections());
 
-        if (e.getCollisionDirection() != null) {
+        if (e.getCollisionDirections() != null) {
 
-            switch (e.getCollisionDirection()) {
-
-                case right:
-                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
-                    break;
-                case left:
-                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
-                    break;
-                case  up:
-                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
-                    break;
-                case down:
-                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
-                    break;
+            if (e.getCollisionDirections().hasDirection(Directions.Direction.RIGHT)) {
+                getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.LEFT);
             }
+
+            if (e.getCollisionDirections().hasDirection(Directions.Direction.LEFT)) {
+                getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.RIGHT);
+            }
+
+            if (e.getCollisionDirections().hasDirection(Directions.Direction.UP)) {
+                getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.DOWN);
+            }
+
+            if (e.getCollisionDirections().hasDirection(Directions.Direction.DOWN)) {
+                getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.UP);
+            }
+
+            /*switch (e.getCollisionDirections()) {
+
+                case RIGHT:
+                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.RIGHT);
+                    break;
+                case LEFT:
+                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.LEFT);
+                    break;
+                case UP:
+                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.UP);
+                    break;
+                case DOWN:
+                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.DOWN);
+                    break;
+            }*/
         }
     }
 }

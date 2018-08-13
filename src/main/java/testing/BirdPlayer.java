@@ -12,7 +12,6 @@ import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
-import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
@@ -106,7 +105,6 @@ public class BirdPlayer extends GameObject {
 
         if (displayManager.isInputUp()) {
 
-            moveY(-0.75f);
             if (ticksForAnim == 75) {
                 animation.nextFrame();
 
@@ -119,7 +117,6 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputDown()) {
 
-            moveY(0.75f);
             if (ticksForAnim == 75) {
                 animation.nextFrame();
             }
@@ -130,7 +127,6 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputLeft()) {
 
-            moveX(-0.75f);
             if (ticksForAnim == 75) {
                 animation.nextFrame();
             }
@@ -141,7 +137,6 @@ public class BirdPlayer extends GameObject {
         }
         if (displayManager.isInputRight()) {
 
-            moveX(0.75f);
             if (ticksForAnim == 75) {
                 animation.nextFrame();
             }

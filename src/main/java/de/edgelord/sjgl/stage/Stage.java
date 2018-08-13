@@ -12,7 +12,6 @@ import de.edgelord.sjgl.input.DisplayMouseHandler;
 import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.sjgl.utils.Time;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,8 +20,8 @@ import java.awt.event.MouseWheelEvent;
 
 public class Stage extends Canvas {
 
-    private Display display;
-    private Engine engine;
+    private final Display display;
+    private final Engine engine;
     private double currentZoomX = 1;
     private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
@@ -32,12 +31,12 @@ public class Stage extends Canvas {
     private float fps;
     private String fpsString = "";
     private float deltaNanos;
-    private float nanosToSeconds = 1000000f;
+    private final float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
     private boolean antialising = true;
 
-    public Stage(Display display, Engine engine) {
+    public Stage(final Display display, final Engine engine) {
         this.display = display;
         this.engine = engine;
 
@@ -48,7 +47,7 @@ public class Stage extends Canvas {
 
         nativeMouseListener = new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseClicked(e);
                 }
@@ -59,7 +58,7 @@ public class Stage extends Canvas {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mousePressed(e);
                 }
@@ -70,7 +69,7 @@ public class Stage extends Canvas {
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseReleased(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseReleased(e);
                 }
@@ -81,7 +80,7 @@ public class Stage extends Canvas {
             }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseEntered(e);
                 }
@@ -90,7 +89,7 @@ public class Stage extends Canvas {
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseExited(e);
                 }
@@ -99,28 +98,28 @@ public class Stage extends Canvas {
             }
 
             @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
+            public void mouseWheelMoved(final MouseWheelEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseWheelMoved(e);
                 }
             }
 
             @Override
-            public void mouseDragged(MouseEvent e) {
+            public void mouseDragged(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseDragged(e);
                 }
             }
 
             @Override
-            public void mouseMoved(MouseEvent e) {
+            public void mouseMoved(final MouseEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseMoved(e);
                 }
             }
         };
 
-        this.addMouseListener(nativeMouseListener);
+        addMouseListener(nativeMouseListener);
     }
 
     protected void init() {
@@ -135,14 +134,14 @@ public class Stage extends Canvas {
     }
 
     @Override
-    public void repaint(){
+    public void repaint() {
 
         if (!doubleBufferCreated) {
             createBufferStrategy(2);
             doubleBufferCreated = true;
         }
 
-        Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
+        final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
 
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
 
@@ -178,13 +177,13 @@ public class Stage extends Canvas {
         getBufferStrategy().show();
     }
 
-    public void scale(double zoomX, double zoomY) {
+    public void scale(final double zoomX, final double zoomY) {
 
         currentZoomX = zoomX;
         currentZoomY = zoomY;
     }
 
-    public void setMouseHandler(DisplayMouseHandler mouseHandler) {
+    public void setMouseHandler(final DisplayMouseHandler mouseHandler) {
         this.mouseHandler = mouseHandler;
     }
 
@@ -192,7 +191,7 @@ public class Stage extends Canvas {
         return antialising;
     }
 
-    public void setAntialising(boolean antialising) {
+    public void setAntialising(final boolean antialising) {
         this.antialising = antialising;
     }
 }

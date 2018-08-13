@@ -24,7 +24,7 @@ public class Audio {
     // The actual audio
     private Clip clip;
 
-    public Audio(String name, Clip clip) {
+    public Audio(final String name, final Clip clip) {
         this.name = name;
         this.clip = clip;
     }
@@ -33,7 +33,7 @@ public class Audio {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -41,12 +41,12 @@ public class Audio {
         return clip;
     }
 
-    public void setClip(Clip clip) {
+    public void setClip(final Clip clip) {
         this.clip = clip;
     }
 
     /**
-     * Sets the position within the clip right to the beginning and plays it one time
+     * Sets the position within the clip RIGHT to the beginning and plays it one time
      *
      * @see Clip#start()
      * @see AudioPlayer

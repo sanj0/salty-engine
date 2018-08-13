@@ -13,17 +13,17 @@ import java.awt.*;
 /**
  * This component is used for simplifying the process of rendering an oval.
  * <p>
- * The only thing that is left for the user to call is
+ * The only thing that is LEFT for the user to call is
  * <code>GameObject.addComponent(new OvalRender(this, "some_id_name"));</code>
  */
 public class OvalRender extends SimpleRenderComponent {
 
-    public OvalRender(GameObject parent, String name) {
+    public OvalRender(final GameObject parent, final String name) {
         super(parent, name);
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
 
         setUpGraphics(graphics);
 

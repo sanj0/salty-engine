@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
 package de.edgelord.sjgl.gameobject.components;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
@@ -9,8 +15,8 @@ import java.awt.*;
 
 public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
 
-    public PushInTheOppositeDirectionOnCollision(GameObject parent, String name) {
-        super(parent, name, PUSH_OUT_ON_COLLISION);
+    public PushInTheOppositeDirectionOnCollision(final GameObject parent, final String name) {
+        super(parent, name, GameObjectComponent.PUSH_OUT_ON_COLLISION);
     }
 
     @Override
@@ -19,27 +25,27 @@ public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
 
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
         if (getParent().getLastDirection() != null) {
             switch (getParent().getLastDirection()) {
 
-                case right:
-                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.right);
+                case RIGHT:
+                    getParent().move(e.getRoot().getX() + e.getRoot().getWidth() - getParent().getX(), Directions.Direction.RIGHT);
                     break;
-                case left:
-                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.left);
+                case LEFT:
+                    getParent().move(getParent().getX() + getParent().getWidth() - e.getRoot().getX(), Directions.Direction.LEFT);
                     break;
-                case up:
-                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.up);
+                case UP:
+                    getParent().move(getParent().getY() + getParent().getHeight() - e.getRoot().getY(), Directions.Direction.UP);
                     break;
-                case down:
-                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.down);
+                case DOWN:
+                    getParent().move(e.getRoot().getY() + e.getRoot().getHeight() - getParent().getY(), Directions.Direction.DOWN);
                     break;
             }
 

@@ -12,11 +12,9 @@ import de.edgelord.sjgl.factory.AudioFactory;
 import de.edgelord.sjgl.factory.ImageFactory;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.resource.InnerResource;
-import de.edgelord.sjgl.ui.elements.Button;
 import de.edgelord.sjgl.ui.UISystem;
+import de.edgelord.sjgl.ui.elements.Button;
 import de.edgelord.sjgl.utils.StaticSystem;
-import testing.dummys.DummyLayer;
-import testing.dummys.DummyScene;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -118,7 +116,7 @@ public class Tester extends Game {
         player.getPhysics().removeGravity();
 
         StaticSystem.currentScene.addGameObject(upperBird);
-        StaticSystem.currentScene.addGameObject(bottomBird);
+        // StaticSystem.currentScene.addGameObject(bottomBird);
         StaticSystem.currentScene.addGameObject(player);
     }
 

@@ -11,8 +11,6 @@ import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
-import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
-import de.edgelord.sjgl.gameobject.components.rendering.AnimationRender;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.Directions;
 import de.edgelord.sjgl.utils.StaticSystem;
@@ -45,7 +43,7 @@ public class Bird extends GameObject {
     public void initialize() {
 
         animation.nextFrame();
-        getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.right);
+        getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
         getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
 
         System.out.println("INFO: Initialized " + getClass());

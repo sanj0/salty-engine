@@ -28,24 +28,24 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     private final List<Force> forces = new LinkedList<>();
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
-        super(parent, name, PHYSICS_COMPONENT);
+        super(parent, name, GameObjectComponent.PHYSICS_COMPONENT);
 
         addDefaultForces();
     }
 
     private void addGravityForce() {
 
-        forces.add(new Force(SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION, getParent(), Directions.Direction.down, SimplePhysicsComponent.DEFAULT_GRAVITY));
+        forces.add(new Force(SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION, getParent(), Directions.Direction.DOWN, SimplePhysicsComponent.DEFAULT_GRAVITY));
     }
 
     private void addDefaultForces() {
 
         addGravityForce();
 
-        addForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE, Directions.Direction.up);
-        addForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE, Directions.Direction.down);
-        addForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE, Directions.Direction.right);
-        addForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE, Directions.Direction.left);
+        addForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE, Directions.Direction.UP);
+        addForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE, Directions.Direction.DOWN);
+        addForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE, Directions.Direction.RIGHT);
+        addForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE, Directions.Direction.LEFT);
     }
 
     @Override
@@ -58,16 +58,16 @@ public class SimplePhysicsComponent extends GameObjectComponent {
         for (final Force force : forces) {
 
             switch (force.getDirection()) {
-                case right:
+                case RIGHT:
                     horizontalDelta += force.deltaDistance(deltaT);
                     break;
-                case left:
+                case LEFT:
                     horizontalDelta -= force.deltaDistance(deltaT);
                     break;
-                case up:
+                case UP:
                     verticalDelta -= force.deltaDistance(deltaT);
                     break;
-                case down:
+                case DOWN:
                     verticalDelta += force.deltaDistance(deltaT);
                     break;
             }
@@ -87,7 +87,8 @@ public class SimplePhysicsComponent extends GameObjectComponent {
 
         for (final Force force : forces) {
 
-            if (force.getDirection() == e.getCollisionDirection()) {
+            if (e.getCollisionDirections().hasDirection(force.getDirection())) {
+                System.out.println(force.getName() + "from " + getParent().getTag() + " counters a collision!");
                 force.setCountersCollision(true);
             } else {
                 force.setCountersCollision(false);

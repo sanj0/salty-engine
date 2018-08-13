@@ -8,12 +8,14 @@ package de.edgelord.sjgl.gameobject;
 
 import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.core.event.TouchingEvent;
-import de.edgelord.sjgl.gameobject.components.*;
+import de.edgelord.sjgl.gameobject.components.Accelerator;
+import de.edgelord.sjgl.gameobject.components.RecalculateHitboxComponent;
+import de.edgelord.sjgl.gameobject.components.RecalculateMiddleComponent;
+import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.hitbox.SimpleHitbox;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.location.Vector2f;
 import de.edgelord.sjgl.utils.Directions;
-import de.edgelord.sjgl.utils.StaticSystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
@@ -31,7 +33,6 @@ public abstract class GameObject {
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.sjgl.coreComponents.recalculateHitbox";
     public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.sjgl.coreComponents.recalculateMiddle";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.sjgl.coreComponents.accelerator";
-    public static final String DEFAULT_PUSH_OUT_ON_COLLISION_NAME = "de.edgelord.coreComponents.pushOutOnCollision";
 
     private final List<TouchingEvent> touchingEvents = new LinkedList<>();
     private final List<GameObjectComponent> components = new LinkedList<>();
@@ -40,7 +41,6 @@ public abstract class GameObject {
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final RecalculateMiddleComponent recalculateMiddleComponent;
     private final Accelerator defaultAccelerator;
-    private final PushOutOnCollision pushOutOnCollision;
 
     private Directions.Direction lastDirection = null;
 
@@ -68,13 +68,11 @@ public abstract class GameObject {
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
         recalculateMiddleComponent = new RecalculateMiddleComponent(this, GameObject.DEFAULT_RECALCULATE_MIDDLE_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
-        pushOutOnCollision = new PushOutOnCollision(this, GameObject.DEFAULT_PUSH_OUT_ON_COLLISION_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(recalculateMiddleComponent);
         components.add(defaultAccelerator);
-        components.add(pushOutOnCollision);
     }
 
     public abstract void initialize();
@@ -124,16 +122,16 @@ public abstract class GameObject {
 
             if (getHitbox().collides(other)) {
 
-                final CollisionEvent e = new CollisionEvent(this, Directions.getGameObjectRelation(other, this));
+                final CollisionEvent e = new CollisionEvent(other, Directions.getGameObjectRelation(other, this));
                 final CollisionEvent eSelf = new CollisionEvent(other, Directions.getGameObjectRelation(this, other));
 
                 // other.onCollision(e);
-                onCollision(eSelf);
+                onCollision(e);
 
                 getTouchingEvents().add(new TouchingEvent(e, this));
 
                 for (final GameObjectComponent component : getComponents()) {
-                        component.onCollision(eSelf);
+                    component.onCollision(e);
                 }
 
                 /*
@@ -143,6 +141,12 @@ public abstract class GameObject {
                     }
                 }
                 */
+            } else {
+                final CollisionEvent eSelf = new CollisionEvent(other, new Directions());
+
+                for (final GameObjectComponent component : getComponents()) {
+                    component.onCollision(eSelf);
+                }
             }
         }
     }
@@ -225,36 +229,18 @@ public abstract class GameObject {
 
         switch (direction) {
 
-            case right:
+            case RIGHT:
                 basicMove(delta, Directions.BasicDirection.x);
                 break;
-            case left:
+            case LEFT:
                 basicMove(-delta, Directions.BasicDirection.x);
                 break;
-            case up:
+            case UP:
                 basicMove(-delta, Directions.BasicDirection.y);
                 break;
-            case down:
+            case DOWN:
                 basicMove(delta, Directions.BasicDirection.y);
                 break;
-        }
-    }
-
-    public void moveUntilCollision(float delta, Directions.Direction direction){
-        float currentDelta = 0f;
-
-        while (currentDelta <= delta) {
-
-            for (GameObject gameObject : StaticSystem.currentScene.getGameObjects()){
-                if (gameObject.getHitbox().collides(this)){
-                    if (Directions.getGameObjectRelation(gameObject, this) == direction){
-                        return;
-                    }
-                }
-            }
-
-            move(0.1f, direction);
-            currentDelta += 0.1f;
         }
     }
 
@@ -388,7 +374,7 @@ public abstract class GameObject {
         return lastDirection;
     }
 
-    public void setLastDirection(Directions.Direction lastDirection) {
+    public void setLastDirection(final Directions.Direction lastDirection) {
         this.lastDirection = lastDirection;
     }
 }
