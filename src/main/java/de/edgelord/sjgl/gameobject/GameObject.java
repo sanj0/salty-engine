@@ -110,7 +110,9 @@ public abstract class GameObject {
         }
     }
 
-    public void doCollisionDetection(final List<GameObject> gameObjects) {
+    public void doCollisionDetection(final List<GameObject> gameObjects, final List<GameObjectComponent> collisionComponenets) {
+
+        Directions collisionDirections = new Directions();
 
         touchingEvents.clear();
 
@@ -122,16 +124,19 @@ public abstract class GameObject {
 
             if (getHitbox().collides(other)) {
 
-                final CollisionEvent e = new CollisionEvent(other, Directions.getGameObjectRelation(other, this));
-                final CollisionEvent eSelf = new CollisionEvent(other, Directions.getGameObjectRelation(this, other));
+                Directions.appendGameObjectRelation(this, other, collisionDirections);
+
+                // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
+                final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
 
                 // other.onCollision(e);
                 onCollision(eSelf);
 
-                getTouchingEvents().add(new TouchingEvent(e, this));
+                // getTouchingEvents().add(new TouchingEvent(e, this));
 
                 for (final GameObjectComponent component : getComponents()) {
                     component.onCollision(eSelf);
+                    collisionComponenets.add(component);
                 }
 
                 /*
@@ -145,7 +150,9 @@ public abstract class GameObject {
                 final CollisionEvent eSelf = new CollisionEvent(other, new Directions());
 
                 for (final GameObjectComponent component : getComponents()) {
-                    component.onCollision(eSelf);
+                    if (!collisionComponenets.contains(component)) {
+                        component.onCollision(eSelf);
+                    }
                 }
             }
         }

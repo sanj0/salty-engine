@@ -12,6 +12,35 @@ public class Directions {
 
     private int directions;
 
+    public static void appendGameObjectRelation(final GameObject root, final GameObject other, Directions directions) {
+
+        float rootBottom = root.getY() + root.getHeight();
+        float otherBottom = other.getY() + other.getHeight();
+        float rootRight = root.getX() + root.getWidth();
+        float otherRight = other.getX() + other.getWidth();
+
+        float bottomCollision = otherBottom - root.getY();
+        float topCollision = rootBottom - other.getY();
+        float leftCollision = rootRight - other.getX();
+        float rightCollision = otherRight - root.getX();
+
+        if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision) {
+            directions.setDirection(Direction.DOWN);
+        }
+
+        if (bottomCollision < topCollision && bottomCollision < leftCollision && bottomCollision < rightCollision) {
+            directions.setDirection(Direction.UP);
+        }
+
+        if (rightCollision < leftCollision && rightCollision < topCollision && rightCollision < bottomCollision) {
+            directions.setDirection(Direction.LEFT);
+        }
+
+        if (leftCollision < rightCollision && leftCollision < bottomCollision && leftCollision < topCollision) {
+            directions.setDirection(Direction.RIGHT);
+        }
+    }
+
     /**
      * This method returns the relation between two GameObject as a Direction.
      * When <code>root</code> is truly RIGHT to <code>other</code>, then this method

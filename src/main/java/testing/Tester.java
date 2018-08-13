@@ -115,8 +115,10 @@ public class Tester extends Game {
         upperBird.getPhysics().removeGravity();
         player.getPhysics().removeGravity();
 
+        StaticSystem.currentScene.addGameObject(bottomBird);
+
         StaticSystem.currentScene.addGameObject(upperBird);
-        // StaticSystem.currentScene.addGameObject(bottomBird);
+
         StaticSystem.currentScene.addGameObject(player);
     }
 

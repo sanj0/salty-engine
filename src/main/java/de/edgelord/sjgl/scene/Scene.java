@@ -8,12 +8,12 @@ package de.edgelord.sjgl.scene;
 
 import de.edgelord.sjgl.gameobject.FixedTask;
 import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.GameObjectComponent;
 import de.edgelord.sjgl.ui.UISystem;
 import de.edgelord.sjgl.utils.Directions;
 
 import java.awt.*;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -50,10 +50,13 @@ public class Scene {
 
     public void doCollisionDetection(){
 
+        List<GameObjectComponent> collisionComponents = new ArrayList<>();
+
         synchronized (getGameObjects()) {
+
             for (GameObject gameObject : gameObjects) {
 
-                gameObject.doCollisionDetection(getGameObjects());
+                gameObject.doCollisionDetection(getGameObjects(), collisionComponents);
             }
         }
     }
