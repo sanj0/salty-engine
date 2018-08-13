@@ -6,6 +6,7 @@
 
 package de.edgelord.sjgl.scene;
 
+import de.edgelord.sjgl.gameobject.DrawingRoutin;
 import de.edgelord.sjgl.gameobject.FixedTask;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.GameObjectComponent;
@@ -25,6 +26,7 @@ public class Scene {
     */
     private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<DrawingRoutin> drawingRoutins = new CopyOnWriteArrayList<>();
     private UISystem ui = null;
     private float xDelta, yDelta;
     private boolean initialized = false;
@@ -83,6 +85,10 @@ public class Scene {
             for (GameObject gameObject : gameObjects) {
                 gameObject.draw(graphics);
                 gameObject.doComponentDrawing(graphics);
+            }
+
+            for (DrawingRoutin drawingRoutin : drawingRoutins) {
+                drawingRoutin.draw(graphics);
             }
 
             if (ui != null) {
@@ -175,5 +181,17 @@ public class Scene {
 
     public void setFixedTasks(CopyOnWriteArrayList<FixedTask> fixedTasks) {
         this.fixedTasks = fixedTasks;
+    }
+
+    public void addDrawingRoutin(DrawingRoutin drawingRoutin) {
+        getDrawingRoutins().add(drawingRoutin);
+    }
+
+    public CopyOnWriteArrayList<DrawingRoutin> getDrawingRoutins() {
+        return drawingRoutins;
+    }
+
+    public void setDrawingRoutins(CopyOnWriteArrayList<DrawingRoutin> drawingRoutins) {
+        this.drawingRoutins = drawingRoutins;
     }
 }
