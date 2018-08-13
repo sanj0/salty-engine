@@ -88,7 +88,6 @@ public class SimplePhysicsComponent extends GameObjectComponent {
         for (final Force force : forces) {
 
             if (e.getCollisionDirections().hasDirection(force.getDirection())) {
-                System.out.println(force.getName() + "from " + getParent().getTag() + " counters a collision!");
                 force.setCountersCollision(true);
             } else {
                 force.setCountersCollision(false);

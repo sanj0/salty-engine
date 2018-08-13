@@ -37,7 +37,7 @@ public class Tester extends Game {
         Tester.audioSystem.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
         Tester.audioSystem.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
-        Tester.audioSystem.loop("joy_sticky");
+        // Tester.audioSystem.loop("joy_sticky");
     }
 
     public static void main(final String[] args) {

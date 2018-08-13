@@ -47,6 +47,8 @@ public class Directions {
         return direction;*/
 
 
+        Directions returnDirections = new Directions();
+
         /*if (root.getX() + root.getWidth() > other.getX() && root.getX() < other.getX() + other.getWidth()) {
 
             if (root.getMiddle().isAbove(other.getMiddle())) {
@@ -63,9 +65,62 @@ public class Directions {
             }
         }*/
 
-        Directions returnDirections = new Directions();
+        /*float deltaX;
+        float deltaY;
+        Direction directionX;
+        Direction directionY;
+
+
+
+        if (root.getMiddle().isRight(other.getMiddle())) {
+            deltaX = root.getX() + root.getWidth() - other.getX();
+            directionX = Direction.RIGHT;
+        } else {
+            deltaX = other.getX() + other.getWidth() - root.getX();
+            directionX = Direction.LEFT;
+        }
 
         if (root.getMiddle().isAbove(other.getMiddle())) {
+            deltaY = root.getY() + root.getHeight() - other.getY();
+            directionY = Direction.UP;
+        } else {
+            deltaY = other.getY() + other.getHeight() - root.getY();
+            directionY = Direction.DOWN;
+        }
+
+        if (deltaX > deltaY){
+            returnDirections.setDirection(directionX);
+        } else {
+            returnDirections.setDirection(directionY);
+        }*/
+
+        float rootBottom = root.getY() + root.getHeight();
+        float otherBottom = other.getY() + other.getHeight();
+        float rootRight = root.getX() + root.getWidth();
+        float otherRight = other.getX() + other.getWidth();
+
+        float bottomCollision = otherBottom - root.getY();
+        float topCollision = rootBottom - other.getY();
+        float leftCollision = rootRight - other.getX();
+        float rightCollision = otherRight - root.getX();
+
+        if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision) {
+            returnDirections.setDirection(Direction.UP);
+        }
+
+        if (bottomCollision < topCollision && bottomCollision < leftCollision && bottomCollision < rightCollision) {
+            returnDirections.setDirection(Direction.DOWN);
+        }
+
+        if (rightCollision < leftCollision && rightCollision < topCollision && rightCollision < bottomCollision) {
+            returnDirections.setDirection(Direction.RIGHT);
+        }
+
+        if (leftCollision < rightCollision && leftCollision < bottomCollision && leftCollision < topCollision) {
+            returnDirections.setDirection(Direction.LEFT);
+        }
+
+        /*if (root.getMiddle().isAbove(other.getMiddle())) {
             returnDirections.setDirection(Direction.UP);
         } else {
             returnDirections.setDirection(Direction.DOWN);
@@ -75,7 +130,7 @@ public class Directions {
             returnDirections.setDirection(Direction.RIGHT);
         } else {
             returnDirections.setDirection(Direction.LEFT);
-        }
+        }*/
 
         return returnDirections;
     }
