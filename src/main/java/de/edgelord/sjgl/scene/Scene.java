@@ -82,13 +82,14 @@ public class Scene {
     public void draw(Graphics2D graphics) {
 
         synchronized (getGameObjects()) {
-            for (GameObject gameObject : gameObjects) {
-                gameObject.draw(graphics);
-                gameObject.doComponentDrawing(graphics);
-            }
 
             for (DrawingRoutin drawingRoutin : drawingRoutins) {
                 drawingRoutin.draw(graphics);
+            }
+
+            for (GameObject gameObject : gameObjects) {
+                gameObject.draw(graphics);
+                gameObject.doComponentDrawing(graphics);
             }
 
             if (ui != null) {
