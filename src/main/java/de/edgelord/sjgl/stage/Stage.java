@@ -30,11 +30,12 @@ public class Stage extends Canvas {
 
     private float fps;
     private String fpsString = "";
-    private float deltaNanos;
+    private float startNanos;
     private final float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
-    private boolean antialising = true;
+    private boolean highQuality = true;
+    private RenderingHints renderingHints;
 
     public Stage(final Display display, final Engine engine) {
         this.display = display;
@@ -130,11 +131,20 @@ public class Stage extends Canvas {
         setIgnoreRepaint(true);
         setFocusable(false);
 
+        if (highQuality) {
+            renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        } else {
+            renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        }
+
         initNativeMouseListener();
     }
 
     @Override
     public void repaint() {
+
+        startNanos = Time.getDeltaNanos();
 
         if (!doubleBufferCreated) {
             createBufferStrategy(2);
@@ -145,9 +155,7 @@ public class Stage extends Canvas {
 
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
 
-        if (antialising) {
-            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        }
+        graphics2D.setRenderingHints(renderingHints);
 
         graphics2D.scale(currentZoomX, currentZoomY);
 
@@ -155,10 +163,8 @@ public class Stage extends Canvas {
 
         // Compute fps
 
-        deltaNanos = Time.getDeltaNanos();
-
         if (ticks == 50) {
-            fps = 1 / (deltaNanos / nanosToSeconds);
+            fps = 1 / ((startNanos) / nanosToSeconds);
             ticks = 0;
         } else {
             ticks++;
@@ -171,7 +177,7 @@ public class Stage extends Canvas {
 
             graphics2D.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
             graphics2D.setColor(Color.RED);
-            graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, (int) graphics2D.getFontMetrics(graphics2D.getFont()).getStringBounds(fpsString, graphics2D).getHeight());
+            graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, graphics2D.getFontMetrics(graphics2D.getFont()).getAscent());
         }
 
         getBufferStrategy().show();
@@ -187,11 +193,11 @@ public class Stage extends Canvas {
         this.mouseHandler = mouseHandler;
     }
 
-    public boolean isAntialising() {
-        return antialising;
+    public boolean isHighQuality() {
+        return highQuality;
     }
 
-    public void setAntialising(final boolean antialising) {
-        this.antialising = antialising;
+    public void setHighQuality(final boolean highQuality) {
+        this.highQuality = highQuality;
     }
 }

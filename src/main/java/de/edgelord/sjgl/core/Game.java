@@ -15,6 +15,8 @@ public class Game {
 
     public Game(int windowWidth, int windowHeight, String gameName, long fixedTickMillis) {
 
+        System.setProperty("sun.java2d.opengl", "true");
+
         engine = new Engine(fixedTickMillis);
 
         displayManager = new DisplayManager(windowWidth, windowHeight, gameName, engine);
