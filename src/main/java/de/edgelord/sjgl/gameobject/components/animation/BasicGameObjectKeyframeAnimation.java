@@ -12,14 +12,14 @@ import de.edgelord.sjgl.gameobject.GameObjectComponent;
 
 import java.awt.*;
 
-public class BasicGameObjectKeyFrameAnimation extends GameObjectComponent {
+public class BasicGameObjectKeyframeAnimation extends GameObjectComponent {
 
     private boolean recalculateOnNextStep = true;
-    private KeyFrameAnimation animation = new KeyFrameAnimation();
+    private KeyframeAnimation animation = new KeyframeAnimation();
 
     private Control control;
 
-    public BasicGameObjectKeyFrameAnimation(GameObject parent, String name, Control control) {
+    public BasicGameObjectKeyframeAnimation(GameObject parent, String name, Control control) {
         super(parent, name, ANIMATION_COMPONENT);
 
         this.control = control;
@@ -85,8 +85,8 @@ public class BasicGameObjectKeyFrameAnimation extends GameObjectComponent {
 
     }
 
-    public void addKeyFrame(KeyFrame keyFrame) {
-        animation.add(keyFrame);
+    public void addKeyFrame(Keyframe keyframe) {
+        animation.add(keyframe);
     }
 
     public void addKeyFrame(int timing, float value) {

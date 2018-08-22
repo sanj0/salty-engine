@@ -6,12 +6,12 @@
 
 package de.edgelord.sjgl.gameobject.components.animation;
 
-public class KeyFrame {
+public class Keyframe {
 
     private int timing;
     private float key;
 
-    public KeyFrame(int timing, float key) {
+    public Keyframe(int timing, float key) {
         this.timing = timing;
         this.key = key;
     }

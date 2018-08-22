@@ -22,10 +22,11 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 - simple Display management
 - rendering
 - GameObjects for the simplest game developing possible
-- Scenes for defining what to render and update
+- Scenes for collecting and defining what to render and update
 - Layers which are pretty much the same as Scenes
 - LayerCollections for having more than one Layer at once on the Screen,
   but if needed, moving with a different speed
+- Keyframe Animations
 - Animations
 - Spritesheets
 - Resource management (inner as well as outer)

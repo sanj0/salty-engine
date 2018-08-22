@@ -13,7 +13,7 @@ import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
-import de.edgelord.sjgl.gameobject.components.animation.BasicGameObjectKeyFrameAnimation;
+import de.edgelord.sjgl.gameobject.components.animation.BasicGameObjectKeyframeAnimation;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
 
@@ -28,8 +28,8 @@ public class BirdPlayer extends GameObject {
     private int ticksForAnim = 0;
     private int ticksForSound = 0;
 
-    private BasicGameObjectKeyFrameAnimation keyFrameAnimationX = new BasicGameObjectKeyFrameAnimation(this, "mySuperAnimationX", BasicGameObjectKeyFrameAnimation.Control.xPos);
-    private BasicGameObjectKeyFrameAnimation keyFrameAnimationWidth = new BasicGameObjectKeyFrameAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyFrameAnimation.Control.width);
+    private BasicGameObjectKeyframeAnimation keyFrameAnimationX = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationX", BasicGameObjectKeyframeAnimation.Control.xPos);
+    private BasicGameObjectKeyframeAnimation keyFrameAnimationWidth = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyframeAnimation.Control.width);
 
     public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
         super(coordinates, 0, 101, "testing.birdPlayer");
