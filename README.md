@@ -38,8 +38,7 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 - **examples for almost all of those features within the library** (```testing.Tester``` as main)
 
 **Known bugs/glitches/issues**
-- the motion stopping on collisions doesn't work with the <code>BirdPlayer</code>
-- the gravity stops working after a collision (<code>BirdPlayer</code>)
+- stopping the right forces on a collision does not work always (e.g. from the right with the <code>BirdPlayer</code> in the default testing Scenario)
 
 **TODO** (sort by relevance)
 - add more UIElements
