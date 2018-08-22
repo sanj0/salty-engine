@@ -48,13 +48,13 @@ public abstract class GameObject {
     private Coordinates middle;
     private Vector2f position = new Vector2f(0, 0);
     private String tag;
-    private int width, height;
+    private float width, height;
     private HashMap<String, String> properties = new HashMap<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
     private float mass = 1f;
 
-    public GameObject(final Coordinates coordinates, final int width, final int height, final String tag) {
+    public GameObject(final Coordinates coordinates, final float width, final float height, final String tag) {
         this.coordinates = coordinates;
         position.parseVector2f(coordinates);
         this.width = width;
@@ -62,7 +62,7 @@ public abstract class GameObject {
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
         this.tag = tag;
 
-        middle = new Coordinates(getCoordinates().getX() + (getWidth() / 2), getCoordinates().getY() + (getHeight() / 2));
+        middle = new Coordinates(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
@@ -282,19 +282,27 @@ public abstract class GameObject {
         this.coordinates = coordinates;
     }
 
-    public int getWidth() {
+    public float getWidthExact() {
         return width;
     }
 
-    public void setWidth(final int width) {
+    public int getWidth() {
+        return (int) width;
+    }
+
+    public void setWidth(final float width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public float getHeightExact() {
         return height;
     }
 
-    public void setHeight(final int height) {
+    public int getHeight() {
+        return (int) height;
+    }
+
+    public void setHeight(final float height) {
         this.height = height;
     }
 

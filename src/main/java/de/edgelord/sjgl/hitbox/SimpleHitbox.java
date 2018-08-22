@@ -14,9 +14,9 @@ public class SimpleHitbox implements Hitbox {
     private final GameObject parent;
     private Vector2f position;
     private float offsetX, offsetY;
-    private int width, height;
+    private float width, height;
 
-    public SimpleHitbox(final GameObject parent, final int width, final int height, final float offsetX, final float offsetY) {
+    public SimpleHitbox(final GameObject parent, final float width, final float height, final float offsetX, final float offsetY) {
 
         this.parent = parent;
         this.offsetX = offsetX;
@@ -95,19 +95,27 @@ public class SimpleHitbox implements Hitbox {
         this.position = position;
     }
 
-    public int getWidth() {
+    public float getWidthExact() {
         return width;
     }
 
-    public void setWidth(final int width) {
+    public int getWidth() {
+        return (int) width;
+    }
+
+    public void setWidth(final float width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public float getHeightExact() {
         return height;
     }
 
-    public void setHeight(final int height) {
+    public int getHeight() {
+        return (int) height;
+    }
+
+    public void setHeight(final float height) {
         this.height = height;
     }
 

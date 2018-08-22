@@ -11,7 +11,9 @@ import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.sjgl.gameobject.components.animation.BasicGameObjectKeyFrameAnimation;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
 
@@ -26,17 +28,34 @@ public class BirdPlayer extends GameObject {
     private int ticksForAnim = 0;
     private int ticksForSound = 0;
 
+    private BasicGameObjectKeyFrameAnimation keyFrameAnimationX = new BasicGameObjectKeyFrameAnimation(this, "mySuperAnimationX", BasicGameObjectKeyFrameAnimation.Control.xPos);
+    private BasicGameObjectKeyFrameAnimation keyFrameAnimationWidth = new BasicGameObjectKeyFrameAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyFrameAnimation.Control.width);
+
     public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
-        super(coordinates, 150, 101, "testing.birdPlayer");
+        super(coordinates, 0, 101, "testing.birdPlayer");
 
         this.displayManager = displayManager;
 
         animation = new Animation(this);
-        spritesheet = new Spritesheet(spriteSheetImage, getWidth(), getHeight());
+        spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        // getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
+        keyFrameAnimationX.addKeyFrame(0, 0);
+        keyFrameAnimationX.addKeyFrame(5000, 0);
+        keyFrameAnimationX.addKeyFrame(10000, 500);
+        keyFrameAnimationX.addKeyFrame(11000, 1000);
+
+        keyFrameAnimationWidth.addKeyFrame(0, 0);
+        keyFrameAnimationWidth.addKeyFrame(1000, 0);
+        keyFrameAnimationWidth.addKeyFrame(5000, 150);
+
+
+        addComponent(keyFrameAnimationX);
+        addComponent(keyFrameAnimationWidth);
+        keyFrameAnimationX.start();
+        keyFrameAnimationWidth.start();
+        getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
         // getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
