@@ -41,9 +41,7 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 - the gravity stops working after a collision (<code>BirdPlayer</code>)
 
 **TODO** (sort by relevance)
-- improve physics system (targetVelocity, impulse, bounce, rotation, integration of mass and acceleration)
 - add more UIElements
-- Item, ItemContainer and Inventory
 
 **NOTE** for help with how to use, please check out the files in
 src/main/java/testing

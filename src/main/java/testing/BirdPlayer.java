@@ -11,7 +11,6 @@ import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
-import de.edgelord.sjgl.gameobject.components.DrawHitboxComponent;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.location.Coordinates;
 import de.edgelord.sjgl.utils.StaticSystem;
@@ -38,7 +37,7 @@ public class BirdPlayer extends GameObject {
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
         // getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        // getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     @Override
@@ -169,7 +168,7 @@ public class BirdPlayer extends GameObject {
     @Override
     public void draw(final Graphics2D graphics) {
 
-        // animation.drawCurrentFrame(graphics);
+        animation.drawCurrentFrame(graphics);
         graphics.drawOval(getMiddle().getX(), getMiddle().getY(), 1, 1);
     }
 }
