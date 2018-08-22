@@ -22,7 +22,7 @@ public class ImageFactory extends Factory {
         return getResource().getImageResource(relativePath);
     }
 
-    public BufferedImage getOptimizedImageResource(String relativePath){
+    public BufferedImage getOptimizedImageResource(String relativePath) {
         return createCompatibleImage(getImageResource(relativePath));
     }
 

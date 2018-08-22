@@ -43,7 +43,7 @@ public abstract class Button extends UIElement {
         */
     }
 
-    public void drawText(Graphics2D graphics){
+    public void drawText(Graphics2D graphics) {
 
         graphics.setFont(getFont());
 
@@ -52,10 +52,10 @@ public abstract class Button extends UIElement {
 
         graphics.setColor(foregroundColor);
 
-        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2),  getCoordinates().getY() + ((getHeight() + textHeight) / 2));
+        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2), getCoordinates().getY() + ((getHeight() + textHeight) / 2));
     }
 
-    public void drawButton(Graphics2D graphics){
+    public void drawButton(Graphics2D graphics) {
 
         graphics.setColor(backgroundColor);
 
@@ -79,7 +79,7 @@ public abstract class Button extends UIElement {
 
         // this.currentMouseEvent = e;
 
-        if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())){
+        if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())) {
             onClick(e);
         }
     }

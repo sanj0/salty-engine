@@ -20,10 +20,12 @@ public class KeyframeAnimation {
 
     public KeyframeAnimation(List<Keyframe> keyframes) {
         this.keyframes = keyframes;
+
+        add(0, 0);
     }
 
     public KeyframeAnimation() {
-        keyframes = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
     public List<Keyframe> getKeyframes() {
@@ -38,16 +40,16 @@ public class KeyframeAnimation {
      * Important: This method only returns a delta value!
      *
      * @return
-     * @throws KeyFrameAnimationHasReachedLastFrameException
      */
-    public float nextDelta() throws KeyFrameAnimationHasReachedLastFrameException {
+    public float nextDelta() {
 
         if (currentTiming < end - 1) {
 
             currentTiming++;
             return animation.get(currentTiming);
         } else {
-            throw new KeyFrameAnimationHasReachedLastFrameException();
+            // If there is request ou of the available timeline, there shoul dbe no delta returned so 0
+            return 0;
         }
     }
 
@@ -85,5 +87,18 @@ public class KeyframeAnimation {
 
     public void add(int timing, float value) {
         keyframes.add(new Keyframe(timing, value));
+    }
+
+    public void remove(Keyframe keyframe) {
+        keyframes.remove(keyframe);
+    }
+
+    public void removeByTiming(int timing) {
+
+        keyframes.removeIf(keyframe -> keyframe.getTiming() == timing);
+    }
+
+    public void removeByKey(float key) {
+        keyframes.removeIf(keyframe -> keyframe.getKey() == key);
     }
 }

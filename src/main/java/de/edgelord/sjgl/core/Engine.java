@@ -31,7 +31,7 @@ public class Engine {
         startFixedTicks();
         startRendering(displayManager);
     }
-;
+
     public void start(DisplayManager displayManager, long FPS) {
         this.displayManager = displayManager;
 

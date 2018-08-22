@@ -53,25 +53,20 @@ public class BasicGameObjectKeyframeAnimation extends GameObjectComponent {
             animation.calculateAnimation();
             recalculateOnNextStep = false;
         }
+        switch (control) {
 
-        try {
-            switch (control) {
-
-                case width:
-                    getParent().setWidth(getParent().getWidthExact() + animation.nextDelta());
-                    break;
-                case height:
-                    getParent().setHeight((int) (getParent().getHeightExact() + animation.nextDelta()));
-                    break;
-                case xPos:
-                    getParent().moveX(animation.nextDelta());
-                    break;
-                case yPos:
-                    getParent().moveY(animation.nextDelta());
-                    break;
-            }
-        } catch (KeyFrameAnimationHasReachedLastFrameException e) {
-            // e.printStackTrace();
+            case width:
+                getParent().setWidth(getParent().getWidthExact() + animation.nextDelta());
+                break;
+            case height:
+                getParent().setHeight((int) (getParent().getHeightExact() + animation.nextDelta()));
+                break;
+            case xPos:
+                getParent().moveX(animation.nextDelta());
+                break;
+            case yPos:
+                getParent().moveY(animation.nextDelta());
+                break;
         }
     }
 

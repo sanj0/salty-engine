@@ -39,21 +39,21 @@ public class AudioSystem {
     }
 
 
-    public void loadNewAudio(String name, String relativePath){
+    public void loadNewAudio(String name, String relativePath) {
         audioPlayer.loadNewAudio(name, relativePath);
     }
 
-    public void play(String name){
+    public void play(String name) {
 
         audioPlayer.play(name);
     }
 
-    public void loop(String name){
+    public void loop(String name) {
 
         audioPlayer.loop(name);
     }
 
-    public void stop(String name){
+    public void stop(String name) {
 
         audioPlayer.stop(name);
     }

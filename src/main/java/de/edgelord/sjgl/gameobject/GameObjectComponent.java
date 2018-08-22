@@ -56,11 +56,11 @@ public abstract class GameObjectComponent {
         this.name = name;
     }
 
-    public void enable(){
+    public void enable() {
         enabled = true;
     }
 
-    public void disable(){
+    public void disable() {
         enabled = false;
     }
 

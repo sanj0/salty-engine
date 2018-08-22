@@ -50,7 +50,7 @@ public class Scene {
         }
     }
 
-    public void doCollisionDetection(){
+    public void doCollisionDetection() {
 
         List<GameObjectComponent> collisionComponents = new ArrayList<>();
 
@@ -98,7 +98,7 @@ public class Scene {
         }
     }
 
-    public void setUI(UISystem uiSystem){
+    public void setUI(UISystem uiSystem) {
         this.ui = uiSystem;
     }
 

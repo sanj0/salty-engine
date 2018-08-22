@@ -63,7 +63,7 @@ public class Frame implements Cosmetic {
         }
     }
 
-    public void draw(Graphics2D graphics, AffineTransform transform){
+    public void draw(Graphics2D graphics, AffineTransform transform) {
 
         if (getAutomaticMode() == Mode.image) {
 

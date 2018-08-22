@@ -15,18 +15,18 @@ public class GameObjectCollection {
 
     private List<GameObject> gameObjects = new LinkedList<>();
 
-    public GameObjectCollection(){
+    public GameObjectCollection() {
 
     }
 
-    public void addGameObject(GameObject gameObject){
+    public void addGameObject(GameObject gameObject) {
 
         gameObjects.add(gameObject);
     }
 
-    public void addToScene(Scene scene){
+    public void addToScene(Scene scene) {
 
-        for (GameObject gameObject : gameObjects){
+        for (GameObject gameObject : gameObjects) {
             scene.addGameObject(gameObject);
         }
     }

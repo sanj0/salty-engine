@@ -8,7 +8,6 @@ package de.edgelord.sjgl.resource;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -62,7 +61,7 @@ public class InnerResource implements Resource {
         return clip;
     }
 
-    private String arrangePath(String path){
+    private String arrangePath(String path) {
         if (path.startsWith("/")) {
 
             return path.replaceFirst("/", "");

@@ -35,6 +35,7 @@ public class Game {
 
         engine.start(displayManager, fixedFPS);
     }
+
     public static DisplayManager getDisplayManager() {
         return displayManager;
     }

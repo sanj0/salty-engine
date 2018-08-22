@@ -51,15 +51,14 @@ public class AudioPlayer {
      * This method loads a new <code>Clip</code> from the <code>AudioFactory</code> into a new <code>Audio</code>
      * together with the name and adds it to the list.
      *
-     * @param name the id-name for the new <code>Audio</code>
+     * @param name         the id-name for the new <code>Audio</code>
      * @param relativePath the relative path from which the <code>AudioFactory</code> should read the <code>Clip</code>
-     *
      * @see AudioFactory
      * @see javax.sound.sampled.Clip
      * @see InnerResource
      * @see OuterResource
      */
-    public void loadNewAudio(String name, String relativePath){
+    public void loadNewAudio(String name, String relativePath) {
 
         audios.add(new Audio(name, audioFactory.getClip(relativePath)));
     }
@@ -70,14 +69,13 @@ public class AudioPlayer {
      * <code>play()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be played
-     *
      * @see Audio#play()
      */
-    public void play(String name){
+    public void play(String name) {
 
-        for (Audio audio : this.audios){
+        for (Audio audio : this.audios) {
 
-            if (audio.getName().equals(name)){
+            if (audio.getName().equals(name)) {
                 audio.play();
                 return;
             }
@@ -90,14 +88,13 @@ public class AudioPlayer {
      * <code>loop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be looped
-     *
      * @see Audio#loop()
      */
-    public void loop(String name){
+    public void loop(String name) {
 
-        for (Audio audio : this.audios){
+        for (Audio audio : this.audios) {
 
-            if (audio.getName().equals(name)){
+            if (audio.getName().equals(name)) {
                 audio.loop();
                 return;
             }
@@ -110,14 +107,13 @@ public class AudioPlayer {
      * <code>stop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be stopped
-     *
      * @see Audio#stop()
      */
-    public void stop(String name){
+    public void stop(String name) {
 
-        for (Audio audio : this.audios){
+        for (Audio audio : this.audios) {
 
-            if (audio.getName().equals(name)){
+            if (audio.getName().equals(name)) {
                 audio.stop();
                 return;
             }

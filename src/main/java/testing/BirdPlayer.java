@@ -41,12 +41,10 @@ public class BirdPlayer extends GameObject {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        keyFrameAnimationX.addKeyFrame(0, 0);
         keyFrameAnimationX.addKeyFrame(5000, 0);
         keyFrameAnimationX.addKeyFrame(10000, 500);
         keyFrameAnimationX.addKeyFrame(11000, 1000);
 
-        keyFrameAnimationWidth.addKeyFrame(0, 0);
         keyFrameAnimationWidth.addKeyFrame(1000, 0);
         keyFrameAnimationWidth.addKeyFrame(5000, 150);
 
