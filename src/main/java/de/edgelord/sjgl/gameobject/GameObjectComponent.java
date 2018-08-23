@@ -26,6 +26,7 @@ public abstract class GameObjectComponent {
     public static final String SGS_COMPONENT = "de.edgelord.sjgl.components.sgs";
     public static final String GFX_COMPONENT = "de.edgelord.sjgl.components.gfx";
     public static final String ANIMATION_COMPONENT = "de.edgelord.sjgl.components.animation";
+    public static final String TIMING_COMPONENT = "de.edgelord.sjgl.components.timing";
 
     private GameObject parent;
     private String name;

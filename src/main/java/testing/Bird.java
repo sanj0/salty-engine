@@ -10,6 +10,7 @@ import de.edgelord.sjgl.core.event.CollisionEvent;
 import de.edgelord.sjgl.cosmetic.Animation;
 import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.gameobject.GameObject;
+import de.edgelord.sjgl.gameobject.components.FixedRate;
 import de.edgelord.sjgl.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.sjgl.gameobject.components.rendering.AnimationRender;
 import de.edgelord.sjgl.location.Coordinates;
@@ -25,7 +26,8 @@ public class Bird extends GameObject {
     private final int windowHeight = 909;
     private final Animation animation;
     private final Spritesheet spritesheet;
-    private int fixedTicks = 0;
+
+    private FixedRate refreshPositionTiming = new FixedRate(this, "refreshPositionTiming", 15);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "testing.bird");
@@ -44,6 +46,7 @@ public class Bird extends GameObject {
         wobblingEffect.startGFX();
 
         addComponent(wobblingEffect);
+        addComponent(refreshPositionTiming);
     }
 
     @Override
@@ -68,7 +71,7 @@ public class Bird extends GameObject {
             getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 1);
         }
 
-        if (fixedTicks == 15) {
+        if (refreshPositionTiming.now()) {
 
             if (getCoordinates().getY() >= windowHeight) {
 
@@ -80,12 +83,7 @@ public class Bird extends GameObject {
                 getPosition().setX(-getWidth());
                 // getPosition().setY(getY() + getHeight());
             }
-
-            fixedTicks = 0;
-            return;
         }
-
-        fixedTicks++;
     }
 
     @Override

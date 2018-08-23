@@ -12,6 +12,7 @@ import de.edgelord.sjgl.cosmetic.Spritesheet;
 import de.edgelord.sjgl.display.DisplayManager;
 import de.edgelord.sjgl.gameobject.GameObject;
 import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
+import de.edgelord.sjgl.gameobject.components.FixedRate;
 import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.sjgl.gameobject.components.animation.BasicGameObjectKeyframeAnimation;
 import de.edgelord.sjgl.location.Coordinates;
@@ -30,6 +31,9 @@ public class BirdPlayer extends GameObject {
 
     private BasicGameObjectKeyframeAnimation keyFrameAnimationX = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationX", BasicGameObjectKeyframeAnimation.Control.xPos);
     private BasicGameObjectKeyframeAnimation keyFrameAnimationWidth = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyframeAnimation.Control.width);
+
+    private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
+    private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
 
     public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
         super(coordinates, 0, 101, "testing.birdPlayer");
@@ -53,8 +57,10 @@ public class BirdPlayer extends GameObject {
         addComponent(keyFrameAnimationWidth);
         keyFrameAnimationX.start();
         keyFrameAnimationWidth.start();
-        getComponents().add(new DrawPositionComponent(this, "drawPositionDev"));
-        // getComponents().add(new DrawHitboxComponent(this, "drawHitboxDev"));
+        addComponent(animationTiming);
+        addComponent(soundTiming);
+        addComponent(new DrawPositionComponent(this, "drawPositionDev"));
+        // addComponent(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     @Override
@@ -74,106 +80,59 @@ public class BirdPlayer extends GameObject {
     public void onFixedTick() {
 
         if (StaticSystem.inputUp) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0.005f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0.5f);
+
+            if (animationTiming.now()) {
+                animation.nextFrame();
+            }
+
+            if (soundTiming.now()) {
+                Tester.getAudioSystem().play("bird_flap");
+            }
         } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0f);
         }
 
         if (StaticSystem.inputDown) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0.005f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0.5f);
+
+            if (animationTiming.now()) {
+                animation.nextFrame();
+            }
+
+            if (soundTiming.now()) {
+                Tester.getAudioSystem().play("bird_flap");
+            }
         } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0f);
         }
 
         if (StaticSystem.inputRight) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0.005f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0.5f);
+
+            if (animationTiming.now()) {
+                animation.nextFrame();
+            }
+
+            if (soundTiming.now()) {
+                Tester.getAudioSystem().play("bird_flap");
+            }
         } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0f);
         }
 
         if (StaticSystem.inputLeft) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0.005f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(0.5f);
+
+            if (animationTiming.now()) {
+                animation.nextFrame();
+            }
+
+            if (soundTiming.now()) {
+                Tester.getAudioSystem().play("bird_flap");
+            }
         } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
-        }
-
-        if (ticksForSound == 250) {
-            if (getCoordinates().getY() >= displayManager.getHeight()) {
-
-                getPosition().setY(0);
-            }
-
-            if (getCoordinates().getX() >= displayManager.getWidth()) {
-
-                getPosition().setX(-getWidth());
-            }
-
-            if (getCoordinates().getY() <= -getHeight()) {
-
-                getPosition().setY(displayManager.getHeight() + getHeight());
-            }
-
-            if (getCoordinates().getX() <= -getWidth()) {
-
-                getPosition().setX(displayManager.getWidth() + getWidth());
-            }
-        }
-
-        if (displayManager.isInputUp()) {
-
-            if (ticksForAnim == 75) {
-                animation.nextFrame();
-
-            }
-
-            if (ticksForSound == 250) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-
-        }
-        if (displayManager.isInputDown()) {
-
-            if (ticksForAnim == 75) {
-                animation.nextFrame();
-            }
-
-            if (ticksForSound == 250) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-        if (displayManager.isInputLeft()) {
-
-            if (ticksForAnim == 75) {
-                animation.nextFrame();
-            }
-
-            if (ticksForSound == 250) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-        if (displayManager.isInputRight()) {
-
-            if (ticksForAnim == 75) {
-                animation.nextFrame();
-            }
-
-            if (ticksForSound == 250) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-
-        if (ticksForAnim == 75) {
-
-            ticksForAnim = 0;
-        } else {
-            ticksForAnim++;
-        }
-
-        if (ticksForSound == 250) {
-
-            ticksForSound = 0;
-        } else {
-            ticksForSound++;
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(0f);
         }
     }
 
