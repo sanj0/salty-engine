@@ -15,8 +15,13 @@ SGS stands for "salty gameObject scripting". SGS is a simple
 scripting language with which you can script GameObject and Scenes in sjgl.
 So you can make a whole game **without any coding knowledge**. SGS is currently not usable,
 but I will focus on that after the Ludum Dare jam and when the Physics are working. <p>
+<<<<<<< HEAD
 [Documentation](https://github.com/edgelord314/sjgl/tree/master/SGS.md) -
 [Examples](https://github.com/edgelord314/sjgl/tree/master/src/main/java/resources/sgs)
+=======
+[Documentation](https://github.com/edgelord314/sjgl/tree/master/SGS.md) - 
+[Examples](https://github.com/edgelord314/sjgl/tree/master/src/main/resources/sgs)
+>>>>>>> f4d19ba524871c6bee91738746972035a84abedb
 
 **Features**
 - simple Display management
@@ -47,3 +52,6 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 src/main/java/testing
 
 **Coming soon:** (or not so soon) Javadoc for all public methods but getters and setters
+
+ # Join the team 
+ Do you want to collaborate? Join the project at https://crowdforge.io/projects/447
