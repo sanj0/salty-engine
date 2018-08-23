@@ -25,9 +25,6 @@ public class BirdPlayer extends GameObject {
 
     private final Animation animation;
     private final Spritesheet spritesheet;
-    private final DisplayManager displayManager;
-    private int ticksForAnim = 0;
-    private int ticksForSound = 0;
 
     private BasicGameObjectKeyframeAnimation keyFrameAnimationX = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationX", BasicGameObjectKeyframeAnimation.Control.xPos);
     private BasicGameObjectKeyframeAnimation keyFrameAnimationWidth = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyframeAnimation.Control.width);
@@ -37,8 +34,6 @@ public class BirdPlayer extends GameObject {
 
     public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
         super(coordinates, 0, 101, "testing.birdPlayer");
-
-        this.displayManager = displayManager;
 
         animation = new Animation(this);
         spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
