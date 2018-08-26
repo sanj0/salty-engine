@@ -6,9 +6,9 @@
 
 package testing.dummys;
 
-import de.edgelord.sjgl.gameobject.FixedTask;
-import de.edgelord.sjgl.input.DisplayKeyHandler;
-import de.edgelord.sjgl.utils.StaticSystem;
+import de.edgelord.saltyengine.gameobject.FixedTask;
+import de.edgelord.saltyengine.input.DisplayKeyHandler;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
 

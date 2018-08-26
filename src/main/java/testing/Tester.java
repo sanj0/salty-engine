@@ -6,15 +6,15 @@
 
 package testing;
 
-import de.edgelord.sjgl.audio.AudioSystem;
-import de.edgelord.sjgl.core.Game;
-import de.edgelord.sjgl.factory.AudioFactory;
-import de.edgelord.sjgl.factory.ImageFactory;
-import de.edgelord.sjgl.location.Coordinates;
-import de.edgelord.sjgl.resource.InnerResource;
-import de.edgelord.sjgl.ui.UISystem;
-import de.edgelord.sjgl.ui.elements.Button;
-import de.edgelord.sjgl.utils.StaticSystem;
+import de.edgelord.saltyengine.audio.AudioSystem;
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.factory.AudioFactory;
+import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.ui.UISystem;
+import de.edgelord.saltyengine.ui.elements.Button;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -27,7 +27,7 @@ public class Tester extends Game {
     public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
         super(windowWidth, windowHeight, gameName, fixedTickMillis);
 
-        System.out.println("INFO: Welcome to sjgl version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
+        System.out.println("INFO: Welcome to saltyengine version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
 
         Tester.initForcesTest();
         Tester.addUI();
@@ -37,14 +37,14 @@ public class Tester extends Game {
         Tester.audioSystem.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
         Tester.audioSystem.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
-        // Tester.audioSystem.loop("joy_sticky");
+        Tester.audioSystem.loop("joy_sticky");
     }
 
     public static void main(final String[] args) {
 
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
-        Game.start(60);
+        start(60);
     }
 
     private static void addUI() {
@@ -91,10 +91,10 @@ public class Tester extends Game {
         final Bird bird1_3 = new Bird(birdSpritesheet, 1, 3);
         final Bird bird3_3 = new Bird(birdSpritesheet, 3, 3);
 
-        bird1_1.setTag("de.edgelord.sjgl.testing.bird1_1");
-        bird3_1.setTag("de.edgelord.sjgl.testing.bird3_1");
-        bird1_3.setTag("de.edgelord.sjgl.testing.bird1_3");
-        bird3_3.setTag("de.edgelord.sjgl.testing.bird3_3");
+        bird1_1.setTag("de.edgelord.saltyengine.testing.bird1_1");
+        bird3_1.setTag("de.edgelord.saltyengine.testing.bird3_1");
+        bird1_3.setTag("de.edgelord.saltyengine.testing.bird1_3");
+        bird3_3.setTag("de.edgelord.saltyengine.testing.bird3_3");
 
         StaticSystem.currentScene.addGameObject(bird1_1);
         StaticSystem.currentScene.addGameObject(bird1_3);

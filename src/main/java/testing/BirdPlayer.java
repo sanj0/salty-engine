@@ -6,56 +6,68 @@
 
 package testing;
 
-import de.edgelord.sjgl.core.event.CollisionEvent;
-import de.edgelord.sjgl.cosmetic.Animation;
-import de.edgelord.sjgl.cosmetic.Spritesheet;
-import de.edgelord.sjgl.display.DisplayManager;
-import de.edgelord.sjgl.gameobject.GameObject;
-import de.edgelord.sjgl.gameobject.components.DrawPositionComponent;
-import de.edgelord.sjgl.gameobject.components.FixedRate;
-import de.edgelord.sjgl.gameobject.components.SimplePhysicsComponent;
-import de.edgelord.sjgl.gameobject.components.animation.BasicGameObjectKeyframeAnimation;
-import de.edgelord.sjgl.location.Coordinates;
-import de.edgelord.sjgl.utils.StaticSystem;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.cosmetic.Animation;
+import de.edgelord.saltyengine.cosmetic.Spritesheet;
+import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
+import de.edgelord.saltyengine.gameobject.components.FixedRate;
+import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectKeyframeAnimation;
+import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class BirdPlayer extends GameObject {
 
-    private final Animation animation;
-    private final Spritesheet spritesheet;
+    private Animation animation;
+    private Spritesheet spritesheet;
 
     private BasicGameObjectKeyframeAnimation keyFrameAnimationX = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationX", BasicGameObjectKeyframeAnimation.Control.xPos);
     private BasicGameObjectKeyframeAnimation keyFrameAnimationWidth = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyframeAnimation.Control.width);
+    private BasicGameObjectKeyframeAnimation keyFrameAnimationHeight = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationHeight", BasicGameObjectKeyframeAnimation.Control.height);
 
     private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
 
     public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
-        super(coordinates, 0, 101, "testing.birdPlayer");
+        super(coordinates, 0, 0, "testing.birdPlayer");
+
+        initAnimations(spriteSheetImage);
+
+        addComponent(animationTiming);
+        addComponent(soundTiming);
+        addComponent(new DrawPositionComponent(this, "drawPositionDev"));
+        // addComponent(new DrawHitboxComponent(this, "drawHitboxDev"));
+    }
+
+    private void initAnimations(final BufferedImage spriteSheetImage) {
 
         animation = new Animation(this);
         spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        keyFrameAnimationX.addKeyFrame(5000, 0);
-        keyFrameAnimationX.addKeyFrame(10000, 500);
-        keyFrameAnimationX.addKeyFrame(11000, 1000);
+        keyFrameAnimationX.addKeyFrame(3000, 0);
+        keyFrameAnimationX.addKeyFrame(9000, 700);
+        keyFrameAnimationX.addKeyFrame(10000, 1000);
 
         keyFrameAnimationWidth.addKeyFrame(1000, 0);
         keyFrameAnimationWidth.addKeyFrame(5000, 150);
 
+        keyFrameAnimationHeight.addKeyFrame(1000, 0);
+        keyFrameAnimationHeight.addKeyFrame(5000, 101);
+
 
         addComponent(keyFrameAnimationX);
         addComponent(keyFrameAnimationWidth);
+        addComponent(keyFrameAnimationHeight);
         keyFrameAnimationX.start();
         keyFrameAnimationWidth.start();
-        addComponent(animationTiming);
-        addComponent(soundTiming);
-        addComponent(new DrawPositionComponent(this, "drawPositionDev"));
-        // addComponent(new DrawHitboxComponent(this, "drawHitboxDev"));
+        keyFrameAnimationHeight.start();
     }
 
     @Override

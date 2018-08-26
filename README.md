@@ -1,6 +1,6 @@
-# sjgl
+# Salty Engine
 
-Sjgl is a simple Java game library with the goal
+Salty Engine is a simple Java game library with the goal
 to make game developing doable for everybody.
 
 ### It isn't just a library for rendering
@@ -12,12 +12,12 @@ stdf (github.com/edgelord314/stdf)
 
 ## SGS
 SGS stands for "salty gameObject scripting". SGS is a simple
-scripting language with which you can script GameObject and Scenes in sjgl.
+scripting language with which you can script GameObject and Scenes in the Salty Engine.
 So you can make a whole game **without any coding knowledge**. SGS is currently not usable,
 but I will focus on that after the Ludum Dare jam and when the Physics are working. <p>
 
-[Documentation](https://github.com/edgelord314/sjgl/tree/master/SGS.md) -
-[Examples](https://github.com/edgelord314/sjgl/tree/master/src/main/resources/sgs)
+[Documentation](https://github.com/edgelord314/salty-engine/tree/master/SGS.md) -
+[Examples](https://github.com/edgelord314/salty-engine/tree/master/src/main/resources/sgs)
 
 **Features**
 - simple Display management

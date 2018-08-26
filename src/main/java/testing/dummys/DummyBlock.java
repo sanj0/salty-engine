@@ -6,10 +6,10 @@
 
 package testing.dummys;
 
-import de.edgelord.sjgl.core.event.CollisionEvent;
-import de.edgelord.sjgl.gameobject.GameObject;
-import de.edgelord.sjgl.gameobject.components.rendering.RectangleRender;
-import de.edgelord.sjgl.location.Coordinates;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.gameobject.components.rendering.RectangleRender;
+import de.edgelord.saltyengine.location.Coordinates;
 
 import java.awt.*;
 

@@ -6,8 +6,8 @@
 
 package testing.dummys;
 
-import de.edgelord.sjgl.location.Coordinates;
-import de.edgelord.sjgl.scene.Scene;
+import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.scene.Scene;
 
 public class DummyScene extends Scene {
 

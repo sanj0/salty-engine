@@ -1,0 +1,93 @@
+/*
+ * Copyright (c) by Malte Dostal
+ * Germany, 8.2018
+ * All rights reserved
+ */
+
+package de.edgelord.saltyengine.cosmetic;
+
+import de.edgelord.saltyengine.location.Coordinates;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+
+public class Spritesheet {
+
+    private BufferedImage image = null;
+    private int spriteWidth, spriteHeight;
+
+    private SpritePattern spritePattern;
+
+    public Spritesheet(BufferedImage image, int spriteWidth, int spriteHeight) {
+        this.spriteWidth = spriteWidth;
+        this.spriteHeight = spriteHeight;
+
+        this.image = image;
+    }
+
+    public Spritesheet(File spritePatternFile) {
+
+        this.spritePattern = new SpritePattern(spritePatternFile);
+    }
+
+    public List<Frame> getManualFrames(Coordinates... coordinates) {
+
+        List<Frame> frames = new LinkedList<>();
+
+        for (Coordinates currentCoordinates : coordinates) {
+
+            frames.add(new Frame(getManualSprite(currentCoordinates.getX(), currentCoordinates.getY())));
+        }
+
+        return frames;
+    }
+
+    public BufferedImage getSprite(int id) {
+
+        Rectangle rectangle = spritePattern.getRectangle(id);
+
+        return image.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+    }
+
+    public BufferedImage getManualSprite(int x, int y) {
+
+        return this.image.getSubimage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
+    }
+
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public void setSpriteWidth(int spriteWidth) {
+        this.spriteWidth = spriteWidth;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
+    }
+
+    public void setSpriteHeight(int spriteHeight) {
+        this.spriteHeight = spriteHeight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Spritesheet that = (Spritesheet) o;
+        return spriteWidth == that.spriteWidth &&
+                spriteHeight == that.spriteHeight &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(spritePattern, that.spritePattern);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(image, spriteWidth, spriteHeight, spritePattern);
+    }
+}
