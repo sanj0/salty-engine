@@ -31,11 +31,11 @@ public class StaticSystem {
     public static boolean inputDown = false;
     public static boolean inputRight = false;
     public static boolean inputLeft = false;
-    public static char inputKey;
+    public static char lastInputKey;
     /**
      * You have to add a ifn check if you use this!
      */
-    public static KeyEvent input;
+    public static KeyEvent lastInput;
 
     public static boolean isPaused() {
         return paused;

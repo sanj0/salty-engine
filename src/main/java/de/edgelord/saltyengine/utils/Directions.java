@@ -165,7 +165,7 @@ public class Directions {
     }
 
     /**
-     * This method is used for mirroring Directions, for example for input Direction.RIGHT,
+     * This method is used for mirroring Directions, for example for lastInput Direction.RIGHT,
      * it would return Direction.LEFT.
      *
      * @param direction the Direction to mirror
@@ -199,7 +199,7 @@ public class Directions {
     }
 
     /**
-     * This method is used for mirroring BasicDirections, for example for input BasicDirection.y,
+     * This method is used for mirroring BasicDirections, for example for lastInput BasicDirection.y,
      * it would return BasicDirection.x.
      *
      * @param direction The BasicDirection to mirror

@@ -26,11 +26,11 @@ public class DisplayManager {
     private DisplayKeyHandler displayKeyHandler = null;
     private DisplayMouseHandler displayMouseHandler = null;
 
-    // The char of the current pressed key. PLease note that this only gets on key at a time as an input.
+    // The char of the current pressed key. PLease note that this only gets on key at a time as an lastInput.
     private char currentKey;
 
-    // The following four booleans are for standard input (e.g. inputUp would be true if 'w' or the UP arrow is pressed)
-    // this supports multi-input!
+    // The following four booleans are for standard lastInput (e.g. inputUp would be true if 'w' or the UP arrow is pressed)
+    // this supports multi-lastInput!
     private boolean inputUp = false;
     private boolean inputDown = false;
     private boolean inputRight = false;
@@ -110,12 +110,12 @@ public class DisplayManager {
                     StaticSystem.currentScene.getUI().keyPressed(e);
                 }
 
-                StaticSystem.inputKey = currentKey;
+                StaticSystem.lastInputKey = currentKey;
                 StaticSystem.inputUp = inputUp;
                 StaticSystem.inputDown = inputDown;
                 StaticSystem.inputRight = inputRight;
                 StaticSystem.inputLeft = inputLeft;
-                StaticSystem.input = e;
+                StaticSystem.lastInput = e;
             }
 
             @Override
@@ -148,12 +148,12 @@ public class DisplayManager {
                     StaticSystem.currentScene.getUI().keyReleased(e);
                 }
 
-                StaticSystem.inputKey = currentKey;
+                StaticSystem.lastInputKey = currentKey;
                 StaticSystem.inputUp = inputUp;
                 StaticSystem.inputDown = inputDown;
                 StaticSystem.inputRight = inputRight;
                 StaticSystem.inputLeft = inputLeft;
-                StaticSystem.input = null;
+                StaticSystem.lastInput = null;
             }
         };
 

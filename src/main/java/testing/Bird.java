@@ -67,7 +67,7 @@ public class Bird extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (StaticSystem.inputKey == '-') {
+        if (StaticSystem.lastInputKey == '-') {
             getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 1);
         }
 
