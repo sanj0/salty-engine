@@ -6,7 +6,9 @@
 
 package de.edgelord.saltyengine.input;
 
-public class KeyBoard {
+import java.awt.event.KeyEvent;
+
+public class Keyboard {
 
     /*
     Special keys
@@ -26,18 +28,20 @@ public class KeyBoard {
     /*
     Arrow Keys
      */
-    private boolean key_right = false;
-    private boolean key_left = false;
-    private boolean key_up = false;
-    private boolean key_down = false;
+    private boolean arrow_right = false;
+    private boolean arrow_left = false;
+    private boolean arrow_up = false;
+    private boolean arrow_down = false;
 
     /*
-    Math keys {, . - +}
+    Math keys
      */
     private boolean key_comma = false;
-    private boolean key_period = false;
+    private boolean key_period = false; /* = "."*/
     private boolean key_minus = false;
     private boolean key_plus = false;
+    private boolean key_less = false;
+    private boolean key_greater = false;
 
     /*
     Numbers from 0 to 9
@@ -123,698 +127,500 @@ public class KeyBoard {
     Other keys that can be accessed without using e.g. shift and some brackets
      */
     private boolean key_hash = false;
+    private boolean parenthesis_open = false;
+    private boolean parenthesis_close = false;
     private boolean brace_open = false;
     private boolean brace_close = false;
-    private boolean angelBracket_open = false;
-    private boolean angelBracket_close = false;
     private boolean squareBracket_open = false;
     private boolean squareBracket_close = false;
 
-    public boolean isEnter() {
-        return enter;
+    public void handleKeyPressed(KeyEvent keyPressedEvent) {
+
+        flagMatchingKeyAs(true, keyPressedEvent);
     }
 
-    public void setEnter(boolean enter) {
-        this.enter = enter;
+    public void handleKeyReleased(KeyEvent keyReleasedEvent) {
+
+        flagMatchingKeyAs(false, keyReleasedEvent);
+    }
+
+    private void flagMatchingKeyAs(boolean targetFlag, KeyEvent event) {
+
+        switch(event.getKeyCode()) {
+
+            /*
+            Special keys
+             */
+            case KeyEvent.VK_ENTER: enter = targetFlag;
+            case KeyEvent.VK_BACK_SPACE: backspace = targetFlag;
+            case KeyEvent.VK_DELETE: delete = targetFlag;
+            case KeyEvent.VK_TAB: tab = targetFlag;
+            case KeyEvent.VK_SHIFT: shift = targetFlag;
+            case KeyEvent.VK_CONTROL: control = targetFlag;
+            case KeyEvent.VK_ALT: alt = targetFlag;
+            case KeyEvent.VK_CAPS_LOCK: caps_lock = targetFlag;
+            case KeyEvent.VK_ESCAPE: escape = targetFlag;
+            case KeyEvent.VK_PAGE_UP: page_up = targetFlag;
+            case KeyEvent.VK_PAGE_DOWN: page_down = targetFlag;
+
+            /*
+            Arrow keys
+             */
+            case KeyEvent.VK_RIGHT: arrow_right = targetFlag;
+            case KeyEvent.VK_LEFT: arrow_left = targetFlag;
+            case KeyEvent.VK_UP: arrow_up = targetFlag;
+            case KeyEvent.VK_DOWN: arrow_down = targetFlag;
+
+            /*
+            Math keys
+             */
+            case KeyEvent.VK_COMMA: key_comma = targetFlag;
+            case KeyEvent.VK_PERIOD: key_period = targetFlag;
+            case KeyEvent.VK_MINUS: key_minus = targetFlag;
+            case KeyEvent.VK_PLUS: key_plus = targetFlag;
+
+            /*
+            Numbers from 0 to 9
+             */
+            case KeyEvent.VK_0: number_0 = targetFlag;
+            case KeyEvent.VK_1: number_1 = targetFlag;
+            case KeyEvent.VK_2: number_2 = targetFlag;
+            case KeyEvent.VK_3: number_3 = targetFlag;
+            case KeyEvent.VK_4: number_4 = targetFlag;
+            case KeyEvent.VK_5: number_5 = targetFlag;
+            case KeyEvent.VK_6: number_6 = targetFlag;
+            case KeyEvent.VK_7: number_7 = targetFlag;
+            case KeyEvent.VK_8: number_8 = targetFlag;
+            case KeyEvent.VK_9: number_9 = targetFlag;
+
+            /*
+            Letters from A to Z
+             */
+            case KeyEvent.VK_A: key_a = targetFlag;
+            case KeyEvent.VK_B: key_b = targetFlag;
+            case KeyEvent.VK_C: key_c = targetFlag;
+            case KeyEvent.VK_D: key_d = targetFlag;
+            case KeyEvent.VK_E: key_e = targetFlag;
+            case KeyEvent.VK_F: key_f = targetFlag;
+            case KeyEvent.VK_G: key_g = targetFlag;
+            case KeyEvent.VK_H: key_h = targetFlag;
+            case KeyEvent.VK_I: key_i = targetFlag;
+            case KeyEvent.VK_J: key_j = targetFlag;
+            case KeyEvent.VK_K: key_k = targetFlag;
+            case KeyEvent.VK_L: key_l = targetFlag;
+            case KeyEvent.VK_M: key_m = targetFlag;
+            case KeyEvent.VK_N: key_n = targetFlag;
+            case KeyEvent.VK_O: key_o = targetFlag;
+            case KeyEvent.VK_P: key_p = targetFlag;
+            case KeyEvent.VK_Q: key_q = targetFlag;
+            case KeyEvent.VK_R: key_r = targetFlag;
+            case KeyEvent.VK_S: key_s = targetFlag;
+            case KeyEvent.VK_T: key_t = targetFlag;
+            case KeyEvent.VK_U: key_u = targetFlag;
+            case KeyEvent.VK_V: key_v = targetFlag;
+            case KeyEvent.VK_W: key_w = targetFlag;
+            case KeyEvent.VK_X: key_x = targetFlag;
+            case KeyEvent.VK_Y: key_y = targetFlag;
+            case KeyEvent.VK_Z: key_z = targetFlag;
+
+            /*
+            Numpad-numbers from 0 to 9
+             */
+            case KeyEvent.VK_NUMPAD0: numpad_0 = targetFlag;
+            case KeyEvent.VK_NUMPAD1: numpad_1 = targetFlag;
+            case KeyEvent.VK_NUMPAD2: numpad_2 = targetFlag;
+            case KeyEvent.VK_NUMPAD3: numpad_3 = targetFlag;
+            case KeyEvent.VK_NUMPAD4: numpad_4 = targetFlag;
+            case KeyEvent.VK_NUMPAD5: numpad_5 = targetFlag;
+            case KeyEvent.VK_NUMPAD6: numpad_6 = targetFlag;
+            case KeyEvent.VK_NUMPAD7: numpad_7 = targetFlag;
+            case KeyEvent.VK_NUMPAD8: numpad_8 = targetFlag;
+            case KeyEvent.VK_NUMPAD9: numpad_9 = targetFlag;
+
+            /*
+            Function keys from 1 to 12
+             */
+            case KeyEvent.VK_F1: function_1 = targetFlag;
+            case KeyEvent.VK_F2: function_2 = targetFlag;
+            case KeyEvent.VK_F3: function_3 = targetFlag;
+            case KeyEvent.VK_F4: function_4 = targetFlag;
+            case KeyEvent.VK_F5: function_5 = targetFlag;
+            case KeyEvent.VK_F6: function_6 = targetFlag;
+            case KeyEvent.VK_F7: function_7 = targetFlag;
+            case KeyEvent.VK_F8: function_8 = targetFlag;
+            case KeyEvent.VK_F9: function_9 = targetFlag;
+            case KeyEvent.VK_F10: function_10 = targetFlag;
+            case KeyEvent.VK_F11: function_11 = targetFlag;
+            case KeyEvent.VK_F12: function_12 = targetFlag;
+
+            /*
+            Currency signs
+             */
+            case KeyEvent.VK_EURO_SIGN: currency_euro = targetFlag;
+            case KeyEvent.VK_DOLLAR: currency_dollar = targetFlag;
+
+            /*
+            Other keys that can be accessed without using e.g. shift and some brackets
+             */
+            case KeyEvent.VK_NUMBER_SIGN: key_hash = targetFlag;
+            case KeyEvent.VK_LEFT_PARENTHESIS: parenthesis_open = targetFlag;
+            case KeyEvent.VK_RIGHT_PARENTHESIS: parenthesis_close = targetFlag;
+            case KeyEvent.VK_BRACELEFT: brace_open = targetFlag;
+            case KeyEvent.VK_BRACERIGHT: brace_close = targetFlag;
+            case KeyEvent.VK_OPEN_BRACKET: squareBracket_open = targetFlag;
+            case KeyEvent.VK_CLOSE_BRACKET: squareBracket_close = targetFlag;
+        }
+    }
+
+    public boolean isEnter() {
+        return enter;
     }
 
     public boolean isBackspace() {
         return backspace;
     }
 
-    public void setBackspace(boolean backspace) {
-        this.backspace = backspace;
-    }
-
     public boolean isDelete() {
         return delete;
-    }
-
-    public void setDelete(boolean delete) {
-        this.delete = delete;
     }
 
     public boolean isTab() {
         return tab;
     }
 
-    public void setTab(boolean tab) {
-        this.tab = tab;
-    }
-
     public boolean isShift() {
         return shift;
-    }
-
-    public void setShift(boolean shift) {
-        this.shift = shift;
     }
 
     public boolean isControl() {
         return control;
     }
 
-    public void setControl(boolean control) {
-        this.control = control;
-    }
-
     public boolean isAlt() {
         return alt;
-    }
-
-    public void setAlt(boolean alt) {
-        this.alt = alt;
     }
 
     public boolean isCaps_lock() {
         return caps_lock;
     }
 
-    public void setCaps_lock(boolean caps_lock) {
-        this.caps_lock = caps_lock;
-    }
-
     public boolean isEscape() {
         return escape;
-    }
-
-    public void setEscape(boolean escape) {
-        this.escape = escape;
     }
 
     public boolean isPage_up() {
         return page_up;
     }
 
-    public void setPage_up(boolean page_up) {
-        this.page_up = page_up;
-    }
-
     public boolean isPage_down() {
         return page_down;
     }
 
-    public void setPage_down(boolean page_down) {
-        this.page_down = page_down;
+    public boolean isArrow_right() {
+        return arrow_right;
     }
 
-    public boolean isKey_right() {
-        return key_right;
+    public boolean isArrow_left() {
+        return arrow_left;
     }
 
-    public void setKey_right(boolean key_right) {
-        this.key_right = key_right;
+    public boolean isArrow_up() {
+        return arrow_up;
     }
 
-    public boolean isKey_left() {
-        return key_left;
-    }
-
-    public void setKey_left(boolean key_left) {
-        this.key_left = key_left;
-    }
-
-    public boolean isKey_up() {
-        return key_up;
-    }
-
-    public void setKey_up(boolean key_up) {
-        this.key_up = key_up;
-    }
-
-    public boolean isKey_down() {
-        return key_down;
-    }
-
-    public void setKey_down(boolean key_down) {
-        this.key_down = key_down;
+    public boolean isArrow_down() {
+        return arrow_down;
     }
 
     public boolean isKey_comma() {
         return key_comma;
     }
 
-    public void setKey_comma(boolean key_comma) {
-        this.key_comma = key_comma;
-    }
-
     public boolean isKey_period() {
         return key_period;
-    }
-
-    public void setKey_period(boolean key_period) {
-        this.key_period = key_period;
     }
 
     public boolean isKey_minus() {
         return key_minus;
     }
 
-    public void setKey_minus(boolean key_minus) {
-        this.key_minus = key_minus;
-    }
-
     public boolean isKey_plus() {
         return key_plus;
     }
 
-    public void setKey_plus(boolean key_plus) {
-        this.key_plus = key_plus;
+    public boolean isKey_less() {
+        return key_less;
+    }
+
+    public boolean isKey_greater() {
+        return key_greater;
     }
 
     public boolean isNumber_0() {
         return number_0;
     }
 
-    public void setNumber_0(boolean number_0) {
-        this.number_0 = number_0;
-    }
-
     public boolean isNumber_1() {
         return number_1;
-    }
-
-    public void setNumber_1(boolean number_1) {
-        this.number_1 = number_1;
     }
 
     public boolean isNumber_2() {
         return number_2;
     }
 
-    public void setNumber_2(boolean number_2) {
-        this.number_2 = number_2;
-    }
-
     public boolean isNumber_3() {
         return number_3;
-    }
-
-    public void setNumber_3(boolean number_3) {
-        this.number_3 = number_3;
     }
 
     public boolean isNumber_4() {
         return number_4;
     }
 
-    public void setNumber_4(boolean number_4) {
-        this.number_4 = number_4;
-    }
-
     public boolean isNumber_5() {
         return number_5;
-    }
-
-    public void setNumber_5(boolean number_5) {
-        this.number_5 = number_5;
     }
 
     public boolean isNumber_6() {
         return number_6;
     }
 
-    public void setNumber_6(boolean number_6) {
-        this.number_6 = number_6;
-    }
-
     public boolean isNumber_7() {
         return number_7;
-    }
-
-    public void setNumber_7(boolean number_7) {
-        this.number_7 = number_7;
     }
 
     public boolean isNumber_8() {
         return number_8;
     }
 
-    public void setNumber_8(boolean number_8) {
-        this.number_8 = number_8;
-    }
-
     public boolean isNumber_9() {
         return number_9;
-    }
-
-    public void setNumber_9(boolean number_9) {
-        this.number_9 = number_9;
     }
 
     public boolean isKey_a() {
         return key_a;
     }
 
-    public void setKey_a(boolean key_a) {
-        this.key_a = key_a;
-    }
-
     public boolean isKey_b() {
         return key_b;
-    }
-
-    public void setKey_b(boolean key_b) {
-        this.key_b = key_b;
     }
 
     public boolean isKey_c() {
         return key_c;
     }
 
-    public void setKey_c(boolean key_c) {
-        this.key_c = key_c;
-    }
-
     public boolean isKey_d() {
         return key_d;
-    }
-
-    public void setKey_d(boolean key_d) {
-        this.key_d = key_d;
     }
 
     public boolean isKey_e() {
         return key_e;
     }
 
-    public void setKey_e(boolean key_e) {
-        this.key_e = key_e;
-    }
-
     public boolean isKey_f() {
         return key_f;
-    }
-
-    public void setKey_f(boolean key_f) {
-        this.key_f = key_f;
     }
 
     public boolean isKey_g() {
         return key_g;
     }
 
-    public void setKey_g(boolean key_g) {
-        this.key_g = key_g;
-    }
-
     public boolean isKey_h() {
         return key_h;
-    }
-
-    public void setKey_h(boolean key_h) {
-        this.key_h = key_h;
     }
 
     public boolean isKey_i() {
         return key_i;
     }
 
-    public void setKey_i(boolean key_i) {
-        this.key_i = key_i;
-    }
-
     public boolean isKey_j() {
         return key_j;
-    }
-
-    public void setKey_j(boolean key_j) {
-        this.key_j = key_j;
     }
 
     public boolean isKey_k() {
         return key_k;
     }
 
-    public void setKey_k(boolean key_k) {
-        this.key_k = key_k;
-    }
-
     public boolean isKey_l() {
         return key_l;
-    }
-
-    public void setKey_l(boolean key_l) {
-        this.key_l = key_l;
     }
 
     public boolean isKey_m() {
         return key_m;
     }
 
-    public void setKey_m(boolean key_m) {
-        this.key_m = key_m;
-    }
-
     public boolean isKey_n() {
         return key_n;
-    }
-
-    public void setKey_n(boolean key_n) {
-        this.key_n = key_n;
     }
 
     public boolean isKey_o() {
         return key_o;
     }
 
-    public void setKey_o(boolean key_o) {
-        this.key_o = key_o;
-    }
-
     public boolean isKey_p() {
         return key_p;
-    }
-
-    public void setKey_p(boolean key_p) {
-        this.key_p = key_p;
     }
 
     public boolean isKey_q() {
         return key_q;
     }
 
-    public void setKey_q(boolean key_q) {
-        this.key_q = key_q;
-    }
-
     public boolean isKey_r() {
         return key_r;
-    }
-
-    public void setKey_r(boolean key_r) {
-        this.key_r = key_r;
     }
 
     public boolean isKey_s() {
         return key_s;
     }
 
-    public void setKey_s(boolean key_s) {
-        this.key_s = key_s;
-    }
-
     public boolean isKey_t() {
         return key_t;
-    }
-
-    public void setKey_t(boolean key_t) {
-        this.key_t = key_t;
     }
 
     public boolean isKey_u() {
         return key_u;
     }
 
-    public void setKey_u(boolean key_u) {
-        this.key_u = key_u;
-    }
-
     public boolean isKey_v() {
         return key_v;
-    }
-
-    public void setKey_v(boolean key_v) {
-        this.key_v = key_v;
     }
 
     public boolean isKey_w() {
         return key_w;
     }
 
-    public void setKey_w(boolean key_w) {
-        this.key_w = key_w;
-    }
-
     public boolean isKey_x() {
         return key_x;
-    }
-
-    public void setKey_x(boolean key_x) {
-        this.key_x = key_x;
     }
 
     public boolean isKey_y() {
         return key_y;
     }
 
-    public void setKey_y(boolean key_y) {
-        this.key_y = key_y;
-    }
-
     public boolean isKey_z() {
         return key_z;
-    }
-
-    public void setKey_z(boolean key_z) {
-        this.key_z = key_z;
     }
 
     public boolean isNumpad_0() {
         return numpad_0;
     }
 
-    public void setNumpad_0(boolean numpad_0) {
-        this.numpad_0 = numpad_0;
-    }
-
     public boolean isNumpad_1() {
         return numpad_1;
-    }
-
-    public void setNumpad_1(boolean numpad_1) {
-        this.numpad_1 = numpad_1;
     }
 
     public boolean isNumpad_2() {
         return numpad_2;
     }
 
-    public void setNumpad_2(boolean numpad_2) {
-        this.numpad_2 = numpad_2;
-    }
-
     public boolean isNumpad_3() {
         return numpad_3;
-    }
-
-    public void setNumpad_3(boolean numpad_3) {
-        this.numpad_3 = numpad_3;
     }
 
     public boolean isNumpad_4() {
         return numpad_4;
     }
 
-    public void setNumpad_4(boolean numpad_4) {
-        this.numpad_4 = numpad_4;
-    }
-
     public boolean isNumpad_5() {
         return numpad_5;
-    }
-
-    public void setNumpad_5(boolean numpad_5) {
-        this.numpad_5 = numpad_5;
     }
 
     public boolean isNumpad_6() {
         return numpad_6;
     }
 
-    public void setNumpad_6(boolean numpad_6) {
-        this.numpad_6 = numpad_6;
-    }
-
     public boolean isNumpad_7() {
         return numpad_7;
-    }
-
-    public void setNumpad_7(boolean numpad_7) {
-        this.numpad_7 = numpad_7;
     }
 
     public boolean isNumpad_8() {
         return numpad_8;
     }
 
-    public void setNumpad_8(boolean numpad_8) {
-        this.numpad_8 = numpad_8;
-    }
-
     public boolean isNumpad_9() {
         return numpad_9;
-    }
-
-    public void setNumpad_9(boolean numpad_9) {
-        this.numpad_9 = numpad_9;
     }
 
     public boolean isFunction_1() {
         return function_1;
     }
 
-    public void setFunction_1(boolean function_1) {
-        this.function_1 = function_1;
-    }
-
     public boolean isFunction_2() {
         return function_2;
-    }
-
-    public void setFunction_2(boolean function_2) {
-        this.function_2 = function_2;
     }
 
     public boolean isFunction_3() {
         return function_3;
     }
 
-    public void setFunction_3(boolean function_3) {
-        this.function_3 = function_3;
-    }
-
     public boolean isFunction_4() {
         return function_4;
-    }
-
-    public void setFunction_4(boolean function_4) {
-        this.function_4 = function_4;
     }
 
     public boolean isFunction_5() {
         return function_5;
     }
 
-    public void setFunction_5(boolean function_5) {
-        this.function_5 = function_5;
-    }
-
     public boolean isFunction_6() {
         return function_6;
-    }
-
-    public void setFunction_6(boolean function_6) {
-        this.function_6 = function_6;
     }
 
     public boolean isFunction_7() {
         return function_7;
     }
 
-    public void setFunction_7(boolean function_7) {
-        this.function_7 = function_7;
-    }
-
     public boolean isFunction_8() {
         return function_8;
-    }
-
-    public void setFunction_8(boolean function_8) {
-        this.function_8 = function_8;
     }
 
     public boolean isFunction_9() {
         return function_9;
     }
 
-    public void setFunction_9(boolean function_9) {
-        this.function_9 = function_9;
-    }
-
     public boolean isFunction_10() {
         return function_10;
-    }
-
-    public void setFunction_10(boolean function_10) {
-        this.function_10 = function_10;
     }
 
     public boolean isFunction_11() {
         return function_11;
     }
 
-    public void setFunction_11(boolean function_11) {
-        this.function_11 = function_11;
-    }
-
     public boolean isFunction_12() {
         return function_12;
-    }
-
-    public void setFunction_12(boolean function_12) {
-        this.function_12 = function_12;
     }
 
     public boolean isCurrency_euro() {
         return currency_euro;
     }
 
-    public void setCurrency_euro(boolean currency_euro) {
-        this.currency_euro = currency_euro;
-    }
-
     public boolean isCurrency_dollar() {
         return currency_dollar;
-    }
-
-    public void setCurrency_dollar(boolean currency_dollar) {
-        this.currency_dollar = currency_dollar;
     }
 
     public boolean isKey_hash() {
         return key_hash;
     }
 
-    public void setKey_hash(boolean key_hash) {
-        this.key_hash = key_hash;
+    public boolean isParenthesis_open() {
+        return parenthesis_open;
+    }
+
+    public boolean isParenthesis_close() {
+        return parenthesis_close;
     }
 
     public boolean isBrace_open() {
         return brace_open;
     }
 
-    public void setBrace_open(boolean brace_open) {
-        this.brace_open = brace_open;
-    }
-
     public boolean isBrace_close() {
         return brace_close;
-    }
-
-    public void setBrace_close(boolean brace_close) {
-        this.brace_close = brace_close;
-    }
-
-    public boolean isAngelBracket_open() {
-        return angelBracket_open;
-    }
-
-    public void setAngelBracket_open(boolean angelBracket_open) {
-        this.angelBracket_open = angelBracket_open;
-    }
-
-    public boolean isAngelBracket_close() {
-        return angelBracket_close;
-    }
-
-    public void setAngelBracket_close(boolean angelBracket_close) {
-        this.angelBracket_close = angelBracket_close;
     }
 
     public boolean isSquareBracket_open() {
         return squareBracket_open;
     }
 
-    public void setSquareBracket_open(boolean squareBracket_open) {
-        this.squareBracket_open = squareBracket_open;
-    }
-
     public boolean isSquareBracket_close() {
         return squareBracket_close;
-    }
-
-    public void setSquareBracket_close(boolean squareBracket_close) {
-        this.squareBracket_close = squareBracket_close;
     }
 }

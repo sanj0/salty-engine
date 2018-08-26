@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.input.Keyboard;
 import de.edgelord.saltyengine.layer.LayerCollection;
 import de.edgelord.saltyengine.output.Output;
 import de.edgelord.saltyengine.scene.Scene;
@@ -36,6 +37,12 @@ public class StaticSystem {
      * You have to add a ifn check if you use this!
      */
     public static KeyEvent lastInput;
+
+    /**
+     * For input that is not meant for typing use this!
+     * Please use this for every input that has to do with controls etc etc
+     */
+    public static Keyboard keyboardInput = new Keyboard();
 
     public static boolean isPaused() {
         return paused;

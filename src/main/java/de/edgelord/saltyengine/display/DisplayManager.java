@@ -110,6 +110,7 @@ public class DisplayManager {
                     StaticSystem.currentScene.getUI().keyPressed(e);
                 }
 
+                StaticSystem.keyboardInput.handleKeyPressed(e);
                 StaticSystem.lastInputKey = currentKey;
                 StaticSystem.inputUp = inputUp;
                 StaticSystem.inputDown = inputDown;
@@ -148,6 +149,7 @@ public class DisplayManager {
                     StaticSystem.currentScene.getUI().keyReleased(e);
                 }
 
+                StaticSystem.keyboardInput.handleKeyReleased(e);
                 StaticSystem.lastInputKey = currentKey;
                 StaticSystem.inputUp = inputUp;
                 StaticSystem.inputDown = inputDown;
