@@ -146,129 +146,301 @@ public class Keyboard {
 
     private void flagMatchingKeyAs(boolean targetFlag, KeyEvent event) {
 
-        switch(event.getKeyCode()) {
+        switch (event.getKeyCode()) {
 
             /*
             Special keys
              */
-            case KeyEvent.VK_ENTER: enter = targetFlag;
-            case KeyEvent.VK_BACK_SPACE: backspace = targetFlag;
-            case KeyEvent.VK_DELETE: delete = targetFlag;
-            case KeyEvent.VK_TAB: tab = targetFlag;
-            case KeyEvent.VK_SHIFT: shift = targetFlag;
-            case KeyEvent.VK_CONTROL: control = targetFlag;
-            case KeyEvent.VK_ALT: alt = targetFlag;
-            case KeyEvent.VK_CAPS_LOCK: caps_lock = targetFlag;
-            case KeyEvent.VK_ESCAPE: escape = targetFlag;
-            case KeyEvent.VK_PAGE_UP: page_up = targetFlag;
-            case KeyEvent.VK_PAGE_DOWN: page_down = targetFlag;
+            case KeyEvent.VK_ENTER:
+                enter = targetFlag;
+                break;
+            case KeyEvent.VK_BACK_SPACE:
+                backspace = targetFlag;
+                break;
+            case KeyEvent.VK_DELETE:
+                delete = targetFlag;
+                break;
+            case KeyEvent.VK_TAB:
+                tab = targetFlag;
+                break;
+            case KeyEvent.VK_SHIFT:
+                shift = targetFlag;
+                break;
+            case KeyEvent.VK_CONTROL:
+                control = targetFlag;
+                break;
+            case KeyEvent.VK_ALT:
+                alt = targetFlag;
+                break;
+            case KeyEvent.VK_CAPS_LOCK:
+                caps_lock = targetFlag;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                escape = targetFlag;
+                break;
+            case KeyEvent.VK_PAGE_UP:
+                page_up = targetFlag;
+                break;
+            case KeyEvent.VK_PAGE_DOWN:
+                page_down = targetFlag;
+                break;
 
             /*
             Arrow keys
              */
-            case KeyEvent.VK_RIGHT: arrow_right = targetFlag;
-            case KeyEvent.VK_LEFT: arrow_left = targetFlag;
-            case KeyEvent.VK_UP: arrow_up = targetFlag;
-            case KeyEvent.VK_DOWN: arrow_down = targetFlag;
+            case KeyEvent.VK_RIGHT:
+                arrow_right = targetFlag;
+                break;
+            case KeyEvent.VK_LEFT:
+                arrow_left = targetFlag;
+                break;
+            case KeyEvent.VK_UP:
+                arrow_up = targetFlag;
+                break;
+            case KeyEvent.VK_DOWN:
+                arrow_down = targetFlag;
+                break;
 
             /*
             Math keys
              */
-            case KeyEvent.VK_COMMA: key_comma = targetFlag;
-            case KeyEvent.VK_PERIOD: key_period = targetFlag;
-            case KeyEvent.VK_MINUS: key_minus = targetFlag;
-            case KeyEvent.VK_PLUS: key_plus = targetFlag;
+            case KeyEvent.VK_COMMA:
+                key_comma = targetFlag;
+                break;
+            case KeyEvent.VK_PERIOD:
+                key_period = targetFlag;
+                break;
+            case KeyEvent.VK_MINUS:
+                key_minus = targetFlag;
+                break;
+            case KeyEvent.VK_PLUS:
+                key_plus = targetFlag;
+                break;
 
             /*
             Numbers from 0 to 9
              */
-            case KeyEvent.VK_0: number_0 = targetFlag;
-            case KeyEvent.VK_1: number_1 = targetFlag;
-            case KeyEvent.VK_2: number_2 = targetFlag;
-            case KeyEvent.VK_3: number_3 = targetFlag;
-            case KeyEvent.VK_4: number_4 = targetFlag;
-            case KeyEvent.VK_5: number_5 = targetFlag;
-            case KeyEvent.VK_6: number_6 = targetFlag;
-            case KeyEvent.VK_7: number_7 = targetFlag;
-            case KeyEvent.VK_8: number_8 = targetFlag;
-            case KeyEvent.VK_9: number_9 = targetFlag;
+            case KeyEvent.VK_0:
+                number_0 = targetFlag;
+                break;
+            case KeyEvent.VK_1:
+                number_1 = targetFlag;
+                break;
+            case KeyEvent.VK_2:
+                number_2 = targetFlag;
+                break;
+            case KeyEvent.VK_3:
+                number_3 = targetFlag;
+                break;
+            case KeyEvent.VK_4:
+                number_4 = targetFlag;
+                break;
+            case KeyEvent.VK_5:
+                number_5 = targetFlag;
+                break;
+            case KeyEvent.VK_6:
+                number_6 = targetFlag;
+                break;
+            case KeyEvent.VK_7:
+                number_7 = targetFlag;
+                break;
+            case KeyEvent.VK_8:
+                number_8 = targetFlag;
+                break;
+            case KeyEvent.VK_9:
+                number_9 = targetFlag;
+                break;
 
             /*
             Letters from A to Z
              */
-            case KeyEvent.VK_A: key_a = targetFlag;
-            case KeyEvent.VK_B: key_b = targetFlag;
-            case KeyEvent.VK_C: key_c = targetFlag;
-            case KeyEvent.VK_D: key_d = targetFlag;
-            case KeyEvent.VK_E: key_e = targetFlag;
-            case KeyEvent.VK_F: key_f = targetFlag;
-            case KeyEvent.VK_G: key_g = targetFlag;
-            case KeyEvent.VK_H: key_h = targetFlag;
-            case KeyEvent.VK_I: key_i = targetFlag;
-            case KeyEvent.VK_J: key_j = targetFlag;
-            case KeyEvent.VK_K: key_k = targetFlag;
-            case KeyEvent.VK_L: key_l = targetFlag;
-            case KeyEvent.VK_M: key_m = targetFlag;
-            case KeyEvent.VK_N: key_n = targetFlag;
-            case KeyEvent.VK_O: key_o = targetFlag;
-            case KeyEvent.VK_P: key_p = targetFlag;
-            case KeyEvent.VK_Q: key_q = targetFlag;
-            case KeyEvent.VK_R: key_r = targetFlag;
-            case KeyEvent.VK_S: key_s = targetFlag;
-            case KeyEvent.VK_T: key_t = targetFlag;
-            case KeyEvent.VK_U: key_u = targetFlag;
-            case KeyEvent.VK_V: key_v = targetFlag;
-            case KeyEvent.VK_W: key_w = targetFlag;
-            case KeyEvent.VK_X: key_x = targetFlag;
-            case KeyEvent.VK_Y: key_y = targetFlag;
-            case KeyEvent.VK_Z: key_z = targetFlag;
+            case KeyEvent.VK_A:
+                key_a = targetFlag;
+                break;
+            case KeyEvent.VK_B:
+                key_b = targetFlag;
+                break;
+            case KeyEvent.VK_C:
+                key_c = targetFlag;
+                break;
+            case KeyEvent.VK_D:
+                key_d = targetFlag;
+                break;
+            case KeyEvent.VK_E:
+                key_e = targetFlag;
+                break;
+            case KeyEvent.VK_F:
+                key_f = targetFlag;
+                break;
+            case KeyEvent.VK_G:
+                key_g = targetFlag;
+                break;
+            case KeyEvent.VK_H:
+                key_h = targetFlag;
+                break;
+            case KeyEvent.VK_I:
+                key_i = targetFlag;
+                break;
+            case KeyEvent.VK_J:
+                key_j = targetFlag;
+                break;
+            case KeyEvent.VK_K:
+                key_k = targetFlag;
+                break;
+            case KeyEvent.VK_L:
+                key_l = targetFlag;
+                break;
+            case KeyEvent.VK_M:
+                key_m = targetFlag;
+                break;
+            case KeyEvent.VK_N:
+                key_n = targetFlag;
+                break;
+            case KeyEvent.VK_O:
+                key_o = targetFlag;
+                break;
+            case KeyEvent.VK_P:
+                key_p = targetFlag;
+                break;
+            case KeyEvent.VK_Q:
+                key_q = targetFlag;
+                break;
+            case KeyEvent.VK_R:
+                key_r = targetFlag;
+                break;
+            case KeyEvent.VK_S:
+                key_s = targetFlag;
+                break;
+            case KeyEvent.VK_T:
+                key_t = targetFlag;
+                break;
+            case KeyEvent.VK_U:
+                key_u = targetFlag;
+                break;
+            case KeyEvent.VK_V:
+                key_v = targetFlag;
+                break;
+            case KeyEvent.VK_W:
+                key_w = targetFlag;
+                break;
+            case KeyEvent.VK_X:
+                key_x = targetFlag;
+                break;
+            case KeyEvent.VK_Y:
+                key_y = targetFlag;
+                break;
+            case KeyEvent.VK_Z:
+                key_z = targetFlag;
+                break;
 
             /*
             Numpad-numbers from 0 to 9
              */
-            case KeyEvent.VK_NUMPAD0: numpad_0 = targetFlag;
-            case KeyEvent.VK_NUMPAD1: numpad_1 = targetFlag;
-            case KeyEvent.VK_NUMPAD2: numpad_2 = targetFlag;
-            case KeyEvent.VK_NUMPAD3: numpad_3 = targetFlag;
-            case KeyEvent.VK_NUMPAD4: numpad_4 = targetFlag;
-            case KeyEvent.VK_NUMPAD5: numpad_5 = targetFlag;
-            case KeyEvent.VK_NUMPAD6: numpad_6 = targetFlag;
-            case KeyEvent.VK_NUMPAD7: numpad_7 = targetFlag;
-            case KeyEvent.VK_NUMPAD8: numpad_8 = targetFlag;
-            case KeyEvent.VK_NUMPAD9: numpad_9 = targetFlag;
+            case KeyEvent.VK_NUMPAD0:
+                numpad_0 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD1:
+                numpad_1 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD2:
+                numpad_2 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD3:
+                numpad_3 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD4:
+                numpad_4 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD5:
+                numpad_5 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD6:
+                numpad_6 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD7:
+                numpad_7 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD8:
+                numpad_8 = targetFlag;
+                break;
+            case KeyEvent.VK_NUMPAD9:
+                numpad_9 = targetFlag;
+                break;
 
             /*
             Function keys from 1 to 12
              */
-            case KeyEvent.VK_F1: function_1 = targetFlag;
-            case KeyEvent.VK_F2: function_2 = targetFlag;
-            case KeyEvent.VK_F3: function_3 = targetFlag;
-            case KeyEvent.VK_F4: function_4 = targetFlag;
-            case KeyEvent.VK_F5: function_5 = targetFlag;
-            case KeyEvent.VK_F6: function_6 = targetFlag;
-            case KeyEvent.VK_F7: function_7 = targetFlag;
-            case KeyEvent.VK_F8: function_8 = targetFlag;
-            case KeyEvent.VK_F9: function_9 = targetFlag;
-            case KeyEvent.VK_F10: function_10 = targetFlag;
-            case KeyEvent.VK_F11: function_11 = targetFlag;
-            case KeyEvent.VK_F12: function_12 = targetFlag;
+            case KeyEvent.VK_F1:
+                function_1 = targetFlag;
+                break;
+            case KeyEvent.VK_F2:
+                function_2 = targetFlag;
+                break;
+            case KeyEvent.VK_F3:
+                function_3 = targetFlag;
+                break;
+            case KeyEvent.VK_F4:
+                function_4 = targetFlag;
+                break;
+            case KeyEvent.VK_F5:
+                function_5 = targetFlag;
+                break;
+            case KeyEvent.VK_F6:
+                function_6 = targetFlag;
+                break;
+            case KeyEvent.VK_F7:
+                function_7 = targetFlag;
+                break;
+            case KeyEvent.VK_F8:
+                function_8 = targetFlag;
+                break;
+            case KeyEvent.VK_F9:
+                function_9 = targetFlag;
+                break;
+            case KeyEvent.VK_F10:
+                function_10 = targetFlag;
+                break;
+            case KeyEvent.VK_F11:
+                function_11 = targetFlag;
+                break;
+            case KeyEvent.VK_F12:
+                function_12 = targetFlag;
+                break;
 
             /*
             Currency signs
              */
-            case KeyEvent.VK_EURO_SIGN: currency_euro = targetFlag;
-            case KeyEvent.VK_DOLLAR: currency_dollar = targetFlag;
+            case KeyEvent.VK_EURO_SIGN:
+                currency_euro = targetFlag;
+                break;
+            case KeyEvent.VK_DOLLAR:
+                currency_dollar = targetFlag;
+                break;
 
             /*
             Other keys that can be accessed without using e.g. shift and some brackets
              */
-            case KeyEvent.VK_NUMBER_SIGN: key_hash = targetFlag;
-            case KeyEvent.VK_LEFT_PARENTHESIS: parenthesis_open = targetFlag;
-            case KeyEvent.VK_RIGHT_PARENTHESIS: parenthesis_close = targetFlag;
-            case KeyEvent.VK_BRACELEFT: brace_open = targetFlag;
-            case KeyEvent.VK_BRACERIGHT: brace_close = targetFlag;
-            case KeyEvent.VK_OPEN_BRACKET: squareBracket_open = targetFlag;
-            case KeyEvent.VK_CLOSE_BRACKET: squareBracket_close = targetFlag;
+            case KeyEvent.VK_NUMBER_SIGN:
+                key_hash = targetFlag;
+                break;
+            case KeyEvent.VK_LEFT_PARENTHESIS:
+                parenthesis_open = targetFlag;
+                break;
+            case KeyEvent.VK_RIGHT_PARENTHESIS:
+                parenthesis_close = targetFlag;
+                break;
+            case KeyEvent.VK_BRACELEFT:
+                brace_open = targetFlag;
+                break;
+            case KeyEvent.VK_BRACERIGHT:
+                brace_close = targetFlag;
+                break;
+            case KeyEvent.VK_OPEN_BRACKET:
+                squareBracket_open = targetFlag;
+                break;
+            case KeyEvent.VK_CLOSE_BRACKET:
+                squareBracket_close = targetFlag;
+                break;
         }
     }
 
