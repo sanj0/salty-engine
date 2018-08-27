@@ -84,7 +84,9 @@ public class Scene {
         synchronized (getGameObjects()) {
 
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
-                drawingRoutine.draw(graphics);
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
+                    drawingRoutine.draw(graphics);
+                }
             }
 
             for (GameObject gameObject : gameObjects) {
@@ -94,6 +96,12 @@ public class Scene {
 
             if (ui != null) {
                 ui.drawUI(graphics);
+            }
+
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
+                    drawingRoutine.draw(graphics);
+                }
             }
         }
     }
