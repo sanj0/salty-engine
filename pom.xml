@@ -10,12 +10,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.edgelord.sjgl</groupId>
-    <artifactId>sjgl</artifactId>
+    <groupId>de.edgelord.salty-engine</groupId>
+    <artifactId>salty-engine</artifactId>
     <version>0.3-SNAPSHOT</version>
 
-    <name>sjgl</name>
-    <url>https://github.com/edgelord314/sjgl/</url>
+    <name>Salty Engine</name>
+    <url>https://github.com/edgelord314/salty-engine/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
