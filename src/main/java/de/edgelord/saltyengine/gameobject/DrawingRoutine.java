@@ -8,7 +8,23 @@ package de.edgelord.saltyengine.gameobject;
 
 import java.awt.*;
 
-public interface DrawingRoutine {
+public abstract class DrawingRoutine {
 
-    void draw(Graphics2D graphics2D);
+    public enum DrawingPosition {BEFORE_GAMEOBJECTS, AFTER_GAMEOBJECTS}
+
+    private DrawingPosition drawingPosition;
+
+    public DrawingRoutine(DrawingPosition drawingPosition) {
+        this.drawingPosition = drawingPosition;
+    }
+
+    public abstract void draw(Graphics2D graphics2D);
+
+    public DrawingPosition getDrawingPosition() {
+        return drawingPosition;
+    }
+
+    public void setDrawingPosition(DrawingPosition drawingPosition) {
+        this.drawingPosition = drawingPosition;
+    }
 }
