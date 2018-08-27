@@ -111,4 +111,12 @@ public class SceneFade extends GFXComponent {
     public void onCollision(CollisionEvent e) {
 
     }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 }
