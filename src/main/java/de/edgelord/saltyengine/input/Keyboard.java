@@ -24,6 +24,7 @@ public class Keyboard {
     private boolean escape = false;
     private boolean page_up = false;
     private boolean page_down = false;
+    private boolean space = false;
 
     /*
     Arrow Keys
@@ -184,6 +185,8 @@ public class Keyboard {
             case KeyEvent.VK_PAGE_DOWN:
                 page_down = targetFlag;
                 break;
+            case KeyEvent.VK_SPACE:
+                space = targetFlag;
 
             /*
             Arrow keys
@@ -486,6 +489,10 @@ public class Keyboard {
 
     public boolean isPage_down() {
         return page_down;
+    }
+
+    public boolean isSpace() {
+        return space;
     }
 
     public boolean isArrow_right() {
