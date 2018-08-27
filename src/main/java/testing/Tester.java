@@ -10,6 +10,8 @@ import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
+import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.location.Coordinates;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.ui.UISystem;
@@ -51,32 +53,11 @@ public class Tester extends Game {
 
         StaticSystem.font = StaticSystem.font.deriveFont(20f);
 
-        final UISystem uiSystem = new UISystem();
+        UISystem uiSystem = new UISystem();
 
-        final Button button = new Button("Pause", new Coordinates(550, 500), 100, 35) {
-            @Override
-            public void onClick(final MouseEvent e) {
+        PauseButton pauseButton = new PauseButton();
 
-                if (e.getClickCount() == 2) {
-                    System.out.println("Exit Game due to double-click onto that pause button");
-                    System.exit(0);
-                }
-
-                if (StaticSystem.isPaused()) {
-
-                    System.out.println("Unpause game!");
-                    StaticSystem.setPaused(false);
-                } else {
-                    System.out.println("Pause game!");
-                    StaticSystem.setPaused(true);
-                }
-            }
-        };
-
-        button.setBackgroundColor(Color.orange);
-        button.setForegroundColor(Color.white);
-
-        uiSystem.addElement(button);
+        uiSystem.addElement(pauseButton);
 
         StaticSystem.currentScene.setUI(uiSystem);
     }

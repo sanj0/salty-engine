@@ -49,4 +49,12 @@ public class FixedRate extends GameObjectComponent {
     public void onCollision(CollisionEvent e) {
 
     }
+
+    public int getGate() {
+        return gate;
+    }
+
+    public void setGate(int gate) {
+        this.gate = gate;
+    }
 }

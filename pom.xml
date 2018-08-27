@@ -12,7 +12,7 @@
 
     <groupId>de.edgelord.salty-engine</groupId>
     <artifactId>salty-engine</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.4.1-SNAPSHOT</version>
 
     <name>Salty Engine</name>
     <url>https://github.com/edgelord314/salty-engine/</url>

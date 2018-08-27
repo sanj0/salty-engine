@@ -98,9 +98,6 @@ public class SceneFade extends GFXComponent {
                     currentAlpha += alphaDelta;
                     break;
             }
-
-            System.out.println("currentAlpha = " + currentAlpha);
-            System.out.println("alphaDelta = " + alphaDelta);
             currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), (int)(currentAlpha));
         }
     }

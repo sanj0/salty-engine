@@ -20,7 +20,7 @@ public class WobblingEffect extends GFXComponent {
     private int minWidthDelta;
     private int widthDeltaPerTick = 2;
     private int heightDeltaPerTick = 2;
-    private int pause = 250;
+    private int pause = 0;
     private int ticks = 0;
 
     private boolean initRun = true;

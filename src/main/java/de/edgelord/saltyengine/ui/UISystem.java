@@ -19,6 +19,14 @@ public class UISystem {
     public void drawUI(Graphics2D graphics) {
         for (UIElement element : elements) {
             element.draw(graphics);
+            element.doComponentDrawing(graphics);
+        }
+    }
+
+    public void onFixedTick() {
+        for (UIElement element : elements) {
+            element.doComponentOnFixedTick();
+            element.onFixedTick();
         }
     }
 

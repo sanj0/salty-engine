@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.ui.UIElement;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -128,6 +129,11 @@ public class Scene {
                 gameObject.doComponentOnFixedTick();
                 gameObject.onFixedTick();
             }
+        }
+
+        if (ui != null) {
+
+            ui.onFixedTick();
         }
     }
 
