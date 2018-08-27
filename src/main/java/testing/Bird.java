@@ -11,6 +11,7 @@ import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
+import de.edgelord.saltyengine.gameobject.components.gfx.SceneFade;
 import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.gameobject.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.location.Coordinates;
@@ -28,6 +29,7 @@ public class Bird extends GameObject {
     private final Spritesheet spritesheet;
 
     private FixedRate refreshPositionTiming = new FixedRate(this, "refreshPositionTiming", 15);
+    private SceneFade fadeIn = new SceneFade(this, "sceneFade", SceneFade.Mode.FADE_IN);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "testing.bird");
@@ -44,8 +46,10 @@ public class Bird extends GameObject {
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.init(5, 5, -5, -5);
         wobblingEffect.startGFX();
+        fadeIn.fadeInit();
 
         addComponent(wobblingEffect);
+        addComponent(fadeIn);
         addComponent(refreshPositionTiming);
     }
 
