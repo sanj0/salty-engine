@@ -21,6 +21,8 @@ public abstract class UIElement extends GameObject {
 
     public UIElement(Coordinates coordinates, int width, int height) {
         super(coordinates, width, height, "UIElement");
+
+        removeComponent(DEFAULT_PHYSICS_NAME);
     }
 
     @Override
