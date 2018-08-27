@@ -8,7 +8,7 @@ package de.edgelord.saltyengine.gameobject;
 
 import java.awt.*;
 
-public interface DrawingRoutin {
+public interface DrawingRoutine {
 
     void draw(Graphics2D graphics2D);
 }

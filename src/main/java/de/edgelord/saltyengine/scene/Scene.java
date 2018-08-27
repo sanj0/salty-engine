@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.gameobject.DrawingRoutin;
+import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
@@ -26,7 +26,7 @@ public class Scene {
     */
     private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<DrawingRoutin> drawingRoutins = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
     private UISystem ui = null;
     private float xDelta, yDelta;
     private boolean initialized = false;
@@ -83,8 +83,8 @@ public class Scene {
 
         synchronized (getGameObjects()) {
 
-            for (DrawingRoutin drawingRoutin : drawingRoutins) {
-                drawingRoutin.draw(graphics);
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                drawingRoutine.draw(graphics);
             }
 
             for (GameObject gameObject : gameObjects) {
@@ -184,15 +184,15 @@ public class Scene {
         this.fixedTasks = fixedTasks;
     }
 
-    public void addDrawingRoutin(DrawingRoutin drawingRoutin) {
-        getDrawingRoutins().add(drawingRoutin);
+    public void addDrawingRoutin(DrawingRoutine drawingRoutine) {
+        getDrawingRoutines().add(drawingRoutine);
     }
 
-    public CopyOnWriteArrayList<DrawingRoutin> getDrawingRoutins() {
-        return drawingRoutins;
+    public CopyOnWriteArrayList<DrawingRoutine> getDrawingRoutines() {
+        return drawingRoutines;
     }
 
-    public void setDrawingRoutins(CopyOnWriteArrayList<DrawingRoutin> drawingRoutins) {
-        this.drawingRoutins = drawingRoutins;
+    public void setDrawingRoutines(CopyOnWriteArrayList<DrawingRoutine> drawingRoutines) {
+        this.drawingRoutines = drawingRoutines;
     }
 }
