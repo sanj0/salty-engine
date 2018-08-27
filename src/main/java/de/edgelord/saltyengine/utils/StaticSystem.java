@@ -18,8 +18,8 @@ import java.awt.event.KeyEvent;
 
 public class StaticSystem {
 
-    public static String versionTag = "0.4.3-SNAPSHOT";
-    public static double version = 0.43;
+    public static String versionTag = "0.4.3.1-SNAPSHOT";
+    public static double version = 0.431;
     public static String versionMode = "SNAPSHOT";
     public static String versionName = "Zeus";
     public static String gameName = "My name is Nym. Arno Nym.";
