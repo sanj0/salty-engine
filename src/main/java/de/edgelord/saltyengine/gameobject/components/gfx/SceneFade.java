@@ -51,8 +51,6 @@ public class SceneFade extends GFXComponent {
      * This method is supposed to get overridden when it's used like a trigger but it's not necessary
      */
     public void onFadeFinish() {
-
-        getParent().removeComponent(getName());
     }
 
     public void fadeInit() {
@@ -91,9 +89,8 @@ public class SceneFade extends GFXComponent {
             if (alphaDelta <= 0f) {
                 if (!fadeHasAlreadyFinished) {
                     onFadeFinish();
-                    fadeHasAlreadyFinished = true;
+                    remove();
                 }
-                return;
             }
 
             switch (mode) {

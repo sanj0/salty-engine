@@ -65,6 +65,10 @@ public abstract class GameObjectComponent {
         enabled = false;
     }
 
+    public void remove() {
+        getParent().removeComponent(getName());
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
