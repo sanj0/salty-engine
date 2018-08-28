@@ -60,21 +60,20 @@ public abstract class Button extends UIElement {
     @Override
     public void mousePressed(MouseEvent e) {
 
+        backgroundColor = backgroundColor.darker();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
 
+        backgroundColor = backgroundColor.brighter();
+        if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())) {
+            onClick(e);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
-        // this.currentMouseEvent = e;
-
-        if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())) {
-            onClick(e);
-        }
     }
 
     @Override

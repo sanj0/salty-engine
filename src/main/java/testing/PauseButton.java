@@ -14,15 +14,13 @@ public class PauseButton extends Button {
     public PauseButton() {
         super("Pause", Game.getDisplayManager().getCenter(100, 35), 100, 35);
 
-        setBackgroundColor(Color.orange);
-
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.setPause(50);
         wobblingEffect.init(2, 2, -2, -2);
         wobblingEffect.startGFX();
 
-        this.setBackgroundColor(Color.orange);
-        this.setForegroundColor(Color.white);
+        setBackgroundColor(Color.orange);
+        setForegroundColor(Color.white);
 
         this.addComponent(wobblingEffect);
         addComponent(new RecalculateMiddleComponent(this, "tets"));
