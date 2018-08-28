@@ -13,6 +13,7 @@ import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 
+@Deprecated
 public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
 
     public PushInTheOppositeDirectionOnCollision(final GameObject parent, final String name) {

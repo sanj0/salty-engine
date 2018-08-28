@@ -26,7 +26,7 @@ public class DrawPositionComponent extends GameObjectComponent {
     @Override
     public void draw(Graphics2D graphics) {
 
-        graphics.setFont(new Font(Font.MONOSPACED, 0, 15));
+        graphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         graphics.setColor(Color.BLACK);
 
         graphics.drawString(String.valueOf(getParent().getX()), getParent().getCoordinates().getX(), getParent().getCoordinates().getY() - 5);

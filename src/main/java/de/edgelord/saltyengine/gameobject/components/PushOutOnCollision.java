@@ -13,6 +13,7 @@ import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 
+@Deprecated
 public class PushOutOnCollision extends GameObjectComponent {
 
     public PushOutOnCollision(final GameObject parent, final String name) {

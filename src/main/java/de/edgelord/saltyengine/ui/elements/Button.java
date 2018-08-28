@@ -19,7 +19,7 @@ public abstract class Button extends UIElement {
     private int textWidth, textHeight;
     private Color backgroundColor = Color.white;
     private Color foregroundColor = Color.black;
-    // private MouseEvent currentMouseEvent = null;
+    private int arc = 15;
 
     public Button(String text, Coordinates coordinates, int width, int height) {
         super(coordinates, width, height);
@@ -34,13 +34,6 @@ public abstract class Button extends UIElement {
 
         drawButton(graphics);
         drawText(graphics);
-
-        /*
-        if (currentMouseEvent != null) {
-            graphics.drawOval(currentMouseEvent.getX() - 157, currentMouseEvent.getY() - 157, 314, 314);
-            graphics.drawRect(currentMouseEvent.getX(), currentMouseEvent.getY(), 314, 314);
-        }
-        */
     }
 
     public void drawText(Graphics2D graphics) {
@@ -59,7 +52,7 @@ public abstract class Button extends UIElement {
 
         graphics.setColor(backgroundColor);
 
-        graphics.fillRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight());
+        graphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight(), arc, arc);
     }
 
     public abstract void onClick(MouseEvent e);
@@ -120,5 +113,13 @@ public abstract class Button extends UIElement {
 
     public void setForegroundColor(Color foregroundColor) {
         this.foregroundColor = foregroundColor;
+    }
+
+    public int getArc() {
+        return arc;
+    }
+
+    public void setArc(int arc) {
+        this.arc = arc;
     }
 }

@@ -41,6 +41,7 @@ public class Bird extends GameObject {
 
         addComponent(new AnimationRender(this, "de.edgelord.saltyengine.testing.bird.animationRender", animation, 90));
 
+        fadeIn.setDuration(2500);
         fadeIn.fadeInit();
 
         addComponent(fadeIn);

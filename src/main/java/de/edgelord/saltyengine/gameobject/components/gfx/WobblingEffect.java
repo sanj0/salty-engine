@@ -20,7 +20,7 @@ public class WobblingEffect extends GFXComponent {
     private int minWidthDelta;
     private int widthDeltaPerTick = 2;
     private int heightDeltaPerTick = 2;
-    private int pause = 0;
+    private int pause = 250;
     private int ticks = 0;
 
     private boolean initRun = true;
@@ -117,10 +117,10 @@ public class WobblingEffect extends GFXComponent {
             }
 
             getParent().setHeight(getParent().getHeight() + currentHeightDelta);
-            getParent().moveY(currentHeightDelta / 2);
+            getParent().moveY(((float) (currentHeightDelta / 2)) * (-1));
 
             getParent().setWidth(getParent().getWidth() + currentWidthDelta);
-            getParent().moveX(currentWidthDelta / 2);
+            getParent().moveX(((float) (currentWidthDelta / 2)) * (-1));
 
             ticks = 0;
         } else {
