@@ -12,14 +12,14 @@ import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 
 import java.awt.*;
 
-public class BasicGameObjectKeyframeAnimation extends GameObjectComponent {
+public class BasicGameObjectAnimation extends GameObjectComponent {
 
     private boolean recalculateOnNextStep = true;
     private KeyframeAnimation animation = new KeyframeAnimation();
 
     private Control control;
 
-    public BasicGameObjectKeyframeAnimation(GameObject parent, String name, Control control) {
+    public BasicGameObjectAnimation(GameObject parent, String name, Control control) {
         super(parent, name, ANIMATION_COMPONENT);
 
         this.control = control;

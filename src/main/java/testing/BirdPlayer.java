@@ -14,7 +14,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
 import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
-import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectKeyframeAnimation;
+import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.location.Coordinates;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -26,9 +26,9 @@ public class BirdPlayer extends GameObject {
     private Animation animation;
     private Spritesheet spritesheet;
 
-    private BasicGameObjectKeyframeAnimation keyFrameAnimationX = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationX", BasicGameObjectKeyframeAnimation.Control.xPos);
-    private BasicGameObjectKeyframeAnimation keyFrameAnimationWidth = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationWidth", BasicGameObjectKeyframeAnimation.Control.width);
-    private BasicGameObjectKeyframeAnimation keyFrameAnimationHeight = new BasicGameObjectKeyframeAnimation(this, "mySuperAnimationHeight", BasicGameObjectKeyframeAnimation.Control.height);
+    private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.xPos);
+    private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.width);
+    private BasicGameObjectAnimation keyFrameAnimationHeight = new BasicGameObjectAnimation(this, "mySuperAnimationHeight", BasicGameObjectAnimation.Control.height);
 
     private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
