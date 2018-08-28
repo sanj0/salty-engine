@@ -18,9 +18,9 @@ import java.awt.event.KeyEvent;
 
 public class StaticSystem {
 
-    public static String versionTag = "0.4.3.1-SNAPSHOT";
-    public static double version = 0.431;
-    public static String versionMode = "SNAPSHOT";
+    public static String versionTag = "0.4.4-SNAPSHOT";
+    public static String version = "0.4.4";
+    public static VersionMode versionMode = VersionMode.SNAPSHOT;
     public static String versionName = "Zeus";
     public static String gameName = "My name is Nym. Arno Nym.";
 
@@ -64,4 +64,11 @@ public class StaticSystem {
 
     public static Scene currentScene = new DummyScene();
     public static LayerCollection currentLayerCollection = new DummyLayerCollection();
+
+    public enum VersionMode {
+        SNAPSHOT,
+        ALPHA,
+        BETA,
+        RELEASE
+    }
 }
