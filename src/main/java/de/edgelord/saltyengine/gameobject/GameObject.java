@@ -8,10 +8,7 @@ package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.event.TouchingEvent;
-import de.edgelord.saltyengine.gameobject.components.Accelerator;
-import de.edgelord.saltyengine.gameobject.components.RecalculateHitboxComponent;
-import de.edgelord.saltyengine.gameobject.components.RecalculateMiddleComponent;
-import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.location.Coordinates;
 import de.edgelord.saltyengine.location.Vector2f;

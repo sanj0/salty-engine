@@ -23,6 +23,9 @@ public abstract class UIElement extends GameObject {
         super(coordinates, width, height, "UIElement");
 
         removeComponent(DEFAULT_PHYSICS_NAME);
+        removeComponent(DEFAULT_RECALCULATE_HITBOX_NAME);
+        removeComponent(DEFAULT_RECALCULATE_MIDDLE_NAME);
+        removeComponent(DEFAULT_ACCELERATOR_NAME);
     }
 
     @Override

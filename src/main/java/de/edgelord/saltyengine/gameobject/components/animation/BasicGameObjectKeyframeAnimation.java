@@ -54,19 +54,23 @@ public class BasicGameObjectKeyframeAnimation extends GameObjectComponent {
             recalculateOnNextStep = false;
         }
 
+        float delta = animation.nextDelta();
+
         switch (control) {
 
             case width:
-                getParent().setWidth(getParent().getWidthExact() + animation.nextDelta());
+                getParent().setWidth(getParent().getWidthExact() + delta);
+                getParent().getHitbox().setWidth(getParent().getHitbox().getWidthExact() + delta);
                 break;
             case height:
-                getParent().setHeight(getParent().getHeightExact() + animation.nextDelta());
+                getParent().setHeight(getParent().getHeightExact() + delta);
+                getParent().getHitbox().setHeight(getParent().getHitbox().getHeightExact() + delta);
                 break;
             case xPos:
-                getParent().moveX(animation.nextDelta());
+                getParent().moveX(delta);
                 break;
             case yPos:
-                getParent().moveY(animation.nextDelta());
+                getParent().moveY(delta);
                 break;
         }
     }
