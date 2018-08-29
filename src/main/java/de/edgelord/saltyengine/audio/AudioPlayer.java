@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 
+import javax.sound.sampled.FloatControl;
 import java.util.LinkedList;
 
 /**
@@ -73,13 +74,7 @@ public class AudioPlayer {
      */
     public void play(String name) {
 
-        for (Audio audio : this.audios) {
-
-            if (audio.getName().equals(name)) {
-                audio.play();
-                return;
-            }
-        }
+        getAudio(name).play();
     }
 
     /**
@@ -92,13 +87,7 @@ public class AudioPlayer {
      */
     public void loop(String name) {
 
-        for (Audio audio : this.audios) {
-
-            if (audio.getName().equals(name)) {
-                audio.loop();
-                return;
-            }
-        }
+        getAudio(name).loop();
     }
 
     /**
@@ -111,12 +100,33 @@ public class AudioPlayer {
      */
     public void stop(String name) {
 
-        for (Audio audio : this.audios) {
+        getAudio(name).stop();
+    }
 
+    /**
+     * Returns the Audio from the list with the given name
+     * @param name the name of the Audio to return
+     * @return the audio with the given name
+     */
+    public Audio getAudio(String name) {
+
+        for (Audio audio : this.audios) {
             if (audio.getName().equals(name)) {
-                audio.stop();
-                return;
+                return audio;
             }
         }
+        return null;
+    }
+
+    /**
+     * Searches for the Audio with the given name and sets its Volume to the given one, with
+     * 0f meaning no volume and 1f meaning full volume.
+     * @param name the name of the Audio of which to change the Volume
+     * @param volume the target volume, 0f is min, 1f is max
+     */
+    public void setClipVolume(String name, float volume) {
+
+        FloatControl gainControl = (FloatControl) getAudio(name).getClip().getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(20f * (float) Math.log10(volume));
     }
 }

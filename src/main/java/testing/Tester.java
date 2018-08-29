@@ -40,6 +40,8 @@ public class Tester extends Game {
         Tester.audioSystem.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
         Tester.audioSystem.loop("joy_sticky");
+
+        audioSystem.setClipVolume("joy_sticky", 0.75f);
     }
 
     public static void main(final String[] args) {

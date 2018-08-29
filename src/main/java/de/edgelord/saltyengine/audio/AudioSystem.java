@@ -58,6 +58,10 @@ public class AudioSystem {
         audioPlayer.stop(name);
     }
 
+    public void setClipVolume(String name, float volume) {
+        audioPlayer.setClipVolume(name, volume);
+    }
+
     public AudioPlayer getAudioPlayer() {
         return audioPlayer;
     }
