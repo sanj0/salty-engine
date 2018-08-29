@@ -18,8 +18,6 @@ public class SceneFade extends GFXComponent {
     private int duration = 1500;
     private float currentAlpha;
 
-    private boolean fadeHasAlreadyFinished = false;
-
     private DrawingRoutine fadeDraw;
 
     public enum Mode {FADE_IN, FADE_OUT}
@@ -53,9 +51,12 @@ public class SceneFade extends GFXComponent {
     public void onFadeFinish() {
     }
 
-    public void fadeInit() {
+    private void end() {
+        StaticSystem.currentScene.getDrawingRoutines().remove(fadeDraw);
+        remove();
+    }
 
-        fadeHasAlreadyFinished = false;
+    public void fadeInit() {
 
         if (mode == Mode.FADE_OUT) {
             currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), 0);
@@ -86,11 +87,9 @@ public class SceneFade extends GFXComponent {
 
             float alphaDelta = fadeFX.nextDelta();
 
-            if (alphaDelta <= 0f) {
-                if (!fadeHasAlreadyFinished) {
-                    onFadeFinish();
-                    remove();
-                }
+            if (alphaDelta == 0.00f) {
+                onFadeFinish();
+                end();
             }
 
             switch (mode) {
