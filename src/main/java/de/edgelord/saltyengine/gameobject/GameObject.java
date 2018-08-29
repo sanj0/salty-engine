@@ -7,7 +7,6 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.event.TouchingEvent;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.location.Coordinates;
@@ -20,9 +19,11 @@ import de.edgelord.stdf.reading.ValueToListConverter;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public abstract class GameObject {
 
@@ -31,7 +32,6 @@ public abstract class GameObject {
     public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.saltyengine.coreComponents.recalculateMiddle";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
 
-    private final List<TouchingEvent> touchingEvents = new LinkedList<>();
     private final List<GameObjectComponent> components = new LinkedList<>();
 
     private final SimplePhysicsComponent physicsComponent;
@@ -82,6 +82,14 @@ public abstract class GameObject {
 
     public abstract void draw(Graphics2D graphics);
 
+    /**
+     * This method can be overridden but It's not necessary and you won't need this nearly always, so it's not abstract
+     * @param collisions the detected collisions of this run
+     */
+    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
+
+    }
+
     public void addComponent(final GameObjectComponent gameObjectComponent) {
 
         components.add(gameObjectComponent);
@@ -110,8 +118,7 @@ public abstract class GameObject {
     public void doCollisionDetection(final List<GameObject> gameObjects, final List<GameObjectComponent> collisionComponenets) {
 
         Directions collisionDirections = new Directions();
-
-        touchingEvents.clear();
+        List<CollisionEvent> collisions = new ArrayList<>();
 
         for (final GameObject other : gameObjects) {
 
@@ -126,8 +133,8 @@ public abstract class GameObject {
                 // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
                 final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
 
-                getTouchingEvents().add(new TouchingEvent(eSelf, this));
 
+                collisions.add(eSelf);
                 // other.onCollision(e);
                 onCollision(eSelf);
 
@@ -145,22 +152,15 @@ public abstract class GameObject {
                 */
             } else {
                 final CollisionEvent eSelf = new CollisionEvent(other, new Directions());
-
-                for (final GameObjectComponent component : getComponents()) {
-                    if (!collisionComponenets.contains(component)) {
-                        component.onCollision(eSelf);
-                    }
-                }
+                getPhysics().onCollision(eSelf);
             }
         }
+
+        onCollisionDetectionFinish(collisions);
     }
 
     public void removeComponent(final String name) {
-        for (int i = 0; i < components.size(); i++) {
-            if (components.get(i).getName().equals(name)) {
-                components.remove(i);
-            }
-        }
+        components.removeIf(gameObjectComponent -> gameObjectComponent.getName().equals(name));
     }
 
     public void initPropertiesFile(final File file) {
@@ -336,10 +336,6 @@ public abstract class GameObject {
     public void setY(final float y) {
 
         getPosition().setY(y);
-    }
-
-    public List<TouchingEvent> getTouchingEvents() {
-        return touchingEvents;
     }
 
     public List<GameObjectComponent> getComponents() {
