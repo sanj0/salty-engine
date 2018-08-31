@@ -8,7 +8,8 @@ package testing.dummys;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 import java.util.Random;
@@ -18,8 +19,8 @@ public class DummyGameObject extends GameObject {
     private Random random = new Random();
     private boolean makeMove = true;
 
-    public DummyGameObject(Coordinates coordinates) {
-        super(coordinates, 100, 100, "dumbest_game-object_ever");
+    public DummyGameObject(Vector2f position) {
+        super(position.getX(), position.getY(), 100, 100, "dumbest_game-object_ever");
     }
 
     @Override
@@ -48,7 +49,7 @@ public class DummyGameObject extends GameObject {
         if (makeMove)
             makeMeMove();
 
-        graphics.drawOval(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight());
+        graphics.drawOval(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt());
     }
 
     private void makeMeMove() {

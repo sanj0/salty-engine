@@ -10,16 +10,12 @@ import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
-import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
-import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
-import de.edgelord.saltyengine.ui.elements.Button;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Tester extends Game {
@@ -92,7 +88,7 @@ public class Tester extends Game {
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
-        final BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), Game.getDisplayManager(), new Coordinates(1, 1));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         bottomBird.getPhysics().removeGravity();
         upperBird.getPhysics().removeGravity();
@@ -109,10 +105,8 @@ public class Tester extends Game {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        final HugeImageRenderingTest hugeImageRenderingTest = new HugeImageRenderingTest(imageFactory.getImageResource("res/pictures/bg.png"), 1920, 1080);
-        final BirdPlayer player = new BirdPlayer(imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), Game.getDisplayManager(), new Coordinates(1, 1));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
-        StaticSystem.currentScene.addGameObject(hugeImageRenderingTest);
         StaticSystem.currentScene.addGameObject(player);
 
         final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");

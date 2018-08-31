@@ -1,7 +1,6 @@
 package testing;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.gameobject.components.RecalculateMiddleComponent;
 import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.ui.elements.Button;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -23,7 +22,6 @@ public class PauseButton extends Button {
         setForegroundColor(Color.white);
 
         this.addComponent(wobblingEffect);
-        addComponent(new RecalculateMiddleComponent(this, "tets"));
     }
 
     @Override

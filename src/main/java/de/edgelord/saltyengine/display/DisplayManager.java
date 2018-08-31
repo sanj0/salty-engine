@@ -10,8 +10,9 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.stage.Stage;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
@@ -168,16 +169,16 @@ public class DisplayManager {
         stage.scale(zoomX, zoomY);
     }
 
-    public int getHorizontalCenter(final int width) {
-        return (getWidth() / 2) - (width / 2);
+    public float getHorizontalCenter(final float width) {
+        return ((float) getWidth() / 2) - (width / 2);
     }
 
-    public int getVerticalCenter(final int height) {
-        return (getHeight() / 2) - (height / 2);
+    public float getVerticalCenter(final float height) {
+        return ((float) getHeight() / 2) - (height / 2);
     }
 
-    public Coordinates getCenter(final int width, final int height) {
-        return new Coordinates(getHorizontalCenter(width), getVerticalCenter(height));
+    public Vector2f getCenter(final float width, final float height) {
+        return new Vector2f(getHorizontalCenter(width), getVerticalCenter(height));
     }
 
     public void setDisplayKeyHandler(final DisplayKeyHandler displayKeyHandler) {

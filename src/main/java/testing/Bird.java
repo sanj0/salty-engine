@@ -12,9 +12,8 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
 import de.edgelord.saltyengine.gameobject.components.gfx.SceneFade;
-import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.gameobject.components.rendering.AnimationRender;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -32,10 +31,10 @@ public class Bird extends GameObject {
     private SceneFade fadeIn = new SceneFade(this, "sceneFade", SceneFade.Mode.FADE_IN);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
-        super(new Coordinates(xPos * 150, yPos * 101), 150, 101, "testing.bird");
+        super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
         animation = new Animation(this);
-        spritesheet = new Spritesheet(image, getWidth(), getHeight());
+        spritesheet = new Spritesheet(image, getWidthAsInt(), getHeightAsInt());
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
@@ -93,8 +92,6 @@ public class Bird extends GameObject {
     @Override
     public void draw(final Graphics2D graphics) {
 
-        // animation.drawCurrentFrame(graphics);
-
-        graphics.drawOval(getMiddle().getX(), getMiddle().getY(), 1, 1);
+        animation.drawCurrentFrame(graphics);
     }
 }

@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.sgs.segments;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.location.Vector2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.ScriptLine;
 import de.edgelord.saltyengine.sgs.ScriptSegment;

@@ -9,8 +9,10 @@ package de.edgelord.saltyengine.gameobject;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
-import de.edgelord.saltyengine.location.Coordinates;
-import de.edgelord.saltyengine.location.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
@@ -23,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public abstract class GameObject {
 
@@ -41,25 +42,21 @@ public abstract class GameObject {
 
     private Directions.Direction lastDirection = null;
 
-    private Coordinates coordinates;
-    private Coordinates middle;
-    private Vector2f position = new Vector2f(0, 0);
+    private Transform transform;
+    private Vector2f middle;
     private String tag;
-    private float width, height;
     private HashMap<String, String> properties = new HashMap<>();
     private File propertiesFile;
     private SimpleHitbox hitbox;
     private float mass = 1f;
 
-    public GameObject(final Coordinates coordinates, final float width, final float height, final String tag) {
-        this.coordinates = coordinates;
-        position.parseVector2f(coordinates);
-        this.width = width;
-        this.height = height;
+    public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
+
+        transform = new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
         this.tag = tag;
 
-        middle = new Coordinates(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
+        middle = new Vector2f(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
@@ -70,6 +67,18 @@ public abstract class GameObject {
         components.add(recalculateHitboxComponent);
         components.add(recalculateMiddleComponent);
         components.add(defaultAccelerator);
+    }
+
+    public GameObject(Transform transform, String tag) {
+        this(transform.getX(), transform.getY(), transform.getWidth(), transform.getHeight(), tag);
+    }
+
+    public GameObject(Coordinates coordinates, Dimensions dimensions, String tag) {
+        this(coordinates.getX(), coordinates.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
+    }
+
+    public GameObject(Vector2f position, Dimensions dimensions, String tag) {
+        this(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
     public abstract void initialize();
@@ -207,16 +216,16 @@ public abstract class GameObject {
         if (keyProperties.getContent().contains("location")) {
 
             final List<Integer> readenCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
-            setCoordinates(new Coordinates(readenCoordinates.get(0), readenCoordinates.get(1)));
+            setPosition(new Vector2f(readenCoordinates.get(0), readenCoordinates.get(1)));
         }
     }
 
     public void basicMove(final float delta, final Directions.BasicDirection direction) {
 
         if (direction == Directions.BasicDirection.x) {
-            position.setX(getX() + delta);
+            setX(getX() + delta);
         } else {
-            position.setY(getY() + delta);
+            setY(getY() + delta);
         }
     }
 
@@ -249,11 +258,11 @@ public abstract class GameObject {
     }
 
     public void moveY(final float delta) {
-        position.setY(getY() + delta);
+        transform.setY(getY() + delta);
     }
 
     public void moveX(final float delta) {
-        position.setX(getX() + delta);
+        transform.setX(getX() + delta);
     }
 
     public HashMap<String, String> getProperties() {
@@ -264,43 +273,32 @@ public abstract class GameObject {
         this.properties = properties;
     }
 
-    public void updateCoordinates() {
-
-        coordinates.parseCoordinates(position);
-    }
-
     public Coordinates getCoordinates() {
-        updateCoordinates();
-
-        return coordinates;
+        return transform.getCoordinates();
     }
 
-    public void setCoordinates(final Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public float getWidth() {
+        return transform.getWidth();
     }
 
-    public float getWidthExact() {
-        return width;
-    }
-
-    public int getWidth() {
-        return (int) width;
+    public int getWidthAsInt() {
+        return transform.getWidthAsInt();
     }
 
     public void setWidth(final float width) {
-        this.width = width;
+        transform.setWidth(width);
     }
 
-    public float getHeightExact() {
-        return height;
+    public float getHeight() {
+        return transform.getHeight();
     }
 
-    public int getHeight() {
-        return (int) height;
+    public int getHeightAsInt() {
+        return transform.getHeightAsInt();
     }
 
     public void setHeight(final float height) {
-        this.height = height;
+        transform.setHeight(height);
     }
 
     public SimpleHitbox getHitbox() {
@@ -312,11 +310,11 @@ public abstract class GameObject {
     }
 
     public Vector2f getPosition() {
-        return position;
+        return transform.getPosition();
     }
 
     public void setPosition(final Vector2f position) {
-        this.position = position;
+        transform.setPosition(position);
     }
 
     public float getX() {
@@ -362,11 +360,16 @@ public abstract class GameObject {
         this.tag = tag;
     }
 
-    public Coordinates getMiddle() {
+    public Vector2f getMiddle() {
         return middle;
     }
 
-    public void setMiddle(final Coordinates middle) {
+    /**
+     * WARNING!! THIS METHOD WON'T PLACE THE GAMEOBJECT BY ITS MIDDLE BUT SET THE MIDDLE WITHOUT CHANGING THE POSITION!
+     * Usually, you should not call this method manually!
+     * @param middle the new middle
+     */
+    public void setMiddle(final Vector2f middle) {
         this.middle = middle;
     }
 

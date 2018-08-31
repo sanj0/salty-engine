@@ -9,15 +9,14 @@ package de.edgelord.saltyengine.gameobject.components;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
-import de.edgelord.saltyengine.location.Coordinates;
-import de.edgelord.saltyengine.location.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 
 public class RecalculateMiddleComponent extends GameObjectComponent {
 
     private Vector2f exactMiddle = new Vector2f(0, 0);
-    private Coordinates middle = new Coordinates(0, 0);
 
 
     public RecalculateMiddleComponent(GameObject parent, String name) {
@@ -28,7 +27,7 @@ public class RecalculateMiddleComponent extends GameObjectComponent {
     public void onFixedTick() {
 
         calculateMiddle();
-        getParent().setMiddle(middle);
+        getParent().setMiddle(exactMiddle);
     }
 
     @Override
@@ -45,11 +44,5 @@ public class RecalculateMiddleComponent extends GameObjectComponent {
 
         exactMiddle.setX(getParent().getX() + (getParent().getWidth() / 2));
         exactMiddle.setY(getParent().getY() + (getParent().getHeight() / 2));
-
-        middle.parseCoordinates(exactMiddle);
-    }
-
-    public Vector2f getExactMiddle() {
-        return exactMiddle;
     }
 }

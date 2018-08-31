@@ -7,11 +7,11 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.layer.Layer;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public class DummyLayer extends Layer {
 
-    DummyGameObject dummyGameObject = new DummyGameObject(new Coordinates(500, 500));
+    DummyGameObject dummyGameObject = new DummyGameObject(new Vector2f(500, 500));
 
     public DummyLayer(float speed) {
         super(speed);

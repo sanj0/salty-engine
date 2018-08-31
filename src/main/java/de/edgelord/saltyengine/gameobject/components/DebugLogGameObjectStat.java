@@ -26,8 +26,8 @@ public class DebugLogGameObjectStat extends GameObjectComponent {
         System.out.println();
         System.out.println("x position = " + getParent().getX());
         System.out.println("y position = " + getParent().getY());
-        System.out.println("width = " + getParent().getWidth() + " <exact = " + getParent().getWidthExact() + ">");
-        System.out.println("height = " + getParent().getHeight() + " <exact = " + getParent().getHeightExact() + ">");
+        System.out.println("width = " + getParent().getWidthAsInt() + " <exact = " + getParent().getWidth() + ">");
+        System.out.println("height = " + getParent().getHeightAsInt() + " <exact = " + getParent().getHeight() + ">");
 
         System.out.println("-----");
         System.out.println("Components (" + getParent().getComponents().size() + "):");

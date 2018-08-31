@@ -8,7 +8,7 @@ package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -19,12 +19,11 @@ public abstract class UIElement extends GameObject {
 
     private Font font = StaticSystem.font;
 
-    public UIElement(Coordinates coordinates, int width, int height) {
-        super(coordinates, width, height, "UIElement");
+    public UIElement(Vector2f position, float width, float height) {
+        super(position.getX(), position.getY(), width, height, "UIElement");
 
         removeComponent(DEFAULT_PHYSICS_NAME);
         removeComponent(DEFAULT_RECALCULATE_HITBOX_NAME);
-        removeComponent(DEFAULT_RECALCULATE_MIDDLE_NAME);
         removeComponent(DEFAULT_ACCELERATOR_NAME);
     }
 

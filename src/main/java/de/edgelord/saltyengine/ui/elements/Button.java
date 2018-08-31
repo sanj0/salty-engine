@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
@@ -21,8 +21,8 @@ public abstract class Button extends UIElement {
     private Color foregroundColor = Color.black;
     private int arc = 15;
 
-    public Button(String text, Coordinates coordinates, int width, int height) {
-        super(coordinates, width, height);
+    public Button(String text, Vector2f position, int width, int height) {
+        super(position, width, height);
 
         this.text = text;
 
@@ -52,7 +52,7 @@ public abstract class Button extends UIElement {
 
         graphics.setColor(backgroundColor);
 
-        graphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight(), arc, arc);
+        graphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), arc, arc);
     }
 
     public abstract void onClick(MouseEvent e);

@@ -34,7 +34,7 @@ public class Animation {
 
     public void drawCurrentFrame(Graphics2D graphics) {
 
-        frames.get(currentFrame).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidth(), parentGameObject.getHeight());
+        frames.get(currentFrame).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidthAsInt(), parentGameObject.getHeightAsInt());
     }
 
     public void drawCurrentFrame(Graphics2D graphics, AffineTransform transform) {
@@ -43,7 +43,7 @@ public class Animation {
     }
 
     public void resetFrameNumber() {
-
+        currentFrame = 0;
     }
 
     public void nextFrame() {
@@ -94,7 +94,7 @@ public class Animation {
 
         if (getFrames().size() != currentFrameNumber) {
 
-            getFrames().get(currentFrameNumber).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidth(), parentGameObject.getHeight());
+            getFrames().get(currentFrameNumber).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidthAsInt(), parentGameObject.getHeightAsInt());
 
             currentFrameNumber++;
         } else {

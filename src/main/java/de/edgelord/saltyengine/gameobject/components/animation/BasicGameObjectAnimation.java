@@ -59,11 +59,11 @@ public class BasicGameObjectAnimation extends GameObjectComponent {
         switch (control) {
 
             case width:
-                getParent().setWidth(getParent().getWidthExact() + delta);
+                getParent().setWidth(getParent().getWidth() + delta);
                 getParent().getHitbox().setWidth(getParent().getHitbox().getWidthExact() + delta);
                 break;
             case height:
-                getParent().setHeight(getParent().getHeightExact() + delta);
+                getParent().setHeight(getParent().getHeight() + delta);
                 getParent().getHitbox().setHeight(getParent().getHitbox().getHeightExact() + delta);
                 break;
             case xPos:

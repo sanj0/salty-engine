@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.hitbox;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.location.Vector2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public class SimpleHitbox implements Hitbox {
 

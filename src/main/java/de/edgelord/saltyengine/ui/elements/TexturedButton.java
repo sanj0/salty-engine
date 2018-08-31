@@ -6,7 +6,8 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -17,8 +18,8 @@ public abstract class TexturedButton extends Button {
     private boolean drawText = true;
     private BufferedImage texture;
 
-    public TexturedButton(String text, Coordinates coordinates, int width, int height, BufferedImage texture) {
-        super(text, coordinates, width, height);
+    public TexturedButton(String text, Vector2f position, int width, int height, BufferedImage texture) {
+        super(text, position, width, height);
 
         this.texture = texture;
     }
@@ -34,7 +35,7 @@ public abstract class TexturedButton extends Button {
 
     @Override
     public void drawButton(Graphics2D graphics) {
-        graphics.drawImage(texture, getCoordinates().getX(), getCoordinates().getY(), getWidth(), getHeight(), null);
+        graphics.drawImage(texture, getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), null);
     }
 
     public abstract void onClick(MouseEvent e);

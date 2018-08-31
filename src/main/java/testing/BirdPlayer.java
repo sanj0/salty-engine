@@ -15,7 +15,8 @@ import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
 import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectAnimation;
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -33,15 +34,13 @@ public class BirdPlayer extends GameObject {
     private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
 
-    public BirdPlayer(final BufferedImage spriteSheetImage, final DisplayManager displayManager, final Coordinates coordinates) {
-        super(coordinates, 0, 0, "testing.birdPlayer");
+    public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
+        super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
 
         addComponent(animationTiming);
         addComponent(soundTiming);
-        addComponent(new DrawPositionComponent(this, "drawPositionDev"));
-        // addComponent(new DrawHitboxComponent(this, "drawHitboxDev"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
@@ -152,6 +151,5 @@ public class BirdPlayer extends GameObject {
     public void draw(final Graphics2D graphics) {
 
         animation.drawCurrentFrame(graphics);
-        graphics.drawOval(getMiddle().getX(), getMiddle().getY(), 1, 1);
     }
 }

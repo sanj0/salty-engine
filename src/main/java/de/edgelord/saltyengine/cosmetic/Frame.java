@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.cosmetic;
 
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -52,6 +52,8 @@ public class Frame implements Cosmetic {
 
     @Override
     public void draw(Graphics2D graphics, Coordinates coordinates, int width, int height) {
+
+        System.out.println("width = " + width);
 
         if (getAutomaticMode() == Mode.image) {
 

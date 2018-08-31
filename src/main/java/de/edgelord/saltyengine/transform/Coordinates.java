@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.location;
+package de.edgelord.saltyengine.transform;
 
 public class Coordinates {
 

@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.location;
+package de.edgelord.saltyengine.transform;
 
 public class Vector2f {
 
@@ -34,7 +34,7 @@ public class Vector2f {
 
     public Coordinates convertToCoordinates() {
 
-        return new Coordinates(Integer.parseInt(String.valueOf(getX())), Integer.parseInt(String.valueOf(getY())));
+        return new Coordinates((int) getX(), (int) getY());
     }
 
     public void parseVector2f(Coordinates coordinates) {

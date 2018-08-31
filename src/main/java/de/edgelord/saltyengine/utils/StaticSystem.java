@@ -6,9 +6,11 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Keyboard;
 import de.edgelord.saltyengine.layer.LayerCollection;
 import de.edgelord.saltyengine.output.Output;
+import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
 import testing.dummys.DummyLayerCollection;
 import testing.dummys.DummyScene;
@@ -27,6 +29,8 @@ public class StaticSystem {
     public static long fixedTickMillis = 1;
     public static boolean paused = false;
     public static boolean withExperimentalFeatures = false;
+
+    public static ImageFactory defaultImageFactory = new ImageFactory(new InnerResource());
 
     public static boolean inputUp = false;
     public static boolean inputDown = false;

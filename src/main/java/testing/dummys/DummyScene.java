@@ -6,14 +6,14 @@
 
 package testing.dummys;
 
-import de.edgelord.saltyengine.location.Coordinates;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public class DummyScene extends Scene {
 
     public DummyScene() {
 
-        DummyGameObject dummyGameObject = new DummyGameObject(new Coordinates(550, 425));
+        DummyGameObject dummyGameObject = new DummyGameObject(new Vector2f(550, 425));
         dummyGameObject.setMakeMove(false);
 
         //addGameObject(dummyGameObject);

@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.cosmetic;
 
-import de.edgelord.saltyengine.location.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates;
 
 import java.awt.*;
 

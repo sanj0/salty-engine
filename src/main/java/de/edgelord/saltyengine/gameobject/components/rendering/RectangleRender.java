@@ -22,9 +22,9 @@ public class RectangleRender extends SimpleRenderComponent {
         setUpGraphics(graphics);
 
         if (isFill()) {
-            graphics.fillRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidth(), getParent().getHeight());
+            graphics.fillRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
         } else {
-            graphics.drawRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidth(), getParent().getHeight());
+            graphics.drawRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
         }
     }
 }

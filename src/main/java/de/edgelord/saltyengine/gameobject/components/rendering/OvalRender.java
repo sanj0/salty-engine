@@ -28,9 +28,9 @@ public class OvalRender extends SimpleRenderComponent {
         setUpGraphics(graphics);
 
         if (isFill()) {
-            graphics.fillOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidth(), getParent().getHeight());
+            graphics.fillOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
         } else {
-            graphics.drawOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidth(), getParent().getHeight());
+            graphics.drawOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
         }
     }
 }

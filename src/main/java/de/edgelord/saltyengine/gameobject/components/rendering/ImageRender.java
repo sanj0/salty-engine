@@ -35,6 +35,6 @@ public class ImageRender extends SimpleRenderComponent {
     public void draw(Graphics2D graphics) {
 
         // Draw the image
-        graphics.drawImage(image, getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidth(), getParent().getHeight(), null);
+        graphics.drawImage(image, getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt(), null);
     }
 }
