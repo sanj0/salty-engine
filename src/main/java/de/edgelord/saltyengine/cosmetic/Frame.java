@@ -52,9 +52,6 @@ public class Frame implements Cosmetic {
 
     @Override
     public void draw(Graphics2D graphics, Coordinates coordinates, int width, int height) {
-
-        System.out.println("width = " + width);
-
         if (getAutomaticMode() == Mode.image) {
 
             graphics.drawImage(image, coordinates.getX(), coordinates.getY(), width, height, null);

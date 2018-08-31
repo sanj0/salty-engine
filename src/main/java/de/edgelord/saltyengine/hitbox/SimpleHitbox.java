@@ -7,53 +7,48 @@
 package de.edgelord.saltyengine.hitbox;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 public class SimpleHitbox implements Hitbox {
 
     private final GameObject parent;
-    private Vector2f position;
+    private Transform transform;
     private float offsetX, offsetY;
-    private float width, height;
 
     public SimpleHitbox(final GameObject parent, final float width, final float height, final float offsetX, final float offsetY) {
 
         this.parent = parent;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        this.width = width;
-        this.height = height;
 
-        final float parentXPos = parent.getPosition().getX();
-        final float parentYPos = parent.getPosition().getY();
-
-        position = new Vector2f(parentXPos + offsetX, parentYPos + offsetY);
-
+        this.transform = new Transform(new Vector2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
     }
 
     public void recalculate() {
 
-        position = new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY);
+        transform.setPosition(new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
     }
 
     public boolean isLeft(final GameObject other) {
 
-        return position.getX() + getWidth() < other.getHitbox().getPosition().getX();
+        return transform.getX() + getWidth() < other.getHitbox().getPosition().getX();
     }
 
     public boolean isRight(final GameObject other) {
 
-        return position.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
+        return transform.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
     }
 
     public boolean isBelow(final GameObject other) {
 
-        return position.getY() > other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
+        return transform.getY() > other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
     }
 
     public boolean isAbove(final GameObject other) {
 
-        return position.getY() + getHeight() < other.getHitbox().getPosition().getY();
+        return transform.getY() + getHeight() < other.getHitbox().getPosition().getY();
     }
 
     @Override
@@ -88,35 +83,35 @@ public class SimpleHitbox implements Hitbox {
     }
 
     public Vector2f getPosition() {
-        return position;
+        return transform.getPosition();
     }
 
     public void setPosition(final Vector2f position) {
-        this.position = position;
+        this.transform.setPosition(position);
     }
 
     public float getWidthExact() {
-        return width;
+        return transform.getWidth();
     }
 
     public int getWidth() {
-        return (int) width;
+        return transform.getWidthAsInt();
     }
 
     public void setWidth(final float width) {
-        this.width = width;
+        this.transform.setWidth(width);
     }
 
     public float getHeightExact() {
-        return height;
+        return transform.getHeight();
     }
 
     public int getHeight() {
-        return (int) height;
+        return transform.getHeightAsInt();
     }
 
     public void setHeight(final float height) {
-        this.height = height;
+        this.transform.setHeight(height);
     }
 
     public GameObject getParent() {
