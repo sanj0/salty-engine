@@ -53,7 +53,7 @@ public abstract class Button extends UIElement {
 
         saltyGraphics.setColor(backgroundColor);
 
-        saltyGraphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), arc, arc);
+        saltyGraphics.fillRoundRect(getX(), getY(), getWidth(), getHeight(), arc, arc);
     }
 
     public abstract void onClick(MouseEvent e);

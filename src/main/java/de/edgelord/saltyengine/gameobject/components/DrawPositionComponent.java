@@ -30,11 +30,11 @@ public class DrawPositionComponent extends GameObjectComponent {
         saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         saltyGraphics.setColor(Color.BLACK);
 
-        saltyGraphics.drawText(String.valueOf(getParent().getX()), getParent().getCoordinates().getX(), getParent().getCoordinates().getY() - 5);
+        saltyGraphics.drawText(String.valueOf(getParent().getX()), getParent().getX(), getParent().getY() - 5);
 
         String yPosition = String.valueOf(getParent().getY());
 
-        saltyGraphics.drawText(yPosition, getParent().getCoordinates().getX() - (yPosition.length() * 7), getParent().getCoordinates().getY() + 25);
+        saltyGraphics.drawText(yPosition, getParent().getX() - (yPosition.length() * 7), getParent().getY() + 25);
     }
 
     @Override
