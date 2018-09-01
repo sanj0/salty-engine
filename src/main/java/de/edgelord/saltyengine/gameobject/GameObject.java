@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.components.*;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -89,7 +90,7 @@ public abstract class GameObject {
 
     public abstract void onTick();
 
-    public abstract void draw(Graphics2D graphics);
+    public abstract void draw(SaltyGraphics saltyGraphics);
 
     /**
      * This method can be overridden but It's not necessary and you won't need this nearly always, so it's not abstract
@@ -114,12 +115,12 @@ public abstract class GameObject {
         }
     }
 
-    public void doComponentDrawing(final Graphics2D graphics) {
+    public void doComponentDrawing(final SaltyGraphics saltyGraphics) {
 
         for (final GameObjectComponent gameObjectComponent : components) {
 
             if (gameObjectComponent.isEnabled()) {
-                gameObjectComponent.draw(graphics);
+                gameObjectComponent.draw(saltyGraphics);
             }
         }
     }
@@ -387,5 +388,13 @@ public abstract class GameObject {
 
     public void setLastDirection(final Directions.Direction lastDirection) {
         this.lastDirection = lastDirection;
+    }
+
+    public Transform getTransform() {
+        return transform;
+    }
+
+    public void setTransform(Transform transform) {
+        this.transform = transform;
     }
 }

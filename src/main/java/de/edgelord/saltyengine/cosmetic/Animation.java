@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.cosmetic;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -32,9 +33,9 @@ public class Animation {
         this.frames = frames;
     }
 
-    public void drawCurrentFrame(Graphics2D graphics) {
+    public void drawCurrentFrame(SaltyGraphics saltyGraphics) {
 
-        frames.get(currentFrame).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidthAsInt(), parentGameObject.getHeightAsInt());
+        frames.get(currentFrame).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
     }
 
     public void drawCurrentFrame(Graphics2D graphics, AffineTransform transform) {
@@ -67,34 +68,34 @@ public class Animation {
     }
 
     @Deprecated
-    public void loop(Graphics2D graphics) {
+    public void loop(SaltyGraphics saltyGraphics) {
 
         if (getFrames().size() == currentFrameNumber) {
 
-            restartAnimation(graphics);
+            restartAnimation(saltyGraphics);
         } else {
 
-            draw(graphics);
+            draw(saltyGraphics);
         }
     }
 
     @Deprecated
-    public void restartAnimation(Graphics2D graphics) {
+    public void restartAnimation(SaltyGraphics saltyGraphics) {
 
         if (currentFrameNumber != 0) {
 
             currentFrameNumber = 0;
         }
 
-        draw(graphics);
+        draw(saltyGraphics);
     }
 
     @Deprecated
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         if (getFrames().size() != currentFrameNumber) {
 
-            getFrames().get(currentFrameNumber).draw(graphics, parentGameObject.getCoordinates(), parentGameObject.getWidthAsInt(), parentGameObject.getHeightAsInt());
+            getFrames().get(currentFrameNumber).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
 
             currentFrameNumber++;
         } else {

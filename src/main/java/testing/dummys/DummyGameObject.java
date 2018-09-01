@@ -8,6 +8,7 @@ package testing.dummys;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 
@@ -36,6 +37,8 @@ public class DummyGameObject extends GameObject {
     @Override
     public void onFixedTick() {
 
+        if (makeMove)
+            makeMeMove();
     }
 
     @Override
@@ -44,12 +47,9 @@ public class DummyGameObject extends GameObject {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        if (makeMove)
-            makeMeMove();
-
-        graphics.drawOval(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt());
+        saltyGraphics.drawOval(getX(), getCoordinates().getY(), getWidth(), getHeight());
     }
 
     private void makeMeMove() {

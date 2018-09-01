@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject.components.rendering;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -53,17 +54,17 @@ public class AnimationRender extends SimpleRenderComponent {
     /**
      * Draws the current frame of the animation
      *
-     * @param graphics the Graphics2D to which the component should draw
+     * @param saltyGraphics the SaltyGraphics to which the component should draw
      * @see #onFixedTick()
      * @see #animation
      * @see GameObjectComponent
      */
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         if (isEnabled()) {
             if (animation != null) {
-                animation.drawCurrentFrame(graphics);
+                animation.drawCurrentFrame(saltyGraphics);
             }
         }
     }

@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
@@ -30,29 +31,29 @@ public abstract class Button extends UIElement {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        drawButton(graphics);
-        drawText(graphics);
+        drawButton(saltyGraphics);
+        drawText(saltyGraphics);
     }
 
-    public void drawText(Graphics2D graphics) {
+    public void drawText(SaltyGraphics saltyGraphics) {
 
-        graphics.setFont(getFont());
+        saltyGraphics.setFont(getFont());
 
-        textWidth = graphics.getFontMetrics(getFont()).stringWidth(text);
-        textHeight = graphics.getFontMetrics(getFont()).getAscent();
+        textWidth = saltyGraphics.getFontMetrics().stringWidth(text);
+        textHeight = saltyGraphics.getFontMetrics().getAscent();
 
-        graphics.setColor(foregroundColor);
+        saltyGraphics.setColor(foregroundColor);
 
-        graphics.drawString(text, getCoordinates().getX() + ((getWidth() - textWidth) / 2), getCoordinates().getY() + ((getHeight() + textHeight) / 2));
+        saltyGraphics.drawText(text, getX() + ((getWidth() - textWidth) / 2), getY() + ((getHeight() + textHeight) / 2));
     }
 
-    public void drawButton(Graphics2D graphics) {
+    public void drawButton(SaltyGraphics saltyGraphics) {
 
-        graphics.setColor(backgroundColor);
+        saltyGraphics.setColor(backgroundColor);
 
-        graphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), arc, arc);
+        saltyGraphics.fillRoundRect(getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), arc, arc);
     }
 
     public abstract void onClick(MouseEvent e);

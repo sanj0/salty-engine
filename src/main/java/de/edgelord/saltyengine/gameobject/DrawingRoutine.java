@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import java.awt.*;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 public abstract class DrawingRoutine {
 
@@ -18,7 +18,7 @@ public abstract class DrawingRoutine {
         this.drawingPosition = drawingPosition;
     }
 
-    public abstract void draw(Graphics2D graphics2D);
+    public abstract void draw(SaltyGraphics saltyGraphics);
 
     public DrawingPosition getDrawingPosition() {
         return drawingPosition;

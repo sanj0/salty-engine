@@ -6,7 +6,9 @@
 
 package de.edgelord.saltyengine.cosmetic;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -51,10 +53,10 @@ public class Frame implements Cosmetic {
     }
 
     @Override
-    public void draw(Graphics2D graphics, Coordinates coordinates, int width, int height) {
+    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
         if (getAutomaticMode() == Mode.image) {
 
-            graphics.drawImage(image, coordinates.getX(), coordinates.getY(), width, height, null);
+            saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
         } else {
 
             //advancedCosmetics.draw(graphics, coordinates);

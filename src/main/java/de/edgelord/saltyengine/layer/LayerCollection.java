@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.layer;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
@@ -73,10 +74,10 @@ public class LayerCollection {
         }
     }
 
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         for (Layer layer : layers)
-            layer.draw(graphics);
+            layer.draw(saltyGraphics);
     }
 
     public void resetPositionOfAllLayers() {

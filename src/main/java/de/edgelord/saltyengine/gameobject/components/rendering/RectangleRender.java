@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -17,14 +18,14 @@ public class RectangleRender extends SimpleRenderComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        setUpGraphics(graphics);
+        setUpGraphics(saltyGraphics);
 
         if (isFill()) {
-            graphics.fillRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
+            saltyGraphics.fillRect(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
         } else {
-            graphics.drawRect(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
+            saltyGraphics.drawRect(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
         }
     }
 }

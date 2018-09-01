@@ -6,11 +6,13 @@
 
 package de.edgelord.saltyengine.cosmetic;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 
 public interface Cosmetic {
 
-    void draw(Graphics2D graphics, Coordinates coordinates, int width, int height);
+    void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 }

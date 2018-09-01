@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -44,7 +45,7 @@ public abstract class UIElement extends GameObject {
     public void onTick() {
     }
 
-    public abstract void draw(Graphics2D graphics);
+    public abstract void draw(SaltyGraphics saltyGraphics);
 
     public abstract void mousePressed(MouseEvent e);
 

@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.stage;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.display.Display;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -147,19 +148,19 @@ public class Stage extends Canvas {
         startNanos = Time.getDeltaNanos();
 
         if (!doubleBufferCreated) {
-            createBufferStrategy(2);
+            createBufferStrategy(3);
             doubleBufferCreated = true;
         }
 
         final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
 
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
-
         graphics2D.setRenderingHints(renderingHints);
-
         graphics2D.scale(currentZoomX, currentZoomY);
 
-        engine.render(graphics2D);
+        SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
+
+        engine.render(saltyGraphics);
 
         // Compute fps
 

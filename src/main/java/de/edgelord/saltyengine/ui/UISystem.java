@@ -6,6 +6,8 @@
 
 package de.edgelord.saltyengine.ui;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -16,10 +18,10 @@ public class UISystem {
 
     private List<UIElement> elements = new LinkedList<>();
 
-    public void drawUI(Graphics2D graphics) {
+    public void drawUI(SaltyGraphics saltyGraphics) {
         for (UIElement element : elements) {
-            element.draw(graphics);
-            element.doComponentDrawing(graphics);
+            element.draw(saltyGraphics);
+            element.doComponentDrawing(saltyGraphics);
         }
     }
 

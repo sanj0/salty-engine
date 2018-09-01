@@ -35,6 +35,7 @@ public class VarsSegment extends ScriptSegment {
      * The standard constructor with all necessary parameters
      *
      * @param content the complete content of the segment
+     * @param resource the Resource Manager from which to take e.g. requested Images
      */
     public VarsSegment(String content, Resource resource) {
         super(content, ScriptSegment.Type.vars);

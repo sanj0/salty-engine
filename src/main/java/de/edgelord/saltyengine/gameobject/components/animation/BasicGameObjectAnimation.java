@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject.components.animation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -76,7 +77,7 @@ public class BasicGameObjectAnimation extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
     }
 

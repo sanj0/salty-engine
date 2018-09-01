@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject.components.rendering;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -45,11 +46,11 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * Any classes extending SimpleRenderComponent has to override this method
      * for drawing e.g. a primitives like a Rectangle in RectangleRender
      *
-     * @param graphics the Graphics2D to which the component should draw
+     * @param saltyGraphics the SaltyGraphics to which the component should draw
      * @see GameObjectComponent
      */
     @Override
-    public abstract void draw(Graphics2D graphics);
+    public abstract void draw(SaltyGraphics saltyGraphics);
 
     @Override
     public void onCollision(final CollisionEvent e) {
@@ -62,13 +63,13 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * Sets the color and stroke of the given Graphics2D to the ones set UP in this class
      * So the user can always control how the component should render the primitives.
      *
-     * @param graphics the Graphics2D which should be given the values
+     * @param saltyGraphics the SaltyGraphics which should be prepared
      * @see Graphics2D
      */
-    protected void setUpGraphics(final Graphics2D graphics) {
+    protected void setUpGraphics(final SaltyGraphics saltyGraphics) {
 
-        graphics.setColor(getColor());
-        graphics.setStroke(getStroke());
+        saltyGraphics.setColor(getColor());
+        saltyGraphics.setStroke(getStroke());
     }
 
     public Color getColor() {

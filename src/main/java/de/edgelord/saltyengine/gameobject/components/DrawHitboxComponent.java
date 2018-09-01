@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject.components;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -24,11 +25,11 @@ public class DrawHitboxComponent extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        graphics.setColor(new Color(1, 0, 0, 0.25f));
+        saltyGraphics.setColor(new Color(1, 0, 0, 0.25f));
 
-        graphics.fillRect((int) getParent().getHitbox().getPosition().getX(), (int) getParent().getHitbox().getPosition().getY(), getParent().getHitbox().getWidth(), getParent().getHitbox().getHeight());
+        saltyGraphics.fillRect(getParent().getHitbox().getPosition().getX(), getParent().getHitbox().getPosition().getY(), getParent().getHitbox().getWidthExact(), getParent().getHitbox().getHeightExact());
     }
 
     @Override

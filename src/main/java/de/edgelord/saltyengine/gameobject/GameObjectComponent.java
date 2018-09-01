@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -45,7 +46,7 @@ public abstract class GameObjectComponent {
 
     public abstract void onFixedTick();
 
-    public abstract void draw(Graphics2D graphics);
+    public abstract void draw(SaltyGraphics saltyGraphics);
 
     public abstract void onCollision(CollisionEvent e);
 

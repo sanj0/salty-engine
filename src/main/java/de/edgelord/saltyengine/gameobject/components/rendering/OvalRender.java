@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -23,14 +24,14 @@ public class OvalRender extends SimpleRenderComponent {
     }
 
     @Override
-    public void draw(final Graphics2D graphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
-        setUpGraphics(graphics);
+        setUpGraphics(saltyGraphics);
 
         if (isFill()) {
-            graphics.fillOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
+            saltyGraphics.fillOval(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
         } else {
-            graphics.drawOval(getParent().getCoordinates().getX(), getParent().getCoordinates().getY(), getParent().getWidthAsInt(), getParent().getHeightAsInt());
+            saltyGraphics.drawOval(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
         }
     }
 }

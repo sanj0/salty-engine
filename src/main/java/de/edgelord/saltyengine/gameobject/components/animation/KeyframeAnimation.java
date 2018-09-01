@@ -39,7 +39,7 @@ public class KeyframeAnimation {
     /**
      * Important: This method only returns a delta value!
      *
-     * @return
+     * @return the next delta-step of the linear keyframe animation
      */
     public float nextDelta() {
 

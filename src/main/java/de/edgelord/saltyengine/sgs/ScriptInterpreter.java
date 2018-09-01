@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.sgs;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.segments.*;
 
@@ -70,6 +71,7 @@ public class ScriptInterpreter extends GameObjectComponent {
      * by getting subStrings out of the script, beginning with the IN and ending with the OUT (e.g. -vars and --vars)
      *
      * @param script the script which the new Interpreter should stand for
+     * @param resource the Resource manager from which to load e.g. images that are requested by the script
      * @param parent the parent GameObject for this Component
      * @param name   the id-name for this Component
      * @return the new ScriptInterpreter
@@ -91,7 +93,7 @@ public class ScriptInterpreter extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
     }
 

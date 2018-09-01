@@ -3,6 +3,7 @@ package de.edgelord.saltyengine.gameobject.components;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -57,10 +58,10 @@ public class DebugLogGameObjectStat extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        graphics.setColor(Color.RED);
-        graphics.fillOval((int) (getParent().getX() - 20), (int) (getParent().getY()) - 20, 20, 20);
+        saltyGraphics.setColor(Color.RED);
+        saltyGraphics.fillOval(getParent().getX() - 20, getParent().getY() - 20, 20, 20);
     }
 
     @Override

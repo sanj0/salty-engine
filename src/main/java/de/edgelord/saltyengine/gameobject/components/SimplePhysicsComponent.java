@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -78,7 +79,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     }
 
     @Override
-    public void draw(final Graphics2D graphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 

@@ -5,6 +5,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.animation.KeyframeAnimation;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -30,8 +31,8 @@ public class SceneFade extends GFXComponent {
 
         fadeDraw = new DrawingRoutine(DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
             @Override
-            public void draw(Graphics2D graphics2D) {
-                drawFade(graphics2D);
+            public void draw(SaltyGraphics saltyGraphics) {
+                drawFade(saltyGraphics);
             }
         };
         StaticSystem.currentScene.addDrawingRoutin(fadeDraw);
@@ -74,10 +75,10 @@ public class SceneFade extends GFXComponent {
         startGFX();
     }
 
-    private void drawFade(Graphics2D graphics) {
-        graphics.setColor(currentColor);
+    private void drawFade(SaltyGraphics saltyGraphics) {
+        saltyGraphics.setColor(currentColor);
 
-        graphics.fillRect(0, 0, Game.getDisplayManager().getWidth(), Game.getDisplayManager().getHeight());
+        saltyGraphics.fillRect(0, 0, Game.getDisplayManager().getWidth(), Game.getDisplayManager().getHeight());
     }
 
     @Override
@@ -106,7 +107,7 @@ public class SceneFade extends GFXComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
     }
 

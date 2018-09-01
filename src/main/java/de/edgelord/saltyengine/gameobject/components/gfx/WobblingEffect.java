@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.gameobject.components.gfx;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 import java.util.Random;
@@ -129,7 +130,7 @@ public class WobblingEffect extends GFXComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         // This effect actually only uses the onFixedTick, because it only needs to change some values
     }

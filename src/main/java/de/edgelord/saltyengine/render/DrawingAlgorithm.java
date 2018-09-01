@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.render;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.layer.LayerCollection;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -54,22 +55,22 @@ public class DrawingAlgorithm {
         this.mode = mode;
     }
 
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         if (mode == Mode.scene) {
-            StaticSystem.currentScene.draw(graphics);
+            StaticSystem.currentScene.draw(saltyGraphics);
         }
 
         if (mode == Mode.layerCollection) {
-            StaticSystem.currentLayerCollection.draw(graphics);
+            StaticSystem.currentLayerCollection.draw(saltyGraphics);
         }
 
         if (mode == Mode.messages)
-            drawMessages(graphics);
+            drawMessages(saltyGraphics);
         if (mode == Mode.crackBrained)
-            crackBrainedBalls(graphics);
+            crackBrainedBalls(saltyGraphics);
         if (mode == Mode.crazy)
-            crazyBalls(graphics);
+            crazyBalls(saltyGraphics);
     }
 
     public Mode getMode() {
@@ -80,7 +81,7 @@ public class DrawingAlgorithm {
         this.mode = mode;
     }
 
-    private void crackBrainedBalls(Graphics2D graphics) {
+    private void crackBrainedBalls(SaltyGraphics saltyGraphics) {
 
         int x = 0;
         int y = 0;
@@ -88,8 +89,8 @@ public class DrawingAlgorithm {
 
         while (goOn) {
 
-            graphics.setColor(colors[random.nextInt(9)]);
-            graphics.fillOval(x, y, 100, 100);
+            saltyGraphics.setColor(colors[random.nextInt(9)]);
+            saltyGraphics.fillOval(x, y, 100, 100);
 
             if (x == 1100) {
 
@@ -108,24 +109,24 @@ public class DrawingAlgorithm {
         }
     }
 
-    private void crazyBalls(Graphics2D graphics) {
+    private void crazyBalls(SaltyGraphics saltyGraphics) {
 
-        graphics.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
-        graphics.setColor(colors[random.nextInt(9)]);
+        saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+        saltyGraphics.setColor(colors[random.nextInt(9)]);
 
-        graphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        graphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        graphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        graphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        graphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
     }
 
-    public void drawMessages(Graphics2D graphics) {
+    public void drawMessages(SaltyGraphics saltyGraphics) {
 
-        graphics.setColor(Color.BLACK);
-        graphics.setFont(new Font(Font.SERIF, 0, 30));
+        saltyGraphics.setColor(Color.BLACK);
+        saltyGraphics.setFont(new Font(Font.SERIF, 0, 30));
 
-        graphics.drawString(messages[index], 100, 100);
+        saltyGraphics.drawText(messages[index], 100, 100);
 
         System.out.println("saltyengine 0.0.2 > DrawingAlgorithm > \"Current mode is messages and current message is " + messages[index] + "\"");
 

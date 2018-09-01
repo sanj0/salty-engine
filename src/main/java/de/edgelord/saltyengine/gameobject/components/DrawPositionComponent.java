@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject.components;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
@@ -24,16 +25,16 @@ public class DrawPositionComponent extends GameObjectComponent {
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
-        graphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
-        graphics.setColor(Color.BLACK);
+        saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
+        saltyGraphics.setColor(Color.BLACK);
 
-        graphics.drawString(String.valueOf(getParent().getX()), getParent().getCoordinates().getX(), getParent().getCoordinates().getY() - 5);
+        saltyGraphics.drawText(String.valueOf(getParent().getX()), getParent().getCoordinates().getX(), getParent().getCoordinates().getY() - 5);
 
         String yPosition = String.valueOf(getParent().getY());
 
-        graphics.drawString(yPosition, getParent().getCoordinates().getX() - (yPosition.length() * 7), getParent().getCoordinates().getY() + 25);
+        saltyGraphics.drawText(yPosition, getParent().getCoordinates().getX() - (yPosition.length() * 7), getParent().getCoordinates().getY() + 25);
     }
 
     @Override

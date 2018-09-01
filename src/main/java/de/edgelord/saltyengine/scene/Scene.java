@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.ui.UIElement;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.utils.Directions;
@@ -80,28 +81,28 @@ public class Scene {
         gameObjects.add(gameObject);
     }
 
-    public void draw(Graphics2D graphics) {
+    public void draw(SaltyGraphics saltyGraphics) {
 
         synchronized (getGameObjects()) {
 
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
-                    drawingRoutine.draw(graphics);
+                    drawingRoutine.draw(saltyGraphics);
                 }
             }
 
             for (GameObject gameObject : gameObjects) {
-                gameObject.draw(graphics);
-                gameObject.doComponentDrawing(graphics);
+                gameObject.draw(saltyGraphics);
+                gameObject.doComponentDrawing(saltyGraphics);
             }
 
             if (ui != null) {
-                ui.drawUI(graphics);
+                ui.drawUI(saltyGraphics);
             }
 
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
-                    drawingRoutine.draw(graphics);
+                    drawingRoutine.draw(saltyGraphics);
                 }
             }
         }

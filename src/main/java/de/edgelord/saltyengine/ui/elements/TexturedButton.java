@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 
@@ -25,17 +26,17 @@ public abstract class TexturedButton extends Button {
     }
 
     @Override
-    public void drawText(Graphics2D graphics) {
+    public void drawText(SaltyGraphics saltyGraphics) {
         if (drawText) {
-            super.drawText(graphics);
+            super.drawText(saltyGraphics);
         } else {
             return;
         }
     }
 
     @Override
-    public void drawButton(Graphics2D graphics) {
-        graphics.drawImage(texture, getCoordinates().getX(), getCoordinates().getY(), getWidthAsInt(), getHeightAsInt(), null);
+    public void drawButton(SaltyGraphics saltyGraphics) {
+        saltyGraphics.drawImage(texture, getX(), getY(), getWidth(), getHeight());
     }
 
     public abstract void onClick(MouseEvent e);

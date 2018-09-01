@@ -15,6 +15,7 @@ import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
 import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -148,8 +149,8 @@ public class BirdPlayer extends GameObject {
     }
 
     @Override
-    public void draw(final Graphics2D graphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
-        animation.drawCurrentFrame(graphics);
+        animation.drawCurrentFrame(saltyGraphics);
     }
 }

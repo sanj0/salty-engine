@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -69,14 +70,14 @@ public class Engine {
         }
     }
 
-    public void render(Graphics2D graphics) {
+    public void render(SaltyGraphics saltyGraphics) {
 
         if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 
-            StaticSystem.currentScene.draw(graphics);
+            StaticSystem.currentScene.draw(saltyGraphics);
         } else if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
 
-            StaticSystem.currentLayerCollection.draw(graphics);
+            StaticSystem.currentLayerCollection.draw(saltyGraphics);
         }
     }
 
