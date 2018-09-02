@@ -19,15 +19,17 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 [Documentation](https://github.com/edgelord314/salty-engine/tree/master/SGS.md) -
 [Examples](https://github.com/edgelord314/salty-engine/tree/master/src/main/resources/sgs)
 
-**Features**
+## Why using Salty Engine?
+
+### Pro:
 - simple Display management
-- rendering
+- easy rendering process with ```SaltyGraphics```
 - GameObjects for the simplest game developing possible
 - Scenes for collecting and defining what to render and update
 - Layers which are pretty much the same as Scenes
 - LayerCollections for having more than one Layer at once on the Screen,
-  but if needed, moving with a different speed
-- Keyframe Animations
+  but if needed, moving each with a different speed
+- linear Keyframe Animations
 - Animations
 - Spritesheets
 - Resource management (inner as well as outer)
@@ -35,15 +37,21 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 - UI with pre-defined elements like Buttons
 - Components (behave like extensions to GameObjects)
 - Collision detection with hitboxes
+- A simple yet working physics engine
 - Keyboard and mouse input as simple as possible for the developer
 - **examples for almost all of those features within the library** (```testing.Tester``` as main)
+
+### Contra: 
+- the engine basics maybe lie to much on static stuff (you won't notice that when using)
+- the physics are too simple for some games (no impulses, no realistic bouncing...)
+- no amazing Graphical effects out of the box due to limitations because of java2d
 
 # Join the team
 Do you want to collaborate? Join the project at https://crowdforge.io/projects/447 <p>
 If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
 
 **Known bugs/glitches/issues**
-- stopping the right forces on a collision does not work always (e.g. from the right with the <code>BirdPlayer</code> in the default testing Scenario)
+- See in the ```Wunderlist``` TODO-List
 
 **TODO** (sort by relevance)
 - add more UIElements
