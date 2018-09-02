@@ -39,12 +39,14 @@ but I will focus on that after the Ludum Dare jam and when the Physics are worki
 - Collision detection with hitboxes
 - A simple yet working physics engine
 - Keyboard and mouse input as simple as possible for the developer
+- JavaDoc for newer methods
 - **examples for almost all of those features within the library** (```testing.Tester``` as main)
 
 ### Contra: 
 - the engine basics maybe lie to much on static stuff (you won't notice that when using)
 - the physics are too simple for some games (no impulses, no realistic bouncing...)
 - no amazing Graphical effects out of the box due to limitations because of java2d
+- no JavaDoc for older classes/methods
 
 # Join the team
 Do you want to collaborate? Join the project at https://crowdforge.io/projects/447 <p>
@@ -58,5 +60,3 @@ If you want to get access to a more comfortable and more frequently updated TODO
 
 **NOTE** for help with how to use, please check out the files in
 src/main/java/testing
-
-**Coming soon:** (or not so soon) Javadoc for all public methods but getters and setters
