@@ -5,7 +5,6 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
-import sun.jvm.hotspot.SALauncherLoader;
 
 import java.awt.*;
 
