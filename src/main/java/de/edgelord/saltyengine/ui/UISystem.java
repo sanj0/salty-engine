@@ -38,23 +38,7 @@ public class UISystem {
 
     public void removeElement(UIElement element) {
 
-        int currentIndex = 0;
-        int indexToRemove = -1;
-
-        for (UIElement elementFromList : elements) {
-
-            if (elementFromList == element) {
-                indexToRemove = currentIndex;
-            }
-
-            currentIndex++;
-        }
-
-        if (indexToRemove == -1) {
-            return;
-        } else {
-            elements.remove(indexToRemove);
-        }
+        elements.remove(element);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -96,6 +80,12 @@ public class UISystem {
 
         for (UIElement element : elements) {
             element.mouseReleased(e);
+        }
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        for (UIElement element : elements) {
+            element.mouseMoved(e);
         }
     }
 }

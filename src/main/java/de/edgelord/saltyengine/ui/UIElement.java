@@ -53,6 +53,8 @@ public abstract class UIElement extends GameObject {
 
     public abstract void mouseClicked(MouseEvent e);
 
+    public abstract void mouseMoved(MouseEvent e);
+
     public abstract void keyPressed(KeyEvent e);
 
     public abstract void keyReleased(KeyEvent e);
