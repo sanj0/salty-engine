@@ -118,6 +118,10 @@ public class Stage extends Canvas {
                 if (mouseHandler != null) {
                     mouseHandler.mouseMoved(e);
                 }
+
+                if (StaticSystem.currentScene.getUI() != null) {
+                    StaticSystem.currentScene.getUI().mouseMoved(e);
+                }
             }
         };
 
