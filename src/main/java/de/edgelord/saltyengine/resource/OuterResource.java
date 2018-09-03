@@ -6,6 +6,9 @@
 
 package de.edgelord.saltyengine.resource;
 
+import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.systemdependentfiles.SystemDependentFiles;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import java.awt.image.BufferedImage;
@@ -62,22 +65,18 @@ public class OuterResource implements Resource {
         return clip;
     }
 
-    public enum OperatingSystems {
-
-        windows,
-        macOS,
-        linux
+    @Override
+    public File getFileResource(String relativePath) {
+        return getFile(relativePath);
     }
 
     private String gameTitle;
     private boolean hidden;
-    private OperatingSystems os;
-    private String user;
     private File sourceDirectory;
 
-    public OuterResource(String gameTitle, boolean hidden) {
+    public OuterResource(boolean hidden) {
 
-        this.gameTitle = gameTitle;
+        this.gameTitle = StaticSystem.gameName;
         this.hidden = hidden;
 
         prepareSourceDirectory();
@@ -86,31 +85,12 @@ public class OuterResource implements Resource {
 
     private void prepareSourceDirectory() {
 
-        readProperties();
+        if (hidden) {
 
-        if (os == OperatingSystems.linux) {
+            sourceDirectory = SystemDependentFiles.getUserFile("." + gameTitle);
+        } else {
 
-            if (hidden) {
-
-                sourceDirectory = new File("/home/" + user + "/." + gameTitle);
-            } else {
-
-                sourceDirectory = new File("/home/" + user + "/" + gameTitle);
-            }
-        } else if (os == OperatingSystems.macOS) {
-
-            if (hidden) {
-
-                sourceDirectory = new File("/Users/" + user + "/." + gameTitle);
-            } else {
-
-                sourceDirectory = new File("/Users/" + user + "/" + gameTitle);
-            }
-        }
-
-        if (!sourceDirectory.exists()) {
-
-            sourceDirectory.mkdir();
+            sourceDirectory = SystemDependentFiles.getSystemFile(gameTitle);
         }
     }
 
@@ -134,27 +114,5 @@ public class OuterResource implements Resource {
 
             return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath));
         }
-    }
-
-    private void readProperties() {
-
-        System.out.println("INFO: Current Operating System's name is: " + System.getProperty("os.name"));
-
-        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-
-            os = OperatingSystems.windows;
-        } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-
-            os = OperatingSystems.linux;
-        } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-
-            os = OperatingSystems.macOS;
-        }
-
-        System.out.println("INFO: saltyengine detected your Operating System as: " + os.toString() + ". If this is wrong, please contact the developer with the output of the Operating System's name.");
-
-        user = System.getProperty("user.name");
-
-        System.out.println("INFO: The current user of saltyengine is: " + user);
     }
 }

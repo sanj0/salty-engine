@@ -16,7 +16,7 @@ public class InitSegment extends ScriptSegment {
      * @param content the complete content of the segment
      */
     public InitSegment(String content) {
-        super(content, Type.init);
+        super(content, Type.INIT);
     }
 
     @Override

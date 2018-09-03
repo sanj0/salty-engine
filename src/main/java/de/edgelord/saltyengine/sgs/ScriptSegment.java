@@ -7,7 +7,10 @@
 package de.edgelord.saltyengine.sgs;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.resource.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,15 +21,17 @@ public abstract class ScriptSegment {
     // The complete content of the segment
     private String content;
 
+    private Resource resource;
+
     // The different lines of the segment
-    private List<ScriptLine> lines;
+    private List<ScriptLine> lines = new ArrayList<>();
 
     // The type of the segment
     private Type type;
 
     // The different types of the segments
     public enum Type {
-        vars, init, onFixedTick, draw, onCollision
+        SCRIPT_INIT, VARS, INIT, ON_FIXED_TICK, DRAW, ON_COLLISION
     }
 
     /**
@@ -38,6 +43,7 @@ public abstract class ScriptSegment {
     public ScriptSegment(String content, Type type) {
         this.content = content;
         this.type = type;
+        this.resource = new InnerResource();
 
         readLines();
     }
@@ -56,6 +62,14 @@ public abstract class ScriptSegment {
 
     public String getContent() {
         return content;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     public List<ScriptLine> getLines() {

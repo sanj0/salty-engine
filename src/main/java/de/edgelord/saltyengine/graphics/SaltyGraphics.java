@@ -26,7 +26,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw filled rect. It automatically rounds the given floats to ints
+     * The base method to DRAW filled rect. It automatically rounds the given floats to ints
      *
      * @param x      the x position of the rect
      * @param y      the y position of the rect
@@ -74,7 +74,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw the outline of a rect. It automatically rounds the given floats to ints
+     * The base method to DRAW the outline of a rect. It automatically rounds the given floats to ints
      *
      * @param x      the x position of the rect
      * @param y      the y position of the rect
@@ -122,7 +122,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw a filled oval. It automatically rounds the given floats to ints.
+     * The base method to DRAW a filled oval. It automatically rounds the given floats to ints.
      *
      * @param x      the x position of the oval
      * @param y      the y position of the oval
@@ -158,7 +158,7 @@ public class SaltyGraphics {
     /**
      * Draws a filled oval by calling <code>fillOval(Transform)</code>
      *
-     * @param gameObject the gameObject from which to take the Transform to draw the oval
+     * @param gameObject the gameObject from which to take the Transform to DRAW the oval
      */
     public void fillOval(GameObject gameObject) {
         fillOval(gameObject.getTransform());
@@ -169,7 +169,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw the outline of an oval. It automatically round the given floats to ints.
+     * The base method to DRAW the outline of an oval. It automatically round the given floats to ints.
      *
      * @param x      the x position of the oval
      * @param y      the y position of the oval
@@ -217,9 +217,9 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw an image. It automatically rounds the given floats to ints.
+     * The base method to DRAW an image. It automatically rounds the given floats to ints.
      *
-     * @param image  the image to draw
+     * @param image  the image to DRAW
      * @param x      the x position of the image
      * @param y      the y position of the image
      * @param width  the width with which the image should be drawn
@@ -257,7 +257,7 @@ public class SaltyGraphics {
      *
      * @param image      the image to be drawn
      * @param position   the position of the image
-     * @param dimensions the dimensions with to draw the image
+     * @param dimensions the dimensions with to DRAW the image
      */
     public void drawImage(BufferedImage image, Vector2f position, Dimensions dimensions) {
         drawImage(image, position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
@@ -267,7 +267,7 @@ public class SaltyGraphics {
      * Draws an image by calling <code>drawImage(BufferedImage, Transform)</code>
      *
      * @param image      the image to be drawn
-     * @param gameObject the GameObject from which to take the Transform to draw the image
+     * @param gameObject the GameObject from which to take the Transform to DRAW the image
      */
     public void drawImage(BufferedImage image, GameObject gameObject) {
         drawImage(image, gameObject.getTransform());
@@ -278,7 +278,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw a filled round rect. It automatically round the given floats to ints
+     * The base method to DRAW a filled round rect. It automatically round the given floats to ints
      *
      * @param x         the x position of the round rect
      * @param y         the y position of the round rect
@@ -293,7 +293,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to draw a filled round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
+     * The base method to DRAW a filled round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
      *
      * @param x      the x position of the round rect
      * @param y      the y position of the round rect
@@ -382,7 +382,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw a round rect. It automatically round the given floats to ints
+     * The base method to DRAW a round rect. It automatically round the given floats to ints
      *
      * @param x         the x position of the round rect
      * @param y         the y position of the round rect
@@ -397,7 +397,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to draw a round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
+     * The base method to DRAW a round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
      *
      * @param x      the x position of the round rect
      * @param y      the y position of the round rect
@@ -506,7 +506,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to draw a line. The given floats are automatically rounded to ints.
+     * The base method to DRAW a line. The given floats are automatically rounded to ints.
      * This method draws a line from point p1(x1 | y1) to point p2(x2 | y2)
      *
      * @param x1 x position of the start point
@@ -520,7 +520,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to draw a Line with a temporary Stroke. The given floats are automatically rounded to ints.
+     * The base method to DRAW a Line with a temporary Stroke. The given floats are automatically rounded to ints.
      * Before the line is drawn, the current stroke gets fetched and the temporary one is set,
      * after the line is drawn, the fetched stroke gets set again.
      *
@@ -528,7 +528,7 @@ public class SaltyGraphics {
      * @param y1              y position of the start point
      * @param x2              x position of the end point
      * @param y2              y position of the end point
-     * @param temporaryStroke the temporary Stroke with which to draw the line
+     * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float)
      * @see #getStroke()
      * @see #setStroke(Stroke)
@@ -558,7 +558,7 @@ public class SaltyGraphics {
      *
      * @param startPoint      the start point of the line
      * @param endPoint        the end point of the line
-     * @param temporaryStroke the temporary Stroke with which to draw the line
+     * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
     public void drawLine(Vector2f startPoint, Vector2f endPoint, Stroke temporaryStroke) {
@@ -583,7 +583,7 @@ public class SaltyGraphics {
      * @param x1              x position of the start point
      * @param y1              y position of the start point
      * @param endPoint        the end point
-     * @param temporaryStroke the temporary Stroke with which to draw the line
+     * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
     public void drawLine(float x1, float y1, Vector2f endPoint, Stroke temporaryStroke) {
@@ -608,7 +608,7 @@ public class SaltyGraphics {
      * @param startPoint      the end point
      * @param x2              x position of the end point
      * @param y2              y position of the end point
-     * @param temporaryStroke the temporary Stroke with which to draw the line
+     * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
     public void drawLine(Vector2f startPoint, float x2, float y2, Stroke temporaryStroke) {
@@ -620,7 +620,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to draw a String using the current <code>Font</code> of the graphics
+     * The base method to DRAW a String using the current <code>Font</code> of the graphics
      *
      * @param text the String to be drawn
      * @param x    the x position of the baseLine of the first character
@@ -632,12 +632,12 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to draw a String using a temporary <code>Font</code>
+     * The base method to DRAW a String using a temporary <code>Font</code>
      *
      * @param text          the String to be drawn
      * @param x             the x position of the baseLine of the first character
      * @param y             the y position of the baseLine of the first character
-     * @param temporaryFont the temporary Font with which to draw the text
+     * @param temporaryFont the temporary Font with which to DRAW the text
      * @see #drawText(String, float, float)
      */
     public void drawText(String text, float x, float y, Font temporaryFont) {
@@ -666,7 +666,7 @@ public class SaltyGraphics {
      *
      * @param text          the text to be drawn
      * @param position      the position of the baseLine of the first letter
-     * @param temporaryFont the temporary Font with which to draw the text
+     * @param temporaryFont the temporary Font with which to DRAW the text
      * @see #drawText(String, float, float, Font)
      */
     public void drawText(String text, Vector2f position, Font temporaryFont) {
@@ -784,7 +784,7 @@ public class SaltyGraphics {
 
     /**
      * Returns the current Stroke of the Graphics.
-     * The Stroke defines how to draw lines (e.g. outlines)
+     * The Stroke defines how to DRAW lines (e.g. outlines)
      *
      * @return the current Stroke of the graphics
      * @see Graphics2D#getStroke()

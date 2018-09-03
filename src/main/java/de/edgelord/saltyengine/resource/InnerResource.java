@@ -6,12 +6,13 @@
 
 package de.edgelord.saltyengine.resource;
 
+import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.systemdependentfiles.SystemDependentFiles;
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 public class InnerResource implements Resource {
 
@@ -59,6 +60,36 @@ public class InnerResource implements Resource {
         }
 
         return clip;
+    }
+
+    @Override
+    public File getFileResource(String relativePath) {
+
+        try {
+            return makeTemporaryFile(relativePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private File makeTemporaryFile(String relativePath) throws IOException {
+
+        InputStream inputStream = classLoader.getResourceAsStream(arrangePath(relativePath));
+
+        File file = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/" + relativePath);
+
+        file.createNewFile();
+
+        OutputStream outputStream = new FileOutputStream(file);
+
+        byte[] buffer = new byte[inputStream.available()];
+        inputStream.read(buffer);
+
+        outputStream.write(buffer);
+
+        return file;
     }
 
     private String arrangePath(String path) {

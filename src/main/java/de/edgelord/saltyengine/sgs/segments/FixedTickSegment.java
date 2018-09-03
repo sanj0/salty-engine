@@ -16,7 +16,7 @@ public class FixedTickSegment extends ScriptSegment {
      * @param content the complete content of the segment
      */
     public FixedTickSegment(String content) {
-        super(content, Type.onFixedTick);
+        super(content, Type.ON_FIXED_TICK);
     }
 
     @Override

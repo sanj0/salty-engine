@@ -18,10 +18,10 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
     // The color with which the Component should render
     private Color color = Color.black;
 
-    // Whether the Component should only draw (e.g. graphics.drawRectangle()) or fill it (e.g. graphics.fillRectangle())
+    // Whether the Component should only DRAW (e.g. graphics.drawRectangle()) or fill it (e.g. graphics.fillRectangle())
     private boolean fill = true;
 
-    // The stroke (like a pen) with which the component should draw the primitives
+    // The stroke (like a pen) with which the component should DRAW the primitives
     private Stroke stroke = new BasicStroke();
 
     /**
@@ -46,7 +46,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * Any classes extending SimpleRenderComponent has to override this method
      * for drawing e.g. a primitives like a Rectangle in RectangleRender
      *
-     * @param saltyGraphics the SaltyGraphics to which the component should draw
+     * @param saltyGraphics the SaltyGraphics to which the component should DRAW
      * @see GameObjectComponent
      */
     @Override

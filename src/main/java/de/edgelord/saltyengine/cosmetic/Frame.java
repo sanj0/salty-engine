@@ -58,7 +58,7 @@ public class Frame implements Cosmetic {
             saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
         } else {
 
-            //advancedCosmetics.draw(graphics, coordinates);
+            //advancedCosmetics.DRAW(graphics, coordinates);
             return;
         }
     }
@@ -70,7 +70,7 @@ public class Frame implements Cosmetic {
             graphics.drawImage(image, transform, null);
         } else {
 
-            //advancedCosmetics.draw(graphics, coordinates);
+            //advancedCosmetics.DRAW(graphics, coordinates);
             return;
         }
     }

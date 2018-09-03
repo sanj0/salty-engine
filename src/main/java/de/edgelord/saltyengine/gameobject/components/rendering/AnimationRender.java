@@ -52,7 +52,7 @@ public class AnimationRender extends SimpleRenderComponent {
     /**
      * Draws the current frame of the animation
      *
-     * @param saltyGraphics the SaltyGraphics to which the component should draw
+     * @param saltyGraphics the SaltyGraphics to which the component should DRAW
      * @see #onFixedTick()
      * @see #animation
      * @see GameObjectComponent

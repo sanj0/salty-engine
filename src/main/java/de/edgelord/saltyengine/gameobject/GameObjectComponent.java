@@ -10,9 +10,9 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 /**
- * GameObjectComponents are a way of modifying what happens every fixed tick to a GameObject, or how to draw a GameObject
- * The methods which can be used for that are #onFixedTick() #draw(Graphics2D) and
- * #onCollision(GameObject) (for example used for Physics)
+ * GameObjectComponents are a way of modifying what happens every fixed tick to a GameObject, or how to DRAW a GameObject
+ * The methods which can be used for that are #ON_FIXED_TICK() #DRAW(Graphics2D) and
+ * #ON_COLLISION(GameObject) (for example used for Physics)
  */
 public abstract class GameObjectComponent {
 

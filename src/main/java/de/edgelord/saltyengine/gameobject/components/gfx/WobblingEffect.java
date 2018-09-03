@@ -131,7 +131,7 @@ public class WobblingEffect extends GFXComponent {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
-        // This effect actually only uses the onFixedTick, because it only needs to change some values
+        // This effect actually only uses the ON_FIXED_TICK, because it only needs to change some values
     }
 
     @Override

@@ -1,22 +1,17 @@
-/*
- * Copyright (c) by Malte Dostal
- * Germany, 8.2018
- * All rights reserved
- */
-
 package de.edgelord.saltyengine.sgs.segments;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.sgs.ScriptSegment;
 
-public class CollisionSegment extends ScriptSegment {
+public class ScriptInitSegment extends ScriptSegment {
+
     /**
      * The standard constructor with all necessary parameters
      *
      * @param content the complete content of the segment
      */
-    public CollisionSegment(String content) {
-        super(content, Type.ON_COLLISION);
+    public ScriptInitSegment(String content) {
+        super(content, Type.SCRIPT_INIT);
     }
 
     @Override

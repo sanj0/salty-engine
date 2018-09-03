@@ -148,7 +148,7 @@ public abstract class GameObject {
 
 
                 collisions.add(eSelf);
-                // other.onCollision(e);
+                // other.ON_COLLISION(e);
                 onCollision(eSelf);
 
                 for (final GameObjectComponent component : getComponents()) {
@@ -159,7 +159,7 @@ public abstract class GameObject {
                 /*
                 for (final GameObjectComponent component : other.getComponents()) {
                     if (!component.getTag().equals(GameObjectComponent.PUSH_OUT_ON_COLLISION)) {
-                        component.onCollision(e);
+                        component.ON_COLLISION(e);
                     }
                 }
                 */

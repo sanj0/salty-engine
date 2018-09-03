@@ -13,19 +13,29 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.segments.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.stream.Collectors;
+
 /**
  * This class interprets salty gameObject scripting (sgs) scripts by doing whatever the next script-line says, e.g. basicMove
  * It is designed as an GameObjectComponent, and it may not be very good when it comes to performances, because it
- * interprets e.g. the "onFixedTick" segment every fixed tick again.
+ * interprets e.g. the "ON_FIXED_TICK" segment every fixed tick again.
  */
 public class ScriptInterpreter extends GameObjectComponent {
 
     // All of the different segments of a sgs script
+    private ScriptInitSegment scriptInitSegment;
     private VarsSegment varsSegment;
     private DrawSegment drawSegment;
     private InitSegment initSegment;
     private FixedTickSegment fixedTickSegment;
     private CollisionSegment collisionSegment;
+
+    public static final String SCRIPTINIT_IN = "-scriptInit";
+    public static final String SCRIPTINIT_OUT = "--scriptInit";
 
     public static final String VARSSEGMENT_IN = "-vars";
     public static final String VARSSEGMENT_OUT = "--vars";
@@ -55,8 +65,9 @@ public class ScriptInterpreter extends GameObjectComponent {
      * @param name             the id-name of this component
      * @see #loadScript(String, Resource, GameObject, String)
      */
-    public ScriptInterpreter(VarsSegment varsSegment, DrawSegment drawSegment, InitSegment initSegment, FixedTickSegment fixedTickSegment, CollisionSegment collisionSegment, GameObject parent, String name) {
+    public ScriptInterpreter(ScriptInitSegment scriptInitSegment, VarsSegment varsSegment, DrawSegment drawSegment, InitSegment initSegment, FixedTickSegment fixedTickSegment, CollisionSegment collisionSegment, GameObject parent, String name) {
         super(parent, name, SGS_COMPONENT);
+        this.scriptInitSegment = scriptInitSegment;
         this.varsSegment = varsSegment;
         this.drawSegment = drawSegment;
         this.initSegment = initSegment;
@@ -66,23 +77,31 @@ public class ScriptInterpreter extends GameObjectComponent {
 
     /**
      * Returns a new ScriptInterpreter based off of the given script-text, the parent GameObject and the id-name,
-     * by getting subStrings out of the script, beginning with the IN and ending with the OUT (e.g. -vars and --vars)
+     * by getting subStrings out of the script, beginning with the IN and ending with the OUT (e.g. -VARS and --VARS)
      *
-     * @param script   the script which the new Interpreter should stand for
+     * @param relativePath the relative path to the script within the given Resource
      * @param resource the Resource manager from which to load e.g. images that are requested by the script
      * @param parent   the parent GameObject for this Component
      * @param name     the id-name for this Component
      * @return the new ScriptInterpreter
      */
-    public static ScriptInterpreter loadScript(String script, Resource resource, GameObject parent, String name) {
+    public static ScriptInterpreter loadScript(String relativePath, Resource resource, GameObject parent, String name) {
 
-        VarsSegment varsSegment = new VarsSegment(subString(script, VARSSEGMENT_IN, VARSSEGMENT_OUT), resource);
+        String script = null;
+        try {
+            script = Files.lines(resource.getFileResource(relativePath).toPath(), StandardCharsets.UTF_8).collect(Collectors.joining(System.lineSeparator()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ScriptInitSegment scriptInitSegment = new ScriptInitSegment(subString(script, SCRIPTINIT_IN, SCRIPTINIT_OUT));
+        VarsSegment varsSegment = new VarsSegment(subString(script, VARSSEGMENT_IN, VARSSEGMENT_OUT));
         DrawSegment drawSegment = new DrawSegment(subString(script, DRAWSEGMENT_IN, DRAWSEGMENT_OUT));
         InitSegment initSegment = new InitSegment(subString(script, INITSEGMENT_IN, INITSEGMENT_OUT));
         FixedTickSegment fixedTickSegment = new FixedTickSegment(subString(script, FIXEDTICKSEGMENT_IN, FIXEDTICKSEGMENT_OUT));
         CollisionSegment collisionSegment = new CollisionSegment(subString(script, COLLISIONSEGMENT_IN, COLLISIONSEGMENT_OUT));
 
-        return new ScriptInterpreter(varsSegment, drawSegment, initSegment, fixedTickSegment, collisionSegment, parent, name);
+        return new ScriptInterpreter(scriptInitSegment, varsSegment, drawSegment, initSegment, fixedTickSegment, collisionSegment, parent, name);
     }
 
     @Override

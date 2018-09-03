@@ -16,7 +16,7 @@ public class DrawSegment extends ScriptSegment {
      * @param content the complete content of the segment
      */
     public DrawSegment(String content) {
-        super(content, Type.draw);
+        super(content, Type.DRAW);
     }
 
     @Override
