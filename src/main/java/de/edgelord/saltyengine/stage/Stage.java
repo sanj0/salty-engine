@@ -13,11 +13,9 @@ import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseWheelEvent;
+import java.awt.event.*;
 
 public class Stage extends Canvas {
 
@@ -26,6 +24,8 @@ public class Stage extends Canvas {
     private double currentZoomX = 1;
     private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
+    private MouseMotionListener nativeMouseMotionListener = null;
+    private MouseWheelListener nativeMouseWheelListener = null;
     private DisplayMouseHandler mouseHandler = null;
     private boolean doubleBufferCreated = false;
 
@@ -98,13 +98,9 @@ public class Stage extends Canvas {
 
                 StaticSystem.setPaused(true);
             }
+        };
 
-            @Override
-            public void mouseWheelMoved(final MouseWheelEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseWheelMoved(e);
-                }
-            }
+        nativeMouseMotionListener = new MouseAdapter() {
 
             @Override
             public void mouseDragged(final MouseEvent e) {
@@ -125,7 +121,19 @@ public class Stage extends Canvas {
             }
         };
 
+        nativeMouseWheelListener = new MouseAdapter() {
+
+            @Override
+            public void mouseWheelMoved(final MouseWheelEvent e) {
+                if (mouseHandler != null) {
+                    mouseHandler.mouseWheelMoved(e);
+                }
+            }
+        };
+
         addMouseListener(nativeMouseListener);
+        addMouseMotionListener(nativeMouseMotionListener);
+        addMouseWheelListener(nativeMouseWheelListener);
     }
 
     protected void init() {

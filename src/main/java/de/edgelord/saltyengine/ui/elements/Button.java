@@ -18,8 +18,11 @@ public abstract class Button extends UIElement {
 
     private String text;
     private int textWidth, textHeight;
-    private Color backgroundColor = Color.white;
-    private Color foregroundColor = Color.black;
+    private Color backgroundColor = Color.black;
+    private Color hoverColor = backgroundColor.brighter();
+    private Color clickColor = backgroundColor.darker();
+    private Color currentBackgroundColor = backgroundColor;
+    private Color foregroundColor = Color.white;
     private int arc = 15;
 
     public Button(String text, Vector2f position, int width, int height) {
@@ -51,24 +54,42 @@ public abstract class Button extends UIElement {
 
     public void drawButton(SaltyGraphics saltyGraphics) {
 
-        saltyGraphics.setColor(backgroundColor);
+        saltyGraphics.setColor(currentBackgroundColor);
 
-        saltyGraphics.fillRoundRect(getX(), getY(), getWidth(), getHeight(), arc, arc);
+        saltyGraphics.fillRoundRect(getX(), getY(), getWidth(), getHeight(), arc);
+    }
+
+    public boolean touchesButton(MouseEvent e) {
+        return (e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight());
     }
 
     public abstract void onClick(MouseEvent e);
 
     @Override
+    public void mouseMoved(MouseEvent e) {
+
+        if (touchesButton(e)) {
+
+            currentBackgroundColor = hoverColor;
+        } else {
+            currentBackgroundColor = backgroundColor;
+        }
+    }
+
+    @Override
     public void mousePressed(MouseEvent e) {
 
-        backgroundColor = backgroundColor.darker();
+        if (touchesButton(e)) {
+            currentBackgroundColor = clickColor;
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        backgroundColor = backgroundColor.brighter();
-        if ((e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight())) {
+        currentBackgroundColor = backgroundColor;
+
+        if (touchesButton(e)) {
             onClick(e);
         }
     }
@@ -105,6 +126,9 @@ public abstract class Button extends UIElement {
 
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
+        this.currentBackgroundColor = backgroundColor;
+        this.hoverColor = backgroundColor.brighter();
+        this.clickColor = backgroundColor.darker();
     }
 
     public Color getForegroundColor() {
