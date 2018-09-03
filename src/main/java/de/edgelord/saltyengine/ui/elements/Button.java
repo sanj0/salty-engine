@@ -31,7 +31,7 @@ public abstract class Button extends UIElement {
 
         this.text = text;
 
-        this.setTag("button");
+        this.setTag("de.edgelord.saltyengine.ui.Button");
     }
 
     @Override
