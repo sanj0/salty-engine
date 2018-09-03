@@ -11,7 +11,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
-import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 

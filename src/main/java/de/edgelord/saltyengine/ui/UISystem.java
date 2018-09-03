@@ -8,7 +8,6 @@ package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;

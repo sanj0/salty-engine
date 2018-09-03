@@ -13,7 +13,6 @@ import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
-import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.*;
 

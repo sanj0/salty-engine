@@ -13,8 +13,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.segments.*;
 
-import java.awt.*;
-
 /**
  * This class interprets salty gameObject scripting (sgs) scripts by doing whatever the next script-line says, e.g. basicMove
  * It is designed as an GameObjectComponent, and it may not be very good when it comes to performances, because it
@@ -70,10 +68,10 @@ public class ScriptInterpreter extends GameObjectComponent {
      * Returns a new ScriptInterpreter based off of the given script-text, the parent GameObject and the id-name,
      * by getting subStrings out of the script, beginning with the IN and ending with the OUT (e.g. -vars and --vars)
      *
-     * @param script the script which the new Interpreter should stand for
+     * @param script   the script which the new Interpreter should stand for
      * @param resource the Resource manager from which to load e.g. images that are requested by the script
-     * @param parent the parent GameObject for this Component
-     * @param name   the id-name for this Component
+     * @param parent   the parent GameObject for this Component
+     * @param name     the id-name for this Component
      * @return the new ScriptInterpreter
      */
     public static ScriptInterpreter loadScript(String script, Resource resource, GameObject parent, String name) {

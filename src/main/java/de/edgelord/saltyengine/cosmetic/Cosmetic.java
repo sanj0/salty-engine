@@ -7,10 +7,7 @@
 package de.edgelord.saltyengine.cosmetic;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
-
-import java.awt.*;
 
 public interface Cosmetic {
 

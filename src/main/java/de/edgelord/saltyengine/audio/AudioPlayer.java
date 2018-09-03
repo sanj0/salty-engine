@@ -105,6 +105,7 @@ public class AudioPlayer {
 
     /**
      * Returns the Audio from the list with the given name
+     *
      * @param name the name of the Audio to return
      * @return the audio with the given name
      */
@@ -121,7 +122,8 @@ public class AudioPlayer {
     /**
      * Searches for the Audio with the given name and sets its Volume to the given one, with
      * 0f meaning no volume and 1f meaning full volume.
-     * @param name the name of the Audio of which to change the Volume
+     *
+     * @param name   the name of the Audio of which to change the Volume
      * @param volume the target volume, 0f is min, 1f is max
      */
     public void setClipVolume(String name, float volume) {

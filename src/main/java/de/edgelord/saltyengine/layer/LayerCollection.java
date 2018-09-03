@@ -10,7 +10,6 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
 import java.util.LinkedList;
 
 public class LayerCollection {

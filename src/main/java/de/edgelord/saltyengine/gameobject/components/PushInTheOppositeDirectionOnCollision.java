@@ -12,8 +12,6 @@ import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
-
 @Deprecated
 public class PushInTheOppositeDirectionOnCollision extends GameObjectComponent {
 

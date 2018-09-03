@@ -9,8 +9,6 @@ package de.edgelord.saltyengine.gameobject.components.rendering;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
-
 /**
  * This component is used for simplifying the process of rendering an oval.
  * <p>

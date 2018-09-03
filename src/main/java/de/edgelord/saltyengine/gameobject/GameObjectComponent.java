@@ -9,8 +9,6 @@ package de.edgelord.saltyengine.gameobject;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
-
 /**
  * GameObjectComponents are a way of modifying what happens every fixed tick to a GameObject, or how to draw a GameObject
  * The methods which can be used for that are #onFixedTick() #draw(Graphics2D) and

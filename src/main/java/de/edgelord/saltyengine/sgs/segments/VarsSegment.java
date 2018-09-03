@@ -7,11 +7,11 @@
 package de.edgelord.saltyengine.sgs.segments;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.ScriptLine;
 import de.edgelord.saltyengine.sgs.ScriptSegment;
 import de.edgelord.saltyengine.sgs.Var;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -34,7 +34,7 @@ public class VarsSegment extends ScriptSegment {
     /**
      * The standard constructor with all necessary parameters
      *
-     * @param content the complete content of the segment
+     * @param content  the complete content of the segment
      * @param resource the Resource Manager from which to take e.g. requested Images
      */
     public VarsSegment(String content, Resource resource) {

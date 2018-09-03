@@ -10,7 +10,6 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
-import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;

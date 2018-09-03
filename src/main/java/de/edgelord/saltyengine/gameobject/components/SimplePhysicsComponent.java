@@ -14,7 +14,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
-import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -11,8 +11,6 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
-
 public class BasicGameObjectAnimation extends GameObjectComponent {
 
     private boolean recalculateOnNextStep = true;

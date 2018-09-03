@@ -7,7 +7,10 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.components.*;
+import de.edgelord.saltyengine.gameobject.components.Accelerator;
+import de.edgelord.saltyengine.gameobject.components.RecalculateHitboxComponent;
+import de.edgelord.saltyengine.gameobject.components.RecalculateMiddleComponent;
+import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.transform.Coordinates;
@@ -19,7 +22,6 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -94,6 +96,7 @@ public abstract class GameObject {
 
     /**
      * This method can be overridden but It's not necessary and you won't need this nearly always, so it's not abstract
+     *
      * @param collisions the detected collisions of this run
      */
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
@@ -368,6 +371,7 @@ public abstract class GameObject {
     /**
      * WARNING!! THIS METHOD WON'T PLACE THE GAMEOBJECT BY ITS MIDDLE BUT SET THE MIDDLE WITHOUT CHANGING THE POSITION!
      * Usually, you should not call this method manually!
+     *
      * @param middle the new middle
      */
     public void setMiddle(final Vector2f middle) {

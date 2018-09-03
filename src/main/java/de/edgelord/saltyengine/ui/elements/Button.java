@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.cosmetic.ColorUtil;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
@@ -19,8 +20,8 @@ public abstract class Button extends UIElement {
     private String text;
     private int textWidth, textHeight;
     private Color backgroundColor = Color.black;
-    private Color hoverColor = backgroundColor.brighter();
-    private Color clickColor = backgroundColor.darker();
+    private Color hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
+    private Color clickColor = ColorUtil.changeBrightness(backgroundColor, 0.15f);
     private Color currentBackgroundColor = backgroundColor;
     private Color foregroundColor = Color.white;
     private int arc = 15;
@@ -127,8 +128,8 @@ public abstract class Button extends UIElement {
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
         this.currentBackgroundColor = backgroundColor;
-        this.hoverColor = backgroundColor.brighter();
-        this.clickColor = backgroundColor.darker();
+        this.hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
+        this.clickColor = ColorUtil.changeBrightness(backgroundColor, 0.15f);
     }
 
     public Color getForegroundColor() {

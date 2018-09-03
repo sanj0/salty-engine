@@ -10,7 +10,6 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
 import java.util.Random;
 
 public class WobblingEffect extends GFXComponent {

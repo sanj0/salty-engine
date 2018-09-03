@@ -9,8 +9,6 @@ package de.edgelord.saltyengine.gameobject.components.rendering;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
-
 public class RectangleRender extends SimpleRenderComponent {
 
     public RectangleRender(GameObject parent, String name) {
