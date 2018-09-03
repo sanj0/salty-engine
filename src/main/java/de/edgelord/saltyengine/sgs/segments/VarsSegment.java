@@ -30,6 +30,7 @@ public class VarsSegment extends ScriptSegment {
 
             Interpreter.var(scriptLine);
             Interpreter.set(scriptLine);
+            Interpreter.write(scriptLine);
         }
     }
 }

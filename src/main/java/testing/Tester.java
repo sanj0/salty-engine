@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.sgs.ScriptedGameObject;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -27,7 +28,7 @@ public class Tester extends Game {
 
         System.out.println("INFO: Welcome to saltyengine version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
 
-        Tester.initForcesTest();
+        Tester.initSGSTest();
         Tester.addUI();
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
@@ -58,6 +59,10 @@ public class Tester extends Game {
         uiSystem.addElement(pauseButton);
 
         StaticSystem.currentScene.setUI(uiSystem);
+    }
+
+    private static void initSGSTest() {
+        StaticSystem.currentScene.addGameObject(new ScriptedGameObject("res/sgs/scripts/testing.sgs"));
     }
 
     private static void initPhysicsTest() {

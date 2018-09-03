@@ -114,11 +114,13 @@ public class Interpreter {
                     // Syntax: set myVec2F 3.14 , 6.26
                     // NOTICE the spaces before and after the comma!
                     case Vector2F:
-                        var.setValue(new Vector2f(Float.valueOf(scriptLine.getMinorArg().split(" ,")[0]), Float.valueOf(scriptLine.getMinorArg().split(", ")[1])));
+                        var.setValue(new Vector2f(Float.valueOf(scriptLine.getMinorArg().split(",")[0]), Float.valueOf(scriptLine.getMinorArg().split(",")[1])));
+                        break;
 
                         // Syntax set image path=res/pictures/image.png
                     case Image:
                         var.setValue(resource.getImageResource(scriptLine.getMinorArg().replaceAll("path=", "")));
+                        break;
                 }
             }
         }

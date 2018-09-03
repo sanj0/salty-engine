@@ -38,8 +38,8 @@ public class ScriptLine {
      * The standard constructor with all the necessary parameters
      *
      * @param command  the 1. part of the script line (e.g. "basicMove")
-     * @param minorArg the 2. part of the script line (e.g. "x")
-     * @param majorArg the 3. part of the script line (e.g. "1.75")
+     * @param majorArg the 2. part of the script line (e.g. "x")
+     * @param minorArg the 3. part of the script line (e.g. "1.75")
      */
     public ScriptLine(String command, String minorArg, String majorArg) {
         this.command = command;
@@ -65,9 +65,19 @@ public class ScriptLine {
         //Now, split the prepared line into its three parts, by splitting at SYSTEMSPACE
         String[] lines = preparedLine.split(SYSTEMSPACE);
 
-        command = lines[0];
-        minorArg = lines[1];
-        majorArg = lines[2];
+        if (lines.length == 1) {
+            command = "";
+            minorArg = "";
+            majorArg = "";
+        } else {
+            command = lines[0];
+            majorArg = lines[1];
+            minorArg = lines[2];
+        }
+    }
+
+    public String foo() {
+        return "bar";
     }
 
     public String getCommand() {

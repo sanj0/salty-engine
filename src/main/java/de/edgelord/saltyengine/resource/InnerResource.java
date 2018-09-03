@@ -76,9 +76,11 @@ public class InnerResource implements Resource {
 
     private File makeTemporaryFile(String relativePath) throws IOException {
 
+        checkTmpDir();
+
         InputStream inputStream = classLoader.getResourceAsStream(arrangePath(relativePath));
 
-        File file = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/" + relativePath);
+        File file = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/" + relativePath.replaceAll("/", "."));
 
         file.createNewFile();
 
@@ -90,6 +92,18 @@ public class InnerResource implements Resource {
         outputStream.write(buffer);
 
         return file;
+    }
+
+    private void checkTmpDir() throws IOException {
+        File tmp = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/");
+
+        if (tmp.exists()) {
+            if (!tmp.isDirectory()) {
+                System.err.println("ERROR: TMP Directory is a file!");
+            }
+        } else {
+            tmp.mkdir();
+        }
     }
 
     private String arrangePath(String path) {

@@ -1,0 +1,27 @@
+-scriptInit
+
+--scriptInit
+
+-vars
+
+var Vector2F pos
+set pos 3.14,6.28
+
+write var pos
+--vars
+
+-init
+
+--init
+
+-onFixedTick
+
+--onFixedTick
+
+-draw
+
+--draw
+
+-onCollision
+
+--onCollision

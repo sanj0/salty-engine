@@ -34,6 +34,8 @@ public class ScriptInterpreter extends GameObjectComponent {
     private FixedTickSegment fixedTickSegment;
     private CollisionSegment collisionSegment;
 
+    private boolean initRun = true;
+
     public static final String SCRIPTINIT_IN = "-scriptInit";
     public static final String SCRIPTINIT_OUT = "--scriptInit";
 
@@ -107,20 +109,30 @@ public class ScriptInterpreter extends GameObjectComponent {
     @Override
     public void onFixedTick() {
 
+        if (initRun) {
+            scriptInitSegment.interpret(getParent());
+            varsSegment.interpret(getParent());
+            initSegment.interpret(getParent());
+            initRun = false;
+        }
+
+        fixedTickSegment.interpret(getParent());
     }
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
+        drawSegment.interpret(getParent());
     }
 
     @Override
     public void onCollision(CollisionEvent e) {
 
+        collisionSegment.interpret(getParent());
     }
 
     private static String subString(String base, String start, String end) {
 
-        return base.substring(base.lastIndexOf(start) + start.length(), base.lastIndexOf(end));
+        return base.substring(base.indexOf(start) + start.length(), base.indexOf(end));
     }
 }

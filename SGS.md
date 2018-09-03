@@ -40,7 +40,7 @@ To set a variable's value, use the `set` command which takes in the name of the 
 | Text      | The text                | `set myText Hello#_#World`            |
 | Number    | The integer             | `set myNumber 314`                    |    
 | Float     | The float number        | `set myFloat 3.14`                    |
-| Vector2F  | The x and y coordinates | `set myVec 3.14 , 6.28`               |
+| Vector2F  | The x and y coordinates | `set myVec 3.14,6.28`               |
 | Image     | The path to the image   | `set myImage path=res/pics/image.png` |
 | Animation | The Spritesheet         | `set myAnim spritesheet=myImage`      |
 
