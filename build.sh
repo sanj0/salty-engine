@@ -8,7 +8,6 @@
 #
 
 VERSION=$(printf 'VERSION=${project.version}\n0\n' | ./mvnw org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION' | cut -f2 -d"=")
-JAR=$(ls target | sort | grep ^salty-engine | head -1)
 
 if [ "$1" == "-help" ]; then
     printf "\n"
@@ -23,6 +22,8 @@ if [ "$1" == "-help" ]; then
 fi
 
 ./mvnw clean install
+
+JAR=$(ls target | sort | grep ^salty-engine | head -1)
 
 if [ "$1" == "-run" ]; then
     java -jar target/$JAR
