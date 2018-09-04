@@ -1,17 +1,30 @@
 -scriptInit
 
+set name TestingScript
+set tag de.edgelord.saltyengine.testing
+
+set width 100
+set height 100
+set x 3.14
+set y 314
 --scriptInit
 
 -vars
 
 var Vector2F pos
+var Image myImage
+
 set pos 3.14,6.28
+set myImage path=res/pictures/bg.png
 
 write var pos
 --vars
 
 -init
 
+# addComponent ovalRender name=de.edgelord.saltyengine.sgs.testing
+
+physicsControl removeForce gravity
 --init
 
 -onFixedTick
@@ -20,6 +33,7 @@ write var pos
 
 -draw
 
+draw image myImage
 --draw
 
 -onCollision

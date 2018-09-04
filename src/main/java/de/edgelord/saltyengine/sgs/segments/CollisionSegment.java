@@ -8,6 +8,8 @@ package de.edgelord.saltyengine.sgs.segments;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.sgs.Interpreter;
+import de.edgelord.saltyengine.sgs.ScriptLine;
 import de.edgelord.saltyengine.sgs.ScriptSegment;
 
 public class CollisionSegment extends ScriptSegment {
@@ -23,6 +25,13 @@ public class CollisionSegment extends ScriptSegment {
     @Override
     public void interpret(GameObject parent) {
 
+        for (ScriptLine scriptLine : getLines()) {
+
+            Interpreter.write(scriptLine);
+            Interpreter.set(scriptLine);
+            Interpreter.physicsControl(scriptLine, parent);
+            Interpreter.addComp(scriptLine, parent);
+        }
     }
 
     private CollisionEvent lastCollisionEvent = null;

@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class GameObject {
 
@@ -36,7 +37,7 @@ public abstract class GameObject {
     public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.saltyengine.coreComponents.recalculateMiddle";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
 
-    private final List<GameObjectComponent> components = new LinkedList<>();
+    private final List<GameObjectComponent> components = new CopyOnWriteArrayList<>();
 
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;

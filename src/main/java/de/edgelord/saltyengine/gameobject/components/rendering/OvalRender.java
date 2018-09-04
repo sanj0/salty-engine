@@ -27,9 +27,9 @@ public class OvalRender extends SimpleRenderComponent {
         setUpGraphics(saltyGraphics);
 
         if (isFill()) {
-            saltyGraphics.fillOval(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+            saltyGraphics.fillOval(getParent());
         } else {
-            saltyGraphics.drawOval(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+            saltyGraphics.drawOval(getParent());
         }
     }
 }

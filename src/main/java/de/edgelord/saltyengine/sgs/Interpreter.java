@@ -1,5 +1,10 @@
 package de.edgelord.saltyengine.sgs;
 
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.gameobject.components.DebugLogGameObjectStat;
+import de.edgelord.saltyengine.gameobject.components.rendering.OvalRender;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -14,6 +19,10 @@ public class Interpreter {
     private static Resource resource = new InnerResource();
 
     public static final String WRITE_COMMAND = "write";
+    public static final String DRAW_COMMAND = "draw";
+    public static final String ADD_COMP_COMMAND = "addComponent";
+    public static final String ADD_COMP_COMMAND$1 = "addComp";
+    public static final String PHYSICS_CONTROL_COMMAND = "physicsControl";
     public static final String VAR_COMMAND = "var";
     public static final String SET_COMMAND = "set";
 
@@ -41,6 +50,53 @@ public class Interpreter {
                     } catch (VarNotFoundException e) {
                         e.printStackTrace();
                     }
+            }
+        }
+    }
+
+    public static void physicsControl(ScriptLine scriptLine, GameObject parent) {
+
+        if (scriptLine.getCommand().equals(PHYSICS_CONTROL_COMMAND)) {
+
+            switch (scriptLine.getMajorArg()) {
+
+                case "removeForce":
+                    if (scriptLine.getMinorArg().equals("gravity")) {
+                        parent.getPhysics().removeGravity();
+                    } else {
+                        parent.getPhysics().removeForce(scriptLine.getMinorArg());
+                    }
+            }
+        }
+    }
+
+    public static void draw(ScriptLine scriptLine, SaltyGraphics graphics, GameObject gameObject) throws VarNotFoundException {
+
+        graphics.drawText("Hello World", 100, 100);
+
+        if (scriptLine.getCommand().equals(DRAW_COMMAND)) {
+
+            switch (scriptLine.getMajorArg()) {
+                case "image":
+                    graphics.drawImage((BufferedImage) getVar(scriptLine.getMinorArg()).getValue(), gameObject);
+                    break;
+            }
+        }
+    }
+
+    public static void addComp(ScriptLine scriptLine, GameObject parent) {
+
+        if (scriptLine.getCommand().equals(ADD_COMP_COMMAND) || scriptLine.getCommand().equals(ADD_COMP_COMMAND$1)) {
+
+            switch(scriptLine.getMajorArg()) {
+
+                case "ovalRender":
+                    parent.addComponent(new OvalRender(parent, scriptLine.getMinorArg().replaceAll("name=", "")));
+                    break;
+
+                case "debugLog":
+                    parent.addComponent(new DebugLogGameObjectStat(parent, scriptLine.getMinorArg().replaceAll("name=", "")));
+                    break;
             }
         }
     }

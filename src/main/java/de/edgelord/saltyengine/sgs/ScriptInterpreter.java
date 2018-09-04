@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 /**
  * This class interprets salty gameObject scripting (sgs) scripts by doing whatever the next script-line says, e.g. basicMove
- * It is designed as an GameObjectComponent, and it may not be very good when it comes to performances, because it
+ * It is designed as an GameObjectComponent, and it may not be perfect when it comes to performances, because it
  * interprets e.g. the "ON_FIXED_TICK" segment every fixed tick again.
  */
 public class ScriptInterpreter extends GameObjectComponent {
@@ -122,6 +122,7 @@ public class ScriptInterpreter extends GameObjectComponent {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
+        drawSegment.setLastGraphics(saltyGraphics);
         drawSegment.interpret(getParent());
     }
 

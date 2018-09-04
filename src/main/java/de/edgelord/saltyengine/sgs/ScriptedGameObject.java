@@ -8,7 +8,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 public class ScriptedGameObject extends GameObject {
 
     public ScriptedGameObject(String relativePathToScript) {
-        super(0, 0, 0, 0, "de.edgelord.saltyengine.sgs.ScriptedGameObject");
+        super(0, 0, 100, 100, "de.edgelord.saltyengine.sgs.ScriptedGameObject");
 
         addComponent(ScriptInterpreter.loadScript(relativePathToScript, new InnerResource(), this, "de.edgelord.saltyengine.sgs.ScriptInterpreter"));
     }
