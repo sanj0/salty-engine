@@ -114,7 +114,7 @@ public class SaltyGraphics {
      * @see #drawRect(Transform)
      */
     public void drawRect(GameObject gameObject) {
-        fillRect(gameObject.getTransform());
+        drawRect(gameObject.getTransform());
     }
     
     /*

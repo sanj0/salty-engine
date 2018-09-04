@@ -7,9 +7,12 @@ import de.edgelord.saltyengine.gameobject.components.rendering.OvalRender;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.Resource;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,15 +73,71 @@ public class Interpreter {
         }
     }
 
-    public static void draw(ScriptLine scriptLine, SaltyGraphics graphics, GameObject gameObject) throws VarNotFoundException {
-
-        graphics.drawText("Hello World", 100, 100);
+    public static void draw(ScriptLine scriptLine, SaltyGraphics graphics, GameObject parent) throws VarNotFoundException, CannotParseVarException {
 
         if (scriptLine.getCommand().equals(DRAW_COMMAND)) {
 
+            String[] opts = getOpts(scriptLine.getMinorArg());
+
             switch (scriptLine.getMajorArg()) {
+
                 case "image":
-                    graphics.drawImage((BufferedImage) getVar(scriptLine.getMinorArg()).getValue(), gameObject);
+
+                    if (scriptLine.getMinorArg().equals("parent")) {
+                        graphics.drawImage((BufferedImage) getVar(scriptLine.getMinorArg()).getValue(), parent);
+                    } else {
+                        // syntax: draw image myImage;position=314,628;width=100;height=200
+                        graphics.drawImage((BufferedImage) getVar(opts[0]).getValue(), new Transform(getVector2FFromOpt(opts[1]), getDimensionsFromOP(opts[2], opts[4])));
+                    }
+
+                    break;
+
+                case "oval":
+
+                    if (scriptLine.getMinorArg().equals("parent")) {
+                        // syntax: draw oval parent
+                        graphics.drawOval(parent);
+                    } else {
+                        // syntax: draw oval position=314,682;width=100;height=200
+                        graphics.drawOval(new Transform(getVector2FFromOpt(opts[0]), getDimensionsFromOP(opts[1], opts[2])));
+                    }
+
+                    break;
+
+                case "rect":
+                    if (scriptLine.getMinorArg().equals("parent")) {
+                        // syntax: draw rect parent
+                        graphics.drawRect(parent);
+                    } else {
+                        // syntax: draw rect position=314,682;width=100;height=200
+                        graphics.drawRect(new Transform(getVector2FFromOpt(opts[0]), getDimensionsFromOP(opts[1], opts[2])));
+                    }
+                    break;
+
+                // syntax: draw text text=Hello#_#World
+                // Or: draw text var=myVar
+                case "text":
+                    String text = "";
+                    Vector2f position = getVector2FFromOpt(opts[1]);
+
+                    if (opts[0].startsWith("var")) {
+                        text = getVar(opts[0].replaceAll("var=", "")).getValue().toString();
+                    } else if (opts[0].startsWith("text")) {
+                        text = opts[0].replaceAll("text=", "");
+                    }
+
+                    graphics.drawText(text, position);
+                    break;
+
+                case "roundRect":
+
+                    if (scriptLine.getMinorArg().startsWith("parent")) {
+                        // syntax: draw roundRect parent;arc=15
+                        graphics.drawRoundRect(parent, Float.valueOf(opts[1].replaceAll("arc=", "")));
+                    } else {
+                        // syntax: draw roundRect position=314,682;width=100;height=200;arc=15
+                        graphics.drawRoundRect(new Transform(getVector2FFromOpt(opts[0]), getDimensionsFromOP(opts[1], opts[2])), Float.valueOf(getOpts(scriptLine.getMinorArg())[3].replaceAll("arc=", "")));
+                    }
                     break;
             }
         }
@@ -170,15 +229,72 @@ public class Interpreter {
                     // Syntax: set myVec2F 3.14 , 6.26
                     // NOTICE the spaces before and after the comma!
                     case Vector2F:
-                        var.setValue(new Vector2f(Float.valueOf(scriptLine.getMinorArg().split(",")[0]), Float.valueOf(scriptLine.getMinorArg().split(",")[1])));
+                        try {
+                            var.setValue(getVector2F(scriptLine.getMinorArg()));
+                        } catch (CannotParseVarException e) {
+                            e.printStackTrace();
+                        }
                         break;
 
                         // Syntax set image path=res/pictures/image.png
                     case Image:
-                        var.setValue(resource.getImageResource(scriptLine.getMinorArg().replaceAll("path=", "")));
+                        try {
+                            var.setValue(getImage(scriptLine.getMinorArg(), resource));
+                        } catch (CannotParseVarException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
             }
+        }
+    }
+
+    public static Vector2f getVector2FFromOpt(String opt) throws CannotParseVarException, VarNotFoundException {
+        if (opt.startsWith("position")) {
+            try {
+                return getVector2F(opt.replaceAll("position=", ""));
+            } catch (CannotParseVarException e) {
+                throw new CannotParseVarException("Vector2F", opt.replaceAll("var=", ""));
+            }
+        } else if (opt.startsWith("var")) {
+            try {
+                return (Vector2f) getVar(opt.replaceAll("var=", "")).getValue();
+            } catch (Exception e) {
+                throw new VarNotFoundException(opt.replaceAll("var=", ""));
+            }
+        }
+
+        return new Vector2f(314, 628);
+    }
+
+    public static Dimensions getDimensionsFromOP(String widthOpt, String heightOpt) {
+
+        float width = Float.valueOf(widthOpt.replaceAll("width=", ""));
+        float height = Float.valueOf(heightOpt.replaceAll("height=", ""));
+
+        return new Dimensions(width, height);
+    }
+
+    public static String[] getOpts(String minorArg) {
+
+        return minorArg.split(";");
+    }
+
+    public static Vector2f getVector2F(String arg) throws CannotParseVarException {
+
+        try {
+            return new Vector2f(Float.valueOf(arg.split(",")[0]), Float.valueOf(arg.split(",")[1]));
+        } catch (Exception e) {
+            throw new CannotParseVarException("Vector2F", arg);
+        }
+    }
+
+    public static BufferedImage getImage(String arg, Resource resource) throws CannotParseVarException {
+
+        try {
+            return resource.getImageResource(arg.replaceAll("path=", ""));
+        } catch (Exception e) {
+            throw new CannotParseVarException("Image", arg);
         }
     }
 

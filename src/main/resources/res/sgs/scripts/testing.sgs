@@ -12,10 +12,12 @@ set y 314
 -vars
 
 var Vector2F pos
+var Text myText
 var Image myImage
 
-set pos 3.14,6.28
+set pos 100,100
 set myImage path=res/pictures/bg.png
+set myText Hello#_#World
 
 write var pos
 --vars
@@ -33,7 +35,13 @@ physicsControl removeForce gravity
 
 -draw
 
-draw image myImage
+# draw image myImage
+draw text text=Oh#_#my#_#gosh#_#i#_#am#_#legend;var=pos
+draw text var=myText;position=200,200
+draw rect parent
+draw rect position=100,100;width=100;height=200
+draw roundRect parent;arc=60
+draw roundRect position=100,100;width=100;height=200;arc=60
 --draw
 
 -onCollision

@@ -8,10 +8,7 @@ package de.edgelord.saltyengine.sgs.segments;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.sgs.Interpreter;
-import de.edgelord.saltyengine.sgs.ScriptLine;
-import de.edgelord.saltyengine.sgs.ScriptSegment;
-import de.edgelord.saltyengine.sgs.VarNotFoundException;
+import de.edgelord.saltyengine.sgs.*;
 
 public class DrawSegment extends ScriptSegment {
     /**
@@ -32,7 +29,7 @@ public class DrawSegment extends ScriptSegment {
             Interpreter.set(scriptLine);
             try {
                 Interpreter.draw(scriptLine, getLastGraphics(), parent);
-            } catch (VarNotFoundException e) {
+            } catch (VarNotFoundException | CannotParseVarException e) {
                 e.printStackTrace();
             }
         }
