@@ -11,15 +11,16 @@ import java.awt.event.MouseEvent;
 public class PauseButton extends Button {
 
     public PauseButton() {
-        super("Pause", Game.getDisplayManager().getCenter(100, 35), 100, 35);
+        super("Pause", Game.getDisplayManager().getCenter(500, 175), 500, 175);
 
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
-        wobblingEffect.setPause(50);
-        wobblingEffect.init(2, 2, -2, -2);
+        wobblingEffect.setPause(25);
+        wobblingEffect.init(10, 10, -10, -10);
         wobblingEffect.startGFX();
 
         setBackgroundColor(Color.orange);
         setForegroundColor(Color.white);
+        setFont(getFont().deriveFont(100f));
 
         this.addComponent(wobblingEffect);
     }

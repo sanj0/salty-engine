@@ -36,7 +36,7 @@ physicsControl removeForce gravity
 -draw
 
 # draw image myImage
-draw text text=Oh#_#my#_#gosh#_#i#_#am#_#legend;var=pos
+draw text text=Hello#_#World.#_#This#_#is#_#edgelord.;var=pos
 draw text var=myText;position=200,200
 draw rect parent
 draw rect position=100,100;width=100;height=200
