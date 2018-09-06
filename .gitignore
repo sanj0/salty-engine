@@ -4,4 +4,4 @@
 /out/
 /META-INF/
 *.iml
-
+/src/main/resources/res/sgs/future/
