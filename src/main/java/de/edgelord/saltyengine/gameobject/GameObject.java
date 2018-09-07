@@ -85,6 +85,14 @@ public abstract class GameObject {
         this(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
+    public GameObject(Vector2f position, float width, float height, String tag) {
+        this(position.getX(), position.getY(), width, height, tag);
+    }
+
+    public GameObject(float xPos, float yPos, Dimensions dimensions, String tag) {
+        this(xPos, yPos, dimensions.getWidth(), dimensions.getHeight(), tag);
+    }
+
     public abstract void initialize();
 
     public abstract void onCollision(CollisionEvent event);
