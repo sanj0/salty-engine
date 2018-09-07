@@ -26,23 +26,23 @@ public class Engine {
         this.fixedTickMillis = fixedTickMillis;
     }
 
-    public void start(DisplayManager displayManager) {
+    public void start(RepaintAble host) {
 
         startFixedTicks();
-        startRendering(displayManager);
+        startRendering(host);
     }
 
-    public void start(DisplayManager displayManager, long FPS) {
-        this.host = displayManager;
+    public void start(RepaintAble host, long FPS) {
+        this.host = host;
 
         startFixedTicks();
         startRepainting(FPS);
 
     }
 
-    private void startRendering(DisplayManager displayManager) {
+    private void startRendering(RepaintAble host) {
 
-        this.host = displayManager;
+        this.host = host;
 
         startRepainting();
     }
