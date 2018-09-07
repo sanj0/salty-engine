@@ -137,7 +137,7 @@ public abstract class GameObject {
         }
     }
 
-    public void doCollisionDetection(final List<GameObject> gameObjects, final List<GameObjectComponent> collisionComponenets) {
+    public void doCollisionDetection(final List<GameObject> gameObjects, final List<GameObjectComponent> collisionComponents) {
 
         Directions collisionDirections = new Directions();
         List<CollisionEvent> collisions = new ArrayList<>();
@@ -162,7 +162,7 @@ public abstract class GameObject {
 
                 for (final GameObjectComponent component : getComponents()) {
                     component.onCollision(eSelf);
-                    collisionComponenets.add(component);
+                    collisionComponents.add(component);
                 }
 
                 /*
@@ -174,7 +174,12 @@ public abstract class GameObject {
                 */
             } else {
                 final CollisionEvent eSelf = new CollisionEvent(other, new Directions());
-                getPhysics().onCollision(eSelf);
+
+                for (final GameObjectComponent component : getComponents()) {
+                    if (!collisionComponents.contains(component)) {
+                        component.onCollision(eSelf);
+                    }
+                }
             }
         }
 

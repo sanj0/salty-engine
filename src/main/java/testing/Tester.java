@@ -26,9 +26,9 @@ public class Tester extends Game {
     public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
         super(windowWidth, windowHeight, gameName, fixedTickMillis);
 
-        System.out.println("INFO: Welcome to saltyengine version " + StaticSystem.versionTag + " " + StaticSystem.versionName);
+        System.out.println("INFO: Welcome to saltyengine version " + StaticSystem.versionTag);
 
-        Tester.initSGSTest();
+        Tester.initForcesTest();
         Tester.addUI();
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));

@@ -20,10 +20,9 @@ import java.awt.event.KeyEvent;
 
 public class StaticSystem {
 
-    public static String versionTag = "0.6.1-SNAPSHOT";
-    public static String version = "0.6.1";
+    public static String versionTag = "0.6.2-SNAPSHOT";
+    public static String version = "0.6.2";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
-    public static String versionName = "Zeus";
     public static String gameName = "My name is Nym. Arno Nym.";
 
     public static long fixedTickMillis = 1;
