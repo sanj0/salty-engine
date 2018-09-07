@@ -20,7 +20,7 @@ public class Engine {
     private Timer fixedTimer = new Timer();
     private Timer repaintTimer = new Timer();
     private boolean isCloseRequested = false;
-    private DisplayManager displayManager = null;
+    private RepaintAble host = null;
 
     public Engine(long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
@@ -33,7 +33,7 @@ public class Engine {
     }
 
     public void start(DisplayManager displayManager, long FPS) {
-        this.displayManager = displayManager;
+        this.host = displayManager;
 
         startFixedTicks();
         startRepainting(FPS);
@@ -42,7 +42,7 @@ public class Engine {
 
     private void startRendering(DisplayManager displayManager) {
 
-        this.displayManager = displayManager;
+        this.host = displayManager;
 
         startRepainting();
     }
@@ -117,7 +117,7 @@ public class Engine {
                 nanosBefore = System.nanoTime();
 
                 onTick();
-                displayManager.repaintStage();
+                host.repaint();
 
                 Thread.yield();
 
@@ -140,7 +140,7 @@ public class Engine {
                     nanosBefore = System.nanoTime();
 
                     onTick();
-                    displayManager.repaintStage();
+                    host.repaint();
 
                     Time.setDeltaNanos(System.nanoTime() - nanosBefore);
                     Thread.yield();
