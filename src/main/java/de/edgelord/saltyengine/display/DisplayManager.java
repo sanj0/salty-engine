@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.Engine;
-import de.edgelord.saltyengine.core.RepaintAble;
+import de.edgelord.saltyengine.core.Repaintable;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
@@ -18,7 +18,7 @@ import de.edgelord.saltyengine.utils.StaticSystem;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DisplayManager implements RepaintAble {
+public class DisplayManager implements Repaintable {
 
     private final Display display;
     private final Stage stage;

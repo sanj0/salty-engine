@@ -6,7 +6,6 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -20,19 +19,19 @@ public class Engine {
     private Timer fixedTimer = new Timer();
     private Timer repaintTimer = new Timer();
     private boolean isCloseRequested = false;
-    private RepaintAble host = null;
+    private Repaintable host = null;
 
     public Engine(long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
     }
 
-    public void start(RepaintAble host) {
+    public void start(Repaintable host) {
 
         startFixedTicks();
         startRendering(host);
     }
 
-    public void start(RepaintAble host, long FPS) {
+    public void start(Repaintable host, long FPS) {
         this.host = host;
 
         startFixedTicks();
@@ -40,7 +39,7 @@ public class Engine {
 
     }
 
-    private void startRendering(RepaintAble host) {
+    private void startRendering(Repaintable host) {
 
         this.host = host;
 

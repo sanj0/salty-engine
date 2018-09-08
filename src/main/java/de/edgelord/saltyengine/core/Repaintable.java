@@ -1,6 +1,6 @@
 package de.edgelord.saltyengine.core;
 
-public interface RepaintAble {
+public interface Repaintable {
 
     void repaint();
 }
