@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.Engine;
-import de.edgelord.saltyengine.core.Repaintable;
+import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
@@ -18,7 +18,7 @@ import de.edgelord.saltyengine.utils.StaticSystem;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DisplayManager implements Repaintable {
+public class DisplayManager extends Host {
 
     private final Display display;
     private final Stage stage;
@@ -51,10 +51,29 @@ public class DisplayManager implements Repaintable {
         StaticSystem.gameName = gameName;
     }
 
+    @Override
     public void create() {
 
         display.create();
         createKeyListener();
+    }
+
+    @Override
+    public float getHorizontalCentrePosition(final float width) {
+        return ((float) getWidth() / 2) - (width / 2);
+    }
+
+    @Override
+    public float getVerticalCentrePosition(final float height) {
+        return ((float) getHeight() / 2) - (height / 2);
+    }
+
+    @Override
+    public void repaint() {
+
+        //System.out.println("saltyengine 0.3 Zeus > DisplayManager > \"The stage were repainted\"");
+
+        stage.repaint();
     }
 
     public void createKeyListener() {
@@ -169,18 +188,6 @@ public class DisplayManager implements Repaintable {
         stage.scale(zoomX, zoomY);
     }
 
-    public float getHorizontalCenter(final float width) {
-        return ((float) getWidth() / 2) - (width / 2);
-    }
-
-    public float getVerticalCenter(final float height) {
-        return ((float) getHeight() / 2) - (height / 2);
-    }
-
-    public Vector2f getCenter(final float width, final float height) {
-        return new Vector2f(getHorizontalCenter(width), getVerticalCenter(height));
-    }
-
     public void setDisplayKeyHandler(final DisplayKeyHandler displayKeyHandler) {
         this.displayKeyHandler = displayKeyHandler;
     }
@@ -201,14 +208,6 @@ public class DisplayManager implements Repaintable {
 
     public char getCurrentKey() {
         return currentKey;
-    }
-
-    @Override
-    public void repaint() {
-
-        //System.out.println("saltyengine 0.3 Zeus > DisplayManager > \"The stage were repainted\"");
-
-        stage.repaint();
     }
 
     public int getWidth() {

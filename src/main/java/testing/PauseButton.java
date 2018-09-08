@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class PauseButton extends Button {
 
     public PauseButton() {
-        super("Pause", Game.getDisplayManager().getCenter(500, 175), 500, 175);
+        super("Pause", Game.getHost().getCentrePosition(500, 175), 500, 175);
 
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.setPause(25);
