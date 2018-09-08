@@ -18,7 +18,7 @@ import java.awt.event.*;
 
 public class Stage extends Canvas {
 
-    private final Display display;
+    private final Container container;
     private final Engine engine;
     private double currentZoomX = 1;
     private double currentZoomY = 1;
@@ -37,11 +37,15 @@ public class Stage extends Canvas {
     private boolean highQuality = true;
     private RenderingHints renderingHints;
 
-    public Stage(final Display display, final Engine engine) {
-        this.display = display;
+    public Stage(final Container container, final Engine engine) {
+        this(container, engine, 0, 0, container.getWidth(), container.getHeight());
+    }
+
+    public Stage(final Container container, final Engine engine, int x, int y, int width, int height) {
+        this.container = container;
         this.engine = engine;
 
-        init();
+        init(x, y, width, height);
     }
 
     protected void initNativeMouseListener() {
@@ -135,11 +139,11 @@ public class Stage extends Canvas {
         addMouseWheelListener(nativeMouseWheelListener);
     }
 
-    protected void init() {
+    protected void init(int x, int y, int width, int height) {
 
-        setBounds(0, 0, display.getWidth(), display.getHeight());
+        setBounds(x, y, width, height);
         setBackground(Color.WHITE);
-        display.add(this);
+        container.add(this);
         setIgnoreRepaint(true);
         setFocusable(false);
 

@@ -31,6 +31,19 @@ public class Game {
         Game.host = host;
     }
 
+    /**
+     * When using this constructor you should set the static Engine immediately after calling this constructor
+     *
+     * @param host the host of the Game
+     * @param gameName the name of the game
+     */
+    public Game(Host host, String gameName) {
+
+        System.setProperty("sun.java2d.opengl", "true");
+
+        Game.host = host;
+    }
+
     public static void start() {
 
         host.create();
@@ -43,6 +56,10 @@ public class Game {
         host.create();
 
         engine.start(host, fixedFPS);
+    }
+
+    protected static void setEngine(Engine engine) {
+        Game.engine = engine;
     }
 
     public static Host getHost() {

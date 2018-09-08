@@ -86,7 +86,7 @@ public class Tester extends Game {
         StaticSystem.currentScene.addGameObject(bird3_3);
     }
 
-    private static void initForcesTest() {
+    public static void initForcesTest() {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
         final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
