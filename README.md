@@ -22,6 +22,7 @@ So you can make a whole game **without any coding knowledge**. <p>
 
 ### Pro:
 - simple Display management
+- have the game in a panel inside your own window
 - easy rendering process with ```SaltyGraphics```
 - GameObjects for the simplest game developing possible
 - Scenes for collecting and defining what to render and update
