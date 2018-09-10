@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.audio;
 
 import de.edgelord.saltyengine.factory.AudioFactory;
-import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 /**
  * This class is not really necessary, it has no special functionality, it has only organizational reasons
@@ -21,10 +21,10 @@ public class AudioSystem {
     private AudioFactory audioFactory;
 
     /**
-     * A overload constructor, with an <code>AudioFactory</code> with an <code>InnerResource</code> as default.
+     * A overload constructor, with an <code>AudioFactory</code> using an <code>InnerResource</code> as default.
      */
     public AudioSystem() {
-        this(new AudioFactory(new InnerResource()));
+        this(new AudioFactory(StaticSystem.defaultImageFactory.getResource()));
     }
 
     /**
