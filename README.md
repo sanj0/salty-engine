@@ -50,13 +50,10 @@ So you can make a whole game **without any coding knowledge**. <p>
 
 # Join the team
 Do you want to collaborate? Join the project at https://crowdforge.io/projects/447 <p>
-If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
+If you want to get access to a comfortable and frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
 
 **Known bugs/glitches/issues**
 - See in the ```Wunderlist``` TODO-List
-
-**TODO** (sort by relevance)
-- add more UIElements
 
 **NOTE** for help with how to use, please check out the files in
 src/main/java/testing
