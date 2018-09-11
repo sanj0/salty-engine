@@ -10,6 +10,8 @@ resource management, but also support for scene and
 stage management as well as saving with
 stdf (github.com/edgelord314/stdf)
 
+**NOTE: When you release a game that's made with Salty Engine, please [send me an email](mailto:malte.dostal@gmail.com)**
+
 ## SGS
 SGS stands for "salty gameObject scripting". SGS is a simple
 scripting language with which you can script GameObject and Scenes in the Salty Engine.
@@ -56,10 +58,13 @@ Made by edgelord and LoOoNeliEst for Ludum Dare 42. You can play it [here](https
 
 # Join the team
 Do you want to collaborate? Join the project at https://crowdforge.io/projects/447 <p>
-If you want to get access to a comfortable and frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
+If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
 
 **Known bugs/glitches/issues**
 - See in the ```Wunderlist``` TODO-List
+
+**TODO** (sort by relevance)
+- add more UIElements
 
 **NOTE** for help with how to use, please check out the files in
 src/main/java/testing
