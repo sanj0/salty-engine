@@ -2,15 +2,11 @@
 
 {pattern.ssp}
 
-    (sjgl_version)1.0.0.devel(*sjgl_version)
-
-    (ddbs_version)0.1(*ddbs_version)
-
     (sprites)3(*sprites)
 
     {pattern}
 
-        (rectangle1)    
+        (rectangle1)
             0,0,100,100,1
         (*rectangle1)
 
