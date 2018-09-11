@@ -12,14 +12,6 @@ stdf (github.com/edgelord314/stdf)
 
 **NOTE: When you release a game that's made with Salty Engine, please [send me an email](mailto:malte.dostal@gmail.com)**
 
-## SGS
-SGS stands for "salty gameObject scripting". SGS is a simple
-scripting language with which you can script GameObject and Scenes in the Salty Engine.
-So you can make a whole game **without any coding knowledge**. <p>
-
-[Documentation](https://github.com/edgelord314/salty-engine/tree/master/SGS.md) -
-[Examples](https://github.com/edgelord314/salty-engine/tree/master/src/main/resources/sgs)
-
 ## Why using Salty Engine?
 
 ### Pro:
