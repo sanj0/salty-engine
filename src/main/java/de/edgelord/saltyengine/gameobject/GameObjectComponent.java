@@ -26,6 +26,7 @@ public abstract class GameObjectComponent {
     public static final String GFX_COMPONENT = "de.edgelord.saltyengine.components.gfx";
     public static final String ANIMATION_COMPONENT = "de.edgelord.saltyengine.components.animation";
     public static final String TIMING_COMPONENT = "de.edgelord.saltyengine.components.timing";
+    public static final String COLLIDER_COMPONENT = "de.edgelord.saltyengine.components.collider";
 
     private GameObject parent;
     private String name;

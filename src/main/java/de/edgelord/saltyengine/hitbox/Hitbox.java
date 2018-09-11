@@ -7,8 +7,13 @@
 package de.edgelord.saltyengine.hitbox;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.transform.Transform;
 
 public interface Hitbox {
 
     boolean collides(GameObject other);
+
+    Transform getTransform();
+
+    void recalculate();
 }

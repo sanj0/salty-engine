@@ -7,11 +7,9 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.components.Accelerator;
-import de.edgelord.saltyengine.gameobject.components.RecalculateHitboxComponent;
-import de.edgelord.saltyengine.gameobject.components.RecalculateMiddleComponent;
-import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -29,6 +27,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Consumer;
 
 public abstract class GameObject {
 
@@ -36,6 +35,8 @@ public abstract class GameObject {
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
     public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.saltyengine.coreComponents.recalculateMiddle";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
+    public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
+    public static final String DEFAULT_SHAPE_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.shape";
 
     private final List<GameObjectComponent> components = new CopyOnWriteArrayList<>();
 
@@ -43,6 +44,10 @@ public abstract class GameObject {
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final RecalculateMiddleComponent recalculateMiddleComponent;
     private final Accelerator defaultAccelerator;
+    private final ColliderComponent collider;
+    private final ShapeComponent shapeComponent;
+
+    private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
     private Directions.Direction lastDirection = null;
 
@@ -51,7 +56,7 @@ public abstract class GameObject {
     private String tag;
     private HashMap<String, String> properties = new HashMap<>();
     private File propertiesFile;
-    private SimpleHitbox hitbox;
+    private Hitbox hitbox;
     private float mass = 1f;
 
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
@@ -66,11 +71,16 @@ public abstract class GameObject {
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
         recalculateMiddleComponent = new RecalculateMiddleComponent(this, GameObject.DEFAULT_RECALCULATE_MIDDLE_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
+        collider = new ColliderComponent(this, DEFAULT_COLLIDER_COMPONENT_NAME, ColliderComponent.Type.HITBOX);
+        shapeComponent = new ShapeComponent(this, DEFAULT_SHAPE_COMPONENT_NAME, ShapeComponent.Shape.RECT);
+        shapeComponent.disableDrawing();
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(recalculateMiddleComponent);
         components.add(defaultAccelerator);
+        components.add(collider);
+        components.add(shapeComponent);
     }
 
     public GameObject(Transform transform, String tag) {
@@ -148,7 +158,7 @@ public abstract class GameObject {
                 continue;
             }
 
-            if (getHitbox().collides(other)) {
+            if (requestCollider().requestCollision(other)) {
 
                 Directions.appendGameObjectRelation(this, other, collisionDirections);
 
@@ -188,6 +198,17 @@ public abstract class GameObject {
 
     public void removeComponent(final String name) {
         components.removeIf(gameObjectComponent -> gameObjectComponent.getName().equals(name));
+    }
+
+    public GameObjectComponent getComponent(String name) {
+
+        for (GameObjectComponent component : getComponents()) {
+            if (component.getName().equals(name)) {
+                return component;
+            }
+        }
+
+        return null;
     }
 
     public void initPropertiesFile(final File file) {
@@ -283,6 +304,23 @@ public abstract class GameObject {
         transform.setX(getX() + delta);
     }
 
+    public void setShapeDrawing(boolean shapeDrawing) {
+        shapeComponent.setDrawing(shapeDrawing);
+    }
+
+    public void setShape(ShapeComponent.Shape shape) {
+        shapeComponent.setShape(shape);
+    }
+
+    public ShapeComponent.Shape getShape() {
+        return shapeComponent.getShape();
+    }
+
+    public ColliderComponent requestCollider() {
+
+        return (ColliderComponent) getComponent(colliderComponent);
+    }
+
     public HashMap<String, String> getProperties() {
         return properties;
     }
@@ -319,11 +357,15 @@ public abstract class GameObject {
         transform.setHeight(height);
     }
 
-    public SimpleHitbox getHitbox() {
+    public Hitbox getHitbox() {
         return hitbox;
     }
 
-    public void setHitbox(final SimpleHitbox hitbox) {
+    public SimpleHitbox getHitboxAsSimpleHitbox() {
+        return (SimpleHitbox) getHitbox();
+    }
+
+    public void setHitbox(final Hitbox hitbox) {
         this.hitbox = hitbox;
     }
 
@@ -368,6 +410,18 @@ public abstract class GameObject {
 
     public Accelerator getDefaultAccelerator() {
         return defaultAccelerator;
+    }
+
+    public ColliderComponent getCollider() {
+        return collider;
+    }
+
+    public ShapeComponent getShapeComponent() {
+        return shapeComponent;
+    }
+
+    public void setColliderComponent(String colliderComponent) {
+        this.colliderComponent = colliderComponent;
     }
 
     public String getTag() {

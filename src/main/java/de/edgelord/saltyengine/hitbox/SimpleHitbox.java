@@ -33,22 +33,22 @@ public class SimpleHitbox implements Hitbox {
 
     public boolean isLeft(final GameObject other) {
 
-        return transform.getX() + getWidth() < other.getHitbox().getPosition().getX();
+        return transform.getX() + getWidth() < other.getHitbox().getTransform().getPosition().getX();
     }
 
     public boolean isRight(final GameObject other) {
 
-        return transform.getX() > other.getHitbox().getPosition().getX() + other.getHitbox().getWidth();
+        return transform.getX() > other.getHitbox().getTransform().getPosition().getX() + other.getHitbox().getTransform().getWidth();
     }
 
     public boolean isBelow(final GameObject other) {
 
-        return transform.getY() > other.getHitbox().getPosition().getY() + other.getHitbox().getHeight();
+        return transform.getY() > other.getHitbox().getTransform().getPosition().getY() + other.getHitbox().getTransform().getHeight();
     }
 
     public boolean isAbove(final GameObject other) {
 
-        return transform.getY() + getHeight() < other.getHitbox().getPosition().getY();
+        return transform.getY() + getHeight() < other.getHitbox().getTransform().getPosition().getY();
     }
 
     @Override
@@ -64,6 +64,11 @@ public class SimpleHitbox implements Hitbox {
             return !isRight(other);
         }
 
+    }
+
+    @Override
+    public Transform getTransform() {
+        return transform;
     }
 
     public float getOffsetX() {
