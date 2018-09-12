@@ -63,10 +63,6 @@ public class Animation {
         this.getFrames().add(frame);
     }
 
-    public void addNewFrame(String relativePath) {
-
-    }
-
     @Deprecated
     public void loop(SaltyGraphics saltyGraphics) {
 
