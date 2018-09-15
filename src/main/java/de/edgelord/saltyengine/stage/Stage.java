@@ -197,6 +197,7 @@ public class Stage extends Canvas {
         }
 
         getBufferStrategy().show();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     public void scale(final double zoomX, final double zoomY) {
