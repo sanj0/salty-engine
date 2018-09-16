@@ -42,4 +42,9 @@ public class PaneledGameHost extends Host {
 
         stage.repaint();
     }
+
+    @Override
+    public Dimensions getDimensions() {
+        return new Dimensions(getWidth(), getHeight());
+    }
 }

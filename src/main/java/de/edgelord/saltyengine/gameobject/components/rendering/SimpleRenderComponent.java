@@ -18,7 +18,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
     // The color with which the Component should render
     private Color color = Color.black;
 
-    // Whether the Component should only DRAW (e.g. graphics.drawRectangle()) or fill it (e.g. graphics.fillRectangle())
+    // Whether the Component should only DRAW (e.g. graphics.drawRectangle()) or FILL it (e.g. graphics.fillRectangle())
     private boolean fill = true;
 
     // The stroke (like a pen) with which the component should DRAW the primitives
@@ -51,6 +51,15 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      */
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
+
+    /**
+     * Sets the necessary clipping to the given graphics
+     *
+     * @param saltyGraphics the graphics to set the clipping to
+     */
+    public void setClipping(SaltyGraphics saltyGraphics) {
+        saltyGraphics.setClip(getParent().getTransform());
+    }
 
     @Override
     public void onCollision(final CollisionEvent e) {

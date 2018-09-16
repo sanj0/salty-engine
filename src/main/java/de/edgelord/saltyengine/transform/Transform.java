@@ -1,5 +1,7 @@
 package de.edgelord.saltyengine.transform;
 
+import java.awt.geom.Rectangle2D;
+
 public class Transform {
 
     private Vector2f position;
@@ -8,6 +10,15 @@ public class Transform {
     public Transform(Vector2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
+    }
+
+    public Transform(float x, float y, float width, float height) {
+        position = new Vector2f(x, y);
+        dimensions = new Dimensions(width, height);
+    }
+
+    public Rectangle2D getRect() {
+        return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
     }
 
     public float getWidth() {

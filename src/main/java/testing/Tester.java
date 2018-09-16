@@ -26,7 +26,7 @@ public class Tester extends Game {
     public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
         super(windowWidth, windowHeight, gameName, fixedTickMillis);
 
-        System.out.println("INFO: Welcome to saltyengine version " + StaticSystem.versionTag);
+        System.out.println("INFO: Welcome to Salty Engine v" + StaticSystem.versionTag);
 
         Tester.initForcesTest();
         Tester.addUI();

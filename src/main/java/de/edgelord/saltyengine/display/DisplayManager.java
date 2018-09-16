@@ -12,6 +12,7 @@ import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.stage.Stage;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -27,7 +28,7 @@ public class DisplayManager extends Host {
     private DisplayKeyHandler displayKeyHandler = null;
     private DisplayMouseHandler displayMouseHandler = null;
 
-    // The char of the current pressed key. PLease note that this only gets on key at a time as an lastInput.
+    // The char of the current pressed key. Please note that this only gets on key at a time as an lastInput.
     private char currentKey;
 
     // The following four booleans are for standard lastInput (e.g. inputUp would be true if 'w' or the UP arrow is pressed)
@@ -60,12 +61,12 @@ public class DisplayManager extends Host {
 
     @Override
     public float getHorizontalCentrePosition(final float width) {
-        return ((float) getWidth() / 2) - (width / 2);
+        return (getWidth() / 2) - (width / 2);
     }
 
     @Override
     public float getVerticalCentrePosition(final float height) {
-        return ((float) getHeight() / 2) - (height / 2);
+        return (getHeight() / 2) - (height / 2);
     }
 
     @Override
@@ -210,12 +211,9 @@ public class DisplayManager extends Host {
         return currentKey;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+    @Override
+    public Dimensions getDimensions() {
+        return new Dimensions(width, height);
     }
 
     public boolean isInputUp() {

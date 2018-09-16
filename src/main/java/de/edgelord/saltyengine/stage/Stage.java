@@ -15,6 +15,7 @@ import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Ellipse2D;
 
 public class Stage extends Canvas {
 
@@ -168,8 +169,8 @@ public class Stage extends Canvas {
         }
 
         final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
-
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
+
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.scale(currentZoomX, currentZoomY);
 

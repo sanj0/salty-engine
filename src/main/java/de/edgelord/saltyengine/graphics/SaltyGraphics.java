@@ -481,6 +481,32 @@ public class SaltyGraphics {
         drawRoundRect(gameObject.getTransform(), arc, arc);
     }
 
+    /**
+     * The base method to clear a rect.
+     * Clears the given rect from the graphics.
+     *
+     * @param x the x position of the rect to be cleared
+     * @param y the y position of the rect to be cleared
+     * @param width the width of the rect to be cleared
+     * @param height the height of the rect to be cleared
+     *
+     * @see Graphics2D#clearRect(int, int, int, int)
+     */
+    public void clear(float x, float y, float width, float height) {
+        graphics2D.clearRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+    }
+
+    /**
+     * Clears a rect build from the given transform by calling the base method.
+     *
+     * @param transform the {@link Transform} of the rect to be cleared
+     *
+     * @see #clear(float, float, float, float)
+     */
+    public void clear(Transform transform) {
+        clear(transform.getX(), transform.getY(), transform.getWidth(), transform.getHeight());
+    }
+
     /*
     Binding for drawing Shapes and lines
      */
@@ -744,6 +770,46 @@ public class SaltyGraphics {
      */
     public void setBackground(Color color) {
         graphics2D.setBackground(color);
+    }
+
+    /**
+     * The base method to set the clipping of the graphics.
+     * The graphics will from then only be repainted in the specified Shape.
+     * This can be used multiple times during the rendering process.
+     *
+     * @param shape the new clipping area
+     *
+     * @see Shape
+     * @see Graphics2D#setClip(Shape)
+     */
+    public void setClip(Shape shape) {
+        graphics2D.setClip(shape);
+    }
+
+    /**
+     * Sets the clipping area by calling the base method with the default {@link java.awt.geom.Rectangle2D} of the
+     * given {@link Transform}
+     *
+     * @param transform the {@link Transform} for the new Rectangle clipping area
+     *
+     * @see Transform
+     * @see java.awt.geom.Rectangle2D
+     * @see #setClip(Shape)
+     */
+    public void setClip(Transform transform) {
+        setClip(transform.getRect());
+    }
+
+    /**
+     * Sets the clipping area by calling the base method.
+     *
+     * @param x the x position of the clipping rect
+     * @param y the y position of the clipping rect
+     * @param width the width of the clipping rect
+     * @param height the height of the clipping rect
+     */
+    public void setClip(float x, float y, float width, float height) {
+        setClip(new Transform(x, y, width, height));
     }
 
     /*
