@@ -196,6 +196,7 @@ public class Stage extends Canvas {
             graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, graphics2D.getFontMetrics(graphics2D.getFont()).getAscent());
         }
 
+        graphics2D.dispose();
         getBufferStrategy().show();
         Toolkit.getDefaultToolkit().sync();
     }
