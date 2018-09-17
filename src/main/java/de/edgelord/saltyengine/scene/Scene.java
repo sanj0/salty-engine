@@ -52,19 +52,6 @@ public class Scene {
         }
     }
 
-    public void doCollisionDetection() {
-
-        List<GameObjectComponent> collisionComponents = new ArrayList<>();
-
-        synchronized (getGameObjects()) {
-
-            for (GameObject gameObject : gameObjects) {
-
-                gameObject.doCollisionDetection(getGameObjects(), collisionComponents);
-            }
-        }
-    }
-
     public void resetPosition() {
 
         synchronized (getGameObjects()) {
@@ -128,10 +115,11 @@ public class Scene {
     public void onFixedTick() {
 
         doFixedTasks();
-        doCollisionDetection();
+        List<GameObjectComponent> collisionComponents = new ArrayList<>();
 
         synchronized (getGameObjects()) {
             for (GameObject gameObject : getGameObjects()) {
+                gameObject.doCollisionDetection(getGameObjects(), collisionComponents);
                 gameObject.doComponentOnFixedTick();
                 gameObject.onFixedTick();
             }
