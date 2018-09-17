@@ -94,6 +94,5 @@ public class Bird extends GameObject {
     public void draw(final SaltyGraphics saltyGraphics) {
 
         animation.drawCurrentFrame(saltyGraphics);
-        saltyGraphics.drawRect(this);
     }
 }
