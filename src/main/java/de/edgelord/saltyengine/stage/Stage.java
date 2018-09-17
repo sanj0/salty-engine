@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.stage;
 
 import de.edgelord.saltyengine.core.Engine;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.display.Display;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
@@ -173,7 +174,7 @@ public class Stage extends Canvas {
 
         final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
-        graphics2D.setClip(0, 0, 0, 0);
+        graphics2D.setClip(0, 0, Math.round(Game.getHost().getWidth()), Math.round(Game.getHost().getWidth()));
 
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.scale(currentZoomX, currentZoomY);

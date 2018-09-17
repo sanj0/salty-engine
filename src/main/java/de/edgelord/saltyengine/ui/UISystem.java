@@ -19,7 +19,6 @@ public class UISystem {
 
     public void drawUI(SaltyGraphics saltyGraphics) {
         for (UIElement element : elements) {
-            element.setClipToRequested(saltyGraphics);
             element.draw(saltyGraphics);
             element.doComponentDrawing(saltyGraphics);
         }

@@ -92,7 +92,6 @@ public class Scene {
             }
 
             for (GameObject gameObject : gameObjects) {
-                gameObject.setClipToRequested(saltyGraphics);
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);
 

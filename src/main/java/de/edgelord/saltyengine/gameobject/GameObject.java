@@ -56,8 +56,6 @@ public abstract class GameObject {
     private Hitbox hitbox;
     private float mass = 1f;
 
-    private Transform defaultClipping = null;
-
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
 
         transform = new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height));
@@ -65,7 +63,6 @@ public abstract class GameObject {
         this.tag = tag;
 
         middle = new Vector2f(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
-        defaultClipping = transform;
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
@@ -266,8 +263,6 @@ public abstract class GameObject {
         } else {
             setY(getY() + delta);
         }
-
-        requestClipping(getTransform());
     }
 
     public void move(float delta, final Directions.Direction direction) {
@@ -300,21 +295,10 @@ public abstract class GameObject {
 
     public void moveY(final float delta) {
         transform.setY(getY() + delta);
-        requestClipping(getTransform());
     }
 
     public void moveX(final float delta) {
         transform.setX(getX() + delta);
-        requestClipping(getTransform());
-    }
-
-    public void requestClipping(Transform transform) {
-
-        defaultClipping = transform;
-    }
-
-    public void setClipToRequested(SaltyGraphics graphics) {
-        graphics.setClip(defaultClipping);
     }
 
     public void setShapeDrawing(boolean shapeDrawing) {
