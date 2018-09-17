@@ -77,8 +77,6 @@ public class SceneFade extends GFXComponent {
 
     private void drawFade(SaltyGraphics saltyGraphics) {
         saltyGraphics.setColor(currentColor);
-        saltyGraphics.setClip(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
-
         saltyGraphics.fillRect(0, 0, Game.getHostAsDisplayManager().getWidth(), Game.getHostAsDisplayManager().getHeight());
     }
 
