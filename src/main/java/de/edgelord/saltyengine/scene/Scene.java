@@ -95,6 +95,11 @@ public class Scene {
                 gameObject.setClipToRequested(saltyGraphics);
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);
+
+                /*
+                saltyGraphics.setColor(Color.red);
+                saltyGraphics.fillRect(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
+                */
             }
 
             if (ui != null) {

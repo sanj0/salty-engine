@@ -35,7 +35,7 @@ public class Stage extends Canvas {
     private final float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
-    private boolean highQuality = true;
+    private boolean highQuality = false;
     private RenderingHints renderingHints;
 
     public Stage(final Container container, final Engine engine) {
@@ -153,13 +153,16 @@ public class Stage extends Canvas {
             renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         } else {
             renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+            renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
+            renderingHints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
+            renderingHints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_SPEED);
         }
 
         initNativeMouseListener();
     }
 
     @Override
-    public void repaint() {
+    public void paint(Graphics graphics) {
 
         startNanos = Time.getDeltaNanos();
 
@@ -170,6 +173,7 @@ public class Stage extends Canvas {
 
         final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
+        graphics2D.setClip(0, 0, 0, 0);
 
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.scale(currentZoomX, currentZoomY);
