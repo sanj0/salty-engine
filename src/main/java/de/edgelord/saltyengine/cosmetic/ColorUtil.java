@@ -27,7 +27,7 @@ public class ColorUtil {
      * Change the brightness of the given Color.
      * -1 is black, 1 the brightest Color without changing it's cosmetic
      *
-     * @param color    Color to make darker.
+     * @param color  Color to make darker.
      * @param amount Darkness fraction.
      * @return Darker color.
      */

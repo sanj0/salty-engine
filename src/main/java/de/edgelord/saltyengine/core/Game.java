@@ -34,7 +34,7 @@ public class Game {
     /**
      * When using this constructor you should set the static Engine immediately after calling this constructor
      *
-     * @param host the host of the Game
+     * @param host     the host of the Game
      * @param gameName the name of the game
      */
     public Game(Host host, String gameName) {

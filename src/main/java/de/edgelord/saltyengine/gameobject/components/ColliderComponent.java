@@ -6,7 +6,6 @@ import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 /**
- *
  * Note: It is obviously planned to make more complicated Collision detection with complex Shapes possible.
  */
 public class ColliderComponent extends GameObjectComponent {

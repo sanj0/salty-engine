@@ -85,12 +85,53 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     @Override
     public void onCollision(final CollisionEvent e) {
 
+    }
+
+    @Override
+    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
+
+        Directions directions;
+        boolean upCollision = false;
+        boolean downCollision = false;
+        boolean leftCollision = false;
+        boolean rightCollision = false;
+
+        for (CollisionEvent collisionEvent : collisions) {
+            directions = collisionEvent.getCollisionDirections();
+
+            if (directions.hasDirection(Directions.Direction.UP)) {
+                upCollision = true;
+            }
+
+            if (directions.hasDirection(Directions.Direction.DOWN)) {
+                downCollision = true;
+            }
+
+            if (directions.hasDirection(Directions.Direction.LEFT)) {
+                leftCollision = true;
+            }
+
+            if (directions.hasDirection(Directions.Direction.RIGHT)) {
+                rightCollision = true;
+            }
+        }
+
         for (final Force force : forces) {
 
-            if (e.getCollisionDirections().hasDirection(force.getDirection())) {
-                force.setCountersCollision(true);
-            } else {
-                force.setCountersCollision(false);
+            switch (force.getDirection()) {
+
+                case RIGHT:
+                    force.setCountersCollision(rightCollision);
+                    break;
+                case LEFT:
+                    force.setCountersCollision(leftCollision);
+                    break;
+                case UP:
+                    force.setCountersCollision(upCollision);
+                    break;
+                case DOWN:
+                    force.setCountersCollision(downCollision);
+                    break;
             }
         }
     }

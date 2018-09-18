@@ -1,6 +1,5 @@
 package de.edgelord.saltyengine.sgs;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.gameobject.components.rendering.OvalRender;
@@ -12,7 +11,6 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +145,7 @@ public class Interpreter {
 
         if (scriptLine.getCommand().equals(ADD_COMP_COMMAND) || scriptLine.getCommand().equals(ADD_COMP_COMMAND$1)) {
 
-            switch(scriptLine.getMajorArg()) {
+            switch (scriptLine.getMajorArg()) {
 
                 case "ovalRender":
                     parent.addComponent(new OvalRender(parent, scriptLine.getMinorArg().replaceAll("name=", "")));
@@ -236,7 +234,7 @@ public class Interpreter {
                         }
                         break;
 
-                        // Syntax set image path=res/pictures/image.png
+                    // Syntax set image path=res/pictures/image.png
                     case Image:
                         try {
                             var.setValue(getImage(scriptLine.getMinorArg(), resource));

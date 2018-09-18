@@ -485,11 +485,10 @@ public class SaltyGraphics {
      * The base method to clear a rect.
      * Clears the given rect from the graphics.
      *
-     * @param x the x position of the rect to be cleared
-     * @param y the y position of the rect to be cleared
-     * @param width the width of the rect to be cleared
+     * @param x      the x position of the rect to be cleared
+     * @param y      the y position of the rect to be cleared
+     * @param width  the width of the rect to be cleared
      * @param height the height of the rect to be cleared
-     *
      * @see Graphics2D#clearRect(int, int, int, int)
      */
     public void clear(float x, float y, float width, float height) {
@@ -500,7 +499,6 @@ public class SaltyGraphics {
      * Clears a rect build from the given transform by calling the base method.
      *
      * @param transform the {@link Transform} of the rect to be cleared
-     *
      * @see #clear(float, float, float, float)
      */
     public void clear(Transform transform) {
@@ -778,7 +776,6 @@ public class SaltyGraphics {
      * This can be used multiple times during the rendering process.
      *
      * @param shape the new clipping area
-     *
      * @see Shape
      * @see Graphics2D#setClip(Shape)
      */
@@ -791,7 +788,6 @@ public class SaltyGraphics {
      * given {@link Transform}
      *
      * @param transform the {@link Transform} for the new Rectangle clipping area
-     *
      * @see Transform
      * @see java.awt.geom.Rectangle2D
      * @see #setClip(Shape)
@@ -803,9 +799,9 @@ public class SaltyGraphics {
     /**
      * Sets the clipping area by calling the base method.
      *
-     * @param x the x position of the clipping rect
-     * @param y the y position of the clipping rect
-     * @param width the width of the clipping rect
+     * @param x      the x position of the clipping rect
+     * @param y      the y position of the clipping rect
+     * @param width  the width of the clipping rect
      * @param height the height of the clipping rect
      */
     public void setClip(float x, float y, float width, float height) {

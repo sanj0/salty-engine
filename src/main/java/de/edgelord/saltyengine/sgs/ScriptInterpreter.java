@@ -13,7 +13,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.segments.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -82,9 +81,9 @@ public class ScriptInterpreter extends GameObjectComponent {
      * by getting subStrings out of the script, beginning with the IN and ending with the OUT (e.g. -VARS and --VARS)
      *
      * @param relativePath the relative path to the script within the given Resource
-     * @param resource the Resource manager from which to load e.g. images that are requested by the script
-     * @param parent   the parent GameObject for this Component
-     * @param name     the id-name for this Component
+     * @param resource     the Resource manager from which to load e.g. images that are requested by the script
+     * @param parent       the parent GameObject for this Component
+     * @param name         the id-name for this Component
      * @return the new ScriptInterpreter
      */
     public static ScriptInterpreter loadScript(String relativePath, Resource resource, GameObject parent, String name) {

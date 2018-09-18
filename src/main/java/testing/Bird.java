@@ -18,7 +18,6 @@ import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject {

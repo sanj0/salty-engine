@@ -13,7 +13,6 @@ import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;

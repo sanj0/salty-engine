@@ -8,7 +8,6 @@ package de.edgelord.saltyengine.stage;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.display.Display;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -16,7 +15,6 @@ import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Ellipse2D;
 
 public class Stage extends Canvas {
 

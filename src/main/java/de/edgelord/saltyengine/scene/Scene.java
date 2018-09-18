@@ -6,17 +6,13 @@
 
 package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -115,11 +111,10 @@ public class Scene {
     public void onFixedTick() {
 
         doFixedTasks();
-        List<GameObjectComponent> collisionComponents = new ArrayList<>();
 
         synchronized (getGameObjects()) {
             for (GameObject gameObject : getGameObjects()) {
-                gameObject.doCollisionDetection(getGameObjects(), collisionComponents);
+                gameObject.doCollisionDetection(getGameObjects());
                 gameObject.doComponentOnFixedTick();
                 gameObject.onFixedTick();
             }

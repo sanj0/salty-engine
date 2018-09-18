@@ -22,9 +22,10 @@ import de.edgelord.stdf.reading.ValueToListConverter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.function.Consumer;
 
 public abstract class GameObject {
 
@@ -144,7 +145,7 @@ public abstract class GameObject {
         }
     }
 
-    public void doCollisionDetection(final List<GameObject> gameObjects, final List<GameObjectComponent> collisionComponents) {
+    public void doCollisionDetection(final List<GameObject> gameObjects) {
 
         Directions collisionDirections = new Directions();
         List<CollisionEvent> collisions = new ArrayList<>();
@@ -169,7 +170,6 @@ public abstract class GameObject {
 
                 for (final GameObjectComponent component : getComponents()) {
                     component.onCollision(eSelf);
-                    collisionComponents.add(component);
                 }
 
                 /*
@@ -179,17 +179,10 @@ public abstract class GameObject {
                     }
                 }
                 */
-            } else {
-                final CollisionEvent eSelf = new CollisionEvent(other, new Directions());
-
-                for (final GameObjectComponent component : getComponents()) {
-                    if (!collisionComponents.contains(component)) {
-                        component.onCollision(eSelf);
-                    }
-                }
             }
         }
 
+        components.forEach(component -> component.onCollisionDetectionFinish(collisions));
         onCollisionDetectionFinish(collisions);
     }
 

@@ -12,7 +12,7 @@ public class ShapeComponent extends GameObjectComponent {
 
     private boolean drawing = true;
 
-    public enum Shape{
+    public enum Shape {
         RECT,
         OVAL,
         ROUND_RECT

@@ -54,7 +54,7 @@ public interface CentrePositionProvider {
     default Vector2f getCentrePosition(GameObject gameObject) {
         return getCentrePosition(gameObject.getWidth(), gameObject.getHeight());
     }
-    
+
     default Vector2f getCentrePosition(Dimensions dimensions) {
         return getCentrePosition(dimensions.getWidth(), dimensions.getHeight());
     }

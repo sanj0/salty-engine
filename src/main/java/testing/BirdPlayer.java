@@ -9,9 +9,7 @@ package testing;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
-import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.components.DrawPositionComponent;
 import de.edgelord.saltyengine.gameobject.components.FixedRate;
 import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.gameobject.components.animation.BasicGameObjectAnimation;
@@ -20,7 +18,6 @@ import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class BirdPlayer extends GameObject {
