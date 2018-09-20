@@ -41,22 +41,20 @@ public class Force {
     public float deltaDistance(final int deltaT) {
 
         final float counterForce = velocity * counterforceConst;
-        float counterAcceleration = -(counterForce / parent.getMass());
+        float counterAcceleration = 0f;
 
-        if (velocity < 0) {
-            counterAcceleration = 0;
-            velocity = 0;
-        }
-
-        if (countersCollision) {
-            counterAcceleration = 0;
-            acceleration = 0;
-            velocity = 0;
+        if (!countersCollision) {
+           counterAcceleration = -(counterForce / parent.getMass());
         }
 
         final float accelerationRes = acceleration + counterAcceleration;
 
         velocity += accelerationRes * deltaT;
+
+        if (countersCollision) {
+            velocity = 0;
+        }
+
         deltaDistance = velocity * deltaT;
         distance += deltaDistance;
         if (countersCollision) {
