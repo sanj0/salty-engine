@@ -171,7 +171,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to DRAW the outline of an oval. It automatically round the given floats to ints.
+     * The base method to DRAW the outline of an oval. It automatically rounds the given floats to ints.
      *
      * @param x      the x position of the oval
      * @param y      the y position of the oval
@@ -280,7 +280,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to DRAW a filled round rect. It automatically round the given floats to ints
+     * The base method to DRAW a filled round rect. It automatically rounds the given floats to ints
      *
      * @param x         the x position of the round rect
      * @param y         the y position of the round rect
@@ -295,7 +295,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to DRAW a filled round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
+     * The base method to DRAW a filled round rect with the same arc both horizontally and vertically. It automatically rounds the given floats to ints
      *
      * @param x      the x position of the round rect
      * @param y      the y position of the round rect
@@ -384,7 +384,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to DRAW a round rect. It automatically round the given floats to ints
+     * The base method to DRAW a round rect. It automatically rounds the given floats to ints
      *
      * @param x         the x position of the round rect
      * @param y         the y position of the round rect
@@ -399,7 +399,7 @@ public class SaltyGraphics {
     }
 
     /**
-     * The base method to DRAW a round rect with the same arc both horizontally and vertically. It automatically round the given floats to ints
+     * The base method to DRAW a round rect with the same arc both horizontally and vertically. It automatically rounds the given floats to ints
      *
      * @param x      the x position of the round rect
      * @param y      the y position of the round rect
