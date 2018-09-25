@@ -1,9 +1,11 @@
 package de.edgelord.saltyengine.graphics;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -806,6 +808,15 @@ public class SaltyGraphics {
      */
     public void setClip(float x, float y, float width, float height) {
         setClip(new Transform(x, y, width, height));
+    }
+
+    /**
+     *
+     * Resets the clipping area to the rectangle of the window.
+     * This clipping area is default when never changing the clipping.
+     */
+    public void resetClip() {
+        setClip(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
     }
 
     /*
