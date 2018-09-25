@@ -25,7 +25,7 @@ public class Scene {
     private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
-    private UISystem ui = null;
+    private UISystem ui = new UISystem();
     private float xDelta, yDelta;
     private boolean initialized = false;
 

@@ -59,12 +59,6 @@ public class Screen extends GameObject {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
-        /*
-        // Draw the message
-        saltyGraphics.setFont(saltyGraphics.getFont().deriveFont(25f));
-        saltyGraphics.drawText(usageMessage, Game.getHost().getHorizontalCentrePosition(saltyGraphics.getFontMetrics().stringWidth(usageMessage)), 50);
-        */
-
         // Draw the screen surrounding
         saltyGraphics.setStroke(new BasicStroke(20));
         saltyGraphics.drawRoundRect(this, 50);
