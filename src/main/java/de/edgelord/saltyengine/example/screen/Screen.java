@@ -76,5 +76,6 @@ public class Screen extends GameObject {
         screenContent.draw(saltyGraphics);
 
         // Reset the clip
+        saltyGraphics.resetClip();
     }
 }
