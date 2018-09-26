@@ -1,5 +1,6 @@
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.GameObjectComponent;
@@ -34,7 +35,7 @@ public class DebugLogGameObjectStat extends GameObjectComponent {
         System.out.println("Components (" + getParent().getComponents().size() + "):");
         System.out.println();
 
-        for (GameObjectComponent component : getParent().getComponents()) {
+        for (Component component : getParent().getComponents()) {
             if (component.isEnabled()) {
                 System.out.println("Enabled Component:");
             } else {

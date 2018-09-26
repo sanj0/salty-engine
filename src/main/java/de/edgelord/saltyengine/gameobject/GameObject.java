@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.gameobject;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.interfaces.*;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.components.*;
@@ -28,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine, CollideAble, InitializeAble {
+public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine, CollideAble, InitializeAble, ComponentParent {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
@@ -37,7 +38,7 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
     public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
     public static final String DEFAULT_SHAPE_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.shape";
 
-    private final List<GameObjectComponent> components = new CopyOnWriteArrayList<>();
+    private final List<Component> components = new CopyOnWriteArrayList<>();
 
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;
@@ -130,7 +131,7 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
 
     public void doComponentOnFixedTick() {
 
-        for (final GameObjectComponent gameObjectComponent : components) {
+        for (final Component gameObjectComponent : components) {
 
             if (gameObjectComponent.isEnabled()) {
                 gameObjectComponent.onFixedTick();
@@ -140,7 +141,7 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
 
     public void doComponentDrawing(final SaltyGraphics saltyGraphics) {
 
-        for (final GameObjectComponent gameObjectComponent : components) {
+        for (final Component gameObjectComponent : components) {
 
             if (gameObjectComponent.isEnabled()) {
                 gameObjectComponent.draw(saltyGraphics);
@@ -171,9 +172,7 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
                 // other.ON_COLLISION(e);
                 onCollision(eSelf);
 
-                for (final GameObjectComponent component : getComponents()) {
-                    component.onCollision(eSelf);
-                }
+                components.forEach(component -> component.onCollision(eSelf));
 
                 /*
                 for (final GameObjectComponent component : other.getComponents()) {
@@ -189,13 +188,25 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
         onCollisionDetectionFinish(collisions);
     }
 
+    @Override
+    public void addComponent(Component component) {
+        components.add(component);
+    }
+
+    @Override
+    public void removeComponent(Component component) {
+        components.remove(component);
+    }
+
+    @Override
     public void removeComponent(final String name) {
         components.removeIf(gameObjectComponent -> gameObjectComponent.getName().equals(name));
     }
 
-    public GameObjectComponent getComponent(String name) {
+    @Override
+    public Component getComponent(String name) {
 
-        for (GameObjectComponent component : getComponents()) {
+        for (Component component : getComponents()) {
             if (component.getName().equals(name)) {
                 return component;
             }
@@ -346,7 +357,7 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
         this.hitbox = hitbox;
     }
 
-    public List<GameObjectComponent> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 

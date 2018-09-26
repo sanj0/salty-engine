@@ -6,17 +6,14 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
-
-import java.util.List;
+import de.edgelord.saltyengine.core.Component;
 
 /**
  * GameObjectComponents are a way of modifying what happens every fixed tick to a GameObject, or how to DRAW a GameObject
  * The methods which can be used for that are #ON_FIXED_TICK() #DRAW(Graphics2D) and
  * #ON_COLLISION(GameObject) (for example used for Physics)
  */
-public abstract class GameObjectComponent {
+public abstract class GameObjectComponent extends Component<GameObject> {
 
     public static final String PUSH_OUT_ON_COLLISION = "de.edgelord.saltyengine.components.pushOutOnCollision";
     public static final String SIMPLE_RENDER_COMPONENT = "de.edgelord.saltyengine.components.simpleRenderComponent";
@@ -30,60 +27,7 @@ public abstract class GameObjectComponent {
     public static final String TIMING_COMPONENT = "de.edgelord.saltyengine.components.timing";
     public static final String COLLIDER_COMPONENT = "de.edgelord.saltyengine.components.collider";
 
-    private GameObject parent;
-    private String name;
-    private boolean enabled = true;
-    private String tag;
-
     public GameObjectComponent(GameObject parent, String name, String tag) {
-        this.parent = parent;
-        this.name = name;
-        this.tag = tag;
-    }
-
-    public GameObject getParent() {
-        return parent;
-    }
-
-    public abstract void onFixedTick();
-
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
-    public abstract void onCollision(CollisionEvent e);
-
-    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void enable() {
-        enabled = true;
-    }
-
-    public void disable() {
-        enabled = false;
-    }
-
-    public void remove() {
-        getParent().removeComponent(getName());
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
+        super(parent, name, tag);
     }
 }
