@@ -6,10 +6,8 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.core.interfaces.Drawable;
-import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
+import de.edgelord.saltyengine.core.interfaces.*;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
@@ -30,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine {
+public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
@@ -104,8 +102,10 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
         this(xPos, yPos, dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
+    @Override
     public abstract void initialize();
 
+    @Override
     public abstract void onCollision(CollisionEvent event);
 
     @Override
