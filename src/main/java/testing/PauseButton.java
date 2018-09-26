@@ -4,6 +4,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.ui.elements.Button;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class PauseButton extends Button {
@@ -16,13 +17,13 @@ public class PauseButton extends Button {
         wobblingEffect.setPause(25);
         wobblingEffect.init(10, 10, -10, -10);
         wobblingEffect.startGFX();
+        */
 
         setBackgroundColor(Color.orange);
         setForegroundColor(Color.white);
         setFont(getFont().deriveFont(100f));
 
-        this.addComponent(wobblingEffect);
-        */
+        // this.addComponent(wobblingEffect);
     }
 
     @Override

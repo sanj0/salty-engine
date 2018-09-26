@@ -6,10 +6,7 @@
 
 package de.edgelord.saltyengine.ui;
 
-import de.edgelord.saltyengine.core.interfaces.Drawable;
-import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
-import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
-import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
+import de.edgelord.saltyengine.core.interfaces.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -21,18 +18,19 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public abstract class UIElement implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
+public abstract class UIElement implements TransformedObject, Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
     private Font font = StaticSystem.font;
 
-    private Vector2f position;
-    private float width, height;
+    private Transform transform;
 
     public UIElement(Vector2f position, float width, float height) {
 
-        this.position = position;
-        this.width = width;
-        this.height = height;
+        this.transform = new Transform(position, new Dimensions(width, height));
+    }
+
+    public UIElement(Transform transform) {
+        this(transform.getPosition(), transform.getWidth(), transform.getHeight());
     }
 
     @Override
@@ -70,57 +68,17 @@ public abstract class UIElement implements Drawable, FixedTickRoutine, MouseInpu
         this.font = font;
     }
 
-    public Vector2f getPosition() {
-        return position;
-    }
-
     public Coordinates getCoordinates() {
-        return position.convertToCoordinates();
+        return getPosition().convertToCoordinates();
     }
 
-    public float getX() {
-        return position.getX();
-    }
-
-    public void setX(float x) {
-        position.setX(x);
-    }
-
-    public float getY() {
-        return position.getY();
-    }
-
-    public void setY(float y) {
-        position.setY(y);
-    }
-
-    public void setPosition(Vector2f position) {
-        this.position = position;
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
-    }
-
+    @Override
     public Transform getTransform() {
-        return new Transform(position, new Dimensions(width, height));
+        return transform;
     }
 
+    @Override
     public void setTransform(Transform transform) {
-        setPosition(transform.getPosition());
-        setWidth(transform.getWidth());
-        setHeight(transform.getHeight());
+        this.transform = transform;
     }
 }

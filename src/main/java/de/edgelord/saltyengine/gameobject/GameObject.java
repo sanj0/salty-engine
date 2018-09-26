@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.gameobject;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class GameObject implements Drawable, FixedTickRoutine {
+public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
@@ -327,28 +328,12 @@ public abstract class GameObject implements Drawable, FixedTickRoutine {
         return transform.getCoordinates();
     }
 
-    public float getWidth() {
-        return transform.getWidth();
-    }
-
     public int getWidthAsInt() {
         return transform.getWidthAsInt();
     }
 
-    public void setWidth(final float width) {
-        transform.setWidth(width);
-    }
-
-    public float getHeight() {
-        return transform.getHeight();
-    }
-
     public int getHeightAsInt() {
         return transform.getHeightAsInt();
-    }
-
-    public void setHeight(final float height) {
-        transform.setHeight(height);
     }
 
     public Hitbox getHitbox() {
@@ -361,33 +346,6 @@ public abstract class GameObject implements Drawable, FixedTickRoutine {
 
     public void setHitbox(final Hitbox hitbox) {
         this.hitbox = hitbox;
-    }
-
-    public Vector2f getPosition() {
-        return transform.getPosition();
-    }
-
-    public void setPosition(final Vector2f position) {
-        transform.setPosition(position);
-    }
-
-    public float getX() {
-        return getPosition().getX();
-    }
-
-    public void setX(final float x) {
-
-        getPosition().setX(x);
-    }
-
-    public float getY() {
-
-        return getPosition().getY();
-    }
-
-    public void setY(final float y) {
-
-        getPosition().setY(y);
     }
 
     public List<GameObjectComponent> getComponents() {
@@ -452,14 +410,12 @@ public abstract class GameObject implements Drawable, FixedTickRoutine {
         return lastDirection;
     }
 
-    public void setLastDirection(final Directions.Direction lastDirection) {
-        this.lastDirection = lastDirection;
-    }
-
+    @Override
     public Transform getTransform() {
         return transform;
     }
 
+    @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
     }
