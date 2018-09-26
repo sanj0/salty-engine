@@ -30,8 +30,6 @@ public abstract class Button extends UIElement {
         super(position, width, height);
 
         this.text = text;
-
-        this.setTag("de.edgelord.saltyengine.ui.Button");
     }
 
     @Override
@@ -65,6 +63,16 @@ public abstract class Button extends UIElement {
     }
 
     public abstract void onClick(MouseEvent e);
+
+    @Override
+    public void onFixedTick() {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
 
     @Override
     public void mouseMoved(MouseEvent e) {

@@ -44,7 +44,7 @@ public class Force {
         float counterAcceleration = 0f;
 
         if (!countersCollision) {
-           counterAcceleration = -(counterForce / parent.getMass());
+            counterAcceleration = -(counterForce / parent.getMass());
         }
 
         final float accelerationRes = acceleration + counterAcceleration;

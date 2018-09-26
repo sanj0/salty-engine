@@ -60,27 +60,27 @@ public class BorderedLabel extends Label {
 
         saltyGraphics.resetClip();
     }
-    
+
     private float getVerticalTopAlignmentPosition(FontMetrics fontMetrics) {
         return fontMetrics.getMaxAscent();
     }
-    
+
     private float getVerticalBottomAlignmentPosition(FontMetrics fontMetrics) {
         return getHeight() - fontMetrics.getMaxDescent();
     }
-    
+
     private float getVerticalCenteredAlignmentPosition(FontMetrics fontMetrics) {
         return (getHeight() + fontMetrics.getMaxAscent()) / 2;
     }
-    
+
     private float getHorizontalLeftAlignmentPosition() {
         return 0;
     }
-    
+
     private float getHorizontalRightAlignmentPosition(FontMetrics fontMetrics) {
         return getWidth() - fontMetrics.stringWidth(getText());
     }
-    
+
     private float getHorizontalCenteredAlignmentPosition(FontMetrics fontMetrics) {
         return (getWidth() - fontMetrics.stringWidth(getText())) / 2;
     }

@@ -1,5 +1,6 @@
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.KeyEvent;
@@ -14,6 +15,19 @@ public abstract class Label extends TextElement {
 
     public Label(String text, Vector2f position, float width, float height) {
         super(text, position, width, height);
+    }
+
+    @Override
+    public abstract void draw(SaltyGraphics saltyGraphics);
+
+    @Override
+    public void onFixedTick() {
+
+    }
+
+    @Override
+    public final void mouseDragged(MouseEvent e) {
+
     }
 
     @Override

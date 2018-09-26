@@ -1,10 +1,7 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.ui.elements.BorderedLabel;
-import de.edgelord.saltyengine.ui.elements.TextElement;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 public class ScreenExampleMain extends Game {
