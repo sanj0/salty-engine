@@ -6,9 +6,10 @@
 
 package de.edgelord.saltyengine.sgs;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.sgs.segments.*;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
  * It is designed as an GameObjectComponent, and it may not be perfect when it comes to performances, because it
  * interprets e.g. the "ON_FIXED_TICK" segment every fixed tick again.
  */
-public class ScriptInterpreter extends GameObjectComponent {
+public class ScriptInterpreter extends Component<GameObject> {
 
     // All of the different segments of a sgs script
     private ScriptInitSegment scriptInitSegment;
@@ -67,7 +68,7 @@ public class ScriptInterpreter extends GameObjectComponent {
      * @see #loadScript(String, Resource, GameObject, String)
      */
     public ScriptInterpreter(ScriptInitSegment scriptInitSegment, VarsSegment varsSegment, DrawSegment drawSegment, InitSegment initSegment, FixedTickSegment fixedTickSegment, CollisionSegment collisionSegment, GameObject parent, String name) {
-        super(parent, name, SGS_COMPONENT);
+        super(parent, name, Components.SGS_COMPONENT);
         this.scriptInitSegment = scriptInitSegment;
         this.varsSegment = varsSegment;
         this.drawSegment = drawSegment;

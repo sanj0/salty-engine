@@ -6,9 +6,8 @@
 
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.cosmetic.Animation;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 public class AnimationRender extends SimpleRenderComponent {
@@ -29,9 +28,9 @@ public class AnimationRender extends SimpleRenderComponent {
      *
      * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
      * @param name   the id-name for this Component
-     * @see GameObjectComponent
+     * @see de.edgelord.saltyengine.core.Component
      */
-    public AnimationRender(GameObject parent, String name) {
+    public AnimationRender(ComponentParent parent, String name) {
         super(parent, name);
     }
 
@@ -43,7 +42,7 @@ public class AnimationRender extends SimpleRenderComponent {
      * @param animation     the animation that should be rendered
      * @param ticksPerFrame after how many fixed ticks the next frame of the animation should be triggered
      */
-    public AnimationRender(GameObject parent, String name, Animation animation, int ticksPerFrame) {
+    public AnimationRender(ComponentParent parent, String name, Animation animation, int ticksPerFrame) {
         super(parent, name);
         this.animation = animation;
         this.ticksPerFrame = ticksPerFrame;
@@ -55,7 +54,7 @@ public class AnimationRender extends SimpleRenderComponent {
      * @param saltyGraphics the SaltyGraphics to which the component should DRAW
      * @see #onFixedTick()
      * @see #animation
-     * @see GameObjectComponent
+     * @see de.edgelord.saltyengine.core.Component
      */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {

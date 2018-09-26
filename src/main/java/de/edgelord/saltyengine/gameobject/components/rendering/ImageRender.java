@@ -6,8 +6,7 @@
 
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.image.BufferedImage;
@@ -24,9 +23,9 @@ public class ImageRender extends SimpleRenderComponent {
      * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
      * @param name   the id-name for this Component
      * @param image  the image to be drawn by this component
-     * @see GameObjectComponent
+     * @see de.edgelord.saltyengine.core.Component
      */
-    public ImageRender(GameObject parent, String name, BufferedImage image) {
+    public ImageRender(ComponentParent parent, String name, BufferedImage image) {
         super(parent, name);
 
         this.image = image;

@@ -6,17 +6,18 @@
 
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
-public class DrawPositionComponent extends GameObjectComponent {
+public class DrawPositionComponent extends Component {
 
-    public DrawPositionComponent(GameObject parent, String name) {
-        super(parent, name, TECHNICAL_DRAW_COMPONENT);
+    public DrawPositionComponent(ComponentParent parent, String name) {
+        super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);
     }
 
     @Override

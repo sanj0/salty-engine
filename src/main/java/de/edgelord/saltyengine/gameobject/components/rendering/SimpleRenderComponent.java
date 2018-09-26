@@ -6,14 +6,15 @@
 
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.awt.*;
 
-public abstract class SimpleRenderComponent extends GameObjectComponent {
+public abstract class SimpleRenderComponent extends Component {
 
     // The color with which the Component should render
     private Color color = Color.black;
@@ -30,10 +31,10 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      *
      * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
      * @param name   the id-name for this Component
-     * @see GameObjectComponent
+     * @see Component
      */
-    public SimpleRenderComponent(final GameObject parent, final String name) {
-        super(parent, name, GameObjectComponent.SIMPLE_RENDER_COMPONENT);
+    public SimpleRenderComponent(final ComponentParent parent, final String name) {
+        super(parent, name, Components.SIMPLE_RENDER_COMPONENT);
     }
 
     @Override
@@ -47,7 +48,7 @@ public abstract class SimpleRenderComponent extends GameObjectComponent {
      * for drawing e.g. a primitives like a Rectangle in RectangleRender
      *
      * @param saltyGraphics the SaltyGraphics to which the component should DRAW
-     * @see GameObjectComponent
+     * @see Component
      */
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);

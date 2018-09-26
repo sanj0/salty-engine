@@ -6,12 +6,13 @@
 
 package de.edgelord.saltyengine.gameobject.components.animation;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class BasicGameObjectAnimation extends GameObjectComponent {
+public class BasicGameObjectAnimation extends Component<GameObject> {
 
     private boolean recalculateOnNextStep = true;
     private KeyframeAnimation animation = new KeyframeAnimation();
@@ -19,7 +20,7 @@ public class BasicGameObjectAnimation extends GameObjectComponent {
     private Control control;
 
     public BasicGameObjectAnimation(GameObject parent, String name, Control control) {
-        super(parent, name, ANIMATION_COMPONENT);
+        super(parent, name, Components.ANIMATION_COMPONENT);
 
         this.control = control;
     }

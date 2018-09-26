@@ -6,12 +6,12 @@
 
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 public class RectangleRender extends SimpleRenderComponent {
 
-    public RectangleRender(GameObject parent, String name) {
+    public RectangleRender(ComponentParent parent, String name) {
         super(parent, name);
     }
 

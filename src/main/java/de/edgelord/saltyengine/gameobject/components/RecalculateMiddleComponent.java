@@ -6,19 +6,20 @@
 
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-public class RecalculateMiddleComponent extends GameObjectComponent {
+public class RecalculateMiddleComponent extends Component<GameObject> {
 
     private Vector2f exactMiddle = new Vector2f(0, 0);
 
 
     public RecalculateMiddleComponent(GameObject parent, String name) {
-        super(parent, name, CORE_COMPONENT);
+        super(parent, name, Components.CORE_COMPONENT);
     }
 
     @Override

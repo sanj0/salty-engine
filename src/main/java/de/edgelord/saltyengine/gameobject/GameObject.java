@@ -7,8 +7,8 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.Component;
-import de.edgelord.saltyengine.core.interfaces.*;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.interfaces.*;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
@@ -122,11 +122,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      */
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
 
-    }
-
-    public void addComponent(final GameObjectComponent gameObjectComponent) {
-
-        components.add(gameObjectComponent);
     }
 
     public void doComponentOnFixedTick() {

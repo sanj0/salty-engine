@@ -2,8 +2,8 @@ package de.edgelord.saltyengine.gameobject.components.gfx;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.gameobject.components.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -23,7 +23,7 @@ public class SceneFade extends GFXComponent {
 
     public enum Mode {FADE_IN, FADE_OUT}
 
-    public SceneFade(GameObject parent, String name, Mode mode, Color targetColor) {
+    public SceneFade(ComponentParent parent, String name, Mode mode, Color targetColor) {
         super(parent, name);
 
         this.mode = mode;
@@ -38,7 +38,7 @@ public class SceneFade extends GFXComponent {
         StaticSystem.currentScene.addDrawingRoutin(fadeDraw);
     }
 
-    public SceneFade(GameObject parent, String name, Mode mode) {
+    public SceneFade(ComponentParent parent, String name, Mode mode) {
         this(parent, name, mode, Color.BLACK);
 
         if (mode == Mode.FADE_IN) {

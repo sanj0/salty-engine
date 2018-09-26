@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.gameobject.components.rendering;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 /**
@@ -17,7 +17,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
  */
 public class OvalRender extends SimpleRenderComponent {
 
-    public OvalRender(final GameObject parent, final String name) {
+    public OvalRender(final ComponentParent parent, final String name) {
         super(parent, name);
     }
 

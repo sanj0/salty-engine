@@ -6,10 +6,11 @@
 
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.physics.Force;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -17,7 +18,7 @@ import de.edgelord.saltyengine.utils.StaticSystem;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SimplePhysicsComponent extends GameObjectComponent {
+public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 0.005f;
@@ -28,7 +29,7 @@ public class SimplePhysicsComponent extends GameObjectComponent {
     private final List<Force> forces = new LinkedList<>();
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
-        super(parent, name, GameObjectComponent.PHYSICS_COMPONENT);
+        super(parent, name, Components.PHYSICS_COMPONENT);
 
         addDefaultForces();
     }

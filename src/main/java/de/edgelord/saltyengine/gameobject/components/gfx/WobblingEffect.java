@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.gameobject.components.gfx;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.util.Random;
@@ -38,11 +38,11 @@ public class WobblingEffect extends GFXComponent {
 
     Random random = new Random();
 
-    public WobblingEffect(GameObject parent, String name) {
+    public WobblingEffect(ComponentParent parent, String name) {
         super(parent, name);
     }
 
-    public WobblingEffect(GameObject parent, String name, int maxHeightDelta, int maxWidthDelta, int minHeightDelta, int minWidthDelta) {
+    public WobblingEffect(ComponentParent parent, String name, int maxHeightDelta, int maxWidthDelta, int minHeightDelta, int minWidthDelta) {
         super(parent, name);
         this.maxHeightDelta = maxHeightDelta;
         this.maxWidthDelta = maxWidthDelta;
@@ -117,10 +117,10 @@ public class WobblingEffect extends GFXComponent {
             }
 
             getParent().setHeight(getParent().getHeight() + currentHeightDelta);
-            getParent().moveY(((float) (currentHeightDelta / 2)) * (-1));
+            getParent().setY(getParent().getY() + ((float) (currentHeightDelta / 2)) * (-1));
 
             getParent().setWidth(getParent().getWidth() + currentWidthDelta);
-            getParent().moveX(((float) (currentWidthDelta / 2)) * (-1));
+            getParent().setX(getParent().getX() + ((float) (currentWidthDelta / 2)) * (-1));
 
             ticks = 0;
         } else {

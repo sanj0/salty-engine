@@ -1,11 +1,12 @@
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class ShapeComponent extends GameObjectComponent {
+public class ShapeComponent extends Component {
 
     private Shape shape;
     private float arcWidth = 15f, arcHeight = 15f;
@@ -18,8 +19,8 @@ public class ShapeComponent extends GameObjectComponent {
         ROUND_RECT
     }
 
-    public ShapeComponent(GameObject parent, String name, Shape shape) {
-        super(parent, name, SIMPLE_RENDER_COMPONENT);
+    public ShapeComponent(ComponentParent parent, String name, Shape shape) {
+        super(parent, name, Components.SIMPLE_RENDER_COMPONENT);
 
         this.shape = shape;
     }

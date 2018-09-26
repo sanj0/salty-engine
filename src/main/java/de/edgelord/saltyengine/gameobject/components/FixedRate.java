@@ -6,20 +6,21 @@
 
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class FixedRate extends GameObjectComponent {
+public class FixedRate extends Component {
 
     private int gate;
     private int ticks = 0;
 
     private boolean now = false;
 
-    public FixedRate(GameObject parent, String name, int gate) {
-        super(parent, name, TIMING_COMPONENT);
+    public FixedRate(ComponentParent parent, String name, int gate) {
+        super(parent, name, Components.TIMING_COMPONENT);
         this.gate = gate;
     }
 

@@ -6,8 +6,9 @@
 
 package de.edgelord.saltyengine.gameobject.components.gfx;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
+import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.gameobject.Components;
 
 /**
  * This abstract <code>GameObjectComponent</code> describes a
@@ -16,10 +17,10 @@ import de.edgelord.saltyengine.gameobject.GameObjectComponent;
  * and need to be enabled using the <code>startGFX()</code> method for
  * the graphical effect to effect the <code>GameObject</code>.
  */
-public abstract class GFXComponent extends GameObjectComponent {
+public abstract class GFXComponent extends Component {
 
-    public GFXComponent(GameObject parent, String name) {
-        super(parent, name, GFX_COMPONENT);
+    public GFXComponent(ComponentParent parent, String name) {
+        super(parent, name, Components.GFX_COMPONENT);
 
         disable();
     }

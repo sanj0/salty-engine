@@ -6,12 +6,13 @@
 
 package de.edgelord.saltyengine.gameobject.components;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.GameObjectComponent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class Accelerator extends GameObjectComponent {
+public class Accelerator extends Component<GameObject> {
 
     private long ticks;
     private long duration;
@@ -19,7 +20,7 @@ public class Accelerator extends GameObjectComponent {
     private boolean accelerationFinished = true;
 
     public Accelerator(GameObject parent, String name) {
-        super(parent, name, ACCELERATOR_COMPONENT);
+        super(parent, name, Components.ACCELERATOR_COMPONENT);
     }
 
     @Override

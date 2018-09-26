@@ -1,7 +1,7 @@
 package de.edgelord.saltyengine.graphics;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.core.interfaces.ComponentParent;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -63,11 +63,11 @@ public class SaltyGraphics {
     /**
      * Draws a filled rectangle by calling <code>fillRect(Transform)</code>
      *
-     * @param gameObject the GameObject from which to take the Transform
+     * @param parent the ComponentParent from which to take the Transform
      * @see #fillRect(Transform)
      */
-    public void fillRect(GameObject gameObject) {
-        fillRect(gameObject.getTransform());
+    public void fillRect(ComponentParent parent) {
+        fillRect(parent.getTransform());
     }
     
     /*
@@ -111,11 +111,11 @@ public class SaltyGraphics {
     /**
      * Draws the outline of a rect by calling the method <code>drawRect(Transform)</code>
      *
-     * @param gameObject the gameObject from which to take the transform with the necessary information
+     * @param parent the parent from which to take the transform with the necessary information
      * @see #drawRect(Transform)
      */
-    public void drawRect(GameObject gameObject) {
-        drawRect(gameObject.getTransform());
+    public void drawRect(ComponentParent parent) {
+        drawRect(parent.getTransform());
     }
     
     /*
@@ -159,10 +159,10 @@ public class SaltyGraphics {
     /**
      * Draws a filled oval by calling <code>fillOval(Transform)</code>
      *
-     * @param gameObject the gameObject from which to take the Transform to DRAW the oval
+     * @param parent the parent from which to take the Transform to DRAW the oval
      */
-    public void fillOval(GameObject gameObject) {
-        fillOval(gameObject.getTransform());
+    public void fillOval(ComponentParent parent) {
+        fillOval(parent.getTransform());
     }
     
     /*
@@ -206,11 +206,11 @@ public class SaltyGraphics {
     /**
      * Draws the outline of an oval by calling <code>drawOval(Transform)</code>
      *
-     * @param gameObject the GameObject from which to take the transform
+     * @param parent the ComponentParent from which to take the transform
      * @see #drawOval(Transform)
      */
-    public void drawOval(GameObject gameObject) {
-        drawOval(gameObject.getTransform());
+    public void drawOval(ComponentParent parent) {
+        drawOval(parent.getTransform());
     }
 
     /*
@@ -267,11 +267,11 @@ public class SaltyGraphics {
     /**
      * Draws an image by calling <code>drawImage(BufferedImage, Transform)</code>
      *
-     * @param image      the image to be drawn
-     * @param gameObject the GameObject from which to take the Transform to DRAW the image
+     * @param image  the image to be drawn
+     * @param parent the ComponentParent from which to take the Transform to DRAW the image
      */
-    public void drawImage(BufferedImage image, GameObject gameObject) {
-        drawImage(image, gameObject.getTransform());
+    public void drawImage(BufferedImage image, ComponentParent parent) {
+        drawImage(image, parent.getTransform());
     }
 
     /*
@@ -358,24 +358,24 @@ public class SaltyGraphics {
     /**
      * Draws a filled round rect by calling <code>fillRoundRect(Transform, float, float)</code>
      *
-     * @param gameObject the gameObject from which to take the transform
-     * @param arcWidth   the diameter of the horizontal arc
-     * @param arcHeight  the diameter of the vertical arc
+     * @param parent    the parent from which to take the transform
+     * @param arcWidth  the diameter of the horizontal arc
+     * @param arcHeight the diameter of the vertical arc
      * @see #fillRoundRect(Transform, float, float)
      */
-    public void fillRoundRect(GameObject gameObject, float arcWidth, float arcHeight) {
-        fillRoundRect(gameObject.getTransform(), arcWidth, arcHeight);
+    public void fillRoundRect(ComponentParent parent, float arcWidth, float arcHeight) {
+        fillRoundRect(parent.getTransform(), arcWidth, arcHeight);
     }
 
     /**
      * Draws a filled round rect with the same horizontal and vertical arc by calling <code>fillRoundRect(Transform, float, float)</code>
      *
-     * @param gameObject the gameObject from which to take the transform
-     * @param arc        the horizontal and vertical diameter of the arc
+     * @param parent the parent from which to take the transform
+     * @param arc    the horizontal and vertical diameter of the arc
      * @see #fillRoundRect(Transform, float, float)
      */
-    public void fillRoundRect(GameObject gameObject, float arc) {
-        fillRoundRect(gameObject.getTransform(), arc, arc);
+    public void fillRoundRect(ComponentParent parent, float arc) {
+        fillRoundRect(parent.getTransform(), arc, arc);
     }
     
     /*
@@ -462,24 +462,24 @@ public class SaltyGraphics {
     /**
      * Draws the outline of a round rect by calling <code>fillRoundRect(Transform, float, float)</code>
      *
-     * @param gameObject the gameObject from which to take the transform
-     * @param arcWidth   the diameter of the horizontal arc
-     * @param arcHeight  the diameter of the vertical arc
+     * @param parent    the parent from which to take the transform
+     * @param arcWidth  the diameter of the horizontal arc
+     * @param arcHeight the diameter of the vertical arc
      * @see #drawRoundRect(Transform, float, float)
      */
-    public void drawRoundRect(GameObject gameObject, float arcWidth, float arcHeight) {
-        drawRoundRect(gameObject.getTransform(), arcWidth, arcHeight);
+    public void drawRoundRect(ComponentParent parent, float arcWidth, float arcHeight) {
+        drawRoundRect(parent.getTransform(), arcWidth, arcHeight);
     }
 
     /**
      * Draws the outline of a round rect with the same horizontal and vertical arc by calling <code>fillRoundRect(Transform, float, float)</code>
      *
-     * @param gameObject the gameObject from which to take the transform
-     * @param arc        the horizontal and vertical diameter of the arc
+     * @param parent the parent from which to take the transform
+     * @param arc    the horizontal and vertical diameter of the arc
      * @see #drawRoundRect(Transform, float, float)
      */
-    public void drawRoundRect(GameObject gameObject, float arc) {
-        drawRoundRect(gameObject.getTransform(), arc, arc);
+    public void drawRoundRect(ComponentParent parent, float arc) {
+        drawRoundRect(parent.getTransform(), arc, arc);
     }
 
     /**
