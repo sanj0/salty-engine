@@ -126,15 +126,6 @@ public class Scene {
         }
     }
 
-    public void onTick() {
-
-        synchronized (getGameObjects()) {
-            for (GameObject gameObject : getGameObjects()) {
-                gameObject.onTick();
-            }
-        }
-    }
-
     public void initGameObjects() {
 
         if (initialized) {

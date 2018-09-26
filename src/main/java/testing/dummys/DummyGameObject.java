@@ -40,11 +40,6 @@ public class DummyGameObject extends GameObject {
     }
 
     @Override
-    public void onTick() {
-
-    }
-
-    @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
         saltyGraphics.drawOval(getX(), getCoordinates().getY(), getWidth(), getHeight());

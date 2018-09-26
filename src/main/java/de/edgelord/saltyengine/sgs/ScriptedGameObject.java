@@ -29,11 +29,6 @@ public class ScriptedGameObject extends GameObject {
     }
 
     @Override
-    public void onTick() {
-
-    }
-
-    @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
     }

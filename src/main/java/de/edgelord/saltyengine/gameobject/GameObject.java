@@ -111,8 +111,6 @@ public abstract class GameObject implements TransformedObject, Drawable, FixedTi
     @Override
     public abstract void onFixedTick();
 
-    public abstract void onTick();
-
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 

@@ -58,17 +58,6 @@ public class Engine {
         }
     }
 
-    private void onTick() {
-
-        if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
-
-            StaticSystem.currentScene.onTick();
-        } else if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
-
-            StaticSystem.currentLayerCollection.onTick();
-        }
-    }
-
     public void render(SaltyGraphics saltyGraphics) {
 
         if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
@@ -116,7 +105,6 @@ public class Engine {
 
                 nanosBefore = System.nanoTime();
 
-                onTick();
                 host.repaint();
 
                 Thread.yield();
@@ -139,7 +127,6 @@ public class Engine {
 
                     nanosBefore = System.nanoTime();
 
-                    onTick();
                     host.repaint();
 
                     Time.setDeltaNanos(System.nanoTime() - nanosBefore);

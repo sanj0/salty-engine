@@ -85,11 +85,6 @@ public class Bird extends GameObject {
     }
 
     @Override
-    public void onTick() {
-
-    }
-
-    @Override
     public void draw(final SaltyGraphics saltyGraphics) {
 
         animation.drawCurrentFrame(saltyGraphics);

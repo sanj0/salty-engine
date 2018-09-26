@@ -52,11 +52,6 @@ public class Screen extends GameObject {
     }
 
     @Override
-    public void onTick() {
-
-    }
-
-    @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
         // Draw the screen surrounding

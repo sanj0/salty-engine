@@ -36,16 +36,6 @@ public class LayerCollection {
         }
     }
 
-    public void onTick() {
-
-        for (Layer layer : layers) {
-
-            for (GameObject gameObject : layer.getGameObjects()) {
-                gameObject.onTick();
-            }
-        }
-    }
-
     public void initGameObjects() {
 
         for (Layer layer : layers) {

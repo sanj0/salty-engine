@@ -43,11 +43,6 @@ public class LightSystem extends GameObject {
     }
 
     @Override
-    public void onTick() {
-
-    }
-
-    @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
     }
