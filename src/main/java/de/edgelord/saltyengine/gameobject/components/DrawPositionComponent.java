@@ -8,7 +8,7 @@ package de.edgelord.saltyengine.gameobject.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 

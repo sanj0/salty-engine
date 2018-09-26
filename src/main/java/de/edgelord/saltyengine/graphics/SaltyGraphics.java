@@ -1,7 +1,7 @@
 package de.edgelord.saltyengine.graphics;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;

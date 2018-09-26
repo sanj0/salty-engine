@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.gameobject.components.gfx;
 
 import de.edgelord.saltyengine.core.Component;
-import de.edgelord.saltyengine.core.interfaces.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
