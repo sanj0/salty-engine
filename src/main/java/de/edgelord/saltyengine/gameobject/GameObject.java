@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class GameObject implements TransformedObject, Drawable, FixedTickRoutine, CollideAble, InitializeAble, ComponentParent {
+public abstract class GameObject extends ComponentParent implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";

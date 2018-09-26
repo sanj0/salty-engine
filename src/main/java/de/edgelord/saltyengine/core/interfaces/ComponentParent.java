@@ -1,17 +1,18 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.transform.Transform;
 
 import java.util.List;
 
-public interface ComponentParent {
+public abstract class ComponentParent implements TransformedObject {
 
     /**
      * Adds the given {@link Component}
      *
      * @param component the component to add
      */
-    void addComponent(Component component);
+    public abstract void addComponent(Component component);
 
     /**
      * Removes a {@link Component} by searching for the one with the given name
@@ -19,7 +20,7 @@ public interface ComponentParent {
      *
      * @param identifier the identifier of the component to be removed
      */
-    void removeComponent(String identifier);
+    public abstract void removeComponent(String identifier);
 
     /**
      * Removes the given {@link Component}
@@ -28,14 +29,14 @@ public interface ComponentParent {
      *
      * @param component the {@link Component} to be removed
      */
-    void removeComponent(Component component);
+    public abstract void removeComponent(Component component);
 
     /**
      * Returns the {@link List} of {@link Component}s
      *
      * @return the {@link List} of {@link Component}s
      */
-    List<Component> getComponents();
+    public abstract List<Component> getComponents();
 
     /**
      * Returns the {@link Component} with the given identifier
@@ -43,5 +44,11 @@ public interface ComponentParent {
      * @param identifier the identifier of the {@link Component} to be returned
      * @return the requested {@link Component}
      */
-    Component getComponent(String identifier);
+    public abstract Component getComponent(String identifier);
+
+    @Override
+    public abstract Transform getTransform();
+
+    @Override
+    public abstract void setTransform(Transform transform);
 }
