@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.core;
 
+import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;

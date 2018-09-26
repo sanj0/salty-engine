@@ -6,10 +6,10 @@
 
 package de.edgelord.saltyengine.ui;
 
-import de.edgelord.saltyengine.core.Drawable;
-import de.edgelord.saltyengine.core.FixedTickRoutine;
-import de.edgelord.saltyengine.core.KeyboardInputHandler;
-import de.edgelord.saltyengine.core.MouseInputHandler;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
+import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
+import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;

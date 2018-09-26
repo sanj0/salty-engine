@@ -6,8 +6,8 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.core.Drawable;
-import de.edgelord.saltyengine.core.FixedTickRoutine;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.components.*;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;

@@ -1,4 +1,4 @@
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.core.interfaces;
 
 public interface Creatable {
 

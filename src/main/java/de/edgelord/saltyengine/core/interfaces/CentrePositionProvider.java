@@ -1,4 +1,4 @@
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Dimensions;
