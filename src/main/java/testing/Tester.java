@@ -14,6 +14,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.sgs.ScriptedGameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
+import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.image.BufferedImage;
@@ -29,6 +30,7 @@ public class Tester extends Game {
 
         Tester.initForcesTest();
         Tester.addUI();
+        Tester.initUITest();
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 
@@ -45,6 +47,10 @@ public class Tester extends Game {
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
         start(60);
+    }
+
+    private static void initUITest() {
+        StaticSystem.currentScene.getUI().addElement(new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 0)));
     }
 
     private static void addUI() {

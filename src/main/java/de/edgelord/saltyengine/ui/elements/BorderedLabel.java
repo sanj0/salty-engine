@@ -66,11 +66,11 @@ public class BorderedLabel extends Label {
     }
 
     private float getVerticalBottomAlignmentPosition(FontMetrics fontMetrics) {
-        return getHeight() - fontMetrics.getMaxDescent();
+        return getHeight() - fontMetrics.getHeight();
     }
 
     private float getVerticalCenteredAlignmentPosition(FontMetrics fontMetrics) {
-        return (getHeight() + fontMetrics.getMaxAscent()) / 2;
+        return (getHeight() + fontMetrics.getHeight()) / 2;
     }
 
     private float getHorizontalLeftAlignmentPosition() {
