@@ -94,7 +94,7 @@ public class InnerResource implements Resource {
         return file;
     }
 
-    private void checkTmpDir() throws IOException {
+    private void checkTmpDir() {
         File tmp = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/");
 
         if (tmp.exists()) {
