@@ -1,7 +1,10 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.interfaces.*;
+import de.edgelord.saltyengine.core.interfaces.CollideAble;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
+import de.edgelord.saltyengine.core.interfaces.InitializeAble;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 

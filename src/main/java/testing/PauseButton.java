@@ -1,7 +1,7 @@
 package testing;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.components.gfx.WobblingEffect;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.ui.elements.Button;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
