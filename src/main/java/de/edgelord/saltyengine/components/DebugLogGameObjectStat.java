@@ -20,7 +20,7 @@ public class DebugLogGameObjectStat extends Component {
 
     private void debugLog() {
         System.out.println("--------------------");
-        // System.out.println(getParent().getTag() + " stat:");
+        System.out.println(getParent().getTag() + " stat:");
         System.out.println();
 
         System.out.println("-----");

@@ -40,8 +40,8 @@ public abstract class TextElement extends UIElement {
         centered
     }
 
-    public TextElement(String text, Vector2f position, float width, float height) {
-        super(position, width, height);
+    public TextElement(String text, Vector2f position, float width, float height, String tag) {
+        super(position, width, height, tag);
 
         this.text = text;
     }

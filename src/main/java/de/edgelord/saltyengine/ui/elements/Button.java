@@ -27,7 +27,7 @@ public abstract class Button extends UIElement {
     private int arc = 15;
 
     public Button(String text, Vector2f position, int width, int height) {
-        super(position, width, height);
+        super(position, width, height, BUTTON);
 
         this.text = text;
     }

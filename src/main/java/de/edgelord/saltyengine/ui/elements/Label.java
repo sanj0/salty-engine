@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 public abstract class Label extends TextElement {
 
     public Label(String text, Vector2f position, float width, float height) {
-        super(text, position, width, height);
+        super(text, position, width, height, LABEL);
     }
 
     @Override

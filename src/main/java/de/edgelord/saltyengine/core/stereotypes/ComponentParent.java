@@ -9,6 +9,12 @@ import java.util.List;
 
 public abstract class ComponentParent implements TransformedObject {
 
+    private String tag;
+
+    public ComponentParent(String tag) {
+        this.tag = tag;
+    }
+
     /**
      * Adds the given {@link Component}
      *
@@ -69,4 +75,12 @@ public abstract class ComponentParent implements TransformedObject {
 
     @Override
     public abstract void setTransform(Transform transform);
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 }

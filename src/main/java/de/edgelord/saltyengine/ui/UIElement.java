@@ -31,13 +31,17 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     private List<Component> components = new CopyOnWriteArrayList<>();
 
-    public UIElement(Vector2f position, float width, float height) {
+    public static final String BUTTON = "de.edgelord.saltyengine.uiElements.button";
+    public static final String LABEL = "de.edgelord.saltyengine.uiElements.label";
+
+    public UIElement(Vector2f position, float width, float height, String tag) {
+        super(tag);
 
         this.transform = new Transform(position, new Dimensions(width, height));
     }
 
-    public UIElement(Transform transform) {
-        this(transform.getPosition(), transform.getWidth(), transform.getHeight());
+    public UIElement(Transform transform, String tag) {
+        this(transform.getPosition(), transform.getWidth(), transform.getHeight(), tag);
     }
 
     @Override

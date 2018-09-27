@@ -52,17 +52,16 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     private Transform transform;
     private Vector2f middle;
-    private String tag;
     private HashMap<String, String> properties = new HashMap<>();
     private File propertiesFile;
     private Hitbox hitbox;
     private float mass = 1f;
 
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
+        super(tag);
 
         transform = new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
-        this.tag = tag;
 
         middle = new Vector2f(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
 
@@ -312,14 +311,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setColliderComponent(String colliderComponent) {
         this.colliderComponent = colliderComponent;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(final String tag) {
-        this.tag = tag;
     }
 
     public Vector2f getMiddle() {
