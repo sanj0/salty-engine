@@ -6,7 +6,9 @@
 
 package de.edgelord.saltyengine.ui;
 
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.interfaces.*;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -17,12 +19,17 @@ import de.edgelord.saltyengine.utils.StaticSystem;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Consumer;
 
-public abstract class UIElement implements TransformedObject, Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
+public abstract class UIElement extends ComponentParent implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
     private Font font = StaticSystem.font;
 
     private Transform transform;
+
+    private List<Component> components = new CopyOnWriteArrayList<>();
 
     public UIElement(Vector2f position, float width, float height) {
 
@@ -59,6 +66,41 @@ public abstract class UIElement implements TransformedObject, Drawable, FixedTic
 
     @Override
     public abstract void keyTyped(KeyEvent e);
+
+    @Override
+    public abstract void mouseDragged(MouseEvent e);
+
+    @Override
+    public void addComponent(Component component) {
+        components.add(component);
+    }
+
+    @Override
+    public void removeComponent(String identifier) {
+        components.removeIf(component -> component.getName().equals(identifier));
+    }
+
+    @Override
+    public void removeComponent(Component component) {
+        components.remove(component);
+    }
+
+    @Override
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    @Override
+    public Component getComponent(String identifier) {
+
+        for (Component component : components) {
+            if (component.getName().equals(identifier)) {
+                return component;
+            }
+        }
+
+        return null;
+    }
 
     public Font getFont() {
         return font;

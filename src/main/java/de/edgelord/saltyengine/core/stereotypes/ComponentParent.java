@@ -2,6 +2,7 @@ package de.edgelord.saltyengine.core.stereotypes;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.util.List;
@@ -46,6 +47,22 @@ public abstract class ComponentParent implements TransformedObject {
      * @return the requested {@link Component}
      */
     public abstract Component getComponent(String identifier);
+
+    public void doComponentOnFixedTick() {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.onFixedTick();
+            }
+        });
+    }
+
+    public void doComponentDrawing(SaltyGraphics graphics) {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.draw(graphics);
+            }
+        });
+    }
 
     @Override
     public abstract Transform getTransform();

@@ -123,26 +123,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     }
 
-    public void doComponentOnFixedTick() {
-
-        for (final Component gameObjectComponent : components) {
-
-            if (gameObjectComponent.isEnabled()) {
-                gameObjectComponent.onFixedTick();
-            }
-        }
-    }
-
-    public void doComponentDrawing(final SaltyGraphics saltyGraphics) {
-
-        for (final Component gameObjectComponent : components) {
-
-            if (gameObjectComponent.isEnabled()) {
-                gameObjectComponent.draw(saltyGraphics);
-            }
-        }
-    }
-
     public void doCollisionDetection(final List<GameObject> gameObjects) {
 
         Directions collisionDirections = new Directions();

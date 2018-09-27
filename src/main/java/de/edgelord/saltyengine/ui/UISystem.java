@@ -20,12 +20,14 @@ public class UISystem {
     public void drawUI(SaltyGraphics saltyGraphics) {
         for (UIElement element : elements) {
             element.draw(saltyGraphics);
+            element.doComponentDrawing(saltyGraphics);
         }
     }
 
     public void onFixedTick() {
         for (UIElement element : elements) {
             element.onFixedTick();
+            element.doComponentOnFixedTick();
         }
     }
 

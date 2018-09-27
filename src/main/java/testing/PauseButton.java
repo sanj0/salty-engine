@@ -1,6 +1,7 @@
 package testing;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.gameobject.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.ui.elements.Button;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -12,18 +13,17 @@ public class PauseButton extends Button {
     public PauseButton() {
         super("Pause", Game.getHost().getCentrePosition(500, 175), 500, 175);
 
-        /*
+
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.setPause(25);
         wobblingEffect.init(10, 10, -10, -10);
         wobblingEffect.startGFX();
-        */
 
         setBackgroundColor(Color.orange);
         setForegroundColor(Color.white);
         setFont(getFont().deriveFont(100f));
 
-        // this.addComponent(wobblingEffect);
+        this.addComponent(wobblingEffect);
     }
 
     @Override
