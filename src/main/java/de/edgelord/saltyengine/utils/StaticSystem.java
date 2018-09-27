@@ -20,8 +20,8 @@ import java.awt.event.KeyEvent;
 
 public class StaticSystem {
 
-    public static String versionTag = "0.9.4-SNAPSHOT";
-    public static String version = "0.9.4";
+    public static String versionTag = "0.10.0-SNAPSHOT";
+    public static String version = "0.10.0";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
     public static String gameName = "My name is Nym. Arno Nym.";
 
