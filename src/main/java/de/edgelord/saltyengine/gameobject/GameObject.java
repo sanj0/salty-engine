@@ -50,8 +50,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
-    private Directions.Direction lastDirection = null;
-
     private Transform transform;
     private Vector2f middle;
     private String tag;
@@ -259,51 +257,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         }
     }
 
-    public void basicMove(final float delta, final Directions.BasicDirection direction) {
-
-        if (direction == Directions.BasicDirection.x) {
-            setX(getX() + delta);
-        } else {
-            setY(getY() + delta);
-        }
-    }
-
-    public void move(float delta, final Directions.Direction direction) {
-
-        if (delta != 0) {
-            lastDirection = direction;
-        }
-
-        // Check if delta is negative and if so, mirror its value
-        if (delta < 0f) {
-            delta = delta * (-1);
-        }
-
-        switch (direction) {
-
-            case RIGHT:
-                basicMove(delta, Directions.BasicDirection.x);
-                break;
-            case LEFT:
-                basicMove(-delta, Directions.BasicDirection.x);
-                break;
-            case UP:
-                basicMove(-delta, Directions.BasicDirection.y);
-                break;
-            case DOWN:
-                basicMove(delta, Directions.BasicDirection.y);
-                break;
-        }
-    }
-
-    public void moveY(final float delta) {
-        transform.setY(getY() + delta);
-    }
-
-    public void moveX(final float delta) {
-        transform.setX(getX() + delta);
-    }
-
     public void setShapeDrawing(boolean shapeDrawing) {
         shapeComponent.setDrawing(shapeDrawing);
     }
@@ -409,10 +362,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setMass(final float mass) {
         this.mass = mass;
-    }
-
-    public Directions.Direction getLastDirection() {
-        return lastDirection;
     }
 
     @Override
