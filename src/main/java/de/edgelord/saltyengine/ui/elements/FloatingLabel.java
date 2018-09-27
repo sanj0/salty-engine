@@ -22,7 +22,6 @@ public class FloatingLabel extends Label {
         prepareGraphics(saltyGraphics);
 
         recalculateSize(saltyGraphics.getFontMetrics());
-        saltyGraphics.drawRect(this);
         saltyGraphics.setClip(getTransform());
 
         saltyGraphics.drawText(getText(), getX(), getY() + saltyGraphics.getFontMetrics().getMaxAscent());

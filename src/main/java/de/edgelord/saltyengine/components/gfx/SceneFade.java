@@ -87,7 +87,7 @@ public class SceneFade extends GFXComponent {
 
             float alphaDelta = fadeFX.nextDelta();
 
-            if (alphaDelta == 0.00f) {
+            if (alphaDelta <= 0.00f) {
                 onFadeFinish();
                 end();
             }
