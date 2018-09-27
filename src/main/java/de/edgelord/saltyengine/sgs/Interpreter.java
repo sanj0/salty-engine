@@ -1,8 +1,8 @@
 package de.edgelord.saltyengine.sgs;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.components.DebugLogGameObjectStat;
-import de.edgelord.saltyengine.gameobject.components.rendering.OvalRender;
+import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
+import de.edgelord.saltyengine.components.rendering.OvalRender;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.Resource;

@@ -4,9 +4,11 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.gameobject.components.animation;
+package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.animation.Keyframe;
+import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;

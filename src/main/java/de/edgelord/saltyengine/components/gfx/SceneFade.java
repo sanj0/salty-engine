@@ -1,10 +1,10 @@
-package de.edgelord.saltyengine.gameobject.components.gfx;
+package de.edgelord.saltyengine.components.gfx;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
-import de.edgelord.saltyengine.gameobject.components.animation.KeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.StaticSystem;
 

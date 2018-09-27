@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.gameobject.components.rendering;
+package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.cosmetic.Animation;

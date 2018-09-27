@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.gameobject.components;
+package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;

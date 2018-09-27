@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.gameobject.components.animation;
+package de.edgelord.saltyengine.core.animation;
 
 public class Keyframe {
 

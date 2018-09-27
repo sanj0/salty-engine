@@ -4,7 +4,7 @@
  * All rights reserved
  */
 
-package de.edgelord.saltyengine.gameobject.components.gfx;
+package de.edgelord.saltyengine.components.gfx;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;

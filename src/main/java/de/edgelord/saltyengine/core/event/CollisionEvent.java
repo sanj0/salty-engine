@@ -7,7 +7,7 @@
 package de.edgelord.saltyengine.core.event;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
