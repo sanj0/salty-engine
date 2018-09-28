@@ -17,6 +17,7 @@ import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Tester extends Game {
@@ -50,7 +51,12 @@ public class Tester extends Game {
     }
 
     private static void initUITest() {
-        StaticSystem.currentScene.getUI().addElement(new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 0)));
+        FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
+        floatingLabel.centreOnXAxis(true);
+        floatingLabel.setTextColor(Color.black);
+        floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
+
+        StaticSystem.currentScene.getUI().addElement(floatingLabel);
     }
 
     private static void addUI() {
