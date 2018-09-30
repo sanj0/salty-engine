@@ -80,7 +80,7 @@ public class Engine {
 
                 doInitialising();
 
-                if (!StaticSystem.isPaused()) {
+                if (!Game.isPaused()) {
 
                     if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
 

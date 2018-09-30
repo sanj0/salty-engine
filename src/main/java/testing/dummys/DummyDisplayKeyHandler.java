@@ -6,6 +6,7 @@
 
 package testing.dummys;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -35,7 +36,7 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (!StaticSystem.isPaused()) {
+        if (!Game.isPaused()) {
 
             if (e.getKeyCode() == KeyEvent.VK_D) {
 
@@ -60,10 +61,10 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
         if (e.getKeyCode() == KeyEvent.VK_P) {
 
-            if (StaticSystem.isPaused()) {
-                StaticSystem.setPaused(false);
+            if (Game.isPaused()) {
+                Game.setPaused(false);
             } else {
-                StaticSystem.setPaused(true);
+                Game.setPaused(true);
             }
         }
     }
@@ -98,7 +99,7 @@ public class DummyDisplayKeyHandler implements DisplayKeyHandler {
 
             fixedTicks = 0;
 
-            if (StaticSystem.isPaused()) {
+            if (Game.isPaused()) {
 
                 cameraDown = false;
                 cameraUp = false;

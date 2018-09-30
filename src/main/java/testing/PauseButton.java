@@ -3,7 +3,6 @@ package testing;
 import de.edgelord.saltyengine.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.ui.elements.Button;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -34,13 +33,13 @@ public class PauseButton extends Button {
             System.exit(0);
         }
 
-        if (StaticSystem.isPaused()) {
+        if (Game.isPaused()) {
 
             System.out.println("Unpause game!");
-            StaticSystem.setPaused(false);
+            Game.setPaused(false);
         } else {
             System.out.println("Pause game!");
-            StaticSystem.setPaused(true);
+            Game.setPaused(true);
         }
     }
 }

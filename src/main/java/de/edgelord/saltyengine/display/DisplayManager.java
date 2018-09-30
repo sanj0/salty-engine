@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.Engine;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
@@ -48,7 +49,7 @@ public class DisplayManager extends Host {
 
         this.width = width;
         this.height = height;
-        StaticSystem.gameName = gameName;
+        Game.gameName = gameName;
     }
 
     @Override
@@ -92,10 +93,10 @@ public class DisplayManager extends Host {
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P) {
-                    if (StaticSystem.isPaused()) {
-                        StaticSystem.setPaused(false);
+                    if (Game.isPaused()) {
+                        Game.setPaused(false);
                     } else {
-                        StaticSystem.setPaused(true);
+                        Game.setPaused(true);
                     }
                 }
             }
@@ -130,13 +131,13 @@ public class DisplayManager extends Host {
                     StaticSystem.currentScene.getUI().keyPressed(e);
                 }
 
-                StaticSystem.keyboardInput.handleKeyPressed(e);
-                StaticSystem.lastInputKey = currentKey;
-                StaticSystem.inputUp = inputUp;
-                StaticSystem.inputDown = inputDown;
-                StaticSystem.inputRight = inputRight;
-                StaticSystem.inputLeft = inputLeft;
-                StaticSystem.lastInput = e;
+                Game.keyboardInput.handleKeyPressed(e);
+                Game.lastInputKey = currentKey;
+                Game.inputUp = inputUp;
+                Game.inputDown = inputDown;
+                Game.inputRight = inputRight;
+                Game.inputLeft = inputLeft;
+                Game.lastInput = e;
             }
 
             @Override
@@ -169,13 +170,13 @@ public class DisplayManager extends Host {
                     StaticSystem.currentScene.getUI().keyReleased(e);
                 }
 
-                StaticSystem.keyboardInput.handleKeyReleased(e);
-                StaticSystem.lastInputKey = currentKey;
-                StaticSystem.inputUp = inputUp;
-                StaticSystem.inputDown = inputDown;
-                StaticSystem.inputRight = inputRight;
-                StaticSystem.inputLeft = inputLeft;
-                StaticSystem.lastInput = null;
+                Game.keyboardInput.handleKeyReleased(e);
+                Game.lastInputKey = currentKey;
+                Game.inputUp = inputUp;
+                Game.inputDown = inputDown;
+                Game.inputRight = inputRight;
+                Game.inputLeft = inputLeft;
+                Game.lastInput = null;
             }
         };
 

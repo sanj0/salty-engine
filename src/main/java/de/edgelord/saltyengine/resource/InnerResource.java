@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.resource;
 
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -80,7 +80,7 @@ public class InnerResource implements Resource {
 
         InputStream inputStream = classLoader.getResourceAsStream(arrangePath(relativePath));
 
-        File file = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/" + relativePath.replaceAll("/", "."));
+        File file = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/" + relativePath.replaceAll("/", "."));
 
         file.createNewFile();
 
@@ -95,7 +95,7 @@ public class InnerResource implements Resource {
     }
 
     private void checkTmpDir() {
-        File tmp = SystemDependentFiles.getUserFile("." + StaticSystem.gameName + "TmpFiles/");
+        File tmp = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/");
 
         if (tmp.exists()) {
             if (!tmp.isDirectory()) {

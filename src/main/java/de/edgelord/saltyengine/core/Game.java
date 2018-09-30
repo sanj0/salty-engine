@@ -6,10 +6,31 @@
 
 package de.edgelord.saltyengine.core;
 
+import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.input.Keyboard;
+
+import java.awt.event.KeyEvent;
 
 public class Game {
 
+    public static String gameName = "My name is Nym. Arno Nym.";
+    public static boolean paused = false;
+    public static Camera camera = new Camera();
+    public static boolean inputUp = false;
+    public static boolean inputDown = false;
+    public static boolean inputRight = false;
+    public static boolean inputLeft = false;
+    public static char lastInputKey;
+    /**
+     * You have to add a ifn check if you use this!
+     */
+    public static KeyEvent lastInput;
+    /**
+     * For input that is not meant for typing use this!
+     * Please use this for every input that has to do with controls etc etc
+     */
+    public static Keyboard keyboardInput = new Keyboard();
     private static Host host;
     private static Engine engine;
 
@@ -72,5 +93,13 @@ public class Game {
 
     public static Engine getEngine() {
         return engine;
+    }
+
+    public static boolean isPaused() {
+        return paused;
+    }
+
+    public static void setPaused(boolean paused) {
+        Game.paused = paused;
     }
 }

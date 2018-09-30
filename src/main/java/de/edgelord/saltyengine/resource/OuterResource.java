@@ -6,7 +6,7 @@
 
 package de.edgelord.saltyengine.resource;
 
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -76,7 +76,7 @@ public class OuterResource implements Resource {
 
     public OuterResource(boolean hidden) {
 
-        this.gameTitle = StaticSystem.gameName;
+        this.gameTitle = Game.gameName;
         this.hidden = hidden;
 
         prepareSourceDirectory();

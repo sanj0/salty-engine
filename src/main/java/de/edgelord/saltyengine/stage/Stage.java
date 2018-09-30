@@ -88,7 +88,7 @@ public class Stage extends Canvas {
                     mouseHandler.mouseEntered(e);
                 }
 
-                StaticSystem.setPaused(false);
+                Game.setPaused(false);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class Stage extends Canvas {
                     mouseHandler.mouseExited(e);
                 }
 
-                StaticSystem.setPaused(true);
+                Game.setPaused(true);
             }
         };
 
@@ -174,7 +174,7 @@ public class Stage extends Canvas {
 
         graphics2D.setRenderingHints(renderingHints);
 
-        StaticSystem.camera.setViewToGraphics(graphics2D);
+        Game.camera.setViewToGraphics(graphics2D);
 
         SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
 

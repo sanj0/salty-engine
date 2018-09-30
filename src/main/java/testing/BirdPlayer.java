@@ -9,6 +9,7 @@ package testing;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
@@ -16,7 +17,6 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.image.BufferedImage;
 
@@ -83,7 +83,7 @@ public class BirdPlayer extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (StaticSystem.inputUp) {
+        if (Game.inputUp) {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0.5f);
 
             if (animationTiming.now()) {
@@ -97,7 +97,7 @@ public class BirdPlayer extends GameObject {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0f);
         }
 
-        if (StaticSystem.inputDown) {
+        if (Game.inputDown) {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0.5f);
 
             if (animationTiming.now()) {
@@ -111,7 +111,7 @@ public class BirdPlayer extends GameObject {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0f);
         }
 
-        if (StaticSystem.inputRight) {
+        if (Game.inputRight) {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0.5f);
 
             if (animationTiming.now()) {
@@ -125,7 +125,7 @@ public class BirdPlayer extends GameObject {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0f);
         }
 
-        if (StaticSystem.inputLeft) {
+        if (Game.inputLeft) {
             getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(0.5f);
 
             if (animationTiming.now()) {
