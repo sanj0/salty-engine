@@ -42,7 +42,7 @@ public class DisplayManager extends Host {
 
     public DisplayManager(final int width, final int height, final String gameName, final Engine engine) {
 
-        display = new Display(width, height, gameName, this);
+        display = new Display(width, height, gameName);
         stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
@@ -181,11 +181,6 @@ public class DisplayManager extends Host {
 
         display.addKeyListener(nativeKeyListener);
         currentKey = '*';
-    }
-
-    public void scale(final double zoomX, final double zoomY) {
-
-        stage.scale(zoomX, zoomY);
     }
 
     public void setDisplayKeyHandler(final DisplayKeyHandler displayKeyHandler) {

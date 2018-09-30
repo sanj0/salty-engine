@@ -7,6 +7,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
@@ -815,6 +816,10 @@ public class SaltyGraphics {
      */
     public void resetClip() {
         setClip(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
+    }
+
+    public void setTransform(AffineTransform affineTransform) {
+        graphics2D.setTransform(affineTransform);
     }
 
     /*

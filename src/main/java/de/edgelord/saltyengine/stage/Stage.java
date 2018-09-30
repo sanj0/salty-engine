@@ -20,8 +20,6 @@ public class Stage extends Canvas {
 
     private final Container container;
     private final Engine engine;
-    private double currentZoomX = 1;
-    private double currentZoomY = 1;
     private MouseListener nativeMouseListener = null;
     private MouseMotionListener nativeMouseMotionListener = null;
     private MouseWheelListener nativeMouseWheelListener = null;
@@ -175,7 +173,8 @@ public class Stage extends Canvas {
         graphics2D.setClip(0, 0, Math.round(Game.getHost().getWidth()), Math.round(Game.getHost().getWidth()));
 
         graphics2D.setRenderingHints(renderingHints);
-        graphics2D.scale(currentZoomX, currentZoomY);
+
+        StaticSystem.camera.setViewToGraphics(graphics2D);
 
         SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
 
@@ -203,12 +202,6 @@ public class Stage extends Canvas {
         graphics2D.dispose();
         getBufferStrategy().show();
         Toolkit.getDefaultToolkit().sync();
-    }
-
-    public void scale(final double zoomX, final double zoomY) {
-
-        currentZoomX = zoomX;
-        currentZoomY = zoomY;
     }
 
     public void setMouseHandler(final DisplayMouseHandler mouseHandler) {

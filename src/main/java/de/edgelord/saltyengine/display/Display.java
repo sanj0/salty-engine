@@ -19,22 +19,13 @@ public class Display extends JFrame {
     private int width, height;
     private String windowTitle;
     private boolean closeRequested = false;
-    private int oldWidth;
-    private int oldHeight;
-    private int newWidth;
-    private int newHeight;
-    private DisplayManager displayManager;
     private DisplayMouseHandler displayMouseHandler = null;
 
-    public Display(int width, int height, String windowTitle, DisplayManager displayManager) {
+    public Display(int width, int height, String windowTitle) {
 
         this.width = width;
         this.height = height;
         this.windowTitle = windowTitle;
-        this.oldHeight = height;
-        this.oldWidth = width;
-        this.displayManager = displayManager;
-
     }
 
     public void create() {
@@ -45,25 +36,6 @@ public class Display extends JFrame {
         setResizable(StaticSystem.withExperimentalFeatures);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
-        ComponentListener resizeListener = new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-
-                newHeight = e.getComponent().getHeight();
-                newWidth = e.getComponent().getWidth();
-
-                System.out.println("Old height , new height: " + oldHeight + " , " + newHeight);
-
-                System.out.println("Display trying to scale the graphics to " + (double) newHeight / oldHeight);
-
-                if (StaticSystem.withExperimentalFeatures) {
-
-                    displayManager.scale((double) newWidth / oldWidth, (double) newHeight / oldHeight);
-                }
-            }
-        };
-        addComponentListener(resizeListener);
     }
 
     public boolean isCloseRequested() {

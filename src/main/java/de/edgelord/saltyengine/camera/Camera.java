@@ -6,40 +6,60 @@
 
 package de.edgelord.saltyengine.camera;
 
-import de.edgelord.saltyengine.utils.Directions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Vector2f;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class Camera {
+
+    private Vector2f position = new Vector2f(0f, 0f);
+    // The rotation in degrees. That also rotates the UI and brings several problems.
+    private float rotation = 0f;
+
+    private AffineTransform originalTransform = null;
+
+    private Vector2f lastPosition = new Vector2f(0f, 0f);
 
     public Camera() {
     }
 
-    public static void resetPosition() {
-
-        if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
-
-            StaticSystem.currentScene.resetPosition();
-            return;
+    public void setViewToGraphics(Graphics2D graphics) {
+        if (originalTransform == null) {
+            originalTransform = graphics.getTransform();
         }
 
-        if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
-
-            StaticSystem.currentLayerCollection.resetPositionOfAllLayers();
-        }
+        graphics.translate(lastPosition.getX() + position.getX(), lastPosition.getY() + position.getY());
+        graphics.rotate(Math.toRadians(rotation), Game.getHost().getWidth() / 2, Game.getHost().getHeight() / 2);
     }
 
-    public static void moveCamera(Directions.BasicDirection direction, int delta) {
+    public void tmpResetViewToGraphics(SaltyGraphics graphics) {
+        graphics.setTransform(originalTransform);
+    }
 
-        if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
+    public void setPosition(Vector2f position) {
+        this.position = position;
+    }
 
-            StaticSystem.currentScene.moveCamera(direction, delta);
-            return;
-        }
+    public void setX(float x) {
+        position.setX(x);
+    }
 
-        if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
+    public void setY(float y) {
+        position.setY(y);
+    }
 
-            StaticSystem.currentLayerCollection.moveCamera(direction, delta);
-            return;
-        }
+    public void setRotation(float rotation) {
+        this.rotation = rotation;
+    }
+
+    public Vector2f getPosition() {
+        return position;
+    }
+
+    public float getRotation() {
+        return rotation;
     }
 }

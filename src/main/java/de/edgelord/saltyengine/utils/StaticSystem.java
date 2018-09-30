@@ -6,6 +6,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Keyboard;
 import de.edgelord.saltyengine.layer.LayerCollection;
@@ -30,6 +31,8 @@ public class StaticSystem {
     public static boolean withExperimentalFeatures = false;
 
     public static ImageFactory defaultImageFactory = new ImageFactory(new InnerResource());
+
+    public static Camera camera = new Camera();
 
     public static boolean inputUp = false;
     public static boolean inputDown = false;

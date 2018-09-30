@@ -7,6 +7,7 @@
 package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -18,6 +19,7 @@ public class UISystem {
     private List<UIElement> elements = new LinkedList<>();
 
     public void drawUI(SaltyGraphics saltyGraphics) {
+        StaticSystem.camera.tmpResetViewToGraphics(saltyGraphics);
         for (UIElement element : elements) {
             element.draw(saltyGraphics);
             element.doComponentDrawing(saltyGraphics);
