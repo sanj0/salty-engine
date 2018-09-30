@@ -33,7 +33,6 @@ public class Display extends JFrame {
         setSize(width, height);
         setTitle(windowTitle + "    -- saltyengine " + StaticSystem.versionTag);
         setLocationRelativeTo(null);
-        setResizable(StaticSystem.withExperimentalFeatures);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }

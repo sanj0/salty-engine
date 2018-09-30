@@ -23,7 +23,6 @@ public class StaticSystem {
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;
-    public static boolean withExperimentalFeatures = false;
 
     public static ImageFactory defaultImageFactory = new ImageFactory(new InnerResource());
 
