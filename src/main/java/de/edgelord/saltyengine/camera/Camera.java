@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.camera;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -16,7 +17,7 @@ import java.awt.geom.AffineTransform;
 public class Camera {
 
     private Vector2f position = new Vector2f(0f, 0f);
-    // The rotation in degrees. That also rotates the UI and brings several problems.
+    // The rotation in degrees.
     private float rotation = 0f;
 
     private AffineTransform originalTransform = null;
@@ -39,6 +40,24 @@ public class Camera {
         graphics.setTransform(originalTransform);
     }
 
+    public void move(Directions.Direction direction, float delta) {
+        switch (direction) {
+
+            case RIGHT:
+                setX(getX() + delta);
+                break;
+            case LEFT:
+                setX(getX() - delta);
+                break;
+            case UP:
+                setY(getY() - delta);
+                break;
+            case DOWN:
+                setY(getY() + delta);
+                break;
+        }
+    }
+
     public void setPosition(Vector2f position) {
         this.position = position;
     }
@@ -57,6 +76,14 @@ public class Camera {
 
     public Vector2f getPosition() {
         return position;
+    }
+
+    public float getX() {
+        return position.getX();
+    }
+
+    public float getY() {
+        return position.getY();
     }
 
     public float getRotation() {
