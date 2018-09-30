@@ -11,7 +11,6 @@ package de.edgelord.saltyengine.gameobject;
  */
 public abstract class Components {
 
-    public static final String PUSH_OUT_ON_COLLISION = "de.edgelord.saltyengine.components.pushOutOnCollision";
     public static final String SIMPLE_RENDER_COMPONENT = "de.edgelord.saltyengine.components.simpleRenderComponent";
     public static final String ACCELERATOR_COMPONENT = "de.edgelord.saltyengine.components.accelerator";
     public static final String TECHNICAL_DRAW_COMPONENT = "de.edgelord.saltyengine.components.technicalDrawComponent";
@@ -22,4 +21,5 @@ public abstract class Components {
     public static final String ANIMATION_COMPONENT = "de.edgelord.saltyengine.components.animation";
     public static final String TIMING_COMPONENT = "de.edgelord.saltyengine.components.timing";
     public static final String COLLIDER_COMPONENT = "de.edgelord.saltyengine.components.collider";
+    public static final String CAMERA_COMPONENT = "de.edgelord.saltyengine.components.camera";
 }

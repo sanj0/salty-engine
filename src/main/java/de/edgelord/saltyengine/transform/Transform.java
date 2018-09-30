@@ -17,6 +17,20 @@ public class Transform {
         dimensions = new Dimensions(width, height);
     }
 
+    /**
+     * Returns whether the rectangle described by this Transform intersects the one
+     * of the given.
+     *
+     * @param other the other Transform
+     * @return whether this Transform intersects the given one
+     *
+     * @see Rectangle2D#intersects(Rectangle2D)
+     */
+    public boolean intersects(Transform other) {
+
+        return getRect().intersects(other.getRect());
+    }
+
     public Rectangle2D getRect() {
         return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
     }

@@ -6,13 +6,22 @@
 
 package de.edgelord.saltyengine.utils;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.transform.Transform;
 
 public class Directions {
 
     private int directions;
 
-    public static void appendGameObjectRelation(final GameObject root, final GameObject other, Directions directions) {
+    /**
+     * Appends the relation between the two given {@link Transform}s to the given
+     * Directions.
+     * That'll only work proper if the two Transforms intersect.
+     *
+     * @param root the {@link Transform} from whose perspective to view
+     * @param other the {@link Transform} whose relation to the other to return
+     * @param directions the Directions to append the relation to
+     */
+    public static void appendRelation(final Transform root, final Transform other, Directions directions) {
 
         float rootBottom = root.getY() + root.getHeight();
         float otherBottom = other.getY() + other.getHeight();
@@ -42,20 +51,16 @@ public class Directions {
     }
 
     /**
-     * This method returns the relation between two GameObject as a Direction.
-     * When <code>root</code> is truly RIGHT to <code>other</code>, then this method
-     * would return <code>Direction.RIGHT</code>.
-     * <code>root</code> is truly RIGHT to <code>other</code> when it's middle
-     * is RIGHT of it and at least one floating number of it's sides is in the dimension
-     * of the sides of <code>other</code>.
+     * This method returns the relation between two {@link Transform}s as a Direction.
+     * That'll only work proper if the two Transforms intersect.
      *
      * @param root  the <code>GameObject</code> from which perspective to view
      * @param other the <code>gameObject</code> from which the relation to
      *              <code>root</code> will be returned
-     * @return the relation between the two <code>GameObject</code>s as a Direction from
+     * @return the relation between the two {@link Transform}s as a Direction from
      * the perspective of <code>root</code>.
      */
-    public static Directions getGameObjectRelation(final GameObject root, final GameObject other) {
+    public static Direction getRelation(final Transform root, final Transform other) {
 
         /*if (root.getY() + root.getHeight() < other.getY()) {
             direction.setDirection(Direction.UP);
@@ -74,9 +79,6 @@ public class Directions {
         }
 
         return direction;*/
-
-
-        Directions returnDirections = new Directions();
 
         /*if (root.getX() + root.getWidth() > other.getX() && root.getX() < other.getX() + other.getWidth()) {
 
@@ -134,19 +136,19 @@ public class Directions {
         float rightCollision = otherRight - root.getX();
 
         if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision) {
-            returnDirections.setDirection(Direction.DOWN);
+            return Direction.DOWN;
         }
 
         if (bottomCollision < topCollision && bottomCollision < leftCollision && bottomCollision < rightCollision) {
-            returnDirections.setDirection(Direction.UP);
+            return Direction.UP;
         }
 
         if (rightCollision < leftCollision && rightCollision < topCollision && rightCollision < bottomCollision) {
-            returnDirections.setDirection(Direction.LEFT);
+            return Direction.LEFT;
         }
 
         if (leftCollision < rightCollision && leftCollision < bottomCollision && leftCollision < topCollision) {
-            returnDirections.setDirection(Direction.RIGHT);
+            return Direction.RIGHT;
         }
 
         /*if (root.getMiddle().isAbove(other.getMiddle())) {
@@ -161,7 +163,29 @@ public class Directions {
             returnDirections.setDirection(Direction.LEFT);
         }*/
 
-        return returnDirections;
+        return Direction.EMPTY;
+    }
+
+    public static Direction getFreeRelationX(Transform root, Transform other) {
+
+        if (root.getX() + root.getWidth() < other.getX()) {
+            return Direction.LEFT;
+        } else if (root.getX() > other.getX() + other.getWidth()) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.EMPTY;
+    }
+
+    public static Direction getFreeRelationY(Transform root, Transform other) {
+
+        if (root.getY() + root.getHeight() < other.getY()) {
+            return Direction.UP;
+        } else if (root.getY() > other.getY() + other.getHeight()) {
+            return Direction.DOWN;
+        }
+
+        return Direction.EMPTY;
     }
 
     /**
@@ -227,7 +251,8 @@ public class Directions {
         RIGHT, /* 1 */
         LEFT,  /* 2 */
         UP,    /* 4 */
-        DOWN   /* 8 */
+        DOWN,   /* 8 */
+        EMPTY /* 16 */
     }
 
     public void setDirection(Direction direction) {
@@ -256,6 +281,8 @@ public class Directions {
                 return 4;
             case DOWN:
                 return 8;
+            case EMPTY:
+                return 16;
         }
         return 0;
     }

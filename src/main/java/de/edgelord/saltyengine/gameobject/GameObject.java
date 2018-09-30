@@ -138,7 +138,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
             if (requestCollider().requestCollision(other)) {
 
-                Directions.appendGameObjectRelation(this, other, collisionDirections);
+                Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
 
                 // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
                 final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);

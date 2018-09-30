@@ -6,6 +6,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.CameraFollow;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
@@ -33,12 +34,13 @@ public class BirdPlayer extends GameObject {
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
 
     public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
-        super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
+        super(position.getX(), position.getY(), 150, 101, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
 
         addComponent(animationTiming);
         addComponent(soundTiming);
+        addComponent(new CameraFollow(this, "cameraFollow"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
@@ -59,9 +61,11 @@ public class BirdPlayer extends GameObject {
         keyFrameAnimationHeight.addKeyFrame(5000, 101);
 
 
+        /*
         addComponent(keyFrameAnimationX);
         addComponent(keyFrameAnimationWidth);
         addComponent(keyFrameAnimationHeight);
+        */
         keyFrameAnimationX.start();
         keyFrameAnimationWidth.start();
         keyFrameAnimationHeight.start();

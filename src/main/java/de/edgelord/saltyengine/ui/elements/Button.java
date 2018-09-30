@@ -35,8 +35,10 @@ public abstract class Button extends UIElement {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
+        saltyGraphics.setClip(getTransform());
         drawButton(saltyGraphics);
         drawText(saltyGraphics);
+        saltyGraphics.resetClip();
     }
 
     public void drawText(SaltyGraphics saltyGraphics) {
