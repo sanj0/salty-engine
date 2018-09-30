@@ -14,6 +14,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.sgs.ScriptedGameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
+import de.edgelord.saltyengine.ui.elements.DumbPanel;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
 

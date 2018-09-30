@@ -28,7 +28,9 @@ public class BorderedLabel extends Label {
         float textYPos = 0f;
         FontMetrics fontMetrics = saltyGraphics.getFontMetrics();
 
-        saltyGraphics.setClip(getTransform());
+        if (!isSuppressClipping()) {
+            saltyGraphics.setClip(getTransform());
+        }
 
         switch (getHorizontalAlignment()) {
 
@@ -58,7 +60,9 @@ public class BorderedLabel extends Label {
 
         saltyGraphics.drawText(getText(), getX() + textXPos, getY() + textYPos);
 
-        saltyGraphics.resetClip();
+        if (!isSuppressClipping()) {
+            saltyGraphics.resetClip();
+        }
     }
 
     private float getVerticalTopAlignmentPosition(FontMetrics fontMetrics) {

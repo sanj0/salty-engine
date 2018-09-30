@@ -33,8 +33,11 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     private List<Component> components = new CopyOnWriteArrayList<>();
 
+    private boolean suppressClipping = false;
+
     public static final String BUTTON = "de.edgelord.saltyengine.uiElements.button";
     public static final String LABEL = "de.edgelord.saltyengine.uiElements.label";
+    public static final String CONTAINER = "de.edgelord.saltyengine.uiElements.container";
 
     public UIElement(Vector2f position, float width, float height, String tag) {
         super(tag);
@@ -118,6 +121,14 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     public Coordinates getCoordinates() {
         return getPosition().convertToCoordinates();
+    }
+
+    public boolean isSuppressClipping() {
+        return suppressClipping;
+    }
+
+    public void setSuppressClipping(boolean supressClipping) {
+        this.suppressClipping = supressClipping;
     }
 
     @Override

@@ -21,6 +21,10 @@ public class FloatingLabel extends Label {
         super(text, position, 0, 0);
     }
 
+    public FloatingLabel(String text, float x, float y) {
+        this(text, new Vector2f(x, y));
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
@@ -36,11 +40,15 @@ public class FloatingLabel extends Label {
             setY(Game.getHost().getVerticalCentrePosition(getHeight()));
         }
 
-        saltyGraphics.setClip(getTransform());
+        if (!isSuppressClipping()) {
+            saltyGraphics.setClip(getTransform());
+        }
 
         saltyGraphics.drawText(getText(), getX(), getY() + saltyGraphics.getFontMetrics().getMaxAscent());
 
-        saltyGraphics.resetClip();
+        if (!isSuppressClipping()) {
+            saltyGraphics.resetClip();
+        }
     }
 
     private void recalculateSize(FontMetrics metrics) {
