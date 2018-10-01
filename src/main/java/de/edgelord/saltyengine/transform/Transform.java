@@ -31,6 +31,19 @@ public class Transform {
         return getRect().intersects(other.getRect());
     }
 
+    /**
+     * Returns true if the rectangle described by the given Transform is
+     * completely within this.
+     *
+     * @param other the Transform to test containing from
+     * @return whether this rectangle contains the given
+     *
+     * @see Rectangle2D#contains(Rectangle2D)
+     */
+    public boolean contains(Transform other) {
+        return getRect().contains(other.getRect());
+    }
+
     public Rectangle2D getRect() {
         return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
     }
