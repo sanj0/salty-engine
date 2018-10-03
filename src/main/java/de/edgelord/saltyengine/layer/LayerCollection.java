@@ -46,34 +46,9 @@ public class LayerCollection {
         }
     }
 
-    public void moveCamera(Directions.BasicDirection direction, float delta) {
-
-        if (direction == Directions.BasicDirection.y) {
-            for (Layer layer : layers) {
-                for (GameObject gameObject : layer.getGameObjects()) {
-                    gameObject.moveY(delta * layer.getSpeed());
-                }
-            }
-        } else {
-            for (Layer layer : layers) {
-                for (GameObject gameObject : layer.getGameObjects()) {
-                    gameObject.moveX(delta * layer.getSpeed());
-                }
-            }
-        }
-    }
-
     public void draw(SaltyGraphics saltyGraphics) {
 
         for (Layer layer : layers)
             layer.draw(saltyGraphics);
-    }
-
-    public void resetPositionOfAllLayers() {
-
-        for (Layer layer : layers) {
-
-            layer.resetPosition();
-        }
     }
 }

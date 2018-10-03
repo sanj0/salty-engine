@@ -26,7 +26,6 @@ public class Scene {
     private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
     private UISystem ui = new UISystem();
-    private float xDelta, yDelta;
     private boolean initialized = false;
 
     public Scene() {
@@ -44,17 +43,6 @@ public class Scene {
             for (FixedTask fixedTask : fixedTasks) {
 
                 fixedTask.onFixedTick();
-            }
-        }
-    }
-
-    public void resetPosition() {
-
-        synchronized (getGameObjects()) {
-            for (GameObject gameObject : getGameObjects()) {
-
-                gameObject.setX(gameObject.getX() + xDelta);
-                gameObject.setY(gameObject.getY() + yDelta);
             }
         }
     }
@@ -143,39 +131,8 @@ public class Scene {
         }
     }
 
-    public void moveCamera(Directions.BasicDirection direction, float delta) {
-
-        synchronized (getGameObjects()) {
-            if (direction == Directions.BasicDirection.x) {
-
-                xDelta += delta;
-
-                for (GameObject gameObject : getGameObjects()) {
-
-                    gameObject.setX(gameObject.getX() + delta);
-                }
-            } else {
-
-                yDelta += delta;
-
-                for (GameObject gameObject : getGameObjects()) {
-
-                    gameObject.setY(gameObject.getY() + delta);
-                }
-            }
-        }
-    }
-
-    public void setGameObjects(CopyOnWriteArrayList<GameObject> gameObjects) {
-        this.gameObjects = gameObjects;
-    }
-
     public List<FixedTask> getFixedTasks() {
         return fixedTasks;
-    }
-
-    public void setFixedTasks(CopyOnWriteArrayList<FixedTask> fixedTasks) {
-        this.fixedTasks = fixedTasks;
     }
 
     public void addDrawingRoutin(DrawingRoutine drawingRoutine) {
@@ -184,9 +141,5 @@ public class Scene {
 
     public CopyOnWriteArrayList<DrawingRoutine> getDrawingRoutines() {
         return drawingRoutines;
-    }
-
-    public void setDrawingRoutines(CopyOnWriteArrayList<DrawingRoutine> drawingRoutines) {
-        this.drawingRoutines = drawingRoutines;
     }
 }
