@@ -51,6 +51,13 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private final ColliderComponent collider;
     private final ShapeComponent shapeComponent;
 
+    /**
+     * If this is set to true, this GameObject will not have a collision detection. Use this for
+     * stationary objects like obstacles, houses and generally all kind of GameObjects that
+     * aren't moving due to heavy performance improvements.
+     */
+    private boolean stationary = false;
+
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
     private Transform transform;
@@ -136,19 +143,20 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                 continue;
             }
 
-            if (requestCollider().requestCollision(other)) {
+            if (!stationary) {
+                if (requestCollider().requestCollision(other)) {
 
-                Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
+                    Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
 
-                // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
-                final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
+                    // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
+                    final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
 
 
-                collisions.add(eSelf);
-                // other.ON_COLLISION(e);
-                onCollision(eSelf);
+                    collisions.add(eSelf);
+                    // other.ON_COLLISION(e);
+                    onCollision(eSelf);
 
-                components.forEach(component -> component.onCollision(eSelf));
+                    components.forEach(component -> component.onCollision(eSelf));
 
                 /*
                 for (final GameObjectComponent component : other.getComponents()) {
@@ -157,6 +165,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                     }
                 }
                 */
+                }
             }
         }
 
@@ -314,6 +323,14 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setColliderComponent(String colliderComponent) {
         this.colliderComponent = colliderComponent;
+    }
+
+    public boolean isStationary() {
+        return stationary;
+    }
+
+    public void setStationary(boolean stationary) {
+        this.stationary = stationary;
     }
 
     public Vector2f getMiddle() {

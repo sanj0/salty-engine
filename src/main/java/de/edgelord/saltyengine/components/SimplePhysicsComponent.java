@@ -52,30 +52,32 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     @Override
     public void onFixedTick() {
 
-        float horizontalDelta = 0f;
-        float verticalDelta = 0f;
-        final int deltaT = (int) StaticSystem.fixedTickMillis;
+        if (!getParent().isStationary()) {
+            float horizontalDelta = 0f;
+            float verticalDelta = 0f;
+            final int deltaT = (int) StaticSystem.fixedTickMillis;
 
-        for (final Force force : forces) {
+            for (final Force force : forces) {
 
-            switch (force.getDirection()) {
-                case RIGHT:
-                    horizontalDelta += force.deltaDistance(deltaT);
-                    break;
-                case LEFT:
-                    horizontalDelta -= force.deltaDistance(deltaT);
-                    break;
-                case UP:
-                    verticalDelta -= force.deltaDistance(deltaT);
-                    break;
-                case DOWN:
-                    verticalDelta += force.deltaDistance(deltaT);
-                    break;
+                switch (force.getDirection()) {
+                    case RIGHT:
+                        horizontalDelta += force.deltaDistance(deltaT);
+                        break;
+                    case LEFT:
+                        horizontalDelta -= force.deltaDistance(deltaT);
+                        break;
+                    case UP:
+                        verticalDelta -= force.deltaDistance(deltaT);
+                        break;
+                    case DOWN:
+                        verticalDelta += force.deltaDistance(deltaT);
+                        break;
+                }
             }
-        }
 
-        getParent().moveX(horizontalDelta);
-        getParent().moveY(verticalDelta);
+            getParent().moveX(horizontalDelta);
+            getParent().moveY(verticalDelta);
+        }
     }
 
     @Override

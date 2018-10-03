@@ -45,6 +45,9 @@ public class Bird extends GameObject {
 
         addComponent(fadeIn);
         addComponent(refreshPositionTiming);
+
+        // Improves the performance a lot!
+        setStationary(true);
     }
 
     @Override
