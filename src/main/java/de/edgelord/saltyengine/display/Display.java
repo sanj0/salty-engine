@@ -31,7 +31,7 @@ public class Display extends JFrame {
     public void create() {
 
         setSize(width, height);
-        setTitle(windowTitle + "    -- saltyengine " + StaticSystem.versionTag);
+        setTitle(windowTitle + " [Salty Engine " + StaticSystem.versionTag + "]");
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
