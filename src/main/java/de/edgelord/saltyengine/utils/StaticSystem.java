@@ -25,6 +25,7 @@ public class StaticSystem {
     public static long fixedTickMillis = 1;
 
     public static ImageFactory defaultImageFactory = new ImageFactory(new InnerResource());
+    public static InnerResource defaultResource = new InnerResource();
 
     public enum Mode {
         layerCollection, scene
