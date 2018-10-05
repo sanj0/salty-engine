@@ -13,7 +13,7 @@ public class ImageLoader {
     /**
      * The default {@link BufferedImage} to be returned if the requested wasn't found.
      */
-    private static BufferedImage defaultImage = new BufferedImage(0, 0, BufferedImage.TYPE_BYTE_GRAY);
+    private static BufferedImage defaultImage = new BufferedImage(10, 10, BufferedImage.TYPE_BYTE_GRAY);
 
     /**
      * This method will load a new Image with the given name into the map
