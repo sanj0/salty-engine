@@ -31,39 +31,10 @@ public class SimpleHitbox implements Hitbox {
         transform.setPosition(new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
     }
 
-    public boolean isLeft(final GameObject other) {
-
-        return transform.getX() + getWidth() + 1 < other.getHitbox().getTransform().getPosition().getX();
-    }
-
-    public boolean isRight(final GameObject other) {
-
-        return transform.getX() > other.getHitbox().getTransform().getPosition().getX() + other.getHitbox().getTransform().getWidth();
-    }
-
-    public boolean isBelow(final GameObject other) {
-
-        return transform.getY() > other.getHitbox().getTransform().getPosition().getY() + other.getHitbox().getTransform().getHeight();
-    }
-
-    public boolean isAbove(final GameObject other) {
-
-        return transform.getY() + getHeight() < other.getHitbox().getTransform().getPosition().getY();
-    }
-
     @Override
     public boolean collides(final GameObject other) {
 
-        if (isBelow(other)) {
-            return false;
-        } else if (isAbove(other)) {
-            return false;
-        } else if (isLeft(other)) {
-            return false;
-        } else {
-            return !isRight(other);
-        }
-
+        return transform.intersects(other.getTransform());
     }
 
     @Override
