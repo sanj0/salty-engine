@@ -23,4 +23,5 @@ public abstract class Components {
     public static final String COLLIDER_COMPONENT = "de.edgelord.saltyengine.components.collider";
     public static final String CAMERA_COMPONENT = "de.edgelord.saltyengine.components.camera";
     public static final String GAME_COMPONENTS = "de.edgelord.saltyengine.components.game";
+    public static final String MONO_BEHAVIOUR = "de.edgelord.saltyengine.components.monoBehaviour";
 }
