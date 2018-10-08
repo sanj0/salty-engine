@@ -44,7 +44,7 @@ public class ImageLoader {
     }
 
     /**
-     * Returns the image with the given name and loads it bbefore
+     * Returns the image with the given name and loads it before
      * if it isn't already.
      *
      * @param name the id-name of the image
