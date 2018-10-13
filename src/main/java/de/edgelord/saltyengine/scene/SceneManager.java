@@ -10,12 +10,12 @@ import java.util.HashMap;
  * for the {@link Class} object of a class extending {@link Scene}.
  * To add a {@link Scene} to the collection, call {@link #addScene(String, Scene)} or {@link #addScene(String, Class)}.
  * Example usage:
- *
+ * <p>
  * {@code SceneManager.addScene("startMenu", new StartMenu());}
  * {@code SceneManager.addScene("starMenu", StarMenu.class)}
  *
  * <p>
- *
+ * <p>
  * When ever you call {@code SceneManager.setCurrentScene("starMenu");} a new instance of {@code StartMenu} will be created
  * and set to {@link #currentScene}
  *

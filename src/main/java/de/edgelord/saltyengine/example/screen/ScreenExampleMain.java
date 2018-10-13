@@ -3,7 +3,6 @@ package de.edgelord.saltyengine.example.screen;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.elements.BorderedLabel;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 public class ScreenExampleMain extends Game {
 

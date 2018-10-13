@@ -12,8 +12,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.StaticSystem;
-import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 import java.awt.event.*;

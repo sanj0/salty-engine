@@ -15,7 +15,6 @@ import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

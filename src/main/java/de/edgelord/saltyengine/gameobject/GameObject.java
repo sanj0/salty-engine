@@ -17,6 +17,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -32,6 +33,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static de.edgelord.saltyengine.scene.Scene.concurrentBlock;
 
 public abstract class GameObject extends ComponentParent implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
@@ -134,40 +137,40 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         Directions collisionDirections = new Directions();
         List<CollisionEvent> collisions = new ArrayList<>();
 
-        for (final GameObject other : gameObjects) {
+        if (!stationary) {
 
-            if (other == this) {
-                continue;
-            }
+            synchronized (concurrentBlock) {
 
-            if (!stationary) {
-                if (requestCollider().requestCollision(other)) {
+                for (int i = 0; i < gameObjects.size(); i++) {
+                    GameObject other = gameObjects.get(i);
 
-                    Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
+                    if (other == this) {
+                        continue;
+                    }
 
-                    // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
-                    final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
+                    if (!stationary) {
+                        if (requestCollider().requestCollision(other)) {
+
+                            Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
+
+                            // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
+                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
 
 
-                    collisions.add(eSelf);
-                    // other.ON_COLLISION(e);
-                    onCollision(eSelf);
+                            collisions.add(eSelf);
+                            // other.ON_COLLISION(e);
+                            onCollision(eSelf);
 
-                    components.forEach(component -> component.onCollision(eSelf));
+                            components.forEach(component -> component.onCollision(eSelf));
 
-                /*
-                for (final GameObjectComponent component : other.getComponents()) {
-                    if (!component.getTag().equals(GameObjectComponent.PUSH_OUT_ON_COLLISION)) {
-                        component.ON_COLLISION(e);
+                        }
                     }
                 }
-                */
-                }
             }
-        }
 
-        components.forEach(component -> component.onCollisionDetectionFinish(collisions));
-        onCollisionDetectionFinish(collisions);
+            components.forEach(component -> component.onCollisionDetectionFinish(collisions));
+            onCollisionDetectionFinish(collisions);
+        }
     }
 
     @Override
@@ -350,5 +353,9 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
+    }
+
+    public void removeFromCurrentScene() {
+        SceneManager.getCurrentScene().removeGameObject(this);
     }
 }

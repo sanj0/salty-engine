@@ -17,8 +17,8 @@ public class Directions {
      * Directions.
      * That'll only work proper if the two Transforms intersect.
      *
-     * @param root the {@link Transform} from whose perspective to view
-     * @param other the {@link Transform} whose relation to the other to return
+     * @param root       the {@link Transform} from whose perspective to view
+     * @param other      the {@link Transform} whose relation to the other to return
      * @param directions the Directions to append the relation to
      */
     public static void appendRelation(final Transform root, final Transform other, Directions directions) {

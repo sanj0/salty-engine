@@ -9,8 +9,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
-
 /**
  * This implementation of {@link Component} makes the {@link de.edgelord.saltyengine.camera.Camera}
  * of the game follow its parent.

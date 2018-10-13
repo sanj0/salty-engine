@@ -1,7 +1,5 @@
 package de.edgelord.saltyengine.transform;
 
-import static java.lang.Math.toDegrees;
-
 /**
  * This class describes the rotation of an Object around the position {@link #centre} by {@link #rotationDegrees} degrees.
  */

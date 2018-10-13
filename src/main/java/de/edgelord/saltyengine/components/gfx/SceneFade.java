@@ -7,7 +7,6 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 
@@ -54,7 +53,7 @@ public class SceneFade extends GFXComponent {
     }
 
     private void end() {
-        SceneManager.getCurrentScene().getDrawingRoutines().remove(fadeDraw);
+        SceneManager.getCurrentScene().removeDrawingRoutine(fadeDraw);
         remove();
     }
 

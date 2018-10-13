@@ -20,7 +20,7 @@ public class ImageLoader {
      * {@link #images}. If the name is already in the map, it won't load it again.
      * This method will always load an optimized image using {@link ImageFactory#getOptimizedImageResource(String)}.
      *
-     * @param name the id-name of the image
+     * @param name         the id-name of the image
      * @param relativePath the relative path of the image to be loaded from
      * @param imageFactory the Factory from which to load the image
      */
@@ -36,7 +36,7 @@ public class ImageLoader {
      * This method will call {@link #loadNewImage(String, String, ImageFactory)} with the
      * default {@link ImageFactory} {@link StaticSystem#defaultImageFactory}
      *
-     * @param name the id-name of the image
+     * @param name         the id-name of the image
      * @param relativePath the relative path of the image to be loaded from
      */
     public static void loadNewImage(String name, String relativePath) {
@@ -47,7 +47,7 @@ public class ImageLoader {
      * Returns the image with the given name and loads it before
      * if it isn't already.
      *
-     * @param name the id-name of the image
+     * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
      * @param imageFactory the Factory from whihc to load the image
      * @return the {@link BufferedImage} corresponding to the given name and/or path
@@ -65,7 +65,7 @@ public class ImageLoader {
      * Calls the method {@link #getOrLoadImage(String, String, ImageFactory)} with the default
      * {@link ImageFactory} {@link StaticSystem#defaultImageFactory}.
      *
-     * @param name the id-name of the image
+     * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
      * @return the {@link BufferedImage} corresponding to the given name and/or path
      */

@@ -24,7 +24,6 @@ public class Transform {
      *
      * @param other the other Transform
      * @return whether this Transform intersects the given one
-     *
      * @see Rectangle2D#intersects(Rectangle2D)
      */
     public boolean intersects(Transform other) {
@@ -38,7 +37,6 @@ public class Transform {
      *
      * @param other the Transform to test containing from
      * @return whether this rectangle contains the given
-     *
      * @see Rectangle2D#contains(Rectangle2D)
      */
     public boolean contains(Transform other) {

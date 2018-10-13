@@ -14,18 +14,22 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
 
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
 
+    public static final Object concurrentBlock = "3141592653589793";
+
+    private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
+    private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
+    private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /*
-    private List<GameObject> gameObjects = Collections.synchronizedList(new LinkedList<>());
-    private List<FixedTask> fixedTasks = Collections.synchronizedList(new LinkedList<>());
-    */
     private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
     private CopyOnWriteArrayList<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
+    */
     private UISystem ui = new UISystem();
     private boolean initialized = false;
 
@@ -35,12 +39,63 @@ public class Scene {
 
     public void addFixedTask(FixedTask fixedTask) {
 
-        fixedTasks.add(fixedTask);
+        synchronized (concurrentBlock) {
+            fixedTasks.add(fixedTask);
+        }
+    }
+
+    public void addGameObject(GameObject gameObject) {
+
+        synchronized (concurrentBlock) {
+            gameObjects.add(gameObject);
+        }
+    }
+
+    public void addGameObject(int index, GameObject gameObject) {
+        synchronized (concurrentBlock) {
+            gameObjects.add(index, gameObject);
+        }
+    }
+
+    public void removeGameObject(GameObject gameObject) {
+        synchronized (concurrentBlock) {
+            gameObjects.remove(gameObject);
+        }
+    }
+
+    public void cleargameObjects() {
+        synchronized (concurrentBlock) {
+            gameObjects.clear();
+        }
+    }
+
+    public void removeFixedTask(FixedTask fixedTask) {
+        synchronized (concurrentBlock) {
+            fixedTasks.remove(fixedTask);
+        }
+    }
+
+    public void clearFixedTasks() {
+        synchronized (concurrentBlock) {
+            fixedTasks.clear();
+        }
+    }
+
+    public void removeDrawingRoutine(DrawingRoutine drawingRoutine) {
+        synchronized (concurrentBlock) {
+            drawingRoutines.remove(drawingRoutine);
+        }
+    }
+
+    public void clearDrawingRoutines() {
+        synchronized (concurrentBlock) {
+            drawingRoutines.clear();
+        }
     }
 
     public void doFixedTasks() {
 
-        synchronized (getFixedTasks()) {
+        synchronized (concurrentBlock) {
             for (FixedTask fixedTask : fixedTasks) {
 
                 fixedTask.onFixedTick();
@@ -48,21 +103,25 @@ public class Scene {
         }
     }
 
-    public void addGameObject(GameObject gameObject) {
-
-        gameObjects.add(gameObject);
+    public void addDrawingRoutin(DrawingRoutine drawingRoutine) {
+        synchronized (concurrentBlock) {
+            drawingRoutines.add(drawingRoutine);
+        }
     }
+
 
     public void draw(SaltyGraphics saltyGraphics) {
 
-        synchronized (getGameObjects()) {
 
+        synchronized (concurrentBlock) {
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
                     drawingRoutine.draw(saltyGraphics);
                 }
             }
+        }
 
+        synchronized (concurrentBlock) {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
                 float rotation = gameObject.getTransform().getRotation().getRotationDegrees();
@@ -73,16 +132,14 @@ public class Scene {
                 gameObject.doComponentDrawing(saltyGraphics);
 
                 saltyGraphics.setTransform(before);
-                /*
-                saltyGraphics.setColor(Color.red);
-                saltyGraphics.fillRect(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
-                */
             }
+        }
 
-            if (ui != null) {
-                ui.drawUI(saltyGraphics);
-            }
+        if (ui != null) {
+            ui.drawUI(saltyGraphics);
+        }
 
+        synchronized (concurrentBlock) {
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
                     drawingRoutine.draw(saltyGraphics);
@@ -91,25 +148,16 @@ public class Scene {
         }
     }
 
-    public void setUI(UISystem uiSystem) {
-        this.ui = uiSystem;
-    }
-
-    public UISystem getUI() {
-        return ui;
-    }
-
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
-    }
-
     public void onFixedTick() {
 
         doFixedTasks();
 
-        synchronized (getGameObjects()) {
-            for (GameObject gameObject : getGameObjects()) {
-                gameObject.doCollisionDetection(getGameObjects());
+        synchronized (concurrentBlock) {
+
+            for (int i = 0; i < gameObjects.size(); i++) {
+                 GameObject gameObject = gameObjects.get(i);
+
+                gameObject.doCollisionDetection(gameObjects);
                 gameObject.doComponentOnFixedTick();
                 gameObject.onFixedTick();
             }
@@ -128,8 +176,8 @@ public class Scene {
             return;
         } else {
 
-            synchronized (getGameObjects()) {
-                for (GameObject gameObject : getGameObjects()) {
+            synchronized (concurrentBlock) {
+                for (GameObject gameObject : gameObjects) {
                     gameObject.initialize();
                 }
             }
@@ -138,15 +186,29 @@ public class Scene {
         }
     }
 
-    public List<FixedTask> getFixedTasks() {
-        return fixedTasks;
+    public void setUI(UISystem uiSystem) {
+        this.ui = uiSystem;
     }
 
-    public void addDrawingRoutin(DrawingRoutine drawingRoutine) {
-        getDrawingRoutines().add(drawingRoutine);
+    public UISystem getUI() {
+        return ui;
     }
 
-    public CopyOnWriteArrayList<DrawingRoutine> getDrawingRoutines() {
-        return drawingRoutines;
+    public int getGameObjectCount() {
+        synchronized (concurrentBlock) {
+            return gameObjects.size();
+        }
+    }
+
+    public int getDrawingRoutineCount() {
+        synchronized (concurrentBlock) {
+            return drawingRoutines.size();
+        }
+    }
+
+    public int getFixedTaskCount() {
+        synchronized (concurrentBlock) {
+            return fixedTasks.size();
+        }
     }
 }

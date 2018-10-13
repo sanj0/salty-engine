@@ -10,9 +10,6 @@ import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import javax.swing.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 public class Display extends JFrame {
 

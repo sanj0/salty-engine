@@ -7,10 +7,8 @@
 package de.edgelord.saltyengine.render;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.layer.LayerCollection;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.util.Random;
