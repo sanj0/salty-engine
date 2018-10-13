@@ -1,6 +1,7 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.elements.BorderedLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -17,10 +18,10 @@ public class ScreenExampleMain extends Game {
 
         Game.start();
 
-        StaticSystem.currentScene.addGameObject(new Screen());
+        SceneManager.getCurrentScene().addGameObject(new Screen());
 
         BorderedLabel usage = new BorderedLabel("Use WASD or the arrow keys to move the content of the screen!", 0, 25, Game.getHost().getWidth(), 35);
 
-        StaticSystem.currentScene.getUI().addElement(usage);
+        SceneManager.getCurrentScene().getUI().addElement(usage);
     }
 }

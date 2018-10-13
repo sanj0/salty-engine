@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -28,9 +29,6 @@ public class Stage extends Canvas {
     private boolean doubleBufferCreated = false;
 
     private float fps;
-    private String fpsString = "";
-    private float startNanos;
-    private final float nanosToSeconds = 1000000f;
     private int ticks = 0;
 
     private boolean highQuality = false;
@@ -56,8 +54,8 @@ public class Stage extends Canvas {
                     mouseHandler.mouseClicked(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().mouseClicked(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseClicked(e);
                 }
             }
 
@@ -67,8 +65,8 @@ public class Stage extends Canvas {
                     mouseHandler.mousePressed(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().mousePressed(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mousePressed(e);
                 }
             }
 
@@ -78,8 +76,8 @@ public class Stage extends Canvas {
                     mouseHandler.mouseReleased(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().mouseReleased(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseReleased(e);
                 }
 
                 Game.mouseDrags = false;
@@ -122,8 +120,8 @@ public class Stage extends Canvas {
                     mouseHandler.mouseMoved(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().mouseMoved(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseMoved(e);
                 }
 
                 Game.cursorPosition = new Vector2f(e.getX(), e.getY());
@@ -169,8 +167,6 @@ public class Stage extends Canvas {
     @Override
     public void paint(Graphics graphics) {
 
-        startNanos = Time.getDeltaNanos();
-
         if (!doubleBufferCreated) {
             createBufferStrategy(3);
             doubleBufferCreated = true;
@@ -188,26 +184,7 @@ public class Stage extends Canvas {
 
         engine.render(saltyGraphics);
 
-        // Compute fps
-
-        if (ticks == 50) {
-            fps = 1 / ((startNanos) / nanosToSeconds);
-            ticks = 0;
-        } else {
-            ticks++;
-        }
-
-        Time.setFps(fps);
-
-        if (StaticSystem.drawFPS) {
-            fpsString = String.valueOf(fps);
-
-            graphics2D.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
-            graphics2D.setColor(Color.RED);
-            graphics2D.drawString(String.valueOf("FPS: " + (int) Time.getFps()), 0, graphics2D.getFontMetrics(graphics2D.getFont()).getAscent());
-        }
-
-        graphics2D.dispose();
+        // graphics2D.dispose();
         getBufferStrategy().show();
         Toolkit.getDefaultToolkit().sync();
     }

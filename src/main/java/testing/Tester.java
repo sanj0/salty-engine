@@ -11,11 +11,13 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.sgs.ScriptedGameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
+import testing.dummys.DummyScene;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -56,7 +58,7 @@ public class Tester extends Game {
         floatingLabel.setTextColor(Color.black);
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
 
-        StaticSystem.currentScene.getUI().addElement(floatingLabel);
+        SceneManager.getCurrentScene().getUI().addElement(floatingLabel);
     }
 
     private static void addUI() {
@@ -69,11 +71,11 @@ public class Tester extends Game {
 
         uiSystem.addElement(pauseButton);
 
-        StaticSystem.currentScene.setUI(uiSystem);
+        SceneManager.getCurrentScene().setUI(uiSystem);
     }
 
     private static void initSGSTest() {
-        StaticSystem.currentScene.addGameObject(new ScriptedGameObject("res/sgs/scripts/testing.sgs"));
+        SceneManager.getCurrentScene().addGameObject(new ScriptedGameObject("res/sgs/scripts/testing.sgs"));
     }
 
     private static void initPhysicsTest() {
@@ -91,10 +93,10 @@ public class Tester extends Game {
         bird1_3.setTag("de.edgelord.saltyengine.testing.bird1_3");
         bird3_3.setTag("de.edgelord.saltyengine.testing.bird3_3");
 
-        StaticSystem.currentScene.addGameObject(bird1_1);
-        StaticSystem.currentScene.addGameObject(bird1_3);
-        StaticSystem.currentScene.addGameObject(bird3_1);
-        StaticSystem.currentScene.addGameObject(bird3_3);
+        SceneManager.getCurrentScene().addGameObject(bird1_1);
+        SceneManager.getCurrentScene().addGameObject(bird1_3);
+        SceneManager.getCurrentScene().addGameObject(bird3_1);
+        SceneManager.getCurrentScene().addGameObject(bird3_3);
     }
 
     public static void initForcesTest() {
@@ -110,11 +112,11 @@ public class Tester extends Game {
         upperBird.getPhysics().removeGravity();
         player.getPhysics().removeGravity();
 
-        StaticSystem.currentScene.addGameObject(bottomBird);
+        SceneManager.getCurrentScene().addGameObject(bottomBird);
 
-        StaticSystem.currentScene.addGameObject(upperBird);
+        SceneManager.getCurrentScene().addGameObject(upperBird);
 
-        StaticSystem.currentScene.addGameObject(player);
+        SceneManager.getCurrentScene().addGameObject(player);
     }
 
     private static void initSampleScene() {
@@ -123,7 +125,7 @@ public class Tester extends Game {
 
         final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
-        StaticSystem.currentScene.addGameObject(player);
+        SceneManager.getCurrentScene().addGameObject(player);
 
         final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
@@ -135,7 +137,7 @@ public class Tester extends Game {
 
         while (index < 16) {
 
-            StaticSystem.currentScene.addGameObject(new Bird(birdSpritesheet, xPos, yPos));
+            SceneManager.getCurrentScene().addGameObject(new Bird(birdSpritesheet, xPos, yPos));
 
             if (index == 7) {
 

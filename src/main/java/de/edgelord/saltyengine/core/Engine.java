@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -49,24 +50,12 @@ public class Engine {
 
     private void doInitialising() {
 
-        if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
-
-            StaticSystem.currentScene.initGameObjects();
-        } else if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
-
-            StaticSystem.currentLayerCollection.initGameObjects();
-        }
+        SceneManager.getCurrentScene().initGameObjects();
     }
 
     public void render(SaltyGraphics saltyGraphics) {
 
-        if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
-
-            StaticSystem.currentScene.draw(saltyGraphics);
-        } else if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
-
-            StaticSystem.currentLayerCollection.draw(saltyGraphics);
-        }
+        SceneManager.getCurrentScene().draw(saltyGraphics);
     }
 
     public void startFixedTicks() {
@@ -82,13 +71,7 @@ public class Engine {
 
                 if (!Game.isPaused()) {
 
-                    if (StaticSystem.currentMode == StaticSystem.Mode.scene) {
-
-                        StaticSystem.currentScene.onFixedTick();
-                    } else if (StaticSystem.currentMode == StaticSystem.Mode.layerCollection) {
-
-                        StaticSystem.currentLayerCollection.onFixedTick();
-                    }
+                    SceneManager.getCurrentScene().onFixedTick();
                 }
             }
         }, 0, fixedTickMillis);

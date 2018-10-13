@@ -12,6 +12,7 @@ import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -88,8 +89,8 @@ public class DisplayManager extends Host {
                     displayKeyHandler.keyTyped(e);
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().keyTyped(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().keyTyped(e);
                 }
 
                 if (e.getKeyCode() == KeyEvent.VK_P) {
@@ -127,8 +128,8 @@ public class DisplayManager extends Host {
                     inputRight = true;
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().keyPressed(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().keyPressed(e);
                 }
 
                 Game.keyboardInput.handleKeyPressed(e);
@@ -166,8 +167,8 @@ public class DisplayManager extends Host {
                     inputRight = false;
                 }
 
-                if (StaticSystem.currentScene.getUI() != null) {
-                    StaticSystem.currentScene.getUI().keyReleased(e);
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().keyReleased(e);
                 }
 
                 Game.keyboardInput.handleKeyReleased(e);

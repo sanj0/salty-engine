@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.render;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.layer.LayerCollection;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -27,7 +28,7 @@ public class DrawingAlgorithm {
     String[] messages = {
             "",
             "Hello World!",
-            "This is saltyengine.",
+            "This is Salty Engine.",
             "A Java library ",
             "for making 2D games"
     };
@@ -58,11 +59,7 @@ public class DrawingAlgorithm {
     public void draw(SaltyGraphics saltyGraphics) {
 
         if (mode == Mode.scene) {
-            StaticSystem.currentScene.draw(saltyGraphics);
-        }
-
-        if (mode == Mode.layerCollection) {
-            StaticSystem.currentLayerCollection.draw(saltyGraphics);
+            SceneManager.getCurrentScene().draw(saltyGraphics);
         }
 
         if (mode == Mode.messages)
@@ -136,13 +133,8 @@ public class DrawingAlgorithm {
             index = 0;
     }
 
-    public static LayerCollection getCurrentLayCollection() {
-
-        return StaticSystem.currentLayerCollection;
-    }
-
     public static Scene getCurrentScene() {
 
-        return StaticSystem.currentScene;
+        return SceneManager.getCurrentScene();
     }
 }
