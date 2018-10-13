@@ -10,6 +10,7 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.StaticSystem;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -80,6 +81,9 @@ public class Stage extends Canvas {
                 if (StaticSystem.currentScene.getUI() != null) {
                     StaticSystem.currentScene.getUI().mouseReleased(e);
                 }
+
+                Game.mouseDrags = false;
+                Game.mousePresses = false;
             }
 
             @Override
@@ -108,6 +112,8 @@ public class Stage extends Canvas {
                 if (mouseHandler != null) {
                     mouseHandler.mouseDragged(e);
                 }
+
+                Game.mouseDrags = true;
             }
 
             @Override
@@ -119,6 +125,8 @@ public class Stage extends Canvas {
                 if (StaticSystem.currentScene.getUI() != null) {
                     StaticSystem.currentScene.getUI().mouseMoved(e);
                 }
+
+                Game.cursorPosition = new Vector2f(e.getX(), e.getY());
             }
         };
 

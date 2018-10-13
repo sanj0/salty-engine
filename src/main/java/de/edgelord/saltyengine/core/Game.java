@@ -9,6 +9,7 @@ package de.edgelord.saltyengine.core;
 import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.input.Keyboard;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.KeyEvent;
 
@@ -31,6 +32,11 @@ public class Game {
      * Please use this for every input that has to do with controls etc etc
      */
     public static Keyboard keyboardInput = new Keyboard();
+
+    public static Vector2f cursorPosition = new Vector2f(0, 0);
+    public static boolean mouseDrags = false;
+    public static boolean mousePresses = false;
+
     private static Host host;
     private static Engine engine;
 

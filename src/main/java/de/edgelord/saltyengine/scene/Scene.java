@@ -10,9 +10,10 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
-import de.edgelord.saltyengine.utils.Directions;
 
+import java.awt.geom.AffineTransform;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -63,9 +64,15 @@ public class Scene {
             }
 
             for (GameObject gameObject : gameObjects) {
+                AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
+                float rotation = gameObject.getTransform().getRotation().getRotationDegrees();
+                Vector2f rotationCentre = gameObject.getTransform().getRotation().getCentre();
+                saltyGraphics.getGraphics2D().rotate(rotation, rotationCentre.getX(), rotationCentre.getY());
+
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);
 
+                saltyGraphics.setTransform(before);
                 /*
                 saltyGraphics.setColor(Color.red);
                 saltyGraphics.fillRect(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());

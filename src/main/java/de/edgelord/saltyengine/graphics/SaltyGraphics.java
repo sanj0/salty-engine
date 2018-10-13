@@ -900,4 +900,11 @@ public class SaltyGraphics {
     public Color getBackgroundColor() {
         return graphics2D.getBackground();
     }
+
+    /**
+     * @return The {@link Graphics2D} context managed by this Object for further manipulation/rendering.
+     */
+    public Graphics2D getGraphics2D() {
+        return graphics2D;
+    }
 }

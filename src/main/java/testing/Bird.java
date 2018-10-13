@@ -16,8 +16,11 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject {
@@ -67,6 +70,8 @@ public class Bird extends GameObject {
 
     @Override
     public void onFixedTick() {
+
+        // getTransform().rotateToPoint(Game.cursorPosition);
 
         if (Game.keyboardInput.isKey_minus()) {
             getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 1);

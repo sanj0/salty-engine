@@ -37,7 +37,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
-    public static final String DEFAULT_RECALCULATE_MIDDLE_NAME = "de.edgelord.saltyengine.coreComponents.recalculateMiddle";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
     public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
     public static final String DEFAULT_SHAPE_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.shape";
@@ -46,7 +45,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;
-    private final RecalculateMiddleComponent recalculateMiddleComponent;
     private final Accelerator defaultAccelerator;
     private final ColliderComponent collider;
     private final ShapeComponent shapeComponent;
@@ -65,7 +63,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
     private Transform transform;
-    private Vector2f middle;
     private HashMap<String, String> properties = new HashMap<>();
     private File propertiesFile;
     private Hitbox hitbox;
@@ -77,11 +74,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         transform = new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
-        middle = new Vector2f(getCoordinates().getX() + getWidth() / 2, getCoordinates().getY() + getHeight() / 2);
-
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
-        recalculateMiddleComponent = new RecalculateMiddleComponent(this, GameObject.DEFAULT_RECALCULATE_MIDDLE_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
         collider = new ColliderComponent(this, DEFAULT_COLLIDER_COMPONENT_NAME, ColliderComponent.Type.HITBOX);
         shapeComponent = new ShapeComponent(this, DEFAULT_SHAPE_COMPONENT_NAME, ShapeComponent.Shape.RECT);
@@ -89,7 +83,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
-        components.add(recalculateMiddleComponent);
         components.add(defaultAccelerator);
         components.add(collider);
         components.add(shapeComponent);
@@ -338,17 +331,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     public Vector2f getMiddle() {
-        return middle;
-    }
-
-    /**
-     * WARNING!! THIS METHOD WON'T PLACE THE GAMEOBJECT BY ITS MIDDLE BUT SET THE MIDDLE WITHOUT CHANGING THE POSITION!
-     * Usually, you should not call this method manually!
-     *
-     * @param middle the new middle
-     */
-    public void setMiddle(final Vector2f middle) {
-        this.middle = middle;
+        return getTransform().getMiddle();
     }
 
     public float getMass() {

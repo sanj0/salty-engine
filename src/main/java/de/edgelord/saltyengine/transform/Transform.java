@@ -6,15 +6,16 @@ public class Transform {
 
     private Vector2f position;
     private Dimensions dimensions;
+    private Rotation rotation;
 
     public Transform(Vector2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
+        this.rotation = new Rotation(getMiddle());
     }
 
     public Transform(float x, float y, float width, float height) {
-        position = new Vector2f(x, y);
-        dimensions = new Dimensions(width, height);
+        this(new Vector2f(x, y), new Dimensions(width, height));
     }
 
     /**
@@ -42,6 +43,14 @@ public class Transform {
      */
     public boolean contains(Transform other) {
         return getRect().contains(other.getRect());
+    }
+
+    public Vector2f getMiddle() {
+        return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
+    }
+
+    public void rotateToPoint(Vector2f point) {
+        rotation.rotateToPoint(point);
     }
 
     public Rectangle2D getRect() {
@@ -106,5 +115,13 @@ public class Transform {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
+    }
+
+    public Rotation getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Rotation rotation) {
+        this.rotation = rotation;
     }
 }
