@@ -63,7 +63,7 @@ public class Interpreter {
 
                 case "removeForce":
                     if (scriptLine.getMinorArg().equals("gravity")) {
-                        parent.getPhysics().removeGravity();
+                        parent.getPhysics().disableGravity();
                     } else {
                         parent.getPhysics().removeForce(scriptLine.getMinorArg());
                     }

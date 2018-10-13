@@ -60,6 +60,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * to improve the performance of the game a lot. Other GameObjects still collide with this one then,
      * but this one will never collide with others which is redundant when the {@link #onCollision(CollisionEvent)}
      * implementation is empty.
+     * Please note that gravity and other forces won't take effect on stationary GameObjects
      */
     private boolean stationary = false;
 

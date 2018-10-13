@@ -5,7 +5,6 @@ import de.edgelord.saltyengine.core.PaneledGame;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +28,7 @@ public class PaneledGameTester extends JFrame {
 
         new PaneledGameTester();
 
-        SceneManager.getCurrentScene().addDrawingRoutin(new DrawingRoutine(DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
+        SceneManager.getCurrentScene().addDrawingRoutine(new DrawingRoutine(DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
             @Override
             public void draw(SaltyGraphics saltyGraphics) {
                 saltyGraphics.drawOval(0, 0, 1920, 1080);

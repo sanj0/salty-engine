@@ -6,7 +6,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.gfx.SceneFade;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
@@ -16,21 +15,15 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject {
 
-    private final int windowWidth = 1200;
-    private final int windowHeight = 909;
     private final Animation animation;
     private final Spritesheet spritesheet;
 
-    private FixedRate refreshPositionTiming = new FixedRate(this, "refreshPositionTiming", 15);
     private SceneFade fadeIn = new SceneFade(this, "sceneFade", SceneFade.Mode.FADE_IN);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
@@ -47,16 +40,14 @@ public class Bird extends GameObject {
         fadeIn.fadeInit();
 
         addComponent(fadeIn);
-        addComponent(refreshPositionTiming);
 
         // Improves performance a lot!
-        setStationary(true);
+        //setStationary(true);
     }
 
     @Override
     public void initialize() {
 
-        animation.nextFrame();
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
         // getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
 
@@ -73,22 +64,10 @@ public class Bird extends GameObject {
 
         // getTransform().rotateToPoint(Game.cursorPosition);
 
-        if (Game.keyboardInput.isKey_minus()) {
-            getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 1);
-        }
-
-        if (refreshPositionTiming.now()) {
-
-            if (getCoordinates().getY() >= windowHeight) {
-
-                getPosition().setY(0);
-            }
-
-            if (getCoordinates().getX() >= windowWidth) {
-
-                getPosition().setX(-getWidth());
-                // getPosition().setY(getY() + getHeight());
-            }
+        if (Game.keyboardInput.isSpace()) {
+            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0.01f);
+        } else {
+            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);
         }
     }
 

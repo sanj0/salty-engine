@@ -6,6 +6,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
@@ -69,8 +70,6 @@ public class BirdPlayer extends GameObject {
 
     @Override
     public void initialize() {
-
-        animation.nextFrame();
 
         System.out.println("INFO: Initialized " + getClass());
     }

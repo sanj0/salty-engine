@@ -21,7 +21,7 @@ public class Screen extends GameObject {
         screen = new Transform(getX() + 10, getY() + 10, getWidth() - 20, getHeight() - 20);
         screenContent = new ScreenContent(getX(), getY());
 
-        getPhysics().removeGravity();
+        getPhysics().disableGravity();
     }
 
     @Override

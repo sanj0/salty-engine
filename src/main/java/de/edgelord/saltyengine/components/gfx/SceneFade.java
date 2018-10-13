@@ -35,7 +35,7 @@ public class SceneFade extends GFXComponent {
                 drawFade(saltyGraphics);
             }
         };
-        SceneManager.getCurrentScene().addDrawingRoutin(fadeDraw);
+        SceneManager.getCurrentScene().addDrawingRoutine(fadeDraw);
     }
 
     public SceneFade(ComponentParent parent, String name, Mode mode) {

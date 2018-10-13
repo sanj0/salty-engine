@@ -6,6 +6,8 @@
 
 package de.edgelord.saltyengine.scene;
 
+import de.edgelord.saltyengine.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -22,6 +24,11 @@ public class Scene {
 
     public static final Object concurrentBlock = "3141592653589793";
 
+    private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
+    private float friction = Force.DEFAULT_FRICTION;
+
+    private boolean gravityEnabled = true;
+
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
@@ -37,6 +44,28 @@ public class Scene {
 
     }
 
+    public void disableGravity() {
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+
+                gameObjects.get(i).getPhysics().disableGravity();
+            }
+        }
+
+        gravityEnabled = false;
+    }
+
+    public void enableGravity() {
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+
+                gameObjects.get(i).getPhysics().enableGravity();
+            }
+        }
+
+        gravityEnabled = true;
+    }
+
     public void addFixedTask(FixedTask fixedTask) {
 
         synchronized (concurrentBlock) {
@@ -44,15 +73,33 @@ public class Scene {
         }
     }
 
+    public void addDrawingRoutine(DrawingRoutine drawingRoutine) {
+        synchronized (concurrentBlock) {
+            drawingRoutines.add(drawingRoutine);
+        }
+    }
+
     public void addGameObject(GameObject gameObject) {
 
         synchronized (concurrentBlock) {
+            if (gravityEnabled) {
+                gameObject.getPhysics().enableGravity();
+                gameObject.getPhysics().setGravityAcceleration(gravity);
+            } else {
+                gameObject.getPhysics().disableGravity();
+            }
             gameObjects.add(gameObject);
         }
     }
 
     public void addGameObject(int index, GameObject gameObject) {
         synchronized (concurrentBlock) {
+            if (gravityEnabled) {
+                gameObject.getPhysics().enableGravity();
+                gameObject.getPhysics().setGravityAcceleration(gravity);
+            } else {
+                gameObject.getPhysics().disableGravity();
+            }
             gameObjects.add(index, gameObject);
         }
     }
@@ -102,13 +149,6 @@ public class Scene {
             }
         }
     }
-
-    public void addDrawingRoutin(DrawingRoutine drawingRoutine) {
-        synchronized (concurrentBlock) {
-            drawingRoutines.add(drawingRoutine);
-        }
-    }
-
 
     public void draw(SaltyGraphics saltyGraphics) {
 
@@ -210,5 +250,36 @@ public class Scene {
         synchronized (concurrentBlock) {
             return fixedTasks.size();
         }
+    }
+
+    public float getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(float gravity) {
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+
+                gameObjects.get(i).getPhysics().setGravityAcceleration(gravity);
+            }
+        }
+
+        this.gravity = gravity;
+    }
+
+    public float getFriction() {
+        return friction;
+    }
+
+    public void setFriction(float friction) {
+        this.friction = friction;
+    }
+
+    public boolean isGravityEnabled() {
+        return gravityEnabled;
+    }
+
+    public void setGravityEnabled(boolean gravityEnabled) {
+        this.gravityEnabled = gravityEnabled;
     }
 }

@@ -13,9 +13,6 @@ public class DummyScene extends Scene {
 
     public DummyScene() {
 
-        DummyGameObject dummyGameObject = new DummyGameObject(new Vector2f(550, 425));
-        dummyGameObject.setMakeMove(false);
-
-        //addGameObject(dummyGameObject);
+        setGravityEnabled(false);
     }
 }

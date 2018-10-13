@@ -17,7 +17,6 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
-import testing.dummys.DummyScene;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -108,14 +107,8 @@ public class Tester extends Game {
         final Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
         final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
-        bottomBird.getPhysics().removeGravity();
-        upperBird.getPhysics().removeGravity();
-        player.getPhysics().removeGravity();
-
         SceneManager.getCurrentScene().addGameObject(bottomBird);
-
         SceneManager.getCurrentScene().addGameObject(upperBird);
-
         SceneManager.getCurrentScene().addGameObject(player);
     }
 

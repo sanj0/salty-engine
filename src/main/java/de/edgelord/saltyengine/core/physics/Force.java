@@ -7,11 +7,12 @@
 package de.edgelord.saltyengine.core.physics;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
 
 public class Force {
 
-    private final float counterforceConst = 0.0025f;
+    public static  float DEFAULT_FRICTION = 0.0025f;
     private float acceleration;
     private float velocity;
     private float distance;
@@ -40,7 +41,7 @@ public class Force {
 
     public float deltaDistance(final int deltaT) {
 
-        final float counterForce = velocity * counterforceConst;
+        final float counterForce = velocity * SceneManager.getCurrentScene().getFriction();
         float counterAcceleration = 0f;
 
         if (!countersCollision) {
