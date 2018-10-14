@@ -4,6 +4,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ public class Screen extends GameObject {
         screen = new Transform(getX() + 10, getY() + 10, getWidth() - 20, getHeight() - 20);
         screenContent = new ScreenContent(getX(), getY());
 
-        getPhysics().disableGravity();
+        SceneManager.getCurrentScene().disableGravity();
     }
 
     @Override

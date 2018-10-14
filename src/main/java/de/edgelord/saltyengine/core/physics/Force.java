@@ -12,7 +12,7 @@ import de.edgelord.saltyengine.utils.Directions;
 
 public class Force {
 
-    public static  float DEFAULT_FRICTION = 0.0025f;
+    public static float DEFAULT_FRICTION = 0.0025f;
     private float acceleration;
     private float velocity;
     private float distance;

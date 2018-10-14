@@ -12,6 +12,7 @@ import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
@@ -22,14 +23,11 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 0.005f;
-    private float gravityAcceleration = DEFAULT_GRAVITY_ACCELERATION;
     public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsForce";
     public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsForce";
     public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsForce";
     public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsForce";
     private final List<Force> forces = new LinkedList<>();
-
-    private boolean hasGravity = true;
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
         super(parent, name, Components.PHYSICS_COMPONENT);
@@ -39,7 +37,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     private void addGravityForce() {
 
-        forces.add(new Force(gravityAcceleration, getParent(), Directions.Direction.DOWN, SimplePhysicsComponent.DEFAULT_GRAVITY));
+        forces.add(new Force(DEFAULT_GRAVITY_ACCELERATION, getParent(), Directions.Direction.DOWN, SimplePhysicsComponent.DEFAULT_GRAVITY));
     }
 
     private void addDefaultForces() {
@@ -54,6 +52,12 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     @Override
     public void onFixedTick() {
+
+        if (SceneManager.getCurrentScene().isGravityEnabled()) {
+            getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
+        } else {
+            getForce(DEFAULT_GRAVITY).setAcceleration(0f);
+        }
 
         if (!getParent().isStationary()) {
             float horizontalDelta = 0f;
@@ -164,21 +168,5 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         }
 
         return null;
-    }
-
-    public void setGravityAcceleration(float acceleration) {
-        getForce(DEFAULT_GRAVITY).setAcceleration(acceleration);
-        gravityAcceleration = acceleration;
-    }
-
-    public void disableGravity() {
-
-        removeForce(SimplePhysicsComponent.DEFAULT_GRAVITY);
-    }
-
-    public void enableGravity() {
-        if (!hasGravity) {
-            forces.add(new Force(gravityAcceleration, getParent(), Directions.Direction.DOWN, DEFAULT_GRAVITY));
-        }
     }
 }

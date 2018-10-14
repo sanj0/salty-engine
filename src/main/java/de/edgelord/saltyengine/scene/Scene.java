@@ -45,24 +45,10 @@ public class Scene {
     }
 
     public void disableGravity() {
-        synchronized (concurrentBlock) {
-            for (int i = 0; i < gameObjects.size(); i++) {
-
-                gameObjects.get(i).getPhysics().disableGravity();
-            }
-        }
-
         gravityEnabled = false;
     }
 
     public void enableGravity() {
-        synchronized (concurrentBlock) {
-            for (int i = 0; i < gameObjects.size(); i++) {
-
-                gameObjects.get(i).getPhysics().enableGravity();
-            }
-        }
-
         gravityEnabled = true;
     }
 
@@ -82,24 +68,12 @@ public class Scene {
     public void addGameObject(GameObject gameObject) {
 
         synchronized (concurrentBlock) {
-            if (gravityEnabled) {
-                gameObject.getPhysics().enableGravity();
-                gameObject.getPhysics().setGravityAcceleration(gravity);
-            } else {
-                gameObject.getPhysics().disableGravity();
-            }
             gameObjects.add(gameObject);
         }
     }
 
     public void addGameObject(int index, GameObject gameObject) {
         synchronized (concurrentBlock) {
-            if (gravityEnabled) {
-                gameObject.getPhysics().enableGravity();
-                gameObject.getPhysics().setGravityAcceleration(gravity);
-            } else {
-                gameObject.getPhysics().disableGravity();
-            }
             gameObjects.add(index, gameObject);
         }
     }
@@ -195,7 +169,7 @@ public class Scene {
         synchronized (concurrentBlock) {
 
             for (int i = 0; i < gameObjects.size(); i++) {
-                 GameObject gameObject = gameObjects.get(i);
+                GameObject gameObject = gameObjects.get(i);
 
                 gameObject.doCollisionDetection(gameObjects);
                 gameObject.doComponentOnFixedTick();
@@ -257,13 +231,6 @@ public class Scene {
     }
 
     public void setGravity(float gravity) {
-        synchronized (concurrentBlock) {
-            for (int i = 0; i < gameObjects.size(); i++) {
-
-                gameObjects.get(i).getPhysics().setGravityAcceleration(gravity);
-            }
-        }
-
         this.gravity = gravity;
     }
 
