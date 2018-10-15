@@ -8,12 +8,15 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.input.Keyboard;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.KeyEvent;
 
 public class Game {
+
+    private static GFXController defaultGFXController = new GFXController();
 
     public static String gameName = "My name is Nym. Arno Nym.";
     public static boolean paused = false;
@@ -107,5 +110,13 @@ public class Game {
 
     public static void setPaused(boolean paused) {
         Game.paused = paused;
+    }
+
+    public static GFXController getDefaultGFXController() {
+        return defaultGFXController;
+    }
+
+    public static void setDefaultGFXController(GFXController defaultGFXController) {
+        Game.defaultGFXController = defaultGFXController;
     }
 }

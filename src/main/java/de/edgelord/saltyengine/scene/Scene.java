@@ -7,10 +7,13 @@
 package de.edgelord.saltyengine.scene;
 
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.components.gfx.GFXComponent;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
@@ -32,11 +35,6 @@ public class Scene {
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
-    /*
-    private CopyOnWriteArrayList<GameObject> gameObjects = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<FixedTask> fixedTasks = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
-    */
     private UISystem ui = new UISystem();
     private boolean initialized = false;
 
@@ -153,6 +151,8 @@ public class Scene {
             ui.drawUI(saltyGraphics);
         }
 
+        Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
+
         synchronized (concurrentBlock) {
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
@@ -176,6 +176,8 @@ public class Scene {
                 gameObject.onFixedTick();
             }
         }
+
+        Game.getDefaultGFXController().doGFXFixedTick();
 
         if (ui != null) {
 

@@ -24,8 +24,6 @@ public class Bird extends GameObject {
     private final Animation animation;
     private final Spritesheet spritesheet;
 
-    private SceneFade fadeIn = new SceneFade(this, "sceneFade", SceneFade.Mode.FADE_IN);
-
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
@@ -36,13 +34,8 @@ public class Bird extends GameObject {
 
         addComponent(new AnimationRender(this, "de.edgelord.saltyengine.testing.bird.animationRender", animation, 90));
 
-        fadeIn.setDuration(2500);
-        fadeIn.fadeInit();
-
-        addComponent(fadeIn);
-
         // Improves performance a lot!
-        //setStationary(true);
+        // setStationary(true);
     }
 
     @Override

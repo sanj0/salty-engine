@@ -7,9 +7,11 @@
 package testing;
 
 import de.edgelord.saltyengine.audio.AudioSystem;
+import de.edgelord.saltyengine.components.gfx.SceneFade;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.sgs.ScriptedGameObject;
@@ -33,6 +35,12 @@ public class Tester extends Game {
         Tester.initForcesTest();
         Tester.addUI();
         Tester.initUITest();
+        SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
+
+        fadeIn.setDuration(3500);
+        fadeIn.fadeInit();
+        Game.getDefaultGFXController().addGFX(fadeIn);
+        Game.getDefaultGFXController().startAll();
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 
