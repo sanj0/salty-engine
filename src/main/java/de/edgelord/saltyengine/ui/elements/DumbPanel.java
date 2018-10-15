@@ -35,7 +35,7 @@ public class DumbPanel extends Container {
 
         // Draw background
         saltyGraphics.setColor(getBackgroundColor());
-        saltyGraphics.fillRoundRect(this, arc);
+        saltyGraphics.drawRoundRect(this, arc);
 
         // Draw the child elements
         getChildElements().forEach(uiElement -> uiElement.draw(saltyGraphics));

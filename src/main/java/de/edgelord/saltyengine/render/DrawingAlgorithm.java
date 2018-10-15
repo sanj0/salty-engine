@@ -85,7 +85,7 @@ public class DrawingAlgorithm {
         while (goOn) {
 
             saltyGraphics.setColor(colors[random.nextInt(9)]);
-            saltyGraphics.fillOval(x, y, 100, 100);
+            saltyGraphics.drawOval(x, y, 100, 100);
 
             if (x == 1100) {
 
@@ -109,11 +109,11 @@ public class DrawingAlgorithm {
         saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
         saltyGraphics.setColor(colors[random.nextInt(9)]);
 
-        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
-        saltyGraphics.fillOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.drawOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.drawOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.drawOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.drawOval(random.nextInt(1100), random.nextInt(800), 100, 100);
+        saltyGraphics.drawOval(random.nextInt(1100), random.nextInt(800), 100, 100);
     }
 
     public void drawMessages(SaltyGraphics saltyGraphics) {

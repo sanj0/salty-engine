@@ -61,7 +61,7 @@ public abstract class Button extends UIElement {
 
         saltyGraphics.setColor(currentBackgroundColor);
 
-        saltyGraphics.fillRoundRect(getX(), getY(), getWidth(), getHeight(), arc);
+        saltyGraphics.drawRoundRect(getX(), getY(), getWidth(), getHeight(), arc);
     }
 
     public boolean touchesButton(MouseEvent e) {

@@ -30,7 +30,7 @@ public class DrawHitboxComponent extends Component<GameObject> {
 
         saltyGraphics.setColor(new Color(1, 0, 0, 0.25f));
 
-        saltyGraphics.fillRect(getParent().getHitbox().getTransform().getPosition().getX(), getParent().getHitbox().getTransform().getPosition().getY(), getParent().getHitbox().getTransform().getWidth(), getParent().getHitbox().getTransform().getHeight());
+        saltyGraphics.drawRect(getParent().getHitbox().getTransform().getPosition().getX(), getParent().getHitbox().getTransform().getPosition().getY(), getParent().getHitbox().getTransform().getWidth(), getParent().getHitbox().getTransform().getHeight());
     }
 
     @Override

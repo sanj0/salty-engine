@@ -21,9 +21,9 @@ public class RectangleRender extends SimpleRenderComponent {
         setUpGraphics(saltyGraphics);
 
         if (isFill()) {
-            saltyGraphics.fillRect(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
-        } else {
             saltyGraphics.drawRect(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+        } else {
+            saltyGraphics.outlineRect(getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
         }
     }
 }

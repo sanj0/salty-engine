@@ -62,7 +62,7 @@ public class DebugLogGameObjectStat extends Component {
     public void draw(SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setColor(Color.RED);
-        saltyGraphics.fillOval(getParent().getX() - 20, getParent().getY() - 20, 20, 20);
+        saltyGraphics.drawOval(getParent().getX() - 20, getParent().getY() - 20, 20, 20);
     }
 
     @Override
