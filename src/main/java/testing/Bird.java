@@ -6,7 +6,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.gfx.SceneFade;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;

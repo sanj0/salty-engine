@@ -7,11 +7,11 @@
 package testing;
 
 import de.edgelord.saltyengine.audio.AudioSystem;
-import de.edgelord.saltyengine.components.gfx.SceneFade;
+import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
+import de.edgelord.saltyengine.components.gfx.scene.SceneOverlay;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
-import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.sgs.ScriptedGameObject;

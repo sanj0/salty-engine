@@ -1,5 +1,6 @@
-package de.edgelord.saltyengine.components.gfx;
+package de.edgelord.saltyengine.components.gfx.scene;
 
+import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -107,11 +108,6 @@ public class SceneFade extends GFXComponent {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
-    }
-
-    @Override
-    public void onCollision(CollisionEvent e) {
-
     }
 
     public int getDuration() {

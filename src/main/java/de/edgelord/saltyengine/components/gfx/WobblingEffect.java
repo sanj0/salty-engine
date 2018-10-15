@@ -134,11 +134,6 @@ public class WobblingEffect extends GFXComponent {
         // This effect actually only uses the ON_FIXED_TICK, because it only needs to change some values
     }
 
-    @Override
-    public void onCollision(CollisionEvent e) {
-
-    }
-
     public Mode getMode() {
         return mode;
     }
