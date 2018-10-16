@@ -12,7 +12,14 @@ stdf (github.com/edgelord314/stdf)
 
 **NOTE: When you release a game that's made with Salty Engine, please [send me an email](mailto:malte.dostal@gmail.com)**
 
-## Why using Salty Engine?
+# Content
+1. [Why using Salty Engine](#why)
+2. [Build Instructions](#build)
+3. [Games made with Salty Engine](#games)
+4. [Join the team](#join)
+
+
+# Why using Salty Engine?
 
 ### Pro:
 - simple Display management
@@ -37,12 +44,67 @@ stdf (github.com/edgelord314/stdf)
 - **examples for almost all of those features within the library** (```testing.Tester``` as main) 
 
 ### Contra: 
-- the engine basics maybe lie to much on static stuff (you won't notice that when using)
-- the physics are too simple for some games (no impulses, no realistic bouncing...)
-- no amazing Graphical effects out of the box due to limitations because of java2d
+- the physics are too simple for some games (only rectangular hitboxes, no rotation by the physics...)
 - no JavaDoc for older classes/method
+- ...
 
-## Games made with Salty Engine
+# Build instructions
+To get a usable JAR of this library, you can whether download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
+
+1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in 
+   
+   ```bash
+   git clone https://github.com/edgelord314/salty-engine
+   ``` 
+   
+   Of course, `git` has to be installed properly.
+    
+2. "cd" into the downloaded directory. Type 
+   
+   ```bash
+   cd salty-engine
+   ``` 
+   
+   into the cmd or terminal
+
+3. Build the project using the maven wrapper (no installation required). 
+   For windows, type the following into the cmd 
+   
+   ```bash
+   ./mvnw.cmd clean install
+   ```
+   
+   For Linux/macOs type the following into the terminal: 
+   
+   ```bash
+   ./mvnw clean install
+   ```
+   
+4. You can now whether use maven to get the lib into the buld path of your project (recommended) or use the built JAR directly.
+   For maven, add the following to your `pom.xml`:
+   
+   ```xml
+   <dependencies>
+        <dependency>
+            <groupId>de.edgelord.salty-engine</groupId>
+            <artifactId>salty-engine</artifactId>
+            <version>[the version you built in step 3]</version>
+        </dependency>
+    </dependencies>
+   ``` 
+   When you build the project as described in step 3, something like this should appear somewhere at the beggining of the output:
+   
+   ```bash
+   [INFO] ---------------< de.edgelord.salty-engine:salty-engine >----------------
+   [INFO] Building Salty Engine [the version (the -SNAPSHOT is important!)]
+   [INFO] --------------------------------[ jar ]---------------------------------
+
+   ```
+   
+   Or you copy the JAR `target/salty-engine-[version]-jar-with-dependencies.jar` relative to the directory of the cloned project and add it to the buildpath manually using your IDE.
+
+
+# Games made with Salty Engine
 
 ### Escape the Junk
 Made by edgelord and LoOoNeliEst for Ludum Dare 42. You can play it [here](https://ldjam.com/events/ludum-dare/42/escape-the-junk).
