@@ -9,6 +9,7 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.cosmetic.ColorUtil;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
@@ -50,6 +51,8 @@ public class Tester extends Game {
         Tester.audioSystem.loop("joy_sticky");
 
         audioSystem.setClipVolume("joy_sticky", 0.75f);
+
+        getHost().setBackgroundColor(Color.lightGray);
     }
 
     public static void main(final String[] args) {

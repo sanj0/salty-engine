@@ -6,7 +6,6 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
-import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 

@@ -16,6 +16,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -237,5 +238,10 @@ public class DisplayManager extends Host {
 
     public Stage getStage() {
         return stage;
+    }
+
+    @Override
+    public void setBackgroundColor(Color color) {
+        stage.setBackground(color);
     }
 }

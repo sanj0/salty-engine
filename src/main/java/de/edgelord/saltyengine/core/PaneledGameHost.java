@@ -47,4 +47,9 @@ public class PaneledGameHost extends Host {
     public Dimensions getDimensions() {
         return new Dimensions(getWidth(), getHeight());
     }
+
+    @Override
+    public void setBackgroundColor(Color color) {
+        stage.setBackground(color);
+    }
 }

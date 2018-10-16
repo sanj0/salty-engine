@@ -28,6 +28,7 @@ public abstract class GFXComponent extends Component {
 
     /**
      * Won't need that method often within a GFXComponent
+     *
      * @param e the collision event
      */
     @Override

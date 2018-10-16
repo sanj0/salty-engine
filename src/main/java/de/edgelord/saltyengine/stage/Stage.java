@@ -26,9 +26,6 @@ public class Stage extends Canvas {
     private DisplayMouseHandler mouseHandler = null;
     private boolean doubleBufferCreated = false;
 
-    private float fps;
-    private int ticks = 0;
-
     private boolean highQuality = false;
     private RenderingHints renderingHints;
 

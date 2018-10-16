@@ -61,7 +61,7 @@ public class GFXController extends ComponentParent {
 
     public void startAll() {
         for (int i = 0; i < components.size(); i++) {
-             Component component = components.get(i);
+            Component component = components.get(i);
 
             if (component.getTag().equals(Components.GFX_COMPONENT)) {
                 GFXComponent gfxComponent = (GFXComponent) component;
