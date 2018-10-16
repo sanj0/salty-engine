@@ -13,21 +13,18 @@ import javax.swing.*;
 
 public class Display extends JFrame {
 
-    private int width, height;
     private String windowTitle;
     private boolean closeRequested = false;
     private DisplayMouseHandler displayMouseHandler = null;
 
     public Display(int width, int height, String windowTitle) {
 
-        this.width = width;
-        this.height = height;
+        setSize(width, height);
         this.windowTitle = windowTitle;
     }
 
     public void create() {
 
-        setSize(width, height);
         setTitle(windowTitle + " [Salty Engine " + StaticSystem.versionTag + "]");
         setLocationRelativeTo(null);
         setVisible(true);

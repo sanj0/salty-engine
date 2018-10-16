@@ -39,17 +39,12 @@ public class DisplayManager extends Host {
     private boolean inputRight = false;
     private boolean inputLeft = false;
 
-    private final int width;
-    private final int height;
-
     public DisplayManager(final int width, final int height, final String gameName, final Engine engine) {
 
         display = new Display(width, height, gameName);
         stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
-        this.width = width;
-        this.height = height;
         Game.gameName = gameName;
     }
 
@@ -209,7 +204,7 @@ public class DisplayManager extends Host {
 
     @Override
     public Dimensions getDimensions() {
-        return new Dimensions(width, height);
+        return new Dimensions(display.getWidth(), display.getHeight());
     }
 
     public boolean isInputUp() {

@@ -8,6 +8,7 @@ package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.cosmetic.ColorUtil;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
@@ -30,6 +31,14 @@ public abstract class Button extends UIElement {
         super(position, width, height, BUTTON);
 
         this.text = text;
+    }
+
+    public Button(String text, Transform transform, String tag) {
+        this(text, transform.getPosition(), transform.getWidthAsInt(), transform.getHeightAsInt());
+    }
+
+    public Button(String text, float x, float y, int width, int height) {
+        this(text, new Vector2f(x, y), width, height);
     }
 
     @Override

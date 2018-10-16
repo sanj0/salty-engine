@@ -2,6 +2,7 @@ package testing;
 
 import de.edgelord.saltyengine.components.gfx.WobblingEffect;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.Button;
 
 import java.awt.*;
@@ -10,8 +11,9 @@ import java.awt.event.MouseEvent;
 public class PauseButton extends Button {
 
     public PauseButton() {
-        super("Pause", Game.getHost().getCentrePosition(500, 175), 500, 175);
+        super("Pause", 0, 0, 500, 175);
 
+        centrePosition();
 
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.setPause(25);

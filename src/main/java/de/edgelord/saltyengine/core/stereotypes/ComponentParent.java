@@ -1,6 +1,7 @@
 package de.edgelord.saltyengine.core.stereotypes;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
@@ -54,6 +55,9 @@ public abstract class ComponentParent implements TransformedObject {
      */
     public abstract Component getComponent(String identifier);
 
+    /**
+     * Calls the method {@link Component#onFixedTick()} for every {@link Component}.
+     */
     public void doComponentOnFixedTick() {
         getComponents().forEach(component -> {
             if (component.isEnabled()) {
@@ -62,12 +66,38 @@ public abstract class ComponentParent implements TransformedObject {
         });
     }
 
+    /**
+     * Calls the method {@link Component#draw(SaltyGraphics)} for every component with the given {@link SaltyGraphics}
+     *
+     * @param graphics the graphics context to draw the components
+     */
     public void doComponentDrawing(SaltyGraphics graphics) {
         getComponents().forEach(component -> {
             if (component.isEnabled()) {
                 component.draw(graphics);
             }
         });
+    }
+
+    /**
+     * Places this object in the middle of the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     */
+    public void centrePosition() {
+        setPosition(Game.getHost().getCentrePosition(getDimensions()));
+    }
+
+    /**
+     * Centres this object horizontally in the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     */
+    public void centreHorizontalPosition() {
+        setX(Game.getHost().getHorizontalCentrePosition(getWidth()));
+    }
+
+    /**
+     * Centres this object vertically in the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     */
+    public void centreVerticalPosition() {
+        setX(Game.getHost().getVerticalCentrePosition(getHeight()));
     }
 
     @Override
