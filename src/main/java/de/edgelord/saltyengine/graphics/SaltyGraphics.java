@@ -716,7 +716,7 @@ public class SaltyGraphics {
     /**
      * Sets the <code>Font</code> of the graphics
      *
-     * @param font the new font
+     * @param font the new defaultFont
      */
     public void setFont(Font font) {
         graphics2D.setFont(font);
@@ -841,7 +841,7 @@ public class SaltyGraphics {
      * Returns the current Font of the Graphics.
      * With this Font, all of the text is outlinen
      *
-     * @return the current font of the graphics
+     * @return the current defaultFont of the graphics
      * @see Graphics2D#getFont()
      */
     public Font getFont() {

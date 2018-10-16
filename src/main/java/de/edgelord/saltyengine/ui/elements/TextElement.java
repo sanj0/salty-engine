@@ -1,6 +1,7 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
@@ -46,9 +47,13 @@ public abstract class TextElement extends UIElement {
         this.text = text;
     }
 
+    public TextElement(String text, Transform transform, String tag) {
+        super(transform.getPosition(), transform.getWidth(), transform.getHeight(), tag);
+    }
+
     /**
-     * This mehtods prepares the given graphics for rendering the text with the values
-     * font and color. This should be called before drawing the text.
+     * This method prepares the given graphics for rendering the text with the values
+     * defaultFont and color. This should be called before drawing the text.
      *
      * @param graphics the graphics to prepare
      */

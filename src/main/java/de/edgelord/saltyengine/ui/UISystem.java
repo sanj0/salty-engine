@@ -89,4 +89,8 @@ public class UISystem {
             element.mouseMoved(e);
         }
     }
+
+    public List<UIElement> getElements() {
+        return elements;
+    }
 }

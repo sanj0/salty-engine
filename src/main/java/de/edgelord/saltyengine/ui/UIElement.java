@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class UIElement extends ComponentParent implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
-    private Font font = StaticSystem.font;
+    private Font font = StaticSystem.defaultFont;
 
     private Transform transform;
 
