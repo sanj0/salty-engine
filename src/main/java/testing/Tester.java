@@ -29,7 +29,6 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.cosmetic.ColorUtil;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
@@ -42,7 +41,6 @@ import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Tester extends Game {
 

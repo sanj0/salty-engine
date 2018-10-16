@@ -32,6 +32,7 @@ package de.edgelord.saltyengine.sgs;
  * second type: the <code>minorArg</code>
  * third type: the <code>majorArg</code>
  */
+@SuppressWarnings({"ALL", "FieldCanBeLocal"})
 public class ScriptLine {
 
     // The command (1. part of a script line - e.g. "basicMove")

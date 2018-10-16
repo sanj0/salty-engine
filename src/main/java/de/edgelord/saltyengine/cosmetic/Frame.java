@@ -79,7 +79,6 @@ public class Frame implements Cosmetic {
         } else {
 
             //advancedCosmetics.DRAW(graphics, coordinates);
-            return;
         }
     }
 
@@ -91,7 +90,6 @@ public class Frame implements Cosmetic {
         } else {
 
             //advancedCosmetics.DRAW(graphics, coordinates);
-            return;
         }
     }
 

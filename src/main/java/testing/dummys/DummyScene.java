@@ -27,7 +27,6 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 public class DummyScene extends Scene {
 

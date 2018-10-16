@@ -31,8 +31,6 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.util.Random;
-
 public class DummyGameObject extends GameObject {
 
     public DummyGameObject(Vector2f position) {

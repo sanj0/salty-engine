@@ -116,7 +116,6 @@ public class Animation {
             currentFrameNumber++;
         } else {
 
-            return;
         }
     }
 

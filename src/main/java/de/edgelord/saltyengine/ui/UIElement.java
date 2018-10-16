@@ -147,8 +147,8 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
         return suppressClipping;
     }
 
-    public void setSuppressClipping(boolean supressClipping) {
-        this.suppressClipping = supressClipping;
+    public void setSuppressClipping(boolean suppressClipping) {
+        this.suppressClipping = suppressClipping;
     }
 
     @Override

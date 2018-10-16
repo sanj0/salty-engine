@@ -27,9 +27,7 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.input.DisplayKeyHandler;
-import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.event.KeyEvent;
 

@@ -264,8 +264,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
         if (keyProperties.getContent().contains("location")) {
 
-            final List<Integer> readenCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
-            setPosition(new Vector2f(readenCoordinates.get(0), readenCoordinates.get(1)));
+            final List<Integer> readCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
+            setPosition(new Vector2f(readCoordinates.get(0), readCoordinates.get(1)));
         }
     }
 

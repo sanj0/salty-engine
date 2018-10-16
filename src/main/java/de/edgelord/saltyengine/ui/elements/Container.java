@@ -65,7 +65,7 @@ public abstract class Container extends UIElement {
         element.setSuppressClipping(false);
     }
 
-    public void supressAllClipping() {
+    public void suppressAllClipping() {
         for (UIElement element : getChildElements()) {
             element.setSuppressClipping(true);
         }

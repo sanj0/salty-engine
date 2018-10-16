@@ -59,8 +59,7 @@ public class StaticGameObjectsManager {
 
     public static LinkedList<GameObject> getAllGameObjects() {
 
-        LinkedList<GameObject> allGameObjects = new LinkedList<>();
-        allGameObjects.addAll(gameObjects.values());
+        LinkedList<GameObject> allGameObjects = new LinkedList<>(gameObjects.values());
 
         return allGameObjects;
     }

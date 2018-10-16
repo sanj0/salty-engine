@@ -58,7 +58,7 @@ public class FontFactory extends Factory {
     /**
      * Loads a new {@link Font} from the given *.ttf file and stores it in {@link StaticSystem#defaultFont}
      *
-     * @param relativePath the realtive path to the ttf file
+     * @param relativePath the relative path to the ttf file
      * @param size         the size of the defaultFont
      * @throws IOException         when the file is not readable or does not exist
      * @throws FontFormatException when the defaultFont format is not TTF

@@ -75,7 +75,7 @@ public class ImageLoader {
      *
      * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
-     * @param imageFactory the Factory from whihc to load the image
+     * @param imageFactory the Factory from which to load the image
      * @return the {@link BufferedImage} corresponding to the given name and/or path
      */
     public static BufferedImage getOrLoadImage(String name, String relativePath, ImageFactory imageFactory) {
@@ -133,7 +133,7 @@ public class ImageLoader {
     }
 
     /**
-     * Removes the image wiht the given id-name from the list.
+     * Removes the image with the given id-name from the list.
      *
      * @param name the id-name of the image to be removed.
      */

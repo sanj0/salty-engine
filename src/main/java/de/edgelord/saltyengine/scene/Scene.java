@@ -100,7 +100,7 @@ public class Scene {
         }
     }
 
-    public void cleargameObjects() {
+    public void clearGameObjects() {
         synchronized (concurrentBlock) {
             gameObjects.clear();
         }
@@ -207,7 +207,6 @@ public class Scene {
 
         if (initialized) {
 
-            return;
         } else {
 
             synchronized (concurrentBlock) {

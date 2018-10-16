@@ -26,7 +26,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;

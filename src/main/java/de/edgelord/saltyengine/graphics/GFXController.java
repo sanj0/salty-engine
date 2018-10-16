@@ -176,7 +176,6 @@ public class GFXController extends ComponentParent {
 
     @Override
     public void setTransform(Transform transform) {
-        return;
     }
 
     public static GFXController getDefaultGFXController() {

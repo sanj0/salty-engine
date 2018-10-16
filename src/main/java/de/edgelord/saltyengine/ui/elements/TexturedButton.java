@@ -48,7 +48,6 @@ public abstract class TexturedButton extends Button {
         if (drawText) {
             super.drawText(saltyGraphics);
         } else {
-            return;
         }
     }
 

@@ -223,7 +223,7 @@ public class SaltyGraphics {
      * Draws the outline of an oval by calling the base method
      *
      * @param position   the position of the oval
-     * @param dimensions the dimesniosn of the oval
+     * @param dimensions the dimensions of the oval
      * @see #outlineOval(float, float, float, float)
      */
     public void outlineOval(Vector2f position, Dimensions dimensions) {
@@ -250,8 +250,8 @@ public class SaltyGraphics {
      * @param image  the image to DRAW
      * @param x      the x position of the image
      * @param y      the y position of the image
-     * @param width  the width with which the image should be outlinen
-     * @param height the height with which the image should be outlinen
+     * @param width  the width with which the image should be drawn
+     * @param height the height with which the image should be drawn
      * @see Graphics2D#drawImage(Image, int, int, int, int, ImageObserver)
      */
     public void drawImage(BufferedImage image, float x, float y, float width, float height) {
@@ -259,9 +259,9 @@ public class SaltyGraphics {
     }
 
     /**
-     * Draws an image by calling the base method. It will be outlinen with its original width and height
+     * Draws an image by calling the base method. It will be drawn with its original width and height
      *
-     * @param image    the image to be outlinen
+     * @param image    the image to be drawn
      * @param position the position of the image
      * @see #drawImage(BufferedImage, float, float, float, float)
      */
@@ -272,8 +272,8 @@ public class SaltyGraphics {
     /**
      * Draws an image by calling the base method
      *
-     * @param image     the image to be outlinen
-     * @param transform the transform from which to take the position and dimensions of the image to be outlinen with
+     * @param image     the image to be drawn
+     * @param transform the transform from which to take the position and dimensions of the image to be drawn with
      * @see #drawImage(BufferedImage, float, float, float, float)
      */
     public void drawImage(BufferedImage image, Transform transform) {
@@ -283,7 +283,7 @@ public class SaltyGraphics {
     /**
      * Draws an image by calling the base method
      *
-     * @param image      the image to be outlinen
+     * @param image      the image to be drawn
      * @param position   the position of the image
      * @param dimensions the dimensions with to DRAW the image
      */
@@ -294,7 +294,7 @@ public class SaltyGraphics {
     /**
      * Draws an image by calling <code>outlineImage(BufferedImage, Transform)</code>
      *
-     * @param image  the image to be outlinen
+     * @param image  the image to be drawn
      * @param parent the ComponentParent from which to take the Transform to DRAW the image
      */
     public void drawImage(BufferedImage image, ComponentParent parent) {
@@ -540,7 +540,7 @@ public class SaltyGraphics {
     /**
      * Draws the given Shape
      *
-     * @param shape the shape to be outlinen
+     * @param shape the shape to be drawn
      * @see Graphics2D#draw(Shape)
      */
     public void outlineShape(Shape shape) {
@@ -550,7 +550,7 @@ public class SaltyGraphics {
     /**
      * Fills the given Shape
      *
-     * @param shape the shape to be outlinen
+     * @param shape the shape to be drawn
      * @see Graphics2D#draw(Shape)
      */
     public void drawShape(Shape shape) {
@@ -573,8 +573,8 @@ public class SaltyGraphics {
 
     /**
      * The base method to DRAW a Line with a temporary Stroke. The given floats are automatically rounded to ints.
-     * Before the line is outlinen, the current stroke gets fetched and the temporary one is set,
-     * after the line is outlinen, the fetched stroke gets set again.
+     * Before the line is drawn, the current stroke gets fetched and the temporary one is set,
+     * after the line is drawn, the fetched stroke gets set again.
      *
      * @param x1              x position of the start point
      * @param y1              y position of the start point
@@ -674,7 +674,7 @@ public class SaltyGraphics {
     /**
      * The base method to DRAW a String using the current <code>Font</code> of the graphics
      *
-     * @param text the String to be outlinen
+     * @param text the String to be drawn
      * @param x    the x position of the baseLine of the first character
      * @param y    the y position of the baseLine of the first character
      * @see Graphics2D#drawString(String, float, float)
@@ -686,7 +686,7 @@ public class SaltyGraphics {
     /**
      * The base method to DRAW a String using a temporary <code>Font</code>
      *
-     * @param text          the String to be outlinen
+     * @param text          the String to be drawn
      * @param x             the x position of the baseLine of the first character
      * @param y             the y position of the baseLine of the first character
      * @param temporaryFont the temporary Font with which to DRAW the text
@@ -705,7 +705,7 @@ public class SaltyGraphics {
     /**
      * Draws the given text by calling the base method
      *
-     * @param text     the text to be outlinen
+     * @param text     the text to be drawn
      * @param position the position of the baseLine of the first letter
      * @see #drawText(String, float, float)
      */
@@ -716,7 +716,7 @@ public class SaltyGraphics {
     /**
      * Draws the given text with the given temporary Font by calling the base method
      *
-     * @param text          the text to be outlinen
+     * @param text          the text to be drawn
      * @param position      the position of the baseLine of the first letter
      * @param temporaryFont the temporary Font with which to DRAW the text
      * @see #drawText(String, float, float, Font)
@@ -849,7 +849,7 @@ public class SaltyGraphics {
     }
 
     /*
-    Bindings for getting the configuration of the outlineing context
+    Bindings for getting the configuration of the drawing context
      */
 
     /**
@@ -865,7 +865,7 @@ public class SaltyGraphics {
 
     /**
      * Returns the current Font of the Graphics.
-     * With this Font, all of the text is outlinen
+     * With this Font, all of the text is drawn
      *
      * @return the current defaultFont of the graphics
      * @see Graphics2D#getFont()

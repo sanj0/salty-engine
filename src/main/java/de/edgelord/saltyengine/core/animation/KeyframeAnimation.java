@@ -68,7 +68,7 @@ public class KeyframeAnimation {
             currentTiming++;
             return animation.get(currentTiming);
         } else {
-            // If there is request ou of the available timeline, there shoul dbe no delta returned so 0
+            // If there is a request out of the available timeline, there should be no delta returned so 0
             return 0;
         }
     }
