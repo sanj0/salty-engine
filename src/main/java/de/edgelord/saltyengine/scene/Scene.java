@@ -41,6 +41,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class represents what is currently drawn and calculated.
+ * This includes:
+ * {@link GameObject}s within {@link #gameObjects},
+ * {@link FixedTask}s within {@link #fixedTasks},
+ * {@link DrawingRoutine}s within {@link #drawingRoutines}
+ * and the {@link UISystem} {@link #ui}
+ *
+ * The current scene is stored in {@link SceneManager#currentScene}.
+ * For more information, please take a look at the documentation of that class.
+ *
+ * IMPORTANT: Do nothing with GFX in any implementations of this class. If you do so, these GFX will be applied to the
+ * scene that was active before!
+ */
 public class Scene {
 
     public static final Object concurrentBlock = "3141592653589793";

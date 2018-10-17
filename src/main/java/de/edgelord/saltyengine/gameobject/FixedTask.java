@@ -26,7 +26,7 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-public interface FixedTask {
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 
-    void onFixedTick();
+public abstract class FixedTask implements FixedTickRoutine {
 }

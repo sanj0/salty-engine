@@ -67,10 +67,18 @@ public class Tester extends Game {
 
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
+        SceneManager.addScene("testingScene", TestingScene.class);
+
         start(60);
 
-        SceneManager.addScene("testingScene", TestingScene.class);
         SceneManager.setCurrentScene("testingScene");
+
+        SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
+
+        fadeIn.setDuration(3500);
+        fadeIn.fadeInit();
+        Game.getDefaultGFXController().addGFX(fadeIn);
+        Game.getDefaultGFXController().startAll();
     }
 
     public static AudioSystem getAudioSystem() {

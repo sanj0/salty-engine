@@ -26,9 +26,9 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
 
-public abstract class DrawingRoutine {
+public abstract class DrawingRoutine implements Drawable {
 
     public enum DrawingPosition {BEFORE_GAMEOBJECTS, AFTER_GAMEOBJECTS}
 
@@ -37,8 +37,6 @@ public abstract class DrawingRoutine {
     public DrawingRoutine(DrawingPosition drawingPosition) {
         this.drawingPosition = drawingPosition;
     }
-
-    public abstract void draw(SaltyGraphics saltyGraphics);
 
     public DrawingPosition getDrawingPosition() {
         return drawingPosition;

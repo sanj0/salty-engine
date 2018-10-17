@@ -26,8 +26,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
@@ -48,13 +46,6 @@ public class TestingScene extends Scene {
         initForcesTest();
         initUITest();
         addUI();
-
-        SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
-
-        fadeIn.setDuration(3500);
-        fadeIn.fadeInit();
-        Game.getDefaultGFXController().addGFX(fadeIn);
-        Game.getDefaultGFXController().startAll();
     }
 
     private void initUITest() {
