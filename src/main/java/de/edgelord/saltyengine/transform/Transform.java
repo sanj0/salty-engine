@@ -37,7 +37,7 @@ public class Transform {
     public Transform(Vector2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
-        this.rotation = new Rotation(getMiddle());
+        this.rotation = new Rotation(getWidth() / 2f, getHeight() / 2f);
     }
 
     public Transform(float x, float y, float width, float height) {
@@ -147,5 +147,25 @@ public class Transform {
 
     public void setRotation(Rotation rotation) {
         this.rotation = rotation;
+    }
+
+    public float getRotationDegrees() {
+        return rotation.getRotationDegrees();
+    }
+
+    public void setRotationDegrees(float rotationDegrees) {
+        rotation.setRotationDegrees(rotationDegrees);
+    }
+
+    public Vector2f getRotationCentre() {
+        return rotation.getCentre();
+    }
+
+    public void setRotationCentre(Vector2f rotationCentre) {
+        rotation.setCentre(rotationCentre);
+    }
+
+    public void setRotationCentreToMiddle() {
+        rotation.setCentre(new Vector2f(getWidth() / 2f, getHeight() / 2f));
     }
 }

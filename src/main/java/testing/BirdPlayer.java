@@ -45,9 +45,10 @@ public class BirdPlayer extends GameObject {
     private Animation animation;
     private Spritesheet spritesheet;
 
-    private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.xPos);
-    private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.width);
-    private BasicGameObjectAnimation keyFrameAnimationHeight = new BasicGameObjectAnimation(this, "mySuperAnimationHeight", BasicGameObjectAnimation.Control.height);
+    private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.X_POS);
+    private BasicGameObjectAnimation keyFrameAnimationRotation = new BasicGameObjectAnimation(this, "mySuperAnimationRotation", BasicGameObjectAnimation.Control.ROTATION);
+    private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.WIDTH);
+    private BasicGameObjectAnimation keyFrameAnimationHeight = new BasicGameObjectAnimation(this, "mySuperAnimationHeight", BasicGameObjectAnimation.Control.HEIGHT);
 
     private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
@@ -72,6 +73,11 @@ public class BirdPlayer extends GameObject {
         keyFrameAnimationX.addKeyFrame(9000, 700);
         keyFrameAnimationX.addKeyFrame(10000, 1000);
 
+        keyFrameAnimationRotation.addKeyFrame(1500, 0);
+        keyFrameAnimationRotation.addKeyFrame(5000, 360);
+        keyFrameAnimationRotation.addKeyFrame(7500, 180);
+        keyFrameAnimationRotation.addKeyFrame(9000, 0);
+
         keyFrameAnimationWidth.addKeyFrame(1000, 0);
         keyFrameAnimationWidth.addKeyFrame(5000, 150);
 
@@ -80,9 +86,11 @@ public class BirdPlayer extends GameObject {
 
 
         addComponent(keyFrameAnimationX);
+        addComponent(keyFrameAnimationRotation);
         addComponent(keyFrameAnimationWidth);
         addComponent(keyFrameAnimationHeight);
         keyFrameAnimationX.start();
+        keyFrameAnimationRotation.start();
         keyFrameAnimationWidth.start();
         keyFrameAnimationHeight.start();
 
@@ -102,6 +110,8 @@ public class BirdPlayer extends GameObject {
 
     @Override
     public void onFixedTick() {
+
+        getTransform().setRotationCentreToMiddle();
 
         // This method is very old and the code is crappy...
 

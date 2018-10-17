@@ -27,7 +27,7 @@
 package de.edgelord.saltyengine.transform;
 
 /**
- * This class describes the rotation of an Object around the position {@link #centre} by {@link #rotationDegrees} degrees.
+ * This class describes the rotation of an Object around the relative position {@link #centre} by {@link #rotationDegrees} degrees.
  */
 public class Rotation {
     private Vector2f centre;

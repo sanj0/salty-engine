@@ -80,19 +80,23 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
 
         switch (control) {
 
-            case width:
+            case WIDTH:
                 getParent().setWidth(getParent().getWidth() + delta);
                 getParent().getHitbox().getTransform().setWidth(getParent().getHitbox().getTransform().getWidth() + delta);
                 break;
-            case height:
+            case HEIGHT:
                 getParent().setHeight(getParent().getHeight() + delta);
                 getParent().getHitbox().getTransform().setHeight(getParent().getHitbox().getTransform().getHeight() + delta);
                 break;
-            case xPos:
+            case X_POS:
                 getParent().moveX(delta);
                 break;
-            case yPos:
+            case Y_POS:
                 getParent().moveY(delta);
+                break;
+
+            case ROTATION:
+                getParent().getTransform().setRotationDegrees(getParent().getTransform().getRotationDegrees() + delta);
                 break;
         }
     }
@@ -116,9 +120,10 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
     }
 
     public enum Control {
-        width,
-        height,
-        xPos,
-        yPos
+        WIDTH,
+        HEIGHT,
+        X_POS,
+        Y_POS,
+        ROTATION
     }
 }

@@ -33,7 +33,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 public interface CentrePositionProvider {
 
     /**
-     * This method should return the centre position for the given width on the x axis of the coordinates system.
+     * This method returns the centre position for the given width on the x axis of the coordinates system.
      * A simple implementation would e.g. be:
      *
      * <code>return (float) (this.width / 2) - (width / 2)</code>
@@ -45,7 +45,7 @@ public interface CentrePositionProvider {
     float getHorizontalCentrePosition(float width);
 
     /**
-     * This method should return the centre position for the given height on the y axis of the coordinates system.
+     * This method returns the centre position for the given height on the y axis of the coordinates system.
      * A simple implementation would e.g. be:
      *
      * <code>return (float) (this.height / 2) - (height / 2)</code>
