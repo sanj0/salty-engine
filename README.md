@@ -16,7 +16,7 @@ stdf (github.com/edgelord314/stdf)
 1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
 3. [Games made with Salty Engine](#games-made-with-salty-engine)
-4. [Join the team](#join-the-team)
+4. [Collaborate](#collaborate)
 
 
 # Why using Salty Engine?
@@ -110,7 +110,7 @@ To get a usable JAR of this library, you can whether download an existing releas
 Made by edgelord and LoOoNeliEst for Ludum Dare 42. You can play it [here](https://ldjam.com/events/ludum-dare/42/escape-the-junk).
 ![Escape the Junk](games/Escape-the-Junk.png)
 
-# Join the team
+# Collaborate
 Do you want to collaborate? Feel free to open a pull-request (preferably well documentated code!). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
 If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
 
