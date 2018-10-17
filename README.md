@@ -13,7 +13,7 @@ stdf (github.com/edgelord314/stdf)
 **NOTE: When you release a game that's made with Salty Engine, please [send me an email](mailto:malte.dostal@gmail.com)**
 
 # Content
-1. [Why using Salty Engine](#why-using-salty-engine?)
+1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
 3. [Games made with Salty Engine](#games-made-with-salty-engine)
 4. [Join the team](#join-the-team)
