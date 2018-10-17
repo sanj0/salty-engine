@@ -33,12 +33,16 @@ public class AppletWrapper extends Applet {
     public void start() {
         new Thread("application main Thread") {
             public void run() {
-                runApplication();
+                try {
+                    runApplication();
+                } catch (IllegalAccessException | InstantiationException e) {
+                    e.printStackTrace();
+                }
             }
         }.start();
     }
 
-    private void runApplication() {
+    private void runApplication() throws IllegalAccessException, InstantiationException {
         Tester.main(new String[0]);
     }
 

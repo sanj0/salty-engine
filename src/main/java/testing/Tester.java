@@ -51,16 +51,6 @@ public class Tester extends Game {
 
         System.out.println("INFO: Welcome to Salty Engine v" + StaticSystem.versionTag);
 
-        Tester.initForcesTest();
-        Tester.addUI();
-        Tester.initUITest();
-        SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
-
-        fadeIn.setDuration(3500);
-        fadeIn.fadeInit();
-        Game.getDefaultGFXController().addGFX(fadeIn);
-        Game.getDefaultGFXController().startAll();
-
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 
         Tester.audioSystem.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
@@ -73,108 +63,17 @@ public class Tester extends Game {
         getHost().setBackgroundColor(Color.lightGray);
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException {
 
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
         start(60);
-    }
 
-    private static void initUITest() {
-        FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
-        floatingLabel.centreOnXAxis(true);
-        floatingLabel.setTextColor(Color.black);
-        floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
-
-        SceneManager.getCurrentScene().getUI().addElement(floatingLabel);
-    }
-
-    private static void addUI() {
-
-        StaticSystem.defaultFont = StaticSystem.defaultFont.deriveFont(20f);
-
-        UISystem uiSystem = new UISystem();
-
-        PauseButton pauseButton = new PauseButton();
-
-        uiSystem.addElement(pauseButton);
-
-        SceneManager.getCurrentScene().setUI(uiSystem);
-    }
-
-    private static void initSGSTest() {
-        SceneManager.getCurrentScene().addGameObject(new ScriptedGameObject("res/sgs/scripts/testing.sgs"));
-    }
-
-    private static void initPhysicsTest() {
-
-        final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
-
-        final Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
-        final Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
-        final Bird bird1_3 = new Bird(birdSpritesheet, 1, 3);
-        final Bird bird3_3 = new Bird(birdSpritesheet, 3, 3);
-
-        bird1_1.setTag("de.edgelord.saltyengine.testing.bird1_1");
-        bird3_1.setTag("de.edgelord.saltyengine.testing.bird3_1");
-        bird1_3.setTag("de.edgelord.saltyengine.testing.bird1_3");
-        bird3_3.setTag("de.edgelord.saltyengine.testing.bird3_3");
-
-        SceneManager.getCurrentScene().addGameObject(bird1_1);
-        SceneManager.getCurrentScene().addGameObject(bird1_3);
-        SceneManager.getCurrentScene().addGameObject(bird3_1);
-        SceneManager.getCurrentScene().addGameObject(bird3_3);
-    }
-
-    public static void initForcesTest() {
-
-        final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
-
-        final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
-        final Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
-
-        SceneManager.getCurrentScene().addGameObject(bottomBird);
-        SceneManager.getCurrentScene().addGameObject(upperBird);
-        SceneManager.getCurrentScene().addGameObject(player);
-    }
-
-    private static void initSampleScene() {
-
-        final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
-
-        SceneManager.getCurrentScene().addGameObject(player);
-
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
-
-        // Adding all those cute birds to the Scene
-
-        int index = 0;
-        int xPos = 0;
-        int yPos = 0;
-
-        while (index < 16) {
-
-            SceneManager.getCurrentScene().addGameObject(new Bird(birdSpritesheet, xPos, yPos));
-
-            if (index == 7) {
-
-                xPos++;
-                yPos = 0;
-            } else {
-
-                yPos++;
-            }
-
-            index++;
-        }
+        SceneManager.addScene("testingScene", TestingScene.class);
+        SceneManager.setCurrentScene("testingScene");
     }
 
     public static AudioSystem getAudioSystem() {
-        return Tester.audioSystem;
+        return audioSystem;
     }
 }

@@ -54,7 +54,6 @@ public class Scene {
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     private UISystem ui = new UISystem();
-    private boolean initialized = false;
 
     public Scene() {
 
@@ -189,6 +188,11 @@ public class Scene {
             for (int i = 0; i < gameObjects.size(); i++) {
                 GameObject gameObject = gameObjects.get(i);
 
+                if (!gameObject.isInitialized()) {
+                    gameObject.initialize();
+                    gameObject.setInitialized(true);
+                }
+
                 gameObject.doCollisionDetection(gameObjects);
                 gameObject.doComponentOnFixedTick();
                 gameObject.onFixedTick();
@@ -200,22 +204,6 @@ public class Scene {
         if (ui != null) {
 
             ui.onFixedTick();
-        }
-    }
-
-    public void initGameObjects() {
-
-        if (initialized) {
-
-        } else {
-
-            synchronized (concurrentBlock) {
-                for (GameObject gameObject : gameObjects) {
-                    gameObject.initialize();
-                }
-            }
-
-            initialized = true;
         }
     }
 

@@ -32,6 +32,8 @@ import de.edgelord.saltyengine.utils.Directions;
 
 public class Force {
 
+    private static final float VALUE_SCALE = 1000;
+
     public static float DEFAULT_FRICTION = 0.0025f;
     private float acceleration;
     private float velocity;
@@ -65,7 +67,7 @@ public class Force {
         float counterAcceleration = 0f;
 
         if (!countersCollision) {
-            counterAcceleration = -(counterForce / parent.getMass());
+            counterAcceleration = -(counterForce * parent.getMass());
         }
 
         final float accelerationRes = acceleration + counterAcceleration;
@@ -106,7 +108,7 @@ public class Force {
 
     public void setVelocity(final float velocity) {
         if (!countersCollision) {
-            this.velocity = velocity;
+            this.velocity = velocity / (VALUE_SCALE * 10);
         }
     }
 
@@ -117,7 +119,7 @@ public class Force {
     public void setAcceleration(final float acceleration) {
 
         if (!countersCollision) {
-            this.acceleration = acceleration;
+            this.acceleration = acceleration / (VALUE_SCALE * VALUE_SCALE);
         }
     }
 

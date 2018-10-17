@@ -54,7 +54,7 @@ public class DumbPanel extends Container {
     public void draw(SaltyGraphics saltyGraphics) {
 
         // Suppress the clipping of all child elements
-        supressAllClipping();
+        suppressAllClipping();
 
         // Set clipping area
         saltyGraphics.setClip(new RoundRectangle2D.Float(getX(), getY(), getWidth(), getHeight(), arc, arc));

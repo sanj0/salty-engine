@@ -92,6 +92,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private Hitbox hitbox;
     private float mass = 1f;
 
+    private boolean initialized = false;
+
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(tag);
 
@@ -378,5 +380,13 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void removeFromCurrentScene() {
         SceneManager.getCurrentScene().removeGameObject(this);
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
     }
 }

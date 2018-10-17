@@ -85,6 +85,8 @@ public class BirdPlayer extends GameObject {
         keyFrameAnimationX.start();
         keyFrameAnimationWidth.start();
         keyFrameAnimationHeight.start();
+
+        setMass(0.5f);
     }
 
     @Override
@@ -101,8 +103,10 @@ public class BirdPlayer extends GameObject {
     @Override
     public void onFixedTick() {
 
+        // This method is very old and the code is crappy...
+
         if (Game.inputUp) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0.5f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(2500f);
 
             if (animationTiming.now()) {
                 animation.nextFrame();
@@ -116,7 +120,7 @@ public class BirdPlayer extends GameObject {
         }
 
         if (Game.inputDown) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0.5f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(2500f);
 
             if (animationTiming.now()) {
                 animation.nextFrame();
@@ -130,7 +134,7 @@ public class BirdPlayer extends GameObject {
         }
 
         if (Game.inputRight) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0.5f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(2500f);
 
             if (animationTiming.now()) {
                 animation.nextFrame();
@@ -144,7 +148,7 @@ public class BirdPlayer extends GameObject {
         }
 
         if (Game.inputLeft) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(0.5f);
+            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(2500f);
 
             if (animationTiming.now()) {
                 animation.nextFrame();

@@ -68,11 +68,6 @@ public class Engine {
         startRepainting();
     }
 
-    private void doInitialising() {
-
-        SceneManager.getCurrentScene().initGameObjects();
-    }
-
     public void render(SaltyGraphics saltyGraphics) {
 
         SceneManager.getCurrentScene().draw(saltyGraphics);
@@ -86,8 +81,6 @@ public class Engine {
 
             @Override
             public void run() {
-
-                doInitialising();
 
                 if (!Game.isPaused()) {
 
