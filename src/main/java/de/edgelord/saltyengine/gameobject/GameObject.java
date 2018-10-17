@@ -62,7 +62,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
     public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
     public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
-    public static final String DEFAULT_SHAPE_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.shape";
 
     private final List<Component> components = new CopyOnWriteArrayList<>();
 
@@ -70,7 +69,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final Accelerator defaultAccelerator;
     private final ColliderComponent collider;
-    private final ShapeComponent shapeComponent;
 
     /**
      * If this is set to true, this GameObject will not have a collision detection. Use this for
@@ -87,8 +85,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
     private Transform transform;
-    private HashMap<String, String> properties = new HashMap<>();
-    private File propertiesFile;
     private Hitbox hitbox;
     private float mass = 1f;
 
@@ -104,14 +100,11 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
         collider = new ColliderComponent(this, DEFAULT_COLLIDER_COMPONENT_NAME, ColliderComponent.Type.HITBOX);
-        shapeComponent = new ShapeComponent(this, DEFAULT_SHAPE_COMPONENT_NAME, ShapeComponent.Shape.RECT);
-        shapeComponent.disableDrawing();
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(defaultAccelerator);
         components.add(collider);
-        components.add(shapeComponent);
     }
 
     public GameObject(Transform transform, String tag) {
@@ -223,77 +216,9 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         return null;
     }
 
-    public void initPropertiesFile(final File file) {
-
-        propertiesFile = file;
-    }
-
-    public void addProperty(final String key, final String value) {
-
-        getProperties().put(key, value);
-    }
-
-    public void changeProperty(final String key, final String newValue) {
-
-        getProperties().replace(key, getProperties().get(key), newValue);
-    }
-
-    public String getLocalProperty(final String key) {
-
-        return getProperties().get(key);
-    }
-
-    public int getPropertyAsInteger(final String key) {
-
-        return Integer.valueOf(getLocalProperty(key));
-    }
-
-    public String readProperty(final String property) throws IOException {
-
-        final DataReader propertiesReader = new DataReader(propertiesFile);
-
-        return propertiesReader.getTagValue(property);
-    }
-
-    public void syncPropertiesToFile() {
-
-    }
-
-    public void readKeyProperties() throws IOException {
-
-        final DataReader propertiesReader = new DataReader(propertiesFile);
-        final Species keyProperties = propertiesReader.getSpecies("keyProperties");
-
-        if (keyProperties.getContent().contains("location")) {
-
-            final List<Integer> readCoordinates = ValueToListConverter.convertToIntegerList(keyProperties, "location", ",");
-            setPosition(new Vector2f(readCoordinates.get(0), readCoordinates.get(1)));
-        }
-    }
-
-    public void setShapeDrawing(boolean shapeDrawing) {
-        shapeComponent.setDrawing(shapeDrawing);
-    }
-
-    public void setShape(ShapeComponent.Shape shape) {
-        shapeComponent.setShape(shape);
-    }
-
-    public ShapeComponent.Shape getShape() {
-        return shapeComponent.getShape();
-    }
-
     public ColliderComponent requestCollider() {
 
         return (ColliderComponent) getComponent(colliderComponent);
-    }
-
-    public HashMap<String, String> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(final HashMap<String, String> properties) {
-        this.properties = properties;
     }
 
     public Coordinates getCoordinates() {
@@ -338,10 +263,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public ColliderComponent getCollider() {
         return collider;
-    }
-
-    public ShapeComponent getShapeComponent() {
-        return shapeComponent;
     }
 
     public void setColliderComponent(String colliderComponent) {
