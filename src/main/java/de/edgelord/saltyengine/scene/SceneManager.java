@@ -37,7 +37,7 @@ import java.util.HashMap;
  * To add a {@link Scene} to the collection, call {@link #addScene(String, Scene)} or {@link #addScene(String, Class)}.
  * Example usage:
  * <p>
- * {@code SceneManager.addScene("startMenu", new StartMenu());}
+ * {@code SceneManager.addScene("startMenu", new StartMenu());} <br>
  * {@code SceneManager.addScene("starMenu", StarMenu.class)}
  *
  * <p>

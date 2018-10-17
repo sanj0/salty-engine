@@ -29,7 +29,6 @@ package testing;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.sgs.ScriptedGameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -64,10 +63,6 @@ public class TestingScene extends Scene {
         PauseButton pauseButton = new PauseButton();
 
         getUI().addElement(pauseButton);
-    }
-
-    private void initSGSTest() {
-        addGameObject(new ScriptedGameObject("res/sgs/scripts/testing.sgs"));
     }
 
     private void initPhysicsTest() {

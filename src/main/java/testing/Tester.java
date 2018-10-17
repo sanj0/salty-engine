@@ -30,17 +30,11 @@ import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
-import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.sgs.ScriptedGameObject;
-import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.ui.UISystem;
-import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Tester extends Game {
 
