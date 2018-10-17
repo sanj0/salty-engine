@@ -1,7 +1,7 @@
 # Salty Engine
 
-Salty Engine is a simple Java game library with the goal
-to make game developing doable for everybody.
+Salty Engine is an esay to use Java game library with the goal
+to make game developing possible for everybody.
 
 ### It isn't just a library for rendering
 It also includes GameObject management, camera moving,
@@ -112,7 +112,7 @@ Made by edgelord and LoOoNeliEst for Ludum Dare 42. You can play it [here](https
 
 # Collaborate
 Do you want to collaborate? Feel free to open a pull-request (preferably well documentated code!). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
-If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
+If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) [Wunderlist](https://www.wunderlist.com/) account and send me your username.
 
 **Known bugs/glitches/issues**
 - See in the ```Wunderlist``` TODO-List
