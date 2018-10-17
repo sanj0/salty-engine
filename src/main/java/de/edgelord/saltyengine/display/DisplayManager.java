@@ -224,7 +224,7 @@ public class DisplayManager extends Host {
 
     @Override
     public Dimensions getDimensions() {
-        return new Dimensions(display.getWidth(), display.getHeight());
+        return new Dimensions(display.getContentPane().getWidth(), display.getContentPane().getHeight());
     }
 
     public boolean isInputUp() {
