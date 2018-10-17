@@ -111,14 +111,11 @@ Made by edgelord and LoOoNeliEst for Ludum Dare 42. You can play it [here](https
 ![Escape the Junk](games/Escape-the-Junk.png)
 
 # Join the team
-Do you want to collaborate? Join the project at https://crowdforge.io/projects/447 <p>
+Do you want to collaborate? Feel free to open a pull-request (preferably well documentated code!). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
 If you want to get access to a more comfortable and more frequently updated TODO list of this project create a (free) `Wunderlist` account and send me your username.
 
 **Known bugs/glitches/issues**
 - See in the ```Wunderlist``` TODO-List
 
-**TODO** (sort by relevance)
-- add more UIElements
-
 **NOTE** for help with how to use, please check out the files in
-src/main/java/testing
+src/main/java/testing and the [project wiki](https://github.com/edgelord314/salty-engine/wiki)
