@@ -42,7 +42,7 @@ import java.util.List;
 public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
-    public static final float DEFAULT_GRAVITY_ACCELERATION = 0.0025f;
+    public static final float DEFAULT_GRAVITY_ACCELERATION = 4000f;
     public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsForce";
     public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsForce";
     public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsForce";
