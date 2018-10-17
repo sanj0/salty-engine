@@ -37,7 +37,7 @@ public class Dimensions {
 
     public float getWidth() {
         return width;
-    }
+    }   
 
     public void setWidth(float width) {
         this.width = width;
