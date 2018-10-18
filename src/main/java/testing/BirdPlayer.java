@@ -29,6 +29,7 @@ package testing;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -37,6 +38,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.image.BufferedImage;
 
@@ -45,20 +47,24 @@ public class BirdPlayer extends GameObject {
     private Animation animation;
     private Spritesheet spritesheet;
 
+    private final float speed = 2500f;
+
     private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.X_POS);
     private BasicGameObjectAnimation keyFrameAnimationRotation = new BasicGameObjectAnimation(this, "mySuperAnimationRotation", BasicGameObjectAnimation.Control.ROTATION);
     private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.WIDTH);
     private BasicGameObjectAnimation keyFrameAnimationHeight = new BasicGameObjectAnimation(this, "mySuperAnimationHeight", BasicGameObjectAnimation.Control.HEIGHT);
 
-    private FixedRate animationTiming = new FixedRate(this, "animationTiming", 75);
-    private FixedRate soundTiming = new FixedRate(this, "soundTiming", 75);
+    private AnimationRender animationRender;
+    private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
     public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
 
-        addComponent(animationTiming);
+        animationRender = new AnimationRender(this, "animationRender", animation, 75);
+
+        addComponent(animationRender);
         addComponent(soundTiming);
     }
 
@@ -113,62 +119,36 @@ public class BirdPlayer extends GameObject {
 
         getTransform().setRotationCentreToMiddle();
 
-        // This method is very old and the code is crappy...
-
         if (Game.inputUp) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(2500f);
-
-            if (animationTiming.now()) {
-                animation.nextFrame();
-            }
+            accelerate(speed, Directions.Direction.UP);
 
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-        } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(0f);
         }
 
         if (Game.inputDown) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(2500f);
-
-            if (animationTiming.now()) {
-                animation.nextFrame();
-            }
+            accelerate(speed, Directions.Direction.DOWN);
 
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-        } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(0f);
         }
 
         if (Game.inputRight) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(2500f);
-
-            if (animationTiming.now()) {
-                animation.nextFrame();
-            }
+            accelerate(speed, Directions.Direction.RIGHT);
 
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-        } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(0f);
         }
 
         if (Game.inputLeft) {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(2500f);
-
-            if (animationTiming.now()) {
-                animation.nextFrame();
-            }
+            accelerate(speed, Directions.Direction.LEFT);
 
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-        } else {
-            getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(0f);
         }
     }
 

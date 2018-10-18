@@ -41,6 +41,7 @@ public class TestingScene extends Scene {
     public TestingScene() {
 
         disableGravity();
+        setFriction(0.005f);
 
         initForcesTest();
         initUITest();

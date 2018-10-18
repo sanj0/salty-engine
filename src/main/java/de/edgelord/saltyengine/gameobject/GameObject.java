@@ -140,12 +140,22 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     public abstract void draw(SaltyGraphics saltyGraphics);
 
     /**
-     * This method can be overridden but It's not necessary and you won't need this nearly always, so it's not abstract
+     * This method can be overridden but It's not necessary and you won't need this often, so it's not abstract
      *
      * @param collisions the detected collisions of this run
      */
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
 
+    }
+
+    public void doFixedTick() {
+        // Clear the forces
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
+
+        onFixedTick();
     }
 
     public void doCollisionDetection(final List<GameObject> gameObjects) {
@@ -221,6 +231,63 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         return (ColliderComponent) getComponent(colliderComponent);
     }
 
+    /**
+     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#acceleration} of the default force in the
+     * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
+     * This is the recommended way to accelerate forces for player controls.
+     *
+     * @param acceleration the acceleration to be set to the specific default force
+     * @param direction the direction in which to accelerate the GameObject
+     */
+    public void accelerate(float acceleration, Directions.Direction direction) {
+        switch (direction) {
+
+            case RIGHT:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(acceleration);
+                break;
+            case LEFT:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(acceleration);
+                break;
+            case UP:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(acceleration);
+                break;
+            case DOWN:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(acceleration);
+                break;
+            case EMPTY:
+                System.out.println("[WARNING] Can not accelerate in Direction Directions.Direction.EMPTY!");
+                break;
+        }
+    }
+
+    /**
+     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default force with the
+     * given direction to the given value. this has to be reset manually if needed.
+     *
+     * @param velocity the velocity to be set to the specific force
+     * @param direction the directon of the default force to be manipulated.
+     */
+    public void setVelocity(float velocity, Directions.Direction direction) {
+        switch (direction) {
+
+            case RIGHT:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(velocity);
+                break;
+            case LEFT:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(velocity);
+                break;
+            case UP:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(velocity);
+                break;
+            case DOWN:
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(velocity);
+                break;
+            case EMPTY:
+                System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
+                break;
+        }
+    }
+
     public Coordinates getCoordinates() {
         return transform.getCoordinates();
     }
@@ -275,10 +342,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setStationary(boolean stationary) {
         this.stationary = stationary;
-    }
-
-    public Vector2f getMiddle() {
-        return getTransform().getMiddle();
     }
 
     public float getMass() {

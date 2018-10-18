@@ -209,7 +209,7 @@ public class Scene {
 
                 gameObject.doCollisionDetection(gameObjects);
                 gameObject.doComponentOnFixedTick();
-                gameObject.onFixedTick();
+                gameObject.doFixedTick();
             }
         }
 

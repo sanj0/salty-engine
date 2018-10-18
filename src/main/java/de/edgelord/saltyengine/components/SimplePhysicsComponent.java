@@ -43,9 +43,29 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 4000f;
+
+    /**
+     * This is the String constant for the default upwards force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
     public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsForce";
+
+    /**
+     * This is the String constant for the default downwards force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
     public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsForce";
+
+    /**
+     * This is the String constant for the default rightwards force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
     public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsForce";
+
+    /**
+     * This is the String constant for the default leftwards force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
     public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsForce";
     private final List<Force> forces = new LinkedList<>();
 
