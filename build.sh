@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/bin/bash
 
 # This script will build the Salty Engine library to 2 jars: the one with dependencies and a main-attribute within the
 # Manifest and the other one is a jar without dependencies and without a main-attribute.
@@ -12,7 +11,7 @@ VERSION=$(printf 'VERSION=${project.version}\n0\n' | ./mvnw org.apache.maven.plu
 if [ "$1" == "-help" ]; then
     printf "\n"
     printf "This little script builds the maven project \"salty-engine\" version "
-    echo $VERSION
+    echo ${VERSION}
     printf "\n"
     printf "POSSIBLE OPTIONS:\n"
     printf "    -run : runs the built jar\n"
@@ -26,7 +25,7 @@ fi
 JAR=$(ls target | sort | grep ^salty-engine | head -1)
 
 if [ "$1" == "-run" ]; then
-    java -jar target/$JAR
+    java -jar target/${JAR}
 fi
 
 if [ "$1" == "-help" ]; then
