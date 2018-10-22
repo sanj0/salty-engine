@@ -39,6 +39,10 @@ public class Time {
         Time.deltaNanos = deltaNanos;
     }
 
+    public static long getDeltaTime() {
+        return deltaNanos / 1000;
+    }
+
     public static float getFps() {
         return fps;
     }

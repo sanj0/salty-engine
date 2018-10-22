@@ -103,8 +103,6 @@ public class Engine {
 
                 host.repaint();
 
-                Thread.yield();
-
                 Time.setDeltaNanos(System.nanoTime() - nanosBefore);
             }
         }, 0, 1000 / FPS);
@@ -126,7 +124,6 @@ public class Engine {
                     host.repaint();
 
                     Time.setDeltaNanos(System.nanoTime() - nanosBefore);
-                    Thread.yield();
                 }
             }
         }, 0);
