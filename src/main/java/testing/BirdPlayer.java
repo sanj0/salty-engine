@@ -39,6 +39,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.image.BufferedImage;
 
@@ -106,7 +107,7 @@ public class BirdPlayer extends GameObject {
     @Override
     public void initialize() {
 
-        System.out.println("INFO: Initialized " + getClass());
+        StaticSystem.logger.logInfo("Initialized " + getClass());
     }
 
     @Override

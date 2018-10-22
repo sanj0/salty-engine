@@ -43,7 +43,7 @@ public class Tester extends Game {
     public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
         super(windowWidth, windowHeight, gameName, fixedTickMillis);
 
-        System.out.println("INFO: Welcome to Salty Engine v" + StaticSystem.versionTag);
+        StaticSystem.logger.logInfo("Welcome to Salty Engine v" + StaticSystem.versionTag);
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 

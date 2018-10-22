@@ -35,6 +35,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.image.BufferedImage;
 
@@ -63,7 +64,7 @@ public class Bird extends GameObject {
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
         // getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
 
-        System.out.println("INFO: Initialized " + getClass());
+        StaticSystem.logger.logInfo("Initialized " + getClass());
     }
 
     @Override
