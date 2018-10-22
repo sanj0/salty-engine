@@ -26,7 +26,10 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.components.*;
+import de.edgelord.saltyengine.components.Accelerator;
+import de.edgelord.saltyengine.components.ColliderComponent;
+import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
+import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.interfaces.CollideAble;
@@ -43,14 +46,8 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.DataReader;
-import de.edgelord.stdf.reading.ValueToListConverter;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -237,7 +234,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * This is the recommended way to accelerate forces for player controls.
      *
      * @param acceleration the acceleration to be set to the specific default force
-     * @param direction the direction in which to accelerate the GameObject
+     * @param direction    the direction in which to accelerate the GameObject
      */
     public void accelerate(float acceleration, Directions.Direction direction) {
         switch (direction) {
@@ -264,7 +261,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default force with the
      * given direction to the given value. this has to be reset manually if needed.
      *
-     * @param velocity the velocity to be set to the specific force
+     * @param velocity  the velocity to be set to the specific force
      * @param direction the directon of the default force to be manipulated.
      */
     public void setVelocity(float velocity, Directions.Direction direction) {

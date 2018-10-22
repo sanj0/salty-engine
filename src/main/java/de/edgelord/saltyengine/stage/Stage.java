@@ -32,9 +32,12 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 import java.awt.event.*;
+
+import static java.awt.RenderingHints.*;
 
 public class Stage extends Canvas {
 
@@ -45,6 +48,10 @@ public class Stage extends Canvas {
     private MouseWheelListener nativeMouseWheelListener = null;
     private DisplayMouseHandler mouseHandler = null;
     private boolean doubleBufferCreated = false;
+
+    private float lastFps = 0f;
+    private int ticks = 0;
+    private int fpsRefreshGate = 25;
 
     private boolean highQuality = false;
     private RenderingHints renderingHints;
@@ -167,20 +174,26 @@ public class Stage extends Canvas {
         setFocusable(false);
 
         if (highQuality) {
-            renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
+            putToRenderHints(KEY_RENDERING, VALUE_RENDER_QUALITY);
         } else {
-            renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-            renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
-            renderingHints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
-            renderingHints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_SPEED);
+            renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
+            putToRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
+            putToRenderHints(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_SPEED);
+            putToRenderHints(KEY_COLOR_RENDERING, VALUE_COLOR_RENDER_SPEED);
         }
 
         initNativeMouseListener();
     }
 
+    public void putToRenderHints(Key key, Object value) {
+        renderingHints.put(key, value);
+    }
+
     @Override
     public void paint(Graphics graphics) {
+
+        ticks++;
 
         if (!doubleBufferCreated) {
             createBufferStrategy(3);
@@ -189,7 +202,7 @@ public class Stage extends Canvas {
 
         final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
-        graphics2D.setClip(0, 0, Math.round(Game.getHost().getWidth()), Math.round(Game.getHost().getWidth()));
+        graphics2D.setClip(0, 0, getWidth(), getWidth());
 
         graphics2D.setRenderingHints(renderingHints);
 
@@ -199,7 +212,20 @@ public class Stage extends Canvas {
 
         engine.render(saltyGraphics);
 
-        // graphics2D.dispose();
+        if (Game.isDrawFPS()) {
+            if (ticks == fpsRefreshGate) {
+                lastFps = Time.getFPS();
+                ticks = 0;
+            }
+
+            Game.camera.tmpResetViewToGraphics(saltyGraphics);
+
+            saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+            saltyGraphics.setColor(Color.RED);
+            String fps = String.valueOf(Math.round(lastFps));
+            saltyGraphics.drawText("FPS: " + fps, 0, (float) saltyGraphics.getFontMetrics().getStringBounds(fps, saltyGraphics.getGraphics2D()).getHeight());
+        }
+
         getBufferStrategy().show();
         Toolkit.getDefaultToolkit().sync();
     }

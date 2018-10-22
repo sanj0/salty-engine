@@ -672,15 +672,18 @@ public class SaltyGraphics {
      */
 
     /**
-     * The base method to DRAW a String using the current <code>Font</code> of the graphics
+     * The base method to DRAW a String using the current <code>Font</code> of the graphics.
+     * It converts the given {@link Object} to a {@link String} using its {@link Object#toString()}.
+     * When the given <code>Object</code> is already a <code>String</code>,
+     * <code>toString()</code> simply returns that exact <code>String</code>.
      *
      * @param text the String to be drawn
      * @param x    the x position of the baseLine of the first character
      * @param y    the y position of the baseLine of the first character
      * @see Graphics2D#drawString(String, float, float)
      */
-    public void drawText(String text, float x, float y) {
-        graphics2D.drawString(text, x, y);
+    public void drawText(Object text, float x, float y) {
+        graphics2D.drawString(text.toString(), x, y);
     }
 
     /**
@@ -690,9 +693,9 @@ public class SaltyGraphics {
      * @param x             the x position of the baseLine of the first character
      * @param y             the y position of the baseLine of the first character
      * @param temporaryFont the temporary Font with which to DRAW the text
-     * @see #drawText(String, float, float)
+     * @see #drawText(Object, float, float)
      */
-    public void drawText(String text, float x, float y, Font temporaryFont) {
+    public void drawText(Object text, float x, float y, Font temporaryFont) {
 
         Font font = getFont();
 
@@ -707,9 +710,9 @@ public class SaltyGraphics {
      *
      * @param text     the text to be drawn
      * @param position the position of the baseLine of the first letter
-     * @see #drawText(String, float, float)
+     * @see #drawText(Object, float, float)
      */
-    public void drawText(String text, Vector2f position) {
+    public void drawText(Object text, Vector2f position) {
         drawText(text, position.getX(), position.getY());
     }
 
@@ -719,9 +722,9 @@ public class SaltyGraphics {
      * @param text          the text to be drawn
      * @param position      the position of the baseLine of the first letter
      * @param temporaryFont the temporary Font with which to DRAW the text
-     * @see #drawText(String, float, float, Font)
+     * @see #drawText(Object, float, float, Font)
      */
-    public void drawText(String text, Vector2f position, Font temporaryFont) {
+    public void drawText(Object text, Vector2f position, Font temporaryFont) {
         drawText(text, position.getX(), position.getY(), temporaryFont);
     }
 

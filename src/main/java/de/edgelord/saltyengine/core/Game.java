@@ -31,6 +31,7 @@ import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.input.Keyboard;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.event.KeyEvent;
 
@@ -60,12 +61,19 @@ public class Game {
     public static boolean mouseDrags = false;
     public static boolean mousePresses = false;
 
+    /**
+     * Proposes the <code>Host</code> to draw the FPS {@link Time#getFPS()} or not.
+     * All <code>Host</code>s included in this library will accept that. 3rd party
+     * <code>Host</code>s may not and do not have to.
+     */
+    private static boolean drawFPS = true;
+
     private static Host host;
     private static Engine engine;
 
     public Game(int windowWidth, int windowHeight, String gameName, long fixedTickMillis) {
 
-        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.opengl", "True");
 
         engine = new Engine(fixedTickMillis);
 
@@ -74,7 +82,7 @@ public class Game {
 
     public Game(Host host, String gameName, long fixedTickMillis) {
 
-        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.opengl", "True");
 
         engine = new Engine(fixedTickMillis);
 
@@ -98,14 +106,14 @@ public class Game {
 
         host.create();
 
-        engine.start(host);
+        engine.start();
     }
 
     public static void start(long fixedFPS) {
 
         host.create();
 
-        engine.start(host, fixedFPS);
+        engine.start(fixedFPS);
     }
 
     protected static void setEngine(Engine engine) {
@@ -138,5 +146,13 @@ public class Game {
 
     public static void setDefaultGFXController(GFXController defaultGFXController) {
         Game.defaultGFXController = defaultGFXController;
+    }
+
+    public static boolean isDrawFPS() {
+        return drawFPS;
+    }
+
+    public static void setDrawFPS(boolean drawFPS) {
+        Game.drawFPS = drawFPS;
     }
 }

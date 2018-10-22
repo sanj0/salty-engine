@@ -26,7 +26,6 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.StaticSystem;
@@ -41,29 +40,24 @@ public class Engine {
     private Timer fixedTimer = new Timer();
     private Timer repaintTimer = new Timer();
     private boolean isCloseRequested = false;
-    private Repaintable host = null;
 
     public Engine(long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
     }
 
-    public void start(Repaintable host) {
+    public void start() {
 
         startFixedTicks();
-        startRendering(host);
+        startRendering();
     }
 
-    public void start(Repaintable host, long FPS) {
-        this.host = host;
-
+    public void start(long FPS) {
         startFixedTicks();
         startRepainting(FPS);
 
     }
 
-    private void startRendering(Repaintable host) {
-
-        this.host = host;
+    private void startRendering() {
 
         startRepainting();
     }
@@ -90,20 +84,26 @@ public class Engine {
         }, 0, fixedTickMillis);
     }
 
+    /**
+     * Repaints the {@link Host} {@link Game#getHost()} with the given FPS.
+     * It makes the <code>Host</code> repaint each <code>1000 / FPS</code>.
+     * This is limited to 1000 FPS, for higher FPS please use {@link #startRepainting()}
+     *
+     * @param FPS
+     */
     private void startRepainting(long FPS) {
 
         repaintTimer.scheduleAtFixedRate(new TimerTask() {
 
-            long nanosBefore;
+            long nanosBeforeLastTime = 0;
 
             @Override
             public void run() {
 
-                nanosBefore = System.nanoTime();
+                Time.setDeltaNanos((System.nanoTime() - nanosBeforeLastTime) / 1000);
+                nanosBeforeLastTime = System.nanoTime();
 
-                host.repaint();
-
-                Time.setDeltaNanos(System.nanoTime() - nanosBefore);
+                Game.getHost().repaint();
             }
         }, 0, 1000 / FPS);
     }
@@ -121,7 +121,7 @@ public class Engine {
 
                     nanosBefore = System.nanoTime();
 
-                    host.repaint();
+                    Game.getHost().repaint();
 
                     Time.setDeltaNanos(System.nanoTime() - nanosBefore);
                 }

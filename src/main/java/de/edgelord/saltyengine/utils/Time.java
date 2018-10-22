@@ -29,7 +29,6 @@ package de.edgelord.saltyengine.utils;
 public class Time {
 
     private static long deltaNanos = 0;
-    private static float fps = 0;
 
     public static long getDeltaNanos() {
         return deltaNanos;
@@ -43,11 +42,7 @@ public class Time {
         return deltaNanos / 1000;
     }
 
-    public static float getFps() {
-        return fps;
-    }
-
-    public static void setFps(float fps) {
-        Time.fps = fps;
+    public static float getFPS() {
+        return 1000f / (float) getDeltaTime();
     }
 }
