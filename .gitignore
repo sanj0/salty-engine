@@ -3,6 +3,6 @@
 .DS_Store
 /out/
 /META-INF/
-./Salty Engine.iml
+Salty Engine.iml
 /src/main/resources/res/sgs/future/
 /src/main/resources/res/sgs
