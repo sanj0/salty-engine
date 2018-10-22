@@ -1,0 +1,10 @@
+{test}
+
+    {describtion}
+        (english)Use WASD to move the red Bird around!(*english)
+        (german)Du kannst den roten Vogel mit WASD steuern!(*german)
+        Sorry for the bad french ;D
+        (french)Tu peux contrôles l'oiseau rouge avec les touches WASD!(*french)
+    {*describtion}
+
+{*test}

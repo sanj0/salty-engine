@@ -67,6 +67,9 @@ public class SimplePhysicsComponent extends Component<GameObject> {
      * getting manipulated internally.
      */
     public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsForce";
+
+    private static final String ANGLED_FORCES_NAMES_PREFIX = "angledForce$";
+
     private final List<Force> forces = new LinkedList<>();
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
@@ -183,6 +186,48 @@ public class SimplePhysicsComponent extends Component<GameObject> {
                     force.setCountersCollision(downCollision);
                     break;
             }
+        }
+    }
+
+    public String[] accelerateToAngle(float degrees, float acceleration, String forceNames) {
+
+        /*
+         * Trim the degrees to be a maximum of 360 but still express the same angle
+         */
+        for (; degrees >= 360; ) {
+            degrees -= 360;
+        }
+
+        String right = Directions.Direction.RIGHT.name();
+        String left = Directions.Direction.LEFT.name();
+        String up = Directions.Direction.UP.name();
+        String down = Directions.Direction.DOWN.name();
+        String forceNamesPostpositive = "@" + forceNames;
+
+        String[] forces = new String[]{};
+
+        if (degrees == 0 || degrees == 360) {
+            String upForceName = ANGLED_FORCES_NAMES_PREFIX + up + forceNamesPostpositive;
+
+            addForce(new Force(acceleration, getParent(), Directions.Direction.UP, upForceName));
+            forces = new String[]{upForceName};
+        } else if (degrees <= 90) {
+            String rightForceName = ANGLED_FORCES_NAMES_PREFIX + right + forceNamesPostpositive;
+            String upForceName = ANGLED_FORCES_NAMES_PREFIX + up + forceNamesPostpositive;
+            float ratio = degrees / (90f - degrees);
+
+            addForce(new Force(acceleration * ratio, getParent(), Directions.Direction.RIGHT, rightForceName));
+            addForce(new Force(acceleration / ratio, getParent(), Directions.Direction.UP, upForceName));
+            forces = new String[]{rightForceName, upForceName};
+        } else if (degrees <= 180) {
+        }
+
+        return forces;
+    }
+
+    public void setAccelerationToCollection(String[] forces, float acceleration) {
+        for (String force : forces) {
+            getForce(force).setAcceleration(acceleration);
         }
     }
 

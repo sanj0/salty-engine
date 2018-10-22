@@ -45,6 +45,7 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
         super(parent, name, Components.ANIMATION_COMPONENT);
 
         this.control = control;
+        disable();
     }
 
     public void init() {

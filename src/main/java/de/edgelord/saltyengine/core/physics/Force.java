@@ -53,7 +53,7 @@ public class Force {
     }
 
     public Force(final float acceleration, final float velocity, final float distance, final GameObject parent, final Directions.Direction direction, final String name) {
-        this.acceleration = acceleration;
+        this.acceleration = acceleration / (VALUE_SCALE * VALUE_SCALE);
         this.velocity = velocity;
         this.distance = distance;
         this.parent = parent;

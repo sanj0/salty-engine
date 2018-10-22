@@ -48,10 +48,10 @@ import java.util.List;
  * {@link FixedTask}s within {@link #fixedTasks},
  * {@link DrawingRoutine}s within {@link #drawingRoutines}
  * and the {@link UISystem} {@link #ui}
- *
+ * <p>
  * The current scene is stored in {@link SceneManager#currentScene}.
  * For more information, please take a look at the documentation of that class.
- *
+ * <p>
  * IMPORTANT: Do nothing with GFX in any implementations of this class. If you do so, these GFX will be applied to the
  * scene that was active before!
  */

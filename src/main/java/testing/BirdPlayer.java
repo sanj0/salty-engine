@@ -26,12 +26,13 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.FixedRate;
-import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -58,7 +59,7 @@ public class BirdPlayer extends GameObject {
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
     public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
-        super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
+        super(position.getX(), position.getY() + 700, 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
 
@@ -66,6 +67,7 @@ public class BirdPlayer extends GameObject {
 
         addComponent(animationRender);
         addComponent(soundTiming);
+        addComponent(new DebugLogGameObjectStat(this, "blabliblub"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
@@ -90,13 +92,12 @@ public class BirdPlayer extends GameObject {
         keyFrameAnimationHeight.addKeyFrame(1000, 0);
         keyFrameAnimationHeight.addKeyFrame(5000, 101);
 
-
         addComponent(keyFrameAnimationX);
         addComponent(keyFrameAnimationRotation);
         addComponent(keyFrameAnimationWidth);
         addComponent(keyFrameAnimationHeight);
-        keyFrameAnimationX.start();
-        keyFrameAnimationRotation.start();
+        // keyFrameAnimationX.start();
+        // keyFrameAnimationRotation.start();
         keyFrameAnimationWidth.start();
         keyFrameAnimationHeight.start();
 
@@ -114,10 +115,15 @@ public class BirdPlayer extends GameObject {
 
     }
 
+    String[] previousCollection = new String[]{};
     @Override
     public void onFixedTick() {
 
         getTransform().setRotationCentreToMiddle();
+
+        getTransform().setRotationDegrees(getTransform().getRotationDegrees() + 1);
+        getPhysics().setAccelerationToCollection(previousCollection, 0f);
+        previousCollection = getPhysics().accelerateToAngle(getTransform().getRotationDegrees(), 1f, "lol");
 
         if (Game.inputUp) {
             accelerate(speed, Directions.Direction.UP);
