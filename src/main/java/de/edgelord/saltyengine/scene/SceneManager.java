@@ -44,10 +44,12 @@ import java.util.HashMap;
  * <p>
  * <p>
  * When ever you call {@code SceneManager.setCurrentScene("starMenu");} a new instance of {@code StartMenu} will be created
- * and set to {@link #currentScene}
+ * and set to {@link #currentScene}.
+ * You can pass constructor args into that method, one after another each separated by a comma.
  *
  * <p>
  * To reload the current {@link Scene}, use {@link #reloadCurrentScene(Object...)}.
+ * You can pass constructor args into that method, one after another each separated by a comma.
  *
  * <p>
  * To remove a {@link Scene} from the collection, use {@link #removeScene(String)}
