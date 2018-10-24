@@ -38,7 +38,7 @@ import java.awt.image.BufferedImage;
 
 public class TestingScene extends Scene {
 
-    public TestingScene() {
+    public TestingScene(String foo, Integer bar) {
 
         disableGravity();
         setFriction(0.005f);

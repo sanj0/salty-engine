@@ -27,6 +27,7 @@
 package testing;
 
 import java.applet.Applet;
+import java.lang.reflect.InvocationTargetException;
 
 public class AppletWrapper extends Applet {
 
@@ -35,14 +36,14 @@ public class AppletWrapper extends Applet {
             public void run() {
                 try {
                     runApplication();
-                } catch (IllegalAccessException | InstantiationException e) {
+                } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
     }
 
-    private void runApplication() throws IllegalAccessException, InstantiationException {
+    private void runApplication() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         Tester.main(new String[0]);
     }
 

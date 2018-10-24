@@ -35,6 +35,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 
 public class Tester extends Game {
 
@@ -57,7 +58,7 @@ public class Tester extends Game {
         getHost().setBackgroundColor(Color.lightGray);
     }
 
-    public static void main(final String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
         final Tester tester = new Tester(1200, 900, "testing", 1);
 
@@ -65,7 +66,7 @@ public class Tester extends Game {
 
         start(60);
 
-        SceneManager.setCurrentScene("testingScene");
+        SceneManager.setCurrentScene("testingScene", "foo", 842);
 
         SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 
