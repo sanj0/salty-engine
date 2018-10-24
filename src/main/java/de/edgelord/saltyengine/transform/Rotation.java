@@ -66,6 +66,17 @@ public class Rotation {
         rotateToPoint(new Vector2f(x, y));
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Rotation) {
+            Rotation other = (Rotation) obj;
+            return other.getCentre().equals(getCentre())
+                    && getNormalizedDegrees(other.getRotationDegrees()) == getNormalizedDegrees(getRotationDegrees());
+        } else {
+            return false;
+        }
+    }
+
     public Vector2f getCentre() {
         return centre;
     }
@@ -85,5 +96,13 @@ public class Rotation {
 
     public void setRotationDegrees(float rotationDegrees) {
         this.rotationDegrees = rotationDegrees;
+    }
+
+    public static float getNormalizedDegrees(float degrees) {
+        for (;degrees <= 360;) {
+            degrees -= 360;
+        }
+
+        return degrees;
     }
 }

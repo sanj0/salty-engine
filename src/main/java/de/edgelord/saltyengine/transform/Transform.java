@@ -69,6 +69,42 @@ public class Transform {
         return getRect().contains(other.getRect());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Transform) {
+            Transform other = (Transform) obj;
+            return other.getDimensions().equals(dimensions)
+                    && other.getPosition().equals(position)
+                    && other.getRotation().equals(rotation);
+        } else {
+            return false;
+        }
+    }
+
+    public static Transform zero() {
+        return new Transform(Vector2f.zero(), Dimensions.zero());
+    }
+
+    public static Transform max() {
+        return new Transform(Vector2f.max(), Dimensions.max());
+    }
+
+    public static Transform min() {
+        return new Transform(Vector2f.min(), Dimensions.min());
+    }
+
+    public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
+        return new Transform(Vector2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
+    }
+
+    public static Transform random(int min, int max) {
+        return random(min, max, min, max);
+    }
+
+    public static Transform random(int bound) {
+        return random(bound, bound, bound, bound);
+    }
+
     public Vector2f getMiddle() {
         return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }

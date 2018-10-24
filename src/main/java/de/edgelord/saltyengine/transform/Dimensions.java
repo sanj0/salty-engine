@@ -26,7 +26,9 @@
 
 package de.edgelord.saltyengine.transform;
 
-public class Dimensions {
+import java.util.Random;
+
+public class Dimensions  {
 
     private float width, height;
 
@@ -49,5 +51,32 @@ public class Dimensions {
 
     public void setHeight(float height) {
         this.height = height;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Dimensions) {
+            Dimensions other = (Dimensions) obj;
+            return other.getWidth() == getWidth() && other.getHeight() == getHeight();
+        } else {
+            return false;
+        }
+    }
+
+    public static Dimensions zero() {
+        return new Dimensions(0, 0);
+    }
+
+    public static Dimensions max() {
+        return new Dimensions(Float.MAX_VALUE, Float.MAX_VALUE);
+    }
+
+    public static Dimensions min() {
+        return new Dimensions(Float.MIN_VALUE, Float.MIN_VALUE);
+    }
+
+    public static Dimensions random(int min, int max) {
+        Random random = new Random();
+        return new Dimensions(random.nextInt(max + min) - min, random.nextInt(max + min) - min);
     }
 }

@@ -26,6 +26,8 @@
 
 package de.edgelord.saltyengine.transform;
 
+import java.util.Random;
+
 public class Vector2f {
 
     private float x;
@@ -61,5 +63,32 @@ public class Vector2f {
 
         setX((float) coordinates.getX());
         setY((float) coordinates.getY());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Vector2f) {
+            Vector2f other = (Vector2f) obj;
+            return other.getX() == getX() && other.getY() == getY();
+        } else {
+            return false;
+        }
+    }
+
+    public static Vector2f zero() {
+        return new Vector2f(0, 0);
+    }
+
+    public static Vector2f max() {
+        return new Vector2f(Float.MAX_VALUE, Float.MAX_VALUE);
+    }
+
+    public static Vector2f min() {
+        return new Vector2f(Float.MIN_VALUE, Float.MIN_VALUE);
+    }
+
+    public static Vector2f random(int min, int max) {
+        Random random = new Random();
+        return new Vector2f(random.nextInt(max + min) - min, random.nextInt(max + min) - min);
     }
 }
