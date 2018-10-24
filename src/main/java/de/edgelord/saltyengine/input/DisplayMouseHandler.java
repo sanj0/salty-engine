@@ -26,23 +26,9 @@
 
 package de.edgelord.saltyengine.input;
 
-import java.awt.event.MouseEvent;
 
-public interface DisplayMouseHandler {
+import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 
-    void mouseClicked(MouseEvent e);
+public abstract class DisplayMouseHandler implements MouseInputHandler {
 
-    void mousePressed(MouseEvent e);
-
-    void mouseReleased(MouseEvent e);
-
-    void mouseEntered(MouseEvent e);
-
-    void mouseExited(MouseEvent e);
-
-    void mouseWheelMoved(MouseEvent e);
-
-    void mouseDragged(MouseEvent e);
-
-    void mouseMoved(MouseEvent e);
 }
