@@ -122,6 +122,7 @@ public class SceneManager {
      *              throws an exception.
      * @throws ExceptionInInitializerError if the initialization provoked
      *              by this method fails.
+     * @throws NoSuchMethodException if there is no constructor found matching the given args
      */
     public static void setCurrentScene(String name, Object... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
@@ -159,6 +160,7 @@ public class SceneManager {
      *              throws an exception.
      * @throws ExceptionInInitializerError if the initialization provoked
      *              by this method fails.
+     * @throws NoSuchMethodException if there is no constructor found matching the given args
      */
     public static void reloadCurrentScene(Object... args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (currentSceneName == null) {
