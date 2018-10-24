@@ -107,7 +107,7 @@ public class BirdPlayer extends GameObject {
     @Override
     public void initialize() {
 
-        StaticSystem.logger.logInfo("Initialized " + getClass());
+        System.out.println("Info: Initialised a new BirdPlayer");
     }
 
     @Override

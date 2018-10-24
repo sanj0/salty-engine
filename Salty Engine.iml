@@ -17,6 +17,5 @@
     <orderEntry type="library" name="Maven: de.edgelord.stdf:stdf:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Maven: de.edgelord.sl4j:sl4j:0.1-SNAPSHOT" level="project" />
   </component>
 </module>

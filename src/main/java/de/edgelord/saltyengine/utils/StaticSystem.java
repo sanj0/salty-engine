@@ -31,8 +31,6 @@ import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.UIElement;
-import de.edgelord.sl4j.AbstractLogger;
-import de.edgelord.sl4j.SimpleLogger;
 
 import java.awt.*;
 
@@ -47,8 +45,6 @@ public class StaticSystem {
     public static InnerResource defaultResource = new InnerResource();
     public static ImageFactory defaultImageFactory = new ImageFactory(defaultResource);
     public static FontFactory defaultFontFactory = new FontFactory(defaultResource);
-
-    public static AbstractLogger logger = new SimpleLogger();
 
     public static Font defaultFont = new Font(Font.SERIF, Font.PLAIN, 15);
 
