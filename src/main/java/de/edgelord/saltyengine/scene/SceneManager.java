@@ -42,7 +42,6 @@ import java.util.HashMap;
  * {@code SceneManager.addScene("starMenu", StarMenu.class)}
  *
  * <p>
- * <p>
  * When ever you call {@code SceneManager.setCurrentScene("starMenu");} a new instance of {@code StartMenu} will be created
  * and set to {@link #currentScene}.
  * You can pass constructor args into that method, one after another each separated by a comma.
