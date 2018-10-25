@@ -30,6 +30,7 @@ import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.input.Keyboard;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -58,6 +59,7 @@ public class Game {
     public static Keyboard keyboardInput = new Keyboard();
 
     public static Vector2f cursorPosition = new Vector2f(0, 0);
+    public static Transform cursor = new Transform(0, 0, 0, 0);
     public static boolean mouseDrags = false;
     public static boolean mousePresses = false;
 

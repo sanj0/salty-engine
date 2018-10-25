@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -72,7 +73,7 @@ public class DumbPanel extends Container {
 
     @Override
     public void onFixedTick() {
-        getChildElements().forEach(uiElement -> uiElement.onFixedTick());
+        getChildElements().forEach(UIElement::onFixedTick);
     }
 
     @Override
@@ -113,6 +114,21 @@ public class DumbPanel extends Container {
     @Override
     public void mouseDragged(MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseDragged(e));
+    }
+
+    @Override
+    public void mouseExitedScreen(MouseEvent e) {
+        getChildElements().forEach(uiElement -> uiElement.mouseExitedScreen(e));
+    }
+
+    @Override
+    public void mouseEnteredScreen(MouseEvent e) {
+        getChildElements().forEach(uiElement -> uiElement.mouseEnteredScreen(e));
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseEvent e) {
+        getChildElements().forEach(uiElement -> uiElement.mouseWheelMoved(e));
     }
 
     public float getArc() {

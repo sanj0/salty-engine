@@ -45,49 +45,4 @@ public abstract class Label extends TextElement {
 
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
-
-    @Override
-    public void onFixedTick() {
-
-    }
-
-    @Override
-    public final void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public final void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public final void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public final void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public final void mouseMoved(MouseEvent e) {
-
-    }
-
-    @Override
-    public final void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public final void keyReleased(KeyEvent e) {
-
-    }
-
-    @Override
-    public final void keyTyped(KeyEvent e) {
-
-    }
 }

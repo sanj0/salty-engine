@@ -51,6 +51,8 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     private Transform transform;
 
+    protected boolean mouseHovered = false;
+
     private List<Component> components = new CopyOnWriteArrayList<>();
 
     private boolean suppressClipping = false;
@@ -70,34 +72,49 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
     }
 
     @Override
-    public abstract void onFixedTick();
+    public void onFixedTick() {}
 
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 
     @Override
-    public abstract void mousePressed(MouseEvent e);
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public abstract void mouseReleased(MouseEvent e);
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public abstract void mouseClicked(MouseEvent e);
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
-    public abstract void mouseMoved(MouseEvent e);
+    public void mouseMoved(MouseEvent e) {}
 
     @Override
-    public abstract void keyPressed(KeyEvent e);
+    public void keyPressed(KeyEvent e) {}
 
     @Override
-    public abstract void keyReleased(KeyEvent e);
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public abstract void keyTyped(KeyEvent e);
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public abstract void mouseDragged(MouseEvent e);
+    public void mouseDragged(MouseEvent e) {}
+
+    @Override
+    public void mouseExitedScreen(MouseEvent e) {}
+
+    public void mouseExited(Transform cursor) {}
+
+    @Override
+    public void mouseEnteredScreen(MouseEvent e) {}
+
+    public void mouseEntered(Transform cursor) {}
+
+    @Override
+    public void mouseWheelMoved(MouseEvent e) {}
+
+    public void mouseHover(Transform cursor) {}
 
     @Override
     public void addComponent(Component component) {

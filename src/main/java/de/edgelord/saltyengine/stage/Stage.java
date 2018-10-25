@@ -28,9 +28,11 @@ package de.edgelord.saltyengine.stage;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -46,7 +48,7 @@ public class Stage extends Canvas {
     private MouseListener nativeMouseListener = null;
     private MouseMotionListener nativeMouseMotionListener = null;
     private MouseWheelListener nativeMouseWheelListener = null;
-    private DisplayMouseHandler mouseHandler = null;
+    private MouseInputHandler mouseHandler = null;
     private boolean doubleBufferCreated = false;
 
     private float lastFps = 0f;
@@ -109,7 +111,11 @@ public class Stage extends Canvas {
             @Override
             public void mouseEntered(final MouseEvent e) {
                 if (mouseHandler != null) {
-                    mouseHandler.mouseEntered(e);
+                    mouseHandler.mouseEnteredScreen(e);
+                }
+
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseEnteredScreen(e);
                 }
 
                 Game.setPaused(false);
@@ -118,7 +124,11 @@ public class Stage extends Canvas {
             @Override
             public void mouseExited(final MouseEvent e) {
                 if (mouseHandler != null) {
-                    mouseHandler.mouseExited(e);
+                    mouseHandler.mouseExitedScreen(e);
+                }
+
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseExitedScreen(e);
                 }
 
                 Game.setPaused(true);
@@ -147,6 +157,7 @@ public class Stage extends Canvas {
                 }
 
                 Game.cursorPosition = new Vector2f(e.getX(), e.getY());
+                Game.cursor = new Transform(Game.cursorPosition, Dimensions.one());
             }
         };
 
@@ -156,6 +167,10 @@ public class Stage extends Canvas {
             public void mouseWheelMoved(final MouseWheelEvent e) {
                 if (mouseHandler != null) {
                     mouseHandler.mouseWheelMoved(e);
+                }
+
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseWheelMoved(e);
                 }
             }
         };
@@ -230,7 +245,7 @@ public class Stage extends Canvas {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    public void setMouseHandler(final DisplayMouseHandler mouseHandler) {
+    public void setMouseHandler(final MouseInputHandler mouseHandler) {
         this.mouseHandler = mouseHandler;
     }
 

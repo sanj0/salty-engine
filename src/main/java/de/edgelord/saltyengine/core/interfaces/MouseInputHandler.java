@@ -39,4 +39,10 @@ public interface MouseInputHandler {
     void mouseReleased(MouseEvent e);
 
     void mouseClicked(MouseEvent e);
+
+    void mouseExitedScreen(MouseEvent e);
+
+    void mouseEnteredScreen(MouseEvent e);
+
+    void mouseWheelMoved(MouseEvent e);
 }

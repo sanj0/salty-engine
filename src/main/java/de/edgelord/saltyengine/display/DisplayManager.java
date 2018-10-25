@@ -29,9 +29,9 @@ package de.edgelord.saltyengine.display;
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
-import de.edgelord.saltyengine.input.DisplayKeyHandler;
+import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
+import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
-import de.edgelord.saltyengine.input.DisplayMouseHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -46,8 +46,8 @@ public class DisplayManager extends Host {
     private final Stage stage;
     private DisplayListener displayListener;
     private KeyListener nativeKeyListener;
-    private DisplayKeyHandler displayKeyHandler = null;
-    private DisplayMouseHandler displayMouseHandler = null;
+    private KeyboardInputHandler displayKeyHandler = null;
+    private MouseInputHandler displayMouseHandler = null;
 
     // The char of the current pressed key. Please note that this only gets on key at a time as an lastInput.
     private char currentKey;
@@ -200,11 +200,11 @@ public class DisplayManager extends Host {
         currentKey = '*';
     }
 
-    public void setDisplayKeyHandler(final DisplayKeyHandler displayKeyHandler) {
+    public void setDisplayKeyHandler(final KeyboardInputHandler displayKeyHandler) {
         this.displayKeyHandler = displayKeyHandler;
     }
 
-    public void setDisplayMouseHandler(final DisplayMouseHandler displayMouseHandler) {
+    public void setDisplayMouseHandler(final MouseInputHandler displayMouseHandler) {
         this.displayMouseHandler = displayMouseHandler;
 
         stage.setMouseHandler(displayMouseHandler);

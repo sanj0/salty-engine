@@ -26,7 +26,7 @@
 
 package de.edgelord.saltyengine.display;
 
-import de.edgelord.saltyengine.input.DisplayMouseHandler;
+import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class Display extends JFrame {
 
     private String windowTitle;
     private boolean closeRequested = false;
-    private DisplayMouseHandler displayMouseHandler = null;
+    private MouseInputHandler displayMouseHandler = null;
 
     public Display(int width, int height, String windowTitle) {
 
@@ -59,11 +59,11 @@ public class Display extends JFrame {
         this.closeRequested = closeRequested;
     }
 
-    public DisplayMouseHandler getDisplayMouseHandler() {
+    public MouseInputHandler getDisplayMouseHandler() {
         return displayMouseHandler;
     }
 
-    public void setDisplayMouseHandler(DisplayMouseHandler displayMouseHandler) {
+    public void setDisplayMouseHandler(MouseInputHandler displayMouseHandler) {
         this.displayMouseHandler = displayMouseHandler;
     }
 }

@@ -27,11 +27,11 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.input.DisplayKeyHandler;
+import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 
 import java.awt.event.KeyEvent;
 
-public class DummyDisplayKeyHandler implements DisplayKeyHandler {
+public class DummyDisplayKeyHandler implements KeyboardInputHandler {
 
     public DummyDisplayKeyHandler() {
     }

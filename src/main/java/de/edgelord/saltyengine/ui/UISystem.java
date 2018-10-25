@@ -48,6 +48,20 @@ public class UISystem {
 
     public void onFixedTick() {
         for (UIElement element : elements) {
+
+            if (element.getTransform().contains(Game.cursor)) {
+
+                if (!element.mouseHovered) {
+                    element.mouseEntered(Game.cursor);
+                }
+
+                element.mouseHover(Game.cursor);
+                element.mouseHovered = true;
+            } else if (element.mouseHovered) {
+                element.mouseHovered = false;
+                element.mouseExited(Game.cursor);
+            }
+
             element.onFixedTick();
             element.doComponentOnFixedTick();
         }
@@ -101,6 +115,27 @@ public class UISystem {
 
         for (UIElement element : elements) {
             element.mouseReleased(e);
+        }
+    }
+
+    public void mouseExitedScreen(MouseEvent e) {
+
+        for (UIElement element : elements) {
+            element.mouseExitedScreen(e);
+        }
+    }
+
+    public void mouseEnteredScreen(MouseEvent e) {
+
+        for (UIElement element : elements) {
+            element.mouseEnteredScreen(e);
+        }
+    }
+
+    public void mouseWheelMoved(MouseEvent e) {
+
+        for (UIElement element : elements) {
+            element.mouseWheelMoved(e);
         }
     }
 

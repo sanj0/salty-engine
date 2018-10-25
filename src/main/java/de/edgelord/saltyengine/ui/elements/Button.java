@@ -100,16 +100,6 @@ public abstract class Button extends UIElement {
     public abstract void onClick(MouseEvent e);
 
     @Override
-    public void onFixedTick() {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseMoved(MouseEvent e) {
 
         if (touchesButton(e)) {
@@ -139,21 +129,8 @@ public abstract class Button extends UIElement {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public void mouseHover(Transform cursor) {
+        System.out.println("Hello!");
     }
 
     public String getText() {
