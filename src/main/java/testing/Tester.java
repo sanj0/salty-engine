@@ -75,8 +75,6 @@ public class Tester extends Game {
         fadeIn.fadeInit();
         Game.getDefaultGFXController().addGFX(fadeIn);
         Game.getDefaultGFXController().startAll();
-
-        Game.camera.move(Directions.Direction.LEFT, 1f);
     }
 
     public static AudioSystem getAudioSystem() {
