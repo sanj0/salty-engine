@@ -118,6 +118,13 @@ public class UISystem {
         }
     }
 
+    public void mouseDragged(MouseEvent e) {
+
+        for (UIElement element : elements) {
+            element.mouseDragged(e);
+        }
+    }
+
     public void mouseExitedScreen(MouseEvent e) {
 
         for (UIElement element : elements) {

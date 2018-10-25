@@ -128,11 +128,6 @@ public abstract class Button extends UIElement {
         }
     }
 
-    @Override
-    public void mouseHover(Transform cursor) {
-        System.out.println("Hello!");
-    }
-
     public String getText() {
         return text;
     }

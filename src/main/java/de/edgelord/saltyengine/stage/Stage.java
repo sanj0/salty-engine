@@ -143,6 +143,10 @@ public class Stage extends Canvas {
                     mouseHandler.mouseDragged(e);
                 }
 
+                if (SceneManager.getCurrentScene().getUI() != null) {
+                    SceneManager.getCurrentScene().getUI().mouseDragged(e);
+                }
+
                 Game.mouseDrags = true;
             }
 
