@@ -105,6 +105,30 @@ public class Transform {
         return random(bound, bound, bound, bound);
     }
 
+    public Transform addToPosition(float xDelta, float yDelta) {
+        Transform newTransform = this;
+
+        newTransform.position.add(xDelta, yDelta);
+
+        return newTransform;
+    }
+
+    public Transform addToPosition(Vector2f delta) {
+        return addToPosition(delta.getX(), delta.getY());
+    }
+
+    public Transform subtractFromPosition(float xDelta, float yDelta) {
+        Transform newTransform = this;
+
+        newTransform.position.subtract(xDelta, yDelta);
+
+        return newTransform;
+    }
+
+    public Transform subtractFromPosition(Vector2f delta) {
+        return subtractFromPosition(delta.getX(), delta.getY());
+    }
+
     public Vector2f getMiddle() {
         return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }
@@ -203,5 +227,14 @@ public class Transform {
 
     public void setRotationCentreToMiddle() {
         rotation.setCentre(new Vector2f(getWidth() / 2f, getHeight() / 2f));
+    }
+
+    @Override
+    public String toString() {
+        return "Transform{" +
+                "position=" + position +
+                ", dimensions=" + dimensions +
+                ", rotation=" + rotation +
+                '}';
     }
 }

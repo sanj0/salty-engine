@@ -32,6 +32,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -74,6 +75,8 @@ public class Tester extends Game {
         fadeIn.fadeInit();
         Game.getDefaultGFXController().addGFX(fadeIn);
         Game.getDefaultGFXController().startAll();
+
+        Game.camera.move(Directions.Direction.LEFT, 1f);
     }
 
     public static AudioSystem getAudioSystem() {

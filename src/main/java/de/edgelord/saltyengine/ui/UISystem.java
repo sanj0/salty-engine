@@ -49,16 +49,16 @@ public class UISystem {
     public void onFixedTick() {
         for (UIElement element : elements) {
 
-            if (element.getTransform().contains(Game.cursor)) {
+            if (element.getTransform().subtractFromPosition(Game.camera.getPosition()).contains(Game.cursor)) {
 
-                if (!element.mouseHovered) {
+                if (!element.mouseHoversOver()) {
                     element.mouseEntered(Game.cursor);
                 }
 
                 element.mouseHover(Game.cursor);
-                element.mouseHovered = true;
-            } else if (element.mouseHovered) {
-                element.mouseHovered = false;
+                element.setMouseHoversOver(true);
+            } else if (element.mouseHoversOver()) {
+                element.setMouseHoversOver(false);
                 element.mouseExited(Game.cursor);
             }
 

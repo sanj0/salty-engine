@@ -33,7 +33,6 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public abstract class Button extends UIElement {
@@ -93,16 +92,12 @@ public abstract class Button extends UIElement {
         saltyGraphics.drawRoundRect(getX(), getY(), getWidth(), getHeight(), arc);
     }
 
-    public boolean touchesButton(MouseEvent e) {
-        return (e.getX() > getCoordinates().getX() && e.getX() < getCoordinates().getX() + getWidth()) && (e.getY() > getCoordinates().getY() && e.getY() < getCoordinates().getY() + getHeight());
-    }
-
     public abstract void onClick(MouseEvent e);
 
     @Override
     public void mouseMoved(MouseEvent e) {
 
-        if (touchesButton(e)) {
+        if (mouseHoversOver()) {
 
             currentBackgroundColor = hoverColor;
         } else {
@@ -113,7 +108,7 @@ public abstract class Button extends UIElement {
     @Override
     public void mousePressed(MouseEvent e) {
 
-        if (touchesButton(e)) {
+        if (mouseHoversOver()) {
             currentBackgroundColor = clickColor;
         }
     }
@@ -123,7 +118,7 @@ public abstract class Button extends UIElement {
 
         currentBackgroundColor = backgroundColor;
 
-        if (touchesButton(e)) {
+        if (mouseHoversOver()) {
             onClick(e);
         }
     }

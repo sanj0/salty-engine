@@ -88,4 +88,12 @@ public class Coordinates {
         setX(coordinates.getX());
         setY(coordinates.getY());
     }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

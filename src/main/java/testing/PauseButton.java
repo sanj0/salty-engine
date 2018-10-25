@@ -27,11 +27,16 @@
 package testing;
 
 import de.edgelord.saltyengine.components.gfx.WobblingEffect;
+import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.ui.elements.Button;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class PauseButton extends Button {
 

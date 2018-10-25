@@ -83,4 +83,12 @@ public class Dimensions  {
     public static Dimensions one() {
         return new Dimensions(1, 1);
     }
+
+    @Override
+    public String toString() {
+        return "Dimensions{" +
+                "width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }

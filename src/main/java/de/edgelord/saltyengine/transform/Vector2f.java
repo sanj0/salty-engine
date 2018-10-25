@@ -54,6 +54,24 @@ public class Vector2f {
         this.y = y;
     }
 
+    public void add(float xDelta, float yDelta) {
+        x = x + xDelta;
+        y = y + yDelta;
+    }
+
+    public void add(Vector2f delta) {
+        add(delta.getX(), delta.getY());
+    }
+
+    public void subtract(float xDelta, float yDelta) {
+        x = x - xDelta;
+        y = y - yDelta;
+    }
+
+    public void subtract(Vector2f delta) {
+        subtract(delta.getX(), delta.getY());
+    }
+
     public Coordinates convertToCoordinates() {
 
         return new Coordinates((int) getX(), (int) getY());
@@ -94,5 +112,13 @@ public class Vector2f {
 
     public static Vector2f one() {
         return new Vector2f(1, 1);
+    }
+
+    @Override
+    public String toString() {
+        return "Vector2f{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

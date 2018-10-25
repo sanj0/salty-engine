@@ -51,7 +51,7 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     private Transform transform;
 
-    protected boolean mouseHovered = false;
+    private boolean mouseHoversOver = false;
 
     private List<Component> components = new CopyOnWriteArrayList<>();
 
@@ -176,5 +176,13 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
     @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
+    }
+
+    public boolean mouseHoversOver() {
+        return mouseHoversOver;
+    }
+
+    protected void setMouseHoversOver(boolean mouseHoversOver) {
+        this.mouseHoversOver = mouseHoversOver;
     }
 }

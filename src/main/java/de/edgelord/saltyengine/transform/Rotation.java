@@ -105,4 +105,12 @@ public class Rotation {
 
         return degrees;
     }
+
+    @Override
+    public String toString() {
+        return "Rotation{" +
+                "centre=" + centre +
+                ", rotationDegrees=" + rotationDegrees +
+                '}';
+    }
 }
