@@ -106,7 +106,7 @@ public class Transform {
     }
 
     public Transform addToPosition(float xDelta, float yDelta) {
-        Transform newTransform = this;
+        Transform newTransform = new Transform((Vector2f) position.clone(), (Dimensions) dimensions.clone());
 
         newTransform.position.add(xDelta, yDelta);
 
@@ -118,9 +118,9 @@ public class Transform {
     }
 
     public Transform subtractFromPosition(float xDelta, float yDelta) {
-        Transform newTransform = this;
+        Transform newTransform = new Transform((Vector2f) position.clone(), (Dimensions) getDimensions().clone());
 
-        newTransform.position.subtract(xDelta, yDelta);
+        newTransform.getPosition().subtract(xDelta, yDelta);
 
         return newTransform;
     }

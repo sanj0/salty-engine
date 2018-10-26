@@ -32,7 +32,7 @@ package de.edgelord.saltyengine.core.interfaces;
  * <code>zero</code>, <code>max</code>, <code>min</code> and <code>random</code>
  * overload.
  */
-public interface InstantInstance< T > {
+public interface InstantInstance<T> {
 
     /**
      * Returns a new instance of {@link T} with a zero overload, so all necessary parameters
@@ -40,7 +40,7 @@ public interface InstantInstance< T > {
      *
      * @return a new instance of {@link T} with a zero-overload
      */
-     T zero();
+    T zero();
 
     /**
      * Returns a new instance of {@link T} with a max overload, so all necessary parameters

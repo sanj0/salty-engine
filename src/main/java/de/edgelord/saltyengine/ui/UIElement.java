@@ -72,49 +72,64 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
     }
 
     @Override
-    public void onFixedTick() {}
+    public void onFixedTick() {
+    }
 
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+    }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) {
+    }
 
     @Override
-    public void keyPressed(KeyEvent e) {}
+    public void keyPressed(KeyEvent e) {
+    }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {}
+    public void mouseExitedScreen(MouseEvent e) {
+    }
 
-    public void mouseExited(Transform cursor) {}
-
-    @Override
-    public void mouseEnteredScreen(MouseEvent e) {}
-
-    public void mouseEntered(Transform cursor) {}
+    public void mouseExited(Transform cursor) {
+    }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {}
+    public void mouseEnteredScreen(MouseEvent e) {
+    }
 
-    public void mouseHover(Transform cursor) {}
+    public void mouseEntered(Transform cursor) {
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseEvent e) {
+    }
+
+    public void mouseHover(Transform cursor) {
+    }
 
     @Override
     public void addComponent(Component component) {

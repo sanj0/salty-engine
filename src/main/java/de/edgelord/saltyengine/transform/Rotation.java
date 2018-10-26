@@ -99,7 +99,7 @@ public class Rotation {
     }
 
     public static float getNormalizedDegrees(float degrees) {
-        for (;degrees <= 360;) {
+        for (; degrees <= 360; ) {
             degrees -= 360;
         }
 

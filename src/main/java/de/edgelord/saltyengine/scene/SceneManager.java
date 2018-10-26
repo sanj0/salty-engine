@@ -97,31 +97,28 @@ public class SceneManager {
      * the arguments <code>13L, 2, new DummyGameObject(new Vector2f(1, 1))</code>.
      * It is very important to write fully classified class names in the constructor, so,
      * <code>Integer</code> instead of <code>int</code> and <code>Long</code> instead of <code>long</code>.
-     *
+     * <p>
      * NOTE: the "throws" descriptions of this method are quoted from {@link java.lang.reflect.Constructor#newInstance(Object...)}
-     *
      *
      * @param name the name of the class to instantiate and set to {@link #currentScene}
      * @param args the args for the desired constructor for the Scene
-     *
-     *
-     * @throws IllegalAccessException    if the constructor
-     *              is enforcing Java language access control and the underlying
-     *              constructor is inaccessible.
-     * @throws IllegalArgumentException  if the number of actual
-     *              and formal parameters differ; if an unwrapping
-     *              conversion for primitive arguments fails; or if,
-     *              after possible unwrapping, a parameter value
-     *              cannot be converted to the corresponding formal
-     *              parameter type by a method invocation conversion; if
-     *              this constructor pertains to an enum type.
-     * @throws InstantiationException    if the class that declares the
-     *              underlying constructor represents an abstract class.
-     * @throws InvocationTargetException if the underlying constructor
-     *              throws an exception.
+     * @throws IllegalAccessException      if the constructor
+     *                                     is enforcing Java language access control and the underlying
+     *                                     constructor is inaccessible.
+     * @throws IllegalArgumentException    if the number of actual
+     *                                     and formal parameters differ; if an unwrapping
+     *                                     conversion for primitive arguments fails; or if,
+     *                                     after possible unwrapping, a parameter value
+     *                                     cannot be converted to the corresponding formal
+     *                                     parameter type by a method invocation conversion; if
+     *                                     this constructor pertains to an enum type.
+     * @throws InstantiationException      if the class that declares the
+     *                                     underlying constructor represents an abstract class.
+     * @throws InvocationTargetException   if the underlying constructor
+     *                                     throws an exception.
      * @throws ExceptionInInitializerError if the initialization provoked
-     *              by this method fails.
-     * @throws NoSuchMethodException if there is no constructor found matching the given args
+     *                                     by this method fails.
+     * @throws NoSuchMethodException       if there is no constructor found matching the given args
      */
     public static void setCurrentScene(String name, Object... args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
@@ -138,28 +135,27 @@ public class SceneManager {
     /**
      * Reloads the current {@link Scene} by calling {@link #setCurrentScene(String, Object...)}
      * with the name of the current active Scene.
-     *
+     * <p>
      * NOTE: the "throws" descriptions of this method are quoted from {@link java.lang.reflect.Constructor#newInstance(Object...)}
      *
      * @param args the args for the desired constructor to instantiate the Scene
-     *
-     * @throws IllegalAccessException    if the constructor
-     *              is enforcing Java language access control and the underlying
-     *              constructor is inaccessible.
-     * @throws IllegalArgumentException  if the number of actual
-     *              and formal parameters differ; if an unwrapping
-     *              conversion for primitive arguments fails; or if,
-     *              after possible unwrapping, a parameter value
-     *              cannot be converted to the corresponding formal
-     *              parameter type by a method invocation conversion; if
-     *              this constructor pertains to an enum type.
-     * @throws InstantiationException    if the class that declares the
-     *              underlying constructor represents an abstract class.
-     * @throws InvocationTargetException if the underlying constructor
-     *              throws an exception.
+     * @throws IllegalAccessException      if the constructor
+     *                                     is enforcing Java language access control and the underlying
+     *                                     constructor is inaccessible.
+     * @throws IllegalArgumentException    if the number of actual
+     *                                     and formal parameters differ; if an unwrapping
+     *                                     conversion for primitive arguments fails; or if,
+     *                                     after possible unwrapping, a parameter value
+     *                                     cannot be converted to the corresponding formal
+     *                                     parameter type by a method invocation conversion; if
+     *                                     this constructor pertains to an enum type.
+     * @throws InstantiationException      if the class that declares the
+     *                                     underlying constructor represents an abstract class.
+     * @throws InvocationTargetException   if the underlying constructor
+     *                                     throws an exception.
      * @throws ExceptionInInitializerError if the initialization provoked
-     *              by this method fails.
-     * @throws NoSuchMethodException if there is no constructor found matching the given args
+     *                                     by this method fails.
+     * @throws NoSuchMethodException       if there is no constructor found matching the given args
      */
     public static void reloadCurrentScene(Object... args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (currentSceneName == null) {

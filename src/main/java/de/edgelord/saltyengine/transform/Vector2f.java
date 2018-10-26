@@ -121,4 +121,14 @@ public class Vector2f {
                 ", y=" + y +
                 '}';
     }
+
+    /**
+     * Returns a new <code>Vector2f</code> with the same {@link #x} and {@link #y} as this one.
+     *
+     * @return a "copy" of this <code>Vector2f</code>
+     */
+    @Override
+    protected Object clone() {
+        return new Vector2f(x, y);
+    }
 }

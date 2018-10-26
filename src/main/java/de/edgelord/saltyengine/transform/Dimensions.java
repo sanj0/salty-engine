@@ -28,7 +28,7 @@ package de.edgelord.saltyengine.transform;
 
 import java.util.Random;
 
-public class Dimensions  {
+public class Dimensions {
 
     private float width, height;
 
@@ -90,5 +90,15 @@ public class Dimensions  {
                 "width=" + width +
                 ", height=" + height +
                 '}';
+    }
+
+    /**
+     * Returns a new <code>Dimensions</code> with the same {@link #width} and {@link #height} as this one.
+     *
+     * @return a "copy" of this <code>Dimensions</code>
+     */
+    @Override
+    protected Object clone() {
+        return new Dimensions(width, height);
     }
 }

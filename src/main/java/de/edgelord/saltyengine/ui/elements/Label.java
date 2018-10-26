@@ -29,9 +29,6 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-
 /**
  * This class is a non-abstract label-like implementation of the class {@link TextElement}
  * In general, these elements are text container with no writing feature
