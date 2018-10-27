@@ -76,7 +76,7 @@ public abstract class Component<T extends ComponentParent> implements Drawable, 
     }
 
     public void remove() {
-        getParent().removeComponent(getName());
+        getParent().removeComponent(this);
     }
 
     public T getParent() {
