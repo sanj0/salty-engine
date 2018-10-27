@@ -97,8 +97,6 @@ public class SceneFade extends GFXComponent {
 
         fadeFX.add(duration, 255);
         fadeFX.calculateAnimation();
-
-        startGFX();
     }
 
     private void drawFade(SaltyGraphics saltyGraphics) {
