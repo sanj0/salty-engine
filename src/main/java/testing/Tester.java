@@ -68,7 +68,7 @@ public class Tester extends Game {
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
 
-        SceneFade fadeIn = new SceneFade(Game.getDefaultGFXController(), "fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
+        SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 
         fadeIn.setDuration(3500);
         fadeIn.fadeInit();

@@ -44,7 +44,7 @@ import java.awt.*;
  * {@link de.edgelord.saltyengine.gameobject.GameObject}s.
  * When no longer needed, you should call {@link #endGFX()} to make sure that the DrawingRoutine is no longer in the scene.
  */
-public class SceneOverlay extends GFXComponent {
+public class SceneOverlay extends SceneGFXComponent {
 
     /**
      * The {@link Color} which will be rendered onto the screen
@@ -59,8 +59,8 @@ public class SceneOverlay extends GFXComponent {
 
     private DrawingRoutine drawColorOverlay;
 
-    public SceneOverlay(ComponentParent parent, String name, Color overlayColor, float alpha) {
-        super(parent, name);
+    public SceneOverlay(String name, Color overlayColor, float alpha) {
+        super(name);
 
         this.overlayColor = overlayColor;
         this.alpha = alpha;
@@ -80,7 +80,7 @@ public class SceneOverlay extends GFXComponent {
     }
 
     public SceneOverlay(ComponentParent parent, String name, Color overlayColor) {
-        this(parent, name, overlayColor, 0.5f);
+        this(name, overlayColor, 0.5f);
     }
 
     @Override

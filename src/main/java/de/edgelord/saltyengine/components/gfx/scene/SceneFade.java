@@ -26,7 +26,6 @@
 
 package de.edgelord.saltyengine.components.gfx.scene;
 
-import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
@@ -36,7 +35,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.*;
 
-public class SceneFade extends GFXComponent {
+public class SceneFade extends SceneGFXComponent {
 
     private Color targetColor;
     private Color currentColor;
@@ -49,8 +48,8 @@ public class SceneFade extends GFXComponent {
 
     public enum Mode {FADE_IN, FADE_OUT}
 
-    public SceneFade(ComponentParent parent, String name, Mode mode, Color targetColor) {
-        super(parent, name);
+    public SceneFade(String name, Mode mode, Color targetColor) {
+        super(name);
 
         this.mode = mode;
         this.targetColor = targetColor;
@@ -65,7 +64,7 @@ public class SceneFade extends GFXComponent {
     }
 
     public SceneFade(ComponentParent parent, String name, Mode mode) {
-        this(parent, name, mode, Color.BLACK);
+        this(name, mode, Color.BLACK);
 
         if (mode == Mode.FADE_IN) {
             this.targetColor = Color.WHITE;
@@ -111,7 +110,7 @@ public class SceneFade extends GFXComponent {
 
             float alphaDelta = fadeFX.nextDelta();
 
-            if (alphaDelta <= 0.00f) {
+            if (fadeFX.animationEnded()) {
                 onFadeFinish();
                 end();
                 return;

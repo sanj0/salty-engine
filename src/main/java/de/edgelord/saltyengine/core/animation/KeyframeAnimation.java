@@ -63,13 +63,13 @@ public class KeyframeAnimation {
      */
     public float nextDelta() {
 
-        if (currentTiming < end - 1) {
+        if (!animationEnded()) {
 
             currentTiming++;
             return animation.get(currentTiming);
         } else {
             // If there is a request out of the available timeline, there should be no delta returned so 0
-            return 0;
+            return 0f;
         }
     }
 
@@ -78,7 +78,7 @@ public class KeyframeAnimation {
         currentTiming = 0;
 
         // Sort the list by the timing of the keyframes
-        Collections.sort(keyframes, Comparator.comparingInt(Keyframe::getTiming));
+        keyframes.sort(Comparator.comparingInt(Keyframe::getTiming));
 
         end = keyframes.get(keyframes.size() - 1).getTiming();
 
@@ -99,6 +99,10 @@ public class KeyframeAnimation {
 
             index++;
         }
+    }
+
+    public boolean animationEnded() {
+        return !(currentTiming < end - 1);
     }
 
     public void add(Keyframe keyframe) {
