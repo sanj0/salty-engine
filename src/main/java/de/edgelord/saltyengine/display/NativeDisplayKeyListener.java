@@ -34,7 +34,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class NativeDisplayKeyListener implements KeyListener {
-    
+
     private KeyboardInputHandler keyboardHandler;
 
     private char currentKey = '*';

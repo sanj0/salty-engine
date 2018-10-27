@@ -32,13 +32,10 @@ import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.input.DisplayListener;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class DisplayManager extends Host {
 
