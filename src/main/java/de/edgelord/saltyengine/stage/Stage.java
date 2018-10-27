@@ -30,14 +30,9 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
-import java.awt.event.*;
 
 import static java.awt.RenderingHints.*;
 
@@ -45,10 +40,9 @@ public class Stage extends Canvas {
 
     private final Container container;
     private final Engine engine;
-    private MouseListener nativeMouseListener = null;
-    private MouseMotionListener nativeMouseMotionListener = null;
-    private MouseWheelListener nativeMouseWheelListener = null;
-    private MouseInputHandler mouseHandler = null;
+    private NativeStageMouseListener nativeMouseListener = null;
+    private NativeStageMouseMotionListener nativeMouseMotionListener = null;
+    private NativeStageMouseWheelListener nativeMouseWheelListener = null;
     private boolean doubleBufferCreated = false;
 
     private float lastFps = 0f;
@@ -71,113 +65,11 @@ public class Stage extends Canvas {
 
     protected void initNativeMouseListener() {
 
-        nativeMouseListener = new MouseAdapter() {
-            @Override
-            public void mouseClicked(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseClicked(e);
-                }
+        nativeMouseListener = new NativeStageMouseListener(null);
 
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseClicked(e);
-                }
-            }
+        nativeMouseMotionListener = new NativeStageMouseMotionListener(null);
 
-            @Override
-            public void mousePressed(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mousePressed(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mousePressed(e);
-                }
-            }
-
-            @Override
-            public void mouseReleased(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseReleased(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseReleased(e);
-                }
-
-                Game.mouseDrags = false;
-                Game.mousePresses = false;
-            }
-
-            @Override
-            public void mouseEntered(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseEnteredScreen(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseEnteredScreen(e);
-                }
-
-                Game.setPaused(false);
-            }
-
-            @Override
-            public void mouseExited(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseExitedScreen(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseExitedScreen(e);
-                }
-
-                Game.setPaused(true);
-            }
-        };
-
-        nativeMouseMotionListener = new MouseAdapter() {
-
-            @Override
-            public void mouseDragged(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseDragged(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseDragged(e);
-                }
-
-                Game.mouseDrags = true;
-            }
-
-            @Override
-            public void mouseMoved(final MouseEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseMoved(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseMoved(e);
-                }
-
-                Game.cursorPosition = new Vector2f(e.getX(), e.getY());
-                Game.cursor = new Transform(Game.cursorPosition, Dimensions.one());
-            }
-        };
-
-        nativeMouseWheelListener = new MouseAdapter() {
-
-            @Override
-            public void mouseWheelMoved(final MouseWheelEvent e) {
-                if (mouseHandler != null) {
-                    mouseHandler.mouseWheelMoved(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().mouseWheelMoved(e);
-                }
-            }
-        };
+        nativeMouseWheelListener = new NativeStageMouseWheelListener(null);
 
         addMouseListener(nativeMouseListener);
         addMouseMotionListener(nativeMouseMotionListener);
@@ -250,7 +142,9 @@ public class Stage extends Canvas {
     }
 
     public void setMouseHandler(final MouseInputHandler mouseHandler) {
-        this.mouseHandler = mouseHandler;
+        this.nativeMouseListener.setMouseHandler(mouseHandler);
+        this.nativeMouseMotionListener.setMouseHandler(mouseHandler);
+        this.nativeMouseWheelListener.setMouseHandler(mouseHandler);
     }
 
     public boolean isHighQuality() {

@@ -45,19 +45,7 @@ public class DisplayManager extends Host {
     private final Display display;
     private final Stage stage;
     private DisplayListener displayListener;
-    private KeyListener nativeKeyListener;
-    private KeyboardInputHandler displayKeyHandler = null;
-    private MouseInputHandler displayMouseHandler = null;
-
-    // The char of the current pressed key. Please note that this only gets on key at a time as an lastInput.
-    private char currentKey;
-
-    // The following four booleans are for standard lastInput (e.g. inputUp would be true if 'w' or the UP arrow is pressed)
-    // this supports multi-lastInput!
-    private boolean inputUp = false;
-    private boolean inputDown = false;
-    private boolean inputRight = false;
-    private boolean inputLeft = false;
+    private NativeDisplayKeyListener nativeKeyListener;
 
     public DisplayManager(final int width, final int height, final String gameName, final Engine engine) {
 
@@ -88,125 +76,21 @@ public class DisplayManager extends Host {
     @Override
     public void repaint() {
 
-        //System.out.println("saltyengine 0.3 Zeus > DisplayManager > \"The stage were repainted\"");
-
         stage.repaint();
     }
 
     public void createKeyListener() {
 
-        nativeKeyListener = new KeyListener() {
-
-            @Override
-            public void keyTyped(final KeyEvent e) {
-
-                if (displayKeyHandler != null) {
-                    displayKeyHandler.keyTyped(e);
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().keyTyped(e);
-                }
-
-                if (e.getKeyCode() == KeyEvent.VK_P) {
-                    if (Game.isPaused()) {
-                        Game.setPaused(false);
-                    } else {
-                        Game.setPaused(true);
-                    }
-                }
-            }
-
-            @Override
-            public void keyPressed(final KeyEvent e) {
-
-                if (displayKeyHandler != null) {
-                    displayKeyHandler.keyPressed(e);
-                }
-
-                currentKey = e.getKeyChar();
-
-                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-
-                    inputUp = true;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-                    inputDown = true;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-
-                    inputLeft = true;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-
-                    inputRight = true;
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().keyPressed(e);
-                }
-
-                Game.keyboardInput.handleKeyPressed(e);
-                Game.lastInputKey = currentKey;
-                Game.inputUp = inputUp;
-                Game.inputDown = inputDown;
-                Game.inputRight = inputRight;
-                Game.inputLeft = inputLeft;
-                Game.lastInput = e;
-            }
-
-            @Override
-            public void keyReleased(final KeyEvent e) {
-
-                if (displayKeyHandler != null) {
-                    displayKeyHandler.keyReleased(e);
-                }
-
-                currentKey = '*';
-
-                if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-
-                    inputUp = false;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-                    inputDown = false;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-
-                    inputLeft = false;
-                }
-                if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-
-                    inputRight = false;
-                }
-
-                if (SceneManager.getCurrentScene().getUI() != null) {
-                    SceneManager.getCurrentScene().getUI().keyReleased(e);
-                }
-
-                Game.keyboardInput.handleKeyReleased(e);
-                Game.lastInputKey = currentKey;
-                Game.inputUp = inputUp;
-                Game.inputDown = inputDown;
-                Game.inputRight = inputRight;
-                Game.inputLeft = inputLeft;
-                Game.lastInput = null;
-            }
-        };
+        nativeKeyListener = new NativeDisplayKeyListener(null);
 
         display.addKeyListener(nativeKeyListener);
-        currentKey = '*';
     }
 
     public void setDisplayKeyHandler(final KeyboardInputHandler displayKeyHandler) {
-        this.displayKeyHandler = displayKeyHandler;
+        this.nativeKeyListener.setKeyboardHandler(displayKeyHandler);
     }
 
     public void setDisplayMouseHandler(final MouseInputHandler displayMouseHandler) {
-        this.displayMouseHandler = displayMouseHandler;
-
         stage.setMouseHandler(displayMouseHandler);
     }
 
@@ -219,7 +103,7 @@ public class DisplayManager extends Host {
     }
 
     public char getCurrentKey() {
-        return currentKey;
+        return nativeKeyListener.getCurrentKey();
     }
 
     @Override
@@ -228,19 +112,19 @@ public class DisplayManager extends Host {
     }
 
     public boolean isInputUp() {
-        return inputUp;
+        return nativeKeyListener.isInputUp();
     }
 
     public boolean isInputDown() {
-        return inputDown;
+        return nativeKeyListener.isInputDown();
     }
 
     public boolean isInputRight() {
-        return inputRight;
+        return nativeKeyListener.isInputRight();
     }
 
     public boolean isInputLeft() {
-        return inputLeft;
+        return nativeKeyListener.isInputLeft();
     }
 
     public boolean isCloseRequested() {
