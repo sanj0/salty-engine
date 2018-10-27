@@ -116,6 +116,7 @@ public class SceneFade extends GFXComponent {
             if (alphaDelta <= 0.00f) {
                 onFadeFinish();
                 end();
+                return;
             }
 
             switch (mode) {
