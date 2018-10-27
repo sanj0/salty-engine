@@ -28,7 +28,7 @@ package de.edgelord.saltyengine.core.animation;
 
 import java.util.*;
 
-public class KeyframeAnimation {
+public class LinearKeyframeAnimation {
 
     private List<Keyframe> keyframes;
     // This List only contains relative Values!
@@ -38,13 +38,13 @@ public class KeyframeAnimation {
 
     private int currentTiming = -1;
 
-    public KeyframeAnimation(List<Keyframe> keyframes) {
+    public LinearKeyframeAnimation(List<Keyframe> keyframes) {
         this.keyframes = keyframes;
 
         add(0, 0);
     }
 
-    public KeyframeAnimation() {
+    public LinearKeyframeAnimation() {
         this(new ArrayList<>());
     }
 

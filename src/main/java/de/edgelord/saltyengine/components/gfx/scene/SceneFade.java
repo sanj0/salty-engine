@@ -27,7 +27,7 @@
 package de.edgelord.saltyengine.components.gfx.scene;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
@@ -40,7 +40,7 @@ public class SceneFade extends SceneGFXComponent {
     private Color targetColor;
     private Color currentColor;
     private Mode mode;
-    private KeyframeAnimation fadeFX;
+    private LinearKeyframeAnimation fadeFX;
     private int duration = 1500;
     private float currentAlpha;
 
@@ -92,7 +92,7 @@ public class SceneFade extends SceneGFXComponent {
             currentAlpha = 255;
         }
 
-        fadeFX = new KeyframeAnimation();
+        fadeFX = new LinearKeyframeAnimation();
 
         fadeFX.add(duration, 255);
         fadeFX.calculateAnimation();
