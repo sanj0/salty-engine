@@ -68,6 +68,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private final Accelerator defaultAccelerator;
     private final ColliderComponent collider;
 
+    private Directions lockedDirections = new Directions();
+
     /**
      * If this is set to true, this GameObject will not have a collision detection. Use this for
      * stationary objects like obstacles, houses and generally all kind of GameObjects that
@@ -238,6 +240,11 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * @param direction    the direction in which to accelerate the GameObject
      */
     public void accelerate(float acceleration, Directions.Direction direction) {
+
+        if (lockedDirections.hasDirection(direction)) {
+            return;
+        }
+
         switch (direction) {
 
             case RIGHT:
@@ -266,6 +273,11 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * @param direction the directon of the default force to be manipulated.
      */
     public void setVelocity(float velocity, Directions.Direction direction) {
+
+        if (lockedDirections.hasDirection(direction)) {
+            return;
+        }
+
         switch (direction) {
 
             case RIGHT:
@@ -284,6 +296,45 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                 System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
                 break;
         }
+    }
+
+    @Override
+    public void move(float delta, Directions.Direction direction) {
+        if (lockedDirections.hasDirection(direction)) {
+            return;
+        }
+
+        super.move(delta, direction);
+    }
+
+    @Override
+    public void moveY(float delta) {
+
+        if (delta > 0f) {
+            if (lockedDirections.hasDirection(Directions.Direction.DOWN)) {
+                return;
+            }
+        } else {
+            if (lockedDirections.hasDirection(Directions.Direction.UP)) {
+                return;
+            }
+        }
+        super.moveY(delta);
+    }
+
+    @Override
+    public void moveX(float delta) {
+
+        if (delta > 0f) {
+            if (lockedDirections.hasDirection(Directions.Direction.RIGHT)) {
+                return;
+            }
+        } else {
+            if (lockedDirections.hasDirection(Directions.Direction.LEFT)) {
+                return;
+            }
+        }
+        super.moveX(delta);
     }
 
     public Coordinates getCoordinates() {
@@ -370,5 +421,13 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;
+    }
+
+    public Directions getLockedDirections() {
+        return lockedDirections;
+    }
+
+    public void setLockedDirections(Directions lockedDirections) {
+        this.lockedDirections = lockedDirections;
     }
 }

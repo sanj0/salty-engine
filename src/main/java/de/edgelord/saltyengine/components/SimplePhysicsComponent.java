@@ -142,6 +142,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
 
         Directions directions;
+        Directions collisionDirections = new Directions();
         boolean upCollision = false;
         boolean downCollision = false;
         boolean leftCollision = false;
@@ -152,20 +153,26 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
             if (directions.hasDirection(Directions.Direction.UP)) {
                 upCollision = true;
+                collisionDirections.setDirection(Directions.Direction.UP);
             }
 
             if (directions.hasDirection(Directions.Direction.DOWN)) {
                 downCollision = true;
+                collisionDirections.setDirection(Directions.Direction.DOWN);
             }
 
             if (directions.hasDirection(Directions.Direction.LEFT)) {
                 leftCollision = true;
+                collisionDirections.setDirection(Directions.Direction.LEFT);
             }
 
             if (directions.hasDirection(Directions.Direction.RIGHT)) {
                 rightCollision = true;
+                collisionDirections.setDirection(Directions.Direction.RIGHT);
             }
         }
+
+        getParent().setLockedDirections(collisionDirections);
 
         for (final Force force : forces) {
 
