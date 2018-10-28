@@ -1,7 +1,6 @@
 # Salty Engine
 
-Salty Engine is an esay to use Java game library with the goal
-to make game developing possible for everybody.
+Salty Engine is a Java library for making a whole 2D Game with only one single tool. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.  
 
 ### It isn't just a library for rendering
 It also includes GameObject management, camera moving,
