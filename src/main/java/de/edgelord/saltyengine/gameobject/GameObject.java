@@ -28,9 +28,9 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.components.Accelerator;
-import de.edgelord.saltyengine.components.collider.ColliderComponent;
 import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.components.collider.ColliderComponent;
 import de.edgelord.saltyengine.components.collider.HitboxCollider;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;

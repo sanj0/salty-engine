@@ -54,6 +54,11 @@ public class Bird extends GameObject {
 
         addComponent(new AnimationRender(this, "de.edgelord.saltyengine.testing.bird.animationRender", animation, 90));
 
+        getHitboxAsSimpleHitbox().setOffsetX(25);
+        getHitboxAsSimpleHitbox().setOffsetY(12);
+        getHitboxAsSimpleHitbox().setWidth(85);
+        getHitboxAsSimpleHitbox().setHeight(75);
+
         // Improves performance a lot!
         // setStationary(true);
     }

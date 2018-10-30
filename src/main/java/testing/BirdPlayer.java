@@ -27,7 +27,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.CameraFollow;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
@@ -65,6 +64,11 @@ public class BirdPlayer extends GameObject {
 
         animationRender = new AnimationRender(this, "animationRender", animation, 75);
 
+        getHitboxAsSimpleHitbox().setOffsetX(25);
+        getHitboxAsSimpleHitbox().setOffsetY(12);
+        getHitboxAsSimpleHitbox().setWidth(85);
+        getHitboxAsSimpleHitbox().setHeight(75);
+
         addComponent(animationRender);
         addComponent(soundTiming);
     }
@@ -93,7 +97,7 @@ public class BirdPlayer extends GameObject {
 
 
         addComponent(keyFrameAnimationX);
-        addComponent(keyFrameAnimationRotation);
+        //addComponent(keyFrameAnimationRotation);
         addComponent(keyFrameAnimationWidth);
         addComponent(keyFrameAnimationHeight);
         keyFrameAnimationX.start();

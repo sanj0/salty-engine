@@ -34,7 +34,6 @@ import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.utils.Directions;
 
 /**
  * This implementation of {@link Component} makes the {@link de.edgelord.saltyengine.camera.Camera}

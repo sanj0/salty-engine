@@ -118,7 +118,6 @@ public class Transform {
      *
      * @param other      the {@link Transform} whose relation to the other to return
      * @param directions the Directions to append the relation to
-     *
      * @see #getRelation(Transform)
      */
     public void appendRelation(final Transform other, Directions directions) {
