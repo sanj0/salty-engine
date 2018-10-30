@@ -33,12 +33,10 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
-import java.awt.*;
-
 public abstract class TextBox extends TextElement {
 
     private float cursor = 1;
-    private float speed = 0.035f;
+    private float speed = 0.020f;
     private Vector2f textOffset;
 
     public TextBox(String text, Vector2f position, float width, float height, Vector2f textOffset) {

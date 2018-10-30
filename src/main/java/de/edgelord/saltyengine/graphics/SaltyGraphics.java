@@ -937,4 +937,18 @@ public class SaltyGraphics {
     public Graphics2D getGraphics2D() {
         return graphics2D;
     }
+
+    /**
+     * Return the length of the given text when rendered.
+     *
+     * @param text the string from which to compute the length when rendered
+     * @return teh length of the given text when rendered
+     */
+    public float getTextLength(String text) {
+        return getFontMetrics().stringWidth(text);
+    }
+
+    public float getLineDistance() {
+        return getFontMetrics().getLineMetrics("Hello World!", graphics2D).getLeading();
+    }
 }

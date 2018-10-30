@@ -33,8 +33,6 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
-import java.awt.*;
-
 public abstract class TextElement extends UIElement {
 
     private String text;
