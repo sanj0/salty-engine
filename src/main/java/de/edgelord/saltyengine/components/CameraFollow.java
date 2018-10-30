@@ -51,7 +51,7 @@ import de.edgelord.saltyengine.utils.Directions;
 public class CameraFollow extends Component<GameObject> {
 
     private Transform whiteZone;
-    private float speed = 1f;
+    private float speed = 0.75f;
 
     public CameraFollow(GameObject parent, String name) {
         super(parent, name, Components.CAMERA_COMPONENT);
@@ -75,8 +75,8 @@ public class CameraFollow extends Component<GameObject> {
                 getParent().getWidth(), getParent().getHeight());
 
         if (!whiteZone.intersects(getParent().getTransform())) {
-            Game.camera.move(Directions.getFreeRelationX(whiteZone, renderedPlayerTransform), speed);
-            Game.camera.move(Directions.getFreeRelationY(whiteZone, renderedPlayerTransform), speed);
+            Game.camera.move(whiteZone.getFreeRelationX(renderedPlayerTransform), speed);
+            Game.camera.move(whiteZone.getFreeRelationY(renderedPlayerTransform), speed);
         }
     }
 

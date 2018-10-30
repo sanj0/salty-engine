@@ -177,14 +177,10 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                     if (!stationary) {
                         if (requestCollider().requestCollision(other)) {
 
-                            Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
-
-                            // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
+                            getTransform().appendRelation(other.getTransform(), collisionDirections);
                             final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
 
-
                             collisions.add(eSelf);
-                            // other.ON_COLLISION(e);
                             onCollision(eSelf);
 
                             components.forEach(component -> component.onCollision(eSelf));

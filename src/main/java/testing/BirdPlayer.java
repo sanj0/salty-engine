@@ -27,6 +27,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.CameraFollow;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
@@ -66,6 +67,7 @@ public class BirdPlayer extends GameObject {
 
         addComponent(animationRender);
         addComponent(soundTiming);
+        addComponent(new CameraFollow(this, "LOL"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
