@@ -25,26 +25,25 @@
  *
  */
 
-package de.edgelord.saltyengine.components;
+package de.edgelord.saltyengine.components.collider;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.utils.Directions;
 
 /**
  * Note: It is obviously planned to make more complicated Collision detection with complex Shapes possible.
  */
-public class ColliderComponent extends Component<GameObject> {
+public abstract class ColliderComponent extends Component<GameObject> {
 
-    private Type type;
+    private String type;
 
-    public enum Type {
-        HITBOX
-    }
+    public static final String TYPE_HITBOX_COLLIDER = "de.edgelord.saltyengine.collider.hitboxCollider";
 
-    public ColliderComponent(GameObject parent, String name, Type type) {
+    public ColliderComponent(GameObject parent, String name, String type) {
         super(parent, name, Components.COLLIDER_COMPONENT);
 
         this.type = type;
@@ -62,20 +61,15 @@ public class ColliderComponent extends Component<GameObject> {
     public void onCollision(CollisionEvent e) {
     }
 
-    public boolean requestCollision(GameObject other) {
+    public abstract boolean requestCollision(GameObject other);
 
-        ColliderComponent otherCollider = other.requestCollider();
+    public abstract Directions.Direction getCollisionDirection(GameObject other);
 
-        switch (otherCollider.type) {
+    public String getType() {
+        return type;
+    }
 
-            case HITBOX:
-
-                if (type == Type.HITBOX) {
-                    return getParent().getHitbox().collides(other);
-                }
-                break;
-        }
-
-        return false;
+    public void setType(String type) {
+        this.type = type;
     }
 }

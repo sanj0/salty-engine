@@ -67,7 +67,6 @@ public class BirdPlayer extends GameObject {
 
         addComponent(animationRender);
         addComponent(soundTiming);
-        addComponent(new CameraFollow(this, "LOL"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {

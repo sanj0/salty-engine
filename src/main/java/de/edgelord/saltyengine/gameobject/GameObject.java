@@ -28,9 +28,10 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.components.Accelerator;
-import de.edgelord.saltyengine.components.ColliderComponent;
+import de.edgelord.saltyengine.components.collider.ColliderComponent;
 import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.components.collider.HitboxCollider;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.interfaces.CollideAble;
@@ -66,7 +67,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final Accelerator defaultAccelerator;
-    private final ColliderComponent collider;
+    private final HitboxCollider defaultCollider;
 
     private Directions lockedDirections = new Directions();
 
@@ -99,12 +100,12 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
-        collider = new ColliderComponent(this, DEFAULT_COLLIDER_COMPONENT_NAME, ColliderComponent.Type.HITBOX);
+        defaultCollider = new HitboxCollider(this, DEFAULT_COLLIDER_COMPONENT_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(defaultAccelerator);
-        components.add(collider);
+        components.add(defaultCollider);
     }
 
     public GameObject(Transform transform, String tag) {
@@ -177,8 +178,11 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                     if (!stationary) {
                         if (requestCollider().requestCollision(other)) {
 
-                            getTransform().appendRelation(other.getTransform(), collisionDirections);
-                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
+                            Directions.Direction currentCollisionDirection =
+                                    requestCollider().getCollisionDirection(other);
+
+                            collisionDirections.setDirection(currentCollisionDirection);
+                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections, currentCollisionDirection);
 
                             collisions.add(eSelf);
                             onCollision(eSelf);
@@ -373,8 +377,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         return defaultAccelerator;
     }
 
-    public ColliderComponent getCollider() {
-        return collider;
+    public ColliderComponent getDefaultColliderCollider() {
+        return defaultCollider;
     }
 
     public void setColliderComponent(String colliderComponent) {

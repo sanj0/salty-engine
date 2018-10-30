@@ -25,44 +25,33 @@
  *
  */
 
-package de.edgelord.saltyengine.core.event;
+package de.edgelord.saltyengine.components.collider;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.utils.Directions;
 
-/**
- * This class is used for handling collisions between GameObjects. It has all necessary parameters for physics etc.
- */
-public class CollisionEvent {
+public class HitboxCollider extends ColliderComponent {
 
-    private final GameObject root;
-    private Directions collisionDirections;
-    private Directions.Direction collisionDirection;
-
-    public CollisionEvent(final GameObject root, final Directions collisionDirections, final Directions.Direction collisionDirection) {
-
-        this.root = root;
-        this.collisionDirections = collisionDirections;
-        this.collisionDirection = collisionDirection;
+    public HitboxCollider(GameObject parent, String name) {
+        super(parent, name, TYPE_HITBOX_COLLIDER);
     }
 
-    public GameObject getRoot() {
-        return root;
+    @Override
+    public boolean requestCollision(GameObject other) {
+
+        ColliderComponent otherCollider = other.requestCollider();
+
+        switch (otherCollider.getType()) {
+
+            case TYPE_HITBOX_COLLIDER:
+                return getParent().getHitbox().collides(other);
+        }
+
+        return false;
     }
 
-    public Directions getCollisionDirections() {
-        return collisionDirections;
-    }
-
-    public void setCollisionDirections(final Directions collisionDirections) {
-        this.collisionDirections = collisionDirections;
-    }
-
-    public Directions.Direction getCollisionDirection() {
-        return collisionDirection;
-    }
-
-    public void setCollisionDirection(Directions.Direction collisionDirection) {
-        this.collisionDirection = collisionDirection;
+    @Override
+    public Directions.Direction getCollisionDirection(GameObject other) {
+        return getParent().getHitbox().getTransform().getRelation(other.getHitbox().getTransform());
     }
 }
