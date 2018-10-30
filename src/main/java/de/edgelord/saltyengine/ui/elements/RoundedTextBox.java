@@ -30,51 +30,29 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.ui.UIElement;
 
-import java.awt.*;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+public class RoundedTextBox extends TextBox {
 
-public abstract class Container extends UIElement {
+    private float arc = 15f;
 
-    private List<UIElement> childElements = new CopyOnWriteArrayList<>();
-
-    public Container(Vector2f position, float width, float height) {
-        super(position, width, height, UIElement.CONTAINER);
+    public RoundedTextBox(String text, Vector2f position, float width, float height, Vector2f textOffset) {
+        super(text, position, width, height, textOffset);
     }
 
-    public Container(Transform transform) {
-        this(transform.getPosition(), transform.getWidth(), transform.getHeight());
-    }
-
-    public Container(float x, float y, float width, float height) {
-        this(new Vector2f(x, y), width, height);
-    }
-
-    public void add(UIElement element) {
-        getChildElements().add(element);
-    }
-
-    public void remove(UIElement element) {
-        getChildElements().removeIf(uiElement -> uiElement == element);
-        element.setSuppressClipping(false);
-    }
-
-    public void suppressAllClipping() {
-        for (UIElement element : getChildElements()) {
-            element.setSuppressClipping(true);
-        }
+    public RoundedTextBox(String text, Transform transform, Vector2f textOffset) {
+        super(text, transform, textOffset);
     }
 
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
-    public List<UIElement> getChildElements() {
-        return childElements;
+    public void drawBackground(SaltyGraphics graphics) {
+        graphics.drawRoundRect(this, arc);
     }
 
-    public void setChildElements(List<UIElement> childElements) {
-        this.childElements = childElements;
+    public float getArc() {
+        return arc;
+    }
+
+    public void setArc(float arc) {
+        this.arc = arc;
     }
 }

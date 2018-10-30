@@ -32,6 +32,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
+import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
 import de.edgelord.saltyengine.utils.StaticSystem;
 
 import java.awt.*;
@@ -52,7 +53,7 @@ public class TestingScene extends Scene {
     private void initUITest() {
         FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
         floatingLabel.centreOnXAxis(true);
-        floatingLabel.setTextColor(Color.black);
+        floatingLabel.setForegroundColor(Color.black);
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
 
         getUI().addElement(floatingLabel);
@@ -63,8 +64,12 @@ public class TestingScene extends Scene {
         StaticSystem.defaultFont = StaticSystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
+        RoundedTextBox textBox = new RoundedTextBox("Hello World! This is the testing scene for Salty Engine! It looks a bit " +
+                "messy, but it's just testing. We hope that you make amazing games with this Library!", new Vector2f(10, 600), 1180, 100, new Vector2f(25, 50));
+        textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
+        getUI().addElement(textBox);
     }
 
     private void initPhysicsTest() {

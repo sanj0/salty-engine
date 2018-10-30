@@ -42,6 +42,7 @@ public class UISystem {
     public void drawUI(SaltyGraphics saltyGraphics) {
         Game.camera.tmpResetViewToGraphics(saltyGraphics);
         for (UIElement element : elements) {
+            element.prepareGraphics(saltyGraphics);
             element.draw(saltyGraphics);
             element.doComponentDrawing(saltyGraphics);
         }

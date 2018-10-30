@@ -50,6 +50,9 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     private Font font = StaticSystem.defaultFont;
 
+    private Color backgroundColor = Color.DARK_GRAY;
+    private Color foregroundColor = Color.WHITE;
+
     private Transform transform;
 
     private boolean mouseHoversOver = false;
@@ -60,6 +63,7 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     public static final String BUTTON = "de.edgelord.saltyengine.uiElements.button";
     public static final String LABEL = "de.edgelord.saltyengine.uiElements.label";
+    public static final String TEXT_BOX = "de.edgelord.saltyengine.uiElements.textBox";
     public static final String CONTAINER = "de.edgelord.saltyengine.uiElements.container";
 
     public UIElement(Vector2f position, float width, float height, String tag) {
@@ -164,6 +168,11 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
         return null;
     }
 
+    public void prepareGraphics(SaltyGraphics graphics) {
+        graphics.setColor(getBackgroundColor());
+        graphics.setFont(getFont());
+    }
+
     public Font getFont() {
         return font;
     }
@@ -200,5 +209,21 @@ public abstract class UIElement extends ComponentParent implements Drawable, Fix
 
     protected void setMouseHoversOver(boolean mouseHoversOver) {
         this.mouseHoversOver = mouseHoversOver;
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public Color getForegroundColor() {
+        return foregroundColor;
+    }
+
+    public void setForegroundColor(Color foregroundColor) {
+        this.foregroundColor = foregroundColor;
     }
 }
