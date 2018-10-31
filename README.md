@@ -16,6 +16,7 @@ stage management as well as saving with
 2. [Build Instructions](#build-instructions)
 3. [Games made with Salty Engine](#games-made-with-salty-engine)
 4. [Collaborate](#collaborate)
+5. [Help](#help)
 
 
 # Why using Salty Engine?
