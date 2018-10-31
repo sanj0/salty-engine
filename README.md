@@ -70,7 +70,7 @@ To get a usable JAR of this library, you can whether download an existing releas
    For windows, type the following into the cmd 
    
    ```bash
-   ./mvnw.cmd clean install
+   mvnw clean install
    ```
    
    For Linux/macOs type the following into the terminal: 
