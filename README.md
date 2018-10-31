@@ -9,7 +9,7 @@ resource management, but also support for scene and
 stage management as well as saving with
 [stdf](github.com/edgelord314/stdf)
 
-**NOTE: When you release a game that's made with Salty Engine, feel free [send me an email](mailto:malte.dostal@gmail.com)**
+**NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com)**
 
 # Content
 1. [Why using Salty Engine](#why-using-salty-engine)
