@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.input.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -51,17 +52,17 @@ public class UISystem {
     public void onFixedTick() {
         for (UIElement element : elements) {
 
-            if (element.getTransform().subtractFromPosition(Game.camera.getPosition()).contains(Game.cursor)) {
+            if (element.getTransform().subtractFromPosition(Game.camera.getPosition()).contains(Input.cursor)) {
 
                 if (!element.mouseHoversOver()) {
-                    element.mouseEntered(Game.cursor);
+                    element.mouseEntered(Input.cursor);
                 }
 
-                element.mouseHover(Game.cursor);
+                element.mouseHover(Input.cursor);
                 element.setMouseHoversOver(true);
             } else if (element.mouseHoversOver()) {
                 element.setMouseHoversOver(false);
-                element.mouseExited(Game.cursor);
+                element.mouseExited(Input.cursor);
             }
 
             element.onFixedTick();

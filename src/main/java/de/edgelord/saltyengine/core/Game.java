@@ -30,12 +30,7 @@ package de.edgelord.saltyengine.core;
 import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.graphics.GFXController;
-import de.edgelord.saltyengine.input.Keyboard;
-import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
-
-import java.awt.event.KeyEvent;
 
 public class Game {
 
@@ -44,25 +39,6 @@ public class Game {
     public static String gameName = "My name is Nym. Arno Nym.";
     public static boolean paused = false;
     public static Camera camera = new Camera();
-    public static boolean inputUp = false;
-    public static boolean inputDown = false;
-    public static boolean inputRight = false;
-    public static boolean inputLeft = false;
-    public static char lastInputKey;
-    /**
-     * You have to add a ifn check if you use this!
-     */
-    public static KeyEvent lastInput;
-    /**
-     * For input that is not meant for typing use this!
-     * Please use this for every input that has to do with controls etc etc
-     */
-    public static Keyboard keyboardInput = new Keyboard();
-
-    public static Vector2f cursorPosition = new Vector2f(0, 0);
-    public static Transform cursor = new Transform(0, 0, 0, 0);
-    public static boolean mouseDrags = false;
-    public static boolean mousePresses = false;
 
     /**
      * Proposes the <code>Host</code> to draw the FPS {@link Time#getFPS()} or not.

@@ -28,12 +28,12 @@
 package testing;
 
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -82,7 +82,7 @@ public class Bird extends GameObject {
 
         // getTransform().rotateToPoint(Game.cursorPosition);
 
-        if (Game.keyboardInput.isSpace()) {
+        if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0.01f);
         } else {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);

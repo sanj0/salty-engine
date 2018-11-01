@@ -27,8 +27,8 @@
 
 package de.edgelord.saltyengine.stage;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -53,7 +53,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
             SceneManager.getCurrentScene().getUI().mouseDragged(e);
         }
 
-        Game.mouseDrags = true;
+        Input.mouseDrags = true;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
             SceneManager.getCurrentScene().getUI().mouseMoved(e);
         }
 
-        Game.cursorPosition = new Vector2f(e.getX(), e.getY());
-        Game.cursor = new Transform(Game.cursorPosition, Dimensions.one());
+        Input.cursorPosition = new Vector2f(e.getX(), e.getY());
+        Input.cursor = new Transform(Input.cursorPosition, Dimensions.one());
     }
 }
