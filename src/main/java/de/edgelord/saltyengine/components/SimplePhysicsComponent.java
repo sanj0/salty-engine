@@ -68,6 +68,30 @@ public class SimplePhysicsComponent extends Component<GameObject> {
      * getting manipulated internally.
      */
     public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsForce";
+
+    /**
+     * This is the String constant for the default upwards velocity force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
+    public static final String DEFAULT_UPWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsVelocityForce";
+
+    /**
+     * This is the String constant for the default downwards velocity force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
+    public static final String DEFAULT_DOWNWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsVelocityForce";
+
+    /**
+     * This is the String constant for the default rightwards velocity force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
+    public static final String DEFAULT_RIGHTWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsVelocityForce";
+
+    /**
+     * This is the String constant for the default leftwards velocity force. It is not recommended to use these because they're
+     * getting manipulated internally.
+     */
+    public static final String DEFAULT_LEFTWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsVelocityForce";
     private final List<Force> forces = new LinkedList<>();
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
@@ -89,6 +113,11 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         addForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE, Directions.Direction.DOWN);
         addForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE, Directions.Direction.RIGHT);
         addForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE, Directions.Direction.LEFT);
+
+        addForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE, Directions.Direction.UP);
+        addForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE, Directions.Direction.DOWN);
+        addForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE, Directions.Direction.RIGHT);
+        addForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE, Directions.Direction.LEFT);
     }
 
     @Override

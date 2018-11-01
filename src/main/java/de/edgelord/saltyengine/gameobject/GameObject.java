@@ -150,11 +150,17 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     public void doFixedTick() {
-        // Clear the forces
+        // Remove acceleration from default forces
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
+
+        // Remove velocity from default velocity forces
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(0f);
 
         onFixedTick();
     }
@@ -234,7 +240,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     /**
      * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#acceleration} of the default force in the
      * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
-     * This is the recommended way to accelerate forces for player controls.
+     * This is the recommended way fro player control in a few cases because the momentum of this GameObject will
+     * slowly fade out and so the controls aren't precise. However, this might be useful for some physics-related games.
      *
      * @param acceleration the acceleration to be set to the specific default force
      * @param direction    the direction in which to accelerate the GameObject
@@ -266,13 +273,14 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     /**
-     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default force with the
-     * given direction to the given value. this has to be reset manually if needed.
+     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default velocity force with the
+     * given direction to the given value. This velocity only rests for one tick.
+     * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
      *
      * @param velocity  the velocity to be set to the specific force
      * @param direction the directon of the default force to be manipulated.
      */
-    public void setVelocity(float velocity, Directions.Direction direction) {
+    public void accelerateTo(float velocity, Directions.Direction direction) {
 
         if (lockedDirections.hasDirection(direction)) {
             return;
@@ -281,16 +289,16 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         switch (direction) {
 
             case RIGHT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case LEFT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case UP:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case DOWN:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case EMPTY:
                 System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
