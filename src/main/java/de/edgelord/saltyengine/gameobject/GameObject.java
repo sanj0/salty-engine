@@ -273,6 +273,34 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     /**
+     * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * that the given {@link Directions} has.
+     *
+     * @param velocity the target acceleration for all directions that the given <code>Directions</code> has.
+     * @param directions the <code>Directions</code> in which to accelerate.
+     *
+     * @see #accelerateTo(float, Directions.Direction)
+     */
+    public void accelerate(float velocity, Directions directions) {
+
+        if (directions.hasDirection(Directions.Direction.UP)) {
+            accelerate(velocity, Directions.Direction.UP);
+        }
+
+        if (directions.hasDirection(Directions.Direction.DOWN)) {
+            accelerate(velocity, Directions.Direction.DOWN);
+        }
+
+        if (directions.hasDirection(Directions.Direction.RIGHT)) {
+            accelerate(velocity, Directions.Direction.RIGHT);
+        }
+
+        if (directions.hasDirection(Directions.Direction.LEFT)) {
+            accelerate(velocity, Directions.Direction.LEFT);
+        }
+    }
+
+    /**
      * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default velocity force with the
      * given direction to the given value. This velocity only rests for one tick.
      * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
@@ -303,6 +331,34 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
             case EMPTY:
                 System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
                 break;
+        }
+    }
+
+    /**
+     * Calls {@link #accelerateTo(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * that the given {@link Directions} has.
+     *
+     * @param velocity the target velocity for all directions that the given <code>Directions</code> has.
+     * @param directions the <code>Directions</code> in which to accelerate to.
+     *
+     * @see #accelerateTo(float, Directions.Direction)
+     */
+    public void accelerateTo(float velocity, Directions directions) {
+
+        if (directions.hasDirection(Directions.Direction.UP)) {
+            accelerateTo(velocity, Directions.Direction.UP);
+        }
+
+        if (directions.hasDirection(Directions.Direction.DOWN)) {
+            accelerateTo(velocity, Directions.Direction.DOWN);
+        }
+
+        if (directions.hasDirection(Directions.Direction.RIGHT)) {
+            accelerateTo(velocity, Directions.Direction.RIGHT);
+        }
+
+        if (directions.hasDirection(Directions.Direction.LEFT)) {
+            accelerateTo(velocity, Directions.Direction.LEFT);
         }
     }
 
