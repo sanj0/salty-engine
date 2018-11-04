@@ -25,63 +25,40 @@
  *
  */
 
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.cosmetic.light;
 
-import de.edgelord.saltyengine.stage.Stage;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 
-public class PaneledGameHost extends Host {
+/**
+ * This {@link LightSystem} is much more efficient because it is not updated over and over again but only when requested
+ * via {@link #scheduleUpdate()}
+ */
+public class StaticLightSystem extends LightSystem {
 
-    private Dimensions dimensions;
-    private Engine engine;
-    private Stage stage;
+    private boolean scheduleUpdate = true;
 
-    public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
-        dimensions = new Dimensions(width, height);
+    public StaticLightSystem(Color lightMapColor) {
+        super(lightMapColor);
+    }
 
-        engine = new Engine(fixedTickMillis);
-
-        StaticSystem.fixedTickMillis = fixedTickMillis;
-        Game.setEngine(engine);
-
-        stage = new Stage(container, engine, x, y, width, height);
+    public StaticLightSystem() {
+        super();
     }
 
     @Override
-    public float getHorizontalCentrePosition(float width) {
-        return (dimensions.getWidth()) - (width / 2);
+    public void draw(SaltyGraphics saltyGraphics) {
+        if (scheduleUpdate) {
+            updateLightMap();
+            scheduleUpdate = false;
+        }
+
+        saltyGraphics.drawImage(lightMap, Vector2f.zero());
     }
 
-    @Override
-    public float getVerticalCentrePosition(float height) {
-        return (dimensions.getHeight()) - (height / 2);
-    }
-
-    @Override
-    public void create() {
-    }
-
-    @Override
-    public void repaint() {
-
-        stage.repaint();
-    }
-
-    @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(getWidth(), getHeight());
-    }
-
-    @Override
-    public void setBackgroundColor(Color color) {
-        stage.setBackground(color);
-    }
-
-    @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
+    public void scheduleUpdate() {
+        scheduleUpdate = true;
     }
 }

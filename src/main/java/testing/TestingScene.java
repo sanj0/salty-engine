@@ -27,9 +27,14 @@
 
 package testing;
 
+import de.edgelord.saltyengine.cosmetic.light.LightSystem;
+import de.edgelord.saltyengine.cosmetic.light.PointLight;
+import de.edgelord.saltyengine.cosmetic.light.StaticLightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
@@ -40,6 +45,7 @@ import java.awt.image.BufferedImage;
 
 public class TestingScene extends Scene {
 
+    private PointLight light = new PointLight(250, 250, 500, Color.white);
     public TestingScene(String foo, Integer bar) {
 
         disableGravity();
@@ -48,6 +54,13 @@ public class TestingScene extends Scene {
         initForcesTest();
         initUITest();
         addUI();
+        addLight();
+    }
+
+    private void addLight() {
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 2)));
+        getLightSystem().addLight(light);
+        getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200), Color.red));
     }
 
     private void initUITest() {
@@ -57,6 +70,12 @@ public class TestingScene extends Scene {
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
 
         getUI().addElement(floatingLabel);
+    }
+
+    @Override
+    public void onFixedTick() {
+        light.setPosition(Input.getCursorPosition());
+        super.onFixedTick();
     }
 
     private void addUI() {

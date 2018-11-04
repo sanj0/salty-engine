@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.cosmetic.ColorUtil;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;

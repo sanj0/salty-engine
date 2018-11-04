@@ -44,7 +44,9 @@
  * MA  02111-1307, USA.
  */
 
-package de.edgelord.saltyengine.cosmetic;
+package de.edgelord.saltyengine.utils;
+
+import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
 
@@ -73,5 +75,39 @@ public class ColorUtil {
         int alpha = color.getAlpha();
 
         return new Color(red, green, blue, alpha);
+    }
+
+    /**
+     * Creates a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
+     * to the same color but with the given alpha value.
+     *
+     * @param bounds the bounds of the gradient
+     * @param color the color of the gradient
+     * @param targetAlpha the alpha to shift the color to
+     * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
+     *         to the same color but with the given alpha value.
+     *
+     * @see RadialGradientPaint
+     */
+    public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color, int targetAlpha) {
+
+        float[] fractions = {0f, 1f};
+        Color endColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), targetAlpha);
+        Color[] colors = {color, endColor};
+
+        return new RadialGradientPaint(bounds.getMiddle().getX(), bounds.getMiddle().getY(), bounds.getWidth(), fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
+    }
+
+    /**
+     * Calls {@link #createRadialGradientPaint(Transform, Color, int)} with the target alpha being 0.
+     *
+     * @param bounds the bounds of the gradient
+     * @param color the color of the gradient
+     * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
+     *         to the same color but with an alpha of 0.
+     */
+    public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color) {
+        System.out.println(bounds);
+        return createRadialGradientPaint(bounds, color, 0);
     }
 }

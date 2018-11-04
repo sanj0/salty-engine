@@ -25,63 +25,57 @@
  *
  */
 
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.cosmetic.light;
 
-import de.edgelord.saltyengine.stage.Stage;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 
-public class PaneledGameHost extends Host {
+public class PointLight extends Light implements TransformedObject {
 
-    private Dimensions dimensions;
-    private Engine engine;
-    private Stage stage;
+    private Transform transform;
+    private Color lightColor;
+    private int targetAlpha = 0;
 
-    public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
-        dimensions = new Dimensions(width, height);
+    public PointLight(Transform transform, Color lightColor) {
+        this.transform = transform;
+        this.lightColor = lightColor;
+    }
 
-        engine = new Engine(fixedTickMillis);
+    public PointLight(float x, float y, float radius, Color lightColor) {
+        this(new Transform(x, y, radius, radius), lightColor);
+    }
 
-        StaticSystem.fixedTickMillis = fixedTickMillis;
-        Game.setEngine(engine);
-
-        stage = new Stage(container, engine, x, y, width, height);
+    public PointLight(Vector2f position, float radius, Color lightColor) {
+        this(new Transform(position, new Dimensions(radius, radius)), lightColor);
     }
 
     @Override
-    public float getHorizontalCentrePosition(float width) {
-        return (dimensions.getWidth()) - (width / 2);
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.setColor(lightColor);
+        graphics2D.setPaint(ColorUtil.createRadialGradientPaint(getTransform(), lightColor, targetAlpha));
+        graphics2D.fillOval(Math.round(getX()), Math.round(getY()), Math.round(getWidth()), Math.round(getHeight()));
     }
 
     @Override
-    public float getVerticalCentrePosition(float height) {
-        return (dimensions.getHeight()) - (height / 2);
+    public Transform getTransform() {
+        return transform;
     }
 
     @Override
-    public void create() {
+    public void setTransform(Transform transform) {
+        this.transform = transform;
     }
 
-    @Override
-    public void repaint() {
-
-        stage.repaint();
+    public int getTargetAlpha() {
+        return targetAlpha;
     }
 
-    @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(getWidth(), getHeight());
-    }
-
-    @Override
-    public void setBackgroundColor(Color color) {
-        stage.setBackground(color);
-    }
-
-    @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
+    public void setTargetAlpha(int targetAlpha) {
+        this.targetAlpha = targetAlpha;
     }
 }

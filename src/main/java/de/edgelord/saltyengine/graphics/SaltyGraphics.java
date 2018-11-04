@@ -783,16 +783,6 @@ public class SaltyGraphics {
     }
 
     /**
-     * Sets the composite of the Graphics
-     *
-     * @param composite the new composite for the graphics
-     * @see Graphics2D#setComposite(Composite)
-     */
-    public void setAlphaComposite(AlphaComposite composite) {
-        graphics2D.setComposite(composite);
-    }
-
-    /**
      * Sets the background of the graphics
      *
      * @param color the new background color

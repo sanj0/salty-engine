@@ -25,41 +25,38 @@
  *
  */
 
-package de.edgelord.saltyengine.cosmetic.lighting;
-
-import de.edgelord.saltyengine.utils.StaticSystem;
+package de.edgelord.saltyengine.cosmetic.light;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Light {
+public class BasicPointLight extends Light {
 
     private BufferedImage image;
-    private Shape shape;
+    private int x;
+    private int y;
 
-    public Light(BufferedImage lightSource) {
-        this.image = lightSource;
+    public BasicPointLight(int x, int y, int radius, float luminosity) {
+        //Recommended luminosity between 1 and 2
+        this.x = x;
+        this.y = y;
+        image = new BufferedImage(radius * 2, radius * 2, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = (Graphics2D) image.getGraphics();
 
-        shape = Shape.CUSTOM;
-    }
-
-    public Light(Shape shape) {
-        this.shape = shape;
-
-        switch (shape) {
-
-            case ROUND:
-                this.image = StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/light/default_light_round.png");
-                break;
-            case CUSTOM:
-                System.err.println("ERROR: CAN'T SET SHAPE OF LIGHT TO CUSTOM WITHOUT HAVING A CUSTOM IMAGE!");
-                break;
+        for(int i = 0; i < radius; i++) {
+            double luma = 1.0D - ((i + 0.001) / radius);
+            int alpha = Math.min((int)(255.0D * luma * luminosity), 255);
+            g2.setColor(new Color(0, 0, 0, alpha));
+            g2.setStroke(new BasicStroke(2));
+            g2.drawOval(radius - i, radius - i, i * 2, i * 2);
         }
     }
 
-    public void draw(Graphics2D graphics) {
-
+    public void render(Graphics2D g2) {
+        g2.drawImage(image, x - image.getWidth() / 2, y - image.getHeight() / 2, image.getWidth(), image.getHeight(), null);
     }
-
-    public enum Shape {ROUND, CUSTOM}
+    @Override
+    public void draw(Graphics2D graphics) {
+        render(graphics);
+    }
 }

@@ -54,4 +54,9 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
      * @param color the new background color
      */
     public abstract void setBackgroundColor(Color color);
+
+    /**
+     * @return the {@link RenderingHints} used by this Host to define the quality of the render.
+     */
+    public abstract RenderingHints getRenderHints();
 }
