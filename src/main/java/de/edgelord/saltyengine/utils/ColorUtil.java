@@ -52,6 +52,8 @@ import java.awt.*;
 
 public class ColorUtil {
 
+    public static Color TRANSPARENT_COLOR = new Color(0, 0, 0, 0);
+
     /**
      * Change the brightness of the given Color.
      * 1 is black, -1 the brightest Color without changing it's cosmetic

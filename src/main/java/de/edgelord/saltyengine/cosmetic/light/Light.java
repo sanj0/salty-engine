@@ -31,5 +31,18 @@ import java.awt.*;
 
 public abstract class Light {
 
+    /**
+     * The brightness of this light, between 0f and 1f, with 0f being completely dark and 1f being max bright
+     */
+    private float brightness = .35f;
+
     public abstract void draw(Graphics2D graphics);
+
+    public float getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(float brightness) {
+        this.brightness = brightness;
+    }
 }

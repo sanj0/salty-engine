@@ -31,6 +31,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -42,7 +43,6 @@ public class LightSystem implements Drawable {
     private Color lightMapColor;
     protected BufferedImage lightMap;
     private List<Light> lights = new ArrayList<>();
-    private float compositeAlpha = 1f;
 
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;
@@ -71,15 +71,18 @@ public class LightSystem implements Drawable {
 
     protected void updateLightMap() {
         Graphics2D graphics = lightMap.createGraphics();
+        graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics.clearRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
         graphics.setColor(lightMapColor);
         graphics.fillRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
         Composite oldComp = graphics.getComposite();
-        graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT, compositeAlpha));
 
         graphics.setRenderingHints(Game.getHost().getRenderHints());
 
-        lights.forEach(light -> light.draw(graphics));
+        lights.forEach(light -> {
+            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT, light.getBrightness()));
+            light.draw(graphics);
+        });
 
         graphics.setComposite(oldComp);
         graphics.dispose();
@@ -89,13 +92,5 @@ public class LightSystem implements Drawable {
     public void draw(SaltyGraphics saltyGraphics) {
         updateLightMap();
         saltyGraphics.drawImage(lightMap, Vector2f.zero());
-    }
-
-    public float getCompositeAlpha() {
-        return compositeAlpha;
-    }
-
-    public void setCompositeAlpha(float compositeAlpha) {
-        this.compositeAlpha = compositeAlpha;
     }
 }

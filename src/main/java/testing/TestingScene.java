@@ -58,7 +58,7 @@ public class TestingScene extends Scene {
     }
 
     private void addLight() {
-        setLightSystem(new LightSystem(new Color(0, 0, 0, 2)));
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
         getLightSystem().addLight(light);
         getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200), Color.red));
     }

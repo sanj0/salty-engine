@@ -87,7 +87,6 @@ public class Stage extends Canvas {
 
         if (highQuality) {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
-            System.out.println("pong");
         } else {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
             putToRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
