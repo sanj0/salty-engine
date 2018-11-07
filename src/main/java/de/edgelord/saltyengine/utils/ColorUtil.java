@@ -83,30 +83,37 @@ public class ColorUtil {
      * Creates a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
      * to the same color but with the given alpha value.
      *
-     * @param bounds the bounds of the gradient
-     * @param color the color of the gradient
+     * @param bounds      the bounds of the gradient
+     * @param color       the color of the gradient
      * @param targetAlpha the alpha to shift the color to
      * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
-     *         to the same color but with the given alpha value.
-     *
+     * to the same color but with the given alpha value.
      * @see RadialGradientPaint
      */
     public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color, int targetAlpha) {
+
+        float radius;
+
+        if (bounds.getWidth() <= 0) {
+            radius = 1;
+        } else {
+            radius = bounds.getWidth();
+        }
 
         float[] fractions = {0f, 1f};
         Color endColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), targetAlpha);
         Color[] colors = {color, endColor};
 
-        return new RadialGradientPaint(bounds.getCentre().getX(), bounds.getCentre().getY(), bounds.getWidth(), fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
+        return new RadialGradientPaint(bounds.getCentre().getX(), bounds.getCentre().getY(), radius, fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
     }
 
     /**
      * Calls {@link #createRadialGradientPaint(Transform, Color, int)} with the target alpha being 0.
      *
      * @param bounds the bounds of the gradient
-     * @param color the color of the gradient
+     * @param color  the color of the gradient
      * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
-     *         to the same color but with an alpha of 0.
+     * to the same color but with an alpha of 0.
      */
     public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color) {
         System.out.println(bounds);

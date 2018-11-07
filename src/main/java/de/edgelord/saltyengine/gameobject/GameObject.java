@@ -276,9 +276,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
      * that the given {@link Directions} has.
      *
-     * @param velocity the target acceleration for all directions that the given <code>Directions</code> has.
+     * @param velocity   the target acceleration for all directions that the given <code>Directions</code> has.
      * @param directions the <code>Directions</code> in which to accelerate.
-     *
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerate(float velocity, Directions directions) {
@@ -338,9 +337,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * Calls {@link #accelerateTo(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
      * that the given {@link Directions} has.
      *
-     * @param velocity the target velocity for all directions that the given <code>Directions</code> has.
+     * @param velocity   the target velocity for all directions that the given <code>Directions</code> has.
      * @param directions the <code>Directions</code> in which to accelerate to.
-     *
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerateTo(float velocity, Directions directions) {

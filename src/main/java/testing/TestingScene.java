@@ -48,22 +48,22 @@ import java.awt.image.BufferedImage;
 
 public class TestingScene extends Scene {
 
-    private PointLight light = new PointLight(250, 250, 500, Color.white);
+    private PointLight light = new PointLight(250, 250, 500);
     public TestingScene(String foo, Integer bar) {
 
         disableGravity();
         setFriction(0.005f);
 
+        addLight();
         initForcesTest();
         initUITest();
         addUI();
-        addLight();
     }
 
     private void addLight() {
         setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
         getLightSystem().addLight(light);
-        getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200), Color.red));
+        getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200)));
     }
 
     private void initUITest() {

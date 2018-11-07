@@ -27,7 +27,6 @@
 
 package de.edgelord.saltyengine.cosmetic.light;
 
-import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -35,40 +34,32 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 
-public class PointLight extends Light implements TransformedObject {
+public class PointLight extends Light {
 
-    private Transform transform;
-    private Color lightColor;
+    private Color lightColor = Color.white;
+    private Paint paint;
     private int targetAlpha = 0;
 
-    public PointLight(Transform transform, Color lightColor) {
-        this.transform = transform;
-        this.lightColor = lightColor;
+    public PointLight(Transform transform) {
+        super(transform);
+
+        updatePaint();
     }
 
-    public PointLight(float x, float y, float radius, Color lightColor) {
-        this(new Transform(x, y, radius, radius), lightColor);
+    public PointLight(float x, float y, float radius) {
+        this(new Transform(x, y, radius, radius));
     }
 
-    public PointLight(Vector2f position, float radius, Color lightColor) {
-        this(new Transform(position, new Dimensions(radius, radius)), lightColor);
+    public PointLight(Vector2f position, float radius) {
+        this(new Transform(position, new Dimensions(radius, radius)));
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         graphics2D.setColor(lightColor);
-        graphics2D.setPaint(ColorUtil.createRadialGradientPaint(getTransform(), lightColor, targetAlpha));
+        updatePaint();
+        graphics2D.setPaint(paint);
         graphics2D.fillOval(Math.round(getX()), Math.round(getY()), Math.round(getWidth()), Math.round(getHeight()));
-    }
-
-    @Override
-    public Transform getTransform() {
-        return transform;
-    }
-
-    @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
     }
 
     public int getTargetAlpha() {
@@ -77,5 +68,9 @@ public class PointLight extends Light implements TransformedObject {
 
     public void setTargetAlpha(int targetAlpha) {
         this.targetAlpha = targetAlpha;
+    }
+
+    public void updatePaint() {
+        this.paint = ColorUtil.createRadialGradientPaint(getTransform(), lightColor, targetAlpha);
     }
 }

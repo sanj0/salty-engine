@@ -213,7 +213,7 @@ public class Transform {
 
     /**
      * @return the maximum x value of the rectangle described by this Transform. That position is
-     *
+     * <p>
      * {@code x + width}
      */
     public float getMaxX() {
@@ -230,7 +230,7 @@ public class Transform {
 
     /**
      * @return the maximum y value of the rectangle described by this Transform. That position is
-     *
+     * <p>
      * {@code y + height}
      */
     public float getMaxY() {

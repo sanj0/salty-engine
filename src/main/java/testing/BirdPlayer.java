@@ -28,8 +28,11 @@
 package testing;
 
 import de.edgelord.saltyengine.components.FixedRate;
+import de.edgelord.saltyengine.components.LockToBounds;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.components.gfx.LightComponent;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
@@ -37,6 +40,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -71,6 +75,7 @@ public class BirdPlayer extends GameObject {
 
         addComponent(animationRender);
         addComponent(soundTiming);
+        addComponent(new LockToBounds(this, new Transform(Vector2f.zero(), Game.getHost().getDimensions()), "LOL"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {

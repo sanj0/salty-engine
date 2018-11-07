@@ -27,14 +27,26 @@
 
 package de.edgelord.saltyengine.cosmetic.light;
 
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.transform.Transform;
+
 import java.awt.*;
 
-public abstract class Light {
+public abstract class Light implements TransformedObject {
 
     /**
      * The brightness of this light, between 0f and 1f, with 0f being completely dark and 1f being max bright
      */
     private float brightness = .35f;
+
+    /**
+     * The <code>Transform</code> of the light
+     */
+    private Transform transform;
+
+    public Light(Transform transform) {
+        this.transform = transform;
+    }
 
     public abstract void draw(Graphics2D graphics);
 
@@ -44,5 +56,15 @@ public abstract class Light {
 
     public void setBrightness(float brightness) {
         this.brightness = brightness;
+    }
+
+    @Override
+    public Transform getTransform() {
+        return transform;
+    }
+
+    @Override
+    public void setTransform(Transform transform) {
+        this.transform = transform;
     }
 }
