@@ -25,63 +25,46 @@
  *
  */
 
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.cosmetic.light;
 
-import de.edgelord.saltyengine.stage.Stage;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
 
-public class PaneledGameHost extends Host {
+public abstract class Light implements TransformedObject {
 
-    private Dimensions dimensions;
-    private Engine engine;
-    private Stage stage;
+    /**
+     * The brightness of this light, between 0f and 1f, with 0f being completely dark and 1f being max bright
+     */
+    private float brightness = .35f;
 
-    public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
-        dimensions = new Dimensions(width, height);
+    /**
+     * The <code>Transform</code> of the light
+     */
+    private Transform transform;
 
-        engine = new Engine(fixedTickMillis);
+    public Light(Transform transform) {
+        this.transform = transform;
+    }
 
-        StaticSystem.fixedTickMillis = fixedTickMillis;
-        Game.setEngine(engine);
+    public abstract void draw(Graphics2D graphics);
 
-        stage = new Stage(container, engine, x, y, width, height);
+    public float getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(float brightness) {
+        this.brightness = brightness;
     }
 
     @Override
-    public float getHorizontalCentrePosition(float width) {
-        return (dimensions.getWidth()) - (width / 2);
+    public Transform getTransform() {
+        return transform;
     }
 
     @Override
-    public float getVerticalCentrePosition(float height) {
-        return (dimensions.getHeight()) - (height / 2);
-    }
-
-    @Override
-    public void create() {
-    }
-
-    @Override
-    public void repaint() {
-
-        stage.repaint();
-    }
-
-    @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(getWidth(), getHeight());
-    }
-
-    @Override
-    public void setBackgroundColor(Color color) {
-        stage.setBackground(color);
-    }
-
-    @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
+    public void setTransform(Transform transform) {
+        this.transform = transform;
     }
 }

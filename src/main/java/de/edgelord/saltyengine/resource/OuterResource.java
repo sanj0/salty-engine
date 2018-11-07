@@ -91,27 +91,28 @@ public class OuterResource implements Resource {
         return getFile(relativePath);
     }
 
-    private String gameTitle;
     private boolean hidden;
     private File sourceDirectory;
 
     public OuterResource(boolean hidden) {
 
-        this.gameTitle = Game.gameName;
         this.hidden = hidden;
 
         prepareSourceDirectory();
 
+        if (!sourceDirectory.exists()) {
+            sourceDirectory.mkdir();
+        }
     }
 
     private void prepareSourceDirectory() {
 
         if (hidden) {
 
-            sourceDirectory = SystemDependentFiles.getUserFile("." + gameTitle);
+            sourceDirectory = SystemDependentFiles.getUserFile("." + Game.gameName);
         } else {
 
-            sourceDirectory = SystemDependentFiles.getSystemFile(gameTitle);
+            sourceDirectory = SystemDependentFiles.getUserFile(Game.gameName);
         }
     }
 

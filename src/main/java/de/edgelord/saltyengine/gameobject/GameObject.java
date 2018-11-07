@@ -28,9 +28,10 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.components.Accelerator;
-import de.edgelord.saltyengine.components.ColliderComponent;
 import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
+import de.edgelord.saltyengine.components.collider.ColliderComponent;
+import de.edgelord.saltyengine.components.collider.HitboxCollider;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.interfaces.CollideAble;
@@ -66,7 +67,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final Accelerator defaultAccelerator;
-    private final ColliderComponent collider;
+    private final HitboxCollider defaultCollider;
 
     private Directions lockedDirections = new Directions();
 
@@ -99,12 +100,12 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
         defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
-        collider = new ColliderComponent(this, DEFAULT_COLLIDER_COMPONENT_NAME, ColliderComponent.Type.HITBOX);
+        defaultCollider = new HitboxCollider(this, DEFAULT_COLLIDER_COMPONENT_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
         components.add(defaultAccelerator);
-        components.add(collider);
+        components.add(defaultCollider);
     }
 
     public GameObject(Transform transform, String tag) {
@@ -149,11 +150,17 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     public void doFixedTick() {
-        // Clear the forces
+        // Remove acceleration from default forces
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
+
+        // Remove velocity from default velocity forces
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(0f);
+        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(0f);
 
         onFixedTick();
     }
@@ -177,14 +184,13 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
                     if (!stationary) {
                         if (requestCollider().requestCollision(other)) {
 
-                            Directions.appendRelation(this.getTransform(), other.getTransform(), collisionDirections);
+                            Directions.Direction currentCollisionDirection =
+                                    requestCollider().getCollisionDirection(other);
 
-                            // final CollisionEvent e = new CollisionEvent(other, collisionDirections);
-                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections);
-
+                            collisionDirections.setDirection(currentCollisionDirection);
+                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections, currentCollisionDirection);
 
                             collisions.add(eSelf);
-                            // other.ON_COLLISION(e);
                             onCollision(eSelf);
 
                             components.forEach(component -> component.onCollision(eSelf));
@@ -234,7 +240,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     /**
      * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#acceleration} of the default force in the
      * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
-     * This is the recommended way to accelerate forces for player controls.
+     * This is the recommended way fro player control in a few cases because the momentum of this GameObject will
+     * slowly fade out and so the controls aren't precise. However, this might be useful for some physics-related games.
      *
      * @param acceleration the acceleration to be set to the specific default force
      * @param direction    the direction in which to accelerate the GameObject
@@ -266,13 +273,41 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
     }
 
     /**
-     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default force with the
-     * given direction to the given value. this has to be reset manually if needed.
+     * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * that the given {@link Directions} has.
+     *
+     * @param velocity   the target acceleration for all directions that the given <code>Directions</code> has.
+     * @param directions the <code>Directions</code> in which to accelerate.
+     * @see #accelerateTo(float, Directions.Direction)
+     */
+    public void accelerate(float velocity, Directions directions) {
+
+        if (directions.hasDirection(Directions.Direction.UP)) {
+            accelerate(velocity, Directions.Direction.UP);
+        }
+
+        if (directions.hasDirection(Directions.Direction.DOWN)) {
+            accelerate(velocity, Directions.Direction.DOWN);
+        }
+
+        if (directions.hasDirection(Directions.Direction.RIGHT)) {
+            accelerate(velocity, Directions.Direction.RIGHT);
+        }
+
+        if (directions.hasDirection(Directions.Direction.LEFT)) {
+            accelerate(velocity, Directions.Direction.LEFT);
+        }
+    }
+
+    /**
+     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default velocity force with the
+     * given direction to the given value. This velocity only rests for one tick.
+     * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
      *
      * @param velocity  the velocity to be set to the specific force
      * @param direction the directon of the default force to be manipulated.
      */
-    public void setVelocity(float velocity, Directions.Direction direction) {
+    public void accelerateTo(float velocity, Directions.Direction direction) {
 
         if (lockedDirections.hasDirection(direction)) {
             return;
@@ -281,20 +316,47 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         switch (direction) {
 
             case RIGHT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case LEFT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case UP:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case DOWN:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setVelocity(velocity);
+                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case EMPTY:
                 System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
                 break;
+        }
+    }
+
+    /**
+     * Calls {@link #accelerateTo(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * that the given {@link Directions} has.
+     *
+     * @param velocity   the target velocity for all directions that the given <code>Directions</code> has.
+     * @param directions the <code>Directions</code> in which to accelerate to.
+     * @see #accelerateTo(float, Directions.Direction)
+     */
+    public void accelerateTo(float velocity, Directions directions) {
+
+        if (directions.hasDirection(Directions.Direction.UP)) {
+            accelerateTo(velocity, Directions.Direction.UP);
+        }
+
+        if (directions.hasDirection(Directions.Direction.DOWN)) {
+            accelerateTo(velocity, Directions.Direction.DOWN);
+        }
+
+        if (directions.hasDirection(Directions.Direction.RIGHT)) {
+            accelerateTo(velocity, Directions.Direction.RIGHT);
+        }
+
+        if (directions.hasDirection(Directions.Direction.LEFT)) {
+            accelerateTo(velocity, Directions.Direction.LEFT);
         }
     }
 
@@ -377,8 +439,8 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         return defaultAccelerator;
     }
 
-    public ColliderComponent getCollider() {
-        return collider;
+    public ColliderComponent getDefaultColliderCollider() {
+        return defaultCollider;
     }
 
     public void setColliderComponent(String colliderComponent) {

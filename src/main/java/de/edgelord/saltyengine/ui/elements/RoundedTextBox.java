@@ -25,52 +25,34 @@
  *
  */
 
-package de.edgelord.saltyengine.cosmetic.lighting;
+package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.DrawingRoutine;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.awt.*;
+public class RoundedTextBox extends TextBox {
 
-public class LightSystem extends GameObject {
+    private float arc = 15f;
 
-    private Color background = Color.BLACK;
-
-    private DrawingRoutine drawBackground = new DrawingRoutine(DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
-        @Override
-        public void draw(SaltyGraphics saltyGraphics) {
-            drawBackground(saltyGraphics);
-        }
-    };
-
-    public LightSystem(Vector2f position, float width, float height, String tag) {
-        super(position.getX(), position.getY(), width, height, tag);
+    public RoundedTextBox(String text, Vector2f position, float width, float height, Vector2f textOffset) {
+        super(text, position, width, height, textOffset);
     }
 
-    private void drawBackground(SaltyGraphics saltyGraphics) {
-
+    public RoundedTextBox(String text, Transform transform, Vector2f textOffset) {
+        super(text, transform, textOffset);
     }
 
     @Override
-    public void initialize() {
-
+    public void drawBackground(SaltyGraphics graphics) {
+        graphics.drawRoundRect(this, arc);
     }
 
-    @Override
-    public void onCollision(CollisionEvent event) {
-
+    public float getArc() {
+        return arc;
     }
 
-    @Override
-    public void onFixedTick() {
-
-    }
-
-    @Override
-    public void draw(SaltyGraphics saltyGraphics) {
-
+    public void setArc(float arc) {
+        this.arc = arc;
     }
 }

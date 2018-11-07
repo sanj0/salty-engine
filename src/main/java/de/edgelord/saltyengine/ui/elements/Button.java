@@ -27,11 +27,11 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.cosmetic.ColorUtil;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -40,11 +40,9 @@ public abstract class Button extends UIElement {
 
     private String text;
     private int textWidth, textHeight;
-    private Color backgroundColor = Color.black;
-    private Color hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
-    private Color clickColor = ColorUtil.changeBrightness(backgroundColor, 0.15f);
-    private Color currentBackgroundColor = backgroundColor;
-    private Color foregroundColor = Color.white;
+    private Color hoverColor = ColorUtil.changeBrightness(getBackgroundColor(), -0.15f);
+    private Color clickColor = ColorUtil.changeBrightness(getBackgroundColor(), 0.15f);
+    private Color currentBackgroundColor = getBackgroundColor();
     private int arc = 15;
 
     public Button(String text, Vector2f position, int width, int height) {
@@ -81,7 +79,7 @@ public abstract class Button extends UIElement {
         textWidth = saltyGraphics.getFontMetrics().stringWidth(text);
         textHeight = saltyGraphics.getFontMetrics().getAscent();
 
-        saltyGraphics.setColor(foregroundColor);
+        saltyGraphics.setColor(getForegroundColor());
 
         saltyGraphics.drawText(text, getX() + ((getWidth() - textWidth) / 2), getY() + ((getHeight() + textHeight) / 2));
     }
@@ -102,7 +100,7 @@ public abstract class Button extends UIElement {
 
             currentBackgroundColor = hoverColor;
         } else {
-            currentBackgroundColor = backgroundColor;
+            currentBackgroundColor = getBackgroundColor();
         }
     }
 
@@ -117,7 +115,7 @@ public abstract class Button extends UIElement {
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        currentBackgroundColor = backgroundColor;
+        currentBackgroundColor = getBackgroundColor();
 
         if (mouseHoversOver()) {
             onClick(e);
@@ -132,23 +130,12 @@ public abstract class Button extends UIElement {
         this.text = text;
     }
 
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
+    @Override
     public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
+        super.setBackgroundColor(backgroundColor);
         this.currentBackgroundColor = backgroundColor;
         this.hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
         this.clickColor = ColorUtil.changeBrightness(backgroundColor, 0.15f);
-    }
-
-    public Color getForegroundColor() {
-        return foregroundColor;
-    }
-
-    public void setForegroundColor(Color foregroundColor) {
-        this.foregroundColor = foregroundColor;
     }
 
     public int getArc() {

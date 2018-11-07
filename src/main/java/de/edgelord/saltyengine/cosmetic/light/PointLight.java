@@ -25,41 +25,52 @@
  *
  */
 
-package de.edgelord.saltyengine.cosmetic.lighting;
+package de.edgelord.saltyengine.cosmetic.light;
 
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class Light {
+public class PointLight extends Light {
 
-    private BufferedImage image;
-    private Shape shape;
+    private Color lightColor = Color.white;
+    private Paint paint;
+    private int targetAlpha = 0;
 
-    public Light(BufferedImage lightSource) {
-        this.image = lightSource;
+    public PointLight(Transform transform) {
+        super(transform);
 
-        shape = Shape.CUSTOM;
+        updatePaint();
     }
 
-    public Light(Shape shape) {
-        this.shape = shape;
-
-        switch (shape) {
-
-            case ROUND:
-                this.image = StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/light/default_light_round.png");
-                break;
-            case CUSTOM:
-                System.err.println("ERROR: CAN'T SET SHAPE OF LIGHT TO CUSTOM WITHOUT HAVING A CUSTOM IMAGE!");
-                break;
-        }
+    public PointLight(float x, float y, float radius) {
+        this(new Transform(x, y, radius, radius));
     }
 
-    public void draw(Graphics2D graphics) {
-
+    public PointLight(Vector2f position, float radius) {
+        this(new Transform(position, new Dimensions(radius, radius)));
     }
 
-    public enum Shape {ROUND, CUSTOM}
+    @Override
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.setColor(lightColor);
+        updatePaint();
+        graphics2D.setPaint(paint);
+        graphics2D.fillOval(Math.round(getX()), Math.round(getY()), Math.round(getWidth()), Math.round(getHeight()));
+    }
+
+    public int getTargetAlpha() {
+        return targetAlpha;
+    }
+
+    public void setTargetAlpha(int targetAlpha) {
+        this.targetAlpha = targetAlpha;
+    }
+
+    public void updatePaint() {
+        this.paint = ColorUtil.createRadialGradientPaint(getTransform(), lightColor, targetAlpha);
+    }
 }

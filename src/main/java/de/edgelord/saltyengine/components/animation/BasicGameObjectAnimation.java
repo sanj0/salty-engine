@@ -35,6 +35,13 @@ import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
+/**
+ * Animates the basic state of its {@link #parent}.
+ * That includes rotation, width, height, x position and y position.
+ * <p>
+ * NOTE: Take care of the hitbox of the {@link #parent}, these animation won't change it, you have to do that manually
+ * if necessary!
+ */
 public class BasicGameObjectAnimation extends Component<GameObject> {
 
     private boolean recalculateOnNextStep = true;
@@ -83,11 +90,9 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
 
             case WIDTH:
                 getParent().setWidth(getParent().getWidth() + delta);
-                getParent().getHitbox().getTransform().setWidth(getParent().getHitbox().getTransform().getWidth() + delta);
                 break;
             case HEIGHT:
                 getParent().setHeight(getParent().getHeight() + delta);
-                getParent().getHitbox().getTransform().setHeight(getParent().getHitbox().getTransform().getHeight() + delta);
                 break;
             case X_POS:
                 getParent().moveX(delta);

@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.stage;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.event.MouseEvent;
@@ -72,8 +73,8 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
             SceneManager.getCurrentScene().getUI().mouseReleased(e);
         }
 
-        Game.mouseDrags = false;
-        Game.mousePresses = false;
+        Input.mouseDrags = false;
+        Input.mousePresses = false;
     }
 
     @Override

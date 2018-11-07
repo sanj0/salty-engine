@@ -25,63 +25,33 @@
  *
  */
 
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.components.collider;
 
-import de.edgelord.saltyengine.stage.Stage;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
+public class HitboxCollider extends ColliderComponent {
 
-public class PaneledGameHost extends Host {
-
-    private Dimensions dimensions;
-    private Engine engine;
-    private Stage stage;
-
-    public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
-        dimensions = new Dimensions(width, height);
-
-        engine = new Engine(fixedTickMillis);
-
-        StaticSystem.fixedTickMillis = fixedTickMillis;
-        Game.setEngine(engine);
-
-        stage = new Stage(container, engine, x, y, width, height);
+    public HitboxCollider(GameObject parent, String name) {
+        super(parent, name, TYPE_HITBOX_COLLIDER);
     }
 
     @Override
-    public float getHorizontalCentrePosition(float width) {
-        return (dimensions.getWidth()) - (width / 2);
+    public boolean requestCollision(GameObject other) {
+
+        ColliderComponent otherCollider = other.requestCollider();
+
+        switch (otherCollider.getType()) {
+
+            case TYPE_HITBOX_COLLIDER:
+                return getParent().getHitbox().collides(other);
+        }
+
+        return false;
     }
 
     @Override
-    public float getVerticalCentrePosition(float height) {
-        return (dimensions.getHeight()) - (height / 2);
-    }
-
-    @Override
-    public void create() {
-    }
-
-    @Override
-    public void repaint() {
-
-        stage.repaint();
-    }
-
-    @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(getWidth(), getHeight());
-    }
-
-    @Override
-    public void setBackgroundColor(Color color) {
-        stage.setBackground(color);
-    }
-
-    @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
+    public Directions.Direction getCollisionDirection(GameObject other) {
+        return getParent().getHitbox().getTransform().getRelation(other.getHitbox().getTransform());
     }
 }

@@ -28,7 +28,9 @@
 package testing;
 
 import de.edgelord.saltyengine.components.FixedRate;
+import de.edgelord.saltyengine.components.LockToBounds;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.components.gfx.LightComponent;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -36,7 +38,9 @@ import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -64,8 +68,14 @@ public class BirdPlayer extends GameObject {
 
         animationRender = new AnimationRender(this, "animationRender", animation, 75);
 
+        getHitboxAsSimpleHitbox().setOffsetX(25);
+        getHitboxAsSimpleHitbox().setOffsetY(12);
+        getHitboxAsSimpleHitbox().setWidth(85);
+        getHitboxAsSimpleHitbox().setHeight(75);
+
         addComponent(animationRender);
         addComponent(soundTiming);
+        addComponent(new LockToBounds(this, new Transform(Vector2f.zero(), Game.getHost().getDimensions()), "LOL"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
@@ -119,33 +129,27 @@ public class BirdPlayer extends GameObject {
 
         getTransform().setRotationCentreToMiddle();
 
-        if (Game.inputUp) {
-            accelerate(speed, Directions.Direction.UP);
+        accelerateTo(speed, Input.getInput());
 
+        if (Input.inputUp) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
 
-        if (Game.inputDown) {
-            accelerate(speed, Directions.Direction.DOWN);
-
+        if (Input.inputDown) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
 
-        if (Game.inputRight) {
-            accelerate(speed, Directions.Direction.RIGHT);
-
+        if (Input.inputRight) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
         }
 
-        if (Game.inputLeft) {
-            accelerate(speed, Directions.Direction.LEFT);
-
+        if (Input.inputLeft) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }

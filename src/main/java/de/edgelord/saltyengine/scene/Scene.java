@@ -30,6 +30,7 @@ package de.edgelord.saltyengine.scene;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.physics.Force;
+import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -49,6 +50,7 @@ import java.util.List;
  * {@link FixedTask}s within {@link #fixedTasks},
  * {@link DrawingRoutine}s within {@link #drawingRoutines}
  * and the {@link UISystem} {@link #ui}
+ * as well as a {@link LightSystem} stored in {@link #lightSystem}
  * <p>
  * The current scene is stored in {@link SceneManager#currentScene}.
  * For more information, please take a look at the documentation of that class.
@@ -68,6 +70,7 @@ public class Scene {
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
+    private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
 
     public Scene() {
@@ -156,7 +159,6 @@ public class Scene {
 
     public void draw(SaltyGraphics saltyGraphics) {
 
-
         synchronized (concurrentBlock) {
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
@@ -191,6 +193,11 @@ public class Scene {
                     drawingRoutine.draw(saltyGraphics);
                 }
             }
+        }
+
+        if (lightSystem != null) {
+            Game.camera.tmpResetViewToGraphics(saltyGraphics);
+            lightSystem.draw(saltyGraphics);
         }
     }
 
@@ -270,5 +277,13 @@ public class Scene {
 
     public void setGravityEnabled(boolean gravityEnabled) {
         this.gravityEnabled = gravityEnabled;
+    }
+
+    public LightSystem getLightSystem() {
+        return lightSystem;
+    }
+
+    public void setLightSystem(LightSystem lightSystem) {
+        this.lightSystem = lightSystem;
     }
 }

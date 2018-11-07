@@ -50,7 +50,7 @@ public class Stage extends Canvas {
     private int ticks = 0;
     private int fpsRefreshGate = 25;
 
-    private boolean highQuality = false;
+    private boolean highQuality = true;
     private RenderingHints renderingHints;
 
     public Stage(final Container container, final Engine engine) {
@@ -87,7 +87,6 @@ public class Stage extends Canvas {
 
         if (highQuality) {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
-            putToRenderHints(KEY_RENDERING, VALUE_RENDER_QUALITY);
         } else {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
             putToRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
@@ -154,5 +153,9 @@ public class Stage extends Canvas {
 
     public void setHighQuality(final boolean highQuality) {
         this.highQuality = highQuality;
+    }
+
+    public RenderingHints getRenderHints() {
+        return renderingHints;
     }
 }

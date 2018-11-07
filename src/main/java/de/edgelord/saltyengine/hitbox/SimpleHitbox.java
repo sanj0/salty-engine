@@ -55,7 +55,7 @@ public class SimpleHitbox implements Hitbox {
     @Override
     public boolean collides(final GameObject other) {
 
-        return transform.intersects(other.getTransform());
+        return transform.intersects(other.getHitbox().getTransform());
     }
 
     @Override

@@ -27,35 +27,58 @@
 
 package testing;
 
+import de.edgelord.saltyengine.cosmetic.light.LightSystem;
+import de.edgelord.saltyengine.cosmetic.light.PointLight;
+import de.edgelord.saltyengine.cosmetic.light.StaticLightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.RelationMode;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
+import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
 import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.TransformRelationUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class TestingScene extends Scene {
 
+    private PointLight light = new PointLight(250, 250, 500);
     public TestingScene(String foo, Integer bar) {
 
         disableGravity();
         setFriction(0.005f);
 
+        addLight();
         initForcesTest();
         initUITest();
         addUI();
     }
 
+    private void addLight() {
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
+        getLightSystem().addLight(light);
+        getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200)));
+    }
+
     private void initUITest() {
         FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
         floatingLabel.centreOnXAxis(true);
-        floatingLabel.setTextColor(Color.black);
+        floatingLabel.setForegroundColor(Color.black);
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
 
         getUI().addElement(floatingLabel);
+    }
+
+    @Override
+    public void onFixedTick() {
+        light.positionByCentre(Input.getCursorPosition());
+        super.onFixedTick();
     }
 
     private void addUI() {
@@ -63,8 +86,12 @@ public class TestingScene extends Scene {
         StaticSystem.defaultFont = StaticSystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
+        RoundedTextBox textBox = new RoundedTextBox("Hello World! This is the testing scene for Salty Engine! It looks a bit " +
+                "messy, but it's just testing. We hope that you make amazing games with this Library!", new Vector2f(10, 600), 1180, 100, new Vector2f(25, 50));
+        textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
+        getUI().addElement(textBox);
     }
 
     private void initPhysicsTest() {
@@ -94,12 +121,13 @@ public class TestingScene extends Scene {
         final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
-        final Bird bottomBird = new Bird(birdSpritesheet, 2, 4);
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(bottomBird);
         addGameObject(upperBird);
         addGameObject(player);
+
     }
 
     private void initSampleScene() {

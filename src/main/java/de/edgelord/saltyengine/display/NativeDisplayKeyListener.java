@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.event.KeyEvent;
@@ -99,13 +100,13 @@ public class NativeDisplayKeyListener implements KeyListener {
             SceneManager.getCurrentScene().getUI().keyPressed(e);
         }
 
-        Game.keyboardInput.handleKeyPressed(e);
-        Game.lastInputKey = currentKey;
-        Game.inputUp = inputUp;
-        Game.inputDown = inputDown;
-        Game.inputRight = inputRight;
-        Game.inputLeft = inputLeft;
-        Game.lastInput = e;
+        Input.keyboardInput.handleKeyPressed(e);
+        Input.lastInputKey = currentKey;
+        Input.inputUp = inputUp;
+        Input.inputDown = inputDown;
+        Input.inputRight = inputRight;
+        Input.inputLeft = inputLeft;
+        Input.lastInput = e;
     }
 
     @Override
@@ -138,13 +139,13 @@ public class NativeDisplayKeyListener implements KeyListener {
             SceneManager.getCurrentScene().getUI().keyReleased(e);
         }
 
-        Game.keyboardInput.handleKeyReleased(e);
-        Game.lastInputKey = currentKey;
-        Game.inputUp = inputUp;
-        Game.inputDown = inputDown;
-        Game.inputRight = inputRight;
-        Game.inputLeft = inputLeft;
-        Game.lastInput = null;
+        Input.keyboardInput.handleKeyReleased(e);
+        Input.lastInputKey = currentKey;
+        Input.inputUp = inputUp;
+        Input.inputDown = inputDown;
+        Input.inputRight = inputRight;
+        Input.inputLeft = inputLeft;
+        Input.lastInput = null;
     }
 
     public KeyboardInputHandler getKeyboardHandler() {

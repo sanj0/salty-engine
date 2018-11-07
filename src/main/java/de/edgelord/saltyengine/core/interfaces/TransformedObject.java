@@ -86,6 +86,10 @@ public interface TransformedObject {
         getTransform().setY(y);
     }
 
+    default void positionByCentre(Vector2f centre) {
+        getTransform().positionByCentre(centre);
+    }
+
     default void basicMove(final float delta, final Directions.BasicDirection direction) {
 
         if (direction == Directions.BasicDirection.x) {

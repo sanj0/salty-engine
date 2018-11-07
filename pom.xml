@@ -32,7 +32,7 @@
 
     <groupId>de.edgelord.salty-engine</groupId>
     <artifactId>salty-engine</artifactId>
-    <version>0.12.2-SNAPSHOT</version>
+    <version>0.12.4-SNAPSHOT</version>
 
     <name>Salty Engine</name>
     <url>https://github.com/edgelord314/salty-engine/</url>
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>de.edgelord.sysDepFiles</groupId>
             <artifactId>systemDependentFiles</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.edgelord.stdf</groupId>

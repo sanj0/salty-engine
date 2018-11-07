@@ -37,8 +37,8 @@ import java.awt.*;
 
 public class StaticSystem {
 
-    public static String versionTag = "0.12.2-SNAPSHOT";
-    public static String version = "0.12.2";
+    public static String versionTag = "0.12.4-SNAPSHOT";
+    public static String version = "0.12.4";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;

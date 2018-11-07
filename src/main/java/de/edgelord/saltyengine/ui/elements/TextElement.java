@@ -28,18 +28,14 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
-import java.awt.*;
-
 public abstract class TextElement extends UIElement {
 
     private String text;
-
-    private Color textColor = Color.black;
-    private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 15);
 
     private HorizontalAlignment horizontalAlignment = HorizontalAlignment.centered;
     private VerticalAlignment verticalAlignment = VerticalAlignment.centered;
@@ -67,24 +63,13 @@ public abstract class TextElement extends UIElement {
     }
 
     public TextElement(String text, Vector2f position, float width, float height, String tag) {
-        super(position, width, height, tag);
-
-        this.text = text;
+        this(text, new Transform(position, new Dimensions(width, height)), tag);
     }
 
     public TextElement(String text, Transform transform, String tag) {
         super(transform.getPosition(), transform.getWidth(), transform.getHeight(), tag);
-    }
 
-    /**
-     * This method prepares the given graphics for rendering the text with the values
-     * defaultFont and color. This should be called before drawing the text.
-     *
-     * @param graphics the graphics to prepare
-     */
-    public void prepareGraphics(SaltyGraphics graphics) {
-        graphics.setColor(textColor);
-        graphics.setFont(font);
+        this.text = text;
     }
 
     @Override
@@ -96,14 +81,6 @@ public abstract class TextElement extends UIElement {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Color getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(Color textColor) {
-        this.textColor = textColor;
     }
 
     public HorizontalAlignment getHorizontalAlignment() {
@@ -120,15 +97,5 @@ public abstract class TextElement extends UIElement {
 
     public void setVerticalAlignment(VerticalAlignment verticalAlignment) {
         this.verticalAlignment = verticalAlignment;
-    }
-
-    @Override
-    public Font getFont() {
-        return font;
-    }
-
-    @Override
-    public void setFont(Font font) {
-        this.font = font;
     }
 }

@@ -31,6 +31,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 
@@ -65,15 +66,15 @@ public class Screen extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (Game.inputLeft) {
+        if (Input.inputLeft) {
             screenContent.moveX(7f);
-        } else if (Game.inputRight) {
+        } else if (Input.inputRight) {
             screenContent.moveX(-7f);
         }
 
-        if (Game.inputUp) {
+        if (Input.inputUp) {
             screenContent.moveY(7f);
-        } else if (Game.inputDown) {
+        } else if (Input.inputDown) {
             screenContent.moveY(-7f);
         }
     }

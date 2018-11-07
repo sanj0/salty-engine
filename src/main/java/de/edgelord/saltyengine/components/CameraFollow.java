@@ -34,7 +34,6 @@ import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.utils.Directions;
 
 /**
  * This implementation of {@link Component} makes the {@link de.edgelord.saltyengine.camera.Camera}
@@ -46,12 +45,12 @@ import de.edgelord.saltyengine.utils.Directions;
  * This can also be a floating-point number, the floating-points will stack and eventually turn into an integer.
  * <p>
  * By default, {@link #whiteZone} is twice as wide and high as the {@link #parent} of this Components
- * and in the middle of the screen. It can be changed/edited at any time.
+ * and in the centre of the screen. It can be changed/edited at any time.
  */
 public class CameraFollow extends Component<GameObject> {
 
     private Transform whiteZone;
-    private float speed = 1f;
+    private float speed = 0.75f;
 
     public CameraFollow(GameObject parent, String name) {
         super(parent, name, Components.CAMERA_COMPONENT);
@@ -75,8 +74,8 @@ public class CameraFollow extends Component<GameObject> {
                 getParent().getWidth(), getParent().getHeight());
 
         if (!whiteZone.intersects(getParent().getTransform())) {
-            Game.camera.move(Directions.getFreeRelationX(whiteZone, renderedPlayerTransform), speed);
-            Game.camera.move(Directions.getFreeRelationY(whiteZone, renderedPlayerTransform), speed);
+            Game.camera.move(whiteZone.getFreeRelationX(renderedPlayerTransform), speed);
+            Game.camera.move(whiteZone.getFreeRelationY(renderedPlayerTransform), speed);
         }
     }
 

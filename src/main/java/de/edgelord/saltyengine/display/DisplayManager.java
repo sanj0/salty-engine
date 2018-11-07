@@ -141,4 +141,9 @@ public class DisplayManager extends Host {
     public void setBackgroundColor(Color color) {
         stage.setBackground(color);
     }
+
+    @Override
+    public RenderingHints getRenderHints() {
+        return stage.getRenderHints();
+    }
 }

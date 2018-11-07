@@ -3,7 +3,8 @@
 # This software was published under the MIT License.                                                       #
 # The full LICENSE file can be found here: https://github.com/edgelord314/salty-enigne/tree/master/LICENSE #
 #                                                                                                          #
-# Copyright (c) since 2018 The Salty Engine Developer                                                      #
+# Copyright (c) since 2018 by the Salty Engine developers,                                                 #
+# maintained by Malte Dostal                                                                               #
 #                                                                                                          #
 # Permission is hereby granted, free of charge, to any person obtaining a copy                             #
 # of this software and associated documentation files (the "Software"), to deal                            #

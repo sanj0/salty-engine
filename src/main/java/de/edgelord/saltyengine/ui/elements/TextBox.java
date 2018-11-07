@@ -28,52 +28,54 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.ui.UIElement;
+import de.edgelord.saltyengine.utils.Time;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+public abstract class TextBox extends TextElement {
 
-public abstract class Container extends UIElement {
+    private float cursor = 1;
+    private float speed = 0.020f;
+    private Vector2f textOffset;
 
-    private List<UIElement> childElements = new CopyOnWriteArrayList<>();
-
-    public Container(Vector2f position, float width, float height) {
-        super(position, width, height, UIElement.CONTAINER);
+    public TextBox(String text, Vector2f position, float width, float height, Vector2f textOffset) {
+        this(text, new Transform(position, new Dimensions(width, height)), textOffset);
     }
 
-    public Container(Transform transform) {
-        this(transform.getPosition(), transform.getWidth(), transform.getHeight());
+    public TextBox(String text, Transform transform, Vector2f textOffset) {
+        super(text, transform, TEXT_BOX);
+
+        this.textOffset = textOffset;
     }
 
-    public Container(float x, float y, float width, float height) {
-        this(new Vector2f(x, y), width, height);
-    }
-
-    public void add(UIElement element) {
-        getChildElements().add(element);
-    }
-
-    public void remove(UIElement element) {
-        getChildElements().removeIf(uiElement -> uiElement == element);
-        element.setSuppressClipping(false);
-    }
-
-    public void suppressAllClipping() {
-        for (UIElement element : getChildElements()) {
-            element.setSuppressClipping(true);
+    public void drawText(SaltyGraphics graphics) {
+        graphics.setColor(getForegroundColor());
+        String currentText;
+        if (cursor >= getText().length()) {
+            currentText = getText();
+        } else {
+            currentText = getText().substring(0, Math.round(cursor));
         }
+        graphics.drawText(currentText, getX() + textOffset.getX(), getY() + textOffset.getY());
+        cursor += (float) Time.getDeltaTime() * speed;
     }
+
+    public abstract void drawBackground(SaltyGraphics graphics);
 
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
-    public List<UIElement> getChildElements() {
-        return childElements;
+    public final void draw(SaltyGraphics saltyGraphics) {
+        prepareGraphics(saltyGraphics);
+        drawBackground(saltyGraphics);
+        drawText(saltyGraphics);
     }
 
-    public void setChildElements(List<UIElement> childElements) {
-        this.childElements = childElements;
+    public void start() {
+        cursor = 1;
+    }
+
+    public void start(String text) {
+        setText(text);
+        start();
     }
 }

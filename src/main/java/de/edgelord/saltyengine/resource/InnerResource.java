@@ -38,6 +38,7 @@ import java.io.*;
 public class InnerResource implements Resource {
 
     private final ClassLoader classLoader = InnerResource.class.getClassLoader();
+    private File tmpDir = null;
 
     @Override
     public BufferedImage getImageResource(String relativePath) {
@@ -116,14 +117,21 @@ public class InnerResource implements Resource {
     }
 
     private void checkTmpDir() {
-        File tmp = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/");
+        if (tmpDir == null) {
+            tmpDir = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/");
 
-        if (tmp.exists()) {
-            if (!tmp.isDirectory()) {
-                System.err.println("ERROR: TMP Directory is a file!");
+            if (tmpDir.exists()) {
+                if (tmpDir.isDirectory()) {
+                    String[] files = tmpDir.list();
+                    for (String file : files) {
+                        File currentFile = new File(tmpDir.getPath(), file);
+                        currentFile.delete();
+                    }
+                }
+                tmpDir.delete();
+            } else {
+                tmpDir.mkdir();
             }
-        } else {
-            tmp.mkdir();
         }
     }
 
