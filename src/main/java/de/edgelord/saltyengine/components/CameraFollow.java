@@ -45,7 +45,7 @@ import de.edgelord.saltyengine.transform.Transform;
  * This can also be a floating-point number, the floating-points will stack and eventually turn into an integer.
  * <p>
  * By default, {@link #whiteZone} is twice as wide and high as the {@link #parent} of this Components
- * and in the middle of the screen. It can be changed/edited at any time.
+ * and in the centre of the screen. It can be changed/edited at any time.
  */
 public class CameraFollow extends Component<GameObject> {
 

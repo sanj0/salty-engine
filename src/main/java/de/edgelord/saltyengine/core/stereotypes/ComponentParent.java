@@ -107,7 +107,7 @@ public abstract class ComponentParent implements TransformedObject {
     }
 
     /**
-     * Places this object in the middle of the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     * Places this object in the centre of the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
      */
     public void centrePosition() {
         setPosition(Game.getHost().getCentrePosition(getDimensions()));

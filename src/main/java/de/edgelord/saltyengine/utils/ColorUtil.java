@@ -97,7 +97,7 @@ public class ColorUtil {
         Color endColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), targetAlpha);
         Color[] colors = {color, endColor};
 
-        return new RadialGradientPaint(bounds.getMiddle().getX(), bounds.getMiddle().getY(), bounds.getWidth(), fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
+        return new RadialGradientPaint(bounds.getCentre().getX(), bounds.getCentre().getY(), bounds.getWidth(), fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
     }
 
     /**

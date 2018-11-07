@@ -165,7 +165,13 @@ public class Transform {
         return Directions.Direction.EMPTY;
     }
 
-    public Vector2f getMiddle() {
+    public void positionByCentre(Vector2f centre) {
+        float centreShiftX = getWidth() / 2f;
+        float centreShiftY = getHeight() / 2;
+        position = new Vector2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
+    }
+
+    public Vector2f getCentre() {
         return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }
 
@@ -205,12 +211,30 @@ public class Transform {
         return position.getX();
     }
 
+    /**
+     * @return the maximum x value of the rectangle described by this Transform. That position is
+     *
+     * {@code x + width}
+     */
+    public float getMaxX() {
+        return getX() + getWidth();
+    }
+
     public void setX(float x) {
         position.setX(x);
     }
 
     public float getY() {
         return position.getY();
+    }
+
+    /**
+     * @return the maximum y value of the rectangle described by this Transform. That position is
+     *
+     * {@code y + height}
+     */
+    public float getMaxY() {
+        return getY() + getHeight();
     }
 
     public void setY(float y) {
