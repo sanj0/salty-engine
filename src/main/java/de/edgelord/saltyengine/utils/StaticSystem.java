@@ -58,7 +58,6 @@ public class StaticSystem {
     }
 
     public static void updateFontGlobally(Font font) {
-
         for (UIElement uiElement : SceneManager.getCurrentScene().getUI().getElements()) {
             uiElement.setFont(font);
         }

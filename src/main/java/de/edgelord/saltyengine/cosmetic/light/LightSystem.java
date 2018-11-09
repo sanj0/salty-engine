@@ -85,7 +85,7 @@ public class LightSystem implements Drawable {
         });
 
         graphics.setComposite(oldComp);
-        graphics.dispose();
+        // graphics.dispose();
     }
 
     @Override

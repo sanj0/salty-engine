@@ -59,14 +59,12 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
-    public static final String DEFAULT_ACCELERATOR_NAME = "de.edgelord.saltyengine.coreComponents.accelerator";
     public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
 
     private final List<Component> components = new CopyOnWriteArrayList<>();
 
     private final SimplePhysicsComponent physicsComponent;
     private final RecalculateHitboxComponent recalculateHitboxComponent;
-    private final Accelerator defaultAccelerator;
     private final HitboxCollider defaultCollider;
 
     private Directions lockedDirections = new Directions();
@@ -99,12 +97,10 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
-        defaultAccelerator = new Accelerator(this, GameObject.DEFAULT_ACCELERATOR_NAME);
         defaultCollider = new HitboxCollider(this, DEFAULT_COLLIDER_COMPONENT_NAME);
 
         components.add(physicsComponent);
         components.add(recalculateHitboxComponent);
-        components.add(defaultAccelerator);
         components.add(defaultCollider);
     }
 
@@ -433,10 +429,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public RecalculateHitboxComponent getRecalculateHitboxComponent() {
         return recalculateHitboxComponent;
-    }
-
-    public Accelerator getDefaultAccelerator() {
-        return defaultAccelerator;
     }
 
     public ColliderComponent getDefaultColliderCollider() {

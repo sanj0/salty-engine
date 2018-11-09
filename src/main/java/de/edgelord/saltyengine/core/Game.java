@@ -76,7 +76,7 @@ public class Game {
      */
     public Game(Host host, String gameName) {
 
-        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.opengl", "True");
 
         Game.host = host;
     }

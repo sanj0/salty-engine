@@ -52,12 +52,13 @@ public class PointLight extends Light {
 
     public PointLight(Vector2f position, float radius) {
         this(new Transform(position, new Dimensions(radius, radius)));
+
+        updatePaint();
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         graphics2D.setColor(lightColor);
-        updatePaint();
         graphics2D.setPaint(paint);
         graphics2D.fillOval(Math.round(getX()), Math.round(getY()), Math.round(getWidth()), Math.round(getHeight()));
     }
@@ -72,5 +73,47 @@ public class PointLight extends Light {
 
     public void updatePaint() {
         this.paint = ColorUtil.createRadialGradientPaint(getTransform(), lightColor, targetAlpha);
+    }
+
+    @Override
+    public void setDimensions(Dimensions dimensions) {
+        super.setDimensions(dimensions);
+        updatePaint();
+    }
+
+    @Override
+    public void setPosition(Vector2f position) {
+        super.setPosition(position);
+        updatePaint();
+    }
+
+    @Override
+    public void setWidth(float width) {
+        super.setWidth(width);
+        updatePaint();
+    }
+
+    @Override
+    public void setHeight(float height) {
+        super.setHeight(height);
+        updatePaint();
+    }
+
+    @Override
+    public void setX(float x) {
+        super.setX(x);
+        updatePaint();
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
+        updatePaint();
+    }
+
+    @Override
+    public void positionByCentre(Vector2f centre) {
+        super.positionByCentre(centre);
+        updatePaint();
     }
 }
