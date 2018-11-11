@@ -47,7 +47,6 @@ public class LightSystem implements Drawable {
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;
 
-        lightMap = new BufferedImage((int) Game.getHost().getWidth(), (int) Game.getHost().getHeight(), BufferedImage.TYPE_INT_ARGB);
     }
 
     /**
@@ -70,9 +69,8 @@ public class LightSystem implements Drawable {
     }
 
     protected void updateLightMap() {
+        lightMap = new BufferedImage((int) Game.getHost().getWidth(), (int) Game.getHost().getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = lightMap.createGraphics();
-        graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
-        graphics.clearRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
         graphics.setColor(lightMapColor);
         graphics.fillRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
         Composite oldComp = graphics.getComposite();

@@ -27,7 +27,6 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.components.Accelerator;
 import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.collider.ColliderComponent;
@@ -73,7 +72,7 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      * If this is set to true, this GameObject will not have a collision detection. Use this for
      * stationary objects like obstacles, houses and generally all kind of GameObjects that
      * aren't moving due to heavy performance improvements.
-     * When ever the {@link #onCollision(CollisionEvent)} implementation is empty, set this to true
+     * Whenever the {@link #onCollision(CollisionEvent)} implementation is empty, set this to true
      * to improve the performance of the game a lot. Other GameObjects still collide with this one then,
      * but this one will never collide with others which is redundant when the {@link #onCollision(CollisionEvent)}
      * implementation is empty.

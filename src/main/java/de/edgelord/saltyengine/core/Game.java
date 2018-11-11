@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.graphics.GFXController;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -81,18 +82,24 @@ public class Game {
         Game.host = host;
     }
 
+    public static void start(SplashWindow.Splash splash) {
+
+        GameStarter.startGame(-1, splash);
+    }
+
+    public static void start(long fixedFPS, SplashWindow.Splash splash) {
+
+        GameStarter.startGame(fixedFPS, splash);
+    }
+
     public static void start() {
 
-        host.create();
-
-        engine.start();
+        GameStarter.startGame(-1, SplashWindow.Splash.DEFAULT_SPLASH);
     }
 
     public static void start(long fixedFPS) {
 
-        host.create();
-
-        engine.start(fixedFPS);
+        GameStarter.startGame(fixedFPS, SplashWindow.Splash.DEFAULT_SPLASH);
     }
 
     protected static void setEngine(Engine engine) {

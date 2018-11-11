@@ -29,6 +29,7 @@ package testing;
 
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
@@ -64,7 +65,7 @@ public class Tester extends Game {
 
         SceneManager.addScene("testingScene", TestingScene.class);
 
-        start(60);
+        start(60, SplashWindow.Splash.SPOTLIGHT_SPLASH);
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
 
