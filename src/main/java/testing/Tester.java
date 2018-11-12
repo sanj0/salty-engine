@@ -29,11 +29,10 @@ package testing;
 
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -45,7 +44,7 @@ public class Tester extends Game {
     public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
         super(windowWidth, windowHeight, gameName, fixedTickMillis);
 
-        System.out.println("Welcome to Salty Engine v" + StaticSystem.versionTag);
+        System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 
         Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
 
@@ -65,7 +64,7 @@ public class Tester extends Game {
 
         SceneManager.addScene("testingScene", TestingScene.class);
 
-        start(60, SplashWindow.Splash.SPOTLIGHT_SPLASH);
+        start(60);
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
 

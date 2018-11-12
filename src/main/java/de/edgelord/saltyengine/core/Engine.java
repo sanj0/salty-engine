@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
 import java.util.Timer;
@@ -70,7 +70,7 @@ public class Engine {
 
     public void startFixedTicks() {
 
-        StaticSystem.fixedTickMillis = fixedTickMillis;
+        SaltySystem.fixedTickMillis = fixedTickMillis;
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
 

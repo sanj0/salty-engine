@@ -41,12 +41,14 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -392,6 +394,10 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
             }
         }
         super.moveX(delta);
+    }
+
+    public boolean isCursorOver() {
+        return getTransform().contains(Input.getRelativeCursor());
     }
 
     public Coordinates getCoordinates() {

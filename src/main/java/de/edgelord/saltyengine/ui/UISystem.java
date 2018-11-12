@@ -52,7 +52,7 @@ public class UISystem {
     public void onFixedTick() {
         for (UIElement element : elements) {
 
-            if (element.getTransform().subtractFromPosition(Game.camera.getPosition()).contains(Input.cursor)) {
+            if (element.getTransform().contains(Input.cursor)) {
 
                 if (!element.mouseHoversOver()) {
                     element.mouseEntered(Input.cursor);

@@ -129,12 +129,16 @@ public class BirdPlayer extends GameObject {
 
         getTransform().setRotationCentreToMiddle();
 
+        // System.out.println(isCursorOver());
+
         accelerateTo(speed, Input.getInput());
 
         if (Input.inputUp) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
+
+            Game.camera.move(Directions.Direction.UP, 2f);
         }
 
         if (Input.inputDown) {

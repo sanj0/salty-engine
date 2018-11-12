@@ -28,7 +28,7 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.factory.ImageFactory;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -61,13 +61,13 @@ public class ImageLoader {
 
     /**
      * This method will call {@link #loadNewImage(String, String, ImageFactory)} with the
-     * default {@link ImageFactory} {@link StaticSystem#defaultImageFactory}
+     * default {@link ImageFactory} {@link SaltySystem#defaultImageFactory}
      *
      * @param name         the id-name of the image
      * @param relativePath the relative path of the image to be loaded from
      */
     public static void loadNewImage(String name, String relativePath) {
-        loadNewImage(name, relativePath, StaticSystem.defaultImageFactory);
+        loadNewImage(name, relativePath, SaltySystem.defaultImageFactory);
     }
 
     /**
@@ -90,14 +90,14 @@ public class ImageLoader {
 
     /**
      * Calls the method {@link #getOrLoadImage(String, String, ImageFactory)} with the default
-     * {@link ImageFactory} {@link StaticSystem#defaultImageFactory}.
+     * {@link ImageFactory} {@link SaltySystem#defaultImageFactory}.
      *
      * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
      * @return the {@link BufferedImage} corresponding to the given name and/or path
      */
     public static BufferedImage getOrLoadImage(String name, String relativePath) {
-        return getOrLoadImage(name, relativePath, StaticSystem.defaultImageFactory);
+        return getOrLoadImage(name, relativePath, SaltySystem.defaultImageFactory);
     }
 
     /**

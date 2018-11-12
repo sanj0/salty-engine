@@ -35,7 +35,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -132,7 +132,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         if (!getParent().isStationary()) {
             float horizontalDelta = 0f;
             float verticalDelta = 0f;
-            final int deltaT = (int) StaticSystem.fixedTickMillis;
+            final int deltaT = (int) SaltySystem.fixedTickMillis;
 
             for (final Force force : forces) {
 

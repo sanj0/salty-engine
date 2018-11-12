@@ -38,7 +38,7 @@ import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -48,7 +48,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class UIElement extends ComponentParent implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
-    private Font font = StaticSystem.defaultFont;
+    private Font font = SaltySystem.defaultFont;
 
     private Color backgroundColor = Color.DARK_GRAY;
     private Color foregroundColor = Color.WHITE;

@@ -35,7 +35,7 @@ import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
 
-public class StaticSystem {
+public class SaltySystem {
 
     public static String versionTag = "0.13.0-SNAPSHOT";
     public static String version = "0.13.0";

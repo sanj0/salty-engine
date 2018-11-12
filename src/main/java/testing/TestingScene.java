@@ -29,19 +29,15 @@ package testing;
 
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.cosmetic.light.PointLight;
-import de.edgelord.saltyengine.cosmetic.light.StaticLightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.RelationMode;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
-import de.edgelord.saltyengine.utils.StaticSystem;
-import de.edgelord.saltyengine.utils.TransformRelationUtils;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -77,13 +73,13 @@ public class TestingScene extends Scene {
 
     @Override
     public void onFixedTick() {
-        light.positionByCentre(Input.getCursorPosition());
+        light.positionByCentre(Input.getRelativeCursorPosition());
         super.onFixedTick();
     }
 
     private void addUI() {
 
-        StaticSystem.defaultFont = StaticSystem.defaultFont.deriveFont(20f);
+        SaltySystem.defaultFont = SaltySystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
         RoundedTextBox textBox = new RoundedTextBox("Hello World! This is the testing scene for Salty Engine! It looks a bit " +
@@ -122,7 +118,7 @@ public class TestingScene extends Scene {
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(bottomBird);
         addGameObject(upperBird);
@@ -134,7 +130,7 @@ public class TestingScene extends Scene {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), StaticSystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(player);
 

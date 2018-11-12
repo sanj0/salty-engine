@@ -28,7 +28,7 @@
 package de.edgelord.saltyengine.factory;
 
 import de.edgelord.saltyengine.resource.Resource;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.io.IOException;
@@ -57,7 +57,7 @@ public class FontFactory extends Factory {
     }
 
     /**
-     * Loads a new {@link Font} from the given *.ttf file and stores it in {@link StaticSystem#defaultFont}
+     * Loads a new {@link Font} from the given *.ttf file and stores it in {@link SaltySystem#defaultFont}
      *
      * @param relativePath the relative path to the ttf file
      * @param size         the size of the defaultFont
@@ -66,6 +66,6 @@ public class FontFactory extends Factory {
      * @see #getFont(String, float)
      */
     public void loadFontToDefault(String relativePath, float size) throws IOException, FontFormatException {
-        StaticSystem.defaultFont = getFont(relativePath, size);
+        SaltySystem.defaultFont = getFont(relativePath, size);
     }
 }

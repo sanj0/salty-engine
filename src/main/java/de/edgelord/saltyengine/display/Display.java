@@ -28,7 +28,7 @@
 package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import javax.swing.*;
 
@@ -46,7 +46,7 @@ public class Display extends JFrame {
 
     public void create() {
 
-        setTitle(windowTitle + " [Salty Engine " + StaticSystem.versionTag + "]");
+        setTitle(windowTitle + " [Salty Engine " + SaltySystem.versionTag + "]");
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

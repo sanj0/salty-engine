@@ -38,31 +38,79 @@ public class Directions {
      * @param direction the Direction to mirror
      * @return the mirrored Direction
      */
-    public static Directions mirrorDirection(final Direction direction) {
+    public static Direction mirrorDirection(final Direction direction) {
 
-        Directions returnDirections = new Directions();
+        switch (direction) {
 
-        if (returnDirections.hasDirection(Direction.RIGHT)) {
-            returnDirections.removeDirection(Direction.RIGHT);
-            returnDirections.setDirection(Direction.LEFT);
+            case RIGHT:
+                return Direction.LEFT;
+            case LEFT:
+                return Direction.RIGHT;
+            case UP:
+                return Direction.DOWN;
+            case DOWN:
+                return Direction.UP;
+            case EMPTY:
+                return Direction.EMPTY;
         }
 
-        if (returnDirections.hasDirection(Direction.LEFT)) {
-            returnDirections.removeDirection(Direction.LEFT);
-            returnDirections.setDirection(Direction.RIGHT);
+        return null;
+    }
+
+    /**
+     * This method mirrors all the {@link Direction}s that the given {@link Directions} has and returns a new
+     * instance of <code>Directions</code> that contains all of them.
+     *
+     * @param directions the directions to mirror
+     * @return the mirrored directions
+     */
+    public static Directions mirrorDirections(Directions directions) {
+
+        Directions mirroredDirections = new Directions();
+
+        if (directions.hasDirection(Direction.UP)) {
+            mirroredDirections.setDirection(Direction.DOWN);
         }
 
-        if (returnDirections.hasDirection(Direction.UP)) {
-            returnDirections.removeDirection(Direction.UP);
-            returnDirections.setDirection(Direction.DOWN);
+        if (directions.hasDirection(Direction.DOWN)) {
+            mirroredDirections.setDirection(Direction.UP);
         }
 
-        if (returnDirections.hasDirection(Direction.DOWN)) {
-            returnDirections.removeDirection(Direction.DOWN);
-            returnDirections.setDirection(Direction.UP);
+        if (directions.hasDirection(Direction.LEFT)) {
+            mirroredDirections.setDirection(Direction.RIGHT);
         }
 
-        return returnDirections;
+        if (directions.hasDirection(Direction.RIGHT)) {
+            mirroredDirections.setDirection(Direction.LEFT);
+        }
+
+        return mirroredDirections;
+    }
+
+    /**
+     * Mirrors this directions
+     */
+    public void mirror() {
+
+        if (hasDirection(Direction.UP)) {
+            removeDirection(Direction.UP);
+            setDirection(Direction.DOWN);
+        }
+
+        if (hasDirection(Direction.DOWN)) {
+            removeDirection(Direction.DOWN);
+            setDirection(Direction.UP);
+        }
+
+        if (hasDirection(Direction.RIGHT)) {
+            removeDirection(Direction.RIGHT);
+            setDirection(Direction.LEFT);
+        }
+
+        if (hasDirection(Direction.LEFT)) {
+            removeDirection(Direction.LEFT);
+            setDirection(Direction.RIGHT);
+        }
     }
 
     /**

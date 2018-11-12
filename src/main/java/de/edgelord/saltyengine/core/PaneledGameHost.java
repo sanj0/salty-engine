@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.StaticSystem;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 
@@ -44,7 +44,7 @@ public class PaneledGameHost extends Host {
 
         engine = new Engine(fixedTickMillis);
 
-        StaticSystem.fixedTickMillis = fixedTickMillis;
+        SaltySystem.fixedTickMillis = fixedTickMillis;
         Game.setEngine(engine);
 
         stage = new Stage(container, engine, x, y, width, height);
