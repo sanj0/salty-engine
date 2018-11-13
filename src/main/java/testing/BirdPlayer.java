@@ -137,8 +137,6 @@ public class BirdPlayer extends GameObject {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-
-            Game.camera.move(Directions.Direction.UP, 2f);
         }
 
         if (Input.inputDown) {

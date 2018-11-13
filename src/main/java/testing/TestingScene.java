@@ -50,7 +50,7 @@ public class TestingScene extends Scene {
         disableGravity();
         setFriction(0.005f);
 
-        addLight();
+        //addLight();
         initForcesTest();
         initUITest();
         addUI();

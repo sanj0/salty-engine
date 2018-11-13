@@ -32,6 +32,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -45,9 +46,9 @@ public class DisplayManager extends Host {
     private DisplayListener displayListener;
     private NativeDisplayKeyListener nativeKeyListener;
 
-    public DisplayManager(final int width, final int height, final String gameName, final Engine engine) {
+    public DisplayManager(DisplayRatio displayRatio, final String gameName, final Engine engine) {
 
-        display = new Display(width, height, gameName);
+        display = new Display(displayRatio, gameName);
         stage = new Stage(display, engine);
         displayListener = new DisplayListener(display);
 
@@ -75,6 +76,9 @@ public class DisplayManager extends Host {
     public void repaint() {
 
         stage.repaint();
+        setDimensions(display.getDisplayRatio().getCurrentDimensions());
+        System.out.println(display.getDisplayRatio().getScale());
+        stage.scaleTo(display.getDisplayRatio().getScale());
     }
 
     public void createKeyListener() {
@@ -145,5 +149,10 @@ public class DisplayManager extends Host {
     @Override
     public RenderingHints getRenderHints() {
         return stage.getRenderHints();
+    }
+
+    @Override
+    public void setDimensions(Dimensions dimensions) {
+        display.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
 }

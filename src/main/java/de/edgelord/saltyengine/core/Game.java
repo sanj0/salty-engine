@@ -29,8 +29,10 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.camera.Camera;
 import de.edgelord.saltyengine.display.DisplayManager;
+import de.edgelord.saltyengine.display.DisplayRatio;
 import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.graphics.GFXController;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.Time;
 
 public class Game {
@@ -51,13 +53,13 @@ public class Game {
     private static Host host;
     private static Engine engine;
 
-    public Game(int windowWidth, int windowHeight, String gameName, long fixedTickMillis) {
+    public Game(float resolutionWidth, float resolutionHeight, String gameName, long fixedTickMillis) {
 
         System.setProperty("sun.java2d.opengl", "True");
 
         engine = new Engine(fixedTickMillis);
 
-        host = new DisplayManager(windowWidth, windowHeight, gameName, engine);
+        host = new DisplayManager(new DisplayRatio(new Dimensions(resolutionWidth, resolutionHeight)), gameName, engine);
     }
 
     public Game(Host host, String gameName, long fixedTickMillis) {

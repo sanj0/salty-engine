@@ -46,6 +46,8 @@ public class Stage extends Canvas {
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
     private boolean doubleBufferCreated = false;
 
+    private float currentScale = 1f;
+
     private float lastFps = 0f;
     private int ticks = 0;
     private int fpsRefreshGate = 25;
@@ -107,7 +109,7 @@ public class Stage extends Canvas {
         ticks++;
 
         if (!doubleBufferCreated) {
-            createBufferStrategy(3);
+            createBufferStrategy(2);
             doubleBufferCreated = true;
         }
 
@@ -116,6 +118,7 @@ public class Stage extends Canvas {
         graphics2D.setClip(0, 0, getWidth(), getWidth());
 
         graphics2D.setRenderingHints(renderingHints);
+        graphics2D.scale(currentScale, currentScale);
 
         Game.camera.setViewToGraphics(graphics2D);
 
@@ -138,7 +141,10 @@ public class Stage extends Canvas {
         }
 
         getBufferStrategy().show();
-        Toolkit.getDefaultToolkit().sync();
+    }
+
+    public void scaleTo(float scale) {
+        this.currentScale = scale;
     }
 
     public void setMouseHandler(final MouseInputHandler mouseHandler) {

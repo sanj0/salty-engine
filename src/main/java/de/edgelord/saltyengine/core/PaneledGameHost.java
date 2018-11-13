@@ -36,6 +36,7 @@ import java.awt.*;
 public class PaneledGameHost extends Host {
 
     private Dimensions dimensions;
+    private Container container;
     private Engine engine;
     private Stage stage;
 
@@ -48,6 +49,7 @@ public class PaneledGameHost extends Host {
         Game.setEngine(engine);
 
         stage = new Stage(container, engine, x, y, width, height);
+        this.container = container;
     }
 
     @Override
@@ -83,5 +85,10 @@ public class PaneledGameHost extends Host {
     @Override
     public RenderingHints getRenderHints() {
         return stage.getRenderHints();
+    }
+
+    @Override
+    public void setDimensions(Dimensions dimensions) {
+        container.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
 }
