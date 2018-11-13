@@ -77,8 +77,27 @@ public class DisplayManager extends Host {
 
         stage.repaint();
         setDimensions(display.getDisplayRatio().getCurrentDimensions());
-        System.out.println(display.getDisplayRatio().getScale());
         stage.scaleTo(display.getDisplayRatio().getScale());
+    }
+
+    @Override
+    public Dimensions getDimensions() {
+        return new Dimensions(display.getContentPane().getWidth(), display.getContentPane().getHeight());
+    }
+
+    @Override
+    public void setBackgroundColor(Color color) {
+        stage.setBackground(color);
+    }
+
+    @Override
+    public RenderingHints getRenderHints() {
+        return stage.getRenderHints();
+    }
+
+    @Override
+    public void setDimensions(Dimensions dimensions) {
+        display.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
 
     public void createKeyListener() {
@@ -106,11 +125,6 @@ public class DisplayManager extends Host {
 
     public char getCurrentKey() {
         return nativeKeyListener.getCurrentKey();
-    }
-
-    @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(display.getContentPane().getWidth(), display.getContentPane().getHeight());
     }
 
     public boolean isInputUp() {
@@ -141,18 +155,7 @@ public class DisplayManager extends Host {
         return stage;
     }
 
-    @Override
-    public void setBackgroundColor(Color color) {
-        stage.setBackground(color);
-    }
-
-    @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
-    }
-
-    @Override
-    public void setDimensions(Dimensions dimensions) {
-        display.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
+    public void setResizeable(boolean resizeable) {
+        display.setResizable(resizeable);
     }
 }

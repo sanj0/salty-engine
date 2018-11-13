@@ -58,7 +58,8 @@ public class Camera {
     }
 
     public void tmpResetViewToGraphics(SaltyGraphics graphics) {
-        graphics.setTransform(originalTransform);
+        graphics.getGraphics2D().rotate(0);
+        graphics.getGraphics2D().translate(0, 0);
     }
 
     public void move(Directions.Direction direction, float delta) {
