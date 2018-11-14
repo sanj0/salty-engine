@@ -48,7 +48,6 @@ public class DisplayRatio {
     }
 
     public void setWidth(float width) {
-        System.out.println(originalResolution);
         this.scale = width / this.originalResolution.getWidth();
         updateCurrentDimensions();
     }
