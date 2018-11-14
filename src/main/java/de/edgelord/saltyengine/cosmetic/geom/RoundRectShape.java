@@ -25,38 +25,63 @@
  *
  */
 
-package de.edgelord.saltyengine.components.rendering;
+package de.edgelord.saltyengine.cosmetic.geom;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
-import de.edgelord.saltyengine.gameobject.Components;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.awt.image.BufferedImage;
+public class RoundRectShape extends SaltyShape {
 
-public class ImageRender extends RenderComponent {
+    private float arc = 15f;
 
-    // The image to render
-    private BufferedImage image;
+    public RoundRectShape(TransformedObject parent) {
+        super(parent, EnumShape.ROUND_RECTANGLE);
+    }
 
-    /**
-     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific Components out of a list
-     *
-     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
-     * @param name   the id-name for this Component
-     * @param image  the image to be drawn by this component
-     * @see de.edgelord.saltyengine.core.Component
-     */
-    public ImageRender(ComponentParent parent, String name, BufferedImage image) {
-        super(parent, name, Components.RENDER_COMPONENT);
+    public RoundRectShape(Transform transform) {
+        super(transform, EnumShape.ROUND_RECTANGLE);
+    }
 
-        this.image = image;
+    public RoundRectShape(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.ROUND_RECTANGLE);
+    }
+
+    public RoundRectShape(TransformedObject parent, float arc) {
+        super(parent, EnumShape.ROUND_RECTANGLE);
+
+        this.arc = arc;
+    }
+
+    public RoundRectShape(Transform transform, float arc) {
+        super(transform, EnumShape.ROUND_RECTANGLE);
+
+        this.arc = arc;
+    }
+
+    public RoundRectShape(Vector2f position, Dimensions dimensions, float arc) {
+        super(position, dimensions, EnumShape.ROUND_RECTANGLE);
+
+
+        this.arc = arc;
     }
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        if (isFilled()) {
+            saltyGraphics.drawRoundRect(this, arc);
+        } else {
+            saltyGraphics.outlineRoundRect(this, arc);
+        }
+    }
 
-        // Draw the image
-        saltyGraphics.drawImage(image, getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+    public float getArc() {
+        return arc;
+    }
+
+    public void setArc(float arc) {
+        this.arc = arc;
     }
 }

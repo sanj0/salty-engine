@@ -27,6 +27,9 @@
 
 package testing;
 
+import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
+import de.edgelord.saltyengine.cosmetic.light.GradientLight;
+import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.cosmetic.light.PointLight;
 import de.edgelord.saltyengine.factory.ImageFactory;
@@ -44,13 +47,13 @@ import java.awt.image.BufferedImage;
 
 public class TestingScene extends Scene {
 
-    private PointLight light = new PointLight(250, 250, 500);
+    private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.ROUND_RECTANGLE, 60);
     public TestingScene(String foo, Integer bar) {
 
         disableGravity();
         setFriction(0.005f);
 
-        //addLight();
+        addLight();
         initForcesTest();
         initUITest();
         addUI();
@@ -59,7 +62,7 @@ public class TestingScene extends Scene {
     private void addLight() {
         setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
         getLightSystem().addLight(light);
-        getLightSystem().addLight(new PointLight(new Transform(0, 0, 200, 200)));
+        getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.OVAL));
     }
 
     private void initUITest() {

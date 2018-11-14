@@ -25,22 +25,32 @@
  *
  */
 
-package de.edgelord.saltyengine.components.rendering;
+package de.edgelord.saltyengine.cosmetic.geom;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
-public class RectangleRender extends PrimitivesRenderComponent {
+/**
+ * Represents a line from the top left corner of the transform to its bottom right corner
+ */
+public class LineShape extends SaltyShape {
+    public LineShape(TransformedObject parent) {
+        super(parent, EnumShape.LINE);
+    }
 
-    public RectangleRender(ComponentParent parent, String name) {
-        super(parent, name);
+    public LineShape(Transform transform) {
+        super(transform, EnumShape.LINE);
+    }
 
-        setPrimitiveDraw(saltyGraphics -> {
-            if (isFill()) {
-                saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            } else {
-                saltyGraphics.outlineRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            }
-        });
-        updateImage();
+    public LineShape(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.LINE);
+    }
+
+    @Override
+    public void draw(SaltyGraphics saltyGraphics) {
+        saltyGraphics.drawLine(getX(), getY(), getTransform().getMaxX(), getTransform().getMaxY());
     }
 }

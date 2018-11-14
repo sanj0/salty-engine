@@ -28,6 +28,9 @@
 package testing;
 
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.components.rendering.OvalRender;
+import de.edgelord.saltyengine.components.rendering.RectangleRender;
+import de.edgelord.saltyengine.components.rendering.RoundRectRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
@@ -60,7 +63,7 @@ public class Bird extends GameObject {
         getHitboxAsSimpleHitbox().setHeight(75);
 
         // Improves performance a lot!
-        // setStationary(true);
+        setStationary(true);
     }
 
     @Override
@@ -91,7 +94,5 @@ public class Bird extends GameObject {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
-
-        animation.drawCurrentFrame(saltyGraphics);
     }
 }

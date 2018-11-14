@@ -28,14 +28,17 @@
 package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.Component;
-import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public abstract class SimpleRenderComponent extends Component {
+public abstract class PrimitivesRenderComponent extends RenderComponent {
 
     // The color with which the Component should render
     private Color color = Color.black;
@@ -46,6 +49,10 @@ public abstract class SimpleRenderComponent extends Component {
     // The stroke (like a pen) with which the component should DRAW the primitives
     private Stroke stroke = new BasicStroke();
 
+    private BufferedImage primitiveImage;
+
+    private Drawable primitiveDraw;
+
     /**
      * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
      * name, used as an id, for fishing specific Components out of a list
@@ -54,41 +61,21 @@ public abstract class SimpleRenderComponent extends Component {
      * @param name   the id-name for this Component
      * @see Component
      */
-    public SimpleRenderComponent(final ComponentParent parent, final String name) {
-        super(parent, name, Components.SIMPLE_RENDER_COMPONENT);
-    }
-
-    @Override
-    public void onFixedTick() {
-
-        // Is not needed for renderComponents, so prevent unnecessary Code
+    public PrimitivesRenderComponent(final ComponentParent parent, final String name) {
+        super(parent, name, Components.PRIMITIVES_RENDER_COMPONENT);
     }
 
     /**
-     * Any classes extending SimpleRenderComponent has to override this method
+     * Any classes extending PrimitivesRenderComponent has to override this method
      * for drawing e.g. a primitives like a Rectangle in RectangleRender
      *
      * @param saltyGraphics the SaltyGraphics to which the component should DRAW
      * @see Component
      */
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
-    /**
-     * Sets the necessary clipping to the given graphics
-     *
-     * @param saltyGraphics the graphics to set the clipping to
-     */
-    public void setClipping(SaltyGraphics saltyGraphics) {
-        saltyGraphics.setClip(getParent().getTransform());
+    public void draw(SaltyGraphics saltyGraphics) {
+        saltyGraphics.drawImage(primitiveImage, getParent().getPosition());
     }
-
-    @Override
-    public void onCollision(final CollisionEvent e) {
-
-        // Is not needed for renderComponents, so prevent unnecessary Code
-    }
-
 
     /**
      * Sets the color and stroke of the given Graphics2D to the ones set UP in this class
@@ -101,6 +88,13 @@ public abstract class SimpleRenderComponent extends Component {
 
         saltyGraphics.setColor(getColor());
         saltyGraphics.setStroke(getStroke());
+    }
+
+    public void updateImage() {
+        primitiveImage = ImageUtils.createPrimitiveImage(saltyGraphics -> {
+            setUpGraphics(saltyGraphics);
+            primitiveDraw.draw(saltyGraphics);
+        }, getParent().getDimensions(), Game.getHost().getRenderHints());
     }
 
     public Color getColor() {
@@ -125,5 +119,13 @@ public abstract class SimpleRenderComponent extends Component {
 
     public void setStroke(final Stroke stroke) {
         this.stroke = stroke;
+    }
+
+    public Drawable getPrimitiveDraw() {
+        return primitiveDraw;
+    }
+
+    public void setPrimitiveDraw(Drawable primitiveDraw) {
+        this.primitiveDraw = primitiveDraw;
     }
 }

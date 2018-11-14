@@ -27,20 +27,27 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
+import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class RectangleRender extends PrimitivesRenderComponent {
+public abstract class RenderComponent extends Component {
 
-    public RectangleRender(ComponentParent parent, String name) {
-        super(parent, name);
+    public RenderComponent(ComponentParent parent, String name, String tag) {
+        super(parent, name, tag);
+    }
 
-        setPrimitiveDraw(saltyGraphics -> {
-            if (isFill()) {
-                saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            } else {
-                saltyGraphics.outlineRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            }
-        });
-        updateImage();
+    @Override
+    public abstract void draw(SaltyGraphics saltyGraphics);
+
+    @Override
+    public void onFixedTick() {
+
+    }
+
+    @Override
+    public void onCollision(CollisionEvent e) {
+
     }
 }

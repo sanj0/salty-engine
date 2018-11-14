@@ -29,18 +29,38 @@ package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 
-public class RectangleRender extends PrimitivesRenderComponent {
+public class RoundRectRender extends PrimitivesRenderComponent {
 
-    public RectangleRender(ComponentParent parent, String name) {
+    private float arc;
+
+    /**
+     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
+     * name, used as an id, for fishing specific Components out of a list
+     *
+     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
+     * @param name   the id-name for this Component
+     * @param arc the diameter of the circle at the corner
+     */
+    public RoundRectRender(ComponentParent parent, String name, float arc) {
         super(parent, name);
+
+        this.arc = arc;
 
         setPrimitiveDraw(saltyGraphics -> {
             if (isFill()) {
-                saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());
+                saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());
             } else {
-                saltyGraphics.outlineRect(0, 0, getParent().getWidth(), getParent().getHeight());
+                saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());
             }
         });
         updateImage();
+    }
+
+    public float getArc() {
+        return arc;
+    }
+
+    public void setArc(float arc) {
+        this.arc = arc;
     }
 }

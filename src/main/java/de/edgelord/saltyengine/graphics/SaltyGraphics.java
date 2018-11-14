@@ -28,6 +28,7 @@
 package de.edgelord.saltyengine.graphics;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -91,11 +92,11 @@ public class SaltyGraphics {
     /**
      * Draws a filled rectangle by calling <code>drawRect(Transform)</code>
      *
-     * @param parent the ComponentParent from which to take the Transform
+     * @param object the ComponentParent from which to take the Transform
      * @see #drawRect(Transform)
      */
-    public void drawRect(ComponentParent parent) {
-        drawRect(parent.getTransform());
+    public void drawRect(TransformedObject object) {
+        drawRect(object.getTransform());
     }
     
     /*
@@ -139,11 +140,11 @@ public class SaltyGraphics {
     /**
      * Draws the outline of a rect by calling the method <code>outlineRect(Transform)</code>
      *
-     * @param parent the parent from which to take the transform with the necessary information
+     * @param object the object from which to take the transform with the necessary information
      * @see #outlineRect(Transform)
      */
-    public void outlineRect(ComponentParent parent) {
-        outlineRect(parent.getTransform());
+    public void outlineRect(TransformedObject object) {
+        outlineRect(object.getTransform());
     }
     
     /*
@@ -187,10 +188,10 @@ public class SaltyGraphics {
     /**
      * Draws a filled oval by calling <code>drawOval(Transform)</code>
      *
-     * @param parent the parent from which to take the Transform to DRAW the oval
+     * @param object the object from which to take the Transform to DRAW the oval
      */
-    public void drawOval(ComponentParent parent) {
-        drawOval(parent.getTransform());
+    public void drawOval(TransformedObject object) {
+        drawOval(object.getTransform());
     }
     
     /*
@@ -234,11 +235,11 @@ public class SaltyGraphics {
     /**
      * Draws the outline of an oval by calling <code>outlineOval(Transform)</code>
      *
-     * @param parent the ComponentParent from which to take the transform
+     * @param object the ComponentParent from which to take the transform
      * @see #outlineOval(Transform)
      */
-    public void outlineOval(ComponentParent parent) {
-        outlineOval(parent.getTransform());
+    public void outlineOval(TransformedObject object) {
+        outlineOval(object.getTransform());
     }
 
     /*
@@ -296,10 +297,10 @@ public class SaltyGraphics {
      * Draws an image by calling <code>outlineImage(BufferedImage, Transform)</code>
      *
      * @param image  the image to be drawn
-     * @param parent the ComponentParent from which to take the Transform to DRAW the image
+     * @param object the ComponentParent from which to take the Transform to DRAW the image
      */
-    public void drawImage(BufferedImage image, ComponentParent parent) {
-        drawImage(image, parent.getTransform());
+    public void drawImage(BufferedImage image, TransformedObject object) {
+        drawImage(image, object.getTransform());
     }
 
     /*
@@ -386,24 +387,24 @@ public class SaltyGraphics {
     /**
      * Draws a filled round rect by calling <code>drawRoundRect(Transform, float, float)</code>
      *
-     * @param parent    the parent from which to take the transform
+     * @param object    the object from which to take the transform
      * @param arcWidth  the diameter of the horizontal arc
      * @param arcHeight the diameter of the vertical arc
      * @see #drawRoundRect(Transform, float, float)
      */
-    public void drawRoundRect(ComponentParent parent, float arcWidth, float arcHeight) {
-        drawRoundRect(parent.getTransform(), arcWidth, arcHeight);
+    public void drawRoundRect(TransformedObject object, float arcWidth, float arcHeight) {
+        drawRoundRect(object.getTransform(), arcWidth, arcHeight);
     }
 
     /**
      * Draws a filled round rect with the same horizontal and vertical arc by calling <code>drawRoundRect(Transform, float, float)</code>
      *
-     * @param parent the parent from which to take the transform
+     * @param object the object from which to take the transform
      * @param arc    the horizontal and vertical diameter of the arc
      * @see #drawRoundRect(Transform, float, float)
      */
-    public void drawRoundRect(ComponentParent parent, float arc) {
-        drawRoundRect(parent.getTransform(), arc, arc);
+    public void drawRoundRect(TransformedObject object, float arc) {
+        drawRoundRect(object.getTransform(), arc, arc);
     }
     
     /*
@@ -490,24 +491,24 @@ public class SaltyGraphics {
     /**
      * Draws the outline of a round rect by calling <code>drawRoundRect(Transform, float, float)</code>
      *
-     * @param parent    the parent from which to take the transform
+     * @param object    the object from which to take the transform
      * @param arcWidth  the diameter of the horizontal arc
      * @param arcHeight the diameter of the vertical arc
      * @see #outlineRoundRect(Transform, float, float)
      */
-    public void outlineRoundRect(ComponentParent parent, float arcWidth, float arcHeight) {
-        outlineRoundRect(parent.getTransform(), arcWidth, arcHeight);
+    public void outlineRoundRect(TransformedObject object, float arcWidth, float arcHeight) {
+        outlineRoundRect(object.getTransform(), arcWidth, arcHeight);
     }
 
     /**
      * Draws the outline of a round rect with the same horizontal and vertical arc by calling <code>drawRoundRect(Transform, float, float)</code>
      *
-     * @param parent the parent from which to take the transform
+     * @param object the object from which to take the transform
      * @param arc    the horizontal and vertical diameter of the arc
      * @see #outlineRoundRect(Transform, float, float)
      */
-    public void outlineRoundRect(ComponentParent parent, float arc) {
-        outlineRoundRect(parent.getTransform(), arc, arc);
+    public void outlineRoundRect(TransformedObject object, float arc) {
+        outlineRoundRect(object.getTransform(), arc, arc);
     }
 
     /**

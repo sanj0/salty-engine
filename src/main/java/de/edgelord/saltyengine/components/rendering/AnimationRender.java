@@ -29,9 +29,10 @@ package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.cosmetic.Animation;
+import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-public class AnimationRender extends SimpleRenderComponent {
+public class AnimationRender extends RenderComponent {
 
     // The Animation which should be drawn
     private Animation animation = null;
@@ -44,18 +45,6 @@ public class AnimationRender extends SimpleRenderComponent {
     private int ticks = 0;
 
     /**
-     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific components out of a list
-     *
-     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
-     * @param name   the id-name for this Component
-     * @see de.edgelord.saltyengine.core.Component
-     */
-    public AnimationRender(ComponentParent parent, String name) {
-        super(parent, name);
-    }
-
-    /**
      * A constructor with all necessary parameters
      *
      * @param parent        the parent of the Component, so where to take e.g. the Coordinates info from
@@ -64,7 +53,7 @@ public class AnimationRender extends SimpleRenderComponent {
      * @param ticksPerFrame after how many fixed ticks the next frame of the animation should be triggered
      */
     public AnimationRender(ComponentParent parent, String name, Animation animation, int ticksPerFrame) {
-        super(parent, name);
+        super(parent, name, Components.RENDER_COMPONENT);
         this.animation = animation;
         this.ticksPerFrame = ticksPerFrame;
     }

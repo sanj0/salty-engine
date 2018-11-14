@@ -25,15 +25,12 @@
  *
  */
 
-package de.edgelord.saltyengine.utils;
+package de.edgelord.saltyengine.cosmetic.geom;
 
-public class Quadrant {
+public enum EnumShape {
 
-    public enum Quadrants {
-
-        topLeft,
-        topRight,
-        bottomLeft,
-        bottomRight
-    }
+    RECTANGLE,
+    OVAL,
+    ROUND_RECTANGLE,
+    LINE
 }

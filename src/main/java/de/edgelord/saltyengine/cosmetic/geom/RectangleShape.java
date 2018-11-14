@@ -25,22 +25,34 @@
  *
  */
 
-package de.edgelord.saltyengine.components.rendering;
+package de.edgelord.saltyengine.cosmetic.geom;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
-public class RectangleRender extends PrimitivesRenderComponent {
+public class RectangleShape extends SaltyShape {
 
-    public RectangleRender(ComponentParent parent, String name) {
-        super(parent, name);
+    public RectangleShape(Transform transform) {
+        super(transform, EnumShape.RECTANGLE);
+    }
 
-        setPrimitiveDraw(saltyGraphics -> {
-            if (isFill()) {
-                saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            } else {
-                saltyGraphics.outlineRect(0, 0, getParent().getWidth(), getParent().getHeight());
-            }
-        });
-        updateImage();
+    public RectangleShape(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.RECTANGLE);
+    }
+
+    public RectangleShape(TransformedObject parent) {
+        super(parent, EnumShape.RECTANGLE);
+    }
+
+    @Override
+    public void draw(SaltyGraphics saltyGraphics) {
+        if (isFilled()) {
+            saltyGraphics.drawRect(this);
+        } else {
+            saltyGraphics.outlineRect(this);
+        }
     }
 }
