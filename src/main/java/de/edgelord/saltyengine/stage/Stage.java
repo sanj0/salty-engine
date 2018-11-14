@@ -33,18 +33,19 @@ import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.Time;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 import static java.awt.RenderingHints.*;
 
-public class Stage extends Canvas {
+public class Stage extends JPanel {
 
     private final Container container;
     private final Engine engine;
     private NativeStageMouseListener nativeMouseListener = null;
     private NativeStageMouseMotionListener nativeMouseMotionListener = null;
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
-    private boolean doubleBufferCreated = false;
 
     private float currentScale = 1f;
 
@@ -103,17 +104,11 @@ public class Stage extends Canvas {
         renderingHints.put(key, value);
     }
 
-    @Override
-    public void paint(Graphics graphics) {
-
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         ticks++;
 
-        if (!doubleBufferCreated) {
-            createBufferStrategy(2);
-            doubleBufferCreated = true;
-        }
-
-        final Graphics2D graphics2D = (Graphics2D) getBufferStrategy().getDrawGraphics();
+        final Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.clearRect(0, 0, getWidth(), getHeight());
         graphics2D.setClip(0, 0, getWidth(), getWidth());
 
@@ -139,8 +134,6 @@ public class Stage extends Canvas {
             String fps = String.valueOf(Math.round(lastFps));
             saltyGraphics.drawText("FPS: " + fps, 0, (float) saltyGraphics.getFontMetrics().getStringBounds(fps, saltyGraphics.getGraphics2D()).getHeight());
         }
-
-        getBufferStrategy().show();
     }
 
     public void scaleTo(float scale) {
