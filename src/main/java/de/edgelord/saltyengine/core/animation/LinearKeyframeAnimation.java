@@ -38,9 +38,8 @@ public class LinearKeyframeAnimation {
     // This List only contains relative Values!
     private HashMap<Integer, Float> animation = new HashMap<>();
     private int end = 0;
-    private float lastValue = 0;
 
-    private int currentTiming = -1;
+    private int currentFrame = -1;
 
     public LinearKeyframeAnimation(List<Keyframe> keyframes) {
         this.keyframes = keyframes;
@@ -69,8 +68,8 @@ public class LinearKeyframeAnimation {
 
         if (!animationEnded()) {
 
-            currentTiming++;
-            return animation.get(currentTiming);
+            currentFrame++;
+            return animation.get(currentFrame);
         } else {
             // If there is a request out of the available timeline, there should be no delta returned so 0
             return 0f;
@@ -79,7 +78,7 @@ public class LinearKeyframeAnimation {
 
     public void calculateAnimation() {
 
-        currentTiming = 0;
+        currentFrame = 0;
 
         // Sort the list by the timing of the keyframes
         keyframes.sort(Comparator.comparingInt(Keyframe::getTiming));
@@ -106,7 +105,7 @@ public class LinearKeyframeAnimation {
     }
 
     public boolean animationEnded() {
-        return !(currentTiming < end - 1);
+        return !(currentFrame < end - 1);
     }
 
     public void add(Keyframe keyframe) {
@@ -128,5 +127,17 @@ public class LinearKeyframeAnimation {
 
     public void removeByKey(float key) {
         keyframes.removeIf(keyframe -> keyframe.getKey() == key);
+    }
+
+    public void restart() {
+        currentFrame = -1;
+    }
+
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
+    public void setCurrentFrame(int currentFrame) {
+        this.currentFrame = currentFrame;
     }
 }

@@ -27,39 +27,20 @@
 
 package de.edgelord.saltyengine.input;
 
+import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.serialization.Serializer;
+
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
-public class DisplayListener implements WindowListener {
-
-    public DisplayListener() {
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-    }
+/**
+ * The native listener on a {@link de.edgelord.saltyengine.display.Display}, which does the following (maybe expand in the future):
+ *
+ * - do the serialization process of {@link de.edgelord.saltyengine.serialization.Serializer} by calling {@link de.edgelord.saltyengine.serialization.Serializer#doSerialization(String, OuterResource)}
+ */
+public class NativeDisplayListener extends DisplayListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
+        Serializer.doSerialization();
     }
 }

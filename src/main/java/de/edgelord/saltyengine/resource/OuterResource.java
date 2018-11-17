@@ -38,6 +38,20 @@ import java.io.IOException;
 
 public class OuterResource implements Resource {
 
+    private boolean hidden;
+    private File sourceDirectory;
+
+    public OuterResource(boolean hidden) {
+
+        this.hidden = hidden;
+
+        prepareSourceDirectory();
+
+        if (!sourceDirectory.exists()) {
+            sourceDirectory.mkdir();
+        }
+    }
+
     @Override
     public BufferedImage getImageResource(String relativePath) {
 
@@ -89,20 +103,6 @@ public class OuterResource implements Resource {
     @Override
     public File getFileResource(String relativePath) {
         return getFile(relativePath);
-    }
-
-    private boolean hidden;
-    private File sourceDirectory;
-
-    public OuterResource(boolean hidden) {
-
-        this.hidden = hidden;
-
-        prepareSourceDirectory();
-
-        if (!sourceDirectory.exists()) {
-            sourceDirectory.mkdir();
-        }
     }
 
     private void prepareSourceDirectory() {

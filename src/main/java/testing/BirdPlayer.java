@@ -30,7 +30,6 @@ package testing;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.LockToBounds;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
-import de.edgelord.saltyengine.components.gfx.LightComponent;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -39,14 +38,21 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.serialization.Serializable;
+import de.edgelord.saltyengine.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.stdf.Species;
+import de.edgelord.stdf.reading.ValueToListConverter;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.List;
 
-public class BirdPlayer extends GameObject {
+public class BirdPlayer extends GameObject implements Serializable {
 
     private Animation animation;
     private Spritesheet spritesheet;
@@ -133,6 +139,14 @@ public class BirdPlayer extends GameObject {
 
         accelerateTo(speed, Input.getInput());
 
+        if (Input.getKeyboardInput().isEnter()) {
+            try {
+                Serializer.doSerialization("save0", new OuterResource(false));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (Input.inputUp) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
@@ -149,6 +163,8 @@ public class BirdPlayer extends GameObject {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
+
+            Game.camera.move(Directions.Direction.RIGHT, 0.5f);
         }
 
         if (Input.inputLeft) {
@@ -162,5 +178,22 @@ public class BirdPlayer extends GameObject {
     public void draw(final SaltyGraphics saltyGraphics) {
 
         animation.drawCurrentFrame(saltyGraphics);
+    }
+
+    @Override
+    public void serialize(Species species) {
+        species.addTag("camPos", Game.camera.getX() + "," + Game.camera.getY());
+    }
+
+    @Override
+    public void deserialize(Species species) {
+        List<String> camPos = ValueToListConverter.convertToList(species, "camPos", ",");
+        Game.camera.setX(Float.valueOf(camPos.get(0)));
+        Game.camera.setY(Float.valueOf(camPos.get(1)));
+    }
+
+    @Override
+    public String getDataSetName() {
+        return "player";
     }
 }

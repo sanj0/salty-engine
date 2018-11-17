@@ -37,12 +37,14 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.stdf.Species;
 
 import java.awt.image.BufferedImage;
 
-public class Bird extends GameObject {
+public class Bird extends GameObject implements Serializable {
 
     private final Animation animation;
     private final Spritesheet spritesheet;
@@ -94,5 +96,20 @@ public class Bird extends GameObject {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+    }
+
+    @Override
+    public void serialize(Species species) {
+        species.addTag("just-a-random-test-value", "something-really-important" + getClass().hashCode());
+    }
+
+    @Override
+    public void deserialize(Species species) {
+        System.out.println(species.getTagValue("just-a-random-test-value"));
+    }
+
+    @Override
+    public String getDataSetName() {
+        return "bird";
     }
 }

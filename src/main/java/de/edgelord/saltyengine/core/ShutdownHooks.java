@@ -25,41 +25,52 @@
  *
  */
 
-package de.edgelord.saltyengine.input;
+package de.edgelord.saltyengine.core;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DisplayListener implements WindowListener {
+public class ShutdownHooks {
 
-    public DisplayListener() {
+    private static List<Runnable> shutdownHooks = new ArrayList<>();
+
+    public void runShutdownHooks() {
+        shutdownHooks.forEach(Runnable::run);
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
+    public static int size() {
+        return shutdownHooks.size();
     }
 
-    @Override
-    public void windowClosing(WindowEvent e) {
+    public static boolean isEmpty() {
+        return shutdownHooks.isEmpty();
     }
 
-    @Override
-    public void windowClosed(WindowEvent e) {
+    public static boolean contains(Object o) {
+        return shutdownHooks.contains(o);
     }
 
-    @Override
-    public void windowIconified(WindowEvent e) {
+    public static boolean add(Runnable runnable) {
+        return shutdownHooks.add(runnable);
     }
 
-    @Override
-    public void windowDeiconified(WindowEvent e) {
+    public static boolean remove(Object o) {
+        return shutdownHooks.remove(o);
     }
 
-    @Override
-    public void windowActivated(WindowEvent e) {
+    public static void clear() {
+        shutdownHooks.clear();
     }
 
-    @Override
-    public void windowDeactivated(WindowEvent e) {
+    public static Runnable get(int index) {
+        return shutdownHooks.get(index);
+    }
+
+    public static void add(int index, Runnable element) {
+        shutdownHooks.add(index, element);
+    }
+
+    public static Runnable remove(int index) {
+        return shutdownHooks.remove(index);
     }
 }

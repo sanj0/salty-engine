@@ -46,6 +46,7 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
 
     private boolean recalculateOnNextStep = true;
     private LinearKeyframeAnimation animation = new LinearKeyframeAnimation();
+    private boolean loop = false;
 
     private Control control;
 
@@ -82,6 +83,14 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
         if (recalculateOnNextStep) {
             animation.calculateAnimation();
             recalculateOnNextStep = false;
+        }
+
+        if (animation.animationEnded()) {
+            if (isLoop()) {
+                animation.restart();
+            } else {
+                remove();
+            }
         }
 
         float delta = animation.nextDelta();
@@ -131,5 +140,13 @@ public class BasicGameObjectAnimation extends Component<GameObject> {
         X_POS,
         Y_POS,
         ROTATION
+    }
+
+    public boolean isLoop() {
+        return loop;
+    }
+
+    public void setLoop(boolean loop) {
+        this.loop = loop;
     }
 }

@@ -35,7 +35,9 @@ import de.edgelord.saltyengine.cosmetic.light.PointLight;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
@@ -44,6 +46,7 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class TestingScene extends Scene {
 
@@ -127,6 +130,13 @@ public class TestingScene extends Scene {
         addGameObject(upperBird);
         addGameObject(player);
 
+        Serializer.add(player);
+        Serializer.add(bottomBird);
+        try {
+            Serializer.doDeserialization("save0", new OuterResource(false));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initSampleScene() {
