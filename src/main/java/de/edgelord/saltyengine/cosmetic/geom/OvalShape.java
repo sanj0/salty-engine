@@ -33,7 +33,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-public class OvalShape extends SaltyShape{
+public class OvalShape extends SaltyShape {
     public OvalShape(Transform transform) {
         super(transform, EnumShape.OVAL);
     }

@@ -38,18 +38,14 @@ import de.edgelord.saltyengine.cosmetic.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
-import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.serialization.Serializable;
-import de.edgelord.saltyengine.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.List;
 
 public class BirdPlayer extends GameObject implements Serializable {
@@ -135,17 +131,7 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         getTransform().setRotationCentreToMiddle();
 
-        // System.out.println(isCursorOver());
-
         accelerateTo(speed, Input.getInput());
-
-        if (Input.getKeyboardInput().isEnter()) {
-            try {
-                Serializer.doSerialization("save0", new OuterResource(false));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         if (Input.inputUp) {
             if (soundTiming.now()) {
@@ -163,8 +149,6 @@ public class BirdPlayer extends GameObject implements Serializable {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
             }
-
-            Game.camera.move(Directions.Direction.RIGHT, 0.5f);
         }
 
         if (Input.inputLeft) {

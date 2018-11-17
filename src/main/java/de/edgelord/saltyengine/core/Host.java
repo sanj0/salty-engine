@@ -31,7 +31,6 @@ import de.edgelord.saltyengine.core.interfaces.CentrePositionProvider;
 import de.edgelord.saltyengine.core.interfaces.Creatable;
 import de.edgelord.saltyengine.core.interfaces.DimensionsProvider;
 import de.edgelord.saltyengine.core.interfaces.Repaintable;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
@@ -64,6 +63,7 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
 
     /**
      * Sets the dimensions of this host
+     *
      * @param dimensions the new dimensions
      */
     public abstract void setDimensions(Dimensions dimensions);

@@ -31,11 +31,9 @@ import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
-import de.edgelord.saltyengine.cosmetic.light.PointLight;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.resource.InnerResource;
-import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Transform;
@@ -51,6 +49,7 @@ import java.io.IOException;
 public class TestingScene extends Scene {
 
     private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.ROUND_RECTANGLE, 60);
+
     public TestingScene(String foo, Integer bar) {
 
         disableGravity();
@@ -79,7 +78,7 @@ public class TestingScene extends Scene {
 
     @Override
     public void onFixedTick() {
-        light.positionByCentre(Input.getRelativeCursorPosition());
+        light.positionByCentre(Input.getCursorPosition());
         super.onFixedTick();
     }
 
@@ -133,7 +132,7 @@ public class TestingScene extends Scene {
         Serializer.add(player);
         Serializer.add(bottomBird);
         try {
-            Serializer.doDeserialization("save0", new OuterResource(false));
+            Serializer.doDeserialization();
         } catch (IOException e) {
             e.printStackTrace();
         }

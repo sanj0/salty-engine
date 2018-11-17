@@ -35,9 +35,14 @@ import java.awt.*;
 public abstract class Light implements TransformedObject {
 
     /**
-     * The brightness of this light, between 0f and 1f, with 0f being completely dark and 1f being max bright
+     * The brightness of the alpha-blend of this light, between 1f and 1f, with 0f being completely dark and 1f being max bright
      */
     private float brightness = .35f;
+
+    /**
+     * The intensity of this light, influences e.g. the gradient of a {@link GradientLight}
+     */
+    private float intensity = 0.1f;
 
     /**
      * The <code>Transform</code> of the light
@@ -55,7 +60,20 @@ public abstract class Light implements TransformedObject {
     }
 
     public void setBrightness(float brightness) {
+
+        if (brightness < 0f || brightness > 1f) {
+            throw new IllegalArgumentException("Brightness of a light has to be in between 0f and 1f!");
+        }
+
         this.brightness = brightness;
+    }
+
+    public float getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(float intensity) {
+        this.intensity = intensity;
     }
 
     @Override

@@ -34,8 +34,6 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 
-import java.awt.*;
-
 /**
  * Locks its parent to the given {@link Transform} by using whether its {@link de.edgelord.saltyengine.hitbox.Hitbox} or its {@link Transform}.
  * What to use is defined in {@link #mode}. The default is {@link #MODE_TRANSFORM}

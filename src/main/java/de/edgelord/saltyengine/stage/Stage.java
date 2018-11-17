@@ -35,7 +35,6 @@ import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 
 import static java.awt.RenderingHints.*;
 

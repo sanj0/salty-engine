@@ -31,7 +31,7 @@ import javax.swing.*;
 
 public class SplashWindow extends JFrame {
 
-    public enum Splash{
+    public enum Splash {
         DEFAULT_SPLASH,
         MELTING_SPLASH,
         SPOTLIGHT_SPLASH,

@@ -28,7 +28,6 @@
 package de.edgelord.saltyengine.input;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
@@ -112,9 +111,7 @@ public class Input {
     }
 
     public static Vector2f getRelativeCursorPosition() {
-        Vector2f relCurPos = getCursorPosition();
-        relCurPos.add(Game.camera.getPosition());
-        return relCurPos;
+        return Game.camera.getRelativeCursorPosition();
     }
 
     public static Transform getCursor() {
@@ -122,9 +119,7 @@ public class Input {
     }
 
     public static Transform getRelativeCursor() {
-        Vector2f relCurPos = getCursorPosition();
-        relCurPos.add(Game.camera.getPosition());
-        return new Transform(relCurPos, Dimensions.one());
+        return Game.camera.getRelativeCursor();
     }
 
     public static boolean isMouseDrags() {

@@ -25,22 +25,41 @@
  *
  */
 
-package de.edgelord.saltyengine.input;
+package de.edgelord.saltyengine.display;
 
-import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.core.Engine;
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.ShutdownHooks;
+import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.serialization.Serializer;
 
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 /**
  * The native listener on a {@link de.edgelord.saltyengine.display.Display}, which does the following (maybe expand in the future):
- *
- * - do the serialization process of {@link de.edgelord.saltyengine.serialization.Serializer} by calling {@link de.edgelord.saltyengine.serialization.Serializer#doSerialization(String, OuterResource)}
+ * <p>
+ * - when the window is closing:
+ * <p>
+ * - do the serialization process of {@link de.edgelord.saltyengine.serialization.Serializer} by calling {@link de.edgelord.saltyengine.serialization.Serializer#doSerialization(String)}
+ * <p>
+ * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#engine}
+ * <p>
+ * - run the shutdown hooks by calling {@link ShutdownHooks#runShutdownHooks()}
+ * <p>
+ * - exiting the program by calling {@link System#exit(int)}
  */
 public class NativeDisplayListener extends DisplayListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Serializer.doSerialization();
+        try {
+            Serializer.doSerialization();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        ShutdownHooks.runShutdownHooks();
+        Game.getEngine().close();
+        System.exit(0);
     }
 }

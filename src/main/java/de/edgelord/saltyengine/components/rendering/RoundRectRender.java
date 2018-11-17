@@ -39,7 +39,7 @@ public class RoundRectRender extends PrimitivesRenderComponent {
      *
      * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
      * @param name   the id-name for this Component
-     * @param arc the diameter of the circle at the corner
+     * @param arc    the diameter of the circle at the corner
      */
     public RoundRectRender(ComponentParent parent, String name, float arc) {
         super(parent, name);

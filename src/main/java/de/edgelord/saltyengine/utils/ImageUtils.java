@@ -43,8 +43,8 @@ public class ImageUtils {
     /**
      * Creates a new {@link BufferedImage} with the given size and draws the given {@link Drawable} onto it.
      *
-     * @param drawable what to draw onto the image
-     * @param size the size of the image
+     * @param drawable       what to draw onto the image
+     * @param size           the size of the image
      * @param renderingHints the renderhints to use for drawing the image
      * @return a {@link BufferedImage} with the given size and the given {@link Drawable} performed on it
      */
@@ -66,13 +66,13 @@ public class ImageUtils {
      * The given {@link Drawable} is executed once before the drawing of the gradient starts, to prepare the graphics
      * with its Color etc.
      * The given float controls the intensity of the gradient. Recommended between 1f and 2f
-     *
+     * <p>
      * The gradient will be squared, so its width and height will be the same.
      *
-     * @param shapeType the type of shape of the gradient
+     * @param shapeType       the type of shape of the gradient
      * @param graphicsPrepare a {@link Drawable} to prepare the graphics, e.g. set its Color
-     * @param renderingHints the {@link RenderingHints} with which to draw the gradient
-     * @param size the max size of the gradient
+     * @param renderingHints  the {@link RenderingHints} with which to draw the gradient
+     * @param size            the max size of the gradient
      * @return a new {@link BufferedImage} with the given size and a gradient with the given shape
      */
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {

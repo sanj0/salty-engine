@@ -32,8 +32,6 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
@@ -43,14 +41,12 @@ public class DisplayManager extends Host {
 
     private final Display display;
     private final Stage stage;
-    private DisplayListener displayListener;
     private NativeDisplayKeyListener nativeKeyListener;
 
     public DisplayManager(DisplayRatio displayRatio, final String gameName, final Engine engine) {
 
         display = new Display(displayRatio, gameName);
         stage = new Stage(display, engine);
-        displayListener = new DisplayListener(display);
 
         Game.gameName = gameName;
     }
@@ -113,14 +109,6 @@ public class DisplayManager extends Host {
 
     public void setDisplayMouseHandler(final MouseInputHandler displayMouseHandler) {
         stage.setMouseHandler(displayMouseHandler);
-    }
-
-    public DisplayListener getDisplayListener() {
-        return displayListener;
-    }
-
-    public void setDisplayListener(final DisplayListener displayListener) {
-        this.displayListener = displayListener;
     }
 
     public char getCurrentKey() {

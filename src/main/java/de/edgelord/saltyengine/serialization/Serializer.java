@@ -75,47 +75,45 @@ public class Serializer {
     }
 
     /**
-     * Serializes all {@link Serializable}s within {@link #consumer} in a file with the given name relative to the
-     * given {@link OuterResource}. The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
+     * Serializes all {@link Serializable}s within {@link #consumer} in a file with the given name relative to a hidden
+     * {@link OuterResource}.
+     * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
-     * @param resource the {@link OuterResource} to use to get the file using {@link OuterResource#getFileResource(String)}
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doSerialization(String name, OuterResource resource) throws IOException {
-        serialize(new DataWriter(resource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+    public static void doSerialization(String name) throws IOException {
+        serialize(new DataWriter(new OuterResource(true).getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
     /**
-     * Calls {@link #doSerialization(String, OuterResource)} with {@link #saveFileName} as the file name.
+     * Calls {@link #doSerialization(String)} with {@link #saveFileName} as the file name.
      *
-     * @param resource the {@link OuterResource} to use to get the file using {@link OuterResource#getFileResource(String)}
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doSerialization(OuterResource resource) throws IOException {
-        serialize(new DataWriter(resource.getFileResource(saveFileName + DataReader.SDB_FILE_EXTENSION)));
+    public static void doSerialization() throws IOException {
+        doSerialization(saveFileName);
     }
 
     /**
-     * Deserializes all {@link Serializable}s within {@link #consumer} from a file with the given name relative to the
-     * given {@link OuterResource}. The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
+     * Deserializes all {@link Serializable}s within {@link #consumer} from a file with the given name relative to a
+     * hidden {@link OuterResource}.
+     * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
-     * @param resource the {@link OuterResource} to use to get the file using {@link OuterResource#getFileResource(String)}
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doDeserialization(String name, OuterResource resource) throws IOException {
-        deserialize(new DataReader(resource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+    public static void doDeserialization(String name) throws IOException {
+        deserialize(new DataReader(new OuterResource(true).getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
     /**
-     * Calls {@link #doDeserialization(String, OuterResource)} with {@link #saveFileName} as the file name.
+     * Calls {@link #doDeserialization(String)} with {@link #saveFileName} as the file name.
      *
-     * @param resource the {@link OuterResource} to use to get the file using {@link OuterResource#getFileResource(String)}
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doDeserialization(OuterResource resource) throws IOException {
-        deserialize(new DataReader(resource.getFileResource(saveFileName + DataReader.SDB_FILE_EXTENSION)));
+    public static void doDeserialization() throws IOException {
+        doDeserialization(saveFileName);
     }
 
     public static int size() {

@@ -34,7 +34,7 @@ public class ShutdownHooks {
 
     private static List<Runnable> shutdownHooks = new ArrayList<>();
 
-    public void runShutdownHooks() {
+    public static void runShutdownHooks() {
         shutdownHooks.forEach(Runnable::run);
     }
 

@@ -60,6 +60,7 @@ public class Display extends JFrame {
                 displayRatio.setWidth(e.getComponent().getWidth());
             }
         });
+        addWindowListener(new NativeDisplayListener());
     }
 
     public boolean isCloseRequested() {

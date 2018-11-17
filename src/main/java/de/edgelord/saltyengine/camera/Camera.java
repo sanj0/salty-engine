@@ -29,6 +29,9 @@ package de.edgelord.saltyengine.camera;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -59,7 +62,7 @@ public class Camera {
 
     public void tmpResetViewToGraphics(SaltyGraphics graphics) {
         graphics.getGraphics2D().rotate(0);
-        graphics.getGraphics2D().translate(0, 0);
+        graphics.getGraphics2D().translate(getX() * -1, getY() * -1);
     }
 
     public void move(Directions.Direction direction, float delta) {
@@ -78,6 +81,21 @@ public class Camera {
                 setY(getY() + delta);
                 break;
         }
+    }
+
+    public Vector2f getAbsolutePosition(Vector2f relativePosition) {
+        Vector2f absPos = new Vector2f(relativePosition.getX(), relativePosition.getY());
+        absPos.subtract(getPosition());
+
+        return absPos;
+    }
+
+    public Transform getRelativeCursor() {
+        return new Transform(getRelativeCursorPosition(), Dimensions.one());
+    }
+
+    public Vector2f getRelativeCursorPosition() {
+        return getAbsolutePosition(Input.getCursorPosition());
     }
 
     public void setPosition(Vector2f position) {
