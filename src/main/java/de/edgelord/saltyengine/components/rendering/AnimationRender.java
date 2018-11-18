@@ -45,6 +45,18 @@ public class AnimationRender extends RenderComponent {
     private int ticks = 0;
 
     /**
+     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
+     * name, used as an id, for fishing specific components out of a list
+     *
+     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
+     * @param name   the id-name for this Component
+     * @see de.edgelord.saltyengine.core.Component
+     */
+    public AnimationRender(ComponentParent parent, String name) {
+        super(parent, name, Components.RENDER_COMPONENT);
+    }
+
+    /**
      * A constructor with all necessary parameters
      *
      * @param parent        the parent of the Component, so where to take e.g. the Coordinates info from
