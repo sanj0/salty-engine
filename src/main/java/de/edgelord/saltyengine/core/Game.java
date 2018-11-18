@@ -39,7 +39,7 @@ public class Game {
 
     private static GFXController defaultGFXController = new GFXController();
 
-    public static String gameName = "My name is Nym. Arno Nym.";
+    public static String gameName = "salty-engine";
     public static boolean paused = false;
     private static Camera camera = new Camera();
 

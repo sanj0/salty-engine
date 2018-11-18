@@ -36,12 +36,6 @@ import java.awt.image.BufferedImage;
 
 public class Frame implements Cosmetic {
 
-    public enum Mode {
-
-        image,
-        advancedCosmetics
-    }
-
     private BufferedImage image = null;
     //private AdvancedCosmetics advancedCosmetics = null;
 
@@ -50,48 +44,9 @@ public class Frame implements Cosmetic {
         this.image = image;
     }
 
-    /*
-    public Frame(AdvancedCosmetics advancedCosmetics){
-
-        this.advancedCosmetics = advancedCosmetics;
-    }
-    */
-
-    public Mode getAutomaticMode() {
-
-        return Mode.image;
-
-        /*
-        if (image != null){
-
-            return Mode.image;
-        } else {
-
-            return Mode.advancedCosmetics;
-        }
-        */
-    }
-
     @Override
     public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
-        if (getAutomaticMode() == Mode.image) {
-
-            saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
-        } else {
-
-            //advancedCosmetics.DRAW(graphics, coordinates);
-        }
-    }
-
-    public void draw(Graphics2D graphics, AffineTransform transform) {
-
-        if (getAutomaticMode() == Mode.image) {
-
-            graphics.drawImage(image, transform, null);
-        } else {
-
-            //advancedCosmetics.DRAW(graphics, coordinates);
-        }
+        saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
     }
 
     public BufferedImage getImage() {

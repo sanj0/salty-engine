@@ -72,7 +72,6 @@ public class LightSystem implements Drawable {
         Graphics2D graphics = lightMap.createGraphics();
         graphics.setColor(lightMapColor);
         graphics.fillRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
-        Composite oldComp = graphics.getComposite();
 
         graphics.setRenderingHints(Game.getHost().getRenderHints());
 
@@ -80,9 +79,7 @@ public class LightSystem implements Drawable {
             graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT, light.getBrightness()));
             light.draw(graphics);
         });
-
-        graphics.setComposite(oldComp);
-        // graphics.dispose();
+        graphics.dispose();
     }
 
     @Override

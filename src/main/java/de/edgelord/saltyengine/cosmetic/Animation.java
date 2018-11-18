@@ -42,8 +42,6 @@ public class Animation {
 
     private GameObject parentGameObject;
 
-    private int currentFrameNumber = 0;
-
     public Animation(GameObject parentGameObject) {
 
         this.parentGameObject = parentGameObject;
@@ -57,11 +55,6 @@ public class Animation {
     public void drawCurrentFrame(SaltyGraphics saltyGraphics) {
 
         frames.get(currentFrame).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
-    }
-
-    public void drawCurrentFrame(Graphics2D graphics, AffineTransform transform) {
-
-        frames.get(currentFrame).draw(graphics, transform);
     }
 
     public void resetFrameNumber() {
@@ -84,55 +77,11 @@ public class Animation {
         this.getFrames().add(frame);
     }
 
-    @Deprecated
-    public void loop(SaltyGraphics saltyGraphics) {
-
-        if (getFrames().size() == currentFrameNumber) {
-
-            restartAnimation(saltyGraphics);
-        } else {
-
-            draw(saltyGraphics);
-        }
-    }
-
-    @Deprecated
-    public void restartAnimation(SaltyGraphics saltyGraphics) {
-
-        if (currentFrameNumber != 0) {
-
-            currentFrameNumber = 0;
-        }
-
-        draw(saltyGraphics);
-    }
-
-    @Deprecated
-    public void draw(SaltyGraphics saltyGraphics) {
-
-        if (getFrames().size() != currentFrameNumber) {
-
-            getFrames().get(currentFrameNumber).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
-
-            currentFrameNumber++;
-        } else {
-
-        }
-    }
-
     public List<Frame> getFrames() {
         return frames;
     }
 
     public void setFrames(List<Frame> frames) {
         this.frames = frames;
-    }
-
-    public int getCurrentFrameNumber() {
-        return currentFrameNumber;
-    }
-
-    public void setCurrentFrameNumber(int currentFrameNumber) {
-        this.currentFrameNumber = currentFrameNumber;
     }
 }
