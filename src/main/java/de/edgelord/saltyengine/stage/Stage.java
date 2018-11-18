@@ -35,6 +35,7 @@ import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import static java.awt.RenderingHints.*;
 
@@ -104,17 +105,18 @@ public class Stage extends JPanel {
     }
 
     protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
         ticks++;
-
         final Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.clearRect(0, 0, getWidth(), getHeight());
+        renderToGraphics(graphics2D);
+    }
+
+    private void renderToGraphics(Graphics2D graphics2D) {
         graphics2D.setClip(0, 0, getWidth(), getWidth());
 
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.scale(currentScale, currentScale);
 
-        Game.camera.setViewToGraphics(graphics2D);
+        Game.getCamera().setViewToGraphics(graphics2D);
 
         SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
 
@@ -126,13 +128,21 @@ public class Stage extends JPanel {
                 ticks = 0;
             }
 
-            Game.camera.tmpResetViewToGraphics(saltyGraphics);
-
             saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
             saltyGraphics.setColor(Color.RED);
             String fps = String.valueOf(Math.round(lastFps));
             saltyGraphics.drawText("FPS: " + fps, 0, (float) saltyGraphics.getFontMetrics().getStringBounds(fps, saltyGraphics.getGraphics2D()).getHeight());
         }
+    }
+
+    public BufferedImage renderToImage() {
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D graphics2D = image.createGraphics();
+        renderToGraphics(graphics2D);
+        graphics2D.dispose();
+
+        return image;
     }
 
     public void scaleTo(float scale) {

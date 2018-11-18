@@ -30,6 +30,7 @@ package de.edgelord.saltyengine.utils;
 import de.edgelord.saltyengine.factory.FontFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.UIElement;
 
@@ -44,6 +45,8 @@ public class SaltySystem {
     public static long fixedTickMillis = 1;
 
     public static InnerResource defaultResource = new InnerResource();
+    public static OuterResource defaultHiddenOuterResource = new OuterResource(true);
+    public static OuterResource defaultOuterResource = new OuterResource(false);
     public static ImageFactory defaultImageFactory = new ImageFactory(defaultResource);
     public static FontFactory defaultFontFactory = new FontFactory(defaultResource);
 

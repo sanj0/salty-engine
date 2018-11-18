@@ -31,14 +31,21 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class ImageUtils {
+
+    public static String IMAGE_FORMAT_PNG = "png";
+    public static String IMAGE_FORMAT_JPG = "jpg";
+    public static String IMAGE_FORMAT_GIF = "gif";
 
     /**
      * Creates a new {@link BufferedImage} with the given size and draws the given {@link Drawable} onto it.
@@ -102,5 +109,24 @@ public class ImageUtils {
         }
 
         return image;
+    }
+
+    /**
+     * Saves the given image to a file with the given name relative to the given {@link OuterResource}.
+     * It saves it with the given format, use one of those three:
+     *
+     * {@link #IMAGE_FORMAT_PNG}
+     * {@link #IMAGE_FORMAT_JPG}
+     * {@link #IMAGE_FORMAT_GIF}
+     *
+     * @param image the {@link BufferedImage} to safe
+     * @param format the format of the file
+     * @param name the name of the file
+     * @param resource the {@link OuterResource} to get the file from
+     *
+     * @throws IOException when the I/O process fails
+     */
+    public static void saveImage(BufferedImage image, String format, String name, OuterResource resource) throws IOException {
+        ImageIO.write(image, format, resource.getFileResource(name + "." + format));
     }
 }

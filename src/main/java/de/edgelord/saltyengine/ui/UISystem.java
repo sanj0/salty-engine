@@ -41,7 +41,7 @@ public class UISystem {
     private List<UIElement> elements = new LinkedList<>();
 
     public void drawUI(SaltyGraphics saltyGraphics) {
-        Game.camera.tmpResetViewToGraphics(saltyGraphics);
+        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
         for (UIElement element : elements) {
             element.prepareGraphics(saltyGraphics);
             element.draw(saltyGraphics);

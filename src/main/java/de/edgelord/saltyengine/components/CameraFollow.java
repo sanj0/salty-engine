@@ -70,12 +70,12 @@ public class CameraFollow extends Component<GameObject> {
     @Override
     public void onFixedTick() {
 
-        Transform renderedPlayerTransform = new Transform(getParent().getX() + Game.camera.getX(), getParent().getY() + Game.camera.getY(),
+        Transform renderedPlayerTransform = new Transform(getParent().getX() + Game.getCamera().getX(), getParent().getY() + Game.getCamera().getY(),
                 getParent().getWidth(), getParent().getHeight());
 
         if (!whiteZone.intersects(getParent().getTransform())) {
-            Game.camera.move(whiteZone.getFreeRelationX(renderedPlayerTransform), speed);
-            Game.camera.move(whiteZone.getFreeRelationY(renderedPlayerTransform), speed);
+            Game.getCamera().move(whiteZone.getFreeRelationX(renderedPlayerTransform), speed);
+            Game.getCamera().move(whiteZone.getFreeRelationY(renderedPlayerTransform), speed);
         }
     }
 

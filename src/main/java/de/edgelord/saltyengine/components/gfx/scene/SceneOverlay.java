@@ -75,7 +75,7 @@ public class SceneOverlay extends SceneGFXComponent {
                 Color overlay = new Color(overlayColor.getRed(), overlayColor.getGreen(), overlayColor.getBlue(), alphaInt);
 
                 saltyGraphics.setColor(overlay);
-                saltyGraphics.drawRect(-Game.camera.getX(), -Game.camera.getY(), Game.getHost().getWidth(), Game.getHost().getHeight());
+                saltyGraphics.drawRect(-Game.getCamera().getX(), -Game.getCamera().getY(), Game.getHost().getWidth(), Game.getHost().getHeight());
             }
         };
     }

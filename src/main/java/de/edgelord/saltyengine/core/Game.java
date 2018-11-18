@@ -41,7 +41,7 @@ public class Game {
 
     public static String gameName = "My name is Nym. Arno Nym.";
     public static boolean paused = false;
-    public static Camera camera = new Camera();
+    private static Camera camera = new Camera();
 
     /**
      * Proposes the <code>Host</code> to draw the FPS {@link Time#getFPS()} or not.
@@ -142,5 +142,13 @@ public class Game {
 
     public static void setDrawFPS(boolean drawFPS) {
         Game.drawFPS = drawFPS;
+    }
+
+    public static Camera getCamera() {
+        return camera;
+    }
+
+    public static void setCamera(Camera camera) {
+        Game.camera = camera;
     }
 }

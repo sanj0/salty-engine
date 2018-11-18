@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.display;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.ShutdownHooks;
+import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.input.DisplayListener;
 import de.edgelord.saltyengine.serialization.Serializer;
 
@@ -45,7 +45,7 @@ import java.io.IOException;
  * <p>
  * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#engine}
  * <p>
- * - run the shutdown hooks by calling {@link ShutdownHooks#runShutdownHooks()}
+ * - run the shutdown hooks by calling {@link WindowClosingHooks#runHooks()}
  * <p>
  * - exiting the program by calling {@link System#exit(int)}
  */
@@ -58,7 +58,7 @@ public class NativeDisplayListener extends DisplayListener {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        ShutdownHooks.runShutdownHooks();
+        WindowClosingHooks.runHooks();
         Game.getEngine().close();
         System.exit(0);
     }

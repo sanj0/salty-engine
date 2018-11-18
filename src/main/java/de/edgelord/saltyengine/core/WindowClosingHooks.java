@@ -30,47 +30,47 @@ package de.edgelord.saltyengine.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShutdownHooks {
+public class WindowClosingHooks {
 
-    private static List<Runnable> shutdownHooks = new ArrayList<>();
+    private static List<Runnable> hooks = new ArrayList<>();
 
-    public static void runShutdownHooks() {
-        shutdownHooks.forEach(Runnable::run);
+    public static void runHooks() {
+        hooks.forEach(Runnable::run);
     }
 
     public static int size() {
-        return shutdownHooks.size();
+        return hooks.size();
     }
 
     public static boolean isEmpty() {
-        return shutdownHooks.isEmpty();
+        return hooks.isEmpty();
     }
 
     public static boolean contains(Object o) {
-        return shutdownHooks.contains(o);
+        return hooks.contains(o);
     }
 
     public static boolean add(Runnable runnable) {
-        return shutdownHooks.add(runnable);
+        return hooks.add(runnable);
     }
 
     public static boolean remove(Object o) {
-        return shutdownHooks.remove(o);
+        return hooks.remove(o);
     }
 
     public static void clear() {
-        shutdownHooks.clear();
+        hooks.clear();
     }
 
     public static Runnable get(int index) {
-        return shutdownHooks.get(index);
+        return hooks.get(index);
     }
 
     public static void add(int index, Runnable element) {
-        shutdownHooks.add(index, element);
+        hooks.add(index, element);
     }
 
     public static Runnable remove(int index) {
-        return shutdownHooks.remove(index);
+        return hooks.remove(index);
     }
 }

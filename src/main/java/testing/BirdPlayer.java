@@ -166,14 +166,14 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void serialize(Species species) {
-        species.addTag("camPos", Game.camera.getX() + "," + Game.camera.getY());
+        species.addTag("camPos", Game.getCamera().getX() + "," + Game.getCamera().getY());
     }
 
     @Override
     public void deserialize(Species species) {
         List<String> camPos = ValueToListConverter.convertToList(species, "camPos", ",");
-        Game.camera.setX(Float.valueOf(camPos.get(0)));
-        Game.camera.setY(Float.valueOf(camPos.get(1)));
+        Game.getCamera().setX(Float.valueOf(camPos.get(0)));
+        Game.getCamera().setY(Float.valueOf(camPos.get(1)));
     }
 
     @Override

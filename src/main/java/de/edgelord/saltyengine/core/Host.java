@@ -67,4 +67,11 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
      * @param dimensions the new dimensions
      */
     public abstract void setDimensions(Dimensions dimensions);
+
+    /**
+     * Captures a picture of what is currently drawn and safes it relative to {@link de.edgelord.saltyengine.utils.SaltySystem#defaultOuterResource}
+     *
+     * @return the name of the saved image
+     */
+    public abstract String takeScreenshot();
 }

@@ -27,6 +27,8 @@
 
 package testing;
 
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
@@ -59,6 +61,8 @@ public class TestingScene extends Scene {
         initForcesTest();
         initUITest();
         addUI();
+
+        WindowClosingHooks.add(() -> Game.getHost().takeScreenshot());
     }
 
     private void addLight() {

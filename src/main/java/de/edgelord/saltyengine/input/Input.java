@@ -111,7 +111,7 @@ public class Input {
     }
 
     public static Vector2f getRelativeCursorPosition() {
-        return Game.camera.getRelativeCursorPosition();
+        return Game.getCamera().getRelativeCursorPosition();
     }
 
     public static Transform getCursor() {
@@ -119,7 +119,7 @@ public class Input {
     }
 
     public static Transform getRelativeCursor() {
-        return Game.camera.getRelativeCursor();
+        return Game.getCamera().getRelativeCursor();
     }
 
     public static boolean isMouseDrags() {

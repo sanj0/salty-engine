@@ -28,6 +28,7 @@
 package de.edgelord.saltyengine.serialization;
 
 import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.writing.DataWriter;
@@ -83,7 +84,7 @@ public class Serializer {
      * @throws IOException when the I/O process with the file fails
      */
     public static void doSerialization(String name) throws IOException {
-        serialize(new DataWriter(new OuterResource(true).getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+        serialize(new DataWriter(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
     /**
@@ -104,7 +105,7 @@ public class Serializer {
      * @throws IOException when the I/O process with the file fails
      */
     public static void doDeserialization(String name) throws IOException {
-        deserialize(new DataReader(new OuterResource(true).getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+        deserialize(new DataReader(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
     /**

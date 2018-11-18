@@ -29,9 +29,13 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PaneledGameHost extends Host {
 
@@ -90,5 +94,19 @@ public class PaneledGameHost extends Host {
     @Override
     public void setDimensions(Dimensions dimensions) {
         container.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
+    }
+
+    @Override
+    public String takeScreenshot() {
+        String name = "screenshot_";
+        name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        try {
+            ImageUtils.saveImage(stage.renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return name;
     }
 }
