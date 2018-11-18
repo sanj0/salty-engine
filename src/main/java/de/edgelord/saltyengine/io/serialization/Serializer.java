@@ -25,7 +25,7 @@
  *
  */
 
-package de.edgelord.saltyengine.serialization;
+package de.edgelord.saltyengine.io.serialization;
 
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.utils.SaltySystem;

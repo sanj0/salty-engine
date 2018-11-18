@@ -102,7 +102,7 @@ public class InnerResource implements Resource {
 
         InputStream inputStream = classLoader.getResourceAsStream(arrangePath(relativePath));
 
-        File file = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/" + relativePath.replaceAll("/", "."));
+        File file = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/" + relativePath.replaceAll("/", "."));
 
         file.createNewFile();
 
@@ -118,7 +118,7 @@ public class InnerResource implements Resource {
 
     private void checkTmpDir() {
         if (tmpDir == null) {
-            tmpDir = SystemDependentFiles.getUserFile("." + Game.gameName + "TmpFiles/");
+            tmpDir = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/");
 
             if (tmpDir.exists()) {
                 if (tmpDir.isDirectory()) {
@@ -128,7 +128,6 @@ public class InnerResource implements Resource {
                         currentFile.delete();
                     }
                 }
-                tmpDir.delete();
             } else {
                 tmpDir.mkdir();
             }

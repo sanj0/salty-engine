@@ -31,7 +31,7 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.input.DisplayListener;
-import de.edgelord.saltyengine.serialization.Serializer;
+import de.edgelord.saltyengine.io.serialization.Serializer;
 
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -41,7 +41,7 @@ import java.io.IOException;
  * <p>
  * - when the window is closing:
  * <p>
- * - do the serialization process of {@link de.edgelord.saltyengine.serialization.Serializer} by calling {@link de.edgelord.saltyengine.serialization.Serializer#doSerialization(String)}
+ * - do the serialization process of {@link de.edgelord.saltyengine.io.serialization.Serializer} by calling {@link de.edgelord.saltyengine.io.serialization.Serializer#doSerialization(String)}
  * <p>
  * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#engine}
  * <p>

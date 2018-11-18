@@ -35,9 +35,10 @@ import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.serialization.Serializer;
+import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
@@ -56,6 +57,12 @@ public class TestingScene extends Scene {
 
         disableGravity();
         setFriction(0.005f);
+
+        try {
+            LanguageManager.init("res/lyrics", SaltySystem.defaultResource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         addLight();
         initForcesTest();
@@ -92,8 +99,7 @@ public class TestingScene extends Scene {
         SaltySystem.defaultFont = SaltySystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
-        RoundedTextBox textBox = new RoundedTextBox("Hello World! This is the testing scene for Salty Engine! It looks a bit " +
-                "messy, but it's just testing. We hope that you make amazing games with this Library!", new Vector2f(10, 600), 1180, 100, new Vector2f(25, 50));
+        RoundedTextBox textBox = new RoundedTextBox(LanguageManager.getText("textBox"), new Vector2f(10, 600), 1180, 100, new Vector2f(25, 50));
         textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
