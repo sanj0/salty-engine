@@ -77,7 +77,6 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         addComponent(animationRender);
         addComponent(soundTiming);
-        addComponent(new LockToBounds(this, new Transform(Vector2f.zero(), Game.getHost().getDimensions()), "LOL"));
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {

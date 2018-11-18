@@ -37,6 +37,8 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,6 +46,8 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 4000f;
+
+    private List<String> tagsToIgnore = new ArrayList<>();
 
     /**
      * This is the String constant for the default upwards force. It is not recommended to use these because they're
@@ -178,6 +182,10 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         boolean rightCollision = false;
 
         for (CollisionEvent collisionEvent : collisions) {
+
+            if (tagsToIgnore.contains(collisionEvent.getRoot().getTag())) {
+                continue;
+            }
             directions = collisionEvent.getCollisionDirections();
 
             if (directions.hasDirection(Directions.Direction.UP)) {
@@ -245,5 +253,29 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         }
 
         return null;
+    }
+
+    public boolean addTagToIgnore(String s) {
+        return tagsToIgnore.add(s);
+    }
+
+    public boolean removeTagToIgnore(Object o) {
+        return tagsToIgnore.remove(o);
+    }
+
+    public boolean removeAllTagsToIgnore(Collection<?> c) {
+        return tagsToIgnore.removeAll(c);
+    }
+
+    public void clearTagsToIgnore() {
+        tagsToIgnore.clear();
+    }
+
+    public void addTagToIgnore(int index, String element) {
+        tagsToIgnore.add(index, element);
+    }
+
+    public String removeTagToIgnore(int index) {
+        return tagsToIgnore.remove(index);
     }
 }
