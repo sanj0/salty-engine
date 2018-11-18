@@ -55,6 +55,10 @@ public class GradientLight extends Light {
         this(new Transform(position, dimensions), shape, arcIfRoundRect);
     }
 
+    public GradientLight(float x, float y, float width, float height, EnumShape shape, float... arcIfRoundRect) {
+        this(new Transform(x, y, width, height), shape, arcIfRoundRect);
+    }
+
     @Override
     public void draw(Graphics2D graphics) {
         graphics.drawImage(light, Math.round(getX()), Math.round(getY()), null);
@@ -69,8 +73,6 @@ public class GradientLight extends Light {
     }
 
     public void updateLightImage() {
-        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
-
-        }, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
+        light = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
     }
 }

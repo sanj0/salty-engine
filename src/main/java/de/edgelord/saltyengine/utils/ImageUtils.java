@@ -86,15 +86,15 @@ public class ImageUtils {
         int green = graphics.getColor().getGreen();
         int blue = graphics.getColor().getBlue();
 
-        int radius = Math.round(size.getWidth() / 2f);
+        float radius = size.getWidth() / 2f;
 
         SaltyShape shape = SaltyShape.createShape(shapeType, Transform.zero(), arcIfRoundRect);
 
         for (int i = 0; i < radius; i++) {
-            double luma = 1.0D - ((i + 0.001) / radius);
+            double luma = 1.0D - ((i + 0.001D) / radius);
             int alpha = Math.min((int) (255.0D * luma * intensity), 255);
             graphics.setColor(new Color(red, green, blue, alpha));
-            int currentPos = radius - i;
+            int currentPos = Math.round(radius - i);
             int currentSize = i * 2;
             shape.setDimensions(new Dimensions(currentSize, currentSize));
             shape.setPosition(new Vector2f(currentPos, currentPos));
