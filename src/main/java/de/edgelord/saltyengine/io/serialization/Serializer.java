@@ -33,6 +33,7 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.writing.DataWriter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class Serializer {
         writer.syncFile();
     }
 
-    private static void deserialize(DataReader reader) {
+    private static void deserialize(DataReader reader, File file) throws IOException {
 
         for (Serializable serializable : consumer) {
             Species species;
@@ -105,7 +106,15 @@ public class Serializer {
      * @throws IOException when the I/O process with the file fails
      */
     public static void doDeserialization(String name) throws IOException {
-        deserialize(new DataReader(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+
+        File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION);
+
+        if (file.getTotalSpace() < 5) {
+            DataWriter writer = new DataWriter(file);
+            writer.syncFile();
+        }
+
+        deserialize(new DataReader(file), file);
     }
 
     /**

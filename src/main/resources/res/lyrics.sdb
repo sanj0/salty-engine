@@ -1,8 +1,20 @@
 This is the language file.
 
+{stdf}
+
+    (version)1.2(*version)
+
+    (forward-compatible)true(*forward-compatible)
+
+    (backwards-compatible)true(*backwards-compatible)
+
+    (mask-spaces)false(*mask-spaces)
+
+{*stdf}
+
 {textBox}
 
-    (english)Hello*_*World!*_*This*_*is*_*the*_*testing*_*scene*_*for*_*Salty*_*Engine!*_*It*_*looks*_*a*_*bit*_*messy,*_*but*_*it's*_*just*_*testing.*_*We*_*hope*_*that*_*you*_*make*_*amazing*_*games*_*with*_*this*_*Library!(*english)
-    (german)Hello*_*World!*_*das*_*is*_*die*_*Test-Scene*_*von*_*Salty*_*Engine.*_*Es*_*sieht*_*ein*_*bisschen*_*unordentlich*_*aus,*_*aber*_*das*_*ist*_*nur*_*testing.*_*Wir*_*hoffen,*_*das*_*ihr*_*mit*_*dieser*_*library*_*tolle*_*Spiele*_*macht!(*german)
-    (simple-leet)H3110*_*W021d!*_*Th15*_*15*_*7h3*_*73571n9*_*5c3n3*_*f02*_*5417y*_*3n91n3!*_*17*_*l00k5*_*a*_*b17*_*m355y,*_*bu7*_*17'5*_*ju57*_*73571n9.*_*W3*_*h0p3*_*7h47*_*y0u*_*m4k3*_*4m4z1n9*_*94m35*_*w17h*_*7h15*_*11b242y!(*simple-leet)
+    (english)Hello World! This is the testing scene for Salty Engine! It looks a bit messy, but it's just testing. We hope that you make amazing games with this Library!(*english)
+    (german)Hello World! das is die Test-Scene von Salty Engine. Es sieht ein bisschen unordentlich aus, aber das ist nur testing. Wir hoffen, das ihr mit dieser library tolle Spiele macht!(*german)
+    (simple-leet)H3110 W021d! Th15 15 7h3 73571n9 5c3n3 f02 5417y 3n91n3! 17 l00k5 a b17 m355y, bu7 17'5 ju57 73571n9. W3 h0p3 7h47 y0u m4k3 4m4z1n9 94m35 w17h 7h15 11b242y!(*simple-leet)
 {*textBox}
