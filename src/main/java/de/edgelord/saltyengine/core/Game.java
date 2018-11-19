@@ -32,7 +32,9 @@ import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.display.DisplayRatio;
 import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.graphics.GFXController;
+import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
 public class Game {
@@ -60,6 +62,9 @@ public class Game {
         engine = new Engine(fixedTickMillis);
 
         host = new DisplayManager(new DisplayRatio(new Dimensions(resolutionWidth, resolutionHeight)), gameName, engine);
+
+        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
+        SaltySystem.defaultOuterResource = new OuterResource(false);
     }
 
     public Game(Host host, String gameName, long fixedTickMillis) {
@@ -69,6 +74,8 @@ public class Game {
         engine = new Engine(fixedTickMillis);
 
         Game.host = host;
+        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
+        SaltySystem.defaultOuterResource = new OuterResource(false);
     }
 
     /**
@@ -82,6 +89,8 @@ public class Game {
         System.setProperty("sun.java2d.opengl", "True");
 
         Game.host = host;
+        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
+        SaltySystem.defaultOuterResource = new OuterResource(false);
     }
 
     public static void start(SplashWindow.Splash splash) {
