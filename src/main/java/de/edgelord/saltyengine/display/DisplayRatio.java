@@ -58,6 +58,7 @@ public class DisplayRatio {
 
     public void setScale(float scale) {
         this.scale = scale;
+        updateCurrentDimensions();
     }
 
     public float getScale() {
