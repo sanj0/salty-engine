@@ -79,7 +79,9 @@ public class ImageUtils {
      * @param shapeType       the type of shape of the gradient
      * @param graphicsPrepare a {@link Drawable} to prepare the graphics, e.g. set its Color
      * @param renderingHints  the {@link RenderingHints} with which to draw the gradient
+     * @param intensity       the intensity of the gradient
      * @param size            the max size of the gradient
+     * @param arcIfRoundRect the arc of the shape if it is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new {@link BufferedImage} with the given size and a gradient with the given shape
      */
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {

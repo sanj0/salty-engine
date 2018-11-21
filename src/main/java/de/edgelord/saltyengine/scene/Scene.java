@@ -79,10 +79,26 @@ public class Scene {
 
     public void disableGravity() {
         gravityEnabled = false;
+
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+                GameObject gameObject = gameObjects.get(i);
+
+                gameObject.getPhysics().setGravityEnabled(false);
+            }
+        }
     }
 
     public void enableGravity() {
         gravityEnabled = true;
+
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+                GameObject gameObject = gameObjects.get(i);
+
+                gameObject.getPhysics().setGravityEnabled(true);
+            }
+        }
     }
 
     public void addFixedTask(FixedTask fixedTask) {
@@ -275,7 +291,11 @@ public class Scene {
     }
 
     public void setGravityEnabled(boolean gravityEnabled) {
-        this.gravityEnabled = gravityEnabled;
+        if (gravityEnabled) {
+            enableGravity();
+        } else {
+            disableGravity();
+        }
     }
 
     public LightSystem getLightSystem() {

@@ -47,6 +47,8 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 4000f;
 
+    private boolean gravityForThisEnabled = true;
+
     private List<String> tagsToIgnore = new ArrayList<>();
 
     /**
@@ -127,8 +129,11 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     @Override
     public void onFixedTick() {
 
-        if (SceneManager.getCurrentScene().isGravityEnabled()) {
-            getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
+        if (SceneManager.getCurrentScene().isGravityEnabled() || gravityForThisEnabled) {
+
+            if (gravityForThisEnabled) {
+                getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
+            }
         } else {
             getForce(DEFAULT_GRAVITY).setAcceleration(0f);
         }
@@ -277,5 +282,9 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     public String removeTagToIgnore(int index) {
         return tagsToIgnore.remove(index);
+    }
+
+    public void setGravityEnabled(boolean enabled) {
+        this.gravityForThisEnabled = enabled;
     }
 }
