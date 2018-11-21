@@ -37,36 +37,49 @@ public class GameStarter {
 
     protected static void startGame(long fps, SplashWindow.Splash splash) {
 
-        SplashWindow splashWindow = new SplashWindow(splash);
-        splashWindow.setVisible(true);
+        if (splash != SplashWindow.Splash.NO_SPLASH) {
 
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                Thread.sleep(6000);
-                return null;
-            }
+            SplashWindow splashWindow = new SplashWindow(splash);
+            splashWindow.setVisible(true);
 
-            protected void done() {
-                splashWindow.setVisible(false);
-
-                Game.getHost().create();
-
-                if (fps == -1) {
-                    Game.getEngine().start();
-                } else {
-                    Game.getEngine().start(fps);
+            SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    Thread.sleep(6000);
+                    return null;
                 }
 
-                splashWindow.dispose();
-                setLocked(false);
-            }
-        };
-        worker.execute();
+                protected void done() {
+                    startGame(true, splashWindow, fps);
+                }
+            };
+            worker.execute();
 
-        while (isLocked()) {
-            System.out.print("");
+            while (isLocked()) {
+                System.out.print("");
+            }
+        } else {
+            startGame(false, null, fps);
         }
+    }
+
+    private static void startGame(boolean splash, SplashWindow splashWindow, long fps) {
+        if (splash) {
+            splashWindow.setVisible(false);
+        }
+
+        Game.getHost().create();
+
+        if (fps == -1) {
+            Game.getEngine().start();
+        } else {
+            Game.getEngine().start(fps);
+        }
+
+        if (splash) {
+            splashWindow.dispose();
+        }
+        setLocked(false);
     }
 
     private static boolean isLocked() {

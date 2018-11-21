@@ -36,7 +36,8 @@ public class SplashWindow extends JFrame {
         MELTING_SPLASH,
         SPOTLIGHT_SPLASH,
         WATER_SPLASH,
-        UNDERWATER_SPLASH
+        UNDERWATER_SPLASH,
+        NO_SPLASH
     }
 
     public SplashWindow(Splash splash) {

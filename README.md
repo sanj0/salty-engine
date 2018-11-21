@@ -20,6 +20,9 @@ stage management as well as saving with
 
 
 # Why using Salty Engine?
+**Note:** When you call `Game#start()`, a splashscreen wil appear, saying "Created with Salty Engine". For that, you have five different options using the enum `SplashWindow#Splash` and using `Game#start(Splash splash)` or `Game#start(long fps, Splash splash)`.
+You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)` (or with the fps in front), but consider using one to support us :)
+
 
 ### Pro:
 - simple Display management

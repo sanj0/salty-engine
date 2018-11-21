@@ -51,7 +51,7 @@ import java.io.IOException;
 
 public class TestingScene extends Scene {
 
-    private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.ROUND_RECTANGLE, 60);
+    private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.OVAL, 60);
 
     public TestingScene(String foo, Integer bar) {
 
@@ -76,7 +76,7 @@ public class TestingScene extends Scene {
         setLightSystem(new LightSystem(new Color(0, 0, 0, 235)));
         light.setColor(Color.blue);
         getLightSystem().addLight(light);
-        getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.OVAL));
+        getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.ROUND_RECTANGLE));
     }
 
     private void initUITest() {
