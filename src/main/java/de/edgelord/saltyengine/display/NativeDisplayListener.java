@@ -41,8 +41,6 @@ import java.io.IOException;
  * <p>
  * - when the window is closing:
  * <p>
- * - do the serialization process of {@link de.edgelord.saltyengine.io.serialization.Serializer} by calling {@link de.edgelord.saltyengine.io.serialization.Serializer#doSerialization(String)}
- * <p>
  * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#engine}
  * <p>
  * - run the shutdown hooks by calling {@link WindowClosingHooks#runHooks()}
@@ -53,11 +51,6 @@ public class NativeDisplayListener extends DisplayListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        try {
-            Serializer.doSerialization();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
         WindowClosingHooks.runHooks();
         Game.getEngine().close();
         System.exit(0);

@@ -32,10 +32,13 @@ import de.edgelord.saltyengine.display.DisplayManager;
 import de.edgelord.saltyengine.display.DisplayRatio;
 import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.graphics.GFXController;
+import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
+
+import java.io.IOException;
 
 public class Game {
 
@@ -159,5 +162,27 @@ public class Game {
 
     public static void setCamera(Camera camera) {
         Game.camera = camera;
+    }
+
+    public static void saveOnExit(String safeFile) {
+        WindowClosingHooks.addShutdownHook(() -> {
+            try {
+                Serializer.doSerialization(safeFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static void saveOnExit() {
+        saveOnExit(Serializer.getSaveFileName());
+    }
+
+    public static void serializeOnExit() {
+        saveOnExit();
+    }
+
+    public static void serializeOnExit(String safeFile) {
+        saveOnExit(safeFile);
     }
 }
