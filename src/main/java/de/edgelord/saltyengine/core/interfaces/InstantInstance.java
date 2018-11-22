@@ -65,7 +65,6 @@ public interface InstantInstance<T> {
      *
      * @param max the maximum of the random number
      * @param min the minimum if the random number
-     *
      * @return a new instance of {@link T} with a random-overload
      */
     T random(int min, int max);

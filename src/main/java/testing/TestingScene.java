@@ -27,8 +27,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
@@ -54,8 +52,6 @@ public class TestingScene extends Scene {
     private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.OVAL, 60);
 
     public TestingScene(String foo, Integer bar) {
-
-        disableGravity();
         setFriction(0.005f);
 
         try {
@@ -69,7 +65,7 @@ public class TestingScene extends Scene {
         initUITest();
         addUI();
 
-        WindowClosingHooks.add(() -> Game.getHost().takeScreenshot());
+        disableGravity();
     }
 
     private void addLight() {

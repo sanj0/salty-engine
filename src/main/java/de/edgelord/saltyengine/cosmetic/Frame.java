@@ -30,8 +30,6 @@ package de.edgelord.saltyengine.cosmetic;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Frame implements Cosmetic {

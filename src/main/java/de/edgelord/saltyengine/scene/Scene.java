@@ -65,8 +65,6 @@ public class Scene {
     private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
     private float friction = Force.DEFAULT_FRICTION;
 
-    private boolean gravityEnabled = true;
-
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
@@ -78,8 +76,6 @@ public class Scene {
     }
 
     public void disableGravity() {
-        gravityEnabled = false;
-
         synchronized (concurrentBlock) {
             for (int i = 0; i < gameObjects.size(); i++) {
                 GameObject gameObject = gameObjects.get(i);
@@ -90,8 +86,6 @@ public class Scene {
     }
 
     public void enableGravity() {
-        gravityEnabled = true;
-
         synchronized (concurrentBlock) {
             for (int i = 0; i < gameObjects.size(); i++) {
                 GameObject gameObject = gameObjects.get(i);
@@ -284,10 +278,6 @@ public class Scene {
 
     public void setFriction(float friction) {
         this.friction = friction;
-    }
-
-    public boolean isGravityEnabled() {
-        return gravityEnabled;
     }
 
     public void setGravityEnabled(boolean gravityEnabled) {

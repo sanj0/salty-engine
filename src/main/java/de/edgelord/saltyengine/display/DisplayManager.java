@@ -39,10 +39,8 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.SimpleFormatter;
 
 public class DisplayManager extends Host {
 

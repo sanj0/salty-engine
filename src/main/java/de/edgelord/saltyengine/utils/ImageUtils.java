@@ -81,7 +81,7 @@ public class ImageUtils {
      * @param renderingHints  the {@link RenderingHints} with which to draw the gradient
      * @param intensity       the intensity of the gradient
      * @param size            the max size of the gradient
-     * @param arcIfRoundRect the arc of the shape if it is {@link EnumShape#ROUND_RECTANGLE}
+     * @param arcIfRoundRect  the arc of the shape if it is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new {@link BufferedImage} with the given size and a gradient with the given shape
      */
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
@@ -116,16 +116,15 @@ public class ImageUtils {
     /**
      * Saves the given image to a file with the given name relative to the given {@link OuterResource}.
      * It saves it with the given format, use one of those three:
-     *
+     * <p>
      * {@link #IMAGE_FORMAT_PNG}
      * {@link #IMAGE_FORMAT_JPG}
      * {@link #IMAGE_FORMAT_GIF}
      *
-     * @param image the {@link BufferedImage} to safe
-     * @param format the format of the file
-     * @param name the name of the file
+     * @param image    the {@link BufferedImage} to safe
+     * @param format   the format of the file
+     * @param name     the name of the file
      * @param resource the {@link OuterResource} to get the file from
-     *
      * @throws IOException when the I/O process fails
      */
     public static void saveImage(BufferedImage image, String format, String name, OuterResource resource) throws IOException {

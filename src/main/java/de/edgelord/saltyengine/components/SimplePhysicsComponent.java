@@ -129,11 +129,8 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     @Override
     public void onFixedTick() {
 
-        if (SceneManager.getCurrentScene().isGravityEnabled() || gravityForThisEnabled) {
-
-            if (gravityForThisEnabled) {
-                getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
-            }
+        if (gravityForThisEnabled) {
+            getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
         } else {
             getForce(DEFAULT_GRAVITY).setAcceleration(0f);
         }

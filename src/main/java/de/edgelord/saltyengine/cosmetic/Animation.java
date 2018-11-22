@@ -30,8 +30,6 @@ package de.edgelord.saltyengine.cosmetic;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 import java.util.List;
 

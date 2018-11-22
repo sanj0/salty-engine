@@ -31,10 +31,8 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.input.DisplayListener;
-import de.edgelord.saltyengine.io.serialization.Serializer;
 
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 /**
  * The native listener on a {@link de.edgelord.saltyengine.display.Display}, which does the following (maybe expand in the future):

@@ -55,7 +55,7 @@ import java.io.IOException;
  *     {*old_man_1}
  *     }
  * </pre>
- *
+ * <p>
  * You have to encode any spaces (" ") with "*_*" and you can leave any comments in between tags, like you can see in the example.
  * You can use any languages, you just have to make sure that {@link #language} is one the ones you used.
  */
@@ -77,7 +77,6 @@ public class LanguageManager {
      * @param fileName the name of the text-resource file, without any extensions even though the extension of the file must
      *                 be {@link DataReader#SDB_FILE_EXTENSION}, which is ".sdb"
      * @param resource the resource to locate the file
-     *
      * @throws IOException when the I/O process fails
      */
     public static void init(String fileName, Resource resource) throws IOException {

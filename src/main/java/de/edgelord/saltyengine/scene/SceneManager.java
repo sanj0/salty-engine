@@ -59,6 +59,8 @@ public class SceneManager {
     private static Scene currentScene = new DummyScene();
     private static String currentSceneName = null;
 
+    public static final String ANONYMOUS_SCENE = "custom";
+
     private static HashMap<String, Class<? extends Scene>> scenes = new HashMap<>();
 
     public static Scene getCurrentScene() {
@@ -131,6 +133,29 @@ public class SceneManager {
 
         currentScene = scenes.getOrDefault(name, currentScene.getClass()).getConstructor(argTypes).newInstance(args);
         currentSceneName = name;
+    }
+
+    /**
+     * Calls {@link #setCurrentScene(Scene, String)} with {@link #ANONYMOUS_SCENE} as the name.
+     *
+     * @param scene the scene to be the current one
+     */
+    public static void setCurrentScene(Scene scene) {
+        currentScene = scene;
+        currentSceneName = ANONYMOUS_SCENE;
+    }
+
+    /**
+     * Simply sets {@link #currentScene} to be the given {@link Scene}.
+     * Using this method, you don't have to first add the scene to the map, but you can simply directly set an instance of Scene
+     * as the current. {@link #ANONYMOUS_SCENE} will be {@link #currentSceneName}.
+     *
+     * @param scene the Scene to be the current one
+     * @param tmpName temporary name of the scene, this won't take any effect on the scene nor on the map
+     */
+    public static void setCurrentScene(Scene scene, String tmpName) {
+        currentScene = scene;
+        currentSceneName = tmpName;
     }
 
     /**
