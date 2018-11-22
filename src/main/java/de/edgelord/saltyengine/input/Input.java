@@ -53,7 +53,7 @@ public class Input {
     public static Vector2f cursorPosition = new Vector2f(0, 0);
     public static Transform cursor = new Transform(0, 0, 0, 0);
     public static boolean mouseDrags = false;
-    public static boolean mousePresses = false;
+    public static boolean mouseDown = false;
 
     public static Directions getInput() {
 
@@ -126,7 +126,7 @@ public class Input {
         return mouseDrags;
     }
 
-    public static boolean isMousePresses() {
-        return mousePresses;
+    public static boolean isMouseDown() {
+        return mouseDown;
     }
 }

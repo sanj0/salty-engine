@@ -61,6 +61,8 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mousePressed(e);
         }
+
+        Input.mouseDown = true;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         }
 
         Input.mouseDrags = false;
-        Input.mousePresses = false;
+        Input.mouseDown = false;
     }
 
     @Override
