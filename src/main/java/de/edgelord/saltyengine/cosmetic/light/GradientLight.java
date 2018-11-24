@@ -59,6 +59,10 @@ public class GradientLight extends Light {
         this(new Transform(x, y, width, height), shape, arcIfRoundRect);
     }
 
+    public GradientLight(Transform transform, Color color) {
+        super(transform, color);
+    }
+
     @Override
     public void draw(Graphics2D graphics) {
         graphics.drawImage(light, Math.round(getX()), Math.round(getY()), null);
@@ -70,6 +74,48 @@ public class GradientLight extends Light {
 
     public void setShape(EnumShape shape) {
         this.shape = shape;
+    }
+
+    @Override
+    public void setTransform(Transform transform) {
+        super.setTransform(transform);
+        updateLightImage();
+    }
+
+    @Override
+    public void setDimensions(Dimensions dimensions) {
+        super.setDimensions(dimensions);
+        updateLightImage();
+    }
+
+    @Override
+    public void setPosition(Vector2f position) {
+        super.setPosition(position);
+        updateLightImage();
+    }
+
+    @Override
+    public void setWidth(float width) {
+        super.setWidth(width);
+        updateLightImage();
+    }
+
+    @Override
+    public void setHeight(float height) {
+        super.setHeight(height);
+        updateLightImage();
+    }
+
+    @Override
+    public void setX(float x) {
+        super.setX(x);
+        updateLightImage();
+    }
+
+    @Override
+    public void setY(float y) {
+        super.setY(y);
+        updateLightImage();
     }
 
     public void updateLightImage() {
