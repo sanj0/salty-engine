@@ -31,6 +31,7 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 
+import javax.sound.sampled.Control;
 import javax.sound.sampled.FloatControl;
 import java.util.LinkedList;
 
@@ -55,6 +56,10 @@ public class AudioPlayer {
      */
     private AudioFactory audioFactory;
 
+    /**
+     * The master volume of all {@link Audio} obtained by this player.
+     */
+    private float masterVolume = 1f;
 
     /**
      * The only constructor of AudioPlayer, taking in the <code>AudioFactory</code>
@@ -83,6 +88,7 @@ public class AudioPlayer {
     public void loadNewAudio(String name, String relativePath) {
 
         audios.add(new Audio(name, audioFactory.getClip(relativePath)));
+        multiplyAudioVolume(getAudio(name), masterVolume);
     }
 
     /**
@@ -141,15 +147,61 @@ public class AudioPlayer {
     }
 
     /**
-     * Searches for the Audio with the given name and sets its Volume to the given one, with
-     * 0f meaning no volume and 1f meaning full volume.
+     * Searches for the Audio with the given name and sets its volume to the given one using
+     * {@link Audio#setVolume(float)}
      *
-     * @param name   the name of the Audio of which to change the Volume
-     * @param volume the target volume, 0f is min, 1f is max
+     * @param name   the name of the {@link Audio} of which to change the Volume
+     * @param volume the target volume
+     *
+     * @see Audio#setVolume(float)
      */
     public void setClipVolume(String name, float volume) {
+        getAudio(name).setVolume(volume);
+    }
 
-        FloatControl gainControl = (FloatControl) getAudio(name).getClip().getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(20f * (float) Math.log10(volume));
+    /**
+     * Returns the volume of the audio with the given name.
+     *
+     * @param name the name of the desired {@link Audio}
+     * @return the volume of the audio
+     * @see Audio#getVolume()
+     */
+    public float getClipVolume(String name) {
+        return getAudio(name).getVolume();
+    }
+
+    /**
+     * Sets the master volume for this player. All {@link Audio}s will be affected, but they're relative volume will stay the same.
+     * Example:
+     *
+     * Audio 1 having a volume of 0.75 and Audio 2 a volume of 1.5. <br>
+     * Audio 2 is twice as loud as Audio 1, and when the master volume is set to 1.25,
+     * Audio 1 has a volume of 0.9375 and Audio 2 1.875. Still twice as loud.
+     *
+     * <p>When an audio's volume would be greater than 2f or smaller than 0f with the new master volume, it will be set to 2f or 0f, which is the max volume.
+     * @param masterVolume
+     */
+    public void setMasterVolume(float masterVolume) {
+        this.masterVolume = masterVolume;
+
+        for (Audio audio : audios) {
+            multiplyAudioVolume(audio, masterVolume);
+        }
+    }
+
+    public float getMasterVolume() {
+        return masterVolume;
+    }
+
+    private void multiplyAudioVolume(Audio audio, float factor) {
+        float newVolume = audio.getVolume() * factor;
+
+        if (newVolume < 0f) {
+            audio.setVolume(0f);
+        } else if (newVolume > 2f) {
+            audio.setVolume(2f);
+        } else {
+            audio.setVolume(newVolume);
+        }
     }
 }

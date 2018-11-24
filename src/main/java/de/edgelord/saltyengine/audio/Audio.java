@@ -28,6 +28,7 @@
 package de.edgelord.saltyengine.audio;
 
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 /**
  * This class represents a audio resource.
@@ -44,6 +45,9 @@ public class Audio {
 
     // The actual audio
     private Clip clip;
+
+    // The volume of the clip
+    private float volume = 1f;
 
     public Audio(final String name, final Clip clip) {
         this.name = name;
@@ -100,5 +104,23 @@ public class Audio {
      */
     public void stop() {
         clip.stop();
+    }
+
+    /**
+     * Sets the volume of the clip, 1f is the normal volume, 0f is completely quiet and 2f is twice as loud.
+     *
+     * @param volume the new volume of this audio
+     */
+    public void setVolume(float volume) {
+        FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(20f * (float) Math.log10(volume));
+        this.volume = volume;
+    }
+
+    /**
+     * @return the volume of this audio
+     */
+    public float getVolume() {
+        return volume;
     }
 }

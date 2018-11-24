@@ -135,6 +135,36 @@ public class AudioSystem {
         }
     }
 
+    /**
+     * Returns the volume of the given clip by calling {@link AudioPlayer#getClipVolume(String)}
+     *
+     * @param name the name of the audio
+     * @return the volume of the audio
+     */
+    public float getClipVolume(String name) {
+        return audioPlayer.getClipVolume(name);
+    }
+
+    /**
+     * Sets the master volume of the {@link AudioPlayer} of this system by using {@link AudioPlayer#setMasterVolume(float)}.
+     * That effects all {@link Audio}s, but they're relative volume will stay the same.
+     *
+     * @param volume the new master volume
+     */
+    public void setMasterVolume(float volume) {
+        audioPlayer.setMasterVolume(volume);
+    }
+
+    /**
+     * @return the master volume of {@link #audioPlayer}.
+     * @see AudioPlayer#setMasterVolume(float)
+     * @see AudioPlayer#getMasterVolume()
+     * @see #setMasterVolume(float)
+     */
+    public float getMasterVolume() {
+        return audioPlayer.getMasterVolume();
+    }
+
     public AudioPlayer getAudioPlayer() {
         return audioPlayer;
     }
