@@ -42,6 +42,34 @@ import java.io.IOException;
 
 public class Game {
 
+    /*
+    MMMMMMMMMMMMMMMMMMMNmdhysssyyhmNMMMMMMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMNyo:.             .:oyNMMMMMMMMMMMMMM
+    MMMMMMMMMMMdo-                       -odMMMMMMMMMMM
+    MMMMMMMMMy-                             -yMMMMMMMMM
+    MMMMMMMy.                                 .yMMMMMMM
+    MMMMMm:                      .://:`         :mMMMMM
+    MMMMh`                   `-+yyhysos:         `yMMMM
+    MMMy`                  .+yhhs/-` `yh-         `yMMM
+    MMd`                 `+yhyo-`   .shh-          `dMM
+    MM-                 .shho.     -yhy/            -MM
+    My                 `shh/`     `yhy-              yM
+    M/                 -hhy       `ss.               /M
+    M-                 .yhy:       ``                -M
+    M-                  .oyhs:.                      -M
+    M/                    ./syys/.                   /M
+    My            -oo/-`    `-/shho                  yM
+    MM-            -syhs/.`    `oho                 .MM
+    MMd`             -+syyso+//+s/`                `dMM
+    MMMy`               .-:///:-`                 `yMMM
+    MMMMh`               ...`..-..               `yMMMM
+    MMMMMm:                                     :mMMMMM
+    MMMMMMMy.                                 .yMMMMMMM
+    MMMMMMMMMy-                             -yNMMMMMMMM
+    MMMMMMMMMMMdo-                       -odMMMMMMMMMMM
+    MMMMMMMMMMMMMMNyo:.             .:oyNMMMMMMMMMMMMMM
+    MMMMMMMMMMMMMMMMMMMNmhyysssyyhmNMMMMMMMMMMMMMMMMMMM
+     */
     private static GFXController defaultGFXController = new GFXController();
 
     public static String gameName = "salty-engine";
