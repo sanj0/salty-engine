@@ -89,6 +89,8 @@ public abstract class Light implements TransformedObject {
 
     public abstract void draw(Graphics2D graphics);
 
+    public abstract void drawColorMap(Graphics2D graphics);
+
     public float getBrightness() {
         return brightness;
     }

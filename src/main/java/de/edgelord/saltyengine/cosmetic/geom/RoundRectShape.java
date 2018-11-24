@@ -64,7 +64,11 @@ public class RoundRectShape extends SaltyShape {
     public RoundRectShape(Vector2f position, Dimensions dimensions, float arc) {
         super(position, dimensions, EnumShape.ROUND_RECTANGLE);
 
+        this.arc = arc;
+    }
 
+    public RoundRectShape(float x, float y, float width, float height, float arc) {
+        super(x, y, width, height, EnumShape.ROUND_RECTANGLE);
         this.arc = arc;
     }
 

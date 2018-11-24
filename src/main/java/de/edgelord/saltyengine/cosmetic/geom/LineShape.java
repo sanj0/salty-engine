@@ -49,6 +49,10 @@ public class LineShape extends SaltyShape {
         super(position, dimensions, EnumShape.LINE);
     }
 
+    public LineShape(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.LINE);
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         saltyGraphics.drawLine(getX(), getY(), getTransform().getMaxX(), getTransform().getMaxY());

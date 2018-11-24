@@ -45,15 +45,6 @@ public class RoundRectRender extends PrimitivesRenderComponent {
         super(parent, name);
 
         this.arc = arc;
-
-        setPrimitiveDraw(saltyGraphics -> {
-            if (isFill()) {
-                saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());
-            } else {
-                saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());
-            }
-        });
-        updateImage();
     }
 
     public float getArc() {
@@ -62,5 +53,16 @@ public class RoundRectRender extends PrimitivesRenderComponent {
 
     public void setArc(float arc) {
         this.arc = arc;
+    }
+
+    @Override
+    public void updateImageData() {
+        setPrimitiveDraw(saltyGraphics -> {
+            if (isFill()) {
+                saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());
+            } else {
+                saltyGraphics.drawRoundRect(getLineWidth() / 2f, getLineWidth() / 2f, getParent().getWidth(), getParent().getHeight(), getArc());
+            }
+        });
     }
 }

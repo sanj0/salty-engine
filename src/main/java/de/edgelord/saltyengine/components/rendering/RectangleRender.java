@@ -33,14 +33,16 @@ public class RectangleRender extends PrimitivesRenderComponent {
 
     public RectangleRender(ComponentParent parent, String name) {
         super(parent, name);
+    }
 
+    @Override
+    public void updateImageData() {
         setPrimitiveDraw(saltyGraphics -> {
             if (isFill()) {
                 saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());
             } else {
-                saltyGraphics.outlineRect(0, 0, getParent().getWidth(), getParent().getHeight());
+                saltyGraphics.outlineRect(getLineWidth() / 2f, getLineWidth() / 2f, getParent().getWidth(), getParent().getHeight());
             }
         });
-        updateImage();
     }
 }

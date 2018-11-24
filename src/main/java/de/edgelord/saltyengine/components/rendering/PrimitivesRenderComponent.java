@@ -33,6 +33,7 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
@@ -47,7 +48,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
     private boolean fill = true;
 
     // The stroke (like a pen) with which the component should DRAW the primitives
-    private Stroke stroke = new BasicStroke();
+    private float lineWidth = 3f;
 
     private BufferedImage primitiveImage;
 
@@ -63,6 +64,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
      */
     public PrimitivesRenderComponent(final ComponentParent parent, final String name) {
         super(parent, name, Components.PRIMITIVES_RENDER_COMPONENT);
+        updateImage();
     }
 
     /**
@@ -87,14 +89,17 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
     protected void setUpGraphics(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setColor(getColor());
-        saltyGraphics.setStroke(getStroke());
+        saltyGraphics.setStroke(new BasicStroke(lineWidth));
     }
 
+    public abstract void updateImageData();
+
     public void updateImage() {
+        updateImageData();
         primitiveImage = ImageUtils.createPrimitiveImage(saltyGraphics -> {
             setUpGraphics(saltyGraphics);
             primitiveDraw.draw(saltyGraphics);
-        }, getParent().getDimensions(), Game.getHost().getRenderHints());
+        }, new Dimensions(getParent().getWidth() + (lineWidth * 2), getParent().getHeight() + (lineWidth * 2)), Game.getHost().getRenderHints());
     }
 
     public Color getColor() {
@@ -103,6 +108,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
 
     public void setColor(final Color color) {
         this.color = color;
+        updateImage();
     }
 
     public boolean isFill() {
@@ -111,21 +117,23 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
 
     public void setFill(final boolean fill) {
         this.fill = fill;
+        updateImage();
     }
 
-    public Stroke getStroke() {
-        return stroke;
+    public float getLineWidth() {
+        return lineWidth;
     }
 
-    public void setStroke(final Stroke stroke) {
-        this.stroke = stroke;
+    public void setLineWidth(final float width) {
+        this.lineWidth = width;
+        updateImage();
     }
 
-    public Drawable getPrimitiveDraw() {
+    protected Drawable getPrimitiveDraw() {
         return primitiveDraw;
     }
 
-    public void setPrimitiveDraw(Drawable primitiveDraw) {
+    protected void setPrimitiveDraw(Drawable primitiveDraw) {
         this.primitiveDraw = primitiveDraw;
     }
 }

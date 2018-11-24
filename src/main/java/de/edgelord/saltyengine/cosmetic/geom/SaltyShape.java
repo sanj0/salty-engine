@@ -34,6 +34,8 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
+import java.awt.*;
+
 public abstract class SaltyShape implements Drawable, TransformedObject {
 
     private EnumShape shapeType;
@@ -88,6 +90,13 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
+    }
+
+    public void drawAtZero(Graphics2D graphics) {
+        Vector2f pos = getPosition();
+        setPosition(Vector2f.zero());
+        draw(new SaltyGraphics(graphics));
+        setPosition(pos);
     }
 
     public EnumShape getShapeType() {

@@ -46,6 +46,10 @@ public class OvalShape extends SaltyShape {
         super(parent, EnumShape.OVAL);
     }
 
+    public OvalShape(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.OVAL);
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         if (isFilled()) {

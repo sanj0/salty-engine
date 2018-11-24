@@ -29,6 +29,7 @@ package de.edgelord.saltyengine.cosmetic.light;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
+import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -40,6 +41,7 @@ import java.awt.image.BufferedImage;
 public class GradientLight extends Light {
 
     private BufferedImage light;
+    private BufferedImage coloredLight;
     private EnumShape shape;
 
     private float[] arcIfRoundRect;
@@ -66,6 +68,10 @@ public class GradientLight extends Light {
     @Override
     public void draw(Graphics2D graphics) {
         graphics.drawImage(light, Math.round(getX()), Math.round(getY()), null);
+    }
+
+    @Override
+    public void drawColorMap(Graphics2D graphics) {
     }
 
     public EnumShape getShape() {
@@ -120,5 +126,6 @@ public class GradientLight extends Light {
 
     public void updateLightImage() {
         light = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
+        coloredLight = ImageUtils.createPrimitiveImage(SaltyShape.createShape(shape, getTransform(), arcIfRoundRect), getDimensions(), Game.getHost().getRenderHints());
     }
 }

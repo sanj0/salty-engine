@@ -47,6 +47,10 @@ public class RectangleShape extends SaltyShape {
         super(parent, EnumShape.RECTANGLE);
     }
 
+    public RectangleShape(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.RECTANGLE);
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         if (isFilled()) {

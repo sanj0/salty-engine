@@ -28,6 +28,7 @@
 package testing;
 
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.components.rendering.RectangleRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
@@ -36,6 +37,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
@@ -62,7 +64,7 @@ public class Bird extends GameObject implements Serializable {
         getHitboxAsSimpleHitbox().setHeight(75);
 
         // Improves performance a lot!
-        setStationary(true);
+        //setStationary(true);
     }
 
     @Override
@@ -85,7 +87,7 @@ public class Bird extends GameObject implements Serializable {
         // getTransform().rotateToPoint(Game.cursorPosition);
 
         if (Input.keyboardInput.isSpace()) {
-            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0.01f);
+            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);
         } else {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);
         }

@@ -31,6 +31,7 @@ import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.LockToBounds;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.components.rendering.RectangleRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -159,8 +160,6 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
-
-        animation.drawCurrentFrame(saltyGraphics);
     }
 
     @Override

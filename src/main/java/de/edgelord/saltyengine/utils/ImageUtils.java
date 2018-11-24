@@ -114,6 +114,42 @@ public class ImageUtils {
     }
 
     /**
+     * Creates and returns an image with the given in it drawn with the given Color.
+     * The image is as big as the shape, but the shape is being drawn exactly in the middle, using {@link SaltyShape#drawAtZero(Graphics2D)}.
+     *
+     * @param shape the shape to draw to the image
+     * @param color the color with which to draw the shape
+     * @param renderingHints the quality to render the shape
+     * @return a new image containing the given shape in the given color with the given quality
+     */
+    public static BufferedImage createShapeImage(SaltyShape shape, Color color, RenderingHints renderingHints) {
+        BufferedImage image = new BufferedImage(Math.round(shape.getWidth()), Math.round(shape.getHeight()), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D graphics = image.createGraphics();
+        graphics.setColor(color);
+        graphics.setRenderingHints(renderingHints);
+        shape.drawAtZero(graphics);
+        graphics.dispose();
+
+        return image;
+    }
+
+    /**
+     * Creates and returns an image using {@link #createShapeImage(SaltyShape, Color, RenderingHints)}.
+     * The {@link SaltyShape} is made using {@link SaltyShape#createShape(EnumShape, Transform, float...)}.
+     *
+     * @param shape the shape to be drawn to the image
+     * @param size the size of the shape and image
+     * @param color the color of the shape
+     * @param renderingHints the quality of the render
+     * @param arcIfRoundRect the ard if the given shape is {@link EnumShape#ROUND_RECTANGLE}
+     * @return a new image with the given size containing the given shape in the given color with the given quality
+     */
+    public static BufferedImage createShapeImage(EnumShape shape, Dimensions size, Color color, RenderingHints renderingHints, float... arcIfRoundRect) {
+        return createShapeImage(SaltyShape.createShape(shape, new Transform(Vector2f.zero(), size), arcIfRoundRect), color, renderingHints);
+    }
+
+    /**
      * Saves the given image to a file with the given name relative to the given {@link OuterResource}.
      * It saves it with the given format, use one of those three:
      * <p>

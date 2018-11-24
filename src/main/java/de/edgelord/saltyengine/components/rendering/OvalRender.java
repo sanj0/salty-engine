@@ -39,14 +39,16 @@ public class OvalRender extends PrimitivesRenderComponent {
 
     public OvalRender(final ComponentParent parent, final String name) {
         super(parent, name);
+    }
 
+    @Override
+    public void updateImageData() {
         setPrimitiveDraw(saltyGraphics -> {
             if (isFill()) {
                 saltyGraphics.drawOval(0, 0, getParent().getWidth(), getParent().getHeight());
             } else {
-                saltyGraphics.outlineOval(0, 0, getParent().getWidth(), getParent().getHeight());
+                saltyGraphics.outlineOval(getLineWidth() / 2f, getLineWidth() / 2f, getParent().getWidth(), getParent().getHeight());
             }
         });
-        updateImage();
     }
 }
