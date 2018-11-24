@@ -49,7 +49,7 @@ import java.io.IOException;
 
 public class TestingScene extends Scene {
 
-    private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.OVAL, 60);
+    private Light light = new GradientLight(new Transform(0, 0, 600, 300), EnumShape.OVAL, 60);
 
     public TestingScene(String foo, Integer bar) {
         setFriction(0.005f);

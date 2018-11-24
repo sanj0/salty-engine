@@ -41,7 +41,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class ImageUtils {
+public class ImageUtil {
 
     public static String IMAGE_FORMAT_PNG = "png";
     public static String IMAGE_FORMAT_JPG = "jpg";
@@ -55,7 +55,7 @@ public class ImageUtils {
      * @param renderingHints the renderhints to use for drawing the image
      * @return a {@link BufferedImage} with the given size and the given {@link Drawable} performed on it
      */
-    public static BufferedImage createPrimitiveImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
+    public static BufferedImage createImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
 
         BufferedImage image = new BufferedImage(Math.round(size.getWidth()), Math.round(size.getHeight()), BufferedImage.TYPE_INT_ARGB);
 
@@ -95,18 +95,24 @@ public class ImageUtils {
         int green = graphics.getColor().getGreen();
         int blue = graphics.getColor().getBlue();
 
-        float radius = size.getWidth() / 2f;
+        float width = size.getWidth();
+        float height = size.getHeight();
+        float radiusX = width / 2f;
+        float radiusY = height / 2f;
+        float heightMult = height / radiusX;
 
         SaltyShape shape = SaltyShape.createShape(shapeType, Transform.zero(), arcIfRoundRect);
 
-        for (int i = 0; i < radius; i++) {
-            double luma = 1.0D - ((i + 0.001D) / radius);
+        for (int i = 0; i < radiusX; i++) {
+            double luma = 1.0D - ((i + 0.001D) / radiusX);
             int alpha = Math.min((int) (255.0D * luma * intensity), 255);
             graphics.setColor(new Color(red, green, blue, alpha));
-            int currentPos = Math.round(radius - i);
-            int currentSize = i * 2;
-            shape.setDimensions(new Dimensions(currentSize, currentSize));
-            shape.setPosition(new Vector2f(currentPos, currentPos));
+            int currentX = Math.round(radiusX - i);
+            int currentY = Math.round(radiusY - i);
+            float currentWidth = i * 2f;
+            float currentHeight = i * heightMult;
+            shape.setDimensions(new Dimensions(currentWidth, currentHeight));
+            shape.setPosition(new Vector2f(currentX, currentY));
             shape.draw(new SaltyGraphics(graphics));
         }
 

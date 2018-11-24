@@ -34,7 +34,7 @@ import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.ImageUtils;
+import de.edgelord.saltyengine.utils.ImageUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -107,7 +107,7 @@ public class DisplayManager extends Host {
         name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         try {
-            ImageUtils.saveImage(stage.renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
+            ImageUtil.saveImage(stage.renderToImage(), ImageUtil.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
         } catch (IOException e) {
             e.printStackTrace();
         }

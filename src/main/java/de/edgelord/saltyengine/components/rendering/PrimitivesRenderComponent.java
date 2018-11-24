@@ -33,7 +33,7 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.utils.ImageUtils;
+import de.edgelord.saltyengine.utils.ImageUtil;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -91,7 +91,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
     }
 
     public void updateImage() {
-        primitiveImage = ImageUtils.createPrimitiveImage(saltyGraphics -> {
+        primitiveImage = ImageUtil.createImage(saltyGraphics -> {
             setUpGraphics(saltyGraphics);
             primitiveDraw.draw(saltyGraphics);
         }, getParent().getDimensions(), Game.getHost().getRenderHints());

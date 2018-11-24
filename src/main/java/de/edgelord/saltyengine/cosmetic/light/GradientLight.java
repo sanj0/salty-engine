@@ -32,7 +32,7 @@ import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.ImageUtils;
+import de.edgelord.saltyengine.utils.ImageUtil;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -119,6 +119,6 @@ public class GradientLight extends Light {
     }
 
     public void updateLightImage() {
-        light = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
+        light = ImageUtil.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
     }
 }
