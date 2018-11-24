@@ -27,6 +27,7 @@ stage management as well as saving with
 - easy rendering process with ```SaltyGraphics```
 - GameObjects for the simplest game developing possible
 - Scenes for collecting and defining what to render and update
+- A huge selection of beautiful colors in `de.edgelord.saltyengine.utils.ColorUtil`
 - linear Keyframe Animations
 - Animations
 - Spritesheets
