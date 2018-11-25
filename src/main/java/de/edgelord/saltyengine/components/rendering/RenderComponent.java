@@ -29,12 +29,12 @@ package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 public abstract class RenderComponent extends Component {
 
-    public RenderComponent(ComponentParent parent, String name, String tag) {
+    public RenderComponent(ComponentContainer parent, String name, String tag) {
         super(parent, name, tag);
     }
 

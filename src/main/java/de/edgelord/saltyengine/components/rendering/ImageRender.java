@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
@@ -47,7 +47,7 @@ public class ImageRender extends RenderComponent {
      * @param image  the image to be drawn by this component
      * @see de.edgelord.saltyengine.core.Component
      */
-    public ImageRender(ComponentParent parent, String name, BufferedImage image) {
+    public ImageRender(ComponentContainer parent, String name, BufferedImage image) {
         super(parent, name, Components.RENDER_COMPONENT);
 
         this.image = image;

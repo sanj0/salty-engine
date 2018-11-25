@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.util.Random;
@@ -58,11 +58,11 @@ public class WobblingEffect extends GFXComponent {
 
     Random random = new Random();
 
-    public WobblingEffect(ComponentParent parent, String name) {
+    public WobblingEffect(ComponentContainer parent, String name) {
         super(parent, name);
     }
 
-    public WobblingEffect(ComponentParent parent, String name, int maxHeightDelta, int maxWidthDelta, int minHeightDelta, int minWidthDelta) {
+    public WobblingEffect(ComponentContainer parent, String name, int maxHeightDelta, int maxWidthDelta, int minHeightDelta, int minWidthDelta) {
         super(parent, name);
         this.maxHeightDelta = maxHeightDelta;
         this.maxWidthDelta = maxWidthDelta;

@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
@@ -39,7 +39,7 @@ public class DebugLogGameObjectStat extends Component {
 
     private FixedRate fixedRate = new FixedRate(getParent(), "de.edgelord.saltyengine.DebugLogGameObjectStat$1<tmp>", 100);
 
-    public DebugLogGameObjectStat(ComponentParent parent, String name) {
+    public DebugLogGameObjectStat(ComponentContainer parent, String name) {
         super(parent, name, Components.CORE_COMPONENT);
 
         getParent().addComponent(fixedRate);

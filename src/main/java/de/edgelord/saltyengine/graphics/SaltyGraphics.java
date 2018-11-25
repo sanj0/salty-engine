@@ -91,7 +91,7 @@ public class SaltyGraphics {
     /**
      * Draws a filled rectangle by calling <code>drawRect(Transform)</code>
      *
-     * @param object the ComponentParent from which to take the Transform
+     * @param object the ComponentContainer from which to take the Transform
      * @see #drawRect(Transform)
      */
     public void drawRect(TransformedObject object) {
@@ -234,7 +234,7 @@ public class SaltyGraphics {
     /**
      * Draws the outline of an oval by calling <code>outlineOval(Transform)</code>
      *
-     * @param object the ComponentParent from which to take the transform
+     * @param object the ComponentContainer from which to take the transform
      * @see #outlineOval(Transform)
      */
     public void outlineOval(TransformedObject object) {
@@ -296,7 +296,7 @@ public class SaltyGraphics {
      * Draws an image by calling <code>outlineImage(BufferedImage, Transform)</code>
      *
      * @param image  the image to be drawn
-     * @param object the ComponentParent from which to take the Transform to DRAW the image
+     * @param object the ComponentContainer from which to take the Transform to DRAW the image
      */
     public void drawImage(BufferedImage image, TransformedObject object) {
         drawImage(image, object.getTransform());

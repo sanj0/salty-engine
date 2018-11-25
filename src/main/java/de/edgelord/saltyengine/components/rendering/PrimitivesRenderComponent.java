@@ -30,7 +30,7 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -62,7 +62,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
      * @param name   the id-name for this Component
      * @see Component
      */
-    public PrimitivesRenderComponent(final ComponentParent parent, final String name) {
+    public PrimitivesRenderComponent(final ComponentContainer parent, final String name) {
         super(parent, name, Components.PRIMITIVES_RENDER_COMPONENT);
         updateImage();
     }

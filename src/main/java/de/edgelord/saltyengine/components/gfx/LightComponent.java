@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.cosmetic.light.PointLight;
@@ -49,7 +49,7 @@ public class LightComponent extends GFXComponent {
     private TransformRelationMode relationToParent;
     private Light light;
 
-    public LightComponent(ComponentParent parent, String name, TransformRelationMode relationToParent, Light light) {
+    public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent, Light light) {
         super(parent, name);
 
         this.light = light;
@@ -58,15 +58,15 @@ public class LightComponent extends GFXComponent {
         addToLightSystem();
     }
 
-    public LightComponent(ComponentParent parent, String name, Light light) {
+    public LightComponent(ComponentContainer parent, String name, Light light) {
         this(parent, name, TransformRelationMode.CENTRE, light);
     }
 
-    public LightComponent(ComponentParent parent, String name, TransformRelationMode relationToParent) {
+    public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent) {
         this(parent, name, relationToParent, new PointLight(parent.getTransform()));
     }
 
-    public LightComponent(ComponentParent parent, String name) {
+    public LightComponent(ComponentContainer parent, String name) {
         this(parent, name, TransformRelationMode.CENTRE, new PointLight(parent.getTransform()));
     }
 

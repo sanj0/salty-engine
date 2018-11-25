@@ -32,12 +32,12 @@ import de.edgelord.saltyengine.core.interfaces.CollideAble;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.InitializeAble;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
 import java.util.List;
 
-public abstract class Component<T extends ComponentParent> implements Drawable, FixedTickRoutine, InitializeAble, CollideAble {
+public abstract class Component<T extends ComponentContainer> implements Drawable, FixedTickRoutine, InitializeAble, CollideAble {
 
     private T parent;
     private String tag;

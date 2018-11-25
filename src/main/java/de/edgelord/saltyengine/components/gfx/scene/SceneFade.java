@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components.gfx.scene;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
@@ -64,7 +64,7 @@ public class SceneFade extends SceneGFXComponent {
         SceneManager.getCurrentScene().addDrawingRoutine(fadeDraw);
     }
 
-    public SceneFade(ComponentParent parent, String name, Mode mode) {
+    public SceneFade(ComponentContainer parent, String name, Mode mode) {
         this(name, mode, Color.BLACK);
 
         if (mode == Mode.FADE_IN) {

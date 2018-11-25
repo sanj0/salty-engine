@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
@@ -56,7 +56,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
      * @param cooldownTime the time that the cooldown takes.
      * @param shouldRun the test for if {@link #run()} should be called. This is only tested if the cooldown was performed
      */
-    public CooldownComponent(ComponentParent parent, String name, int cooldownTime, BooleanSupplier shouldRun) {
+    public CooldownComponent(ComponentContainer parent, String name, int cooldownTime, BooleanSupplier shouldRun) {
         super(parent, name, Components.TIMING_COMPONENT);
 
         this.cooldownTime = cooldownTime;

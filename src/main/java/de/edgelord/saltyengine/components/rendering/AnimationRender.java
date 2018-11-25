@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
@@ -52,7 +52,7 @@ public class AnimationRender extends RenderComponent {
      * @param name   the id-name for this Component
      * @see de.edgelord.saltyengine.core.Component
      */
-    public AnimationRender(ComponentParent parent, String name) {
+    public AnimationRender(ComponentContainer parent, String name) {
         super(parent, name, Components.RENDER_COMPONENT);
     }
 
@@ -64,7 +64,7 @@ public class AnimationRender extends RenderComponent {
      * @param animation     the animation that should be rendered
      * @param ticksPerFrame after how many fixed ticks the next frame of the animation should be triggered
      */
-    public AnimationRender(ComponentParent parent, String name, Animation animation, int ticksPerFrame) {
+    public AnimationRender(ComponentContainer parent, String name, Animation animation, int ticksPerFrame) {
         super(parent, name, Components.RENDER_COMPONENT);
         this.animation = animation;
         this.ticksPerFrame = ticksPerFrame;

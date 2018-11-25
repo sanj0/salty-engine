@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
@@ -37,7 +37,7 @@ import java.awt.*;
 
 public class DrawPositionComponent extends Component {
 
-    public DrawPositionComponent(ComponentParent parent, String name) {
+    public DrawPositionComponent(ComponentContainer parent, String name) {
         super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);
     }
 

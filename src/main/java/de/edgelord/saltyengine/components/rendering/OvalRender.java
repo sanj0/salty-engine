@@ -27,7 +27,7 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 /**
  * This component is used for simplifying the process of rendering an oval.
@@ -37,7 +37,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
  */
 public class OvalRender extends PrimitivesRenderComponent {
 
-    public OvalRender(final ComponentParent parent, final String name) {
+    public OvalRender(final ComponentContainer parent, final String name) {
         super(parent, name);
     }
 

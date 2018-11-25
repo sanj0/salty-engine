@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components.gfx.scene;
 
 import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.Scene;
@@ -80,7 +80,7 @@ public class SceneOverlay extends SceneGFXComponent {
         };
     }
 
-    public SceneOverlay(ComponentParent parent, String name, Color overlayColor) {
+    public SceneOverlay(ComponentContainer parent, String name, Color overlayColor) {
         this(name, overlayColor, 0.5f);
     }
 

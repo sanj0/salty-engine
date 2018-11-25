@@ -29,19 +29,19 @@ package de.edgelord.saltyengine.components.gfx;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
  * This abstract {@link Component} describes a
- * graphical effect for a {@link ComponentParent}.
+ * graphical effect for a {@link ComponentContainer}.
  * These {@link Component}s are disabled by default
  * and need to be enabled using the {@link #startGFX()} method for
  * the graphical effect to take effect.
  */
 public abstract class GFXComponent extends Component {
 
-    public GFXComponent(ComponentParent parent, String name) {
+    public GFXComponent(ComponentContainer parent, String name) {
         super(parent, name, Components.GFX_COMPONENT);
 
         disable();

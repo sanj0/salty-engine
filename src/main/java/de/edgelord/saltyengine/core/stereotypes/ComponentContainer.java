@@ -35,11 +35,11 @@ import de.edgelord.saltyengine.transform.Transform;
 
 import java.util.List;
 
-public abstract class ComponentParent implements TransformedObject {
+public abstract class ComponentContainer implements TransformedObject {
 
     private String tag;
 
-    public ComponentParent(String tag) {
+    public ComponentContainer(String tag) {
         this.tag = tag;
     }
 

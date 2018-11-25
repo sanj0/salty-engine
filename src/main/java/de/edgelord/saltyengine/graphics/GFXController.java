@@ -30,7 +30,7 @@ package de.edgelord.saltyengine.graphics;
 import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GFXController extends ComponentParent {
+public class GFXController extends ComponentContainer {
 
     private List<Component> components = Collections.synchronizedList(new ArrayList<>());
     private Transform transform = new Transform(new Vector2f(0, 0), new Dimensions(0, 0));

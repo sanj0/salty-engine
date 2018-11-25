@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
@@ -40,7 +40,7 @@ public class MoveWithCursorComponent extends Component {
 
     private TransformRelationMode relation;
 
-    public MoveWithCursorComponent(ComponentParent parent, String name, TransformRelationMode relation) {
+    public MoveWithCursorComponent(ComponentContainer parent, String name, TransformRelationMode relation) {
         super(parent, name, Components.GAME_COMPONENT);
 
         this.relation = relation;

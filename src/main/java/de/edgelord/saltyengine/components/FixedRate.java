@@ -29,7 +29,7 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
@@ -40,7 +40,7 @@ public class FixedRate extends Component {
 
     private boolean now = false;
 
-    public FixedRate(ComponentParent parent, String name, int gate) {
+    public FixedRate(ComponentContainer parent, String name, int gate) {
         super(parent, name, Components.TIMING_COMPONENT);
         this.gate = gate;
     }

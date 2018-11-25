@@ -27,11 +27,11 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 public class RectangleRender extends PrimitivesRenderComponent {
 
-    public RectangleRender(ComponentParent parent, String name) {
+    public RectangleRender(ComponentContainer parent, String name) {
         super(parent, name);
     }
 
