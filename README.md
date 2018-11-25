@@ -15,7 +15,7 @@ stage management as well as saving with
 
 **NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com)**
 
-# Content
+## Content
 1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
 3. [Games made with Salty Engine](#games-made-with-salty-engine)
