@@ -27,13 +27,9 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.FixedRate;
-import de.edgelord.saltyengine.components.LockToBounds;
-import de.edgelord.saltyengine.components.MoveWithCursorComponent;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
-import de.edgelord.saltyengine.components.rendering.RectangleRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -43,8 +39,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;

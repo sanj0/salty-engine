@@ -28,10 +28,7 @@
 package de.edgelord.saltyengine.cosmetic.light;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
-import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -137,7 +134,8 @@ public class GradientLight extends Light {
     }
 
     public void updateLightImage() {
-        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {}, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
+        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
+        }, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
         coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
     }
 }

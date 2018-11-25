@@ -56,7 +56,6 @@ public class Transform {
      * @see Rectangle2D#intersects(Rectangle2D)
      */
     public boolean intersects(Transform other) {
-
         return getRect().intersects(other.getRect());
     }
 

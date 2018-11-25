@@ -28,8 +28,8 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.List;

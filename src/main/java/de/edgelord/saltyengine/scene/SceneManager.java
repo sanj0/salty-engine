@@ -150,7 +150,7 @@ public class SceneManager {
      * Using this method, you don't have to first add the scene to the map, but you can simply directly set an instance of Scene
      * as the current. {@link #ANONYMOUS_SCENE} will be {@link #currentSceneName}.
      *
-     * @param scene the Scene to be the current one
+     * @param scene   the Scene to be the current one
      * @param tmpName temporary name of the scene, this won't take any effect on the scene nor on the map
      */
     public static void setCurrentScene(Scene scene, String tmpName) {

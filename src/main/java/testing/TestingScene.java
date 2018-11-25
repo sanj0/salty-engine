@@ -27,19 +27,16 @@
 
 package testing;
 
-import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
-import de.edgelord.saltyengine.cosmetic.light.StaticLightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
+import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
@@ -70,8 +67,6 @@ public class TestingScene extends Scene {
         addUI();
 
         disableGravity();
-
-        WindowClosingHooks.addShutdownHook(Game.getHost()::takeScreenshot);
     }
 
     private void addLight() {

@@ -119,19 +119,21 @@ public class ImageUtils {
     }
 
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
-        return createPrimitiveGradient(shapeType, saltyGraphics -> {}, renderingHints, intensity, 255D, size, arcIfRoundRect);
+        return createPrimitiveGradient(shapeType, saltyGraphics -> {
+        }, renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
-        return createPrimitiveGradient(shapeType, saltyGraphics -> {}, Game.getHost().getRenderHints(), intensity, 255D, size, arcIfRoundRect);
+        return createPrimitiveGradient(shapeType, saltyGraphics -> {
+        }, Game.getHost().getRenderHints(), intensity, 255D, size, arcIfRoundRect);
     }
 
     /**
      * Creates and returns an image with the given in it drawn with the given Color.
      * The image is as big as the shape, but the shape is being drawn exactly in the middle, using {@link SaltyShape#drawAtZero(Graphics2D)}.
      *
-     * @param shape the shape to draw to the image
-     * @param color the color with which to draw the shape
+     * @param shape          the shape to draw to the image
+     * @param color          the color with which to draw the shape
      * @param renderingHints the quality to render the shape
      * @return a new image containing the given shape in the given color with the given quality
      */
@@ -151,9 +153,9 @@ public class ImageUtils {
      * Creates and returns an image using {@link #createShapeImage(SaltyShape, Color, RenderingHints)}.
      * The {@link SaltyShape} is made using {@link SaltyShape#createShape(EnumShape, Transform, float...)}.
      *
-     * @param shape the shape to be drawn to the image
-     * @param size the size of the shape and image
-     * @param color the color of the shape
+     * @param shape          the shape to be drawn to the image
+     * @param size           the size of the shape and image
+     * @param color          the color of the shape
      * @param renderingHints the quality of the render
      * @param arcIfRoundRect the ard if the given shape is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new image with the given size containing the given shape in the given color with the given quality

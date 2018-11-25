@@ -28,7 +28,6 @@
 package testing;
 
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
-import de.edgelord.saltyengine.components.rendering.RectangleRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
@@ -37,7 +36,6 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 

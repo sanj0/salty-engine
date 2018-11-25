@@ -31,8 +31,6 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 
-import javax.sound.sampled.Control;
-import javax.sound.sampled.FloatControl;
 import java.util.LinkedList;
 
 /**
@@ -152,7 +150,6 @@ public class AudioPlayer {
      *
      * @param name   the name of the {@link Audio} of which to change the Volume
      * @param volume the target volume
-     *
      * @see Audio#setVolume(float)
      */
     public void setClipVolume(String name, float volume) {
@@ -173,12 +170,13 @@ public class AudioPlayer {
     /**
      * Sets the master volume for this player. All {@link Audio}s will be affected, but they're relative volume will stay the same.
      * Example:
-     *
+     * <p>
      * Audio 1 having a volume of 0.75 and Audio 2 a volume of 1.5. <br>
      * Audio 2 is twice as loud as Audio 1, and when the master volume is set to 1.25,
      * Audio 1 has a volume of 0.9375 and Audio 2 1.875. Still twice as loud.
      *
      * <p>When an audio's volume would be greater than 2f or smaller than 0f with the new master volume, it will be set to 2f or 0f, which is the max volume.
+     *
      * @param masterVolume
      */
     public void setMasterVolume(float masterVolume) {

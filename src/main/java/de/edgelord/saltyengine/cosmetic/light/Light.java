@@ -28,7 +28,6 @@
 package de.edgelord.saltyengine.cosmetic.light;
 
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
