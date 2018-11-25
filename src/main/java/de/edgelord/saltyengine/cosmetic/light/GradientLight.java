@@ -28,11 +28,14 @@
 package de.edgelord.saltyengine.cosmetic.light;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
@@ -46,23 +49,31 @@ public class GradientLight extends Light {
 
     private float[] arcIfRoundRect;
 
-    public GradientLight(Transform transform, EnumShape shape, float... arcIfRoundRect) {
-        super(transform);
+    public GradientLight(Transform transform, Color color, EnumShape shape, float... arcIfRoundRect) {
+        super(transform, color);
         this.shape = shape;
         this.arcIfRoundRect = arcIfRoundRect;
         updateLightImage();
+    }
+
+    public GradientLight(Transform transform, EnumShape shape, float... arcIfRoundRect) {
+        this(transform, ColorUtil.TRANSPARENT_COLOR, shape, arcIfRoundRect);
+    }
+
+    public GradientLight(Vector2f position, Dimensions dimensions, Color color, EnumShape shape, float... arcIfRoundRect) {
+        this(new Transform(position, dimensions), color, shape, arcIfRoundRect);
     }
 
     public GradientLight(Vector2f position, Dimensions dimensions, EnumShape shape, float... arcIfRoundRect) {
         this(new Transform(position, dimensions), shape, arcIfRoundRect);
     }
 
-    public GradientLight(float x, float y, float width, float height, EnumShape shape, float... arcIfRoundRect) {
-        this(new Transform(x, y, width, height), shape, arcIfRoundRect);
+    public GradientLight(float x, float y, float width, float height, Color color, EnumShape shape, float... arcIfRoundRect) {
+        this(new Transform(x, y, width, height), color, shape, arcIfRoundRect);
     }
 
-    public GradientLight(Transform transform, Color color) {
-        super(transform, color);
+    public GradientLight(float x, float y, float width, float height, EnumShape shape, float... arcIfRoundRect) {
+        this(new Transform(x, y, width, height), shape, arcIfRoundRect);
     }
 
     @Override
@@ -72,6 +83,7 @@ public class GradientLight extends Light {
 
     @Override
     public void drawColorMap(Graphics2D graphics) {
+        graphics.drawImage(coloredLight, Math.round(getX()), Math.round(getY()), null);
     }
 
     public EnumShape getShape() {
@@ -125,7 +137,7 @@ public class GradientLight extends Light {
     }
 
     public void updateLightImage() {
-        light = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
-        coloredLight = ImageUtils.createPrimitiveImage(SaltyShape.createShape(shape, getTransform(), arcIfRoundRect), getDimensions(), Game.getHost().getRenderHints());
+        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {}, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
+        coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
     }
 }

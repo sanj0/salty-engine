@@ -27,6 +27,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
@@ -84,7 +85,7 @@ public class ImageUtils {
      * @param arcIfRoundRect  the arc of the shape if it is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new {@link BufferedImage} with the given size and a gradient with the given shape
      */
-    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
 
         BufferedImage image = new BufferedImage(Math.round(size.getWidth()), Math.round(size.getHeight()), BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = (Graphics2D) image.getGraphics();
@@ -101,7 +102,7 @@ public class ImageUtils {
 
         for (int i = 0; i < radius; i++) {
             double luma = 1.0D - ((i + 0.001D) / radius);
-            int alpha = Math.min((int) (255.0D * luma * intensity), 255);
+            int alpha = Math.min((int) (startAlpha * luma * intensity), 255);
             graphics.setColor(new Color(red, green, blue, alpha));
             int currentPos = Math.round(radius - i);
             int currentSize = i * 2;
@@ -111,6 +112,18 @@ public class ImageUtils {
         }
 
         return image;
+    }
+
+    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+        return createPrimitiveGradient(shapeType, graphicsPrepare, renderingHints, intensity, 255D, size, arcIfRoundRect);
+    }
+
+    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+        return createPrimitiveGradient(shapeType, saltyGraphics -> {}, renderingHints, intensity, 255D, size, arcIfRoundRect);
+    }
+
+    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
+        return createPrimitiveGradient(shapeType, saltyGraphics -> {}, Game.getHost().getRenderHints(), intensity, 255D, size, arcIfRoundRect);
     }
 
     /**

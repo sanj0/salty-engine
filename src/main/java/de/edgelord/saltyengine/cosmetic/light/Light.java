@@ -28,10 +28,12 @@
 package de.edgelord.saltyengine.cosmetic.light;
 
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 
@@ -53,6 +55,11 @@ public abstract class Light implements TransformedObject {
     private Color color;
 
     /**
+     * The start alpha value of the gradient with color being drawn over the light. 0 is min, 255 is max.
+     */
+    private int colorAlpha = 75;
+
+    /**
      * The <code>Transform</code> of the light
      */
     private Transform transform;
@@ -64,7 +71,7 @@ public abstract class Light implements TransformedObject {
 
     public Light(Transform transform) {
         this.transform = transform;
-        this.color = Color.white;
+        this.color = ColorUtil.TRANSPARENT_COLOR;
     }
 
     public Light(Vector2f position, Dimensions dimensions, Color color) {
@@ -118,6 +125,14 @@ public abstract class Light implements TransformedObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public int getColorAlpha() {
+        return colorAlpha;
+    }
+
+    public void setColorAlpha(int colorAlpha) {
+        this.colorAlpha = colorAlpha;
     }
 
     @Override

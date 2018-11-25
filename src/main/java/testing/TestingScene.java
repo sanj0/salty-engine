@@ -27,10 +27,13 @@
 
 package testing;
 
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
 import de.edgelord.saltyengine.cosmetic.light.LightSystem;
+import de.edgelord.saltyengine.cosmetic.light.StaticLightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
@@ -41,6 +44,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -49,7 +53,7 @@ import java.io.IOException;
 
 public class TestingScene extends Scene {
 
-    private Light light = new GradientLight(new Transform(0, 0, 300, 300), EnumShape.OVAL, 60);
+    private Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
 
     public TestingScene(String foo, Integer bar) {
         setFriction(0.005f);
@@ -66,10 +70,12 @@ public class TestingScene extends Scene {
         addUI();
 
         disableGravity();
+
+        WindowClosingHooks.addShutdownHook(Game.getHost()::takeScreenshot);
     }
 
     private void addLight() {
-        setLightSystem(new LightSystem(new Color(0, 0, 0, 235)));
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 225)));
         light.setColor(Color.blue);
         getLightSystem().addLight(light);
         getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.ROUND_RECTANGLE));

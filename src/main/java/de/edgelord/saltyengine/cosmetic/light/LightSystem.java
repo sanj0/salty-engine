@@ -75,7 +75,11 @@ public class LightSystem implements Drawable {
 
         graphics.setRenderingHints(Game.getHost().getRenderHints());
 
+        Composite oldComp = graphics.getComposite();
+
         lights.forEach(light -> {
+            graphics.setComposite(oldComp);
+            light.drawColorMap(graphics);
             graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT, light.getBrightness()));
             light.draw(graphics);
         });
