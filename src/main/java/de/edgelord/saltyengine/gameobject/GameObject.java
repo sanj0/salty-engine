@@ -81,6 +81,12 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
      */
     private boolean stationary = false;
 
+    /**
+     * If this is true, the physics of any other GameObject in the {@link de.edgelord.saltyengine.scene.Scene} will
+     * ignore this one on collision, but the collision is still detected.
+     */
+    private boolean isTrigger = false;
+
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
     private Transform transform;
@@ -228,6 +234,55 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         return null;
     }
 
+    @Override
+    public Transform getTransform() {
+        return transform;
+    }
+
+    @Override
+    public void setTransform(Transform transform) {
+        this.transform = transform;
+    }
+
+    @Override
+    public void move(float delta, Directions.Direction direction) {
+        if (lockedDirections.hasDirection(direction)) {
+            return;
+        }
+
+        super.move(delta, direction);
+    }
+
+    @Override
+    public void moveY(float delta) {
+
+        if (delta > 0f) {
+            if (lockedDirections.hasDirection(Directions.Direction.DOWN)) {
+                return;
+            }
+        } else {
+            if (lockedDirections.hasDirection(Directions.Direction.UP)) {
+                return;
+            }
+        }
+        super.moveY(delta);
+    }
+
+    @Override
+    public void moveX(float delta) {
+
+        if (delta > 0f) {
+            if (lockedDirections.hasDirection(Directions.Direction.RIGHT)) {
+                return;
+            }
+        } else {
+            if (lockedDirections.hasDirection(Directions.Direction.LEFT)) {
+                return;
+            }
+        }
+        super.moveX(delta);
+    }
+
     public ColliderComponent requestCollider() {
 
         return (ColliderComponent) getComponent(colliderComponent);
@@ -356,45 +411,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         }
     }
 
-    @Override
-    public void move(float delta, Directions.Direction direction) {
-        if (lockedDirections.hasDirection(direction)) {
-            return;
-        }
-
-        super.move(delta, direction);
-    }
-
-    @Override
-    public void moveY(float delta) {
-
-        if (delta > 0f) {
-            if (lockedDirections.hasDirection(Directions.Direction.DOWN)) {
-                return;
-            }
-        } else {
-            if (lockedDirections.hasDirection(Directions.Direction.UP)) {
-                return;
-            }
-        }
-        super.moveY(delta);
-    }
-
-    @Override
-    public void moveX(float delta) {
-
-        if (delta > 0f) {
-            if (lockedDirections.hasDirection(Directions.Direction.RIGHT)) {
-                return;
-            }
-        } else {
-            if (lockedDirections.hasDirection(Directions.Direction.LEFT)) {
-                return;
-            }
-        }
-        super.moveX(delta);
-    }
-
     public boolean isCursorOver() {
         return getTransform().contains(Input.getRelativeCursor());
     }
@@ -459,16 +475,6 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
         this.mass = mass;
     }
 
-    @Override
-    public Transform getTransform() {
-        return transform;
-    }
-
-    @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
-    }
-
     public void removeFromCurrentScene() {
         SceneManager.getCurrentScene().removeGameObject(this);
     }
@@ -487,5 +493,13 @@ public abstract class GameObject extends ComponentParent implements Drawable, Fi
 
     public void setLockedDirections(Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
+    }
+
+    public boolean isTrigger() {
+        return isTrigger;
+    }
+
+    public void setTrigger(boolean trigger) {
+        isTrigger = trigger;
     }
 }
