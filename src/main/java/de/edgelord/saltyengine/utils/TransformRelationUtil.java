@@ -76,7 +76,7 @@ public class TransformRelationUtil {
                 float centreX = superTransform.getCentre().getX();
 
                 for (Transform transform : transforms) {
-                    transform.positionByCentre(new Vector2f(centreX, transform.getY()));
+                    transform.positionByCentre(new Vector2f(centreX, transform.getCentre().getY()));
                 }
 
                 break;
@@ -85,7 +85,7 @@ public class TransformRelationUtil {
                 float centreY = superTransform.getCentre().getY();
 
                 for (Transform transform : transforms) {
-                    transform.positionByCentre(new Vector2f(transform.getX(), centreY));
+                    transform.positionByCentre(new Vector2f(transform.getCentre().getX(), centreY));
                 }
 
                 break;
