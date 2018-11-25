@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/next%20release-0.15.0-brightgreen.svg)
+![](https://img.shields.io/badge/next%20release-0.15.0-brightgreen.svg) ![](https://img.shields.io/badge/current%20version-0.14-orange.svg)
 # Salty Engine
 
 <center>
