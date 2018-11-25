@@ -32,7 +32,7 @@ package de.edgelord.saltyengine.transform;
  * Basically there should be one super-transform which every other Transforms follow.
  * An implementation of those modes can be used/seen in
  */
-public enum RelationMode {
+public enum TransformRelationMode {
 
     /**
      * All {@link Transform}s related with this should lie centre on centre

@@ -33,23 +33,23 @@ import de.edgelord.saltyengine.cosmetic.light.LightSystem;
 import de.edgelord.saltyengine.cosmetic.light.PointLight;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.RelationMode;
-import de.edgelord.saltyengine.utils.TransformRelationUtils;
+import de.edgelord.saltyengine.transform.TransformRelationMode;
+import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
 /**
  * This {@link de.edgelord.saltyengine.core.Component} makes a {@link Light} follow its parent using the rule
- * described in {@link #relationToParent} and {@link TransformRelationUtils}.
+ * described in {@link #relationToParent} and {@link TransformRelationUtil}.
  * The light and the mode can be set in one of the constructors, if not the defaults are:
- * {@code RelationMode.CENTRE}
+ * {@code TransformRelationMode.CENTRE}
  * and
  * {@code new PointLight(parent.getTransform())}
  */
 public class LightComponent extends GFXComponent {
 
-    private RelationMode relationToParent;
+    private TransformRelationMode relationToParent;
     private Light light;
 
-    public LightComponent(ComponentParent parent, String name, RelationMode relationToParent, Light light) {
+    public LightComponent(ComponentParent parent, String name, TransformRelationMode relationToParent, Light light) {
         super(parent, name);
 
         this.light = light;
@@ -59,15 +59,15 @@ public class LightComponent extends GFXComponent {
     }
 
     public LightComponent(ComponentParent parent, String name, Light light) {
-        this(parent, name, RelationMode.CENTRE, light);
+        this(parent, name, TransformRelationMode.CENTRE, light);
     }
 
-    public LightComponent(ComponentParent parent, String name, RelationMode relationToParent) {
+    public LightComponent(ComponentParent parent, String name, TransformRelationMode relationToParent) {
         this(parent, name, relationToParent, new PointLight(parent.getTransform()));
     }
 
     public LightComponent(ComponentParent parent, String name) {
-        this(parent, name, RelationMode.CENTRE, new PointLight(parent.getTransform()));
+        this(parent, name, TransformRelationMode.CENTRE, new PointLight(parent.getTransform()));
     }
 
     @Override
@@ -76,7 +76,7 @@ public class LightComponent extends GFXComponent {
 
     @Override
     public void onFixedTick() {
-        TransformRelationUtils.positionRelativeTo(relationToParent, getParent().getTransform(), light.getTransform());
+        TransformRelationUtil.positionRelativeTo(relationToParent, getParent().getTransform(), light.getTransform());
     }
 
     public void addToLightSystem() {

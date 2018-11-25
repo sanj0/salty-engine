@@ -29,53 +29,32 @@ package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.stereotypes.ComponentParent;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.transform.TransformRelationMode;
+import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
-/**
- * Locks its parent to the given {@link Transform} by using whether its {@link de.edgelord.saltyengine.hitbox.Hitbox} or its {@link Transform}.
- * What to use is defined in {@link #mode}. The default is {@link #MODE_TRANSFORM}
- */
-public class LockToBounds extends Component<GameObject> {
-    /**
-     * The rectangular bounds to which the {@link #parent} is locked
-     */
-    private Transform bounds;
+public class MoveWithCursorComponent extends Component {
 
-    private int mode = MODE_TRANSFORM;
+    private TransformRelationMode relation;
 
-    public static final int MODE_HITBOX = 0;
-    public static final int MODE_TRANSFORM = 1;
-
-    public LockToBounds(GameObject parent, Transform bounds, String name) {
+    public MoveWithCursorComponent(ComponentParent parent, String name, TransformRelationMode relation) {
         super(parent, name, Components.GAME_COMPONENT);
 
-        this.bounds = bounds;
+        this.relation = relation;
     }
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+
     }
 
     @Override
     public void onFixedTick() {
 
-        switch (mode) {
-
-            case MODE_TRANSFORM:
-                if (!bounds.contains(getParent().getTransform())) {
-                    getParent().getLockedDirections().setDirection(bounds.getRelation(getParent().getTransform()));
-                }
-                break;
-
-            case MODE_HITBOX:
-                if (!bounds.contains(getParent().getHitbox().getTransform())) {
-                    getParent().getLockedDirections().setDirection(bounds.getRelation(getParent().getHitbox().getTransform()));
-                }
-                break;
-        }
+        TransformRelationUtil.positionRelativeTo(relation, Input.getCursor(), getParent().getTransform());
     }
 
     @Override

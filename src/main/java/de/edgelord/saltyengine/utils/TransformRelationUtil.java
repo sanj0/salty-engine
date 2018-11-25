@@ -28,28 +28,28 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.RelationMode;
+import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.List;
 
 /**
- * An implementation of the modes from {@link de.edgelord.saltyengine.transform.RelationMode} to position
+ * An implementation of the modes from {@link TransformRelationMode} to position
  * one or more {@link Transform}(s) relative to a "super"-Transform
  */
-public class TransformRelationUtils {
+public class TransformRelationUtil {
 
-    public static void positionRelativeTo(RelationMode mode, Transform superTransform, List<Transform> transforms) {
+    public static void positionRelativeTo(TransformRelationMode mode, Transform superTransform, List<Transform> transforms) {
         positionRelativeTo(mode, superTransform, (Transform[]) transforms.toArray());
     }
 
-    public static void positionRelativeTo(RelationMode mode, GameObject superTransform, List<GameObject> transforms) {
+    public static void positionRelativeTo(TransformRelationMode mode, GameObject superTransform, List<GameObject> transforms) {
 
         positionRelativeTo(mode, superTransform, (GameObject[]) transforms.toArray());
     }
 
-    public static void positionRelativeTo(RelationMode mode, GameObject superTransform, GameObject... transforms) {
+    public static void positionRelativeTo(TransformRelationMode mode, GameObject superTransform, GameObject... transforms) {
 
         Transform[] transformsFromGameObjects = new Transform[transforms.length];
 
@@ -60,7 +60,7 @@ public class TransformRelationUtils {
         positionRelativeTo(mode, superTransform.getTransform(), transformsFromGameObjects);
     }
 
-    public static void positionRelativeTo(RelationMode mode, Transform superTransform, Transform... transforms) {
+    public static void positionRelativeTo(TransformRelationMode mode, Transform superTransform, Transform... transforms) {
 
         switch (mode) {
 
