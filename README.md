@@ -1,5 +1,5 @@
 # Salty Engine
-![](https://img.shields.io/badge/version-0.14.0-orange.svg) ![](https://img.shields.io/badge/release-0.12.5-rightgreen.svg) ![](https://img.shields.io/badge/price-free-red.svg) ![](https://img.shields.io/badge/license-MIT-blue.svg)
+![](https://img.shields.io/badge/version-0.14.0-orange.svg) ![](https://img.shields.io/badge/release-0.12.5-brightgreen.svg) ![](https://img.shields.io/badge/price-free-red.svg) ![](https://img.shields.io/badge/license-MIT-blue.svg)
 <p>
 <IMG SRC="logo_small.png" ALT="" align="center">
 
