@@ -1,4 +1,7 @@
+![](https://img.shields.io/badge/next%20release-0.15.0-brightgreen.svg)
 # Salty Engine
+
+![](logo.png)
 
 Salty Engine is a Java library for making a whole 2D Game with only one single library/engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.  
 
@@ -30,6 +33,7 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 - easy rendering process with ```SaltyGraphics```
 - GameObjects for the simplest game developing possible
 - Scenes for collecting and defining what to render and update
+- A huge selection of beautiful colors in `de.edgelord.saltyengine.utils.ColorUtil`
 - linear Keyframe Animations
 - Animations
 - Spritesheets
