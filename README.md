@@ -1,6 +1,5 @@
 # Salty Engine
 ![version-badge](https://img.shields.io/badge/version-0.14.0-orange.svg) ![release-badge](https://img.shields.io/badge/release-0.12.5-brightgreen.svg) ![price-badge](https://img.shields.io/badge/price-free-red.svg) ![license-badge](https://img.shields.io/badge/license-MIT-blue.svg)
-<p>
 
 ![salty-engine-logo](logos/logo_small.png)
 
