@@ -42,21 +42,20 @@ import java.io.IOException;
  *
  *     {old_man_0}
  *     The text for the old man to be introduced
- *     (english)It's*_*dangerous*_*to*_*go*_*alone!(*english)
- *     (german)Es*_*ist*_*gefährlich*_*alleine*_*zu*_*gehen!(*german)
- *     (french)C'est*_*dangereux*_*d'aller*_*seul!(*french)
+ *     (english)It's dangerous to go alone!(*english)
+ *     (german)Es ist gefährlich alleine zu gehen!(*german)
+ *     (french)C'est dangereux d'aller seul!(*french)
  *     {*old_man_0}
  *
  *     {old_man_1}
  *     The text for the old man to turn out nice
- *     (english)Take*_*this*_*with*_*you!(*english)
- *     (german)Nimm*_*dies*_*mit!(*german)
- *     (french)I*_*DON'T*_*KNOW*_*HOW*_*TO*_*SAY*_*THAT*_*IN*_*FRENCH!(*french)
+ *     (english)Take this with you!(*english)
+ *     (german)Nimm dies mit!(*german)
+ *     (french)I DON'T KNOW HOW TO SAY THAT IN FRENCH!(*french)
  *     {*old_man_1}
  *     }
  * </pre>
  * <p>
- * You have to encode any spaces (" ") with "*_*" and you can leave any comments in between tags, like you can see in the example.
  * You can use any languages, you just have to make sure that {@link #language} is one the ones you used.
  */
 public class LanguageManager {
