@@ -3,7 +3,7 @@
 
 ![salty-engine-logo](logos/logo_small.png)
 
-Salty Engine is a Java library for making a whole 2D Game with only one single library/engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.  
+Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.
 
 ### It isn't just a library for rendering
 It also includes GameObject management, camera moving,
@@ -55,13 +55,15 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 # Build instructions
 To get a usable JAR of this library, you can whether download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
 
+0. Requirements: 
+    - [git](https://git-scm.com) has to be installed properly
+    - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the enviroment var JAVA_HOME points to 1.8)
+    - you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) and [stdf](https://github.com/edgelord314/stdf) first, using the steps 1-3
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in 
    
    ```bash
    git clone https://github.com/edgelord314/salty-engine
-   ``` 
-   
-   Of course, `git` has to be installed properly.
+   ```
     
 2. "cd" into the downloaded directory. Type 
    
