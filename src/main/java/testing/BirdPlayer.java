@@ -39,6 +39,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
@@ -53,6 +54,8 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     private final float speed = 2500f;
 
+    private Transform lol;
+
     private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.X_POS);
     private BasicGameObjectAnimation keyFrameAnimationRotation = new BasicGameObjectAnimation(this, "mySuperAnimationRotation", BasicGameObjectAnimation.Control.ROTATION);
     private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.WIDTH);
@@ -61,10 +64,12 @@ public class BirdPlayer extends GameObject implements Serializable {
     private AnimationRender animationRender;
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
-    public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
+    public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage, Transform lol) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
+
+        this.lol = lol;
 
         animationRender = new AnimationRender(this, "animationRender", animation, 75);
 
@@ -105,7 +110,7 @@ public class BirdPlayer extends GameObject implements Serializable {
         addComponent(keyFrameAnimationWidth);
         addComponent(keyFrameAnimationHeight);
         keyFrameAnimationX.start();
-        keyFrameAnimationRotation.start();
+        //keyFrameAnimationRotation.start();
         keyFrameAnimationWidth.start();
         keyFrameAnimationHeight.start();
 
@@ -157,6 +162,7 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+        saltyGraphics.drawRect(lol);
     }
 
     @Override

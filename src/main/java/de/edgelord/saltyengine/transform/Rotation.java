@@ -79,6 +79,21 @@ public class Rotation {
         rotateToPoint(new Vector2f(x, y));
     }
 
+    public void positionRelativeToRotation(Transform transform) {
+        double xRel = getCentre().getX();
+        double yRel = getCentre().getY();
+
+        double rad = getRotationDegrees() / (180f * Math.PI);
+
+        double px = xRel * Math.cos(rad) - yRel * Math.sin(rad);
+        double py = xRel * Math.sin(rad) + yRel * Math.cos(rad);
+
+        transform.setX((float) px + transform.getX());
+        transform.setY((float) py + transform.getY());
+
+        System.out.println(px);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Rotation) {
@@ -100,11 +115,7 @@ public class Rotation {
 
     public float getRotationDegrees() {
 
-        while (rotationDegrees > 360) {
-            rotationDegrees -= 360;
-        }
-
-        return rotationDegrees;
+        return getNormalizedDegrees(rotationDegrees);
     }
 
     public void setRotationDegrees(float rotationDegrees) {

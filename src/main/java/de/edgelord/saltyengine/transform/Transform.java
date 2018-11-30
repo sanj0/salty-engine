@@ -47,6 +47,10 @@ public class Transform {
         this(new Vector2f(x, y), new Dimensions(width, height));
     }
 
+    public void recalculateByRotation() {
+        getRotation().positionRelativeToRotation(this);
+    }
+
     /**
      * Returns whether the rectangle described by this Transform intersects the one
      * of the given.

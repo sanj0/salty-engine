@@ -27,6 +27,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -36,6 +37,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
@@ -63,6 +65,7 @@ public class Bird extends GameObject implements Serializable {
 
         // Improves performance a lot!
         //setStationary(true);
+        addComponent(new DebugLogGameObjectStat(this, "löl"));
     }
 
     @Override
@@ -83,6 +86,12 @@ public class Bird extends GameObject implements Serializable {
     public void onFixedTick() {
 
         // getTransform().rotateToPoint(Game.cursorPosition);
+        getTransform().getRotation().setCentre(new Vector2f(-100, -100));
+
+        if (Input.getKeyboardInput().isAlt()) {
+            getTransform().setRotationDegrees(getTransform().getRotationDegrees() + 0.5f);
+            getTransform().recalculateByRotation();
+        }
 
         if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);

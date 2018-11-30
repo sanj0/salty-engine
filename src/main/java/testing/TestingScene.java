@@ -131,7 +131,7 @@ public class TestingScene extends Scene {
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), upperBird.getTransform());
 
         addGameObject(bottomBird);
         addGameObject(upperBird);
@@ -150,7 +150,7 @@ public class TestingScene extends Scene {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"), null);
 
         addGameObject(player);
 
