@@ -271,6 +271,18 @@ public class SaltyGraphics {
     }
 
     /**
+     * Draws an image by calling the base method. It will be drawn with its original width and height
+     *
+     * @param image the image to be drawn
+     * @param x     the x position of the image
+     * @param y     the y position of the image
+     * @see #drawImage(BufferedImage, float, float, float, float)
+     */
+    public void drawImage(BufferedImage image, float x, float y) {
+        drawImage(image, x, y, Math.round(image.getWidth()), Math.round(image.getHeight()));
+    }
+
+    /**
      * Draws an image by calling the base method
      *
      * @param image     the image to be drawn
