@@ -38,8 +38,8 @@ import java.awt.*;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.3-SNAPSHOT";
-    public static String version = "0.14.3";
+    public static String versionTag = "0.14.4-SNAPSHOT";
+    public static String version = "0.14.4";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;
