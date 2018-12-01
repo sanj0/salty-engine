@@ -33,10 +33,7 @@ public class SplashWindow extends JFrame {
 
     public enum Splash {
         DEFAULT_SPLASH,
-        MELTING_SPLASH,
         SPOTLIGHT_SPLASH,
-        WATER_SPLASH,
-        UNDERWATER_SPLASH,
         NO_SPLASH
     }
 
@@ -48,17 +45,8 @@ public class SplashWindow extends JFrame {
             case DEFAULT_SPLASH:
                 image = new ImageIcon(getClass().getResource("/splashes/DefaultSplash.gif"));
                 break;
-            case MELTING_SPLASH:
-                image = new ImageIcon(getClass().getResource("/splashes/MeltingSplash.gif"));
-                break;
             case SPOTLIGHT_SPLASH:
                 image = new ImageIcon(getClass().getResource("/splashes/SpotlightSplash.gif"));
-                break;
-            case WATER_SPLASH:
-                image = new ImageIcon(getClass().getResource("/splashes/WaterSplash.gif"));
-                break;
-            case UNDERWATER_SPLASH:
-                image = new ImageIcon(getClass().getResource("/splashes/UnderwaterSplash.gif"));
                 break;
         }
         getContentPane().add(new JLabel("", image, SwingConstants.CENTER));
