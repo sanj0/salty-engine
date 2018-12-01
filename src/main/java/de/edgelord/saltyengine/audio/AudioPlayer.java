@@ -177,7 +177,7 @@ public class AudioPlayer {
      *
      * <p>When an audio's volume would be greater than 2f or smaller than 0f with the new master volume, it will be set to 2f or 0f, which is the max volume.
      *
-     * @param masterVolume
+     * @param masterVolume the new master volume
      */
     public void setMasterVolume(float masterVolume) {
         this.masterVolume = masterVolume;
