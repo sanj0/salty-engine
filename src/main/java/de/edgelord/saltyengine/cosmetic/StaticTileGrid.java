@@ -77,7 +77,8 @@ import java.util.Map;
  * {@link de.edgelord.saltyengine.scene.Scene#addDrawingRoutine(DrawingRoutine)}, and you can also set the {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition}
  * in the constructor. If not, the default will be {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition#BEFORE_GAMEOBJECTS}.
  * <p>
- * The first tile (0, 0) will be drawn
+ * The first tile (0, 0) will be drawn at the position passed into the constructor, every other tiles will be drawn relative to that one,
+ * like shown in the example above.
  */
 public abstract class StaticTileGrid extends DrawingRoutine {
 
