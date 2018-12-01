@@ -68,9 +68,9 @@ import java.util.Map;
  * <p>
  * That example would build a grid like that:
  * <p>
- * | grass | grass | grass |
- * | dirt  | dirt  | dirt  |
- * | dirt  | dirt  | dirt  |
+ * | grass | grass | grass | <br>
+ * | dirt  | dirt  | dirt  | <br>
+ * | dirt  | dirt  | dirt  | <br>
  * <p>
  * All images will be drawn with {@link #tileSize}
  * This class extends {@link DrawingRoutine}, which means that you can add it to a {@link de.edgelord.saltyengine.scene.Scene} using
