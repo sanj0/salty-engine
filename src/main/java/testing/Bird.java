@@ -27,7 +27,6 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.DebugLogGameObjectStat;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -65,7 +64,6 @@ public class Bird extends GameObject implements Serializable {
 
         // Improves performance a lot!
         //setStationary(true);
-        addComponent(new DebugLogGameObjectStat(this, "löl"));
     }
 
     @Override

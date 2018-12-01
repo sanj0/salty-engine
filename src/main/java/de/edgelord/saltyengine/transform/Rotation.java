@@ -88,10 +88,8 @@ public class Rotation {
         double px = xRel * Math.cos(rad) - yRel * Math.sin(rad);
         double py = xRel * Math.sin(rad) + yRel * Math.cos(rad);
 
-        transform.setX((float) px + transform.getX());
-        transform.setY((float) py + transform.getY());
-
-        System.out.println(px);
+        transform.setX((float) px + (transform.getX() + centre.getX()));
+        transform.setY((float) py + (transform.getX() + centre.getX()));
     }
 
     @Override
