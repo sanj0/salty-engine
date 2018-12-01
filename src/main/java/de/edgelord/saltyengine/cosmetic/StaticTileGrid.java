@@ -72,7 +72,7 @@ import java.util.Map;
  * | dirt  | dirt  | dirt  | <br>
  * | dirt  | dirt  | dirt  | <br>
  * <p>
- * All images will be drawn with {@link #tileSize}
+ * All images will be drawn with {@link #tileSize}. <br>
  * This class extends {@link DrawingRoutine}, which means that you can add it to a {@link de.edgelord.saltyengine.scene.Scene} using
  * {@link de.edgelord.saltyengine.scene.Scene#addDrawingRoutine(DrawingRoutine)}, and you can also set the {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition}
  * in the constructor. If not, the default will be {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition#BEFORE_GAMEOBJECTS}.
