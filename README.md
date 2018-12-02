@@ -64,12 +64,16 @@ To get a usable JAR of this library, you can whether download an existing releas
    ```bash
    git clone https://github.com/edgelord314/salty-engine
    ```
+   `https://github.com/edgelord314/stdf` for stdf and <br>
+   `https://github.com/edgelord314/sysDepFiles` for sysDepFiles
     
 2. "cd" into the downloaded directory. Type 
    
    ```bash
    cd salty-engine
    ``` 
+   `stdf` for stdf and <br>
+   `sysDepFiles` for sysDepFiles <br> 
    
    into the cmd or terminal
 
