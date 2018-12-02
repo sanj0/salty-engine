@@ -1,10 +1,9 @@
 # Salty Engine
-![version-badge](https://img.shields.io/badge/version-0.14.0-orange.svg) ![release-badge](https://img.shields.io/badge/release-0.12.5-brightgreen.svg) ![price-badge](https://img.shields.io/badge/price-free-red.svg) ![license-badge](https://img.shields.io/badge/license-MIT-blue.svg)
-<p>
+![version-badge](https://img.shields.io/badge/version-0.14.3-orange.svg) ![release-badge](https://img.shields.io/badge/release-0.12.5-brightgreen.svg) ![price-badge](https://img.shields.io/badge/price-free-red.svg) ![license-badge](https://img.shields.io/badge/license-MIT-blue.svg)
 
-![logo](logos/logo_small.png)
+![salty-engine-logo](logos/logo_small.png)
 
-Salty Engine is a Java library for making a whole 2D Game with only one single library/engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.  
+Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.
 
 ### It isn't just a library for rendering
 It also includes GameObject management, camera moving,
@@ -15,7 +14,7 @@ stage management as well as saving with
 
 **NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com)**
 
-# Content
+## Content
 1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
 3. [Games made with Salty Engine](#games-made-with-salty-engine)
@@ -56,19 +55,25 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 # Build instructions
 To get a usable JAR of this library, you can whether download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
 
+0. Requirements: 
+    - [git](https://git-scm.com) has to be installed properly
+    - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the enviroment var JAVA_HOME points to 1.8)
+    - you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) and [stdf](https://github.com/edgelord314/stdf) first, using the steps 1-3
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in 
    
    ```bash
    git clone https://github.com/edgelord314/salty-engine
-   ``` 
-   
-   Of course, `git` has to be installed properly.
+   ```
+   `https://github.com/edgelord314/stdf` for stdf and <br>
+   `https://github.com/edgelord314/sysDepFiles` for sysDepFiles
     
 2. "cd" into the downloaded directory. Type 
    
    ```bash
    cd salty-engine
    ``` 
+   `stdf` for stdf and <br>
+   `sysDepFiles` for sysDepFiles <br> 
    
    into the cmd or terminal
 
