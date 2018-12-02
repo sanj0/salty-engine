@@ -141,7 +141,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             maxY = Math.max(maxY, coordinates.getY());
         }
 
-        image = new BufferedImage(Math.round(maxX * tileSize.getWidth()), Math.round(maxY * tileSize.getHeight()), BufferedImage.TYPE_INT_ARGB);
+        int width = Math.round(maxX * tileSize.getWidth());
+        int height = Math.round(maxY * tileSize.getHeight());
+
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
+        }
+
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         graphics = new SaltyGraphics(image.createGraphics());
 
         iterator = tiles.entrySet().iterator();
@@ -157,6 +164,33 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         graphics.getGraphics2D().dispose();
 
         return image;
+    }
+
+    /**
+     * Fills a specific rectangular "area" within the given HashMap with the given {@link BufferedImage}
+     * The "area" starts at the given {@link Coordinates} and ends after the given width and the given height was reached.
+     * You can use this within {@link #buildTileGrid(HashMap)}
+     *
+     * @param grid         the HasMpa to fill
+     * @param startingTile the tile which is the upper left corner of the rectangle
+     * @param width        the width of the rectangle
+     * @param height       the height of the rectangle
+     */
+    public void fillArea(HashMap<Coordinates, BufferedImage> grid, BufferedImage tile, Coordinates startingTile, int width, int height) {
+
+        int currentX = startingTile.getX();
+        int currentY = startingTile.getY();
+        while (currentX < width + 1) {
+
+            while (currentY < height + 1) {
+
+                grid.put(new Coordinates(currentX, currentY), tile);
+
+                currentY++;
+            }
+            currentY = startingTile.getY();
+            currentX++;
+        }
     }
 
     /**
