@@ -28,7 +28,10 @@
 package de.edgelord.saltyengine.cosmetic;
 
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
+import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.gameobject.NullGameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -147,14 +150,58 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
             BufferedImage tileImage = (BufferedImage) pair.getValue();
             Coordinates coordinates = (Coordinates) pair.getKey();
-            float xPos = position.getX() + (coordinates.getX() * tileSize.getWidth());
-            float yPos = position.getY() + (coordinates.getY() * tileSize.getHeight());
+            Vector2f tilePos = getTilePosition(coordinates, false);
 
-            graphics.drawImage(tileImage, xPos, yPos, tileSize.getWidth(), tileSize.getHeight());
+            graphics.drawImage(tileImage, tilePos.getX(), tilePos.getY(), tileSize.getWidth(), tileSize.getHeight());
         }
         graphics.getGraphics2D().dispose();
 
         return image;
+    }
+
+    /**
+     * Adds a GameObject with {@link de.edgelord.saltyengine.gameobject.GameObject#setStationary(boolean)} true and a hitbox
+     * starting at the left upper corner of the tile with the given coordinates and with the given size in tiles to the given
+     * scene.
+     *
+     * @param tilePosition the tile which is the starting point for the hitbox
+     * @param size         the size (measured in tile - not in pixels) for the hitbox
+     * @param scene        the scene the GameObject is to be added to
+     * @return the created and already added {@link NullGameObject}
+     */
+    public GameObject addHitbox(Coordinates tilePosition, Dimensions size, Scene scene) {
+        Vector2f tilePos = getTilePosition(tilePosition, true);
+        float width = size.getWidth() * tileSize.getWidth();
+        float height = size.getHeight() * tileSize.getHeight();
+
+        GameObject hitbox = new NullGameObject(tilePos.getX(), tilePos.getY(), width, height, "tileHitbox-" + tilePos.getX() + "," + tilePos.getY() + ";" + width + "," + height);
+
+        scene.addGameObject(hitbox);
+
+        return hitbox;
+    }
+
+    /**
+     * Calls {@link #addHitbox(Coordinates, Dimensions, Scene)} by parsing the given params to the needed ones
+     *
+     * @param tileX  the x position of the starting tile
+     * @param tileY  the y position of the starting tile
+     * @param width  the width (measured in tiles)
+     * @param height the height (measured in tiles)
+     * @param scene  the Scene the hitbox is to be added to
+     * @return the added {@link NullGameObject}
+     */
+    public GameObject addHitbox(int tileX, int tileY, int width, int height, Scene scene) {
+        return addHitbox(new Coordinates(tileX, tileY), new Dimensions(width, height), scene);
+    }
+
+    public Vector2f getTilePosition(Coordinates tile, boolean absolute) {
+
+        if (absolute) {
+            return new Vector2f(position.getX() + (tile.getX() * tileSize.getWidth()), position.getY() + (tile.getY() * tileSize.getHeight()));
+        } else {
+            return new Vector2f(tile.getX() * tileSize.getWidth(), tile.getY() * tileSize.getHeight());
+        }
     }
 
     public boolean isResizeTiles() {

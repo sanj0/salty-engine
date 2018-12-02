@@ -43,10 +43,7 @@ import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.*;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.util.ArrayList;
@@ -501,5 +498,13 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setTrigger(boolean trigger) {
         isTrigger = trigger;
+    }
+
+    public Rotation getRotation() {
+        return getTransform().getRotation();
+    }
+
+    public void setRotation(Rotation rotation) {
+        getTransform().setRotation(rotation);
     }
 }
