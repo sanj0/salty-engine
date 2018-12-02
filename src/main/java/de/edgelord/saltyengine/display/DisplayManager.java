@@ -77,13 +77,12 @@ public class DisplayManager extends Host {
     public void repaint() {
 
         stage.repaint();
-        setDimensions(display.getDisplayRatio().getCurrentDimensions());
-        stage.scaleTo(display.getDisplayRatio().getScale());
+        //setDimensions(display.getDisplayRatio().getCurrentDimensions());
     }
 
     @Override
     public Dimensions getDimensions() {
-        return new Dimensions(display.getContentPane().getWidth(), display.getContentPane().getHeight());
+        return new Dimensions(display.getWidth(), display.getHeight());
     }
 
     @Override
@@ -113,6 +112,11 @@ public class DisplayManager extends Host {
         }
 
         return name;
+    }
+
+    @Override
+    public Dimensions getOriginalResolution() {
+        return stage.getResolution();
     }
 
     public void createKeyListener() {

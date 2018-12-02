@@ -31,7 +31,7 @@ import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * This class is a non-abstract label-like implementation of the class {@link TextElement}
+ * This class is an abstract label-like implementation of the class {@link TextElement}
  * In general, these elements are text container with no writing feature
  * nor a caret showing up.
  */

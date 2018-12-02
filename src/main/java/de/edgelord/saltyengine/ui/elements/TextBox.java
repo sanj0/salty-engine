@@ -33,6 +33,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
+@Deprecated
 public abstract class TextBox extends TextElement {
 
     private float cursor = 1;

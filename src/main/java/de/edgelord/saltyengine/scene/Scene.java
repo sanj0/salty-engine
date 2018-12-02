@@ -185,7 +185,7 @@ public class Scene {
         synchronized (concurrentBlock) {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                float rotation = gameObject.getTransform().getRotation().getRotationDegrees();
+                float rotation = gameObject.getTransform().getRotation().getRotationDegrees() + Game.getCamera().getRotation();
                 Vector2f rotationCentre = gameObject.getTransform().getRotation().getCentre();
                 saltyGraphics.getGraphics2D().rotate(Math.toRadians(rotation), rotationCentre.getX() + gameObject.getX(), rotationCentre.getY() + gameObject.getY());
 
@@ -196,12 +196,6 @@ public class Scene {
             }
         }
 
-        if (ui != null) {
-            ui.drawUI(saltyGraphics);
-        }
-
-        Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
-
         synchronized (concurrentBlock) {
             for (DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
@@ -209,10 +203,17 @@ public class Scene {
                 }
             }
         }
-
         if (lightSystem != null) {
             lightSystem.draw(saltyGraphics);
         }
+
+        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
+
+        if (ui != null) {
+            ui.drawUI(saltyGraphics);
+        }
+
+        Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
     }
 
     public void onFixedTick() {
