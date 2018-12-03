@@ -28,6 +28,7 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.geom.SaltyShape;
@@ -70,36 +71,36 @@ public class ImageUtils {
     }
 
     /**
-     * Creates a gradient with the given {@link EnumShape} in a new {@link BufferedImage}.
-     * The given {@link Drawable} is executed once before the drawing of the gradient starts, to prepare the graphics
-     * with its Color etc.
-     * The given float controls the intensity of the gradient. Recommended between 1f and 2f
+     * Creates a {@link BufferedImage} with the size of the given {@link SaltyShape} and draws it gradient-like into.
      * <p>
-     * The gradient will be squared, so its width and height will be the same.
+     * The given {@link Drawable} is called once before the rendering to e.g. call {@link SaltyGraphics#setColor(Color)}
+     * or {@link SaltyGraphics#setPaint(Paint)} on the used {@link Graphics2D} of the image. The given {@link RenderingHints}
+     * are also set to the graphics, normally you want to use {@link Host#getRenderHints()} for that.
+     * <p>
+     * The gradient will be radial and it'll have the given alpha in the centre. The given intensity effects how the gradient looks.
      *
-     * @param shapeType       the type of shape of the gradient
-     * @param graphicsPrepare a {@link Drawable} to prepare the graphics, e.g. set its Color
-     * @param renderingHints  the {@link RenderingHints} with which to draw the gradient
-     * @param intensity       the intensity of the gradient
-     * @param startAlpha      the starting alpha for the gradient
-     * @param size            the max size of the gradient
-     * @param arcIfRoundRect  the arc of the shape if it is {@link EnumShape#ROUND_RECTANGLE}
-     * @return a new {@link BufferedImage} with the given size and a gradient with the given shape
+     * @param shape           the {@link SaltyShape} to draw as a gradient
+     * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It can be null.
+     * @param renderingHints  hints to define the quality. Most likely, you want to use {@link Host#getRenderHints()}
+     *                        to have the same quality as the rest of the game
+     * @param intensity       the intensity of the gradient. That effects hot it looks.
+     * @param startAlpha      the alpha value of the centre
+     * @return a {@link BufferedImage} containing the given {@link SaltyShape} drawn as a gradient.
      */
-    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
+    public static BufferedImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
 
-        BufferedImage image = new BufferedImage(Math.round(size.getWidth()), Math.round(size.getHeight()), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(Math.round(shape.getWidth()), Math.round(shape.getHeight()), BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = (Graphics2D) image.getGraphics();
 
-        graphicsPrepare.draw(new SaltyGraphics(graphics));
+        if (graphicsPrepare != null) {
+            graphicsPrepare.draw(new SaltyGraphics(graphics));
+        }
         graphics.setRenderingHints(renderingHints);
         int red = graphics.getColor().getRed();
         int green = graphics.getColor().getGreen();
         int blue = graphics.getColor().getBlue();
 
-        float radius = size.getWidth() / 2f;
-
-        SaltyShape shape = SaltyShape.createShape(shapeType, Transform.zero(), arcIfRoundRect);
+        float radius = shape.getWidth() / 2f;
 
         for (int i = 0; i < radius; i++) {
             double luma = 1.0D - ((i + 0.001D) / radius);
@@ -113,6 +114,26 @@ public class ImageUtils {
         }
 
         return image;
+    }
+
+    /**
+     * Creates an image of a gradient using {@link #createPrimitiveGradient(SaltyShape, Drawable, RenderingHints, float, double)}.
+     * For that, a shape is being created using {@link SaltyShape#createShape(EnumShape, Transform, float...)} with the given
+     * {@link EnumShape} and the given {@link Dimensions} with a position at 0|0.
+     *
+     * @param shapeType       the type of the shape
+     * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It can be null
+     * @param renderingHints  hints to define the quality. You normally want to use {@link Host#getRenderHints()}
+     *                        for the same quality as the rest of the game
+     * @param intensity       the intensity of the gradient. This defines how it looks.
+     * @param startAlpha      the alpha value at the centre
+     * @param size            the size of the shape and the image
+     * @param arcIfRoundRect  an arc if the given {@link EnumShape} is {@link EnumShape#ROUND_RECTANGLE}
+     * @return a {@link BufferedImage} containing a {@link SaltyShape} drawn as a gradient.
+     */
+    public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
+
+        return createPrimitiveGradient(SaltyShape.createShape(shapeType, new Transform(0, 0, size.getWidth(), size.getHeight()), arcIfRoundRect), graphicsPrepare, renderingHints, intensity, startAlpha);
     }
 
     public static BufferedImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
