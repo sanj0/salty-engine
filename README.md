@@ -13,7 +13,7 @@ stage management as well as saving with
 [stdf](github.com/edgelord314/stdf).
 
 Minimal **tested** hardware requirements (for [Escape the Junk](#games-made-with-salty-engine)):
-- Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60 GHz (dual core)
+- Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60GHz (dual core)
 - only integrated graphics
 - 4GB RAM
 
