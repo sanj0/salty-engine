@@ -242,6 +242,52 @@ public class SaltyGraphics {
     }
 
     /*
+    Bindings for triangles
+     */
+
+    /**
+     * Draws a polygon from the three given point. All floats are being rounded to int.
+     *
+     * @param point1 the first point of the triangle
+     * @param point2 the second point of the triangle
+     * @param point3 the third point of the triangle
+     */
+    public void drawTriangle(Vector2f point1, Vector2f point2, Vector2f point3) {
+
+        int x1 = Math.round(point1.getX());
+        int y1 = Math.round(point1.getY());
+
+        int x2 = Math.round(point2.getX());
+        int y2 = Math.round(point2.getY());
+
+        int x3 = Math.round(point3.getX());
+        int y3 = Math.round(point3.getY());
+
+        graphics2D.fillPolygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
+    }
+
+    /**
+     * Outlines a polygon from the three given point. All floats are being rounded to int.
+     *
+     * @param point1 the first point of the triangle
+     * @param point2 the second point of the triangle
+     * @param point3 the third point of the triangle
+     */
+    public void outlineTriangle(Vector2f point1, Vector2f point2, Vector2f point3) {
+
+        int x1 = Math.round(point1.getX());
+        int y1 = Math.round(point1.getY());
+
+        int x2 = Math.round(point2.getX());
+        int y2 = Math.round(point2.getY());
+
+        int x3 = Math.round(point3.getX());
+        int y3 = Math.round(point3.getY());
+
+        graphics2D.drawPolygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
+    }
+
+    /*
     Draw an image
      */
 

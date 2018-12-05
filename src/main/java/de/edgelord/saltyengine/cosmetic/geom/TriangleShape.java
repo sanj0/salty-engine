@@ -35,6 +35,8 @@ import de.edgelord.saltyengine.transform.Vector2f;
  * A triangle around {@link #point1}, {@link #point2} and {@link #point3}.
  * <p>
  * Instances of this class has to be made directly, you cannot get one with {@link SaltyShape#createShape(EnumShape, Transform, float...)}.
+ *
+ * Setting values of the transfotm by using methods from {@link de.edgelord.saltyengine.core.interfaces.TransformedObject} won't change the triangle.
  */
 public class TriangleShape extends SaltyShape {
 
@@ -78,8 +80,40 @@ public class TriangleShape extends SaltyShape {
         return new Transform(x, y, maxX - x, maxY - y);
     }
 
+    public Vector2f getPoint1() {
+        return point1;
+    }
+
+    public void setPoint1(Vector2f point1) {
+        this.point1 = point1;
+        this.setTransform(getTriangleTransform());
+    }
+
+    public Vector2f getPoint2() {
+        return point2;
+    }
+
+    public void setPoint2(Vector2f point2) {
+        this.point2 = point2;
+        this.setTransform(getTriangleTransform());
+    }
+
+    public Vector2f getPoint3() {
+        return point3;
+    }
+
+    public void setPoint3(Vector2f point3) {
+        this.point3 = point3;
+        this.setTransform(getTriangleTransform());
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
+        if (isFilled()) {
+            saltyGraphics.drawTriangle(point1, point2, point3);
+        } else {
+            saltyGraphics.outlineTriangle(point1, point2, point3);
+        }
     }
 }
