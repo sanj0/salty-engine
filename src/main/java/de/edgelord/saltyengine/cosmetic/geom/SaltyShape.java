@@ -74,6 +74,8 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
                 }
             case LINE:
                 return new LineShape(transform);
+            case TRIANGLE:
+                throw new IllegalArgumentException("Cannot create a SaltyShape from a EnumShape#TRIANGLE!");
         }
 
         return null;
