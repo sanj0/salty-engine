@@ -246,7 +246,7 @@ public class SaltyGraphics {
      */
 
     /**
-     * Draws a polygon from the three given point. All floats are being rounded to int.
+     * Draws a filled polygon from the three given point. All floats are being rounded to int.
      *
      * @param point1 the first point of the triangle
      * @param point2 the second point of the triangle
@@ -263,7 +263,7 @@ public class SaltyGraphics {
         int x3 = Math.round(point3.getX());
         int y3 = Math.round(point3.getY());
 
-        graphics2D.fillPolygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
+        graphics2D.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
     }
 
     /**
@@ -284,7 +284,55 @@ public class SaltyGraphics {
         int x3 = Math.round(point3.getX());
         int y3 = Math.round(point3.getY());
 
-        graphics2D.drawPolygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
+        graphics2D.drawPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+    }
+
+    /*
+    Bindings for Polygons
+     */
+
+    /**
+     * Draws a filled polygon from the given {@link Vector2f}s.
+     * You can pass in as many <code>Vector2f</code>s as you want, separated by a comma each.
+     *
+     * @param points the points of the polygon
+     */
+    public void drawPolygon(Vector2f... points) {
+
+        int[] xPoints = new int[points.length];
+        int[] yPoints = new int[points.length];
+
+        for (int i = 0; i < xPoints.length; i++) {
+            xPoints[i] = Math.round(points[i].getX());
+        }
+
+        for (int i = 0; i < yPoints.length; i++) {
+            xPoints[i] = Math.round(points[i].getY());
+        }
+
+        graphics2D.fillPolygon(xPoints, yPoints, points.length);
+    }
+
+    /**
+     * Outlines a polygon from the given {@link Vector2f}s.
+     * You can pass in as many <code>Vector2f</code>s as you want, separated by a comma each.
+     *
+     * @param points the points of the polygon
+     */
+    public void outlinePolygon(Vector2f... points) {
+
+        int[] xPoints = new int[points.length];
+        int[] yPoints = new int[points.length];
+
+        for (int i = 0; i < xPoints.length; i++) {
+            xPoints[i] = Math.round(points[i].getX());
+        }
+
+        for (int i = 0; i < yPoints.length; i++) {
+            xPoints[i] = Math.round(points[i].getY());
+        }
+
+        graphics2D.drawPolygon(xPoints, yPoints, points.length);
     }
 
     /*
