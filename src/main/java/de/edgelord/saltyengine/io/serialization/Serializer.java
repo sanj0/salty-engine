@@ -32,6 +32,7 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.writing.DataWriter;
+import sun.security.provider.MD5;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,11 @@ public class Serializer {
      */
     private static String saveFileName = "save0";
 
+    /**
+     * Whether to add a checksum to the file or not
+     */
+    private static boolean addChecksum = true;
+
     private static List<Serializable> consumer = new ArrayList<>();
 
     private static void serialize(DataWriter writer) throws IOException {
@@ -62,7 +68,7 @@ public class Serializer {
         writer.syncFile();
     }
 
-    private static void deserialize(DataReader reader, File file) throws IOException {
+    private static void deserialize(DataReader reader) throws IOException {
 
         for (Serializable serializable : consumer) {
             Species species;
@@ -114,7 +120,7 @@ public class Serializer {
             writer.syncFile();
         }
 
-        deserialize(new DataReader(file), file);
+        deserialize(new DataReader(file));
     }
 
     /**
@@ -164,5 +170,13 @@ public class Serializer {
 
     public static void setSaveFileName(String saveFileName) {
         Serializer.saveFileName = saveFileName;
+    }
+
+    public static boolean isAddChecksum() {
+        return addChecksum;
+    }
+
+    public static void setAddChecksum(boolean addChecksum) {
+        Serializer.addChecksum = addChecksum;
     }
 }
