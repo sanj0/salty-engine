@@ -31,11 +31,14 @@ import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
+import de.edgelord.stdf.reading.FileReader;
 import de.edgelord.stdf.writing.DataWriter;
-import sun.security.provider.MD5;
+import de.edgelord.stdf.writing.FileWriter;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -54,6 +57,16 @@ public class Serializer {
      */
     private static boolean addChecksum = true;
 
+    private static MessageDigest md5Creator;
+
+    static {
+        try {
+            md5Creator = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static List<Serializable> consumer = new ArrayList<>();
 
     private static void serialize(DataWriter writer) throws IOException {
@@ -66,9 +79,39 @@ public class Serializer {
         });
 
         writer.syncFile();
+
+        if (addChecksum) {
+
+            FileReader saveReader = new FileReader(writer.getFile());
+            FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
+
+            String checksum = new String(md5Creator.digest(saveReader.readFile().replaceAll("(\n| )", "").getBytes()));
+
+            checksumWriter.writeThrough(checksum);
+        }
     }
 
-    private static void deserialize(DataReader reader) throws IOException {
+    private static boolean deserialize(DataReader reader) throws IOException {
+
+        boolean isCorrupt;
+
+        File checksumFile = SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + reader.getFile().getName());
+
+        FileReader checksumReader = new FileReader(checksumFile);
+        FileReader saveReader = new FileReader(reader.getFile());
+
+        String checksum = checksumReader.readFile();
+
+        byte[] saveFileBytes = saveReader.readFile().replaceAll("(\n| )", "").getBytes();
+        String savefileSum = new String(md5Creator.digest(saveFileBytes));
+
+        if (checksum.equals(savefileSum)) {
+            isCorrupt = false;
+            System.out.println("The savefile " + reader.getFile().getName() + " does not seem to be corrupt.");
+        } else {
+            isCorrupt = true;
+            System.err.println("The savefile " + reader.getFile().getName() + " seems to be corrupt!");
+        }
 
         for (Serializable serializable : consumer) {
             Species species;
@@ -80,6 +123,8 @@ public class Serializer {
             }
             serializable.deserialize(species);
         }
+
+        return isCorrupt;
     }
 
     /**
@@ -109,9 +154,11 @@ public class Serializer {
      * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
+     * @return whether the savefile is corrupt or not. True means that the savefile was changed after the last writing from Salty Engine.
+     * If there wasn't a checksum file, it return true.
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doDeserialization(String name) throws IOException {
+    public static boolean doDeserialization(String name) throws IOException {
 
         File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION);
 
@@ -120,16 +167,17 @@ public class Serializer {
             writer.syncFile();
         }
 
-        deserialize(new DataReader(file));
+        return deserialize(new DataReader(file));
     }
 
     /**
      * Calls {@link #doDeserialization(String)} with {@link #saveFileName} as the file name.
      *
+     * @return whether the savefile is corrupt or not. If there wasn't a checksum file, it return false.
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doDeserialization() throws IOException {
-        doDeserialization(saveFileName);
+    public static boolean doDeserialization() throws IOException {
+        return doDeserialization(saveFileName);
     }
 
     public static int size() {

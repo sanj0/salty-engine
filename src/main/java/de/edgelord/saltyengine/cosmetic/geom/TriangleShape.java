@@ -33,7 +33,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * A triangle around {@link #point1}, {@link #point2} and {@link #point3}.
- *
+ * <p>
  * Instances of this class has to be made directly, you cannot get one with {@link SaltyShape#createShape(EnumShape, Transform, float...)}.
  */
 public class TriangleShape extends SaltyShape {
