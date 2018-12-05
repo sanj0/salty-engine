@@ -61,7 +61,7 @@ public class Serializer {
 
     static {
         try {
-            md5Creator = MessageDigest.getInstance("MD5");
+            md5Creator = MessageDigest.getInstance("sha1");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -85,32 +85,42 @@ public class Serializer {
             FileReader saveReader = new FileReader(writer.getFile());
             FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
 
-            String checksum = new String(md5Creator.digest(saveReader.readFile().replaceAll("(\n| )", "").getBytes()));
+            String checksum = new String(md5Creator.digest(prepareForChecksumCreation(saveReader.readFile())));
 
-            checksumWriter.writeThrough(checksum);
+            checksumWriter.writeThrough(removeSpacesAndNewLines(checksum));
         }
     }
 
     private static boolean deserialize(DataReader reader) throws IOException {
 
         boolean isCorrupt;
+        boolean alreadySaid = false;
 
         File checksumFile = SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + reader.getFile().getName());
+
+        if (!checksumFile.exists()) {
+            System.err.println("Checksum-file does not exist.");
+            alreadySaid = true;
+        }
 
         FileReader checksumReader = new FileReader(checksumFile);
         FileReader saveReader = new FileReader(reader.getFile());
 
         String checksum = checksumReader.readFile();
 
-        byte[] saveFileBytes = saveReader.readFile().replaceAll("(\n| )", "").getBytes();
+        byte[] saveFileBytes = prepareForChecksumCreation(saveReader.readFile());
         String savefileSum = new String(md5Creator.digest(saveFileBytes));
 
-        if (checksum.equals(savefileSum)) {
+        if (removeSpacesAndNewLines(checksum).equals(removeSpacesAndNewLines(savefileSum))) {
             isCorrupt = false;
-            System.out.println("The savefile " + reader.getFile().getName() + " does not seem to be corrupt.");
+            if (!alreadySaid) {
+                System.out.println("The savefile " + reader.getFile().getName() + " does not seem to be corrupt.");
+            }
         } else {
             isCorrupt = true;
-            System.err.println("The savefile " + reader.getFile().getName() + " seems to be corrupt!");
+            if (!alreadySaid) {
+                System.err.println("The savefile " + reader.getFile().getName() + " seems to be corrupt!");
+            }
         }
 
         for (Serializable serializable : consumer) {
@@ -125,6 +135,14 @@ public class Serializer {
         }
 
         return isCorrupt;
+    }
+
+    private static byte[] prepareForChecksumCreation(String input) {
+        return removeSpacesAndNewLines(input).getBytes();
+    }
+
+    private static String removeSpacesAndNewLines(String input) {
+        return input.replaceAll(" ", "").replaceAll("([\n\r])", "");
     }
 
     /**
