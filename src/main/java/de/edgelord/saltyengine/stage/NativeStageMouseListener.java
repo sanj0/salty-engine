@@ -27,7 +27,6 @@
 
 package de.edgelord.saltyengine.stage;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
@@ -88,8 +87,6 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mouseEnteredScreen(e);
         }
-
-        Game.setPaused(false);
     }
 
     @Override
@@ -101,7 +98,5 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mouseExitedScreen(e);
         }
-
-        Game.setPaused(true);
     }
 }
