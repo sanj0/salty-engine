@@ -10,7 +10,12 @@ It also includes GameObject management, camera moving,
 display management, support for hitboxes, input, and
 resource management, but also support for scene and
 stage management as well as saving with
-[stdf](github.com/edgelord314/stdf)
+[stdf](github.com/edgelord314/stdf).
+
+Minimal **tested** hardware requirements (for [Escape the Junk](#games-made-with-salty-engine)):
+- Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60GHz (dual core)
+- only integrated graphics
+- 4GB RAM
 
 **NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com)**
 
