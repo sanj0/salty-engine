@@ -55,22 +55,40 @@ public class Vector2f {
         this.y = y;
     }
 
-    public void add(float xDelta, float yDelta) {
-        x = x + xDelta;
-        y = y + yDelta;
+    public void add(float x1, float y1) {
+        x += x1;
+        y += y1;
     }
 
-    public void add(Vector2f delta) {
-        add(delta.getX(), delta.getY());
+    public void add(Vector2f pos1) {
+        add(pos1.getX(), pos1.getY());
     }
 
-    public void subtract(float xDelta, float yDelta) {
-        x = x - xDelta;
-        y = y - yDelta;
+    public void multiply(float x1, float y1) {
+        x *= x1;
+        y *= y1;
     }
 
-    public void subtract(Vector2f delta) {
-        subtract(delta.getX(), delta.getY());
+    public void multiply(Vector2f pos1) {
+        multiply(pos1.getX(), pos1.getY());
+    }
+
+    public void divide(float x1, float y1) {
+        x /= x1;
+        y /= y1;
+    }
+
+    public void divide(Vector2f pos1) {
+        divide(pos1.getX(), pos1.getY());
+    }
+
+    public void subtract(float x1, float y1) {
+        x -= x1;
+        y -= y1;
+    }
+
+    public void subtract(Vector2f pos1) {
+        subtract(pos1.getX(), pos1.getY());
     }
 
     public Coordinates convertToCoordinates() {

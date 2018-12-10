@@ -30,7 +30,9 @@ package de.edgelord.saltyengine.cosmetic.light;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -46,6 +48,8 @@ public class LightSystem implements Drawable {
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;
 
+        Dimensions res = Game.getHost().getOriginalResolution();
+        lightMap = new BufferedImage((int) res.getWidth(), (int) res.getHeight(), BufferedImage.TYPE_INT_ARGB);
     }
 
     /**
@@ -68,8 +72,9 @@ public class LightSystem implements Drawable {
     }
 
     protected void updateLightMap() {
-        lightMap = new BufferedImage((int) Game.getHost().getWidth(), (int) Game.getHost().getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = lightMap.createGraphics();
+        graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
+        graphics.clearRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
         graphics.setColor(lightMapColor);
         graphics.fillRect(0, 0, lightMap.getWidth(), lightMap.getHeight());
 

@@ -34,7 +34,7 @@ import java.awt.*;
 
 /**
  * This is the standard implementation of a {@link Label}, with the given text only
- * be drawn within the bounds and no line breaks, meaning this LABEL is one-line.
+ * be drawn within the bounds and no line breaks, meaning this label is one-line.
  */
 public class BorderedLabel extends Label {
 

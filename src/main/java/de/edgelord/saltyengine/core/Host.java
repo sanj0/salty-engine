@@ -74,4 +74,13 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
      * @return the name of the saved image
      */
     public abstract String takeScreenshot();
+
+    /**
+     * Returns the original resolution of the game.
+     * That's the size the game is being rendered. If the Game-Window was resized, only the image is being scaled,
+     * the game is still rendered with this resolutino and size.
+     *
+     * @return the resolution of the game
+     */
+    public abstract Dimensions getOriginalResolution();
 }

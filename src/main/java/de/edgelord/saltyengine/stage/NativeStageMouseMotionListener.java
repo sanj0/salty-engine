@@ -39,8 +39,12 @@ import java.awt.event.MouseMotionListener;
 
 public class NativeStageMouseMotionListener extends MouseInputHandlerListener implements MouseMotionListener {
 
-    public NativeStageMouseMotionListener(MouseInputHandler mouseHandler) {
+    private Stage container;
+
+    public NativeStageMouseMotionListener(MouseInputHandler mouseHandler, Stage stage) {
         super(mouseHandler);
+
+        this.container = stage;
     }
 
     @Override
@@ -66,7 +70,13 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
             SceneManager.getCurrentScene().getUI().mouseMoved(e);
         }
 
-        Input.cursorPosition = new Vector2f(e.getX(), e.getY());
+        Vector2f cursorPos = new Vector2f(e.getX(), e.getY());
+        Vector2f imagePos = container.getImagePosition();
+        float currentScale = container.getCurrentScale();
+        cursorPos.subtract(imagePos.getX(), imagePos.getY());
+        cursorPos.divide(currentScale, currentScale);
+
+        Input.cursorPosition = new Vector2f(cursorPos.getX(), cursorPos.getY());
         Input.cursor = new Transform(Input.cursorPosition, Dimensions.one());
     }
 }

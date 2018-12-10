@@ -27,7 +27,6 @@
 
 package de.edgelord.saltyengine.ui;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 
@@ -41,7 +40,6 @@ public class UISystem {
     private List<UIElement> elements = new LinkedList<>();
 
     public void drawUI(SaltyGraphics saltyGraphics) {
-        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
         for (UIElement element : elements) {
             element.prepareGraphics(saltyGraphics);
             element.draw(saltyGraphics);

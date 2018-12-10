@@ -37,18 +37,18 @@ import java.awt.event.MouseEvent;
 public class PauseButton extends Button {
 
     public PauseButton() {
-        super("Pause", 0, 0, 500, 175);
+        super("Pause", 0, 750, 175, 75);
 
-        centrePosition();
+        centreHorizontalPosition();
 
         WobblingEffect wobblingEffect = new WobblingEffect(this, "wobblingGFX");
         wobblingEffect.setPause(25);
-        wobblingEffect.init(10, 10, -10, -10);
+        wobblingEffect.init(5, 5, -5, -5);
         wobblingEffect.startGFX();
 
         setBackgroundColor(Color.orange);
         setForegroundColor(Color.white);
-        setFont(getFont().deriveFont(100f));
+        setFont(getFont().deriveFont(25f));
 
         this.addComponent(wobblingEffect);
     }

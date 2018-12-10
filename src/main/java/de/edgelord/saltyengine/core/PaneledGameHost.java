@@ -109,4 +109,9 @@ public class PaneledGameHost extends Host {
 
         return name;
     }
+
+    @Override
+    public Dimensions getOriginalResolution() {
+        return stage.getResolution();
+    }
 }

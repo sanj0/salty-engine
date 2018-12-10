@@ -31,6 +31,8 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
@@ -48,10 +50,15 @@ public class Stage extends JPanel {
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
 
     private float currentScale = 1f;
+    private int originWidth = 0;
+    private int originHeight = 0;
+    private Dimensions resolution;
 
     private float lastFps = 0f;
     private int ticks = 0;
     private int fpsRefreshGate = 25;
+
+    private Vector2f currentImgPos = new Vector2f(0, 0);
 
     private boolean highQuality = true;
     private RenderingHints renderingHints;
@@ -71,7 +78,7 @@ public class Stage extends JPanel {
 
         nativeMouseListener = new NativeStageMouseListener(null);
 
-        nativeMouseMotionListener = new NativeStageMouseMotionListener(null);
+        nativeMouseMotionListener = new NativeStageMouseMotionListener(null, this);
 
         nativeMouseWheelListener = new NativeStageMouseWheelListener(null);
 
@@ -83,6 +90,9 @@ public class Stage extends JPanel {
     protected void init(int x, int y, int width, int height) {
 
         setBounds(x, y, width, height);
+        this.originWidth = width;
+        this.originHeight = height;
+        this.resolution = new Dimensions(originWidth, originHeight);
         setBackground(Color.WHITE);
         container.add(this);
         setIgnoreRepaint(true);
@@ -90,6 +100,7 @@ public class Stage extends JPanel {
 
         if (highQuality) {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
+            putToRenderHints(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         } else {
             renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
             putToRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
@@ -107,14 +118,26 @@ public class Stage extends JPanel {
     protected void paintComponent(Graphics graphics) {
         ticks++;
         final Graphics2D graphics2D = (Graphics2D) graphics;
-        renderToGraphics(graphics2D);
+
+        BufferedImage renderedImage = renderToImage();
+
+        float width = Game.getHost().getWidth();
+        float height = Game.getHost().getHeight();
+        currentScale = Math.min(width / originWidth, height / originHeight);
+        int displayWidth = (int) (originWidth * currentScale);
+        int displayHeight = (int) (originHeight * currentScale);
+        int xPos = getWidth() / 2 - displayWidth / 2;
+        int yPos = Math.max(getHeight() / 2 - displayHeight / 2, 0);
+
+        currentImgPos = new Vector2f(xPos, yPos);
+
+        graphics2D.drawImage(renderedImage, xPos, yPos, displayWidth, displayHeight, null);
     }
 
     private void renderToGraphics(Graphics2D graphics2D) {
-        graphics2D.setClip(0, 0, getWidth(), getWidth());
+        graphics2D.setClip(0, 0, originWidth, originHeight);
 
         graphics2D.setRenderingHints(renderingHints);
-        graphics2D.scale(currentScale, currentScale);
 
         Game.getCamera().setViewToGraphics(graphics2D);
 
@@ -136,7 +159,7 @@ public class Stage extends JPanel {
     }
 
     public BufferedImage renderToImage() {
-        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(originWidth, originHeight, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);
@@ -145,8 +168,12 @@ public class Stage extends JPanel {
         return image;
     }
 
-    public void scaleTo(float scale) {
-        this.currentScale = scale;
+    public Vector2f getImagePosition() {
+        return currentImgPos;
+    }
+
+    public float getCurrentScale() {
+        return currentScale;
     }
 
     public void setMouseHandler(final MouseInputHandler mouseHandler) {
@@ -165,5 +192,9 @@ public class Stage extends JPanel {
 
     public RenderingHints getRenderHints() {
         return renderingHints;
+    }
+
+    public Dimensions getResolution() {
+        return resolution;
     }
 }
