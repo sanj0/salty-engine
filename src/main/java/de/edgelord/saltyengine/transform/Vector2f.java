@@ -55,18 +55,18 @@ public class Vector2f {
         this.y = y;
     }
 
-    public void add(float xDelta, float yDelta) {
-        x = x + xDelta;
-        y = y + yDelta;
+    public void add(float x1, float y1) {
+        x = x + x1;
+        y = y + y1;
     }
 
     public void add(Vector2f delta) {
         add(delta.getX(), delta.getY());
     }
 
-    public void subtract(float xDelta, float yDelta) {
-        x = x - xDelta;
-        y = y - yDelta;
+    public void subtract(float x1, float y1) {
+        x = x - x1;
+        y = y - y1;
     }
 
     public void subtract(Vector2f delta) {

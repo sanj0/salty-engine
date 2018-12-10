@@ -40,7 +40,6 @@ import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
-import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

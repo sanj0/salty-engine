@@ -71,8 +71,10 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         }
 
         Vector2f cursorPos = new Vector2f(e.getX(), e.getY());
-        Vector2f scaledDelta = container.getScaledDelta();
-        cursorPos.subtract(scaledDelta.getX(), scaledDelta.getY());
+        Vector2f imagePos = container.getImagePosition();
+        float currentScale = container.getCurrentScale();
+        cursorPos.subtract(imagePos.getX(), imagePos.getY());
+        cursorPos = new Vector2f(cursorPos.getX() / currentScale, cursorPos.getY() / currentScale);
 
         Input.cursorPosition = new Vector2f(cursorPos.getX(), cursorPos.getY());
         Input.cursor = new Transform(Input.cursorPosition, Dimensions.one());

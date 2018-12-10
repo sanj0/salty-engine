@@ -129,7 +129,7 @@ public class Stage extends JPanel {
         int xPos = getWidth() / 2 - displayWidth / 2;
         int yPos = Math.max(getHeight() / 2 - displayHeight / 2, 0);
 
-        this.currentImgPos = new Vector2f(xPos, yPos);
+        currentImgPos = new Vector2f(xPos, yPos);
 
         graphics2D.drawImage(renderedImage, xPos, yPos, displayWidth, displayHeight, null);
     }
@@ -168,8 +168,12 @@ public class Stage extends JPanel {
         return image;
     }
 
-    public Vector2f getScaledDelta() {
+    public Vector2f getImagePosition() {
         return currentImgPos;
+    }
+
+    public float getCurrentScale() {
+        return currentScale;
     }
 
     public void setMouseHandler(final MouseInputHandler mouseHandler) {
