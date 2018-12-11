@@ -120,7 +120,6 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void onCollision(final CollisionEvent e) {
-
     }
 
     @Override

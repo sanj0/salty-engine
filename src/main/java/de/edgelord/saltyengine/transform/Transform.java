@@ -56,7 +56,25 @@ public class Transform {
      * @see Rectangle2D#intersects(Rectangle2D)
      */
     public boolean intersects(Transform other) {
-        return getRect().intersects(other.getRect());
+
+        int xOther = Math.round(other.getX());
+        int yOther = Math.round(other.getY());
+        int widthOther = Math.round(other.getWidth());
+        int heightOther = Math.round(other.getHeight());
+
+        int x = Math.round(getX());
+        int y = Math.round(getY());
+        int width = Math.round(getWidth());
+        int height = Math.round(getHeight());
+
+        if (width <= 0 || height <= 0 || widthOther <= 0 || heightOther <= 0) {
+            return false;
+        }
+
+        return (xOther + widthOther > x &&
+                yOther + heightOther > y &&
+                xOther < x + height &&
+                yOther < y + height);
     }
 
     /**
