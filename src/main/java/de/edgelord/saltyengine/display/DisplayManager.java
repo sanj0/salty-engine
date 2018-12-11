@@ -102,18 +102,8 @@ public class DisplayManager extends Host {
 
     @Override
     public String takeScreenshot() {
-        String name = "screenshot_";
-        name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-
-        try {
-            ImageUtils.saveImage(stage.renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return name;
+        return stage.newScreenshot();
     }
-
     @Override
     public Dimensions getOriginalResolution() {
         return stage.getResolution();
@@ -122,7 +112,6 @@ public class DisplayManager extends Host {
     @Override
     public void toggleFullscreen() {
         display.setFullscreen(!display.isFullscreen());
-        System.out.println("full");
     }
 
     public void createKeyListener() {
@@ -158,10 +147,6 @@ public class DisplayManager extends Host {
 
     public boolean isInputLeft() {
         return nativeKeyListener.isInputLeft();
-    }
-
-    public boolean isCloseRequested() {
-        return display.isCloseRequested();
     }
 
     public Display getDisplay() {

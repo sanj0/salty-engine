@@ -38,7 +38,6 @@ import java.awt.event.ComponentEvent;
 public class Display extends JFrame {
 
     private String windowTitle;
-    private boolean closeRequested = false;
     private MouseInputHandler displayMouseHandler = null;
     private boolean fullscreen = false;
 
@@ -59,14 +58,6 @@ public class Display extends JFrame {
         addWindowListener(new NativeDisplayListener());
     }
 
-    public boolean isCloseRequested() {
-        return closeRequested;
-    }
-
-    public void setCloseRequested(boolean closeRequested) {
-        this.closeRequested = closeRequested;
-    }
-
     public MouseInputHandler getDisplayMouseHandler() {
         return displayMouseHandler;
     }
@@ -81,7 +72,7 @@ public class Display extends JFrame {
         if (fullscreen) {
             device.setFullScreenWindow(this);
         } else {
-
+            device.setFullScreenWindow(null);
         }
     }
 

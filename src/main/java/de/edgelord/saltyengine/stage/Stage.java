@@ -33,11 +33,16 @@ import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ImageUtils;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.awt.RenderingHints.*;
 
@@ -166,6 +171,19 @@ public class Stage extends JPanel {
         graphics2D.dispose();
 
         return image;
+    }
+
+    public String newScreenshot() {
+        String name = "screenshot_";
+        name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        try {
+            ImageUtils.saveImage(renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return name;
     }
 
     public Vector2f getImagePosition() {

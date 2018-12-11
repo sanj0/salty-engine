@@ -98,16 +98,7 @@ public class PaneledGameHost extends Host {
 
     @Override
     public String takeScreenshot() {
-        String name = "screenshot_";
-        name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-
-        try {
-            ImageUtils.saveImage(stage.renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return name;
+        return stage.newScreenshot();
     }
 
     @Override

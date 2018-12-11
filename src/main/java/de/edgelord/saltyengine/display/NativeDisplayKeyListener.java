@@ -53,16 +53,16 @@ public class NativeDisplayKeyListener implements KeyListener {
     @Override
     public void keyTyped(final KeyEvent e) {
 
+        if (e.getKeyChar() == 'f' && Game.getHost().isFullscreenToggleF()) {
+            Game.getHost().toggleFullscreen();
+        }
+
         if (keyboardHandler != null) {
             keyboardHandler.keyTyped(e);
         }
 
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().keyTyped(e);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_F && Game.getHost().isFullscreenToggleF()) {
-            Game.getHost().toggleFullscreen();
         }
     }
 
