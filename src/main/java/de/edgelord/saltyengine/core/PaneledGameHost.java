@@ -114,4 +114,9 @@ public class PaneledGameHost extends Host {
     public Dimensions getOriginalResolution() {
         return stage.getResolution();
     }
+
+    @Override
+    public void toggleFullscreen() {
+        throw new UnsupportedOperationException("Cannot toggle fullscreen from a PaneledGame!");
+    }
 }

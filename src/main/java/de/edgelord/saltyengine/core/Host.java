@@ -48,6 +48,8 @@ import java.awt.*;
  */
 public abstract class Host implements Repaintable, CentrePositionProvider, DimensionsProvider, Creatable {
 
+    private boolean fullscreenToggleF = true;
+
     /**
      * This method sets the background color of the host.
      * This is the color that is seen there, where nothing is drawn over.
@@ -83,4 +85,25 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
      * @return the resolution of the game
      */
     public abstract Dimensions getOriginalResolution();
+
+    /**
+     * This method toggles fullscreen mode. When this method is called and the game is not in fullscreen mode,
+     * the fullscreen mode is enabled and after the next disabled again and so on.
+     */
+    public abstract void toggleFullscreen();
+
+    /**
+     * Decides whether the key "F" should toggle fullscreen mode or not
+     *
+     * @param toggle true if the key "F" should toggle fullscreen mode, false if not
+     *
+     * @see #toggleFullscreen()
+     */
+    public void FToToggleFullscreen(boolean toggle) {
+        this.fullscreenToggleF = toggle;
+    }
+
+    public boolean isFullscreenToggleF() {
+        return fullscreenToggleF;
+    }
 }

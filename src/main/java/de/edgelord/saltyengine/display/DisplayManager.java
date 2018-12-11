@@ -119,6 +119,12 @@ public class DisplayManager extends Host {
         return stage.getResolution();
     }
 
+    @Override
+    public void toggleFullscreen() {
+        display.setFullscreen(!display.isFullscreen());
+        System.out.println("full");
+    }
+
     public void createKeyListener() {
 
         nativeKeyListener = new NativeDisplayKeyListener(null);

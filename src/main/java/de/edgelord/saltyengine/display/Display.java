@@ -31,21 +31,23 @@ import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class Display extends JFrame {
 
     private String windowTitle;
-    private DisplayRatio displayRatio;
     private boolean closeRequested = false;
     private MouseInputHandler displayMouseHandler = null;
+    private boolean fullscreen = false;
+
+    GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public Display(DisplayRatio displayRatio, String windowTitle) {
 
         setSize((int) displayRatio.getCurrentDimensions().getWidth(), (int) displayRatio.getCurrentDimensions().getHeight());
         this.windowTitle = windowTitle;
-        this.displayRatio = displayRatio;
     }
 
     public void create() {
@@ -54,12 +56,6 @@ public class Display extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                displayRatio.setWidth(e.getComponent().getWidth());
-            }
-        });
         addWindowListener(new NativeDisplayListener());
     }
 
@@ -79,11 +75,21 @@ public class Display extends JFrame {
         this.displayMouseHandler = displayMouseHandler;
     }
 
-    public DisplayRatio getDisplayRatio() {
-        return displayRatio;
+    public void setFullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
+
+        if (fullscreen) {
+            device.setFullScreenWindow(this);
+        } else {
+
+        }
     }
 
-    public void setDisplayRatio(DisplayRatio displayRatio) {
-        this.displayRatio = displayRatio;
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
+
+    public String getWindowTitle() {
+        return windowTitle;
     }
 }

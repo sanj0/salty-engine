@@ -61,12 +61,8 @@ public class NativeDisplayKeyListener implements KeyListener {
             SceneManager.getCurrentScene().getUI().keyTyped(e);
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_P) {
-            if (Game.isPaused()) {
-                Game.setPaused(false);
-            } else {
-                Game.setPaused(true);
-            }
+        if (e.getKeyCode() == KeyEvent.VK_F && Game.getHost().isFullscreenToggleF()) {
+            Game.getHost().toggleFullscreen();
         }
     }
 
