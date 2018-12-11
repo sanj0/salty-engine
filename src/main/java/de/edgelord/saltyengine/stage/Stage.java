@@ -129,14 +129,14 @@ public class Stage extends JPanel {
         float width = Game.getHost().getWidth();
         float height = Game.getHost().getHeight();
         currentScale = Math.min(width / originWidth, height / originHeight);
-        int displayWidth = (int) (originWidth * currentScale);
-        int displayHeight = (int) (originHeight * currentScale);
-        int xPos = getWidth() / 2 - displayWidth / 2;
-        int yPos = Math.max(getHeight() / 2 - displayHeight / 2, 0);
+        int imageDisplayWidth = (int) (originWidth * currentScale);
+        int imageDisplayHeight = (int) (originHeight * currentScale);
+        int xPos = getWidth() / 2 - imageDisplayWidth / 2;
+        int yPos = Math.max(getHeight() / 2 - imageDisplayHeight / 2, 0);
 
         currentImgPos = new Vector2f(xPos, yPos);
 
-        graphics2D.drawImage(renderedImage, xPos, yPos, displayWidth, displayHeight, null);
+        graphics2D.drawImage(renderedImage, xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
     }
 
     private void renderToGraphics(Graphics2D graphics2D) {
