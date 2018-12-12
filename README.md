@@ -122,3 +122,7 @@ For help with how to use, there are three ways:
 - take a look at the package [`testing`](https://github.com/edgelord314/salty-engine/tree/master/src/main/java/testing), where   
   we test the features of this library
   
+  
+  
+The default font, which is called "Alcubierre" and can be found as a font instance in SaltySystem#defaultFont is from https://www.webdesignerdepot.com/2016/11/free-download-alcubierre-typeface/
+  
