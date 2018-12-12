@@ -49,6 +49,7 @@ package de.edgelord.saltyengine.utils;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ColorUtil {
 
@@ -76,12 +77,12 @@ public class ColorUtil {
     public static final Color FOREST_GREEN = new Color(34, 139, 34);
     public static final Color LIGHT_GREEN = new Color(144, 238, 144);
     public static final Color PALE_GREEN = new Color(152, 251, 152);
-    public static final Color MEDIUM_SPRING_GREEN  = new Color(0, 250, 154);
+    public static final Color MEDIUM_SPRING_GREEN = new Color(0, 250, 154);
     public static final Color SPRING_GREEN = new Color(0, 250, 127);
     public static final Color SEA_GREEN = new Color(46, 139, 87);
-    public static final Color MEDIUM_SEA_GREEN  = new Color(60, 179, 113);
-    public static final Color HONEY_DEW_GREEN  = new Color(240, 255, 240);
-    public static final Color MINT_CREAM  = new Color(245, 255, 250);
+    public static final Color MEDIUM_SEA_GREEN = new Color(60, 179, 113);
+    public static final Color HONEY_DEW_GREEN = new Color(240, 255, 240);
+    public static final Color MINT_CREAM = new Color(245, 255, 250);
 
     // Blue Colors:
     public static final Color TEAL_BLUE_COLOR = new Color(0, 128, 128);
@@ -129,7 +130,7 @@ public class ColorUtil {
     public static final Color GRAY = new Color(105, 105, 105);
     public static final Color LIGHT_GRAY = new Color(150, 150, 150);
     public static final Color LIGHTER_GRAY = new Color(200, 200, 200);
-    public static final Color GHOST_WHITE = new Color(248,248,255);
+    public static final Color GHOST_WHITE = new Color(248, 248, 255);
     public static final Color SNOW_WHITE = new Color(255, 250, 250);
     public static final Color WHITE_SMOKE = new Color(245, 245, 245);
     public static final Color WHITE = new Color(255, 255, 255);
@@ -157,6 +158,31 @@ public class ColorUtil {
 
     public static final Color PLAIN_YELLOW = new Color(255, 255, 0);
     public static final Color YELLOW = new Color(210, 210, 50);
+
+    /**
+     * Creates a new {@link BufferedImage}, fills it completely with the given {@link Color} and returns it.
+     *
+     * @param width  the width of the image to be created
+     * @param height the height of the image to be created
+     * @param color  the color of the image to be filled with
+     * @return a new {@link BufferedImage} filled entirely with the given {@link Color}
+     */
+    public static BufferedImage createColorImage(float width, float height, Color color) {
+
+        int intWidth = Math.round(width);
+        int intHeight = Math.round(height);
+
+        BufferedImage image = new BufferedImage(intWidth, intHeight, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D graphics2D = image.createGraphics();
+
+        graphics2D.setColor(color);
+        graphics2D.drawRect(0, 0, intWidth, intHeight);
+
+        graphics2D.dispose();
+
+        return image;
+    }
 
     /**
      * Change the brightness of the given Color.

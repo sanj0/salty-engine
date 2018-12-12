@@ -89,18 +89,18 @@ public class GameStarter {
         System.out.println();
         System.out.println(
                 "               .://:`  \n" +
-                "           `-+yyhysos: \n" +
-                "         .+yhhs/-` `yh-\n" +
-                "       `+yhyo-`   .shh-\n" +
-                "      .shho.     -yhy/ \n" +
-                "     `shh/`     `yhy-  \n" +
-                "     -hhy       `ss.   \n" +
-                "     .yhy:       ``    \n" +
-                "      .oyhs:.          \n" +
-                "        ./syys/.       \n" +
-                "-oo/-`    `-/shho      \n" +
-                " -syhs/.`    `oho      \n" +
-                "   -+syyso+//+s/`      \n"
+                        "           `-+yyhysos: \n" +
+                        "         .+yhhs/-` `yh-\n" +
+                        "       `+yhyo-`   .shh-\n" +
+                        "      .shho.     -yhy/ \n" +
+                        "     `shh/`     `yhy-  \n" +
+                        "     -hhy       `ss.   \n" +
+                        "     .yhy:       ``    \n" +
+                        "      .oyhs:.          \n" +
+                        "        ./syys/.       \n" +
+                        "-oo/-`    `-/shho      \n" +
+                        " -syhs/.`    `oho      \n" +
+                        "   -+syyso+//+s/`      \n"
         );
         System.out.println();
         System.out.println();

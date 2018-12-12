@@ -51,10 +51,10 @@ public abstract class CooldownComponent extends Component implements Runnable {
     /**
      * The default constructor.
      *
-     * @param parent the parent of this component
-     * @param name the id-name of this component
+     * @param parent       the parent of this component
+     * @param name         the id-name of this component
      * @param cooldownTime the time that the cooldown takes.
-     * @param shouldRun the test for if {@link #run()} should be called. This is only tested if the cooldown was performed
+     * @param shouldRun    the test for if {@link #run()} should be called. This is only tested if the cooldown was performed
      */
     public CooldownComponent(ComponentParent parent, String name, int cooldownTime, BooleanSupplier shouldRun) {
         super(parent, name, Components.TIMING_COMPONENT);
@@ -87,7 +87,6 @@ public abstract class CooldownComponent extends Component implements Runnable {
             }
         }
     }
-
 
 
     @Override

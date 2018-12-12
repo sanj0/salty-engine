@@ -31,9 +31,6 @@ import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.ColorUtil;
-
-import java.awt.*;
 
 public class PointLight extends GradientLight {
 
