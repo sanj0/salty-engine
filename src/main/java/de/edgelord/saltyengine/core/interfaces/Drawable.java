@@ -18,7 +18,35 @@ package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
+import java.awt.*;
+
 public interface Drawable {
 
     void draw(SaltyGraphics saltyGraphics);
+
+    static Drawable colorPrepare(Color color) {
+        return saltyGraphics -> saltyGraphics.setColor(color);
+    }
+
+    static Drawable paintPrepare(Paint paint) {
+        return saltyGraphics -> saltyGraphics.setPaint(paint);
+    }
+
+    static Drawable strokePrepare(Stroke stroke) {
+        return saltyGraphics -> saltyGraphics.setStroke(stroke);
+    }
+
+    static Drawable colorAndPaintPrepare(Color color, Paint paint) {
+        return saltyGraphics -> {
+            saltyGraphics.setColor(color);
+            saltyGraphics.setPaint(paint);
+        };
+    }
+
+    static Drawable colorAndStrokePrepare(Color color, Stroke stroke) {
+        return saltyGraphics -> {
+          saltyGraphics.setColor(color);
+          saltyGraphics.setStroke(stroke);
+        };
+    }
 }
