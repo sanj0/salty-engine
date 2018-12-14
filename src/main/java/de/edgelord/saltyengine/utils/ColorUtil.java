@@ -38,6 +38,7 @@ package de.edgelord.saltyengine.utils;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ColorUtil {
 
@@ -170,6 +171,21 @@ public class ColorUtil {
         int alpha = color.getAlpha();
 
         return new Color(red, green, blue, alpha);
+    }
+
+    /**
+     * Creates and returns a new {@link TexturePaint}.
+     * The given {@link BufferedImage} is the texture and should be small,
+     * the given {@link Transform} is the texture anchor. For a detailed description, please read the documentation
+     * of the {@link TexturePaint class}.
+     *
+     * @param texture the texture to use. Should be small
+     * @param anchor  the anchor of the texture
+     * @return a new {@link TexturePaint} using the given {@link BufferedImage} as a texture and the given {@link Transform}
+     * as an anchor.
+     */
+    public static TexturePaint createTexturePaint(BufferedImage texture, Transform anchor) {
+        return new TexturePaint(texture, anchor.getRect());
     }
 
     /**

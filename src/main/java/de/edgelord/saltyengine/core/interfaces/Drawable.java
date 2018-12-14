@@ -45,8 +45,8 @@ public interface Drawable {
 
     static Drawable colorAndStrokePrepare(Color color, Stroke stroke) {
         return saltyGraphics -> {
-          saltyGraphics.setColor(color);
-          saltyGraphics.setStroke(stroke);
+            saltyGraphics.setColor(color);
+            saltyGraphics.setStroke(stroke);
         };
     }
 }

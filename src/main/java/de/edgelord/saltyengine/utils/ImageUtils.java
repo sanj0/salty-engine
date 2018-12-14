@@ -164,7 +164,7 @@ public class ImageUtils {
      * Creates a new {@link BufferedImage} with the size of the given {@link SaltyShape} and draws the shape onto it,
      * with having called the draw method of the given {@link Drawable} before to e.g. set the color or paint.
      *
-     * @param shape the {@link SaltyShape} to be rendered to the image.
+     * @param shape           the {@link SaltyShape} to be rendered to the image.
      * @param graphicsPrepare a {@link Drawable} to prepare e.g. the Color of the shape
      * @return a new {@link BufferedImage} with the given {@link SaltyShape} drawn onto.
      */
