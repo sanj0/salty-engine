@@ -17,7 +17,7 @@
 
 # This script will build the Salty Engine library to 2 jars: the one with dependencies and a main-attribute within the
 # Manifest and the other one is a jar without dependencies and without a main-attribute.
-# You don't need maven installed for this to work, however you have to have java 1.8 and no later version set as default
+# You don't need maven installed for this to work, however you have tom have java 1.8 and no later version set as default
 # If you execute this with the option -run it will run the jar with the dependencies
 #
 

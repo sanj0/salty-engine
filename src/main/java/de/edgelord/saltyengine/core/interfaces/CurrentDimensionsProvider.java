@@ -18,15 +18,15 @@ package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.transform.Dimensions;
 
-public interface DimensionsProvider {
+public interface CurrentDimensionsProvider {
 
-    Dimensions getDimensions();
+    Dimensions getCurrentDimensions();
 
-    default float getWidth() {
-        return getDimensions().getWidth();
+    default float getCurrentWidth() {
+        return getCurrentDimensions().getWidth();
     }
 
-    default float getHeight() {
-        return getDimensions().getHeight();
+    default float getCurrentHeight() {
+        return getCurrentDimensions().getHeight();
     }
 }

@@ -930,7 +930,7 @@ public class SaltyGraphics {
      * This clipping area is default when never changing the clipping.
      */
     public void resetClip() {
-        setClip(0, 0, Game.getHost().getWidth(), Game.getHost().getHeight());
+        setClip(0, 0, Game.getGameWidth(), Game.getGameHeight());
     }
 
     public void setTransform(AffineTransform affineTransform) {

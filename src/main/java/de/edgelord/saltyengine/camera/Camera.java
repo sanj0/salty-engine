@@ -46,7 +46,7 @@ public class Camera {
         }
 
         graphics.translate(lastPosition.getX() + position.getX(), lastPosition.getY() + position.getY());
-        graphics.rotate(Math.toRadians(rotation), Game.getHost().getWidth() / 2, Game.getHost().getHeight() / 2);
+        graphics.rotate(Math.toRadians(rotation), Game.getGameWidth() / 2, Game.getGameHeight() / 2);
     }
 
     public void tmpResetViewToGraphics(SaltyGraphics graphics) {

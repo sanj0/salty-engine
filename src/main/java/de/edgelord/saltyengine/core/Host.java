@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.core.interfaces.CentrePositionProvider;
 import de.edgelord.saltyengine.core.interfaces.Creatable;
-import de.edgelord.saltyengine.core.interfaces.DimensionsProvider;
+import de.edgelord.saltyengine.core.interfaces.CurrentDimensionsProvider;
 import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.transform.Dimensions;
 
@@ -35,7 +35,7 @@ import java.awt.*;
  * <p>
  * A host should also draw the content of {@link Engine}, an example: {@link de.edgelord.saltyengine.stage.Stage#paint(Graphics)}
  */
-public abstract class Host implements Repaintable, CentrePositionProvider, DimensionsProvider, Creatable {
+public abstract class Host implements Repaintable, CentrePositionProvider, CurrentDimensionsProvider, Creatable {
 
     private boolean fullscreenToggleF = true;
 
@@ -65,15 +65,6 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Dimen
      * @return the name of the saved image
      */
     public abstract String takeScreenshot();
-
-    /**
-     * Returns the original resolution of the game.
-     * That's the size the game is being rendered. If the Game-Window was resized, only the image is being scaled,
-     * the game is still rendered with this resolutino and size.
-     *
-     * @return the resolution of the game
-     */
-    public abstract Dimensions getOriginalResolution();
 
     /**
      * This method toggles fullscreen mode. When this method is called and the game is not in fullscreen mode,

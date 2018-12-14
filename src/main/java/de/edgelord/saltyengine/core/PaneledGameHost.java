@@ -62,8 +62,8 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public Dimensions getDimensions() {
-        return new Dimensions(getWidth(), getHeight());
+    public Dimensions getCurrentDimensions() {
+        return new Dimensions(stage.getWidth(), stage.getHeight());
     }
 
     @Override
@@ -84,11 +84,6 @@ public class PaneledGameHost extends Host {
     @Override
     public String takeScreenshot() {
         return stage.newScreenshot();
-    }
-
-    @Override
-    public Dimensions getOriginalResolution() {
-        return stage.getResolution();
     }
 
     @Override

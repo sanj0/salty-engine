@@ -35,7 +35,7 @@ public class ScreenExampleMain extends Game {
 
         SceneManager.getCurrentScene().addGameObject(new Screen());
 
-        BorderedLabel usage = new BorderedLabel("Use WASD or the arrow keys to move the content of the screen!", 0, 25, Game.getHost().getWidth(), 35);
+        BorderedLabel usage = new BorderedLabel("Use WASD or the arrow keys to move the content of the screen!", 0, 25, Game.getGameWidth(), 35);
 
         SceneManager.getCurrentScene().getUI().addElement(usage);
     }

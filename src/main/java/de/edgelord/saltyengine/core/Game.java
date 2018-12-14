@@ -37,6 +37,8 @@ public class Game {
     public static boolean paused = false;
     private static Camera camera = new Camera();
 
+    private static Dimensions gameDimensions;
+
     /**
      * Proposes the <code>Host</code> to draw the FPS {@link Time#getFPS()} or not.
      * All <code>Host</code>s included in this library will accept that. 3rd party
@@ -52,8 +54,8 @@ public class Game {
         System.setProperty("sun.java2d.opengl", "True");
 
         engine = new Engine(fixedTickMillis);
-
         host = new DisplayManager(new DisplayRatio(new Dimensions(resolutionWidth, resolutionHeight)), gameName, engine);
+        gameDimensions = new Dimensions(resolutionWidth, resolutionHeight);
 
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
@@ -64,25 +66,23 @@ public class Game {
         System.setProperty("sun.java2d.opengl", "True");
 
         engine = new Engine(fixedTickMillis);
+        gameDimensions = host.getCurrentDimensions();
 
         Game.host = host;
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
     }
 
-    /**
-     * When using this constructor you should set the static Engine immediately after calling this constructor
-     *
-     * @param host     the host of the Game
-     * @param gameName the name of the game
-     */
-    public Game(Host host, String gameName) {
+    public static Dimensions getGameDimensions() {
+        return gameDimensions;
+    }
 
-        System.setProperty("sun.java2d.opengl", "True");
+    public static float getGameWidth() {
+        return gameDimensions.getWidth();
+    }
 
-        Game.host = host;
-        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
-        SaltySystem.defaultOuterResource = new OuterResource(false);
+    public static float getGameHeight() {
+        return gameDimensions.getHeight();
     }
 
     public static void start(SplashWindow.Splash splash) {

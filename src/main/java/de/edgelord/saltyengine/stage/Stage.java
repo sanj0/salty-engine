@@ -115,8 +115,8 @@ public class Stage extends JPanel {
 
         BufferedImage renderedImage = renderToImage();
 
-        float width = Game.getHost().getWidth();
-        float height = Game.getHost().getHeight();
+        float width = Game.getHost().getCurrentWidth();
+        float height = Game.getHost().getCurrentHeight();
         currentScale = Math.min(width / originWidth, height / originHeight);
         int imageDisplayWidth = (int) (originWidth * currentScale);
         int imageDisplayHeight = (int) (originHeight * currentScale);

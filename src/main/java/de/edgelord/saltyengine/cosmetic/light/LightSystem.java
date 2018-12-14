@@ -37,7 +37,7 @@ public class LightSystem implements Drawable {
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;
 
-        Dimensions res = Game.getHost().getOriginalResolution();
+        Dimensions res = Game.getGameDimensions();
         lightMap = new BufferedImage((int) res.getWidth(), (int) res.getHeight(), BufferedImage.TYPE_INT_ARGB);
     }
 

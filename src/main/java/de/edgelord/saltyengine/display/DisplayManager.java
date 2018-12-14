@@ -49,12 +49,12 @@ public class DisplayManager extends Host {
 
     @Override
     public float getHorizontalCentrePosition(final float width) {
-        return (getWidth() / 2) - (width / 2);
+        return (Game.getGameWidth() / 2) - (width / 2);
     }
 
     @Override
     public float getVerticalCentrePosition(final float height) {
-        return (getHeight() / 2) - (height / 2);
+        return (Game.getGameHeight() / 2) - (height / 2);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class DisplayManager extends Host {
     }
 
     @Override
-    public Dimensions getDimensions() {
+    public Dimensions getCurrentDimensions() {
         return new Dimensions(display.getWidth(), display.getHeight());
     }
 
@@ -87,11 +87,6 @@ public class DisplayManager extends Host {
     @Override
     public String takeScreenshot() {
         return stage.newScreenshot();
-    }
-
-    @Override
-    public Dimensions getOriginalResolution() {
-        return stage.getResolution();
     }
 
     @Override
