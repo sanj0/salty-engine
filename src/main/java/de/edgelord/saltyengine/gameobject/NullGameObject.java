@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * A GameObject with defautl empty implementations of:
+ * A GameObject with default empty implementations of:
  * {@link GameObject#onCollision(CollisionEvent)} <br>
  * {@link GameObject#onFixedTick()} <br>
  * {@link GameObject#draw(SaltyGraphics)} <p>
