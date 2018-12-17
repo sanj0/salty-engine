@@ -1,5 +1,5 @@
 # Salty Engine
-![version-badge](https://img.shields.io/badge/version-0.14.8-orange.svg) ![release-badge](https://img.shields.io/badge/release-0.12.5-brightgreen.svg) ![license-badge](https://img.shields.io/hexpm/l/plug.svg) ![price-badge](https://img.shields.io/badge/price-free-red.svg)
+![version-badge](https://img.shields.io/badge/version-0.14.8-orange.svg) ![release-badge](https://img.shields.io/badge/release-0.14.8-brightgreen.svg) ![license-badge](https://img.shields.io/hexpm/l/plug.svg) ![price-badge](https://img.shields.io/badge/price-free-red.svg)
 
 ![salty-engine-logo](logos/logo_small.png)
 
