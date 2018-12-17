@@ -26,29 +26,34 @@ public class GameStarter {
 
     protected static void startGame(long fps, SplashWindow.Splash splash) {
 
-        if (splash != SplashWindow.Splash.NO_SPLASH) {
+        try {
+            if (splash != SplashWindow.Splash.NO_SPLASH) {
 
-            SplashWindow splashWindow = new SplashWindow(splash);
-            splashWindow.setVisible(true);
+                SplashWindow splashWindow = new SplashWindow(splash);
+                splashWindow.setVisible(true);
 
-            SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    Thread.sleep(6000);
-                    return null;
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        Thread.sleep(6000);
+                        return null;
+                    }
+
+                    protected void done() {
+                        startGame(true, splashWindow, fps);
+                    }
+                };
+                worker.execute();
+
+                while (isLocked()) {
+                    System.out.print("");
                 }
-
-                protected void done() {
-                    startGame(true, splashWindow, fps);
-                }
-            };
-            worker.execute();
-
-            while (isLocked()) {
-                System.out.print("");
+            } else {
+                startGame(false, null, fps);
             }
-        } else {
-            startGame(false, null, fps);
+        } catch (Exception e) {
+            System.err.println("Seems like something gone wrong by starting the game. Maybe you called Game#start before you called Game#init?");
+            e.printStackTrace();
         }
     }
 
