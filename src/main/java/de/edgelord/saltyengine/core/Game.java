@@ -29,6 +29,14 @@ import de.edgelord.saltyengine.utils.Time;
 
 import java.io.IOException;
 
+/**
+ * The central core class for a Salty Engine game. To start a game, call whether
+ * {@link #init(GameConfig)} or {@link #init(Host, String, long)} <br>
+ *
+ * and then
+ *
+ * {@link #start()}, {@link #start(long)}, {@link #start(long, SplashWindow.Splash)} or {@link #start(SplashWindow.Splash)}
+ */
 public class Game {
 
     private static GFXController defaultGFXController = new GFXController();
@@ -49,21 +57,29 @@ public class Game {
     private static Host host;
     private static Engine engine;
 
-    public Game(float resolutionWidth, float resolutionHeight, String gameName, long fixedTickMillis) {
-
-        System.setProperty("sun.java2d.opengl", "True");
-
-        engine = new Engine(fixedTickMillis);
-        host = new DisplayManager(new DisplayRatio(new Dimensions(resolutionWidth, resolutionHeight)), gameName, engine);
-        gameDimensions = new Dimensions(resolutionWidth, resolutionHeight);
-
-        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
-        SaltySystem.defaultOuterResource = new OuterResource(false);
+    /**
+     * Initialized the game with the given {@link GameConfig} and a {@link DisplayManager} as {@link Host}.
+     *
+     * @param config the configuration of the game
+     */
+    public static void init(GameConfig config) {
+        internalPreInitDisplayManager(config);
     }
 
-    public Game(Host host, String gameName, long fixedTickMillis) {
+    /**
+     * Initializes the game with the given {@link Host}, the given name and the given milliseconds for the fixed tick.
+     *
+     * @param host the {@link Host} for the game
+     * @param gameName the name of the game
+     * @param fixedTickMillis the milliseconds for the periodical fixed update for e.g. physics
+     */
+    public static void init(Host host, String gameName, long fixedTickMillis) {
+        internalPreInitForForeignHost(host, gameName, fixedTickMillis);
+    }
 
-        System.setProperty("sun.java2d.opengl", "True");
+    private static void internalPreInitForForeignHost(Host host, String gameName, long fixedTickMillis) {
+
+        enableOpenGl();
 
         engine = new Engine(fixedTickMillis);
         gameDimensions = host.getCurrentDimensions();
@@ -71,6 +87,22 @@ public class Game {
         Game.host = host;
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
+    }
+
+    private static void internalPreInitDisplayManager(GameConfig config) {
+
+        enableOpenGl();
+
+        engine = new Engine(config.getFixedTickMillis());
+        host = new DisplayManager(new DisplayRatio(new Dimensions(config.getResWidth(), config.getResHeight())), config.getGameName(), engine);
+        gameDimensions = new Dimensions(config.getResWidth(), config.getResHeight());
+
+        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
+        SaltySystem.defaultOuterResource = new OuterResource(false);
+    }
+
+    private static void enableOpenGl() {
+        System.setProperty("sun.java2d.opengl", "True");
     }
 
     public static Dimensions getGameDimensions() {
@@ -85,21 +117,47 @@ public class Game {
         return gameDimensions.getHeight();
     }
 
+    /**
+     * Starts the game with the given {@link de.edgelord.saltyengine.display.SplashWindow.Splash} before and running
+     * with the maximum fps.
+     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     *
+     * @param splash the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed before the game
+     */
     public static void start(SplashWindow.Splash splash) {
 
         GameStarter.startGame(-1, splash);
     }
 
+    /**
+     * Starts the game with the given fps and the given {@link de.edgelord.saltyengine.display.SplashWindow.Splash}.
+     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     *
+     * @param fixedFPS the fps with which the game should run
+     * @param splash the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed when the game starts
+     */
     public static void start(long fixedFPS, SplashWindow.Splash splash) {
 
         GameStarter.startGame(fixedFPS, splash);
     }
 
+    /**
+     * Starts the game with the default {@link de.edgelord.saltyengine.display.SplashWindow.Splash} and as much fps as
+     * possible.
+     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     */
     public static void start() {
 
         GameStarter.startGame(-1, SplashWindow.Splash.DEFAULT_SPLASH);
     }
 
+    /**
+     * Start the game with the default {@link de.edgelord.saltyengine.display.SplashWindow.Splash} and the given
+     * fps.
+     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     *
+     * @param fixedFPS the fps with which the game should run.
+     */
     public static void start(long fixedFPS) {
 
         GameStarter.startGame(fixedFPS, SplashWindow.Splash.DEFAULT_SPLASH);

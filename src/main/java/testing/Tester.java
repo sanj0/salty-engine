@@ -18,6 +18,7 @@ package testing;
 
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
@@ -31,8 +32,9 @@ public class Tester extends Game {
 
     private static AudioSystem audioSystem;
 
-    public Tester(final int windowWidth, final int windowHeight, final String gameName, final long fixedTickMillis) {
-        super(windowWidth, windowHeight, gameName, fixedTickMillis);
+    private static void initGame() {
+
+        Game.init(GameConfig.config(1200f, 900f, "testing", 1L));
 
         System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 
@@ -49,8 +51,7 @@ public class Tester extends Game {
     }
 
     public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-
-        final Tester tester = new Tester(1200, 900, "testing", 1);
+        initGame();
 
         SceneManager.addScene("testingScene", TestingScene.class);
 
