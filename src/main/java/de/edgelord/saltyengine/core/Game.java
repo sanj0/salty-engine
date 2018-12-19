@@ -32,9 +32,9 @@ import java.io.IOException;
 /**
  * The central core class for a Salty Engine game. To start a game, call whether
  * {@link #init(GameConfig)} or {@link #init(Host, String, long)} <br>
- *
+ * <p>
  * and then
- *
+ * <p>
  * {@link #start()}, {@link #start(long)}, {@link #start(long, SplashWindow.Splash)} or {@link #start(SplashWindow.Splash)}
  */
 public class Game {
@@ -69,8 +69,8 @@ public class Game {
     /**
      * Initializes the game with the given {@link Host}, the given name and the given milliseconds for the fixed tick.
      *
-     * @param host the {@link Host} for the game
-     * @param gameName the name of the game
+     * @param host            the {@link Host} for the game
+     * @param gameName        the name of the game
      * @param fixedTickMillis the milliseconds for the periodical fixed update for e.g. physics
      */
     public static void init(Host host, String gameName, long fixedTickMillis) {
@@ -134,7 +134,7 @@ public class Game {
      * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
      *
      * @param fixedFPS the fps with which the game should run
-     * @param splash the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed when the game starts
+     * @param splash   the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed when the game starts
      */
     public static void start(long fixedFPS, SplashWindow.Splash splash) {
 

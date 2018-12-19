@@ -99,7 +99,7 @@ public class Camera {
      * @param direction the {@link de.edgelord.saltyengine.utils.Directions.Direction} of the movement.
      *                  Actually, there is no camera movement simulated and all of the rendered entities will move
      *                  in this direction instead of the camera to move.
-     * @param delta the length of the movement in pixels.
+     * @param delta     the length of the movement in pixels.
      */
     public void move(Directions.Direction direction, float delta) {
         switch (direction) {

@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 /**
  * Some static methods to place a {@link de.edgelord.saltyengine.transform.Transform} or {@link de.edgelord.saltyengine.core.interfaces.TransformedObject}
  * with either a decimal number from 0 to 1 or with a percentage.
- *
+ * <p>
  * Example usage:
  *
  * <code>GameObject myGameObject = new NullGameObject(Positions.forDecimal(0.5f, 0.75f), Dimensions.one(), "myGO");</code>
@@ -59,9 +59,7 @@ public class Positions {
      *
      * @param xDecimal the x position as a decimal number
      * @param yDecimal the y position as a decimal number
-     *
      * @return a new {@link Vector2f} representing the given decimal position in user-space
-     *
      * @see #xForDecimal(float)
      * @see #yForDecimal(float)
      */
@@ -74,7 +72,6 @@ public class Positions {
      *
      * @param xPercentage the percentage of the x position
      * @return the true x position in user-space
-     *
      * @see #xForDecimal(float)
      */
     public static float xForPercentage(float xPercentage) {
@@ -86,7 +83,6 @@ public class Positions {
      *
      * @param yPercentage the percentage of the x position
      * @return the true y position in user-space
-     *
      * @see #xForDecimal(float)
      */
     public static float yForPercentage(float yPercentage) {
@@ -99,9 +95,7 @@ public class Positions {
      *
      * @param xPercentage the x position as percentage
      * @param yPercentage the y position as percentage
-     *
      * @return a new {@link Vector2f} representing the given percentage-position in user-space
-     *
      * @see #xForPercentage(float)
      * @see #yForPercentage(float)
      */
