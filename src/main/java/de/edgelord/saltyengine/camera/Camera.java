@@ -32,6 +32,10 @@ public class Camera {
     private Vector2f position = new Vector2f(0f, 0f);
     // The rotation in degrees.
     private float rotation = 0f;
+    /**
+     * The scale of the view. 1f means no scaling, 2f would be twice as big
+     */
+    private float scale = 1f;
 
     private AffineTransform originalTransform = null;
 
@@ -47,11 +51,13 @@ public class Camera {
 
         graphics.translate(lastPosition.getX() + position.getX(), lastPosition.getY() + position.getY());
         graphics.rotate(Math.toRadians(rotation), Game.getGameWidth() / 2, Game.getGameHeight() / 2);
+        graphics.scale(scale, scale);
     }
 
     public void tmpResetViewToGraphics(SaltyGraphics graphics) {
         graphics.getGraphics2D().rotate(0);
         graphics.getGraphics2D().translate(getX() * -1, getY() * -1);
+        graphics.getGraphics2D().scale(1f, 1f);
     }
 
     public void move(Directions.Direction direction, float delta) {
@@ -77,6 +83,14 @@ public class Camera {
         absPos.subtract(getPosition());
 
         return absPos;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 
     public Transform getRelativeCursor() {

@@ -105,6 +105,7 @@ public class BirdPlayer extends GameObject implements Serializable {
     public void initialize() {
 
         System.out.println("Info: Initialised a new BirdPlayer");
+        getTransform().setRotationCentreToMiddle();
     }
 
     @Override
@@ -114,32 +115,14 @@ public class BirdPlayer extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
-        getTransform().setRotationCentreToMiddle();
+        if (isCursorOver()) {
+            System.out.println("ping");
+        }
 
         accelerateTo(speed, Input.getInput());
 
-        if (Input.inputUp) {
-            if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-
-        if (Input.inputDown) {
-            if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-
-        if (Input.inputRight) {
-            if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
-        }
-
-        if (Input.inputLeft) {
-            if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
-            }
+        if (soundTiming.now()) {
+            Tester.getAudioSystem().play("bird_flap");
         }
     }
 

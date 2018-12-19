@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.stage;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
@@ -64,6 +65,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         float currentScale = container.getCurrentScale();
         cursorPos.subtract(imagePos.getX(), imagePos.getY());
         cursorPos.divide(currentScale, currentScale);
+        cursorPos.divide(Game.getCamera().getScale(), Game.getCamera().getScale());
 
         Input.cursorPosition = new Vector2f(cursorPos.getX(), cursorPos.getY());
         Input.cursor = new Transform(Input.cursorPosition, Dimensions.one());

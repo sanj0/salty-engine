@@ -16,6 +16,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
@@ -55,6 +56,8 @@ public class TestingScene extends Scene {
         addUI();
 
         disableGravity();
+
+        Game.getCamera().setScale(0.2f);
     }
 
     private void addLight() {

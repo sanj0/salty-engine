@@ -128,8 +128,8 @@ public class Stage extends JPanel {
         graphics2D.drawImage(renderedImage, xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
     }
 
-    private void renderToGraphics(Graphics2D graphics2D) {
-        graphics2D.setClip(0, 0, originWidth, originHeight);
+    private void renderToGraphics(Graphics2D graphics2D, int width, int height) {
+        graphics2D.setClip(0, 0, width, height);
 
         graphics2D.setRenderingHints(renderingHints);
 
@@ -153,10 +153,13 @@ public class Stage extends JPanel {
     }
 
     public BufferedImage renderToImage() {
-        BufferedImage image = new BufferedImage(originWidth, originHeight, BufferedImage.TYPE_INT_ARGB);
+        float currentCameraScale = Game.getCamera().getScale();
+        int width = Math.round(originWidth * currentCameraScale);
+        int height = Math.round(originHeight * currentCameraScale);
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D graphics2D = image.createGraphics();
-        renderToGraphics(graphics2D);
+        renderToGraphics(graphics2D, width, height);
         graphics2D.dispose();
 
         return image;
