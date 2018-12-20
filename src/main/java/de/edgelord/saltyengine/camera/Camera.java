@@ -179,6 +179,16 @@ public class Camera {
         this.position = position;
     }
 
+    /**
+     * Sets the position of this virtual camera in the scene.
+     *
+     * @param x the x position of this camera
+     * @param y the y position of this camera
+     */
+    public void setPosition(float x, float y) {
+        this.position = new Vector2f(x, y);
+    }
+
     public void setX(float x) {
         position.setX(x);
     }
