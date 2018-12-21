@@ -57,11 +57,14 @@ public class Rotation {
     }
 
     public void rotateToPoint(Vector2f point) {
-        throw new UnsupportedOperationException("rotating an entity to face a point");
-        /*
-        float arc = (float) Math.atan2(point.getY() / centre.getY(), point.getX() / centre.getX());
-        rotationDegrees = (float) toDegrees(arc);
-        */
+
+        float x = centre.getX();
+        float y = centre.getY();
+        float otherX = point.getX();
+        float otherY = point.getY();
+
+        rotationDegrees = (float) Math.toDegrees((Math.atan2((otherX - x), (otherY - y)) * 180f / Math.PI));
+        System.out.println(rotationDegrees);
     }
 
     public void rotateToPoint(float x, float y) {

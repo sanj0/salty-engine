@@ -19,7 +19,10 @@ package de.edgelord.saltyengine.core.physics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
-
+/*
+right = sin / (sin+cos)
+up = cos / (sin+cos)
+ */
 public class Force {
 
     private static final float VALUE_SCALE = 1000;
