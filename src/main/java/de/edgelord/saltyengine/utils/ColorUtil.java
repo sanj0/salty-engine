@@ -47,6 +47,8 @@ public class ColorUtil {
     public static final Color TOMATO_RED = new Color(255, 9, 71);
     public static final Color FIREBRICK_RED = new Color(178, 34, 34);
     public static final Color CRIMSON_RED = new Color(220, 20, 60);
+    public static final Color HEART_RED = new Color(229, 55, 84);
+    public static final Color MODERN_RE = new Color(234, 104, 113);
     public static final Color CORAL_RED = new Color(255, 127, 80);
     public static final Color INDIAN_RED = new Color(205, 92, 92);
     public static final Color DARK_SALMON = new Color(233, 150, 122);
@@ -55,6 +57,7 @@ public class ColorUtil {
     // Orange Colors:
     public static final Color ORANGE_RED = new Color(255, 69, 0);
     public static final Color DARK_ORANGE = new Color(255, 140, 0);
+    public static final Color NEUTRAL_ORANGE = new Color(229, 136, 71);
     public static final Color ORANGE = new Color(255, 165, 0);
 
     // Green Colors:
@@ -64,6 +67,7 @@ public class ColorUtil {
     public static final Color DARK_OLIVE_GREEN = new Color(154, 205, 50);
     public static final Color OLIVE_DRAB_GREEN = new Color(107, 142, 35);
     public static final Color FOREST_GREEN = new Color(34, 139, 34);
+    public static final Color ACTIVE_GREEN = new Color(104, 204, 87);
     public static final Color LIGHT_GREEN = new Color(144, 238, 144);
     public static final Color PALE_GREEN = new Color(152, 251, 152);
     public static final Color MEDIUM_SPRING_GREEN = new Color(0, 250, 154);
@@ -81,6 +85,7 @@ public class ColorUtil {
     public static final Color DARK_TURQUOISE = new Color(0, 206, 209);
     public static final Color TURQUOISE = new Color(64, 224, 208);
     public static final Color AQUA_MARINE_BLUE = new Color(127, 255, 212);
+    public static final Color NEUTRAL_BLUE = new Color(62, 134, 160);
     public static final Color CADET_BLUE = new Color(95, 158, 160);
     public static final Color STEEL_BLUE = new Color(70, 130, 180);
     public static final Color CORN_FLOWER_BLUE = new Color(100, 149, 237);
@@ -115,6 +120,7 @@ public class ColorUtil {
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color SLATE_GRAY = new Color(112, 128, 144);
     public static final Color DARKER_GRAY = new Color(25, 25, 25);
+    public static final Color SAD_GRAY = new Color(56, 57, 52);
     public static final Color DARK_GRAY = new Color(50, 50, 50);
     public static final Color GRAY = new Color(105, 105, 105);
     public static final Color LIGHT_GRAY = new Color(150, 150, 150);
@@ -147,6 +153,18 @@ public class ColorUtil {
 
     public static final Color PLAIN_YELLOW = new Color(255, 255, 0);
     public static final Color YELLOW = new Color(210, 210, 50);
+
+    /**
+     * Returns the given color with the given alpha value. The value goes from 0f to 1f, 0f meaning complete transparency,
+     * 1f meaning full visibility.
+     *
+     * @param color the {@link Color} to return
+     * @param alpha the alpha value of the color
+     * @return the given color with the given alpha value
+     */
+    public static Color changeAlpha(Color color, float alpha) {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+    }
 
     /**
      * Change the brightness of the given Color.
