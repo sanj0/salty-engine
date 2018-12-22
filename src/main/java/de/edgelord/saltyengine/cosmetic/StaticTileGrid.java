@@ -24,8 +24,15 @@ import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.SaltySystem;
+import de.edgelord.stdf.Species;
+import de.edgelord.stdf.reading.DataReader;
+import de.edgelord.stdf.reading.ValueToDataConverter;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.BufferOverflowException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -112,6 +119,46 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
     public abstract void buildTileGrid(HashMap<Coordinates, BufferedImage> grid);
 
+    /**
+     * Reads a Tilemap file created with Salty Tilemap Creator
+     *
+     * @param stm the file
+     * @param position the position of the tilemap in user-space
+     * @param drawingPosition whether to draw it before or after the {@link GameObject}s etc.
+     * @return a new {@link StaticTileGrid}
+     * @throws IOException when the file can't be read
+     */
+    public static StaticTileGrid readSTM(File stm, Vector2f position, DrawingPosition drawingPosition) throws IOException {
+
+        DataReader dataReader = new DataReader(stm);
+        Species metaInf = dataReader.getSpecies("meta-inf");
+        Species images = dataReader.getSpecies("images");
+        Species tiles = dataReader.getSpecies("tiles");
+
+        return new StaticTileGrid(drawingPosition, position, new Dimensions(ValueToDataConverter.convertToFloat(metaInf, "tile-height"), ValueToDataConverter.convertToFloat(metaInf, "tile-width"))) {
+            @Override
+            public void buildTileGrid(HashMap<Coordinates, BufferedImage> grid) {
+
+                Map<String, BufferedImage> imageMap = new HashMap<>();
+
+                for (int i = 0; i < ValueToDataConverter.convertToInteger(images, "entry-count"); i++) {
+                    String value = images.getTagValue("image" + i);
+                    String[] values = value.split(",");
+                    imageMap.put(values[0], SaltySystem.defaultImageFactory.getOptimizedImageResource(values[1]));
+                }
+
+                for (int i = 0; i < ValueToDataConverter.convertToInteger(tiles, "entry-count"); i++) {
+                    String value = tiles.getTagValue("tile" + i);
+                    String[] values = value.split(",");
+                    String[] coordinates = values[1].split("#");
+                    grid.put(new Coordinates(Integer.valueOf(coordinates[0]), Integer.valueOf(coordinates[1])), imageMap.get(values[0]));
+                }
+
+                System.out.println(grid.size());
+            }
+        };
+    }
+
     private BufferedImage createStaticGridPicture() {
 
         int maxX = 0;
@@ -130,8 +177,8 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             maxY = Math.max(maxY, coordinates.getY());
         }
 
-        int width = Math.round(maxX * tileSize.getWidth());
-        int height = Math.round(maxY * tileSize.getHeight());
+        int width = Math.round(++maxX * tileSize.getWidth());
+        int height = Math.round(++maxY * tileSize.getHeight());
 
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
