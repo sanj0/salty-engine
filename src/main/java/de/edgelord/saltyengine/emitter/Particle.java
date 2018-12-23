@@ -23,20 +23,22 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-public abstract class Emittable implements TransformedObject, Drawable {
+public abstract class Particle implements TransformedObject, Drawable {
 
     private Transform transform;
+    private final int waveNumber;
 
-    public Emittable(Transform transform) {
+    public Particle(Transform transform, int waveNumber) {
         this.transform = transform;
+        this.waveNumber = waveNumber;
     }
 
-    public Emittable(Vector2f position, Dimensions dimensions) {
-        this(new Transform(position, dimensions));
+    public Particle(Vector2f position, Dimensions dimensions, int waveNumber) {
+        this(new Transform(position, dimensions), waveNumber);
     }
 
-    public Emittable(float x, float y, float width, float height) {
-        this(new Transform(x, y, width, height));
+    public Particle(float x, float y, float width, float height, int waveNumber) {
+        this(new Transform(x, y, width, height), waveNumber);
     }
 
     @Override
@@ -50,5 +52,9 @@ public abstract class Emittable implements TransformedObject, Drawable {
     @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
+    }
+
+    public int getWaveNumber() {
+        return waveNumber;
     }
 }
