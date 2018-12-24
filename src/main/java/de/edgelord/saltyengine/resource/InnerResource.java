@@ -20,7 +20,10 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -62,15 +65,7 @@ public class InnerResource implements Resource {
             e.printStackTrace();
         }
 
-        Clip clip = null;
-        try {
-            clip = AudioSystem.getClip();
-            clip.open(audioInput);
-        } catch (LineUnavailableException | IOException e) {
-            e.printStackTrace();
-        }
-
-        return clip;
+        return Resource.createClip(audioInput);
     }
 
     @Override

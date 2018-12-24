@@ -59,11 +59,13 @@ public class TestingScene extends Scene {
 
         disableGravity();
 
+        /*
         try {
             addDrawingRoutine(StaticTileGrid.readSTM(new File("/Users/edgelord/Salty Tilemap Creator/map.stm.sdb"), new Vector2f(110, 110), DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 
     private void addLight() {

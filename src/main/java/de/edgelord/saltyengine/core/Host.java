@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 /**
  * This is the class to implement for the host of a game.
@@ -51,6 +52,13 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      * @return the {@link RenderingHints} used by this Host to define the quality of the render.
      */
     public abstract RenderingHints getRenderHints();
+
+    /**
+     * Returns an {@link ImageObserver} the can be used to e.g. render animated gifs.
+     *
+     * @return a usabel {@link ImageObserver}
+     */
+    public abstract ImageObserver getImageObserver();
 
     /**
      * Sets the dimensions of this host

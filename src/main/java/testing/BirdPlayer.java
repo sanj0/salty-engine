@@ -19,6 +19,7 @@ package testing;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
 import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.components.rendering.GifAnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
@@ -29,10 +30,12 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class BirdPlayer extends GameObject implements Serializable {
@@ -155,8 +158,10 @@ public class BirdPlayer extends GameObject implements Serializable {
     @Override
     public void deserialize(Species species) {
         List<String> camPos = ValueToListConverter.convertToList(species, "camPos", ",");
+        /*
         Game.getCamera().setX(Float.valueOf(camPos.get(0)));
         Game.getCamera().setY(Float.valueOf(camPos.get(1)));
+        */
     }
 
     @Override

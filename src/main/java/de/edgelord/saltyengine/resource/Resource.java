@@ -16,9 +16,15 @@
 
 package de.edgelord.saltyengine.resource;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public interface Resource {
 
@@ -27,4 +33,20 @@ public interface Resource {
     Clip getAudioResource(String relativePath);
 
     File getFileResource(String relativePath);
+
+    default URL pathToURL(String path) throws MalformedURLException {
+        return getFileResource(path).toURI().toURL();
+    }
+
+    static Clip createClip(AudioInputStream inputStream) {
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(inputStream);
+        } catch (LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return clip;
+    }
 }

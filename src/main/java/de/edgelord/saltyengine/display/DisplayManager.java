@@ -25,6 +25,7 @@ import de.edgelord.saltyengine.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
+import java.awt.image.ImageObserver;
 
 public class DisplayManager extends Host {
 
@@ -80,6 +81,11 @@ public class DisplayManager extends Host {
     }
 
     @Override
+    public ImageObserver getImageObserver() {
+        return stage;
+    }
+
+    @Override
     public void setDimensions(Dimensions dimensions) {
         display.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
@@ -93,6 +99,7 @@ public class DisplayManager extends Host {
     public void toggleFullscreen() {
         display.setFullscreen(!display.isFullscreen());
     }
+
 
     public void createKeyListener() {
 
