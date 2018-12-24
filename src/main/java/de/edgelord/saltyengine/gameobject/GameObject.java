@@ -26,6 +26,7 @@ import de.edgelord.saltyengine.core.interfaces.CollideAble;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.InitializeAble;
+import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
@@ -275,7 +276,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#acceleration} of the default force in the
+     * This method sets the {@link Force#getAcceleration()} of the default force in the
      * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
      * This is the recommended way fro player control in a few cases because the momentum of this GameObject will
      * slowly fade out and so the controls aren't precise. However, this might be useful for some physics-related games.
@@ -337,7 +338,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method sets the {@link de.edgelord.saltyengine.core.physics.Force#velocity} of the default velocity force with the
+     * This method sets the {@link Force#getVelocity()} of the default velocity force with the
      * given direction to the given value. This velocity only rests for one tick.
      * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
      *
@@ -398,7 +399,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     public boolean isCursorOver() {
-        return getTransform().contains(Input.getRelativeCursor());
+        return getTransform().contains(Input.getCursor());
     }
 
     public Coordinates getCoordinates() {

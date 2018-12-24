@@ -28,6 +28,10 @@ public class Vector2f {
         this.y = y;
     }
 
+    public Vector2f(Vector2f position) {
+        this(position.getX(), position.getY());
+    }
+
     public float getX() {
         return x;
     }

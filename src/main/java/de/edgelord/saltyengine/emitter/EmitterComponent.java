@@ -21,6 +21,10 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
@@ -33,6 +37,16 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     private int waveDuration;
 
+    /**
+     * The current tick count, used for starting new waves.
+     */
+    private int ticks = 0;
+
+    /**
+     * A thread-safe {@link List} containing all the current {@link Particle}s
+     */
+    private List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
+
     public EmitterComponent(ComponentContainer parent, String name, String tag, float amount, int waveDuration) {
         super(parent, name, tag);
         this.amount = amount;
@@ -44,22 +58,55 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Use to initialize the emitter after the constructor. This method is called within {@link #initialize()}
+     * Use to initialize the emitter after the constructor. This method is called within {@link #initialize()}.
      */
     public abstract void initializeEmitter();
 
+    /**
+     * Starts a new wave. This is called every {@link #waveDuration} fixed ticks.
+     */
     public abstract void startWave();
+
+    /**
+     * Moves the particles. This is called every fixed tick. The given {@link List} is actually just {@link #currentParticles},
+     * which can also be obtained using {@link #getCurrentParticles()}
+     *
+     * @param particles the {@link List} of {@link Particle}s to be moved.
+     */
+    public abstract void fixedParticleMove(List<Particle> particles);
 
     @Override
     public void onCollision(CollisionEvent event) {
     }
 
+    /**
+     * Calls {@link #startWave()} every {@link #waveDuration} fixed ticks and calles {@link #fixedParticleMove(List)} every fixed tick.
+     */
     @Override
-    public abstract void onFixedTick();
+    public final void onFixedTick() {
 
+        if (ticks >= waveDuration) {
+            ticks = 0;
+            startWave();
+        } else {
+            ticks++;
+        }
+
+        fixedParticleMove(currentParticles);
+    }
+
+    /**
+     * Draws all {@link Particle}s within {@link #currentParticles} by calling {@link Particle#draw(SaltyGraphics)}.
+     *
+     * @param saltyGraphics the graphics to render the particles, this is internally passed in.
+     */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        for (int i = 0; i < currentParticles.size(); i++) {
+            Particle particle = currentParticles.get(i);
 
+            particle.draw(saltyGraphics);
+        }
     }
 
     public float getAmount() {
@@ -76,5 +123,9 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     public void setWaveDuration(int waveDuration) {
         this.waveDuration = waveDuration;
+    }
+
+    public List<Particle> getCurrentParticles() {
+        return currentParticles;
     }
 }

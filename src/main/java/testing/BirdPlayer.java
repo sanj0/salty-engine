@@ -29,6 +29,7 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
@@ -118,6 +119,14 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         accelerateTo(speed, Input.getInput());
 
+        if (Input.getKeyboardInput().isControl()) {
+            Game.getCamera().move(Directions.Direction.RIGHT, .5f);
+        }
+
+        if (Input.getKeyboardInput().isAlt()) {
+            Game.getCamera().move(Directions.Direction.LEFT, .5f);
+        }
+
         if (Input.inputUp) {
             if (soundTiming.now()) {
                 Tester.getAudioSystem().play("bird_flap");
@@ -155,8 +164,10 @@ public class BirdPlayer extends GameObject implements Serializable {
     @Override
     public void deserialize(Species species) {
         List<String> camPos = ValueToListConverter.convertToList(species, "camPos", ",");
+        /*
         Game.getCamera().setX(Float.valueOf(camPos.get(0)));
         Game.getCamera().setY(Float.valueOf(camPos.get(1)));
+        */
     }
 
     @Override

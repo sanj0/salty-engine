@@ -16,6 +16,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
 import de.edgelord.saltyengine.cosmetic.light.GradientLight;
 import de.edgelord.saltyengine.cosmetic.light.Light;
@@ -58,7 +59,7 @@ public class TestingScene extends Scene {
     }
 
     private void addLight() {
-        setLightSystem(new LightSystem(new Color(0, 0, 0, 225)));
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
         light.setColor(Color.blue);
         getLightSystem().addLight(light);
         getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.ROUND_RECTANGLE));

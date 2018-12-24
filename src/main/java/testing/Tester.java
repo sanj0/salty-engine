@@ -55,7 +55,7 @@ public class Tester extends Game {
 
         SceneManager.addScene("testingScene", TestingScene.class);
 
-        start(60, SplashWindow.Splash.NO_SPLASH);
+        start(SplashWindow.Splash.NO_SPLASH);
         serializeOnExit();
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
