@@ -16,13 +16,11 @@
 
 package testing;
 
-import de.edgelord.saltyengine.cosmetic.StaticTileGrid;
-import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
-import de.edgelord.saltyengine.cosmetic.light.GradientLight;
-import de.edgelord.saltyengine.cosmetic.light.Light;
-import de.edgelord.saltyengine.cosmetic.light.LightSystem;
+import de.edgelord.saltyengine.effect.geom.EnumShape;
+import de.edgelord.saltyengine.effect.light.GradientLight;
+import de.edgelord.saltyengine.effect.light.Light;
+import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
-import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.io.serialization.Serializer;
@@ -36,7 +34,6 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class TestingScene extends Scene {

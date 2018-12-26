@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.geom;
+package de.edgelord.saltyengine.effect.geom;
 
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;

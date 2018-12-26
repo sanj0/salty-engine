@@ -14,24 +14,12 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.light;
+package de.edgelord.saltyengine.effect;
 
-import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-public class PointLight extends GradientLight {
+public interface Cosmetic {
 
-    public PointLight(Transform transform) {
-        super(transform, EnumShape.OVAL);
-    }
-
-    public PointLight(float x, float y, float radius) {
-        this(new Transform(x, y, radius, radius));
-    }
-
-    public PointLight(Vector2f position, float radius) {
-        this(new Transform(position, new Dimensions(radius, radius)));
-    }
+    void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 }

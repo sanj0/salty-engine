@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.geom;
+package de.edgelord.saltyengine.effect.geom;
 
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
@@ -22,30 +22,29 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-public class RectangleShape extends SaltyShape {
-
-    public RectangleShape(Transform transform) {
-        super(transform, EnumShape.RECTANGLE);
+public class OvalShape extends SaltyShape {
+    public OvalShape(Transform transform) {
+        super(transform, EnumShape.OVAL);
     }
 
-    public RectangleShape(Vector2f position, Dimensions dimensions) {
-        super(position, dimensions, EnumShape.RECTANGLE);
+    public OvalShape(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.OVAL);
     }
 
-    public RectangleShape(TransformedObject parent) {
-        super(parent, EnumShape.RECTANGLE);
+    public OvalShape(TransformedObject parent) {
+        super(parent, EnumShape.OVAL);
     }
 
-    public RectangleShape(float x, float y, float width, float height) {
-        super(x, y, width, height, EnumShape.RECTANGLE);
+    public OvalShape(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.OVAL);
     }
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         if (isFilled()) {
-            saltyGraphics.drawRect(this);
+            saltyGraphics.drawOval(this);
         } else {
-            saltyGraphics.outlineRect(this);
+            saltyGraphics.outlineOval(this);
         }
     }
 }

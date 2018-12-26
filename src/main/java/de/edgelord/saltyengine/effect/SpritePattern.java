@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic;
+package de.edgelord.saltyengine.effect;
 
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;

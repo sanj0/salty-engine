@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.light;
+package de.edgelord.saltyengine.effect.light;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.cosmetic.geom.EnumShape;
+import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;

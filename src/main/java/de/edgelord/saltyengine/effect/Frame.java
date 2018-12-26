@@ -14,40 +14,33 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.light;
+package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.awt.*;
+import java.awt.image.BufferedImage;
 
-/**
- * This {@link LightSystem} is much more efficient because it is not updated over and over again but only when requested
- * via {@link #scheduleUpdate()}
- */
-public class StaticLightSystem extends LightSystem {
+public class Frame implements Cosmetic {
 
-    private boolean scheduleUpdate = true;
+    private BufferedImage image = null;
+    //private AdvancedCosmetics advancedCosmetics = null;
 
-    public StaticLightSystem(Color lightMapColor) {
-        super(lightMapColor);
-    }
+    public Frame(BufferedImage image) {
 
-    public StaticLightSystem() {
-        super();
+        this.image = image;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
-        if (scheduleUpdate) {
-            updateLightMap();
-            scheduleUpdate = false;
-        }
-
-        saltyGraphics.drawImage(lightMap, Vector2f.zero());
+    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
+        saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
     }
 
-    public void scheduleUpdate() {
-        scheduleUpdate = true;
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 }

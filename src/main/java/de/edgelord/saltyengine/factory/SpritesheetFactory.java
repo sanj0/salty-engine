@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.factory;
 
-import de.edgelord.saltyengine.cosmetic.Spritesheet;
+import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.resource.Resource;
 
 public class SpritesheetFactory extends Factory {

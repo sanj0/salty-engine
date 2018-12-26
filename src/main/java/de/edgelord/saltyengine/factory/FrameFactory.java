@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.factory;
 
-import de.edgelord.saltyengine.cosmetic.Frame;
+import de.edgelord.saltyengine.effect.Frame;
 import de.edgelord.saltyengine.resource.Resource;
 
 public class FrameFactory extends Factory {

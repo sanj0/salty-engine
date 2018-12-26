@@ -17,9 +17,9 @@
 package de.edgelord.saltyengine.components.gfx;
 
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.cosmetic.light.Light;
-import de.edgelord.saltyengine.cosmetic.light.LightSystem;
-import de.edgelord.saltyengine.cosmetic.light.PointLight;
+import de.edgelord.saltyengine.effect.light.Light;
+import de.edgelord.saltyengine.effect.light.LightSystem;
+import de.edgelord.saltyengine.effect.light.PointLight;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.TransformRelationMode;

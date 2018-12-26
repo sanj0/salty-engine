@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.cosmetic.geom;
+package de.edgelord.saltyengine.effect.geom;
 
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
@@ -22,28 +22,30 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-/**
- * Represents a line from the top left corner of the transform to its bottom right corner
- */
-public class LineShape extends SaltyShape {
-    public LineShape(TransformedObject parent) {
-        super(parent, EnumShape.LINE);
+public class RectangleShape extends SaltyShape {
+
+    public RectangleShape(Transform transform) {
+        super(transform, EnumShape.RECTANGLE);
     }
 
-    public LineShape(Transform transform) {
-        super(transform, EnumShape.LINE);
+    public RectangleShape(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.RECTANGLE);
     }
 
-    public LineShape(Vector2f position, Dimensions dimensions) {
-        super(position, dimensions, EnumShape.LINE);
+    public RectangleShape(TransformedObject parent) {
+        super(parent, EnumShape.RECTANGLE);
     }
 
-    public LineShape(float x, float y, float width, float height) {
-        super(x, y, width, height, EnumShape.LINE);
+    public RectangleShape(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.RECTANGLE);
     }
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
-        saltyGraphics.drawLine(getX(), getY(), getTransform().getMaxX(), getTransform().getMaxY());
+        if (isFilled()) {
+            saltyGraphics.drawRect(this);
+        } else {
+            saltyGraphics.outlineRect(this);
+        }
     }
 }
