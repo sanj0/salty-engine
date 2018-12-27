@@ -28,7 +28,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
@@ -71,15 +70,15 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     private List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
 
-    private Class< ? extends Particle> particle;
+    private Class<? extends Particle> particle;
 
     /**
      * The constructor.
      *
-     * @param parent the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
-     * @param name the id-name of the component
-     * @param particle the particle to be emitted. obtained via {@link Object#getClass()}
-     * @param amount the amount of emitted particles per wave
+     * @param parent       the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
+     * @param name         the id-name of the component
+     * @param particle     the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param amount       the amount of emitted particles per wave
      * @param waveDuration the time to be passed between each wave
      */
     public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveDuration) {
@@ -109,7 +108,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param particles the {@link List} of {@link Particle}s to be moved.
      */
-    public abstract void fixedParticleMove(List< Particle > particles);
+    public abstract void fixedParticleMove(List<Particle> particles);
 
     @Override
     public void onCollision(CollisionEvent event) {
@@ -188,7 +187,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.waveDuration = waveDuration;
     }
 
-    public List< Particle > getCurrentParticles() {
+    public List<Particle> getCurrentParticles() {
         return currentParticles;
     }
 

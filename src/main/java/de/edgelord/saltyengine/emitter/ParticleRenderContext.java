@@ -30,8 +30,8 @@ public abstract class ParticleRenderContext extends RenderContext {
      * Sets the next configuration ot the given graphics. As for some particles needed, the result may be random generated.
      *
      * @param graphics the graphics to set up.
-     * @param subject the particle to be rendered next. This may be used e.g. to have a {@link Particle} specif
-     *                configuration set based on its hash.
+     * @param subject  the particle to be rendered next. This may be used e.g. to have a {@link Particle} specif
+     *                 configuration set based on its hash.
      */
     public abstract void nextParticleRenderConfig(SaltyGraphics graphics, Particle subject);
 }

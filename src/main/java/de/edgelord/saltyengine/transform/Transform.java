@@ -69,6 +69,7 @@ public class Transform {
 
     /**
      * Returns whether this transform is on screen or not, considering the position of the {@link Game#getCamera()}
+     *
      * @return whether the rectangle described by this transform is visible or not.
      */
     public boolean isVisible() {

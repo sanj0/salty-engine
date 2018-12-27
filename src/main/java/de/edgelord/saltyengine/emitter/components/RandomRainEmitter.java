@@ -23,16 +23,14 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Random;
 
 /**
  * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and let them fall down.
  * Both {@link #leftOffset} and {@link #rightOffset} can be used to limit the possible spawning point of new {@link Particle}s.
  * The particles are spawned at the max y value of the parent's transform, meaning at its lowest point. To manipulate that,
  * use {@link #offsetY}
- *
+ * <p>
  * The spawned {@link Particle}s are falling down with {@link #speed} pixels per fixed tick and there are constantly spawning new ones.
  * You can the spawning rate using {@link #setWaveDuration(int)}.
  */
@@ -62,14 +60,14 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * Constructs a new {@link RandomRainEmitter}.
      *
-     * @param parent the parent of this component
-     * @param name the id-name for this component
-     * @param particle the kind of particle to be emitted by this emitter.
-     *                 this can be obtained by using e.g. {@code RandomCircleParticle.class}
-     * @param amount the amount of particles per wave
+     * @param parent       the parent of this component
+     * @param name         the id-name for this component
+     * @param particle     the kind of particle to be emitted by this emitter.
+     *                     this can be obtained by using e.g. {@code RandomCircleParticle.class}
+     * @param amount       the amount of particles per wave
      * @param waveDuration the distance between the waves in terms of time
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class< ? extends Particle> particle, float amount, int waveDuration) {
+    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveDuration) {
         super(parent, name, particle, amount, waveDuration);
     }
 
