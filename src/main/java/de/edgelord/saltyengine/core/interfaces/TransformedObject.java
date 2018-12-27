@@ -89,9 +89,9 @@ public interface TransformedObject {
     }
 
     /**
-     * Moves the object by the give amount in the direction it is facing according to the {@link }
+     * Moves the object by the give amount in the direction it is facing according to the {@link #getRotation()}
      *
-     * @param delta
+     * @param delta the distance for the movement
      */
     default void moveToFacedDirection(float delta) {
 
