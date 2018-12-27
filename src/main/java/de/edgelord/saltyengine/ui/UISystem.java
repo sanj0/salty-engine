@@ -39,7 +39,7 @@ public class UISystem {
     public void onFixedTick() {
         for (UIElement element : elements) {
 
-            if (element.getTransform().contains(Input.cursor)) {
+            if (element.getTransform().contains(Input.getAbsoluteCursor())) {
 
                 if (!element.mouseHoversOver()) {
                     element.mouseEntered(Input.cursor);

@@ -39,7 +39,7 @@ import java.awt.geom.AffineTransform;
  * For that, you can use the method {@link #setRotation(float)}
  *
  * <p>
- * The instance of this class that is useful for the user is {@link Game#camera} which can be accessed by using
+ * The instance of this class that is useful for the user is {@link Game#getCamera()} which can be accessed by using
  * {@link Game#getCamera()}
  */
 public class Camera {
@@ -150,7 +150,7 @@ public class Camera {
 
     /**
      * Returns the cursor as a {@link Transform} manipulated in a way that it fits the camera position.
-     * You can obtain this value easier by using {@link Input#getRelativeCursor()}
+     * You can obtain this value easier by using {@link Input#getCursor()}
      *
      * @return the cursor with the position of this camera considered.
      * @see #getRelativePosition(Vector2f)
@@ -161,7 +161,7 @@ public class Camera {
 
     /**
      * Returns the cursor position relative to the camera position.
-     * You can obtain this value easier by using {@link Input#getRelativeCursorPosition()}.
+     * You can obtain this value easier by using {@link Input#getCursorPosition()} ()}.
      *
      * @return the cursor position manipulated in a way that it fits the position of this camera.
      */

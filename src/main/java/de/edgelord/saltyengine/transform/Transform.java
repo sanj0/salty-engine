@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.transform;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.Rectangle2D;
@@ -64,6 +65,14 @@ public class Transform {
                 yOther + heightOther > y &&
                 xOther < x + height &&
                 yOther < y + height);
+    }
+
+    /**
+     * Returns whether this transform is on screen or not, considering the position of the {@link Game#getCamera()}
+     * @return whether the rectangle described by this transform is visible or not.
+     */
+    public boolean isVisible() {
+        return intersects(new Transform(Game.getCamera().getPosition(), Game.getGameDimensions()));
     }
 
     /**

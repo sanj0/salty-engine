@@ -67,7 +67,7 @@ public class Dimensions {
 
     public static Dimensions random(int min, int max) {
         Random random = new Random();
-        return new Dimensions(random.nextInt(max + min) - min, random.nextInt(max + min) - min);
+        return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
     public static Dimensions one() {
