@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Rotation;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
@@ -33,6 +34,14 @@ public interface TransformedObject {
 
     default Vector2f getPosition() {
         return getTransform().getPosition();
+    }
+
+    default Rotation getRotation() {
+        return getTransform().getRotation();
+    }
+
+    default float getRotationDegrees() {
+        return getRotation().getRotationDegrees();
     }
 
     default float getWidth() {
@@ -77,6 +86,15 @@ public interface TransformedObject {
 
     default void positionByCentre(Vector2f centre) {
         getTransform().positionByCentre(centre);
+    }
+
+    /**
+     * Moves the object by the give amount in the direction it is facing according to the {@link }
+     *
+     * @param delta
+     */
+    default void moveToFacedDirection(float delta) {
+
     }
 
     default void basicMove(final float delta, final Directions.BasicDirection direction) {

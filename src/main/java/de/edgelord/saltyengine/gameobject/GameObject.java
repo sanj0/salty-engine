@@ -490,10 +490,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         isTrigger = trigger;
     }
 
-    public Rotation getRotation() {
-        return getTransform().getRotation();
-    }
-
     public void setRotation(Rotation rotation) {
         getTransform().setRotation(rotation);
     }
