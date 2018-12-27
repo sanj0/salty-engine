@@ -59,7 +59,7 @@ public class TestingScene extends Scene {
     }
 
     private void addLight() {
-        setLightSystem(new LightSystem(new Color(0, 0, 0, 240)));
+        setLightSystem(new LightSystem(new Color(0, 0, 0, 220)));
         light.setColor(Color.blue);
         getLightSystem().addLight(light);
         getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.ROUND_RECTANGLE));
@@ -122,7 +122,7 @@ public class TestingScene extends Scene {
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
         final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
-        addGameObject(bottomBird);
+        //addGameObject(bottomBird);
         addGameObject(upperBird);
         addGameObject(player);
 

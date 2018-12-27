@@ -119,7 +119,7 @@ public class Vector2f {
 
     public static Vector2f random(int min, int max) {
         Random random = new Random();
-        return new Vector2f(random.nextInt(max + min) - min, random.nextInt(max + min) - min);
+        return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
     public static Vector2f one() {

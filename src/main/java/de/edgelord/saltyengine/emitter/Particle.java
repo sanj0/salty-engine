@@ -23,22 +23,20 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
+/**
+ * A {@link Particle} is a physics-independent drawable object that has a transform.
+ * Those get emitted by {@link EmitterComponent}s.
+ * As with the only constructor, there is no {@link Transform} argument, the transform is {@link Transform#zero()} by default.
+ * The particle itself may set its size and the emitter may set its position.
+ */
 public abstract class Particle implements TransformedObject, Drawable {
 
     private Transform transform;
-    private final int waveNumber;
+    private final Integer waveNumber;
 
-    public Particle(Transform transform, int waveNumber) {
-        this.transform = transform;
+    public Particle(Integer waveNumber) {
         this.waveNumber = waveNumber;
-    }
-
-    public Particle(Vector2f position, Dimensions dimensions, int waveNumber) {
-        this(new Transform(position, dimensions), waveNumber);
-    }
-
-    public Particle(float x, float y, float width, float height, int waveNumber) {
-        this(new Transform(x, y, width, height), waveNumber);
+        transform = Transform.zero();
     }
 
     @Override

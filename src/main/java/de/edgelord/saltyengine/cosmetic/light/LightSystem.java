@@ -32,7 +32,7 @@ public class LightSystem implements Drawable {
 
     private Color lightMapColor;
     protected BufferedImage lightMap;
-    private BufferedImage plainLightMap;
+    //private BufferedImage plainLightMap;
     private List<Light> lights = new ArrayList<>();
 
     public LightSystem(Color lightMapColor) {
@@ -40,7 +40,7 @@ public class LightSystem implements Drawable {
 
         Dimensions res = Game.getGameDimensions();
         lightMap = new BufferedImage((int) res.getWidth(), (int) res.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        plainLightMap = new BufferedImage((int) res.getWidth() + 500, (int) res.getHeight() + 500, BufferedImage.TYPE_INT_ARGB);
+        //plainLightMap = new BufferedImage((int) res.getWidth() + 500, (int) res.getHeight() + 500, BufferedImage.TYPE_INT_ARGB);
     }
 
     /**
@@ -63,7 +63,7 @@ public class LightSystem implements Drawable {
     }
 
     protected void updateLightMap() {
-        updatePlainLightMap();
+        //updatePlainLightMap();
         Graphics2D graphics = drawBackgroundToImage(lightMap);
 
         graphics.setRenderingHints(Game.getHost().getRenderHints());
@@ -80,8 +80,8 @@ public class LightSystem implements Drawable {
     }
 
     private void updatePlainLightMap() {
-        Graphics2D graphics2D = drawBackgroundToImage(plainLightMap);
-        graphics2D.dispose();
+        //Graphics2D graphics2D = drawBackgroundToImage(plainLightMap);
+        //graphics2D.dispose();
     }
 
     private Graphics2D drawBackgroundToImage(BufferedImage image) {
@@ -97,7 +97,7 @@ public class LightSystem implements Drawable {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         updateLightMap();
-        saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Vector2f(-250, -250)));
+        //saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Vector2f(-250, -250)));
         saltyGraphics.drawImage(lightMap, Vector2f.zero());
     }
 }

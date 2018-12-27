@@ -19,13 +19,19 @@ package de.edgelord.saltyengine.emitter.components;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.utils.GeneralUtil;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Random;
 
 /**
- * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and let them fall down until they are not visible anymore.
- * Both {@link #offsetX} and {@link #offsetY} can be used to limit the possible spawning point of new {@link Particle}s.
+ * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and let them fall down.
+ * Both {@link #leftOffset} and {@link #rightOffset} can be used to limit the possible spawning point of new {@link Particle}s.
+ * The particles are spawned at the max y value of the parent's transform, meaning at its lowest point. To manipulate that,
+ * use {@link #offsetY}
  *
  * The spawned {@link Particle}s are falling down with {@link #speed} pixels per fixed tick and there are constantly spawning new ones.
  * You can the spawning rate using {@link #setWaveDuration(int)}.
@@ -38,19 +44,33 @@ public class RandomRainEmitter extends EmitterComponent {
     private float speed = 0.5f;
 
     /**
-     * The offset on the x axis of the possible spawning point of {@link Particle}s relative to the bottom side of the parent
-     * of this component
+     * The offset on the left side
      */
-    private float offsetX = 0f;
+    private float leftOffset = 0f;
 
     /**
-     * The offset on the y axis of the possible spawning point of {@link Particle}s relative to the bottom side of the parent
-     * of this component
+     * the offset of the right side
+     */
+    private float rightOffset = 0f;
+
+    /**
+     * The offset on the y axis for the spawning point of new particles.
+     * A positive value means moving the spawning point down, negative meaning to move it up.
      */
     private float offsetY = 0f;
 
-    public RandomRainEmitter(ComponentContainer parent, String name, String tag, float amount, int waveDuration) {
-        super(parent, name, tag, amount, waveDuration);
+    /**
+     * Constructs a new {@link RandomRainEmitter}.
+     *
+     * @param parent the parent of this component
+     * @param name the id-name for this component
+     * @param particle the kind of particle to be emitted by this emitter.
+     *                 this can be obtained by using e.g. {@code RandomCircleParticle.class}
+     * @param amount the amount of particles per wave
+     * @param waveDuration the distance between the waves in terms of time
+     */
+    public RandomRainEmitter(ComponentContainer parent, String name, Class< ? extends Particle> particle, float amount, int waveDuration) {
+        super(parent, name, particle, amount, waveDuration);
     }
 
     @Override
@@ -69,6 +89,46 @@ public class RandomRainEmitter extends EmitterComponent {
 
     @Override
     public void startWave() {
+        for (int i = 0; i < getAmount(); i++) {
+            Particle newParticle = createParticle();
+            newParticle.setPosition(newRandomSpawnPoint());
+            addParticle(newParticle);
+        }
+    }
 
+    private Vector2f newRandomSpawnPoint() {
+        return new Vector2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public float getLeftOffset() {
+        return leftOffset;
+    }
+
+    public void setLeftOffset(float leftOffset) {
+        this.leftOffset = leftOffset;
+    }
+
+    public float getRightOffset() {
+        return rightOffset;
+    }
+
+    public void setRightOffset(float rightOffset) {
+        this.rightOffset = rightOffset;
+    }
+
+    public float getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(float offsetY) {
+        this.offsetY = offsetY;
     }
 }

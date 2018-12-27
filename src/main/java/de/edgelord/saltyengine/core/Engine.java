@@ -62,12 +62,9 @@ public class Engine {
         SaltySystem.fixedTickMillis = fixedTickMillis;
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
-
             @Override
             public void run() {
-
                 if (!Game.isPaused()) {
-
                     SceneManager.getCurrentScene().onFixedTick();
                 }
             }
@@ -79,7 +76,7 @@ public class Engine {
      * It makes the <code>Host</code> repaint each <code>1000 / FPS</code>.
      * This is limited to 1000 FPS, for higher FPS please use {@link #startRepainting()}
      *
-     * @param FPS
+     * @param FPS the fps to use for the game to be repainted
      */
     private void startRepainting(long FPS) {
 
@@ -102,18 +99,17 @@ public class Engine {
 
         repaintTimer.schedule(new TimerTask() {
 
-            long nanosBefore;
+            long nanosBeforeLastTime = 0;
 
             @Override
             public void run() {
 
                 while (!isCloseRequested) {
 
-                    nanosBefore = System.nanoTime();
-
                     Game.getHost().repaint();
 
-                    Time.setDeltaNanos(System.nanoTime() - nanosBefore);
+                    Time.setDeltaNanos((System.nanoTime() - nanosBeforeLastTime) / 1000);
+                    nanosBeforeLastTime = System.nanoTime();
                 }
             }
         }, 0);

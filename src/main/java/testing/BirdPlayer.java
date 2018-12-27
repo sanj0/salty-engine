@@ -23,6 +23,8 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.cosmetic.Animation;
 import de.edgelord.saltyengine.cosmetic.Spritesheet;
+import de.edgelord.saltyengine.emitter.components.RandomRainEmitter;
+import de.edgelord.saltyengine.emitter.particles.RandomCircleParticle;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
