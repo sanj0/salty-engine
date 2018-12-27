@@ -195,6 +195,11 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     @Override
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    @Override
     public void addComponent(Component component) {
         components.add(component);
     }
@@ -426,10 +431,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         this.hitbox = hitbox;
     }
 
-    public List<Component> getComponents() {
-        return components;
-    }
-
     public SimplePhysicsComponent getPhysics() {
         return physicsComponent;
     }
@@ -488,9 +489,5 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setTrigger(boolean trigger) {
         isTrigger = trigger;
-    }
-
-    public void setRotation(Rotation rotation) {
-        getTransform().setRotation(rotation);
     }
 }

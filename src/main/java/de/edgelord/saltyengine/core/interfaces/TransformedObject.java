@@ -22,6 +22,8 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
+import javax.naming.OperationNotSupportedException;
+
 public interface TransformedObject {
 
     Transform getTransform();
@@ -40,8 +42,16 @@ public interface TransformedObject {
         return getTransform().getRotation();
     }
 
+    default void setRotation(Rotation rotation) {
+        getTransform().setRotation(rotation);
+    }
+
     default float getRotationDegrees() {
         return getRotation().getRotationDegrees();
+    }
+
+    default void setRotationDegrees(float rotationDegrees) {
+        getTransform().setRotationDegrees(rotationDegrees);
     }
 
     default float getWidth() {
@@ -89,12 +99,28 @@ public interface TransformedObject {
     }
 
     /**
+     * **NOT YET SUPPORTED**
      * Moves the object by the give amount in the direction it is facing according to the {@link #getRotation()}
      *
      * @param delta the distance for the movement
      */
     default void moveToFacedDirection(float delta) {
+        return;
+        /*
+        Vector2f cartesian = getCartesianVector();
 
+        setX(getX() + cartesian.getX() * delta);
+        setY(getY() + cartesian.getY() * delta);
+        */
+    }
+
+    /**
+     * **EXPERIMENTAL**
+     *
+     * @return the cartesian coordinates for the current rotation
+     */
+    default Vector2f getCartesianVector() {
+        return new Vector2f((float) Math.cos(getRotationDegrees()), (float) Math.sin(getRotationDegrees()));
     }
 
     default void basicMove(final float delta, final Directions.BasicDirection direction) {
