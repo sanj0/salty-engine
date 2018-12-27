@@ -22,8 +22,6 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
-import javax.naming.OperationNotSupportedException;
-
 public interface TransformedObject {
 
     Transform getTransform();
