@@ -13,32 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package de.edgelord.saltyengine.gameobject;
-
-import de.edgelord.saltyengine.scene.Scene;
-
-import java.util.LinkedList;
-import java.util.List;
-
-@Deprecated
-public class GameObjectCollection {
-
-    private List<GameObject> gameObjects = new LinkedList<>();
-
-    public GameObjectCollection() {
-
-    }
-
-    public void addGameObject(GameObject gameObject) {
-
-        gameObjects.add(gameObject);
-    }
-
-    public void addToScene(Scene scene) {
-
-        for (GameObject gameObject : gameObjects) {
-            scene.addGameObject(gameObject);
-        }
-    }
-}
+/**
+ * The base-package for {@link de.edgelord.saltyengine.core.Component}s. There are several sub-packages included, as
+ * well as some {@link de.edgelord.saltyengine.core.Component}s.
+ */
+package de.edgelord.saltyengine.components;

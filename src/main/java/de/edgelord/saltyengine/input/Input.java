@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.displaymanager.input;
+package de.edgelord.saltyengine.input;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.transform.Dimensions;

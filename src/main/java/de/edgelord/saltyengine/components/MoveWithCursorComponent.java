@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.displaymanager.input.Input;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.utils.TransformRelationUtil;
 

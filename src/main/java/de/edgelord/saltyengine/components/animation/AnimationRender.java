@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.components.rendering;
+package de.edgelord.saltyengine.components.animation;
 
+import de.edgelord.saltyengine.components.rendering.RenderComponent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.gameobject.Components;

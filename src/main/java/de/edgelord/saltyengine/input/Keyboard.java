@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.displaymanager.input;
+package de.edgelord.saltyengine.input;
 
 import java.awt.event.KeyEvent;
 

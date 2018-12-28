@@ -19,7 +19,6 @@ package de.edgelord.saltyengine.displaymanager.display;
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.WindowClosingHooks;
-import de.edgelord.saltyengine.displaymanager.input.DisplayListener;
 
 import java.awt.event.WindowEvent;
 

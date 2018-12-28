@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.displaymanager.input.Input;
+import de.edgelord.saltyengine.input.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;

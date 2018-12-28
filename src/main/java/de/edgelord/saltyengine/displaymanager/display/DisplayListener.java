@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.displaymanager.input;
+package de.edgelord.saltyengine.displaymanager.display;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;

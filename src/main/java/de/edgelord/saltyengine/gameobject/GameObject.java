@@ -31,7 +31,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
-import de.edgelord.saltyengine.displaymanager.input.Input;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;

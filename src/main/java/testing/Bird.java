@@ -16,13 +16,13 @@
 
 package testing;
 
-import de.edgelord.saltyengine.components.rendering.AnimationRender;
+import de.edgelord.saltyengine.components.animation.AnimationRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.displaymanager.input.Input;
+import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.Directions;
