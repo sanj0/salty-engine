@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.emitter.particles;
+package de.edgelord.saltyengine.emitter.prc;
 
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.emitter.ParticleRenderContext;
