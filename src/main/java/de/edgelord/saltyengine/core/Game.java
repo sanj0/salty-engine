@@ -16,11 +16,11 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.camera.Camera;
-import de.edgelord.saltyengine.display.DisplayManager;
-import de.edgelord.saltyengine.display.DisplayRatio;
-import de.edgelord.saltyengine.display.SplashWindow;
-import de.edgelord.saltyengine.graphics.GFXController;
+import de.edgelord.saltyengine.core.camera.Camera;
+import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
+import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
+import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
+import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -118,11 +118,11 @@ public class Game {
     }
 
     /**
-     * Starts the game with the given {@link de.edgelord.saltyengine.display.SplashWindow.Splash} before and running
+     * Starts the game with the given {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} before and running
      * with the maximum fps.
      * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
      *
-     * @param splash the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed before the game
+     * @param splash the {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} to be displayed before the game
      */
     public static void start(SplashWindow.Splash splash) {
 
@@ -130,11 +130,11 @@ public class Game {
     }
 
     /**
-     * Starts the game with the given fps and the given {@link de.edgelord.saltyengine.display.SplashWindow.Splash}.
+     * Starts the game with the given fps and the given {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash}.
      * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
      *
      * @param fixedFPS the fps with which the game should run
-     * @param splash   the {@link de.edgelord.saltyengine.display.SplashWindow.Splash} to be displayed when the game starts
+     * @param splash   the {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} to be displayed when the game starts
      */
     public static void start(long fixedFPS, SplashWindow.Splash splash) {
 
@@ -142,7 +142,7 @@ public class Game {
     }
 
     /**
-     * Starts the game with the default {@link de.edgelord.saltyengine.display.SplashWindow.Splash} and as much fps as
+     * Starts the game with the default {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} and as much fps as
      * possible.
      * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
      */
@@ -152,7 +152,7 @@ public class Game {
     }
 
     /**
-     * Start the game with the default {@link de.edgelord.saltyengine.display.SplashWindow.Splash} and the given
+     * Start the game with the default {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} and the given
      * fps.
      * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
      *

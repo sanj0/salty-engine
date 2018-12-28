@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.display;
+package de.edgelord.saltyengine.displaymanager.display;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
-import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.displaymanager.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.event.KeyEvent;

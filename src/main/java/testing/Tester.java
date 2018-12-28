@@ -19,7 +19,7 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioSystem;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
-import de.edgelord.saltyengine.display.SplashWindow;
+import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;

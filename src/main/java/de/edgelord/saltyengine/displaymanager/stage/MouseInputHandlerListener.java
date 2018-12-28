@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.stage;
+package de.edgelord.saltyengine.displaymanager.stage;
 
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 

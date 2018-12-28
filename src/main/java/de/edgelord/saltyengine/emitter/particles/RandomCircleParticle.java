@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.emitter.Particle;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
 /**

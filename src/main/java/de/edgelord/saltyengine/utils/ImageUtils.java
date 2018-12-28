@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.geom.SaltyShape;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;

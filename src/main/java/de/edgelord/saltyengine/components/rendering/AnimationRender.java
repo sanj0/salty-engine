@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 public class AnimationRender extends RenderComponent {
 

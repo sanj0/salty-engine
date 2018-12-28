@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.graphics;
+package de.edgelord.saltyengine.core.graphics;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;

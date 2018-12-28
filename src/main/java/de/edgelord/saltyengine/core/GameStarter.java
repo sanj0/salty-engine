@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.display.SplashWindow;
+import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 
 import javax.swing.*;
 

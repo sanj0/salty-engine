@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.stage;
+package de.edgelord.saltyengine.displaymanager.stage;
 
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
-import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.displaymanager.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.event.MouseEvent;

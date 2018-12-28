@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.display;
+package de.edgelord.saltyengine.displaymanager.display;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
-import de.edgelord.saltyengine.stage.Stage;
+import de.edgelord.saltyengine.displaymanager.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;

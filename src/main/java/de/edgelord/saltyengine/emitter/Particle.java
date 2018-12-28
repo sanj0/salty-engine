@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.emitter;
 
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**

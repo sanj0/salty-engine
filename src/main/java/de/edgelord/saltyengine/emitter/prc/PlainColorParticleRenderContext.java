@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.emitter.prc;
 
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.emitter.ParticleRenderContext;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 import java.awt.*;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.display;
+package de.edgelord.saltyengine.displaymanager.display;
 
 import javax.swing.*;
 

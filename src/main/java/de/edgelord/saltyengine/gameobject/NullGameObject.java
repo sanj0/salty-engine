@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;

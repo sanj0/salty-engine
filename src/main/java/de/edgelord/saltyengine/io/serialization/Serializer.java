@@ -36,7 +36,7 @@ public class Serializer {
 
     /**
      * The name of the file this process should be saving the data to when the display is closing (only works when using
-     * {@link de.edgelord.saltyengine.display.DisplayManager} as the {@link de.edgelord.saltyengine.core.Host}, which is default).
+     * {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager} as the {@link de.edgelord.saltyengine.core.Host}, which is default).
      * This is to be relative and without any file extensions.
      */
     private static String saveFileName = "save0";

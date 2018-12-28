@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.core.interfaces;
 
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 import java.awt.*;
 

@@ -27,14 +27,14 @@ import java.awt.image.ImageObserver;
 
 /**
  * This is the class to implement for the host of a game.
- * The default host is {@link de.edgelord.saltyengine.display.DisplayManager}
+ * The default host is {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager}
  * <p>
  * Every host has to be repaintable, has to provide centre position for better placing of
  * objects inside the game, it has to provide its dimensions, has to be creatable and has to implement {@link #setBackgroundColor(Color)}
  * <p>
  * Apart from that, it can be literally everything. A window, a panel, an applet...
  * <p>
- * A host should also draw the content of {@link Engine}, an example: {@link de.edgelord.saltyengine.stage.Stage#paint(Graphics)}
+ * A host should also draw the content of {@link Engine}, an example: {@link de.edgelord.saltyengine.displaymanager.stage.Stage#paint(Graphics)}
  */
 public abstract class Host implements Repaintable, CentrePositionProvider, CurrentDimensionsProvider, Creatable {
 

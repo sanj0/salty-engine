@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.SaltySystem;

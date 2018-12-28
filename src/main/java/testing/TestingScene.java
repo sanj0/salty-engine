@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
-import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.displaymanager.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.InnerResource;
