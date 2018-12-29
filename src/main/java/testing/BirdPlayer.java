@@ -17,7 +17,7 @@
 package testing;
 
 import de.edgelord.saltyengine.components.FixedRate;
-import de.edgelord.saltyengine.components.animation.BasicGameObjectAnimation;
+import de.edgelord.saltyengine.components.animation.LinearTransformAnimations;
 import de.edgelord.saltyengine.components.animation.AnimationRender;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -42,10 +42,10 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     private final float speed = 2500f;
 
-    private BasicGameObjectAnimation keyFrameAnimationX = new BasicGameObjectAnimation(this, "mySuperAnimationX", BasicGameObjectAnimation.Control.X_POS);
-    private BasicGameObjectAnimation keyFrameAnimationRotation = new BasicGameObjectAnimation(this, "mySuperAnimationRotation", BasicGameObjectAnimation.Control.ROTATION);
-    private BasicGameObjectAnimation keyFrameAnimationWidth = new BasicGameObjectAnimation(this, "mySuperAnimationWidth", BasicGameObjectAnimation.Control.WIDTH);
-    private BasicGameObjectAnimation keyFrameAnimationHeight = new BasicGameObjectAnimation(this, "mySuperAnimationHeight", BasicGameObjectAnimation.Control.HEIGHT);
+    private LinearTransformAnimations keyFrameAnimationX = new LinearTransformAnimations(this, "mySuperAnimationX", LinearTransformAnimations.Control.X_POS);
+    private LinearTransformAnimations keyFrameAnimationRotation = new LinearTransformAnimations(this, "mySuperAnimationRotation", LinearTransformAnimations.Control.ROTATION);
+    private LinearTransformAnimations keyFrameAnimationWidth = new LinearTransformAnimations(this, "mySuperAnimationWidth", LinearTransformAnimations.Control.WIDTH);
+    private LinearTransformAnimations keyFrameAnimationHeight = new LinearTransformAnimations(this, "mySuperAnimationHeight", LinearTransformAnimations.Control.HEIGHT);
 
     private AnimationRender animationRender;
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
@@ -73,20 +73,20 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
-        keyFrameAnimationX.addKeyFrame(3000, 0);
-        keyFrameAnimationX.addKeyFrame(9000, 700);
-        keyFrameAnimationX.addKeyFrame(10000, 1000);
+        keyFrameAnimationX.addKeyframe(3000, 0);
+        keyFrameAnimationX.addKeyframe(9000, 700);
+        keyFrameAnimationX.addKeyframe(10000, 1000);
 
-        keyFrameAnimationRotation.addKeyFrame(1500, 0);
-        keyFrameAnimationRotation.addKeyFrame(5000, 360);
-        keyFrameAnimationRotation.addKeyFrame(7500, 180);
-        keyFrameAnimationRotation.addKeyFrame(9000, 0);
+        keyFrameAnimationRotation.addKeyframe(1500, 0);
+        keyFrameAnimationRotation.addKeyframe(5000, 360);
+        keyFrameAnimationRotation.addKeyframe(7500, 180);
+        keyFrameAnimationRotation.addKeyframe(9000, 0);
 
-        keyFrameAnimationWidth.addKeyFrame(1000, 0);
-        keyFrameAnimationWidth.addKeyFrame(5000, 150);
+        keyFrameAnimationWidth.addKeyframe(1000, 0);
+        keyFrameAnimationWidth.addKeyframe(5000, 150);
 
-        keyFrameAnimationHeight.addKeyFrame(1000, 0);
-        keyFrameAnimationHeight.addKeyFrame(5000, 101);
+        keyFrameAnimationHeight.addKeyframe(1000, 0);
+        keyFrameAnimationHeight.addKeyframe(5000, 101);
 
 
         addComponent(keyFrameAnimationX);
