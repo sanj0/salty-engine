@@ -22,16 +22,25 @@ import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
+/**
+ * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link Animation}.
+ * After each {@link #ticksPerFrame} amount of fixed ticks, the next frame of the animation will be drawn.
+ */
 public class AnimationRender extends RenderComponent {
 
-    // The Animation which should be drawn
+    /**
+     * The Animation which should be drawn
+     */
     private Animation animation = null;
 
-    // The number of fixed ticks (default would be something like 1 milli; set i the Engine constructor)
-    // after which the next frame should be drawn
+    /**
+     * The number of fixed ticks after which the next frame should be drawn
+     */
     private int ticksPerFrame = 75;
 
-    // The current number of fixed ticks; when it reaches #ticksPerFrame it will be reset to 0 again
+    /**
+    * The current number of fixed ticks; when it reaches #ticksPerFrame it will be reset to 0 again
+    */
     private int ticks = 0;
 
     /**
@@ -49,7 +58,7 @@ public class AnimationRender extends RenderComponent {
     /**
      * A constructor with all necessary parameters
      *
-     * @param parent        the parent of the Component, so where to take e.g. the Coordinates info from
+     * @param parent        the parent of the Component
      * @param name          the id-name of this Component
      * @param animation     the animation that should be rendered
      * @param ticksPerFrame after how many fixed ticks the next frame of the animation should be triggered
@@ -63,7 +72,7 @@ public class AnimationRender extends RenderComponent {
     /**
      * Draws the current frame of the animation
      *
-     * @param saltyGraphics the SaltyGraphics to which the component should DRAW
+     * @param saltyGraphics the SaltyGraphics to which the component should draw
      * @see #onFixedTick()
      * @see #animation
      * @see de.edgelord.saltyengine.core.Component
@@ -79,8 +88,8 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * On every fixed tick, #ticks is incremented; when it reaches #ticksPerFrame,
-     * the next frame of #animation gets triggered and ticks will be reset to 0
+     * On every fixed tick, {@link #ticks} is incremented; when it reaches {@link #ticksPerFrame},
+     * the next frame of {@link #animation} is triggered and ticks will be reset to 0
      */
     @Override
     public void onFixedTick() {
@@ -96,19 +105,34 @@ public class AnimationRender extends RenderComponent {
         }
     }
 
+    /**
+     * @return the animation that this component renders.
+     */
     public Animation getAnimation() {
         return animation;
     }
 
+    /**
+     * Sets the animation to be rendered.
+     * @param animation the new animation
+     */
     public void setAnimation(Animation animation) {
         this.animation = animation;
     }
 
+    /**
+     * @return the fixed ticks per frame of the animation.
+     */
     public int getTicksPerFrame() {
         return ticksPerFrame;
     }
 
+    /**
+     * Sets how many fixed ticks should last until the next frame of the animation.
+     * @param ticksPerFrame the new value
+     */
     public void setTicksPerFrame(int ticksPerFrame) {
         this.ticksPerFrame = ticksPerFrame;
+        ticks = 0;
     }
 }
