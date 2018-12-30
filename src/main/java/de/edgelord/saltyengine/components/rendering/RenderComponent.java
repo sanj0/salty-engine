@@ -18,8 +18,8 @@ package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 public abstract class RenderComponent extends Component {
 

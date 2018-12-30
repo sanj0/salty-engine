@@ -17,14 +17,14 @@
 package testing;
 
 import de.edgelord.saltyengine.components.FixedRate;
-import de.edgelord.saltyengine.components.animation.LinearTransformAnimations;
 import de.edgelord.saltyengine.components.animation.AnimationRender;
+import de.edgelord.saltyengine.components.animation.LinearTransformAnimations;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
@@ -120,25 +120,25 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         if (Input.inputUp) {
             if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
+                Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputDown) {
             if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
+                Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputRight) {
             if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
+                Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputLeft) {
             if (soundTiming.now()) {
-                Tester.getAudioSystem().play("bird_flap");
+                Tester.getAudioPlayer().play("bird_flap");
             }
         }
     }

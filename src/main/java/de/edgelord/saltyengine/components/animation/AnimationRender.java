@@ -17,10 +17,10 @@
 package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.components.rendering.RenderComponent;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.Animation;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 /**
  * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link Animation}.
@@ -39,8 +39,8 @@ public class AnimationRender extends RenderComponent {
     private int ticksPerFrame = 75;
 
     /**
-    * The current number of fixed ticks; when it reaches #ticksPerFrame it will be reset to 0 again
-    */
+     * The current number of fixed ticks; when it reaches #ticksPerFrame it will be reset to 0 again
+     */
     private int ticks = 0;
 
     /**
@@ -114,6 +114,7 @@ public class AnimationRender extends RenderComponent {
 
     /**
      * Sets the animation to be rendered.
+     *
      * @param animation the new animation
      */
     public void setAnimation(Animation animation) {
@@ -129,6 +130,7 @@ public class AnimationRender extends RenderComponent {
 
     /**
      * Sets how many fixed ticks should last until the next frame of the animation.
+     *
      * @param ticksPerFrame the new value
      */
     public void setTicksPerFrame(int ticksPerFrame) {

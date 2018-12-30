@@ -18,10 +18,10 @@ package de.edgelord.saltyengine.emitter;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.lang.reflect.InvocationTargetException;

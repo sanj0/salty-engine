@@ -23,19 +23,17 @@ import de.edgelord.saltyengine.resource.OuterResource;
 import java.util.LinkedList;
 
 /**
- * <code>AudioPlayer</code> is basically a collection of <code>Audio</code>.
- * It has evey necessary method of <code>Audio</code> implemented in a way that it searches for the id-name
- * and then does the specific action, e.g. playing it.
+ * An interface for handling multiple {@link Audio}.
  */
 public class AudioPlayer {
 
-    // The list of Audio which correspondents to this AudioPlayer
+    /**
+     * The list of loaded {@link Audio}.
+     */
     private LinkedList<Audio> audios = new LinkedList<>();
 
     /**
-     * The <code>AudioFactory</code> which is used for getting the actual <code>Clip</code>
-     * from whether within the .jar (<code>InnerResource</code>) or from a directory in the users home
-     * folder (macOs: <code>/Users/currentUser</code>, linux: <code>/home/currentUser</code>)
+     * The {@link AudioFactory} which is used for loading the audio.
      *
      * @see InnerResource
      * @see OuterResource
@@ -176,10 +174,20 @@ public class AudioPlayer {
         }
     }
 
+    /**
+     * @return the {@link #masterVolume}
+     */
     public float getMasterVolume() {
         return masterVolume;
     }
 
+    /**
+     * A private method that multiplies the volume of the given {@link Audio} with the given factor
+     * and  makes sure that it won't be greater than 2f nor smaller than 0f.
+     *
+     * @param audio  the {@link Audio} whose volume is to be multiplied
+     * @param factor the factor by which the volume is to be multiplied.
+     */
     private void multiplyAudioVolume(Audio audio, float factor) {
         float newVolume = audio.getVolume() * factor;
 

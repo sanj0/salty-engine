@@ -20,15 +20,14 @@ import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.animation.Keyframe;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 /**
  * Animates the {@link de.edgelord.saltyengine.transform.Transform} of its {@link #getParent()} using a {@link LinearKeyframeAnimation}.
  * That includes rotation, width, height, x and y position.
- *
+ * <p>
  * Usage:
  *
  * <pre>
@@ -172,6 +171,7 @@ public class LinearTransformAnimations extends Component {
 
     /**
      * Adds the given {@link Keyframe} to the {@link #animation} by using {@link LinearKeyframeAnimation#add(Keyframe)}.
+     *
      * @param keyframe the keyframe to be added
      */
     public void addKeyframe(Keyframe keyframe) {
@@ -182,7 +182,7 @@ public class LinearTransformAnimations extends Component {
      * Adds anew {@link Keyframe} with the given timing and value to the {@link #animation}.
      *
      * @param timing the timing of the new keyframe
-     * @param value the value of the keyframe
+     * @param value  the value of the keyframe
      */
     public void addKeyframe(int timing, float value) {
         animation.add(timing, value);
@@ -205,10 +205,18 @@ public class LinearTransformAnimations extends Component {
         ROTATION
     }
 
+    /**
+     * @return the value of {@link #loop}.
+     */
     public boolean isLoop() {
         return loop;
     }
 
+    /**
+     * Sets the value of {@link #loop} to the given boolean.
+     *
+     * @param loop the new value for {@link #loop}.
+     */
     public void setLoop(boolean loop) {
         this.loop = loop;
     }

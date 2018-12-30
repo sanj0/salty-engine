@@ -17,10 +17,10 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.core.camera.Camera;
+import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
 import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
-import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;

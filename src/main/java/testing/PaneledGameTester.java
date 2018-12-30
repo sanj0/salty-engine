@@ -18,8 +18,8 @@ package testing;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.PaneledGame;
-import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.scene.SceneManager;
 
 import javax.swing.*;

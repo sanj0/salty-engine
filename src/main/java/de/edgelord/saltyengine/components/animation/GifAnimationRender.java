@@ -18,9 +18,9 @@ package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.components.rendering.RenderComponent;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.resource.Resource;
 
 import java.awt.*;

@@ -16,8 +16,8 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
-import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 import java.util.Random;
 

@@ -18,8 +18,8 @@ package de.edgelord.saltyengine.core.stereotypes;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.util.List;

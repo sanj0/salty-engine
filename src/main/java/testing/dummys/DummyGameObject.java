@@ -17,8 +17,8 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 public class DummyGameObject extends GameObject {

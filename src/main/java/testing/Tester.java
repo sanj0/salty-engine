@@ -16,7 +16,7 @@
 
 package testing;
 
-import de.edgelord.saltyengine.audio.AudioSystem;
+import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
@@ -30,7 +30,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Tester extends Game {
 
-    private static AudioSystem audioSystem;
+    private static AudioPlayer audioPlayer;
 
     private static void initGame() {
 
@@ -38,14 +38,14 @@ public class Tester extends Game {
 
         System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 
-        Tester.audioSystem = new AudioSystem(new AudioFactory(new InnerResource()));
+        Tester.audioPlayer = new AudioPlayer(new AudioFactory(new InnerResource()));
 
-        Tester.audioSystem.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
-        Tester.audioSystem.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
+        Tester.audioPlayer.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
+        Tester.audioPlayer.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
-        Tester.audioSystem.loop("joy_sticky");
+        Tester.audioPlayer.loop("joy_sticky");
 
-        audioSystem.setClipVolume("joy_sticky", 0.75f);
+        audioPlayer.setClipVolume("joy_sticky", 0.75f);
 
         getHost().setBackgroundColor(Color.lightGray);
     }
@@ -68,7 +68,7 @@ public class Tester extends Game {
         // Game.getDefaultGFXController().startAll();
     }
 
-    public static AudioSystem getAudioSystem() {
-        return audioSystem;
+    public static AudioPlayer getAudioPlayer() {
+        return audioPlayer;
     }
 }

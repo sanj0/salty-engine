@@ -21,50 +21,77 @@ import javax.sound.sampled.FloatControl;
 
 /**
  * This class represents a audio resource.
- * It contains a Clip which is the actual audio, as well as a name, which is kind of an id
+ * It contains a {@link #clip} which is the actual audio, as well as a {@link #name}.
  *
- * @see AudioSystem
  * @see AudioPlayer
  * @see Clip
  */
 public class Audio {
 
-    // The id-like name of the audio (can be anything, but normally it would be like a variable name)
+    /**
+     * The id-like name of this audio
+     */
     private String name;
 
-    // The actual audio
+    /**
+     * The actual audio resource
+     */
     private Clip clip;
 
-    // The volume of the clip
+    /**
+     * The volume of the clip, from 0f to 2f.
+     */
     private float volume = 1f;
 
+    /**
+     * The only constructor taking in all necessary parameters.
+     * As a user of this library, you normaly never use this, use {@link AudioPlayer#loadNewAudio(String, String)} instead.
+     *
+     * @param name the {@link #name} of this audio
+     * @param clip the {@link #clip}
+     */
     public Audio(final String name, final Clip clip) {
         this.name = name;
         this.clip = clip;
     }
 
+    /**
+     * @return the {@link #name} of this audio.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the {@link #name} of this audio.
+     *
+     * @param name the new {@link #name}.
+     */
     public void setName(final String name) {
         this.name = name;
     }
 
+    /**
+     * @return the {@link #clip}.
+     */
     public Clip getClip() {
         return clip;
     }
 
+    /**
+     * Sets the {@link #clip} of this audio.
+     *
+     * @param clip the new audio resource.
+     */
     public void setClip(final Clip clip) {
         this.clip = clip;
     }
 
     /**
-     * Sets the position within the clip RIGHT to the beginning and plays it one time
+     * Sets the position within the clip right to the beginning and plays it one time.
      *
      * @see Clip#start()
      * @see AudioPlayer
-     * @see AudioSystem
      */
     public void play() {
         clip.setFramePosition(0);
@@ -72,24 +99,22 @@ public class Audio {
     }
 
     /**
-     * Once called, this method will play the clip from where ever it is at the moment and won't stop until
-     * <code>stop()</code> is called
+     * Once called, this method will loop the clip from where ever it is at the moment and won't stop until
+     * <code>stop()</code> is called.
      *
      * @see #stop()
      * @see Clip#loop(int)
      * @see AudioPlayer
-     * @see AudioSystem
      */
     public void loop() {
         clip.loop(clip.LOOP_CONTINUOUSLY);
     }
 
     /**
-     * Stops the clip
+     * Stops the clip.
      *
      * @see Clip#stop()
      * @see AudioPlayer
-     * @see AudioSystem
      */
     public void stop() {
         clip.stop();
@@ -101,6 +126,11 @@ public class Audio {
      * @param volume the new volume of this audio
      */
     public void setVolume(float volume) {
+
+        if (volume < 0f || volume > 2f) {
+            throw new IllegalArgumentException("volume for a clip can't be greater than 2f nor smaller than 0f!");
+        }
+
         FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(20f * (float) Math.log10(volume));
         this.volume = volume;
