@@ -80,10 +80,8 @@ public class AnimationRender extends RenderComponent {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
-        if (isEnabled()) {
-            if (animation != null) {
-                animation.drawCurrentFrame(saltyGraphics);
-            }
+        if (animation != null) {
+            animation.drawCurrentFrame(saltyGraphics);
         }
     }
 
@@ -93,15 +91,13 @@ public class AnimationRender extends RenderComponent {
      */
     @Override
     public void onFixedTick() {
-        if (isEnabled()) {
-            if (ticks == ticksPerFrame) {
-                if (animation != null) {
-                    animation.nextFrame();
-                    ticks = 0;
-                }
-            } else if (animation != null) {
-                ticks++;
+        if (ticks == ticksPerFrame) {
+            if (animation != null) {
+                animation.nextFrame();
+                ticks = 0;
             }
+        } else if (animation != null) {
+            ticks++;
         }
     }
 

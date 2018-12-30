@@ -27,13 +27,18 @@ import java.awt.*;
 import java.net.MalformedURLException;
 
 /**
- * Used for easily rendering an animated gif
+ * Used for easily rendering an animated gif.
  */
 public class GifAnimationRender extends RenderComponent {
 
+    /**
+     * The gif image
+     */
     private Image gif;
 
     /**
+     * The only constructor taking in all the necessary parameters.
+     *
      * @param parent      the parent (or rather container) of this component.
      * @param name        the id-name of this component
      * @param path        the path of the gif
@@ -47,6 +52,11 @@ public class GifAnimationRender extends RenderComponent {
         toolkit.prepareImage(gif, -1, -1, Game.getHost().getImageObserver());
     }
 
+    /**
+     * Draws the animated gif with the file-specified frame rate at its parent's {@link de.edgelord.saltyengine.transform.Transform}.
+     *
+     * @param saltyGraphics the {@link SaltyGraphics} to render to.
+     */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         saltyGraphics.getGraphics2D().drawImage(gif, Math.round(getParent().getX()), Math.round(getParent().getY()), Math.round(getParent().getWidth()), Math.round(getParent().getHeight()), Game.getHost().getImageObserver());

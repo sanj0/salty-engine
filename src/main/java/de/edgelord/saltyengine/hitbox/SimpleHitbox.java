@@ -44,7 +44,11 @@ public class SimpleHitbox implements Hitbox {
     @Override
     public boolean collides(final GameObject other) {
 
-        return transform.intersects(other.getHitbox().getTransform());
+        if (other.getHitbox() != null) {
+            return transform.intersects(other.getHitbox().getTransform());
+        } else {
+            return false;
+        }
     }
 
     @Override
