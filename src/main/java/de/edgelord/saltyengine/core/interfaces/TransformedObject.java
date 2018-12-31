@@ -97,19 +97,16 @@ public interface TransformedObject {
     }
 
     /**
-     * **NOT YET SUPPORTED**
      * Moves the object by the give amount in the direction it is facing according to the {@link #getRotation()}
      *
      * @param delta the distance for the movement
      */
     default void moveToFacedDirection(float delta) {
-        return;
-        /*
-        Vector2f cartesian = getCartesianVector();
 
-        setX(getX() + cartesian.getX() * delta);
-        setY(getY() + cartesian.getY() * delta);
-        */
+        float radians = (float) Math.toRadians(getRotationDegrees());
+
+        basicMove(delta * (float) Math.cos(radians), Directions.BasicDirection.x);
+        basicMove(delta * (float) Math.sin(radians), Directions.BasicDirection.y);
     }
 
     /**
