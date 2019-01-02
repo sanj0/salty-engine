@@ -71,9 +71,7 @@ public class Bird extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
-        // getTransform().rotateToPoint(Game.cursorPosition);
-
-        moveToFacedDirection(.2f);
+        //getTransform().rotateToPoint(Input.cursorPosition);
 
         if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);

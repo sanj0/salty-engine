@@ -62,6 +62,18 @@ public class Rotation {
         float arc = (float) Math.atan2(point.getY() / centre.getY(), point.getX() / centre.getX());
         rotationDegrees = (float) toDegrees(arc);
         */
+
+        //System.out.println(Math.toDegrees(Math.atan2(getCentre().getY() - point.getY(), getCentre().getX() - point.getX())));
+
+        /*
+        double degrees = Math.toDegrees(Math.atan2(getCentre().getX() - point.getX(), getCentre().getY() - point.getY()));
+
+        if (degrees < 0) {
+            degrees += 360;
+        }
+
+        setRotationDegrees((float) degrees);
+        */
     }
 
     public void rotateToPoint(float x, float y) {

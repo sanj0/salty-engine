@@ -122,6 +122,30 @@ public class GradientLight extends Light {
         updateLightImage();
     }
 
+    @Override
+    public void setBrightness(float brightness) {
+        super.setBrightness(brightness);
+        updateLightImage();
+    }
+
+    @Override
+    public void setIntensity(float intensity) {
+        super.setIntensity(intensity);
+        updateLightImage();
+    }
+
+    @Override
+    public void setColor(Color color) {
+        super.setColor(color);
+        updateLightImage();
+    }
+
+    @Override
+    public void setColorAlpha(int colorAlpha) {
+        super.setColorAlpha(colorAlpha);
+        updateLightImage();
+    }
+
     public void updateLightImage() {
         light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
         }, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
