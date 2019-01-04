@@ -29,7 +29,7 @@ import java.awt.*;
 /**
  * This {@link GFXComponent} for the whole {@link Scene} lays the {@link Color} {@link #overlayColor} with the alpha value
  * {@link #alpha} onto the scene by assigning a {@link DrawingRoutine} to the
- * current scene with the {@link DrawingRoutine#drawingPosition}
+ * current scene with the {@link DrawingRoutine#getDrawingPosition()}
  * {@link DrawingRoutine.DrawingPosition#AFTER_GAMEOBJECTS} to ensure that the drawn color is above all
  * {@link de.edgelord.saltyengine.gameobject.GameObject}s.
  * When no longer needed, you should call {@link #endGFX()} to make sure that the DrawingRoutine is no longer in the scene.

@@ -353,7 +353,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
      *
      * @param velocity  the velocity to be set to the specific force
-     * @param direction the directon of the default force to be manipulated.
+     * @param direction the direction of the default force to be manipulated.
      */
     public void accelerateTo(float velocity, Directions.Direction direction) {
 

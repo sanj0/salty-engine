@@ -15,7 +15,7 @@
  */
 
 /**
- * All about Audio, with an {@link de.edgelord.saltyengine.audio.Audio} base-class, an {@link de.edgelord.saltyengine.audio.AudioPlayer}
- * and at the top level, an {@link de.edgelord.saltyengine.audio.AudioSystem}
+ * All about Audio, with an {@link de.edgelord.saltyengine.audio.Audio} base-class and an {@link de.edgelord.saltyengine.audio.AudioPlayer}
+ * as the interface for the library user.
  */
 package de.edgelord.saltyengine.audio;

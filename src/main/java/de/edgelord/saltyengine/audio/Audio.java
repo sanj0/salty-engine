@@ -45,7 +45,7 @@ public class Audio {
 
     /**
      * The only constructor taking in all necessary parameters.
-     * As a user of this library, you normaly never use this, use {@link AudioPlayer#loadNewAudio(String, String)} instead.
+     * As a user of this library, you normally never use this, use {@link AudioPlayer#loadNewAudio(String, String)} instead.
      *
      * @param name the {@link #name} of this audio
      * @param clip the {@link #clip}

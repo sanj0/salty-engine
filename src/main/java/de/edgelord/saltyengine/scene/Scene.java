@@ -41,7 +41,7 @@ import java.util.List;
  * and the {@link UISystem} {@link #ui}
  * as well as a {@link LightSystem} stored in {@link #lightSystem}
  * <p>
- * The current scene is stored in {@link SceneManager#currentScene}.
+ * The current scene is stored in {@link SceneManager#getCurrentScene()}.
  * For more information, please take a look at the documentation of that class.
  * <p>
  * IMPORTANT: Do nothing with GFX in any implementations of this class. If you do so, these GFX will be applied to the

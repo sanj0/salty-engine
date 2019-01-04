@@ -156,7 +156,7 @@ public class Serializer {
     }
 
     /**
-     * Deserializes all {@link Serializable}s within {@link #consumer} from a file with the given name relative to a
+     * Deserialize all {@link Serializable}s within {@link #consumer} from a file with the given name relative to a
      * hidden {@link OuterResource}.
      * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
      *

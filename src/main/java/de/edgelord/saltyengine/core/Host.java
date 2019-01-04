@@ -56,7 +56,7 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
     /**
      * Returns an {@link ImageObserver} the can be used to e.g. render animated gifs.
      *
-     * @return a usabel {@link ImageObserver}
+     * @return a usable {@link ImageObserver}
      */
     public abstract ImageObserver getImageObserver();
 

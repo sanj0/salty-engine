@@ -95,7 +95,7 @@ public class TestingScene extends Scene {
         //textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
-        //ngetUI().addElement(textBox);
+        //getUI().addElement(textBox);
     }
 
     private void initPhysicsTest() {

@@ -29,7 +29,7 @@ import de.edgelord.saltyengine.transform.Transform;
  */
 public class LockToBounds extends Component<GameObject> {
     /**
-     * The rectangular bounds to which the {@link #parent} is locked
+     * The rectangular bounds to which the {@link #getParent()} is locked
      */
     private Transform bounds;
 

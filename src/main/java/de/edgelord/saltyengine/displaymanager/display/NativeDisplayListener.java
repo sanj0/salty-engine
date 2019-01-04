@@ -27,7 +27,7 @@ import java.awt.event.WindowEvent;
  * <p>
  * - when the window is closing:
  * <p>
- * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#engine}
+ * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#getEngine()}
  * <p>
  * - run the shutdown hooks by calling {@link WindowClosingHooks#runHooks()}
  * <p>

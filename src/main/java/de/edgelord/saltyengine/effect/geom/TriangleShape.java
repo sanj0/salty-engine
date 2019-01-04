@@ -26,7 +26,7 @@ import de.edgelord.saltyengine.transform.Transform;
  * <p>
  * Instances of this class has to be made directly, you cannot get one with {@link SaltyShape#createShape(EnumShape, Transform, float...)}.
  * <p>
- * Setting values of the transfotm by using methods from {@link de.edgelord.saltyengine.core.interfaces.TransformedObject} won't change the triangle.
+ * Setting values of the transform by using methods from {@link de.edgelord.saltyengine.core.interfaces.TransformedObject} won't change the triangle.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class TriangleShape extends SaltyShape {
@@ -47,10 +47,10 @@ public class TriangleShape extends SaltyShape {
 
     private Transform getTriangleTransform() {
 
-        float x = 0;
-        float y = 0;
-        float maxX = 0;
-        float maxY = 0;
+        float x;
+        float y;
+        float maxX;
+        float maxY;
 
         x = point1.getX();
         x = Math.min(point2.getX(), x);

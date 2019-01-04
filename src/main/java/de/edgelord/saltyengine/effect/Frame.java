@@ -23,7 +23,7 @@ import java.awt.image.BufferedImage;
 
 public class Frame implements Cosmetic {
 
-    private BufferedImage image = null;
+    private BufferedImage image;
     //private AdvancedCosmetics advancedCosmetics = null;
 
     public Frame(BufferedImage image) {
