@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.light.Light;
@@ -33,6 +34,7 @@ import de.edgelord.saltyengine.utils.TransformRelationUtil;
  * and
  * {@code new PointLight(parent.getTransform())}
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class LightComponent extends GFXComponent {
 
     private TransformRelationMode relationToParent;

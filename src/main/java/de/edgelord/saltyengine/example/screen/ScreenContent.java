@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.image.BufferedImage;
@@ -29,7 +29,7 @@ public class ScreenContent {
 
     private BufferedImage bgImage = SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/bg.png");
 
-    private Vector2f origin;
+    private Coordinates2f origin;
 
     public ScreenContent(float xOrigin, float yOrigin) {
 
@@ -55,6 +55,6 @@ public class ScreenContent {
     }
 
     private void updateOrigin() {
-        origin = new Vector2f(xOrigin, yOrigin);
+        origin = new Coordinates2f(xOrigin, yOrigin);
     }
 }

@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.components.collider.ColliderComponent;
 import de.edgelord.saltyengine.components.collider.HitboxCollider;
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.CollideAble;
@@ -36,7 +37,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static de.edgelord.saltyengine.scene.Scene.concurrentBlock;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class GameObject extends ComponentContainer implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
@@ -88,7 +90,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(tag);
 
-        transform = new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height));
+        transform = new Transform(new Coordinates2f(xPos, yPos), new Dimensions(width, height));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
@@ -108,11 +110,11 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         this(coordinates.getX(), coordinates.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
-    public GameObject(Vector2f position, Dimensions dimensions, String tag) {
+    public GameObject(Coordinates2f position, Dimensions dimensions, String tag) {
         this(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
-    public GameObject(Vector2f position, float width, float height, String tag) {
+    public GameObject(Coordinates2f position, float width, float height, String tag) {
         this(position.getX(), position.getY(), width, height, tag);
     }
 

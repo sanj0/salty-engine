@@ -23,9 +23,9 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.geom.SaltyShape;
 import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -98,7 +98,7 @@ public class ImageUtils {
             int currentPos = Math.round(radius - i);
             int currentSize = i * 2;
             shape.setDimensions(new Dimensions(currentSize, currentSize));
-            shape.setPosition(new Vector2f(currentPos, currentPos));
+            shape.setPosition(new Coordinates2f(currentPos, currentPos));
             shape.draw(new SaltyGraphics(graphics));
         }
 
@@ -192,7 +192,7 @@ public class ImageUtils {
      * @return a new image with the given size containing the given shape in the given color with the given quality
      */
     public static BufferedImage createShapeImage(EnumShape shape, Dimensions size, Color color, RenderingHints renderingHints, float... arcIfRoundRect) {
-        return createShapeImage(SaltyShape.createShape(shape, new Transform(Vector2f.zero(), size), arcIfRoundRect), color, renderingHints);
+        return createShapeImage(SaltyShape.createShape(shape, new Transform(Coordinates2f.zero(), size), arcIfRoundRect), color, renderingHints);
     }
 
     /**

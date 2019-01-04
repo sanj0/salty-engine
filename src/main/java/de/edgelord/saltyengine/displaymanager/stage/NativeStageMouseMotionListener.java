@@ -20,9 +20,9 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -60,8 +60,8 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
             SceneManager.getCurrentScene().getUI().mouseMoved(e);
         }
 
-        Vector2f cursorPos = new Vector2f(e.getX(), e.getY());
-        Vector2f imagePos = container.getImagePosition();
+        Coordinates2f cursorPos = new Coordinates2f(e.getX(), e.getY());
+        Coordinates2f imagePos = container.getImagePosition();
         float currentScale = container.getCurrentScale();
         cursorPos.subtract(imagePos.getX(), imagePos.getY());
         cursorPos.divide(currentScale, currentScale);

@@ -16,8 +16,10 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RoundRectRender extends PrimitivesRenderComponent {
 
     private float arc;

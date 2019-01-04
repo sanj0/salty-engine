@@ -22,19 +22,19 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Animation {
+public class SpritesheetAnimation {
 
     private List<Frame> frames = new LinkedList<>();
     private int currentFrame = 0;
 
     private GameObject parentGameObject;
 
-    public Animation(GameObject parentGameObject) {
+    public SpritesheetAnimation(GameObject parentGameObject) {
 
         this.parentGameObject = parentGameObject;
     }
 
-    public Animation(LinkedList<Frame> frames) {
+    public SpritesheetAnimation(LinkedList<Frame> frames) {
 
         this.frames = frames;
     }

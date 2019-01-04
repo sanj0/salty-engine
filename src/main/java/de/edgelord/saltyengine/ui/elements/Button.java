@@ -16,15 +16,17 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.ui.UIElement;
 import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Button extends UIElement {
 
     private String text;
@@ -34,7 +36,7 @@ public abstract class Button extends UIElement {
     private Color currentBackgroundColor = getBackgroundColor();
     private int arc = 15;
 
-    public Button(String text, Vector2f position, int width, int height) {
+    public Button(String text, Coordinates2f position, int width, int height) {
         super(position, width, height, BUTTON);
 
         this.text = text;
@@ -45,7 +47,7 @@ public abstract class Button extends UIElement {
     }
 
     public Button(String text, float x, float y, int width, int height) {
-        this(text, new Vector2f(x, y), width, height);
+        this(text, new Coordinates2f(x, y), width, height);
     }
 
     @Override

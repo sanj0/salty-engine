@@ -16,11 +16,13 @@
 
 package de.edgelord.saltyengine.hitbox;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class SimpleHitbox implements Hitbox {
 
     private final GameObject parent;
@@ -33,12 +35,12 @@ public class SimpleHitbox implements Hitbox {
         this.offsetX = offsetX;
         this.offsetY = offsetY;
 
-        this.transform = new Transform(new Vector2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
+        this.transform = new Transform(new Coordinates2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
     }
 
     public void recalculate() {
 
-        transform.setPosition(new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
+        transform.setPosition(new Coordinates2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
     }
 
     @Override
@@ -72,11 +74,11 @@ public class SimpleHitbox implements Hitbox {
         this.offsetY = offsetY;
     }
 
-    public Vector2f getPosition() {
+    public Coordinates2f getPosition() {
         return transform.getPosition();
     }
 
-    public void setPosition(final Vector2f position) {
+    public void setPosition(final Coordinates2f position) {
         this.transform.setPosition(position);
     }
 

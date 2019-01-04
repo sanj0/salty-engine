@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.input;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.event.KeyEvent;
@@ -40,7 +40,7 @@ public class Input {
      * Please use this for every input that has to do with controls etc etc
      */
     public static Keyboard keyboardInput = new Keyboard();
-    public static Vector2f cursorPosition = new Vector2f(0, 0);
+    public static Coordinates2f cursorPosition = new Coordinates2f(0, 0);
     public static Transform cursor = new Transform(0, 0, 0, 0);
     public static boolean mouseDrags = false;
     public static boolean mouseDown = false;
@@ -96,12 +96,12 @@ public class Input {
         return keyboardInput;
     }
 
-    public static Vector2f getCursorPosition() {
+    public static Coordinates2f getCursorPosition() {
         return cursorPosition;
     }
 
-    public static Vector2f getAbsoluteCursorPosition() {
-        Vector2f cursorPos = new Vector2f(cursorPosition);
+    public static Coordinates2f getAbsoluteCursorPosition() {
+        Coordinates2f cursorPos = new Coordinates2f(cursorPosition);
         cursorPos.add(Game.getCamera().getPosition());
 
         return cursorPos;

@@ -16,20 +16,22 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class DumbPanel extends Container {
 
     private float arc = 15;
 
-    public DumbPanel(Vector2f position, float width, float height) {
+    public DumbPanel(Coordinates2f position, float width, float height) {
         super(position, width, height);
     }
 
@@ -38,7 +40,7 @@ public class DumbPanel extends Container {
     }
 
     public DumbPanel(float x, float y, float width, float height) {
-        this(new Vector2f(x, y), width, height);
+        this(new Coordinates2f(x, y), width, height);
     }
 
     @Override

@@ -16,9 +16,10 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * A triangle around {@link #point1}, {@link #point2} and {@link #point3}.
@@ -27,13 +28,14 @@ import de.edgelord.saltyengine.transform.Vector2f;
  * <p>
  * Setting values of the transfotm by using methods from {@link de.edgelord.saltyengine.core.interfaces.TransformedObject} won't change the triangle.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class TriangleShape extends SaltyShape {
 
-    private Vector2f point1;
-    private Vector2f point2;
-    private Vector2f point3;
+    private Coordinates2f point1;
+    private Coordinates2f point2;
+    private Coordinates2f point3;
 
-    public TriangleShape(Vector2f point1, Vector2f point2, Vector2f point3) {
+    public TriangleShape(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
         super(Transform.zero(), EnumShape.TRIANGLE);
 
         this.point1 = point1;
@@ -69,29 +71,29 @@ public class TriangleShape extends SaltyShape {
         return new Transform(x, y, maxX - x, maxY - y);
     }
 
-    public Vector2f getPoint1() {
+    public Coordinates2f getPoint1() {
         return point1;
     }
 
-    public void setPoint1(Vector2f point1) {
+    public void setPoint1(Coordinates2f point1) {
         this.point1 = point1;
         this.setTransform(getTriangleTransform());
     }
 
-    public Vector2f getPoint2() {
+    public Coordinates2f getPoint2() {
         return point2;
     }
 
-    public void setPoint2(Vector2f point2) {
+    public void setPoint2(Coordinates2f point2) {
         this.point2 = point2;
         this.setTransform(getTriangleTransform());
     }
 
-    public Vector2f getPoint3() {
+    public Coordinates2f getPoint3() {
         return point3;
     }
 
-    public void setPoint3(Vector2f point3) {
+    public void setPoint3(Coordinates2f point3) {
         this.point3 = point3;
         this.setTransform(getTriangleTransform());
     }

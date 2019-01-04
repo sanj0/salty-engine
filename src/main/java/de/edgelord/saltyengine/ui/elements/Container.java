@@ -16,19 +16,21 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Container extends UIElement {
 
     private List<UIElement> childElements = new CopyOnWriteArrayList<>();
 
-    public Container(Vector2f position, float width, float height) {
+    public Container(Coordinates2f position, float width, float height) {
         super(position, width, height, UIElement.CONTAINER);
     }
 
@@ -37,7 +39,7 @@ public abstract class Container extends UIElement {
     }
 
     public Container(float x, float y, float width, float height) {
-        this(new Vector2f(x, y), width, height);
+        this(new Coordinates2f(x, y), width, height);
     }
 
     public void add(UIElement element) {

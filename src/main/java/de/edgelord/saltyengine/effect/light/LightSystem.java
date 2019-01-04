@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
@@ -97,7 +97,7 @@ public class LightSystem implements Drawable {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
         updateLightMap();
-        //saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Vector2f(-250, -250)));
-        saltyGraphics.drawImage(lightMap, Vector2f.zero());
+        //saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Coordinates2f(-250, -250)));
+        saltyGraphics.drawImage(lightMap, Coordinates2f.zero());
     }
 }

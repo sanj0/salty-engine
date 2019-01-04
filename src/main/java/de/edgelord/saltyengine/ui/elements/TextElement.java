@@ -16,12 +16,14 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TextElement extends UIElement {
 
     private String text;
@@ -51,7 +53,7 @@ public abstract class TextElement extends UIElement {
         centered
     }
 
-    public TextElement(String text, Vector2f position, float width, float height, String tag) {
+    public TextElement(String text, Coordinates2f position, float width, float height, String tag) {
         this(text, new Transform(position, new Dimensions(width, height)), tag);
     }
 

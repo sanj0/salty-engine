@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.example.serialization;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToDataConverter;
 import de.edgelord.stdf.reading.ValueToListConverter;
@@ -45,7 +45,7 @@ public class AdvancedSaver implements Serializable {
         counter = ValueToDataConverter.convertToInteger(species, COUNTER_TAG);
 
         List<String> cameraPosition = ValueToListConverter.convertToList(species, CAMERA_POSITION_TAG, ",");
-        Game.getCamera().setPosition(new Vector2f(Float.valueOf(cameraPosition.get(0)), Float.valueOf(cameraPosition.get(1))));
+        Game.getCamera().setPosition(new Coordinates2f(Float.valueOf(cameraPosition.get(0)), Float.valueOf(cameraPosition.get(1))));
 
         System.out.println("This example started " + counter + " times before on this computer!");
         System.out.println(species.getTagValue(REDUNDANT_MESSAGE_TAG));

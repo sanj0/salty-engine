@@ -17,8 +17,8 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 public interface CentrePositionProvider {
 
@@ -47,8 +47,8 @@ public interface CentrePositionProvider {
     float getVerticalCentrePosition(float height);
 
 
-    default Vector2f getCentrePosition(float width, float height) {
-        return new Vector2f(getHorizontalCentrePosition(width), getVerticalCentrePosition(height));
+    default Coordinates2f getCentrePosition(float width, float height) {
+        return new Coordinates2f(getHorizontalCentrePosition(width), getVerticalCentrePosition(height));
     }
 
     default float getHorizontalCentrePosition(GameObject gameObject) {
@@ -67,11 +67,11 @@ public interface CentrePositionProvider {
         return getVerticalCentrePosition(dimensions.getHeight());
     }
 
-    default Vector2f getCentrePosition(GameObject gameObject) {
+    default Coordinates2f getCentrePosition(GameObject gameObject) {
         return getCentrePosition(gameObject.getWidth(), gameObject.getHeight());
     }
 
-    default Vector2f getCentrePosition(Dimensions dimensions) {
+    default Coordinates2f getCentrePosition(Dimensions dimensions) {
         return getCentrePosition(dimensions.getWidth(), dimensions.getHeight());
     }
 }

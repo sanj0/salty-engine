@@ -17,9 +17,9 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class TransformRelationUtil {
         switch (mode) {
 
             case CENTRE:
-                Vector2f centre = superTransform.getCentre();
+                Coordinates2f centre = superTransform.getCentre();
 
                 for (Transform transform : transforms) {
                     transform.positionByCentre(centre);
@@ -65,7 +65,7 @@ public class TransformRelationUtil {
                 float centreX = superTransform.getCentre().getX();
 
                 for (Transform transform : transforms) {
-                    transform.positionByCentre(new Vector2f(centreX, transform.getCentre().getY()));
+                    transform.positionByCentre(new Coordinates2f(centreX, transform.getCentre().getY()));
                 }
 
                 break;
@@ -74,7 +74,7 @@ public class TransformRelationUtil {
                 float centreY = superTransform.getCentre().getY();
 
                 for (Transform transform : transforms) {
-                    transform.positionByCentre(new Vector2f(transform.getCentre().getX(), centreY));
+                    transform.positionByCentre(new Coordinates2f(transform.getCentre().getX(), centreY));
                 }
 
                 break;
@@ -116,7 +116,7 @@ public class TransformRelationUtil {
                 break;
             case TOP_LEFT_CORNER:
 
-                Vector2f topLeftCorner = superTransform.getPosition();
+                Coordinates2f topLeftCorner = superTransform.getPosition();
 
                 for (Transform transform : transforms) {
                     transform.setPosition(topLeftCorner);
@@ -125,7 +125,7 @@ public class TransformRelationUtil {
                 break;
             case TOP_RIGHT_CORNER:
 
-                Vector2f topRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getY());
+                Coordinates2f topRightCorner = new Coordinates2f(superTransform.getMaxX(), superTransform.getY());
 
                 for (Transform transform : transforms) {
                     transform.setX(topRightCorner.getX() - transform.getWidth());
@@ -135,7 +135,7 @@ public class TransformRelationUtil {
                 break;
             case BOTTOM_LEFT_CORNER:
 
-                Vector2f bottomLeftCorner = new Vector2f(superTransform.getX(), superTransform.getMaxY());
+                Coordinates2f bottomLeftCorner = new Coordinates2f(superTransform.getX(), superTransform.getMaxY());
 
                 for (Transform transform : transforms) {
                     transform.setX(bottomLeftCorner.getX());
@@ -145,7 +145,7 @@ public class TransformRelationUtil {
                 break;
             case BOTTOM_RIGHT_CORNER:
 
-                Vector2f bottomRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getMaxY());
+                Coordinates2f bottomRightCorner = new Coordinates2f(superTransform.getMaxX(), superTransform.getMaxY());
 
                 for (Transform transform : transforms) {
                     transform.setX(bottomRightCorner.getX() - transform.getWidth());

@@ -16,12 +16,14 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 
 import java.awt.image.BufferedImage;
 
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class ImageRender extends RenderComponent {
 
     // The image to render

@@ -16,12 +16,14 @@
 
 package de.edgelord.saltyengine.displaymanager.display;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import javax.swing.*;
 import java.awt.*;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class Display extends JFrame {
 
     private String windowTitle;

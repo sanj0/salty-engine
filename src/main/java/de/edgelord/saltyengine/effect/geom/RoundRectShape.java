@@ -16,12 +16,14 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class RoundRectShape extends SaltyShape {
 
     private float arc = 15f;
@@ -34,7 +36,7 @@ public class RoundRectShape extends SaltyShape {
         super(transform, EnumShape.ROUND_RECTANGLE);
     }
 
-    public RoundRectShape(Vector2f position, Dimensions dimensions) {
+    public RoundRectShape(Coordinates2f position, Dimensions dimensions) {
         super(position, dimensions, EnumShape.ROUND_RECTANGLE);
     }
 
@@ -50,7 +52,7 @@ public class RoundRectShape extends SaltyShape {
         this.arc = arc;
     }
 
-    public RoundRectShape(Vector2f position, Dimensions dimensions, float arc) {
+    public RoundRectShape(Coordinates2f position, Dimensions dimensions, float arc) {
         super(position, dimensions, EnumShape.ROUND_RECTANGLE);
 
         this.arc = arc;

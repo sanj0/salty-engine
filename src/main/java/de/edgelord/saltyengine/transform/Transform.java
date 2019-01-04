@@ -23,18 +23,18 @@ import java.awt.geom.Rectangle2D;
 
 public class Transform {
 
-    private Vector2f position;
+    private Coordinates2f position;
     private Dimensions dimensions;
     private Rotation rotation;
 
-    public Transform(Vector2f position, Dimensions dimensions) {
+    public Transform(Coordinates2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
         this.rotation = new Rotation(getWidth() / 2f, getHeight() / 2f);
     }
 
     public Transform(float x, float y, float width, float height) {
-        this(new Vector2f(x, y), new Dimensions(width, height));
+        this(new Coordinates2f(x, y), new Dimensions(width, height));
     }
 
     /**
@@ -181,17 +181,17 @@ public class Transform {
         return Directions.Direction.EMPTY;
     }
 
-    public void positionByCentre(Vector2f centre) {
+    public void positionByCentre(Coordinates2f centre) {
         float centreShiftX = getWidth() / 2f;
         float centreShiftY = getHeight() / 2;
-        position = new Vector2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
+        position = new Coordinates2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
     }
 
-    public Vector2f getCentre() {
-        return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
+    public Coordinates2f getCentre() {
+        return new Coordinates2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }
 
-    public void rotateToPoint(Vector2f point) {
+    public void rotateToPoint(Coordinates2f point) {
         rotation.rotateToPoint(point);
     }
 
@@ -261,11 +261,11 @@ public class Transform {
         return position.convertToCoordinates();
     }
 
-    public Vector2f getPosition() {
+    public Coordinates2f getPosition() {
         return position;
     }
 
-    public void setPosition(Vector2f position) {
+    public void setPosition(Coordinates2f position) {
         this.position = position;
     }
 
@@ -293,32 +293,32 @@ public class Transform {
         rotation.setRotationDegrees(rotationDegrees);
     }
 
-    public Vector2f getRotationCentre() {
+    public Coordinates2f getRotationCentre() {
         return rotation.getCentre();
     }
 
-    public void setRotationCentre(Vector2f rotationCentre) {
+    public void setRotationCentre(Coordinates2f rotationCentre) {
         rotation.setCentre(rotationCentre);
     }
 
     public void setRotationCentreToMiddle() {
-        rotation.setCentre(new Vector2f(getWidth() / 2f, getHeight() / 2f));
+        rotation.setCentre(new Coordinates2f(getWidth() / 2f, getHeight() / 2f));
     }
 
     public static Transform zero() {
-        return new Transform(Vector2f.zero(), Dimensions.zero());
+        return new Transform(Coordinates2f.zero(), Dimensions.zero());
     }
 
     public static Transform max() {
-        return new Transform(Vector2f.max(), Dimensions.max());
+        return new Transform(Coordinates2f.max(), Dimensions.max());
     }
 
     public static Transform min() {
-        return new Transform(Vector2f.min(), Dimensions.min());
+        return new Transform(Coordinates2f.min(), Dimensions.min());
     }
 
     public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
-        return new Transform(Vector2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
+        return new Transform(Coordinates2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
     }
 
     public static Transform random(int min, int max) {
@@ -330,26 +330,26 @@ public class Transform {
     }
 
     public Transform addToPosition(float xDelta, float yDelta) {
-        Transform newTransform = new Transform((Vector2f) position.clone(), (Dimensions) dimensions.clone());
+        Transform newTransform = new Transform((Coordinates2f) position.clone(), (Dimensions) dimensions.clone());
 
         newTransform.position.add(xDelta, yDelta);
 
         return newTransform;
     }
 
-    public Transform addToPosition(Vector2f delta) {
+    public Transform addToPosition(Coordinates2f delta) {
         return addToPosition(delta.getX(), delta.getY());
     }
 
     public Transform subtractFromPosition(float xDelta, float yDelta) {
-        Transform newTransform = new Transform((Vector2f) position.clone(), (Dimensions) getDimensions().clone());
+        Transform newTransform = new Transform((Coordinates2f) position.clone(), (Dimensions) getDimensions().clone());
 
         newTransform.getPosition().subtract(xDelta, yDelta);
 
         return newTransform;
     }
 
-    public Transform subtractFromPosition(Vector2f delta) {
+    public Transform subtractFromPosition(Coordinates2f delta) {
         return subtractFromPosition(delta.getX(), delta.getY());
     }
 

@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
@@ -24,9 +25,9 @@ import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
 import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -35,6 +36,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class UIElement extends ComponentContainer implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
     private Font font = SaltySystem.defaultFont;
@@ -55,7 +57,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String TEXT_BOX = "de.edgelord.saltyengine.uiElements.textBox";
     public static final String CONTAINER = "de.edgelord.saltyengine.uiElements.container";
 
-    public UIElement(Vector2f position, float width, float height, String tag) {
+    public UIElement(Coordinates2f position, float width, float height, String tag) {
         super(tag);
 
         this.transform = new Transform(position, new Dimensions(width, height));

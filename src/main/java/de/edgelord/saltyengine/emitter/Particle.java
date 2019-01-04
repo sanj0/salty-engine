@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.emitter;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
@@ -27,6 +28,7 @@ import de.edgelord.saltyengine.transform.Transform;
  * As with the only constructor, there is no {@link Transform} argument, the transform is {@link Transform#zero()} by default.
  * The particle itself may set its size and the emitter may set its position.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Particle implements TransformedObject, Drawable {
 
     private Transform transform;

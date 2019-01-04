@@ -16,11 +16,13 @@
 
 package de.edgelord.saltyengine.effect.light;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class PointLight extends GradientLight {
 
     public PointLight(Transform transform) {
@@ -31,7 +33,7 @@ public class PointLight extends GradientLight {
         this(new Transform(x, y, radius, radius));
     }
 
-    public PointLight(Vector2f position, float radius) {
+    public PointLight(Coordinates2f position, float radius) {
         this(new Transform(position, new Dimensions(radius, radius)));
     }
 }

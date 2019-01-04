@@ -22,13 +22,13 @@ import de.edgelord.saltyengine.components.animation.LinearTransformAnimations;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.Animation;
+import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
@@ -37,7 +37,7 @@ import java.util.List;
 
 public class BirdPlayer extends GameObject implements Serializable {
 
-    private Animation animation;
+    private SpritesheetAnimation spritesheetAnimation;
     private Spritesheet spritesheet;
 
     private final float speed = 2500f;
@@ -50,12 +50,12 @@ public class BirdPlayer extends GameObject implements Serializable {
     private AnimationRender animationRender;
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
-    public BirdPlayer(final Vector2f position, final BufferedImage spriteSheetImage) {
+    public BirdPlayer(final Coordinates2f position, final BufferedImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
 
-        animationRender = new AnimationRender(this, "animationRender", animation, 75);
+        animationRender = new AnimationRender(this, "animationRender", spritesheetAnimation, 75);
 
         getHitboxAsSimpleHitbox().setOffsetX(25);
         getHitboxAsSimpleHitbox().setOffsetY(12);
@@ -68,10 +68,10 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     private void initAnimations(final BufferedImage spriteSheetImage) {
 
-        animation = new Animation(this);
+        spritesheetAnimation = new SpritesheetAnimation(this);
         spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
 
-        animation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
+        spritesheetAnimation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
         keyFrameAnimationX.addKeyframe(3000, 0);
         keyFrameAnimationX.addKeyframe(9000, 700);

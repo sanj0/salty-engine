@@ -17,21 +17,23 @@
 package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.components.rendering.RenderComponent;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.effect.Animation;
+import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link Animation}.
- * After each {@link #ticksPerFrame} amount of fixed ticks, the next frame of the animation will be drawn.
+ * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link SpritesheetAnimation}.
+ * After each {@link #ticksPerFrame} amount of fixed ticks, the next frame of the spritesheetAnimation will be drawn.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class AnimationRender extends RenderComponent {
 
     /**
-     * The Animation which should be drawn
+     * The SpritesheetAnimation which should be drawn
      */
-    private Animation animation = null;
+    private SpritesheetAnimation spritesheetAnimation = null;
 
     /**
      * The number of fixed ticks after which the next frame should be drawn
@@ -60,72 +62,72 @@ public class AnimationRender extends RenderComponent {
      *
      * @param parent        the parent of the Component
      * @param name          the id-name of this Component
-     * @param animation     the animation that should be rendered
-     * @param ticksPerFrame after how many fixed ticks the next frame of the animation should be triggered
+     * @param spritesheetAnimation     the spritesheetAnimation that should be rendered
+     * @param ticksPerFrame after how many fixed ticks the next frame of the spritesheetAnimation should be triggered
      */
-    public AnimationRender(ComponentContainer parent, String name, Animation animation, int ticksPerFrame) {
+    public AnimationRender(ComponentContainer parent, String name, SpritesheetAnimation spritesheetAnimation, int ticksPerFrame) {
         super(parent, name, Components.RENDER_COMPONENT);
-        this.animation = animation;
+        this.spritesheetAnimation = spritesheetAnimation;
         this.ticksPerFrame = ticksPerFrame;
     }
 
     /**
-     * Draws the current frame of the animation
+     * Draws the current frame of the spritesheetAnimation
      *
      * @param saltyGraphics the SaltyGraphics to which the component should draw
      * @see #onFixedTick()
-     * @see #animation
+     * @see #spritesheetAnimation
      * @see de.edgelord.saltyengine.core.Component
      */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
-        if (animation != null) {
-            animation.drawCurrentFrame(saltyGraphics);
+        if (spritesheetAnimation != null) {
+            spritesheetAnimation.drawCurrentFrame(saltyGraphics);
         }
     }
 
     /**
      * On every fixed tick, {@link #ticks} is incremented; when it reaches {@link #ticksPerFrame},
-     * the next frame of {@link #animation} is triggered and ticks will be reset to 0
+     * the next frame of {@link #spritesheetAnimation} is triggered and ticks will be reset to 0
      */
     @Override
     public void onFixedTick() {
         if (ticks == ticksPerFrame) {
-            if (animation != null) {
-                animation.nextFrame();
+            if (spritesheetAnimation != null) {
+                spritesheetAnimation.nextFrame();
                 ticks = 0;
             }
-        } else if (animation != null) {
+        } else if (spritesheetAnimation != null) {
             ticks++;
         }
     }
 
     /**
-     * @return the animation that this component renders.
+     * @return the spritesheetAnimation that this component renders.
      */
-    public Animation getAnimation() {
-        return animation;
+    public SpritesheetAnimation getSpritesheetAnimation() {
+        return spritesheetAnimation;
     }
 
     /**
-     * Sets the animation to be rendered.
+     * Sets the spritesheetAnimation to be rendered.
      *
-     * @param animation the new animation
+     * @param spritesheetAnimation the new spritesheetAnimation
      */
-    public void setAnimation(Animation animation) {
-        this.animation = animation;
+    public void setSpritesheetAnimation(SpritesheetAnimation spritesheetAnimation) {
+        this.spritesheetAnimation = spritesheetAnimation;
     }
 
     /**
-     * @return the fixed ticks per frame of the animation.
+     * @return the fixed ticks per frame of the spritesheetAnimation.
      */
     public int getTicksPerFrame() {
         return ticksPerFrame;
     }
 
     /**
-     * Sets how many fixed ticks should last until the next frame of the animation.
+     * Sets how many fixed ticks should last until the next frame of the spritesheetAnimation.
      *
      * @param ticksPerFrame the new value
      */

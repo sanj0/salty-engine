@@ -16,10 +16,11 @@
 
 package de.edgelord.saltyengine.emitter.components;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
@@ -34,6 +35,7 @@ import java.util.List;
  * The spawned {@link Particle}s are falling down with {@link #speed} pixels per fixed tick and there are constantly spawning new ones.
  * You can the spawning rate using {@link #setWaveDuration(int)}.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RandomRainEmitter extends EmitterComponent {
 
     /**
@@ -94,8 +96,8 @@ public class RandomRainEmitter extends EmitterComponent {
         }
     }
 
-    private Vector2f newRandomSpawnPoint() {
-        return new Vector2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
+    private Coordinates2f newRandomSpawnPoint() {
+        return new Coordinates2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
     }
 
     public float getSpeed() {

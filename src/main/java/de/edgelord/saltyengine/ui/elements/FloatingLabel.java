@@ -17,8 +17,9 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.awt.*;
 
@@ -27,17 +28,18 @@ import java.awt.*;
  * because the size of it fits the text. Also, the placing is natural and not from
  * the baseLine of the text but from its upper left corner.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class FloatingLabel extends Label {
 
     private boolean centreOnXAxis = false;
     private boolean centreOnYAxis = false;
 
-    public FloatingLabel(String text, Vector2f position) {
+    public FloatingLabel(String text, Coordinates2f position) {
         super(text, position, 0, 0);
     }
 
     public FloatingLabel(String text, float x, float y) {
-        this(text, new Vector2f(x, y));
+        this(text, new Coordinates2f(x, y));
     }
 
     @Override

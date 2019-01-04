@@ -18,17 +18,17 @@ package de.edgelord.saltyengine.transform;
 
 import java.util.Random;
 
-public class Vector2f {
+public class Coordinates2f {
 
     private float x;
     private float y;
 
-    public Vector2f(float x, float y) {
+    public Coordinates2f(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector2f(Vector2f position) {
+    public Coordinates2f(Coordinates2f position) {
         this(position.getX(), position.getY());
     }
 
@@ -53,7 +53,7 @@ public class Vector2f {
         y += y1;
     }
 
-    public void add(Vector2f pos1) {
+    public void add(Coordinates2f pos1) {
         add(pos1.getX(), pos1.getY());
     }
 
@@ -62,7 +62,7 @@ public class Vector2f {
         y *= y1;
     }
 
-    public void multiply(Vector2f pos1) {
+    public void multiply(Coordinates2f pos1) {
         multiply(pos1.getX(), pos1.getY());
     }
 
@@ -71,7 +71,7 @@ public class Vector2f {
         y /= y1;
     }
 
-    public void divide(Vector2f pos1) {
+    public void divide(Coordinates2f pos1) {
         divide(pos1.getX(), pos1.getY());
     }
 
@@ -80,7 +80,7 @@ public class Vector2f {
         y -= y1;
     }
 
-    public void subtract(Vector2f pos1) {
+    public void subtract(Coordinates2f pos1) {
         subtract(pos1.getX(), pos1.getY());
     }
 
@@ -89,7 +89,7 @@ public class Vector2f {
         return new Coordinates((int) getX(), (int) getY());
     }
 
-    public void parseVector2f(Coordinates coordinates) {
+    public void parseCoordinates2f(Coordinates coordinates) {
 
         setX((float) coordinates.getX());
         setY((float) coordinates.getY());
@@ -97,50 +97,50 @@ public class Vector2f {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Vector2f) {
-            Vector2f other = (Vector2f) obj;
+        if (obj instanceof Coordinates2f) {
+            Coordinates2f other = (Coordinates2f) obj;
             return other.getX() == getX() && other.getY() == getY();
         } else {
             return false;
         }
     }
 
-    public static Vector2f zero() {
-        return new Vector2f(0, 0);
+    public static Coordinates2f zero() {
+        return new Coordinates2f(0, 0);
     }
 
-    public static Vector2f max() {
-        return new Vector2f(Float.MAX_VALUE, Float.MAX_VALUE);
+    public static Coordinates2f max() {
+        return new Coordinates2f(Float.MAX_VALUE, Float.MAX_VALUE);
     }
 
-    public static Vector2f min() {
-        return new Vector2f(Float.MIN_VALUE, Float.MIN_VALUE);
+    public static Coordinates2f min() {
+        return new Coordinates2f(Float.MIN_VALUE, Float.MIN_VALUE);
     }
 
-    public static Vector2f random(int min, int max) {
+    public static Coordinates2f random(int min, int max) {
         Random random = new Random();
-        return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
+        return new Coordinates2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
-    public static Vector2f one() {
-        return new Vector2f(1, 1);
+    public static Coordinates2f one() {
+        return new Coordinates2f(1, 1);
     }
 
     @Override
     public String toString() {
-        return "Vector2f{" +
+        return "Coordinates2f{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
     }
 
     /**
-     * Returns a new <code>Vector2f</code> with the same {@link #x} and {@link #y} as this one.
+     * Returns a new <code>Coordinates2f</code> with the same {@link #x} and {@link #y} as this one.
      *
-     * @return a "copy" of this <code>Vector2f</code>
+     * @return a "copy" of this <code>Coordinates2f</code>
      */
     @Override
     protected Object clone() {
-        return new Vector2f(x, y);
+        return new Coordinates2f(x, y);
     }
 }

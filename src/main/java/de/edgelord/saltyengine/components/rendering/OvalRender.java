@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 /**
@@ -24,6 +25,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
  * The only thing that is LEFT for the user to call is
  * <code>GameObject.addComponent(new OvalRender(this, "some_id_name"));</code>
  */
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class OvalRender extends PrimitivesRenderComponent {
 
     public OvalRender(final ComponentContainer parent, final String name) {

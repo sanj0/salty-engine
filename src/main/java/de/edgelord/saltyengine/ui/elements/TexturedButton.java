@@ -16,18 +16,20 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TexturedButton extends Button {
 
     private boolean drawText = true;
     private BufferedImage texture;
 
-    public TexturedButton(String text, Vector2f position, int width, int height, BufferedImage texture) {
+    public TexturedButton(String text, Coordinates2f position, int width, int height, BufferedImage texture) {
         super(text, position, width, height);
 
         this.texture = texture;

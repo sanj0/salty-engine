@@ -16,24 +16,26 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Time;
 
 @Deprecated
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TextBox extends TextElement {
 
     private float cursor = 1;
     private float speed = 0.020f;
-    private Vector2f textOffset;
+    private Coordinates2f textOffset;
 
-    public TextBox(String text, Vector2f position, float width, float height, Vector2f textOffset) {
+    public TextBox(String text, Coordinates2f position, float width, float height, Coordinates2f textOffset) {
         this(text, new Transform(position, new Dimensions(width, height)), textOffset);
     }
 
-    public TextBox(String text, Transform transform, Vector2f textOffset) {
+    public TextBox(String text, Transform transform, Coordinates2f textOffset) {
         super(text, transform, TEXT_BOX);
 
         this.textOffset = textOffset;

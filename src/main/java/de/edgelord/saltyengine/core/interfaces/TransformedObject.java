@@ -16,12 +16,14 @@
 
 package de.edgelord.saltyengine.core.interfaces;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Rotation;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public interface TransformedObject {
 
     Transform getTransform();
@@ -32,7 +34,7 @@ public interface TransformedObject {
         return getTransform().getDimensions();
     }
 
-    default Vector2f getPosition() {
+    default Coordinates2f getPosition() {
         return getTransform().getPosition();
     }
 
@@ -72,7 +74,7 @@ public interface TransformedObject {
         getTransform().setDimensions(dimensions);
     }
 
-    default void setPosition(Vector2f position) {
+    default void setPosition(Coordinates2f position) {
         getTransform().setPosition(position);
     }
 
@@ -92,7 +94,7 @@ public interface TransformedObject {
         getTransform().setY(y);
     }
 
-    default void positionByCentre(Vector2f centre) {
+    default void positionByCentre(Coordinates2f centre) {
         getTransform().positionByCentre(centre);
     }
 
@@ -114,8 +116,8 @@ public interface TransformedObject {
      *
      * @return the cartesian coordinates for the current rotation
      */
-    default Vector2f getCartesianVector() {
-        return new Vector2f((float) Math.cos(getRotationDegrees()), (float) Math.sin(getRotationDegrees()));
+    default Coordinates2f getCartesianCoordinates2f() {
+        return new Coordinates2f((float) Math.cos(getRotationDegrees()), (float) Math.sin(getRotationDegrees()));
     }
 
     default void basicMove(final float delta, final Directions.BasicDirection direction) {

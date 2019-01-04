@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -25,6 +26,7 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class MoveWithCursorComponent extends Component {
 
     private TransformRelationMode relation;

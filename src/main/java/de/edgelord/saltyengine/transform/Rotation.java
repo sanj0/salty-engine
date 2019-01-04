@@ -32,20 +32,20 @@ package de.edgelord.saltyengine.transform;
  * yNew = py + yCenterRectangle;
  */
 public class Rotation {
-    private Vector2f centre;
+    private Coordinates2f centre;
     private float rotationDegrees;
 
-    public Rotation(Vector2f centre, float rotationDegrees) {
+    public Rotation(Coordinates2f centre, float rotationDegrees) {
         this.centre = centre;
         this.rotationDegrees = rotationDegrees;
     }
 
-    public Rotation(Vector2f centre) {
+    public Rotation(Coordinates2f centre) {
         this(centre, 0f);
     }
 
     public Rotation(float centreX, float centreY, float rotationDegrees) {
-        this(new Vector2f(centreX, centreY), rotationDegrees);
+        this(new Coordinates2f(centreX, centreY), rotationDegrees);
     }
 
     public Rotation(float centreX, float centreY) {
@@ -56,7 +56,7 @@ public class Rotation {
         this(0, 0);
     }
 
-    public void rotateToPoint(Vector2f point) {
+    public void rotateToPoint(Coordinates2f point) {
         throw new UnsupportedOperationException("rotating an entity to face a point");
         /*
         float arc = (float) Math.atan2(point.getY() / centre.getY(), point.getX() / centre.getX());
@@ -77,7 +77,7 @@ public class Rotation {
     }
 
     public void rotateToPoint(float x, float y) {
-        rotateToPoint(new Vector2f(x, y));
+        rotateToPoint(new Coordinates2f(x, y));
     }
 
     @Override
@@ -91,11 +91,11 @@ public class Rotation {
         }
     }
 
-    public Vector2f getCentre() {
+    public Coordinates2f getCentre() {
         return centre;
     }
 
-    public void setCentre(Vector2f centre) {
+    public void setCentre(Coordinates2f centre) {
         this.centre = centre;
     }
 

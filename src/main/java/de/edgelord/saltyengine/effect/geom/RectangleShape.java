@@ -16,19 +16,21 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class RectangleShape extends SaltyShape {
 
     public RectangleShape(Transform transform) {
         super(transform, EnumShape.RECTANGLE);
     }
 
-    public RectangleShape(Vector2f position, Dimensions dimensions) {
+    public RectangleShape(Coordinates2f position, Dimensions dimensions) {
         super(position, dimensions, EnumShape.RECTANGLE);
     }
 

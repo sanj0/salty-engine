@@ -16,18 +16,20 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class OvalShape extends SaltyShape {
     public OvalShape(Transform transform) {
         super(transform, EnumShape.OVAL);
     }
 
-    public OvalShape(Vector2f position, Dimensions dimensions) {
+    public OvalShape(Coordinates2f position, Dimensions dimensions) {
         super(position, dimensions, EnumShape.OVAL);
     }
 

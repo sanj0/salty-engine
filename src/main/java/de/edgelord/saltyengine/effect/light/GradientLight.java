@@ -17,16 +17,18 @@
 package de.edgelord.saltyengine.effect.light;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class GradientLight extends Light {
 
     private BufferedImage light;
@@ -46,11 +48,11 @@ public class GradientLight extends Light {
         this(transform, ColorUtil.TRANSPARENT_COLOR, shape, arcIfRoundRect);
     }
 
-    public GradientLight(Vector2f position, Dimensions dimensions, Color color, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(Coordinates2f position, Dimensions dimensions, Color color, EnumShape shape, float... arcIfRoundRect) {
         this(new Transform(position, dimensions), color, shape, arcIfRoundRect);
     }
 
-    public GradientLight(Vector2f position, Dimensions dimensions, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(Coordinates2f position, Dimensions dimensions, EnumShape shape, float... arcIfRoundRect) {
         this(new Transform(position, dimensions), shape, arcIfRoundRect);
     }
 
@@ -93,7 +95,7 @@ public class GradientLight extends Light {
     }
 
     @Override
-    public void setPosition(Vector2f position) {
+    public void setPosition(Coordinates2f position) {
         super.setPosition(position);
         updateLightImage();
     }

@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.emitter;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -33,6 +34,7 @@ import java.util.List;
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
  * It emits
  */
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**

@@ -82,11 +82,11 @@ public class SceneManager {
      *
      * {@code
      * SceneManager.addScene("my scene", MyScene.class);
-     * SceneManager.setCurrentScene("my scene", 13L, 2, new DummyGameObject(new Vector2f(1, 1)));
+     * SceneManager.setCurrentScene("my scene", 13L, 2, new DummyGameObject(new Coordinates2f(1, 1)));
      * }
      * </pre>
      * This would set the current scene to a new instance of <code>MyScene.class</code> using the constructor with
-     * the arguments <code>13L, 2, new DummyGameObject(new Vector2f(1, 1))</code>.
+     * the arguments <code>13L, 2, new DummyGameObject(new Coordinates2f(1, 1))</code>.
      * It is very important to write fully classified class names in the constructor, so,
      * <code>Integer</code> instead of <code>int</code> and <code>Long</code> instead of <code>long</code>.
      * <p>

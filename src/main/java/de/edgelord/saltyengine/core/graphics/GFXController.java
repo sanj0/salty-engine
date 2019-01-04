@@ -23,7 +23,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +32,7 @@ import java.util.List;
 public class GFXController extends ComponentContainer {
 
     private List<Component> components = Collections.synchronizedList(new ArrayList<>());
-    private Transform transform = new Transform(new Vector2f(0, 0), new Dimensions(0, 0));
+    private Transform transform = new Transform(new Coordinates2f(0, 0), new Dimensions(0, 0));
 
     public GFXController() {
         super("de.edgelord.saltyengine.gfxController");

@@ -18,12 +18,14 @@ package de.edgelord.saltyengine.core.stereotypes;
 
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.util.List;
 
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class ComponentContainer implements TransformedObject {
 
     private String tag;
@@ -96,21 +98,21 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     /**
-     * Places this object in the centre of the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     * Places this object in the centre of the {@link de.edgelord.saltyengine.core.Host} {@link Game#getHost()}
      */
     public void centrePosition() {
         setPosition(Game.getHost().getCentrePosition(getDimensions()));
     }
 
     /**
-     * Centres this object horizontally in the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     * Centres this object horizontally in the {@link de.edgelord.saltyengine.core.Host} {@link Game#getHost()}
      */
     public void centreHorizontalPosition() {
         setX(Game.getHost().getHorizontalCentrePosition(getWidth()));
     }
 
     /**
-     * Centres this object vertically in the {@link de.edgelord.saltyengine.core.Host} {@link Game#host}
+     * Centres this object vertically in the {@link de.edgelord.saltyengine.core.Host} {@link Game#getHost()}
      */
     public void centreVerticalPosition() {
         setX(Game.getHost().getVerticalCentrePosition(getHeight()));

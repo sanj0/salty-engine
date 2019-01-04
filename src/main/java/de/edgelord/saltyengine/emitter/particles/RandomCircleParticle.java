@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.emitter.particles;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.utils.GeneralUtil;
@@ -23,6 +24,7 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
 /**
  * A round {@link Particle} with a random diameter between {@link #MIN_DIAMETER} and {@link #MAX_DIAMETER}.
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class RandomCircleParticle extends Particle {
 
     /**

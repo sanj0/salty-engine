@@ -16,12 +16,13 @@
 
 package de.edgelord.saltyengine.gameobject;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * A GameObject with default empty implementations of:
@@ -32,6 +33,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
  * Inside the {@link #initialize()}, this GameObject is set to be {@link GameObject#setStationary(boolean)} and
  * to ignore the gravity using {@link de.edgelord.saltyengine.components.SimplePhysicsComponent#setGravityEnabled(boolean)}
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class NullGameObject extends GameObject {
 
     public NullGameObject(float xPos, float yPos, float width, float height, String tag) {
@@ -46,11 +48,11 @@ public class NullGameObject extends GameObject {
         super(coordinates, dimensions, tag);
     }
 
-    public NullGameObject(Vector2f position, Dimensions dimensions, String tag) {
+    public NullGameObject(Coordinates2f position, Dimensions dimensions, String tag) {
         super(position, dimensions, tag);
     }
 
-    public NullGameObject(Vector2f position, float width, float height, String tag) {
+    public NullGameObject(Coordinates2f position, float width, float height, String tag) {
         super(position, width, height, tag);
     }
 

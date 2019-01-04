@@ -16,15 +16,17 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 
 /**
  * Represents a line from the top left corner of the transform to its bottom right corner
  */
+@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class LineShape extends SaltyShape {
     public LineShape(TransformedObject parent) {
         super(parent, EnumShape.LINE);
@@ -34,7 +36,7 @@ public class LineShape extends SaltyShape {
         super(transform, EnumShape.LINE);
     }
 
-    public LineShape(Vector2f position, Dimensions dimensions) {
+    public LineShape(Coordinates2f position, Dimensions dimensions) {
         super(position, dimensions, EnumShape.LINE);
     }
 

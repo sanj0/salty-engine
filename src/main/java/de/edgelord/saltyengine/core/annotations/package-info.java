@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,13 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package de.edgelord.saltyengine.effect;
-
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
-
-public interface Cosmetic {
-
-    void draw(SaltyGraphics saltyGraphics, Coordinates2f position, float width, float height);
-}
+/**
+ * The package for annotations.
+ */
+package de.edgelord.saltyengine.core.annotations;
