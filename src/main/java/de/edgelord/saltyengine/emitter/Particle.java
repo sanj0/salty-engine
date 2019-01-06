@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.Directions;
 
 /**
  * A {@link Particle} is a physics-independent drawable object that has a transform.
@@ -39,6 +40,11 @@ public abstract class Particle implements TransformedObject, Drawable {
     private Transform transform;
 
     /**
+     * The <code>Directions</code> in which this particle can't move
+     */
+    private Directions lockedDirections = new Directions();
+
+    /**
      * The number of the wave that this particle is spawned in.
      */
     private final Integer waveNumber;
@@ -54,6 +60,16 @@ public abstract class Particle implements TransformedObject, Drawable {
     @Override
     public Transform getTransform() {
         return transform;
+    }
+
+    @Override
+    public void setLockedDirections(Directions directions) {
+        this.lockedDirections = directions;
+    }
+
+    @Override
+    public Directions getLockedDirections() {
+        return lockedDirections;
     }
 
     @Override

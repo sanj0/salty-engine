@@ -243,16 +243,7 @@ public class SaltyGraphics {
      */
     public void drawTriangle(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
 
-        int x1 = Math.round(point1.getX());
-        int y1 = Math.round(point1.getY());
-
-        int x2 = Math.round(point2.getX());
-        int y2 = Math.round(point2.getY());
-
-        int x3 = Math.round(point3.getX());
-        int y3 = Math.round(point3.getY());
-
-        graphics2D.fillPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+        renderPolygon(false, point1, point2, point3);
     }
 
     /**
@@ -264,16 +255,7 @@ public class SaltyGraphics {
      */
     public void outlineTriangle(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
 
-        int x1 = Math.round(point1.getX());
-        int y1 = Math.round(point1.getY());
-
-        int x2 = Math.round(point2.getX());
-        int y2 = Math.round(point2.getY());
-
-        int x3 = Math.round(point3.getX());
-        int y3 = Math.round(point3.getY());
-
-        graphics2D.drawPolygon(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, 3);
+        renderPolygon(true, point1, point2, point3);
     }
 
     /*
@@ -288,18 +270,7 @@ public class SaltyGraphics {
      */
     public void drawPolygon(Coordinates2f... points) {
 
-        int[] xPoints = new int[points.length];
-        int[] yPoints = new int[points.length];
-
-        for (int i = 0; i < xPoints.length; i++) {
-            xPoints[i] = Math.round(points[i].getX());
-        }
-
-        for (int i = 0; i < yPoints.length; i++) {
-            xPoints[i] = Math.round(points[i].getY());
-        }
-
-        graphics2D.fillPolygon(xPoints, yPoints, points.length);
+        renderPolygon(false, points);
     }
 
     /**
@@ -310,6 +281,10 @@ public class SaltyGraphics {
      */
     public void outlinePolygon(Coordinates2f... points) {
 
+        renderPolygon(true, points);
+    }
+
+    private void renderPolygon(boolean outline, Coordinates2f... points) {
         int[] xPoints = new int[points.length];
         int[] yPoints = new int[points.length];
 
@@ -321,7 +296,11 @@ public class SaltyGraphics {
             xPoints[i] = Math.round(points[i].getY());
         }
 
-        graphics2D.drawPolygon(xPoints, yPoints, points.length);
+        if (outline) {
+            graphics2D.drawPolygon(xPoints, yPoints, points.length);
+        } else {
+            graphics2D.fillPolygon(xPoints, yPoints, points.length);
+        }
     }
 
     /*
@@ -932,6 +911,30 @@ public class SaltyGraphics {
     public void resetClip() {
         setClip(0, 0, Game.getGameWidth(), Game.getGameHeight());
     }
+
+
+    ///**
+    // * Rotates the graphics by the given degrees plus the game's camera rotation.
+    // *
+    // * @param degrees the degrees to rotate
+    // */
+    /*
+    public void rotate(float degrees) {
+        graphics2D.rotate(degrees + Game.getCamera().getRotation() + currentRotation);
+    }
+    */
+
+
+    ///**
+    // * Rotates the graphics around the given point by the given amount of degrees
+    // * @param degrees
+    // * @param centre
+    // */
+    /*
+    public void rotate(float degrees, Coordinates2f centre) {
+
+    }
+    */
 
     public void setTransform(AffineTransform affineTransform) {
         graphics2D.setTransform(affineTransform);

@@ -74,12 +74,8 @@ public class RandomRainEmitter extends EmitterComponent {
     }
 
     @Override
-    public void fixedParticleMove(List<Particle> particles) {
-        for (int i = 0; i < particles.size(); i++) {
-            Particle particle = particles.get(i);
-
-            particle.basicMove(speed, Directions.BasicDirection.y);
-        }
+    public void moveParticle(Particle particle) {
+        particle.basicMove(speed, Directions.BasicDirection.y);
     }
 
     @Override
@@ -88,12 +84,11 @@ public class RandomRainEmitter extends EmitterComponent {
     }
 
     @Override
-    public void startWave() {
-        for (int i = 0; i < getAmount(); i++) {
-            Particle newParticle = createParticle();
-            newParticle.setPosition(newRandomSpawnPoint(newParticle));
-            addParticle(newParticle);
-        }
+    public Particle spawnParticle() {
+        Particle newParticle = createParticle();
+        newParticle.setPosition(newRandomSpawnPoint(newParticle));
+
+        return newParticle;
     }
 
     private Coordinates2f newRandomSpawnPoint(Particle p) {

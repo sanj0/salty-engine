@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 
@@ -32,6 +33,8 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     private EnumShape shapeType;
     private Transform transform;
     private boolean filled = true;
+
+    private Directions lockedDirections = new Directions();
 
     public SaltyShape(TransformedObject parent, EnumShape shapeType) {
         this(parent.getTransform(), shapeType);
@@ -83,6 +86,16 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     @Override
     public void setTransform(Transform transform) {
         this.transform = transform;
+    }
+
+    @Override
+    public Directions getLockedDirections() {
+        return lockedDirections;
+    }
+
+    @Override
+    public void setLockedDirections(Directions lockedDirections) {
+        this.lockedDirections = lockedDirections;
     }
 
     public void drawAtZero(Graphics2D graphics) {

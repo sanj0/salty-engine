@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.effect.Spritesheet;
+import de.edgelord.saltyengine.emitter.components.RandomRadialEmitter;
 import de.edgelord.saltyengine.emitter.components.RandomRainEmitter;
 import de.edgelord.saltyengine.emitter.particles.CircleParticle;
 import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
@@ -59,7 +60,7 @@ public class Bird extends GameObject implements Serializable {
 
         // Improves performance a lot!
         //setStationary(true);
-        RandomRainEmitter emitter = new RandomRainEmitter(this, "emitty", RoundRectangleParticle.class, 1, 5);
+        RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, 1, 5);
         emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
 
         addComponent(emitter);

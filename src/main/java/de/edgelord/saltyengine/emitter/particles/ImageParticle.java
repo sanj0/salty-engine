@@ -46,6 +46,9 @@ public abstract class ImageParticle extends Particle {
 
     private BufferedImage image;
 
+    /**
+     * {@inheritDoc}
+     */
     public ImageParticle(Integer wave) {
         super(wave);
 
@@ -53,6 +56,9 @@ public abstract class ImageParticle extends Particle {
         image = getImage();
     }
 
+    /**
+     * @return the image to be rendered by this particle
+     */
     public abstract BufferedImage getImage();
 
     @Override

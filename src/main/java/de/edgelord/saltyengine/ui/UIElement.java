@@ -28,6 +28,7 @@ import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -44,8 +45,6 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     private Color backgroundColor = Color.DARK_GRAY;
     private Color foregroundColor = Color.WHITE;
 
-    private Transform transform;
-
     private boolean mouseHoversOver = false;
 
     private List<Component> components = new CopyOnWriteArrayList<>();
@@ -60,7 +59,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public UIElement(Coordinates2f position, float width, float height, String tag) {
         super(tag);
 
-        this.transform = new Transform(position, new Dimensions(width, height));
+        setTransform(new Transform(position, new Dimensions(width, height)));
     }
 
     public UIElement(Transform transform, String tag) {
@@ -182,16 +181,6 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
 
     public void setSuppressClipping(boolean suppressClipping) {
         this.suppressClipping = suppressClipping;
-    }
-
-    @Override
-    public Transform getTransform() {
-        return transform;
-    }
-
-    @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
     }
 
     public boolean mouseHoversOver() {

@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.GeneralUtil;
@@ -129,24 +130,27 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     public abstract void initializeEmitter();
 
     /**
-     * Starts a new wave. This is called every {@link #waveDuration} fixed ticks.
+     * Spawns a single new particle with the following steps:
+     *
+     * 1. Create a {@link Particle} using {@link #createParticle()}
+     * 2. Set a emitter-specific position using {@link Particle#setPosition(Coordinates2f)}
+     * 3. return it
      */
-    public abstract void startWave();
+    public abstract Particle spawnParticle();
 
     /**
-     * Moves the particles. This is called every fixed tick. The given {@link List} is actually just {@link #currentParticles},
-     * which can't be obtained elsewhere.
+     * Moves each particle separately. This is called every fixed tick for every particle within {@link #currentParticles}.
      *
-     * @param particles the {@link List} of {@link Particle}s to be moved.
+     * @param particle the <code>Particle</code> to be moved
      */
-    public abstract void fixedParticleMove(List<Particle> particles);
+    public abstract void moveParticle(Particle particle);
 
     @Override
     public void onCollision(CollisionEvent event) {
     }
 
     /**
-     * Calls {@link #startWave()} every {@link #waveDuration} fixed ticks and calls {@link #fixedParticleMove(List)} every fixed tick.
+     * Calls {@link #spawnParticle()} every {@link #waveDuration} fixed ticks for {@link #amount} times and calls {@link #moveParticle(Particle)} every fixed tick for every entry in {@link #currentParticles}.
      */
     @Override
     public final void onFixedTick() {
@@ -160,13 +164,17 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
         if (ticks >= waveDuration) {
             ticks = 0;
-            startWave();
+            for (int i = 0; i < amount; i++) {
+                addParticle(spawnParticle());
+            }
             currentWave++;
         } else {
             ticks++;
         }
 
-        fixedParticleMove(currentParticles);
+        for (int i = 0; i < currentParticles.size(); i++) {
+            moveParticle(currentParticles.get(i));
+        }
     }
 
     /**
@@ -188,7 +196,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @return a new particle
      */
-    protected Particle createParticle() {
+    public Particle createParticle() {
         try {
 
             Particle particle = this.particle.getConstructor(Integer.class).newInstance(currentWave);
@@ -212,7 +220,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param particle the <code>Particle</code> to be added.
      */
-    protected void addParticle(Particle particle) {
+    private void addParticle(Particle particle) {
         currentParticles.add(particle);
     }
 

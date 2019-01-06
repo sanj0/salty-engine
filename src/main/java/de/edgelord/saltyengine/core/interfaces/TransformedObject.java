@@ -17,10 +17,7 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
-import de.edgelord.saltyengine.transform.Coordinates2f;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Rotation;
-import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.*;
 import de.edgelord.saltyengine.utils.Directions;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
@@ -30,12 +27,20 @@ public interface TransformedObject {
 
     void setTransform(Transform transform);
 
+    void setLockedDirections(Directions directions);
+
+    Directions getLockedDirections();
+
     default Dimensions getDimensions() {
         return getTransform().getDimensions();
     }
 
     default Coordinates2f getPosition() {
         return getTransform().getPosition();
+    }
+
+    default Coordinates getCoordinates() {
+        return getPosition().convertToCoordinates();
     }
 
     default Rotation getRotation() {
@@ -123,13 +128,16 @@ public interface TransformedObject {
     default void basicMove(final float delta, final Directions.BasicDirection direction) {
 
         if (direction == Directions.BasicDirection.x) {
-            setX(getX() + delta);
+            moveX(delta);
         } else {
-            setY(getY() + delta);
+            moveY(delta);
         }
     }
 
     default void move(float delta, final Directions.Direction direction) {
+        if (getLockedDirections().hasDirection(direction)) {
+            return;
+        }
 
         // Check if delta is negative and if so, mirror its value
         if (delta < 0f) {
@@ -154,10 +162,32 @@ public interface TransformedObject {
     }
 
     default void moveY(final float delta) {
+
+        if (delta > 0f) {
+            if (getLockedDirections().hasDirection(Directions.Direction.DOWN)) {
+                return;
+            }
+        } else {
+            if (getLockedDirections().hasDirection(Directions.Direction.UP)) {
+                return;
+            }
+        }
+
         getTransform().setY(getY() + delta);
     }
 
     default void moveX(final float delta) {
+
+        if (delta > 0f) {
+            if (getLockedDirections().hasDirection(Directions.Direction.RIGHT)) {
+                return;
+            }
+        } else {
+            if (getLockedDirections().hasDirection(Directions.Direction.LEFT)) {
+                return;
+            }
+        }
+
         getTransform().setX(getX() + delta);
     }
 }

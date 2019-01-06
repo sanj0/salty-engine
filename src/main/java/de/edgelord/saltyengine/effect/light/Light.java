@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.ColorUtil;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 
@@ -53,6 +54,11 @@ public abstract class Light implements TransformedObject {
      * The <code>Transform</code> of the light
      */
     private Transform transform;
+
+    /**
+     * The directions in which this light can't be moved.
+     */
+    private Directions lockedDirections = new Directions();
 
     public Light(Transform transform, Color color) {
         this.transform = transform;
@@ -87,6 +93,26 @@ public abstract class Light implements TransformedObject {
     public abstract void draw(Graphics2D graphics);
 
     public abstract void drawColorMap(Graphics2D graphics);
+
+    @Override
+    public Transform getTransform() {
+        return transform;
+    }
+
+    @Override
+    public void setTransform(Transform transform) {
+        this.transform = transform;
+    }
+
+    @Override
+    public Directions getLockedDirections() {
+        return lockedDirections;
+    }
+
+    @Override
+    public void setLockedDirections(Directions lockedDirections) {
+        this.lockedDirections = lockedDirections;
+    }
 
     public float getBrightness() {
         return brightness;
@@ -123,15 +149,5 @@ public abstract class Light implements TransformedObject {
 
     public void setColorAlpha(int colorAlpha) {
         this.colorAlpha = colorAlpha;
-    }
-
-    @Override
-    public Transform getTransform() {
-        return transform;
-    }
-
-    @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
     }
 }

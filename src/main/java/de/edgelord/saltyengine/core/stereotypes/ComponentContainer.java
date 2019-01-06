@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.util.List;
 
@@ -29,9 +30,31 @@ import java.util.List;
 public abstract class ComponentContainer implements TransformedObject {
 
     private String tag;
+    private Transform transform;
+    private Directions lockedDirections = new Directions();
 
     public ComponentContainer(String tag) {
         this.tag = tag;
+    }
+
+    @Override
+    public Transform getTransform() {
+        return transform;
+    }
+
+    @Override
+    public void setTransform(Transform transform) {
+        this.transform = transform;
+    }
+
+    @Override
+    public Directions getLockedDirections() {
+        return lockedDirections;
+    }
+
+    @Override
+    public void setLockedDirections(Directions lockedDirections) {
+        this.lockedDirections = lockedDirections;
     }
 
     /**
@@ -117,12 +140,6 @@ public abstract class ComponentContainer implements TransformedObject {
     public void centreVerticalPosition() {
         setX(Game.getHost().getVerticalCentrePosition(getHeight()));
     }
-
-    @Override
-    public abstract Transform getTransform();
-
-    @Override
-    public abstract void setTransform(Transform transform);
 
     public String getTag() {
         return tag;

@@ -59,8 +59,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final HitboxCollider defaultCollider;
 
-    private Directions lockedDirections = new Directions();
-
     /**
      * If this is set to true, this GameObject will not have a collision detection. Use this for
      * stationary objects like obstacles, houses and generally all kind of GameObjects that
@@ -81,7 +79,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
 
-    private Transform transform;
     private Hitbox hitbox;
     private float mass = 1f;
 
@@ -90,7 +87,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(tag);
 
-        transform = new Transform(new Coordinates2f(xPos, yPos), new Dimensions(width, height));
+        setTransform(new Transform(new Coordinates2f(xPos, yPos), new Dimensions(width, height)));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
@@ -231,55 +228,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return null;
     }
 
-    @Override
-    public Transform getTransform() {
-        return transform;
-    }
-
-    @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
-    }
-
-    @Override
-    public void move(float delta, Directions.Direction direction) {
-        if (lockedDirections.hasDirection(direction)) {
-            return;
-        }
-
-        super.move(delta, direction);
-    }
-
-    @Override
-    public void moveY(float delta) {
-
-        if (delta > 0f) {
-            if (lockedDirections.hasDirection(Directions.Direction.DOWN)) {
-                return;
-            }
-        } else {
-            if (lockedDirections.hasDirection(Directions.Direction.UP)) {
-                return;
-            }
-        }
-        super.moveY(delta);
-    }
-
-    @Override
-    public void moveX(float delta) {
-
-        if (delta > 0f) {
-            if (lockedDirections.hasDirection(Directions.Direction.RIGHT)) {
-                return;
-            }
-        } else {
-            if (lockedDirections.hasDirection(Directions.Direction.LEFT)) {
-                return;
-            }
-        }
-        super.moveX(delta);
-    }
-
     public ColliderComponent requestCollider() {
 
         return (ColliderComponent) getComponent(colliderComponent);
@@ -296,7 +244,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      */
     public void accelerate(float acceleration, Directions.Direction direction) {
 
-        if (lockedDirections.hasDirection(direction)) {
+        if (getLockedDirections().hasDirection(direction)) {
             return;
         }
 
@@ -357,7 +305,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      */
     public void accelerateTo(float velocity, Directions.Direction direction) {
 
-        if (lockedDirections.hasDirection(direction)) {
+        if (getLockedDirections().hasDirection(direction)) {
             return;
         }
 
@@ -412,16 +360,12 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return getTransform().contains(Input.getCursor());
     }
 
-    public Coordinates getCoordinates() {
-        return transform.getCoordinates();
-    }
-
     public int getWidthAsInt() {
-        return transform.getWidthAsInt();
+        return getTransform().getWidthAsInt();
     }
 
     public int getHeightAsInt() {
-        return transform.getHeightAsInt();
+        return getTransform().getHeightAsInt();
     }
 
     public Hitbox getHitbox() {
@@ -478,14 +422,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;
-    }
-
-    public Directions getLockedDirections() {
-        return lockedDirections;
-    }
-
-    public void setLockedDirections(Directions lockedDirections) {
-        this.lockedDirections = lockedDirections;
     }
 
     public boolean isTrigger() {
