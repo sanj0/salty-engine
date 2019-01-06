@@ -24,8 +24,6 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
-import java.util.List;
-
 /**
  * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and let them fall down.
  * Both {@link #leftOffset} and {@link #rightOffset} can be used to limit the possible spawning point of new {@link Particle}s.

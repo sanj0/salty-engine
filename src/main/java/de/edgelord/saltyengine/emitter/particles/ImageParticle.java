@@ -34,7 +34,7 @@ import java.awt.image.BufferedImage;
  *     }
  *     }
  * </pre>
- *
+ * <p>
  * The default {@link Dimensions} is {@link #DEFAULT_DIMENSIONS}.
  *
  * @see de.edgelord.saltyengine.core.ImageLoader

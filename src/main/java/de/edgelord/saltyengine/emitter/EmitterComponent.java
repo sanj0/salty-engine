@@ -131,7 +131,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
      * Spawns a single new particle with the following steps:
-     *
+     * <p>
      * 1. Create a {@link Particle} using {@link #createParticle()}
      * 2. Set a emitter-specific position using {@link Particle#setPosition(Coordinates2f)}
      * 3. return it
