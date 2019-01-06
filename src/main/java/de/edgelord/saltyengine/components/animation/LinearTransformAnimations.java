@@ -194,7 +194,7 @@ public class LinearTransformAnimations extends Component {
      * <code>WIDTH</code> meaning the width of it ({@link de.edgelord.saltyengine.transform.Transform#setWidth(float)})
      * <code>HEIGHT</code> meaning the height of it ({@link de.edgelord.saltyengine.transform.Transform#setHeight(float)})
      * <code>X_POS</code> meaning the x position of it ({@link de.edgelord.saltyengine.transform.Transform#setX(float)})
-     * <code><_POS</code> meaning the y position of it ({@link de.edgelord.saltyengine.transform.Transform#setY(float)})
+     * <code>Y_POS</code> meaning the y position of it ({@link de.edgelord.saltyengine.transform.Transform#setY(float)})
      * <code>ROTATION</code> meaning the rotation of it ({@link de.edgelord.saltyengine.transform.Transform#setRotationDegrees(float)})
      */
     public enum Control {

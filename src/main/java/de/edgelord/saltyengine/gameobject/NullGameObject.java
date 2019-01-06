@@ -28,7 +28,7 @@ import de.edgelord.saltyengine.transform.Transform;
  * A GameObject with default empty implementations of:
  * {@link GameObject#onCollision(CollisionEvent)} <br>
  * {@link GameObject#onFixedTick()} <br>
- * {@link GameObject#draw(SaltyGraphics)} <p>
+ * {@link GameObject#draw(SaltyGraphics)}
  * <p>
  * Inside the {@link #initialize()}, this GameObject is set to be {@link GameObject#setStationary(boolean)} and
  * to ignore the gravity using {@link de.edgelord.saltyengine.components.SimplePhysicsComponent#setGravityEnabled(boolean)}

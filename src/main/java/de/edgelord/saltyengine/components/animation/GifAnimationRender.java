@@ -45,6 +45,8 @@ public class GifAnimationRender extends RenderComponent {
      * @param name        the id-name of this component
      * @param path        the path of the gif
      * @param imageSource where to get the gif from.
+     *
+     * @throws MalformedURLException when there is an error with loading the gif
      */
     public GifAnimationRender(ComponentContainer parent, String name, String path, Resource imageSource) throws MalformedURLException {
         super(parent, name, Components.GIF_RENDER);

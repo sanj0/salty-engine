@@ -28,7 +28,7 @@ import java.util.*;
 /**
  * Adds for every {@link Particle} whose rendering process is prepared by this context a new profile to {@link #profiles}
  * with a new random {@link Color} from {@link #colors} and uses it for each next request for this particle.
- * -> every <code>Particle</code> has a random <code>Color</code> from {@link #colors}
+ * -- every <code>Particle</code> has a random <code>Color</code> from {@link #colors}
  */
 public class RandomColorProfileParticleRenderContext extends ParticleRenderContext {
 

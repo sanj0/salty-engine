@@ -207,6 +207,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * You can use this within {@link #buildTileGrid(HashMap)}
      *
      * @param grid         the HasMpa to fill
+     * @param tile         the image with which the area is to be filled
      * @param startingTile the tile which is the upper left corner of the rectangle
      * @param width        the width of the rectangle
      * @param height       the height of the rectangle
