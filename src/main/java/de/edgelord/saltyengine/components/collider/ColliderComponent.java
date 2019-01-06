@@ -63,6 +63,7 @@ public abstract class ColliderComponent extends Component<GameObject> {
 
     /**
      * Empty implementation
+     *
      * @param saltyGraphics the graphics to render to
      */
     @Override
@@ -71,6 +72,7 @@ public abstract class ColliderComponent extends Component<GameObject> {
 
     /**
      * Empty implementation
+     *
      * @param e the event of the collision
      */
     @Override
@@ -89,15 +91,15 @@ public abstract class ColliderComponent extends Component<GameObject> {
     /**
      * Returns where this component's parent and the given {@link GameObject} collide, this is only ever called internally
      * after {@link #requestCollision(GameObject)} returns true.
-     *
+     * <p>
      * Example: <br>
-     *
+     * <p>
      * |------------------------------|  __This is where the two <code>GameObject</code>s collide.
      * | The parent of this component | /
      * |______________________________|----------------------|
-     *                                | The other GameObject |
-     *                                |______________________|
-     *
+     * | The other GameObject |
+     * |______________________|
+     * <p>
      * In the situation above, this method would return {@link de.edgelord.saltyengine.utils.Directions.Direction#RIGHT}
      *
      * @param other the other <code>GameObject</code>
@@ -114,6 +116,7 @@ public abstract class ColliderComponent extends Component<GameObject> {
 
     /**
      * Sets the {@link #type} of this collider.
+     *
      * @param type the new type
      */
     public void setType(String type) {

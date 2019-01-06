@@ -60,10 +60,10 @@ public class AnimationRender extends RenderComponent {
     /**
      * A constructor with all necessary parameters
      *
-     * @param parent        the parent of the Component
-     * @param name          the id-name of this Component
-     * @param spritesheetAnimation     the spritesheetAnimation that should be rendered
-     * @param ticksPerFrame after how many fixed ticks the next frame of the spritesheetAnimation should be triggered
+     * @param parent               the parent of the Component
+     * @param name                 the id-name of this Component
+     * @param spritesheetAnimation the spritesheetAnimation that should be rendered
+     * @param ticksPerFrame        after how many fixed ticks the next frame of the spritesheetAnimation should be triggered
      */
     public AnimationRender(ComponentContainer parent, String name, SpritesheetAnimation spritesheetAnimation, int ticksPerFrame) {
         super(parent, name, Components.RENDER_COMPONENT);

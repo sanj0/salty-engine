@@ -16,6 +16,10 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Dimensions;
+
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,6 +27,9 @@ import java.util.Random;
  */
 public class GeneralUtil {
 
+    /**
+     * The <code>Random</code> instance used for all utils that need one.
+     */
     private static Random random = new Random();
 
     /**
@@ -35,5 +42,42 @@ public class GeneralUtil {
     public static int randomInt(float min, float max) {
         int r = random.nextInt(Math.round(max) - Math.round(min));
         return Math.round(r + min);
+    }
+
+    /**
+     * Returns a random object from the given list by requesting the next int from {@link #random} with
+     * {@link List#size()} as the bound and returning the object with this index.
+     *
+     * @param list the {@link List} from which to return as random object
+     * @return a random object from the given list
+     */
+    public static Object randomObjectFromList(List list) {
+        return list.get(random.nextInt(list.size()));
+    }
+
+    /**
+     * Returns a random {@link Dimensions}. The given floats are rounded to integers.
+     *
+     * @param minWidth  the min width
+     * @param maxWidth  the max width
+     * @param minHeight the min height
+     * @param maxHeight the max height
+     * @return a new random {@link Dimensions}.
+     */
+    public static Dimensions randomDimensions(float minWidth, float maxWidth, float minHeight, float maxHeight) {
+        return new Dimensions(randomInt(minWidth, maxWidth), randomInt(minHeight, maxHeight));
+    }
+
+    /**
+     * Returns a random {@link Coordinates2f}. The given floats are rounded to integers.
+     *
+     * @param minX the min x
+     * @param maxX the max x
+     * @param minY the min y
+     * @param maxY the max y
+     * @return a new random {@link Coordinates2f}.
+     */
+    public static Coordinates2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
+        return new Coordinates2f(randomInt(minX, maxX), randomInt(minY, maxY));
     }
 }

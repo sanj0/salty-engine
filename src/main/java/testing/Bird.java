@@ -19,12 +19,16 @@ package testing;
 import de.edgelord.saltyengine.components.animation.AnimationRender;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.effect.Spritesheet;
+import de.edgelord.saltyengine.effect.SpritesheetAnimation;
+import de.edgelord.saltyengine.emitter.components.RandomRainEmitter;
+import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
+import de.edgelord.saltyengine.emitter.prc.RandomColorProfileParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
@@ -52,6 +56,10 @@ public class Bird extends GameObject implements Serializable {
 
         // Improves performance a lot!
         //setStationary(true);
+        RandomRainEmitter emitter = new RandomRainEmitter(this, "emitty", RoundRectangleParticle.class, 1, 5);
+        emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
+
+        addComponent(emitter);
     }
 
     @Override

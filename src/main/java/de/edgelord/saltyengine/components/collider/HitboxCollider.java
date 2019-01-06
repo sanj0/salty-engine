@@ -38,7 +38,6 @@ public class HitboxCollider extends ColliderComponent {
      *
      * @param other the other <code>GameObject</code>
      * @return whether this component's parent and the given <code>GameObject</code> collide
-     *
      * @see ColliderComponent#requestCollision(GameObject)
      */
     @Override

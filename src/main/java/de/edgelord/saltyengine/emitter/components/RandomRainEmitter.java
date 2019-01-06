@@ -65,7 +65,7 @@ public class RandomRainEmitter extends EmitterComponent {
      * @param parent       the parent of this component
      * @param name         the id-name for this component
      * @param particle     the kind of particle to be emitted by this emitter.
-     *                     this can be obtained by using e.g. {@code RandomCircleParticle.class}
+     *                     this can be obtained by using e.g. {@code CircleParticle.class}
      * @param amount       the amount of particles per wave
      * @param waveDuration the distance between the waves in terms of time
      */
@@ -91,13 +91,13 @@ public class RandomRainEmitter extends EmitterComponent {
     public void startWave() {
         for (int i = 0; i < getAmount(); i++) {
             Particle newParticle = createParticle();
-            newParticle.setPosition(newRandomSpawnPoint());
+            newParticle.setPosition(newRandomSpawnPoint(newParticle));
             addParticle(newParticle);
         }
     }
 
-    private Coordinates2f newRandomSpawnPoint() {
-        return new Coordinates2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
+    private Coordinates2f newRandomSpawnPoint(Particle p) {
+        return new Coordinates2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
     }
 
     public float getSpeed() {

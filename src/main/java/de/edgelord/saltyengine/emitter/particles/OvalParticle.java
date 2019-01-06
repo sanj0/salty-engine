@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,36 +16,27 @@
 
 package de.edgelord.saltyengine.emitter.particles;
 
-import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.emitter.Particle;
-import de.edgelord.saltyengine.utils.GeneralUtil;
+import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * A round {@link Particle} with a random diameter between {@link #MIN_DIAMETER} and {@link #MAX_DIAMETER}.
+ * An oval particle whose default {@link de.edgelord.saltyengine.transform.Dimensions} is {@link #DEFAULT_DIMENSIONS}.
  */
-@DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
-public class RandomCircleParticle extends Particle {
+public class OvalParticle extends Particle {
 
     /**
-     * The smallest possible diameter for a new {@link RandomCircleParticle}.
+     * The default dimensions
      */
-    public static float MIN_DIAMETER = 5f;
+    public static Dimensions DEFAULT_DIMENSIONS = new Dimensions(5f, 10f);
 
     /**
-     * The biggest possible diameter for a new {@link RandomCircleParticle}.
+     * {@inheritDoc}
      */
-    public static float MAX_DIAMETER = 25f;
-
-    /**
-     * @param waveNumber the number of the wave that this particle is spawned in.
-     */
-    public RandomCircleParticle(Integer waveNumber) {
+    public OvalParticle(Integer waveNumber) {
         super(waveNumber);
 
-        int diameter = GeneralUtil.randomInt(MIN_DIAMETER, MAX_DIAMETER);
-        setWidth(diameter);
-        setHeight(diameter);
+        this.setDimensions(DEFAULT_DIMENSIONS);
     }
 
     @Override

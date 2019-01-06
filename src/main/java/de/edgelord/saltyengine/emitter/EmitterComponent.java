@@ -23,7 +23,9 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
+import de.edgelord.saltyengine.utils.GeneralUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -32,7 +34,8 @@ import java.util.List;
 
 /**
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
- * It emits
+ * It emits instances of {@link #particle}, whose dimensions can be manipulated with {@link #fixedParticleDimensions} or
+ * {@link #fixedMinParticleDimensions} and {@link #fixedMaxParticleDimensions}.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public abstract class EmitterComponent extends Component<ComponentContainer> {
@@ -57,6 +60,29 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     private int currentWave = 0;
 
+    /**
+     * A fixed min dimensions for new {@link Particle}s, being set after the initialization of each particle.
+     * <p>
+     * Special cases:
+     * If {@link #fixedParticleDimensions} is not <code>null</code>, {@link #fixedParticleDimensions} will be set as the particle's dimensions
+     * If either this or {@link #fixedMaxParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
+     */
+    private Dimensions fixedMinParticleDimensions = null;
+
+    /**
+     * A fixed max dimensions for new {@link Particle}s, being set after the initialization of each particle.
+     * <p>
+     * Special cases:
+     * If {@link #fixedParticleDimensions} is not <code>null</code>, {@link #fixedParticleDimensions} will be set as the particle's dimensions
+     * If either this or {@link #fixedMaxParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
+     */
+    private Dimensions fixedMaxParticleDimensions = null;
+
+    /**
+     * If this is not <code>null</code>, every {@link Particle} that is emitted by this {@link EmitterComponent} will
+     * have that exact size.
+     */
+    private Dimensions fixedParticleDimensions = null;
 
     private int ticks = 0;
     private int ticks2 = 0;
@@ -72,6 +98,9 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     private List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
 
+    /**
+     * The {@link Class} object of the particle to be emitted.
+     */
     private Class<? extends Particle> particle;
 
     /**
@@ -106,7 +135,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
      * Moves the particles. This is called every fixed tick. The given {@link List} is actually just {@link #currentParticles},
-     * which can also be obtained using {@link #getCurrentParticles()}
+     * which can't be obtained elsewhere.
      *
      * @param particles the {@link List} of {@link Particle}s to be moved.
      */
@@ -159,9 +188,18 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @return a new particle
      */
-    public Particle createParticle() {
+    protected Particle createParticle() {
         try {
-            return particle.getConstructor(Integer.class).newInstance(currentWave);
+
+            Particle particle = this.particle.getConstructor(Integer.class).newInstance(currentWave);
+
+            if (fixedParticleDimensions != null) {
+                particle.setDimensions(fixedParticleDimensions);
+            } else if (fixedMinParticleDimensions != null && fixedMaxParticleDimensions != null) {
+                particle.setDimensions(GeneralUtil.randomDimensions(fixedMinParticleDimensions.getWidth(), fixedMaxParticleDimensions.getWidth(), fixedMinParticleDimensions.getHeight(), fixedMaxParticleDimensions.getHeight()));
+            }
+
+            return particle;
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -169,6 +207,11 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return null;
     }
 
+    /**
+     * The only way to add a {@link Particle} to the {@link #currentParticles}.
+     *
+     * @param particle the <code>Particle</code> to be added.
+     */
     protected void addParticle(Particle particle) {
         currentParticles.add(particle);
     }
@@ -189,15 +232,31 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.waveDuration = waveDuration;
     }
 
-    public List<Particle> getCurrentParticles() {
-        return currentParticles;
-    }
-
-    public ParticleRenderContext getRenderContext() {
-        return renderContext;
-    }
-
     public void setRenderContext(ParticleRenderContext renderContext) {
         this.renderContext = renderContext;
+    }
+
+    public Dimensions getFixedMinParticleDimensions() {
+        return fixedMinParticleDimensions;
+    }
+
+    public void setFixedMinParticleDimensions(Dimensions fixedMinParticleDimensions) {
+        this.fixedMinParticleDimensions = fixedMinParticleDimensions;
+    }
+
+    public Dimensions getFixedMaxParticleDimensions() {
+        return fixedMaxParticleDimensions;
+    }
+
+    public void setFixedMaxParticleDimensions(Dimensions fixedMaxParticleDimensions) {
+        this.fixedMaxParticleDimensions = fixedMaxParticleDimensions;
+    }
+
+    public Dimensions getFixedParticleDimensions() {
+        return fixedParticleDimensions;
+    }
+
+    public void setFixedParticleDimensions(Dimensions fixedParticleDimensions) {
+        this.fixedParticleDimensions = fixedParticleDimensions;
     }
 }

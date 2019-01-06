@@ -14,26 +14,35 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.effect.light;
+package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
-import de.edgelord.saltyengine.effect.geom.EnumShape;
-import de.edgelord.saltyengine.transform.Coordinates2f;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.emitter.Particle;
 
+/**
+ * A round {@link Particle} whose default diameter is {@link #DEFAULT_DIAMETER}.
+ */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
-public class PointLight extends GradientLight {
+public class CircleParticle extends Particle {
 
-    public PointLight(Transform transform) {
-        super(transform, EnumShape.OVAL);
+    /**
+     * The default diameter for a new <code>CircleParticle</code>.
+     */
+    public static float DEFAULT_DIAMETER = 10f;
+
+    /**
+     * {@inheritDoc}
+     */
+    public CircleParticle(Integer waveNumber) {
+        super(waveNumber);
+
+        setWidth(DEFAULT_DIAMETER);
+        setHeight(DEFAULT_DIAMETER);
     }
 
-    public PointLight(float x, float y, float radius) {
-        this(new Transform(x, y, radius, radius));
-    }
-
-    public PointLight(Coordinates2f position, float radius) {
-        this(new Transform(position, new Dimensions(radius, radius)));
+    @Override
+    public void draw(SaltyGraphics saltyGraphics) {
+        saltyGraphics.drawOval(this);
     }
 }

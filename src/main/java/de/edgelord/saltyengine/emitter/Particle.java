@@ -24,14 +24,23 @@ import de.edgelord.saltyengine.transform.Transform;
 
 /**
  * A {@link Particle} is a physics-independent drawable object that has a transform.
- * Those get emitted by {@link EmitterComponent}s.
- * As with the only constructor, there is no {@link Transform} argument, the transform is {@link Transform#zero()} by default.
- * The particle itself may set its size and the emitter may set its position.
+ * <code>Particle</code>s can be emitted by {@link EmitterComponent}s.
+ * As with the only constructor there is no {@link Transform} argument, the transform is {@link Transform#zero()} by default to avoid a {@link NullPointerException}.
+ * <p>
+ * Usually, the particle itself has a default size, but the {@link EmitterComponent} can be configured to set a specific
+ * size for its emitted particles.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Particle implements TransformedObject, Drawable {
 
+    /**
+     * The transform of this particle.
+     */
     private Transform transform;
+
+    /**
+     * The number of the wave that this particle is spawned in.
+     */
     private final Integer waveNumber;
 
     public Particle(Integer waveNumber) {
