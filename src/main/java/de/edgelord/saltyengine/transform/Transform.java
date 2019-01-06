@@ -192,7 +192,11 @@ public class Transform {
     }
 
     public void rotateToPoint(Coordinates2f point) {
-        rotation.rotateToPoint(point);
+        rotation.rotateToPoint(point, this);
+    }
+
+    public void rotateToPoint(float x, float y) {
+        rotation.rotateToPoint(x, y, this);
     }
 
     public Rectangle2D getRect() {

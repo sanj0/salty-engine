@@ -59,7 +59,7 @@ public class Bird extends GameObject implements Serializable {
         RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, 1, 5);
         emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
 
-        addComponent(emitter);
+        //addComponent(emitter);
     }
 
     @Override
@@ -79,7 +79,10 @@ public class Bird extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
-        //getTransform().rotateToPoint(Input.cursorPosition);
+        getTransform().rotateToPoint(Input.getCursorPosition());
+
+        System.out.println("bird" + getTransform().getPosition());
+        System.out.println("cursor" + Input.getCursorPosition());
 
         if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);

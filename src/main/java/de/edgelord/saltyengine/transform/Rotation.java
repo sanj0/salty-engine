@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.transform;
 
+import static java.lang.Math.toDegrees;
+
 /**
  * This class describes the rotation of an Object around the relative position {@link #centre} by {@link #rotationDegrees} degrees.
  * <p>
@@ -56,12 +58,11 @@ public class Rotation {
         this(0, 0);
     }
 
-    public void rotateToPoint(Coordinates2f point) {
-        throw new UnsupportedOperationException("rotating an entity to face a point");
-        /*
-        float arc = (float) Math.atan2(point.getY() / centre.getY(), point.getX() / centre.getX());
+    public void rotateToPoint(Coordinates2f point, Transform parent) {
+        // throw new UnsupportedOperationException("rotating an entity to face a point");
+
+        float arc = (float) Math.atan2(point.getY() - (centre.getY() + parent.getY()), point.getX() - (centre.getX() + parent.getX()));
         rotationDegrees = (float) toDegrees(arc);
-        */
 
         //System.out.println(Math.toDegrees(Math.atan2(getCentre().getY() - point.getY(), getCentre().getX() - point.getX())));
 
@@ -76,8 +77,8 @@ public class Rotation {
         */
     }
 
-    public void rotateToPoint(float x, float y) {
-        rotateToPoint(new Coordinates2f(x, y));
+    public void rotateToPoint(float x, float y, Transform parent) {
+        rotateToPoint(new Coordinates2f(x, y), parent);
     }
 
     @Override
