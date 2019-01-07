@@ -48,6 +48,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         }
 
         Input.mouseDrags = true;
+        processMousePosition(e);
     }
 
     @Override
@@ -60,6 +61,10 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
             SceneManager.getCurrentScene().getUI().mouseMoved(e);
         }
 
+        processMousePosition(e);
+    }
+
+    private void processMousePosition(MouseEvent e) {
         Coordinates2f cursorPos = new Coordinates2f(e.getX(), e.getY());
         Coordinates2f imagePos = container.getImagePosition();
         float currentScale = container.getCurrentScale();

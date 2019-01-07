@@ -48,7 +48,7 @@ public class ColorUtil {
     public static final Color FIREBRICK_RED = new Color(178, 34, 34);
     public static final Color CRIMSON_RED = new Color(220, 20, 60);
     public static final Color HEART_RED = new Color(229, 55, 84);
-    public static final Color MODERN_RE = new Color(234, 104, 113);
+    public static final Color MODERN_RED = new Color(234, 104, 113);
     public static final Color CORAL_RED = new Color(255, 127, 80);
     public static final Color INDIAN_RED = new Color(205, 92, 92);
     public static final Color DARK_SALMON = new Color(233, 150, 122);
