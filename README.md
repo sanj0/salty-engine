@@ -17,7 +17,8 @@ Minimal **tested** hardware requirements (for [Escape the Junk](#games-made-with
 - only integrated graphics
 - 4GB RAM
 
-**NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com)**
+**NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com) that I can add it to [this section](#games-made-with-salty-engine)** <br></br>
+**NOTE 2: The default font (`SaltySystem.defaultFont`) is the same on all systems to ensure the same looking graphics on every computer. This font is powered by Google Fonts and is published under the Apache 2 license as well.**  
 
 ## Content
 1. [Why using Salty Engine](#why-using-salty-engine)

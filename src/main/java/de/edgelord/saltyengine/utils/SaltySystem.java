@@ -24,6 +24,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class SaltySystem {
 
@@ -39,7 +40,15 @@ public class SaltySystem {
     public static ImageFactory defaultImageFactory = new ImageFactory(defaultResource);
     public static FontFactory defaultFontFactory = new FontFactory(defaultResource);
 
-    public static Font defaultFont = new Font(Font.SERIF, Font.PLAIN, 15);
+    public static Font defaultFont;
+
+    static {
+        try {
+            defaultFont = defaultFontFactory.getFont("res/fonts/OpenSans-Regular.ttf", 10f);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Sets the {@link Font} {@link #defaultFont} to all {@link UIElement}s in the
