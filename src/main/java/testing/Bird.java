@@ -81,9 +81,6 @@ public class Bird extends GameObject implements Serializable {
 
         getTransform().rotateToPoint(Input.getCursorPosition());
 
-        System.out.println("bird" + getTransform().getPosition());
-        System.out.println("cursor" + Input.getCursorPosition());
-
         if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);
         } else {

@@ -168,11 +168,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
                 for (int i = 0; i < gameObjects.size(); i++) {
                     GameObject other = gameObjects.get(i);
 
-                    if (other == this) {
-                        continue;
-                    }
+                    if (other != this) {
 
-                    if (!stationary) {
                         if (requestCollider().requestCollision(other)) {
 
                             Directions.Direction currentCollisionDirection =
@@ -185,7 +182,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
                             onCollision(eSelf);
 
                             components.forEach(component -> component.onCollision(eSelf));
-
                         }
                     }
                 }
