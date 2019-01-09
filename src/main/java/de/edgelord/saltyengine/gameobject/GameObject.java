@@ -356,6 +356,13 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return getTransform().contains(Input.getCursor());
     }
 
+    /**
+     * @return {@link #isCursorOver()}.
+     */
+    public boolean mouseTouches() {
+        return isCursorOver();
+    }
+
     public int getWidthAsInt() {
         return getTransform().getWidthAsInt();
     }
