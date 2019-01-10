@@ -63,8 +63,9 @@ To get a usable JAR of this library, you can whether download an existing releas
 
 0. Requirements: 
     - [git](https://git-scm.com) has to be installed properly
-    - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the enviroment var JAVA_HOME points to 1.8)
-    - you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) and [stdf](https://github.com/edgelord314/stdf) first, using the steps 1-3
+    - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the environment var JAVA_HOME points to 1.8)
+    - you have to install the dependencies first, on macOs and linux you can use the script install-dependencies.sh,
+    on windows you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) and [stdf](https://github.com/edgelord314/stdf) manually, using the steps 1-3
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in 
    
    ```bash
