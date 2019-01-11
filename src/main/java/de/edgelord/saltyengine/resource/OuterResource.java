@@ -47,25 +47,15 @@ public class OuterResource implements Resource {
     @Override
     public BufferedImage getImageResource(String relativePath) {
 
-        if (relativePath.startsWith("/")) {
-
-            try {
-                return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + relativePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            try {
-                return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            return getImage(relativePath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        // If the return statement above fails, return a new empty BufferedImage with 314 x 314 pixels and ImageType 1
+        // If the return statement above fails, return a new empty BufferedImage with 314 x 314 pixels and TYPE_BYTE_GRAY
 
-        return new BufferedImage(314, 314, 1);
+        return new BufferedImage(314, 314, BufferedImage.TYPE_BYTE_GRAY);
     }
 
     @Override

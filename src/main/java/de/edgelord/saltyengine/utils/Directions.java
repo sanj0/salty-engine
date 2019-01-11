@@ -58,19 +58,19 @@ public class Directions {
         Directions mirroredDirections = new Directions();
 
         if (directions.hasDirection(Direction.UP)) {
-            mirroredDirections.setDirection(Direction.DOWN);
+            mirroredDirections.addDirection(Direction.DOWN);
         }
 
         if (directions.hasDirection(Direction.DOWN)) {
-            mirroredDirections.setDirection(Direction.UP);
+            mirroredDirections.addDirection(Direction.UP);
         }
 
         if (directions.hasDirection(Direction.LEFT)) {
-            mirroredDirections.setDirection(Direction.RIGHT);
+            mirroredDirections.addDirection(Direction.RIGHT);
         }
 
         if (directions.hasDirection(Direction.RIGHT)) {
-            mirroredDirections.setDirection(Direction.LEFT);
+            mirroredDirections.addDirection(Direction.LEFT);
         }
 
         return mirroredDirections;
@@ -83,22 +83,22 @@ public class Directions {
 
         if (hasDirection(Direction.UP)) {
             removeDirection(Direction.UP);
-            setDirection(Direction.DOWN);
+            addDirection(Direction.DOWN);
         }
 
         if (hasDirection(Direction.DOWN)) {
             removeDirection(Direction.DOWN);
-            setDirection(Direction.UP);
+            addDirection(Direction.UP);
         }
 
         if (hasDirection(Direction.RIGHT)) {
             removeDirection(Direction.RIGHT);
-            setDirection(Direction.LEFT);
+            addDirection(Direction.LEFT);
         }
 
         if (hasDirection(Direction.LEFT)) {
             removeDirection(Direction.LEFT);
-            setDirection(Direction.RIGHT);
+            addDirection(Direction.RIGHT);
         }
     }
 
@@ -123,6 +123,13 @@ public class Directions {
         return BasicDirection.x;
     }
 
+    @Override
+    public String toString() {
+        return "Directions{" +
+                "directions=" + directions +
+                '}';
+    }
+
     public enum BasicDirection {
         x, y
     }
@@ -135,7 +142,7 @@ public class Directions {
         EMPTY /* 16 */
     }
 
-    public void setDirection(Direction direction) {
+    public void addDirection(Direction direction) {
         int dir = getDirNumber(direction);
         this.directions |= dir;
     }

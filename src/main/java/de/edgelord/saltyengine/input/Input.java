@@ -50,19 +50,19 @@ public class Input {
         Directions input = new Directions();
 
         if (inputUp) {
-            input.setDirection(Directions.Direction.UP);
+            input.addDirection(Directions.Direction.UP);
         }
 
         if (inputDown) {
-            input.setDirection(Directions.Direction.DOWN);
+            input.addDirection(Directions.Direction.DOWN);
         }
 
         if (inputRight) {
-            input.setDirection(Directions.Direction.RIGHT);
+            input.addDirection(Directions.Direction.RIGHT);
         }
 
         if (inputLeft) {
-            input.setDirection(Directions.Direction.LEFT);
+            input.addDirection(Directions.Direction.LEFT);
         }
 
         return input;

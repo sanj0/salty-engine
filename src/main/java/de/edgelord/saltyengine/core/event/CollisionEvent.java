@@ -25,26 +25,16 @@ import de.edgelord.saltyengine.utils.Directions;
 public class CollisionEvent {
 
     private final GameObject root;
-    private Directions collisionDirections;
     private Directions.Direction collisionDirection;
 
-    public CollisionEvent(final GameObject root, final Directions collisionDirections, final Directions.Direction collisionDirection) {
+    public CollisionEvent(final GameObject root, final Directions.Direction collisionDirection) {
 
         this.root = root;
-        this.collisionDirections = collisionDirections;
         this.collisionDirection = collisionDirection;
     }
 
     public GameObject getRoot() {
         return root;
-    }
-
-    public Directions getCollisionDirections() {
-        return collisionDirections;
-    }
-
-    public void setCollisionDirections(final Directions collisionDirections) {
-        this.collisionDirections = collisionDirections;
     }
 
     public Directions.Direction getCollisionDirection() {

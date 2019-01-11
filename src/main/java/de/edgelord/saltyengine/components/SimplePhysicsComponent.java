@@ -31,7 +31,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-// FIXME: 2019-01-07 fix the ignoring tag feature
 public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
@@ -119,7 +118,6 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     @Override
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
 
-        Directions directions;
         Directions collisionDirections = new Directions();
         boolean upCollision = false;
         boolean downCollision = false;
@@ -129,26 +127,27 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         for (CollisionEvent collisionEvent : collisions) {
 
             if (!tagsToIgnore.contains(collisionEvent.getRoot().getTag()) && !collisionEvent.getRoot().isTrigger()) {
-                directions = collisionEvent.getCollisionDirections();
+                switch (collisionEvent.getCollisionDirection()) {
 
-                if (directions.hasDirection(Directions.Direction.UP)) {
-                    upCollision = true;
-                    collisionDirections.setDirection(Directions.Direction.UP);
-                }
 
-                if (directions.hasDirection(Directions.Direction.DOWN)) {
-                    downCollision = true;
-                    collisionDirections.setDirection(Directions.Direction.DOWN);
-                }
-
-                if (directions.hasDirection(Directions.Direction.LEFT)) {
-                    leftCollision = true;
-                    collisionDirections.setDirection(Directions.Direction.LEFT);
-                }
-
-                if (directions.hasDirection(Directions.Direction.RIGHT)) {
-                    rightCollision = true;
-                    collisionDirections.setDirection(Directions.Direction.RIGHT);
+                    case RIGHT:
+                        rightCollision = true;
+                        collisionDirections.addDirection(Directions.Direction.RIGHT);
+                        break;
+                    case LEFT:
+                        leftCollision = true;
+                        collisionDirections.addDirection(Directions.Direction.LEFT);
+                        break;
+                    case UP:
+                        upCollision = true;
+                        collisionDirections.addDirection(Directions.Direction.UP);
+                        break;
+                    case DOWN:
+                        downCollision = true;
+                        collisionDirections.addDirection(Directions.Direction.DOWN);
+                        break;
+                    case EMPTY:
+                        break;
                 }
             }
         }

@@ -175,8 +175,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
                             Directions.Direction currentCollisionDirection =
                                     requestCollider().getCollisionDirection(other);
 
-                            collisionDirections.setDirection(currentCollisionDirection);
-                            final CollisionEvent eSelf = new CollisionEvent(other, collisionDirections, currentCollisionDirection);
+                            collisionDirections.addDirection(currentCollisionDirection);
+                            final CollisionEvent eSelf = new CollisionEvent(other, currentCollisionDirection);
 
                             collisions.add(eSelf);
                             onCollision(eSelf);
@@ -320,7 +320,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
                 getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;
             case EMPTY:
-                System.out.println("[WARNING] Can not set the velocity for Direction Directions.Direction.EMPTY!");
+                System.out.println("[WARNING] Cannot set the velocity for Direction Directions.Direction.EMPTY!");
                 break;
         }
     }

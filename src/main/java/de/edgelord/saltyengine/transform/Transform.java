@@ -47,10 +47,10 @@ public class Transform {
      */
     public boolean intersects(Transform other) {
 
-        int xOther = Math.round(other.getX());
-        int yOther = Math.round(other.getY());
-        int widthOther = Math.round(other.getWidth());
-        int heightOther = Math.round(other.getHeight());
+        int xOther = Math.round(other.getX()) - 1;
+        int yOther = Math.round(other.getY()) - 1;
+        int widthOther = Math.round(other.getWidth() - 1);
+        int heightOther = Math.round(other.getHeight() - 1);
 
         int x = Math.round(getX());
         int y = Math.round(getY());
@@ -138,12 +138,12 @@ public class Transform {
      */
     public void appendRelation(final Transform other, Directions directions) {
 
-        directions.setDirection(getRelation(other));
+        directions.addDirection(getRelation(other));
     }
 
     /**
      * This method returns the relation between this and the given {@link Transform} as a Direction.
-     * That'll only work proper if the two Transforms intersect.
+     * That'll only work properly if the two Transforms intersect.
      *
      * @param other the <code>gameObject</code> from which the relation to
      *              <code>this</code> will be returned

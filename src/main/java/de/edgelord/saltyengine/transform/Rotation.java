@@ -59,7 +59,7 @@ public class Rotation {
     }
 
     public void rotateToPoint(Coordinates2f point, Transform parent) {
-        float arc = (float) Math.atan2(point.getY() - (centre.getY() + parent.getY()), point.getX() - (centre.getX() + parent.getX()));
+        double arc = Math.atan2(point.getY() - (centre.getY() + parent.getY()), point.getX() - (centre.getX() + parent.getX()));
         rotationDegrees = (float) toDegrees(arc);
     }
 

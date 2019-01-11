@@ -20,6 +20,7 @@ import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -42,7 +43,9 @@ public class FontFactory extends Factory {
      * @throws FontFormatException when the defaultFont format is not TTF
      */
     public Font getFont(String relativePath, float size) throws IOException, FontFormatException {
-        return Font.createFont(Font.TRUETYPE_FONT, getResource().getFileResource(relativePath)).deriveFont(size);
+        File fontFile = getResource().getFileResource(relativePath);
+        System.out.println(fontFile.getAbsolutePath());
+        return Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(size);
     }
 
     /**

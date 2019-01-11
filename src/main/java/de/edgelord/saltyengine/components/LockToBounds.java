@@ -55,13 +55,13 @@ public class LockToBounds extends Component<GameObject> {
 
             case MODE_TRANSFORM:
                 if (!bounds.contains(getParent().getTransform())) {
-                    getParent().getLockedDirections().setDirection(bounds.getRelation(getParent().getTransform()));
+                    getParent().getLockedDirections().addDirection(bounds.getRelation(getParent().getTransform()));
                 }
                 break;
 
             case MODE_HITBOX:
                 if (!bounds.contains(getParent().getHitbox().getTransform())) {
-                    getParent().getLockedDirections().setDirection(bounds.getRelation(getParent().getHitbox().getTransform()));
+                    getParent().getLockedDirections().addDirection(bounds.getRelation(getParent().getHitbox().getTransform()));
                 }
                 break;
         }
