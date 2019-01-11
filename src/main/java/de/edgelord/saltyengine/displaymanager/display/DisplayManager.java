@@ -67,7 +67,7 @@ public class DisplayManager extends Host {
 
     @Override
     public Dimensions getCurrentDimensions() {
-        return new Dimensions(display.getWidth(), display.getHeight());
+        return new Dimensions(display.getContentPane().getWidth(), display.getContentPane().getHeight());
     }
 
     @Override
