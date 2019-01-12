@@ -163,7 +163,7 @@ public class ColorUtil {
      * @return the given color with the given alpha value
      */
     public static Color changeAlpha(Color color, float alpha) {
-        return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) alpha * 255f);
     }
 
     /**
