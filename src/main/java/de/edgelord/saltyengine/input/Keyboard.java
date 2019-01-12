@@ -157,6 +157,12 @@ public class Keyboard {
 
     private void flagMatchingKeyAs(boolean targetFlag, KeyEvent event) {
 
+        switch (event.getKeyChar()) {
+            case ' ':
+                space = targetFlag;
+                break;
+        }
+
         switch (event.getKeyCode()) {
 
             /*
@@ -195,8 +201,6 @@ public class Keyboard {
             case KeyEvent.VK_PAGE_DOWN:
                 page_down = targetFlag;
                 break;
-            case KeyEvent.VK_SPACE:
-                space = targetFlag;
 
             /*
             Arrow keys
