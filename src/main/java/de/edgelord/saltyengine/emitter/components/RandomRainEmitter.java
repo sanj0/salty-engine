@@ -31,7 +31,7 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
  * use {@link #offsetY}
  * <p>
  * The spawned {@link Particle}s are falling down with {@link #speed} pixels per fixed tick and there are constantly spawning new ones.
- * You can the spawning rate using {@link #setWaveDuration(int)}.
+ * You can the spawning rate using {@link #setWaveInterval(int)}.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RandomRainEmitter extends EmitterComponent {
@@ -58,17 +58,17 @@ public class RandomRainEmitter extends EmitterComponent {
     private float offsetY = 0f;
 
     /**
-     * Constructs a new {@link RandomRainEmitter}.
-     *
-     * @param parent       the parent of this component
-     * @param name         the id-name for this component
-     * @param particle     the kind of particle to be emitted by this emitter.
-     *                     this can be obtained by using e.g. {@code CircleParticle.class}
-     * @param amount       the amount of particles per wave
-     * @param waveDuration the distance between the waves in terms of time
+     * {@inheritDoc}
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveDuration) {
-        super(parent, name, particle, amount, waveDuration);
+    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveInterval) {
+        super(parent, name, particle, amount, waveInterval);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount) {
+        super(parent, name, particle, amount);
     }
 
     @Override

@@ -37,9 +37,21 @@ import java.util.List;
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
  * It emits instances of {@link #particle}, whose dimensions can be manipulated with {@link #fixedParticleDimensions} or
  * {@link #fixedMinParticleDimensions} and {@link #fixedMaxParticleDimensions}.
+ *
+ * <p>
+ * You can also spawn a new wave on demand by calling {@link #impact()}.
+ *
+ * <p>
+ * If {@link #impactMode} is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}
+ * is called. This is e.g. useful for an explosion.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public abstract class EmitterComponent extends Component<ComponentContainer> {
+
+    /**
+     * If this is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}is called.
+     */
+    private boolean impactMode = false;
 
     /**
      * The amount of particles to spawn in one wave
@@ -49,7 +61,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * The amount of ticks after which a new wave of Particles should be emitted
      */
-    private int waveDuration;
+    private int waveInterval;
 
     /**
      * Determines after how many fixed ticks the particles of one wave should disappear again.
@@ -75,7 +87,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * <p>
      * Special cases:
      * If {@link #fixedParticleDimensions} is not <code>null</code>, {@link #fixedParticleDimensions} will be set as the particle's dimensions
-     * If either this or {@link #fixedMaxParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
+     * If either this or {@link #fixedMinParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
      */
     private Dimensions fixedMaxParticleDimensions = null;
 
@@ -87,6 +99,8 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     private int ticks = 0;
     private int ticks2 = 0;
+    private int nextWaveToRemove = 0;
+    private boolean impactOnNextTick = false;
 
     /**
      * The {@link ParticleRenderContext} that is used to render the particles.
@@ -105,23 +119,45 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     private Class<? extends Particle> particle;
 
     /**
-     * The constructor.
+     * The constructor initializing an emitter that emits a wave of the given amount of particles every given duration
+     * of ticks.
      *
      * @param parent       the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
      * @param name         the id-name of the component
      * @param particle     the particle to be emitted. obtained via {@link Object#getClass()}
      * @param amount       the amount of emitted particles per wave
-     * @param waveDuration the time to be passed between each wave
+     * @param waveInterval the time to be passed between each wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveDuration) {
+    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float amount, int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
+
         this.particle = particle;
         this.amount = amount;
-        this.waveDuration = waveDuration;
+        this.waveInterval = waveInterval;
+    }
+
+    /**
+     * The constructor initializing an emitter with {@link #impactMode} set to <code>true</code>, meaning that it will
+     * only emit a single wave of particles every time {@link #impact()} is called.
+     * {@link #waveInterval} is overloaded with <code>1</code>.
+     *
+     * @param parent the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
+     * @param name the id-name of the component
+     * @param particle the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param amount the amount of emitted particles per wave
+     */
+    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float amount) {
+        super(parent, name, Components.EMITTER_COMPONENT);
+
+        this.particle = particle;
+        this.amount = amount;
+        this.waveInterval = 1;
+        this.impactMode = true;
     }
 
     @Override
     public final void initialize() {
+        initializeEmitter();
     }
 
     /**
@@ -152,31 +188,47 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Calls {@link #spawnParticle()} every {@link #waveDuration} fixed ticks for {@link #amount} times and calls {@link #moveParticle(Particle)} every fixed tick for every entry in {@link #currentParticles}.
+     * Calls {@link #spawnParticle()} every {@link #waveInterval} fixed ticks for {@link #amount} times and calls {@link #moveParticle(Particle)} every fixed tick for every entry in {@link #currentParticles}.
      */
     @Override
     public final void onFixedTick() {
 
+        // remove particles after the specified lifespan
         if (ticks2 >= lifespan) {
             ticks2 = 0;
-            currentParticles.removeIf(particle -> particle.getWaveNumber() == currentWave - 1);
+            if (currentParticles.removeIf(particle -> particle.getWaveNumber() == nextWaveToRemove)) {
+                nextWaveToRemove++;
+            }
         } else {
             ticks2++;
         }
 
-        if (ticks >= waveDuration) {
-            ticks = 0;
-            for (int i = 0; i < amount; i++) {
-                addParticle(spawnParticle());
+        // spawn a new wave after the specified duration
+        if (!impactMode) {
+            if (ticks >= waveInterval) {
+                ticks = 0;
+                spawnWave();
+            } else {
+                ticks++;
             }
-            currentWave++;
-        } else {
-            ticks++;
         }
 
+        if (impactOnNextTick) {
+            spawnWave();
+            impactOnNextTick = false;
+        }
+
+        // move all particles
         for (int i = 0; i < currentParticles.size(); i++) {
             moveParticle(currentParticles.get(i));
         }
+    }
+
+    private void spawnWave() {
+        for (int i = 0; i < amount; i++) {
+            addParticle(spawnParticle());
+        }
+        currentWave++;
     }
 
     /**
@@ -218,6 +270,13 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
+     * This method will cause exactly one wave of {@link Particle}s to be emitted.
+     */
+    public void impact() {
+        impactOnNextTick = true;
+    }
+
+    /**
      * The only way to add a {@link Particle} to the {@link #currentParticles}.
      *
      * @param particle the <code>Particle</code> to be added.
@@ -234,16 +293,24 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.amount = amount;
     }
 
-    public int getWaveDuration() {
-        return waveDuration;
+    public int getWaveInterval() {
+        return waveInterval;
     }
 
-    public void setWaveDuration(int waveDuration) {
-        this.waveDuration = waveDuration;
+    public void setWaveInterval(int waveInterval) {
+        this.waveInterval = waveInterval;
     }
 
     public void setRenderContext(ParticleRenderContext renderContext) {
         this.renderContext = renderContext;
+    }
+
+    public boolean isImpactMode() {
+        return impactMode;
+    }
+
+    public void setImpactMode(boolean impactMode) {
+        this.impactMode = impactMode;
     }
 
     public Dimensions getFixedMinParticleDimensions() {

@@ -39,6 +39,8 @@ public class Bird extends GameObject implements Serializable {
     private final SpritesheetAnimation spritesheetAnimation;
     private final Spritesheet spritesheet;
 
+    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, 1);
+
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
@@ -56,10 +58,9 @@ public class Bird extends GameObject implements Serializable {
 
         // Improves performance a lot!
         //setStationary(true);
-        RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, 1, 5);
         emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
 
-        //addComponent(emitter);
+        addComponent(emitter);
     }
 
     @Override
@@ -80,6 +81,10 @@ public class Bird extends GameObject implements Serializable {
     public void onFixedTick() {
 
         getTransform().rotateToPoint(Input.getCursorPosition());
+
+        if (Input.getKeyboardInput().isSpace()) {
+            emitter.impact();
+        }
 
         if (Input.keyboardInput.isSpace()) {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);

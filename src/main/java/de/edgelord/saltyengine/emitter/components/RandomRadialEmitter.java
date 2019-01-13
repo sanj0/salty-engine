@@ -16,11 +16,9 @@
 
 package de.edgelord.saltyengine.emitter.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
@@ -41,16 +39,17 @@ public class RandomRadialEmitter extends EmitterComponent {
     private Directions lockedDirections = new Directions();
 
     /**
-     * The constructor.
-     *
-     * @param parent       the {@link GameObject} that owns this {@link Component}
-     * @param name         the id-name of the component
-     * @param particle     the particle to be emitted. obtained via {@link Object#getClass()} or {@code Object.class}
-     * @param amount       the amount of emitted particles per wave
-     * @param waveDuration the time to be passed between each wave
+     * {@inheritDoc}
      */
-    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveDuration) {
-        super(parent, name, particle, amount, waveDuration);
+    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveInterval) {
+        super(parent, name, particle, amount, waveInterval);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount) {
+        super(parent, name, particle, amount);
     }
 
     @Override
