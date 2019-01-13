@@ -52,7 +52,7 @@ public class GameStarter {
                 startGame(false, null, fps);
             }
         } catch (Exception e) {
-            System.err.println("Seems like something gone wrong by starting the game. Maybe you called Game#start before you called Game#init?");
+            System.err.println("Seems like something gone wrong while starting the game. Maybe you called Game#start before you called Game#init?");
             e.printStackTrace();
         }
     }

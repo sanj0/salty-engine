@@ -148,7 +148,7 @@ public class Game {
      */
     public static void start() {
 
-        GameStarter.startGame(-1, SplashWindow.Splash.DEFAULT_SPLASH);
+        GameStarter.startGame(-1, SplashWindow.Splash.SPOTLIGHT_SPLASH);
     }
 
     /**
@@ -160,7 +160,7 @@ public class Game {
      */
     public static void start(long fixedFPS) {
 
-        GameStarter.startGame(fixedFPS, SplashWindow.Splash.DEFAULT_SPLASH);
+        GameStarter.startGame(fixedFPS, SplashWindow.Splash.SPOTLIGHT_SPLASH);
     }
 
     protected static void setEngine(Engine engine) {

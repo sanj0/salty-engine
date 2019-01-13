@@ -21,7 +21,6 @@ import javax.swing.*;
 public class SplashWindow extends JFrame {
 
     public enum Splash {
-        DEFAULT_SPLASH,
         SPOTLIGHT_SPLASH,
         NO_SPLASH
     }
@@ -30,10 +29,6 @@ public class SplashWindow extends JFrame {
         ImageIcon image = null;
 
         switch (splash) {
-
-            case DEFAULT_SPLASH:
-                image = new ImageIcon(getClass().getResource("/splashes/DefaultSplash.gif"));
-                break;
             case SPOTLIGHT_SPLASH:
                 image = new ImageIcon(getClass().getResource("/splashes/SpotlightSplash.gif"));
                 break;
