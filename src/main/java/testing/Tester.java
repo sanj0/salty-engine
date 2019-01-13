@@ -40,12 +40,12 @@ public class Tester extends Game {
 
         Tester.audioPlayer = new AudioPlayer(new AudioFactory(new InnerResource()));
 
-        Tester.audioPlayer.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
+        //Tester.audioPlayer.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
         Tester.audioPlayer.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
-        Tester.audioPlayer.loop("joy_sticky");
+        //Tester.audioPlayer.loop("joy_sticky");
 
-        audioPlayer.setClipVolume("joy_sticky", 0.75f);
+        //audioPlayer.setClipVolume("joy_sticky", 0.75f);
 
         getHost().setBackgroundColor(Color.lightGray);
     }
