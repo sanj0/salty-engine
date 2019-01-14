@@ -34,7 +34,8 @@ public class Display extends JFrame {
 
     public Display(DisplayRatio displayRatio, String windowTitle) {
 
-        setSize((int) displayRatio.getCurrentDimensions().getWidth(), (int) displayRatio.getCurrentDimensions().getHeight());
+        getContentPane().setPreferredSize(new Dimension((int) displayRatio.getCurrentDimensions().getWidth(), (int) displayRatio.getCurrentDimensions().getHeight()));
+        pack();
         this.windowTitle = windowTitle;
     }
 
