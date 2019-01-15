@@ -37,6 +37,7 @@ import java.util.List;
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
  * It emits instances of {@link #particle}, whose dimensions can be manipulated with {@link #fixedParticleDimensions} or
  * {@link #fixedMinParticleDimensions} and {@link #fixedMaxParticleDimensions}.
+ * The speed of every {@link Particle} that is created by this emitter is the current value of {@link #speed}.
  *
  * <p>
  * You can also spawn a new wave on demand by calling {@link #impact()}.
@@ -44,6 +45,9 @@ import java.util.List;
  * <p>
  * If {@link #impactMode} is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}
  * is called. This is e.g. useful for an explosion.
+ *
+ * <p>
+ * The {@link #modifierStack} is a list of {@link ParticleModifier}s that all modify the particles over time with e.g. speed or size.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public abstract class EmitterComponent extends Component<ComponentContainer> {
@@ -74,6 +78,16 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     private int currentWave = 0;
 
     /**
+     * The speed of the particles.
+     */
+    private float speed;
+
+    /**
+     * The modifier stack.
+     */
+    private List<ParticleModifier> modifierStack = new ArrayList<>();
+
+    /**
      * A fixed min dimensions for new {@link Particle}s, being set after the initialization of each particle.
      * <p>
      * Special cases:
@@ -100,6 +114,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     private int ticks = 0;
     private int ticks2 = 0;
     private int nextWaveToRemove = 0;
+    private int wavesToRemove = 0;
     private boolean impactOnNextTick = false;
 
     /**
@@ -125,15 +140,17 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param parent       the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
      * @param name         the id-name of the component
      * @param particle     the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param speed        the speed of the particles spawned by this emitter.
      * @param amount       the amount of emitted particles per wave
      * @param waveInterval the time to be passed between each wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float amount, int waveInterval) {
+    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float speed, float amount, int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
 
         this.particle = particle;
         this.amount = amount;
         this.waveInterval = waveInterval;
+        this.speed = speed;
     }
 
     /**
@@ -144,15 +161,13 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param parent the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
      * @param name the id-name of the component
      * @param particle the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param speed the speed of the particles spawned by this emitter.
      * @param amount the amount of emitted particles per wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float amount) {
-        super(parent, name, Components.EMITTER_COMPONENT);
+    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float speed, float amount) {
+        this(parent, name, particle, speed, amount, 1);
 
-        this.particle = particle;
-        this.amount = amount;
-        this.waveInterval = 1;
-        this.impactMode = true;
+        impactMode = true;
     }
 
     @Override
@@ -195,9 +210,12 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
         // remove particles after the specified lifespan
         if (ticks2 >= lifespan) {
-            ticks2 = 0;
-            if (currentParticles.removeIf(particle -> particle.getWaveNumber() == nextWaveToRemove)) {
-                nextWaveToRemove++;
+            if (wavesToRemove > 0) {
+                if (currentParticles.removeIf(particle -> particle.getWaveNumber() == nextWaveToRemove)) {
+                    nextWaveToRemove++;
+                }
+                ticks2 = 0;
+                wavesToRemove--;
             }
         } else {
             ticks2++;
@@ -222,6 +240,11 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         for (int i = 0; i < currentParticles.size(); i++) {
             moveParticle(currentParticles.get(i));
         }
+
+        // apply the modifier stack
+        for (ParticleModifier modifier : modifierStack) {
+            modifier.modifyParticles(currentParticles);
+        }
     }
 
     private void spawnWave() {
@@ -229,6 +252,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
             addParticle(spawnParticle());
         }
         currentWave++;
+        wavesToRemove++;
     }
 
     /**
@@ -238,6 +262,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        saltyGraphics.resetObjectRotation(getParent());
         for (int i = 0; i < currentParticles.size(); i++) {
             Particle particle = currentParticles.get(i);
             renderContext.nextParticleRenderConfig(saltyGraphics, particle);
@@ -246,14 +271,14 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Returns a new instance of {@link #particle} with the {@link #currentWave}
+     * Returns a new instance of {@link #particle} with the {@link #currentWave} and {@link #speed}.
      *
      * @return a new particle
      */
     public Particle createParticle() {
         try {
 
-            Particle particle = this.particle.getConstructor(Integer.class).newInstance(currentWave);
+            Particle particle = this.particle.getConstructor(Integer.class, Float.class).newInstance(currentWave, speed);
 
             if (fixedParticleDimensions != null) {
                 particle.setDimensions(fixedParticleDimensions);
@@ -285,6 +310,23 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         currentParticles.add(particle);
     }
 
+    /**
+     * Adds the given {@link ParticleModifier} to the {@link #modifierStack}.
+     *
+     * @param modifier the modifier to be added to the stack.
+     */
+    public void addModifier(ParticleModifier modifier) {
+        modifierStack.add(modifier);
+    }
+
+    /**
+     * Removes the given {@link ParticleModifier} from the {@link #modifierStack}.
+     * @param modifier the modifier to be removed from the stack.
+     */
+    public void removeModifier(ParticleModifier modifier) {
+        modifierStack.remove(modifier);
+    }
+
     public float getAmount() {
         return amount;
     }
@@ -311,6 +353,38 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     public void setImpactMode(boolean impactMode) {
         this.impactMode = impactMode;
+    }
+
+    public int getLifespan() {
+        return lifespan;
+    }
+
+    public void setLifespan(int lifespan) {
+        this.lifespan = lifespan;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public List<ParticleModifier> getModifierStack() {
+        return modifierStack;
+    }
+
+    public void setModifierStack(List<ParticleModifier> modifierStack) {
+        this.modifierStack = modifierStack;
+    }
+
+    public Class<? extends Particle> getParticle() {
+        return particle;
+    }
+
+    public void setParticle(Class<? extends Particle> particle) {
+        this.particle = particle;
     }
 
     public Dimensions getFixedMinParticleDimensions() {

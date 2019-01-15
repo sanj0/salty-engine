@@ -27,6 +27,10 @@ import de.edgelord.saltyengine.utils.Directions;
  * A {@link Particle} is a physics-independent drawable object that has a transform.
  * <code>Particle</code>s can be emitted by {@link EmitterComponent}s.
  * As with the only constructor there is no {@link Transform} argument, the transform is {@link Transform#zero()} by default to avoid a {@link NullPointerException}.
+ *
+ * <p>
+ * All instances of {@link EmitterComponent} are recommended to using this particles {@link #speed}.
+ *
  * <p>
  * Usually, the particle itself has a default size, but the {@link EmitterComponent} can be configured to set a specific
  * size for its emitted particles.
@@ -40,7 +44,7 @@ public abstract class Particle implements TransformedObject, Drawable {
     private Transform transform;
 
     /**
-     * The <code>Directions</code> in which this particle can't move
+     * The <code>Directions</code> in which this particle can't move.
      */
     private Directions lockedDirections = new Directions();
 
@@ -49,8 +53,20 @@ public abstract class Particle implements TransformedObject, Drawable {
      */
     private final Integer waveNumber;
 
-    public Particle(Integer waveNumber) {
+    /**
+     * The speed of this particle.
+     */
+    private float speed;
+
+    /**
+     * The constructor.
+     *
+     * @param waveNumber the number of the wave that this particle is spawned in.
+     * @param speed the speed of this particle.
+     */
+    public Particle(Integer waveNumber, Float speed) {
         this.waveNumber = waveNumber;
+        this.speed = speed;
         transform = Transform.zero();
     }
 
@@ -79,5 +95,13 @@ public abstract class Particle implements TransformedObject, Drawable {
 
     public int getWaveNumber() {
         return waveNumber;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }

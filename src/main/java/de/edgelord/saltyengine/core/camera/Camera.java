@@ -89,7 +89,7 @@ public class Camera {
      * @param graphics the {@link Graphics2D} to reset
      */
     public void tmpResetViewToGraphics(SaltyGraphics graphics) {
-        graphics.getGraphics2D().rotate(0);
+        graphics.setRotation(0);
         graphics.getGraphics2D().translate(getX() * -1, getY() * -1);
     }
 
@@ -202,6 +202,7 @@ public class Camera {
      *
      * @param rotation the rotation degrees of this camera.
      */
+    @Deprecated
     public void setRotation(float rotation) {
         this.rotation = rotation;
     }
@@ -218,6 +219,7 @@ public class Camera {
         return position.getY();
     }
 
+    @Deprecated
     public float getRotation() {
         return rotation;
     }

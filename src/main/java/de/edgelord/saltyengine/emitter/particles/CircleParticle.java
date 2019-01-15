@@ -34,8 +34,8 @@ public class CircleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public CircleParticle(Integer waveNumber) {
-        super(waveNumber);
+    public CircleParticle(Integer waveNumber, Float speed) {
+        super(waveNumber, speed);
 
         setWidth(DEFAULT_DIAMETER);
         setHeight(DEFAULT_DIAMETER);

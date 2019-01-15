@@ -30,6 +30,7 @@ import java.awt.image.ImageObserver;
 public class SaltyGraphics {
 
     private Graphics2D graphics2D;
+    private float currentRotation;
 
     public SaltyGraphics(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
@@ -844,6 +845,36 @@ public class SaltyGraphics {
      */
     public void setPaint(Paint paint) {
         graphics2D.setPaint(paint);
+    }
+
+    /**
+     * Sets the rotation of the graphics around the given point to the given amount of degrees with considering the current rotation.
+     *
+     * @param rotation the new rotation
+     * @param centre the centre of the rotation.
+     * @see Graphics2D#rotate(double, double, double)
+     */
+    public void setRotation(float rotation, Coordinates2f centre) {
+
+        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()), centre.getX(), centre.getY());
+    }
+
+    /**
+     * Sets the rotation of the graphics to the given amount of degrees.
+     *
+     * @param rotation the new rotation.
+     * @see Graphics2D#rotate(double)
+     */
+    public void setRotation(float rotation) {
+        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()));
+    }
+
+    /**
+     * Resets the rotation made by the given object to this graphics.
+     * @param object the object.
+     */
+    public void resetObjectRotation(TransformedObject object) {
+        setRotation(-object.getRotationDegrees(), object.getTransform().getRotationCentreAbsolute());
     }
 
     /**

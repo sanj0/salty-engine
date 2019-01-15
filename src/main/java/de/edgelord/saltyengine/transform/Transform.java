@@ -289,6 +289,10 @@ public class Transform {
         this.rotation = rotation;
     }
 
+    public Coordinates2f getRotationCentreAbsolute() {
+        return rotation.getCentreAbsolute(this);
+    }
+
     public float getRotationDegrees() {
         return rotation.getRotationDegrees();
     }

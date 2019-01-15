@@ -49,8 +49,8 @@ public abstract class ImageParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public ImageParticle(Integer wave) {
-        super(wave);
+    public ImageParticle(Integer wave, Float speed) {
+        super(wave, speed);
 
         setDimensions(DEFAULT_DIMENSIONS);
         image = getImage();

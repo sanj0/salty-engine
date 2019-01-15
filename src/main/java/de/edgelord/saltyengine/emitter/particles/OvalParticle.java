@@ -33,8 +33,8 @@ public class OvalParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public OvalParticle(Integer waveNumber) {
-        super(waveNumber);
+    public OvalParticle(Integer waveNumber, Float speed) {
+        super(waveNumber, speed);
 
         this.setDimensions(DEFAULT_DIMENSIONS);
     }

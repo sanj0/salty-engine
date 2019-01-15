@@ -33,8 +33,8 @@ public class RectangleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public RectangleParticle(Integer waveNumber) {
-        super(waveNumber);
+    public RectangleParticle(Integer waveNumber, Float speed) {
+        super(waveNumber, speed);
 
         setDimensions(DEFAULT_DIMENSIONS);
     }

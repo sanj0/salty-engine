@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.transform;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.toDegrees;
 
 /**
@@ -59,7 +60,8 @@ public class Rotation {
     }
 
     public void rotateToPoint(Coordinates2f point, Transform parent) {
-        double arc = Math.atan2(point.getY() - (centre.getY() + parent.getY()), point.getX() - (centre.getX() + parent.getX()));
+        Coordinates2f absCentre = getCentreAbsolute(parent);
+        double arc = Math.atan2(point.getY() - (absCentre.getY()), point.getX() - (absCentre.getX()));
         rotationDegrees = (float) toDegrees(arc);
     }
 
@@ -76,6 +78,10 @@ public class Rotation {
         } else {
             return false;
         }
+    }
+
+    public Coordinates2f getCentreAbsolute(Transform parent) {
+        return new Coordinates2f(centre.getX() + parent.getX(), centre.getY() + parent.getY());
     }
 
     public Coordinates2f getCentre() {

@@ -17,11 +17,13 @@
 package testing;
 
 import de.edgelord.saltyengine.components.animation.AnimationRender;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.emitter.components.RandomRadialEmitter;
+import de.edgelord.saltyengine.emitter.modifiers.GravityParticleModifier;
 import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
 import de.edgelord.saltyengine.emitter.prc.RandomColorProfileParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -39,7 +41,7 @@ public class Bird extends GameObject implements Serializable {
     private final SpritesheetAnimation spritesheetAnimation;
     private final Spritesheet spritesheet;
 
-    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, 1);
+    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, .1f, 1);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");

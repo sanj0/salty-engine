@@ -174,9 +174,8 @@ public class Scene {
         synchronized (concurrentBlock) {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                float rotation = gameObject.getTransform().getRotation().getRotationDegrees() + Game.getCamera().getRotation();
-                Coordinates2f rotationCentre = gameObject.getTransform().getRotation().getCentre();
-                saltyGraphics.getGraphics2D().rotate(Math.toRadians(rotation), rotationCentre.getX() + gameObject.getX(), rotationCentre.getY() + gameObject.getY());
+                Coordinates2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
+                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
 
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);

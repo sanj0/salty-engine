@@ -30,16 +30,11 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
  * The particles are spawned at the max y value of the parent's transform, meaning at its lowest point. To manipulate that,
  * use {@link #offsetY}
  * <p>
- * The spawned {@link Particle}s are falling down with {@link #speed} pixels per fixed tick and there are constantly spawning new ones.
+ * The spawned {@link Particle}s are falling down with {@link #getSpeed()} pixels per fixed tick and there are constantly spawning new ones.
  * You can the spawning rate using {@link #setWaveInterval(int)}.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RandomRainEmitter extends EmitterComponent {
-
-    /**
-     * The speed with which the particles fall down.
-     */
-    private float speed = 0.5f;
 
     /**
      * The offset on the left side
@@ -60,20 +55,20 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * {@inheritDoc}
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveInterval) {
-        super(parent, name, particle, amount, waveInterval);
+    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
+        super(parent, name, particle, speed, amount, waveInterval);
     }
 
     /**
      * {@inheritDoc}
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount) {
-        super(parent, name, particle, amount);
+    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
+        super(parent, name, particle, speed, amount);
     }
 
     @Override
     public void moveParticle(Particle particle) {
-        particle.basicMove(speed, Directions.BasicDirection.y);
+        particle.basicMove(particle.getSpeed(), Directions.BasicDirection.y);
     }
 
     @Override
@@ -91,14 +86,6 @@ public class RandomRainEmitter extends EmitterComponent {
 
     private Coordinates2f newRandomSpawnPoint(Particle p) {
         return new Coordinates2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 
     public float getLeftOffset() {

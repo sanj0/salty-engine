@@ -39,8 +39,8 @@ public class RoundRectangleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public RoundRectangleParticle(Integer waveNumber) {
-        super(waveNumber);
+    public RoundRectangleParticle(Integer waveNumber, Float speed) {
+        super(waveNumber, speed);
 
         setDimensions(DEFAULT_DIMENSIONS);
     }

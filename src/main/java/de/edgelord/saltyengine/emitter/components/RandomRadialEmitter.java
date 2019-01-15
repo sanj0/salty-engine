@@ -29,11 +29,6 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
 public class RandomRadialEmitter extends EmitterComponent {
 
     /**
-     * The speed of the particles.
-     */
-    private float speed = .5f;
-
-    /**
      * The directions in which the particles aren't allowed to move.
      */
     private Directions lockedDirections = new Directions();
@@ -41,15 +36,15 @@ public class RandomRadialEmitter extends EmitterComponent {
     /**
      * {@inheritDoc}
      */
-    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount, int waveInterval) {
-        super(parent, name, particle, amount, waveInterval);
+    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
+        super(parent, name, particle, speed, amount, waveInterval);
     }
 
     /**
      * {@inheritDoc}
      */
-    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float amount) {
-        super(parent, name, particle, amount);
+    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
+        super(parent, name, particle, speed, amount);
     }
 
     @Override
@@ -71,7 +66,7 @@ public class RandomRadialEmitter extends EmitterComponent {
 
     @Override
     public void moveParticle(Particle particle) {
-        particle.moveToFacedDirection(speed);
+        particle.moveToFacedDirection(particle.getSpeed());
     }
 
     public Directions getLockedDirections() {
@@ -80,13 +75,5 @@ public class RandomRadialEmitter extends EmitterComponent {
 
     public void setLockedDirections(Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 }
