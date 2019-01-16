@@ -208,17 +208,11 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     @Override
     public final void onFixedTick() {
 
-        // remove particles after the specified lifespan
-        if (ticks2 >= lifespan) {
-            if (wavesToRemove > 0) {
-                if (currentParticles.removeIf(particle -> particle.getWaveNumber() == nextWaveToRemove)) {
-                    nextWaveToRemove++;
-                }
-                ticks2 = 0;
-                wavesToRemove--;
-            }
-        } else {
-            ticks2++;
+        // fixed ticks of the particle to remove them
+        for (int i = 0; i < currentParticles.size(); i++) {
+            Particle particle = currentParticles.get(i);
+            particle.onFixedTick();
+
         }
 
         // spawn a new wave after the specified duration
@@ -278,7 +272,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     public Particle createParticle() {
         try {
 
-            Particle particle = this.particle.getConstructor(Integer.class, Float.class).newInstance(currentWave, speed);
+            Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifespan, speed, this);
 
             if (fixedParticleDimensions != null) {
                 particle.setDimensions(fixedParticleDimensions);
@@ -292,6 +286,15 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         }
 
         return null;
+    }
+
+    /**
+     * Removes the given particle from the list.
+     *
+     * @param particle the particle to be removed from the list.
+     */
+    public void removeParticle(Particle particle) {
+        currentParticles.remove(particle);
     }
 
     /**

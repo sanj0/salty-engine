@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -49,8 +50,8 @@ public abstract class ImageParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public ImageParticle(Integer wave, Float speed) {
-        super(wave, speed);
+    public ImageParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+        super(waveNumber, restLifetime, speed, parent);
 
         setDimensions(DEFAULT_DIMENSIONS);
         image = getImage();

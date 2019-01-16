@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 
 /**
@@ -34,8 +35,8 @@ public class CircleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public CircleParticle(Integer waveNumber, Float speed) {
-        super(waveNumber, speed);
+    public CircleParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+        super(waveNumber, restLifetime, speed, parent);
 
         setWidth(DEFAULT_DIAMETER);
         setHeight(DEFAULT_DIAMETER);

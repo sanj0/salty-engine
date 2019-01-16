@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
@@ -33,8 +34,8 @@ public class RectangleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public RectangleParticle(Integer waveNumber, Float speed) {
-        super(waveNumber, speed);
+    public RectangleParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+        super(waveNumber, restLifetime, speed, parent);
 
         setDimensions(DEFAULT_DIMENSIONS);
     }

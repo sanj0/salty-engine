@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.emitter;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
@@ -36,7 +37,7 @@ import de.edgelord.saltyengine.utils.Directions;
  * size for its emitted particles.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
-public abstract class Particle implements TransformedObject, Drawable {
+public abstract class Particle implements TransformedObject, Drawable, FixedTickRoutine {
 
     /**
      * The transform of this particle.
@@ -59,19 +60,45 @@ public abstract class Particle implements TransformedObject, Drawable {
     private float speed;
 
     /**
+     * The rest of this particle's lifetime measured in fixed ticks.
+     */
+    private int restLifetime;
+
+    /**
+     * The emitter that spawned this particle.
+     */
+    private EmitterComponent parent;
+
+    private int ticks = 0;
+
+    /**
      * The constructor.
      *
      * @param waveNumber the number of the wave that this particle is spawned in.
+     * @param restLifetime the rest of this particles lifetime.
      * @param speed the speed of this particle.
+     * @param parent the emitter that spawned this particle.
      */
-    public Particle(Integer waveNumber, Float speed) {
+    public Particle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
         this.waveNumber = waveNumber;
+        this.restLifetime = restLifetime;
+        this.parent = parent;
         this.speed = speed;
         transform = Transform.zero();
     }
 
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
+
+    @Override
+    public void onFixedTick() {
+
+        if (ticks >= restLifetime) {
+            parent.removeParticle(this);
+        } else {
+            ticks++;
+        }
+    }
 
     @Override
     public Transform getTransform() {
@@ -103,5 +130,21 @@ public abstract class Particle implements TransformedObject, Drawable {
 
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public int getRestLifetime() {
+        return restLifetime;
+    }
+
+    public void setRestLifetime(int restLifetime) {
+        this.restLifetime = restLifetime;
+    }
+
+    public EmitterComponent getParent() {
+        return parent;
+    }
+
+    public void setParent(EmitterComponent parent) {
+        this.parent = parent;
     }
 }
