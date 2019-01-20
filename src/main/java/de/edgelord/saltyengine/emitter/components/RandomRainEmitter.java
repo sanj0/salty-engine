@@ -67,11 +67,6 @@ public class RandomRainEmitter extends EmitterComponent {
     }
 
     @Override
-    public void moveParticle(Particle particle) {
-        particle.basicMove(particle.getSpeed(), Directions.BasicDirection.y);
-    }
-
-    @Override
     public void initializeEmitter() {
 
     }
@@ -80,6 +75,7 @@ public class RandomRainEmitter extends EmitterComponent {
     public Particle spawnParticle() {
         Particle newParticle = createParticle();
         newParticle.setPosition(newRandomSpawnPoint(newParticle));
+        newParticle.setRotationDegrees(90);
 
         return newParticle;
     }

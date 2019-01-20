@@ -21,6 +21,8 @@ import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import java.awt.*;
+
 /**
  * A rectangular <code>Particle</code> with rounded corners. The default {@link Dimensions} is {@link #DEFAULT_DIMENSIONS}
  * and the diameter is {@link #DIAMETER}.
@@ -48,6 +50,10 @@ public class RoundRectangleParticle extends Particle {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        super.draw(saltyGraphics);
+        saltyGraphics.drawRoundRect(this, DIAMETER);
+        saltyGraphics.resetObjectRotation(this);
+        saltyGraphics.setColor(Color.RED);
         saltyGraphics.drawRoundRect(this, DIAMETER);
     }
 }

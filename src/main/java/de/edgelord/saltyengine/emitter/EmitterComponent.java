@@ -191,24 +191,14 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     public abstract Particle spawnParticle();
 
-    /**
-     * Moves each particle separately. This is called every fixed tick for every particle within {@link #currentParticles}.
-     *
-     * @param particle the <code>Particle</code> to be moved
-     */
-    public abstract void moveParticle(Particle particle);
-
     @Override
     public void onCollision(CollisionEvent event) {
     }
 
-    /**
-     * Calls {@link #spawnParticle()} every {@link #waveInterval} fixed ticks for {@link #amount} times and calls {@link #moveParticle(Particle)} every fixed tick for every entry in {@link #currentParticles}.
-     */
     @Override
     public final void onFixedTick() {
 
-        // fixed ticks of the particle to remove them
+        // fixed ticks of the particle to move and remove them
         for (int i = 0; i < currentParticles.size(); i++) {
             Particle particle = currentParticles.get(i);
             particle.onFixedTick();
@@ -228,11 +218,6 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         if (impactOnNextTick) {
             spawnWave();
             impactOnNextTick = false;
-        }
-
-        // move all particles
-        for (int i = 0; i < currentParticles.size(); i++) {
-            moveParticle(currentParticles.get(i));
         }
 
         // apply the modifier stack
@@ -261,6 +246,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
             Particle particle = currentParticles.get(i);
             renderContext.nextParticleRenderConfig(saltyGraphics, particle);
             particle.draw(saltyGraphics);
+            saltyGraphics.resetObjectRotation(particle);
         }
     }
 

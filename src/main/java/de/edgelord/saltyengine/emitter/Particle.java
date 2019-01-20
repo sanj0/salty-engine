@@ -35,6 +35,9 @@ import de.edgelord.saltyengine.utils.Directions;
  * <p>
  * Usually, the particle itself has a default size, but the {@link EmitterComponent} can be configured to set a specific
  * size for its emitted particles.
+ *
+ * <p>
+ * A <code>Particle</code> automatically moves by {@link #speed} to the faced direction using {@link TransformedObject#moveToFacedDirection(float)}
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Particle implements TransformedObject, Drawable, FixedTickRoutine {
@@ -87,16 +90,28 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
         transform = Transform.zero();
     }
 
+    /**
+     * Rotates the graphics by {@link #getRotationDegrees()} around {@link Transform#getCentre()}
+     *
+     * @param saltyGraphics the graphics to draw to
+     */
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
+    public void draw(SaltyGraphics saltyGraphics) {
+        saltyGraphics.setRotation(getRotationDegrees(), getTransform().getRotationCentreAbsolute());
+    }
 
     @Override
     public void onFixedTick() {
+
+        if (ticks == 0) {
+            getRotation().setCentre(getTransform().getCentre());
+        }
 
         if (ticks >= restLifetime) {
             parent.removeParticle(this);
         } else {
             ticks++;
+            moveToFacedDirection(speed);
         }
     }
 

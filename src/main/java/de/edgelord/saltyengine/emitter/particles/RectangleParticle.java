@@ -42,6 +42,7 @@ public class RectangleParticle extends Particle {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        super.draw(saltyGraphics);
         saltyGraphics.drawRect(this);
     }
 }

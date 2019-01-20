@@ -64,11 +64,6 @@ public class RandomRadialEmitter extends EmitterComponent {
         return particle;
     }
 
-    @Override
-    public void moveParticle(Particle particle) {
-        particle.moveToFacedDirection(particle.getSpeed());
-    }
-
     public Directions getLockedDirections() {
         return lockedDirections;
     }

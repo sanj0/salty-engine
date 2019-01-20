@@ -848,7 +848,15 @@ public class SaltyGraphics {
     }
 
     /**
-     * Sets the rotation of the graphics around the given point to the given amount of degrees with considering the current rotation.
+     * Resets the rotation.
+     */
+    public void resetRotation() {
+        graphics2D.rotate(Math.toRadians(0));
+        currentRotation = 0f;
+    }
+
+    /**
+     * Sets the rotation of the graphics around the given point to the given amount of degrees with considering the camera's rotation.
      *
      * @param rotation the new rotation
      * @param centre the centre of the rotation.
@@ -856,7 +864,9 @@ public class SaltyGraphics {
      */
     public void setRotation(float rotation, Coordinates2f centre) {
 
+        resetRotation();
         graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()), centre.getX(), centre.getY());
+        currentRotation += rotation;
     }
 
     /**
@@ -866,7 +876,9 @@ public class SaltyGraphics {
      * @see Graphics2D#rotate(double)
      */
     public void setRotation(float rotation) {
+        resetRotation();
         graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()));
+        currentRotation += rotation;
     }
 
     /**
@@ -874,7 +886,7 @@ public class SaltyGraphics {
      * @param object the object.
      */
     public void resetObjectRotation(TransformedObject object) {
-        setRotation(-object.getRotationDegrees(), object.getTransform().getRotationCentreAbsolute());
+        setRotation(0f, object.getTransform().getRotationCentreAbsolute());
     }
 
     /**

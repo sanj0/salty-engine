@@ -44,6 +44,7 @@ public class CircleParticle extends Particle {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        super.draw(saltyGraphics);
         saltyGraphics.drawOval(this);
     }
 }

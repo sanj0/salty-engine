@@ -23,10 +23,8 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.emitter.components.RandomRadialEmitter;
-import de.edgelord.saltyengine.emitter.modifiers.GravityParticleModifier;
-import de.edgelord.saltyengine.emitter.modifiers.RandomSpeedParticleModifier;
-import de.edgelord.saltyengine.emitter.modifiers.RemoveOnZeroSpeedParticleModifier;
-import de.edgelord.saltyengine.emitter.modifiers.SpeedOperatorParticleModifier;
+import de.edgelord.saltyengine.emitter.components.RandomRainEmitter;
+import de.edgelord.saltyengine.emitter.modifiers.*;
 import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
 import de.edgelord.saltyengine.emitter.prc.RandomColorProfileParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -44,7 +42,7 @@ public class Bird extends GameObject implements Serializable {
     private final SpritesheetAnimation spritesheetAnimation;
     private final Spritesheet spritesheet;
 
-    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, .1f, 1);
+    private RandomRainEmitter emitter = new RandomRainEmitter(this, "emitty", RoundRectangleParticle.class, .1f, 1);
 
     public Bird(final BufferedImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
@@ -64,7 +62,8 @@ public class Bird extends GameObject implements Serializable {
         // Improves performance a lot!
         //setStationary(true);
         emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
-        emitter.addModifier(new RandomSpeedParticleModifier(1, 10, 0.1f, false));
+        emitter.addModifier(new RandomSpeedParticleModifier(1, 5, 0.1f, false));
+        emitter.addModifier(new RotationOperatorParticleModifier(0.000000001f, SpeedOperatorParticleModifier.Operation.ADD));
 
         addComponent(emitter);
     }

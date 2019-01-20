@@ -64,6 +64,7 @@ public abstract class ImageParticle extends Particle {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        super.draw(saltyGraphics);
         saltyGraphics.drawImage(image, this);
     }
 }

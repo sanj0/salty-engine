@@ -42,6 +42,7 @@ public class OvalParticle extends Particle {
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
+        super.draw(saltyGraphics);
         saltyGraphics.drawOval(this);
     }
 }
