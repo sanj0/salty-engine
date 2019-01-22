@@ -65,6 +65,22 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
         }
     }
 
+    public Operation getOperation() {
+        return operation;
+    }
+
+    public void setOperation(Operation operation) {
+        this.operation = operation;
+    }
+
+    public float getFactor() {
+        return factor;
+    }
+
+    public void setFactor(float factor) {
+        this.factor = factor;
+    }
+
     /**
      * The kind of math operation to complete with the speed of the particles.
      */
