@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.components.rendering.RenderComponent;
+import de.edgelord.saltyengine.core.annotations.ComponentInfo;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -24,10 +25,13 @@ import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link SpritesheetAnimation}.
+ * A {@link de.edgelord.saltyengine.core.Component} that renders a {@link SpritesheetAnimation}.
  * After each {@link #ticksPerFrame} amount of fixed ticks, the next frame of the spritesheetAnimation will be drawn.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
+@ComponentInfo(name = "AnimationRender", description = "A component that renders a SpriteSheetAnimation", fullyClassifiedName = "de.edgelord.saltyengine.components.animation.AnimationRender", values = {
+        "animation:setSpritesheetAnimation", "ticksPerFrame:setTicksPerFrame"
+})
 public class AnimationRender extends RenderComponent {
 
     /**

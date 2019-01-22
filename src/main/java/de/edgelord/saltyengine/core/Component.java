@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.core;
 
+import de.edgelord.saltyengine.core.annotations.ComponentInfo;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.CollideAble;
@@ -24,6 +25,7 @@ import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.InitializeAble;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 public abstract class Component<T extends ComponentContainer> implements Drawable, FixedTickRoutine, InitializeAble, CollideAble {
@@ -34,10 +36,14 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
 
     private boolean enabled = true;
 
+    private ComponentInfo info = null;
+
     public Component(T parent, String name, String tag) {
         this.parent = parent;
         this.name = name;
         this.tag = tag;
+
+        info = getComponentInfo();
     }
 
     @Override
@@ -63,6 +69,43 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
     @Override
     public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
 
+    }
+
+    public ComponentInfo getComponentInfo() {
+
+        for (Annotation annotation : getClass().getAnnotations()) {
+            if (annotation.annotationType().isAnnotationPresent(ComponentInfo.class)) {
+                return (ComponentInfo) annotation;
+            }
+        }
+
+        throw new RuntimeException("Component " + getName() + " does not have a ComponentInfo annotation!");
+    }
+
+    public String[] getWritableValues() {
+        String[] values = new String[info.values().length];
+
+        for (int i = 0; i < info.values().length; i++) {
+            String value = info.values()[i];
+            values[i] = value.split(":")[0];
+        }
+
+        return values;
+    }
+
+    public String getValueSetter(String valueName) {
+
+        for (String s : info.values()) {
+            if (s.startsWith(valueName + ":")) {
+                return s.split(":")[1];
+            }
+        }
+
+        return null;
+    }
+
+    public ComponentInfo getInfo() {
+        return info;
     }
 
     public void remove() {

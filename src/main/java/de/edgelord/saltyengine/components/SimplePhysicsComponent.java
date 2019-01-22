@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.components;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.annotations.ComponentInfo;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.physics.Force;
@@ -31,6 +32,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+@ComponentInfo(name = "SimplePhysicsComponent", description = "A component that adds physics to a GameObject, such as forces, gravity and collision", fullyClassifiedName = "de.edgelord.saltyengine.component.SimplePhysicsComponent", values = {
+
+})
 public class SimplePhysicsComponent extends Component<GameObject> {
 
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
