@@ -19,6 +19,8 @@ package de.edgelord.saltyengine.utils;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Random;
 
@@ -79,5 +81,16 @@ public class GeneralUtil {
      */
     public static Coordinates2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
         return new Coordinates2f(randomInt(minX, maxX), randomInt(minY, maxY));
+    }
+
+    /**
+     * @return the ip-address of this machine.
+     * @throws UnknownHostException if the local host name could not
+     *              be resolved into an address.
+     *
+     * @see InetAddress#getLocalHost()
+     */
+    public static String getIP() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostAddress();
     }
 }
