@@ -21,12 +21,18 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
+import de.edgelord.saltyengine.net.client.SaltyClient;
+import de.edgelord.saltyengine.net.server.SaltyServer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.utils.GeneralUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.io.DataOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Tester extends Game {
 
@@ -50,7 +56,7 @@ public class Tester extends Game {
         getHost().setBackgroundColor(Color.lightGray);
     }
 
-    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, UnknownHostException {
         initGame();
 
         SceneManager.addScene("testingScene", TestingScene.class);
@@ -66,6 +72,20 @@ public class Tester extends Game {
         //fadeIn.fadeInit();
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
+
+        SaltyServer server = new SaltyServer(8000) {
+            @Override
+            public void handleIncomingData(DataOutputStream answerStream, String data) {
+                System.out.println("receiving " + data);
+            }
+        };
+
+        new SaltyClient(GeneralUtil.getIP(), 8000, "edgelord", GeneralUtil.getIP()) {
+            @Override
+            public void handleIncomingData(String data) {
+
+            }
+        };
     }
 
     public static AudioPlayer getAudioPlayer() {
