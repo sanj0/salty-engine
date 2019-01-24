@@ -36,5 +36,4 @@ public class AppletWrapper extends Applet {
     private void runApplication() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         Tester.main(new String[0]);
     }
-
 }

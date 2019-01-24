@@ -29,6 +29,7 @@ import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
+import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
@@ -91,11 +92,11 @@ public class TestingScene extends Scene {
         SaltySystem.defaultFont = SaltySystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
-        //RoundedTextBox textBox = new RoundedTextBox(LanguageManager.getText("textBox"), new Coordinates2f(10, 600), 1180, 100, new Coordinates2f(25, 50));
-        //textBox.setFont(textBox.getFont().deriveFont(18f));
+        RoundedTextBox textBox = new RoundedTextBox(LanguageManager.getText("textBox"), 10, 600, 1180, 100, 25, 50);
+        textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
-        //getUI().addElement(textBox);
+        getUI().addElement(textBox);
     }
 
     private void initPhysicsTest() {

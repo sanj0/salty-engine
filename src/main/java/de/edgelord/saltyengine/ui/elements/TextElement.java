@@ -28,29 +28,29 @@ public abstract class TextElement extends UIElement {
 
     private String text;
 
-    private HorizontalAlignment horizontalAlignment = HorizontalAlignment.centered;
-    private VerticalAlignment verticalAlignment = VerticalAlignment.centered;
+    private HorizontalAlignment horizontalAlignment = HorizontalAlignment.CENTERED;
+    private VerticalAlignment verticalAlignment = VerticalAlignment.CENTERED;
 
     /**
      * The horizontal alignments for the text within the bounds of the label.
      * An implementation of TextElement should take this into account.
-     * The default is {@link HorizontalAlignment#centered}
+     * The default is {@link HorizontalAlignment#CENTERED}
      */
     public enum HorizontalAlignment {
-        right,
-        left,
-        centered
+        RIGHT,
+        LEFT,
+        CENTERED
     }
 
     /**
      * The vertical alignments for the text within the bounds of the label.
      * An implementation of TextElement should take this into account.
-     * The default is {@link VerticalAlignment#centered}
+     * The default is {@link VerticalAlignment#CENTERED}
      */
     public enum VerticalAlignment {
-        top,
-        bottom,
-        centered
+        TOP,
+        BOTTOM,
+        CENTERED
     }
 
     public TextElement(String text, Coordinates2f position, float width, float height, String tag) {
@@ -62,9 +62,6 @@ public abstract class TextElement extends UIElement {
 
         this.text = text;
     }
-
-    @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
 
     public String getText() {
         return text;

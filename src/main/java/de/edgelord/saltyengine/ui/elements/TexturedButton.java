@@ -36,14 +36,14 @@ public abstract class TexturedButton extends Button {
     }
 
     @Override
-    public void drawText(SaltyGraphics saltyGraphics) {
+    public void drawForeground(SaltyGraphics saltyGraphics) {
         if (drawText) {
-            super.drawText(saltyGraphics);
+            super.drawForeground(saltyGraphics);
         }
     }
 
     @Override
-    public void drawButton(SaltyGraphics saltyGraphics) {
+    public void drawBackground(SaltyGraphics saltyGraphics) {
         saltyGraphics.drawImage(texture, getX(), getY(), getWidth(), getHeight());
     }
 

@@ -57,9 +57,6 @@ public abstract class Container extends UIElement {
         }
     }
 
-    @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
     public List<UIElement> getChildElements() {
         return childElements;
     }

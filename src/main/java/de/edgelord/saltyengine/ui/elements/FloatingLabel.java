@@ -43,9 +43,7 @@ public class FloatingLabel extends Label {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
-
-        prepareGraphics(saltyGraphics);
+    public void drawForeground(SaltyGraphics saltyGraphics) {
 
         recalculateSize(saltyGraphics.getFontMetrics());
 
@@ -66,6 +64,11 @@ public class FloatingLabel extends Label {
         if (!isSuppressClipping()) {
             saltyGraphics.resetClip();
         }
+    }
+
+    @Override
+    public void drawBackground(SaltyGraphics saltyGraphics) {
+        
     }
 
     private void recalculateSize(FontMetrics metrics) {

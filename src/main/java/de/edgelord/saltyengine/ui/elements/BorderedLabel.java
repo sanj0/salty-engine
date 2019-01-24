@@ -38,9 +38,11 @@ public class BorderedLabel extends Label {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void drawBackground(SaltyGraphics saltyGraphics) {
+    }
 
-        prepareGraphics(saltyGraphics);
+    @Override
+    public void drawForeground(SaltyGraphics saltyGraphics) {
 
         float textXPos = 0f;
         float textYPos = 0f;
@@ -52,26 +54,26 @@ public class BorderedLabel extends Label {
 
         switch (getHorizontalAlignment()) {
 
-            case right:
+            case RIGHT:
                 textXPos = getHorizontalRightAlignmentPosition(fontMetrics);
                 break;
-            case left:
+            case LEFT:
                 textXPos = getHorizontalLeftAlignmentPosition();
                 break;
-            case centered:
+            case CENTERED:
                 textXPos = getHorizontalCenteredAlignmentPosition(fontMetrics);
                 break;
         }
 
         switch (getVerticalAlignment()) {
 
-            case top:
+            case TOP:
                 textYPos = getVerticalTopAlignmentPosition(fontMetrics);
                 break;
-            case bottom:
+            case BOTTOM:
                 textYPos = getVerticalBottomAlignmentPosition(fontMetrics);
                 break;
-            case centered:
+            case CENTERED:
                 textYPos = getVerticalCenteredAlignmentPosition(fontMetrics);
                 break;
         }

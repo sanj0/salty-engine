@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
+import de.edgelord.saltyengine.components.TextRenderComponent;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates2f;
@@ -23,43 +24,32 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Time;
 
-@Deprecated
+import java.awt.*;
+
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TextBox extends TextElement {
 
     private float cursor = 1;
     private float speed = 0.020f;
-    private Coordinates2f textOffset;
+    private TextRenderComponent textRenderComponent;
 
-    public TextBox(String text, Coordinates2f position, float width, float height, Coordinates2f textOffset) {
-        this(text, new Transform(position, new Dimensions(width, height)), textOffset);
+    public TextBox(String text, Coordinates2f position, float width, float height, float offsetX, float offsetY) {
+        this(text, new Transform(position, new Dimensions(width, height)), offsetX, offsetY);
     }
 
-    public TextBox(String text, Transform transform, Coordinates2f textOffset) {
+    public TextBox(String text, Transform transform, float offsetX, float offsetY) {
         super(text, transform, TEXT_BOX);
 
-        this.textOffset = textOffset;
+        textRenderComponent = new TextRenderComponent(this, "text-renderer", getWidth() - offsetX, new Coordinates2f(offsetX, offsetY));
+        addComponent(textRenderComponent);
     }
-
-    public void drawText(SaltyGraphics graphics) {
-        graphics.setColor(getForegroundColor());
-        String currentText;
-        if (cursor >= getText().length()) {
-            currentText = getText();
-        } else {
-            currentText = getText().substring(0, Math.round(cursor));
-        }
-        graphics.drawText(currentText, getX() + textOffset.getX(), getY() + textOffset.getY());
-        cursor += (float) Time.getDeltaTime() * speed;
-    }
-
-    public abstract void drawBackground(SaltyGraphics graphics);
 
     @Override
-    public final void draw(SaltyGraphics saltyGraphics) {
-        prepareGraphics(saltyGraphics);
-        drawBackground(saltyGraphics);
-        drawText(saltyGraphics);
+    public void drawForeground(SaltyGraphics graphics) {
+        if (cursor < getText().length()) {
+            textRenderComponent.setText(getText().substring(0, Math.round(cursor)));
+        }
+        cursor += (float) Time.getDeltaTime() * speed;
     }
 
     public void start() {
@@ -69,5 +59,19 @@ public abstract class TextBox extends TextElement {
     public void start(String text) {
         setText(text);
         start();
+    }
+
+    @Override
+    public void setFont(Font font) {
+        super.setFont(font);
+        textRenderComponent.setFont(font);
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }

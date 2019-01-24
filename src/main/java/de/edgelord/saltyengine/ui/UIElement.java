@@ -69,8 +69,33 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public void onFixedTick() {
     }
 
+    /**
+     * A final implementation that calls both {@link #drawBackground(SaltyGraphics)} and {@link #drawForeground(SaltyGraphics)}
+     * with the graphics being prepared correctly.
+     *
+     * @param saltyGraphics the graphics ot render to.
+     */
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
+    public final void draw(SaltyGraphics saltyGraphics) {
+        prepareGraphics(saltyGraphics);
+        drawBackground(saltyGraphics);
+        saltyGraphics.setColor(getForegroundColor());
+        drawForeground(saltyGraphics);
+    }
+
+    /**
+     * Draws the background of the ui element.
+     *
+     * @param saltyGraphics the graphics to draw to.
+     */
+    public abstract void drawBackground(SaltyGraphics saltyGraphics);
+
+    /**
+     * Draws the foreground of this ui element.
+     *
+     * @param saltyGraphics the graphics to draw to.
+     */
+    public abstract void drawForeground(SaltyGraphics saltyGraphics);
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -157,7 +182,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return null;
     }
 
-    public void prepareGraphics(SaltyGraphics graphics) {
+    private void prepareGraphics(SaltyGraphics graphics) {
         graphics.setColor(getBackgroundColor());
         graphics.setFont(getFont());
     }

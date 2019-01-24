@@ -44,7 +44,7 @@ public class DumbPanel extends Container {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void drawBackground(SaltyGraphics saltyGraphics) {
 
         // Suppress the clipping of all child elements
         suppressAllClipping();
@@ -61,6 +61,11 @@ public class DumbPanel extends Container {
 
         // Reset Clipping area
         saltyGraphics.resetClip();
+    }
+
+    @Override
+    public void drawForeground(SaltyGraphics saltyGraphics) {
+
     }
 
     @Override

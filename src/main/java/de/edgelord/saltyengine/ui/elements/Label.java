@@ -31,7 +31,4 @@ public abstract class Label extends TextElement {
     public Label(String text, Coordinates2f position, float width, float height) {
         super(text, position, width, height, LABEL);
     }
-
-    @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
 }

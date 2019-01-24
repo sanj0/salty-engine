@@ -26,12 +26,12 @@ public class RoundedTextBox extends TextBox {
 
     private float arc = 15f;
 
-    public RoundedTextBox(String text, Coordinates2f position, float width, float height, Coordinates2f textOffset) {
-        super(text, position, width, height, textOffset);
+    public RoundedTextBox(String text, float x, float y, float width, float height, float offsetX, float offsetY) {
+        this(text, new Transform(x, y, width, height), new Coordinates2f(offsetX, offsetY));
     }
 
-    public RoundedTextBox(String text, Transform transform, Coordinates2f textOffset) {
-        super(text, transform, textOffset);
+    public RoundedTextBox(String text, Transform transform, Coordinates2f offset) {
+        super(text, transform, offset.getX(), offset.getY());
     }
 
     @Override
