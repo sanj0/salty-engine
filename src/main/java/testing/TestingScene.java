@@ -86,7 +86,7 @@ public class TestingScene extends Scene {
 
     @Override
     public void onFixedTick() {
-        light.positionByCentre(Input.getCursorPosition());
+        light.positionByCentre(Input.getAbsoluteCursorPosition());
 
         if (progress.getCurrentValue() >= progress.getMaxValue()) {
             progress.setCurrentValue(0f);

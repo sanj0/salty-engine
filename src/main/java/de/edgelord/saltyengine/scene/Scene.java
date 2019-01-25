@@ -191,11 +191,12 @@ public class Scene {
                 }
             }
         }
+
+        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
+
         if (lightSystem != null) {
             lightSystem.draw(saltyGraphics);
         }
-
-        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
 
         if (ui != null) {
             ui.drawUI(saltyGraphics);
