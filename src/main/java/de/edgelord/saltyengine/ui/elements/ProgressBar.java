@@ -45,16 +45,33 @@ public class ProgressBar extends UIElement {
      */
     private float cornerArc = 0;
 
+    /**
+     * The current dimensions of the bar.
+     */
     private Dimensions currentBar = Dimensions.zero();
 
+    /**
+     * A constructor that takes everything in as floats.
+     *
+     * @param x the position on the x axis.
+     * @param y the position on the y axis.
+     * @param width the width.
+     * @param height the height.
+     */
     public ProgressBar(float x, float y, float width, float height) {
         this(new Transform(x, y, width, height));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ProgressBar(Coordinates2f position, float width, float height) {
         super(position, width, height, STATE_DISPLAY_ELEMENT);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ProgressBar(Transform transform) {
         super(transform, STATE_DISPLAY_ELEMENT);
     }
@@ -72,6 +89,9 @@ public class ProgressBar extends UIElement {
 
     }
 
+    /**
+     * Recalculates the dimensions of the bar.
+     */
     public void recalculateBar() {
         currentBar.setHeight(getHeight());
         currentBar.setWidth(getWidth() / (maxValue / currentValue));
