@@ -54,6 +54,8 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String LABEL = "de.edgelord.saltyengine.uiElements.label";
     public static final String TEXT_BOX = "de.edgelord.saltyengine.uiElements.textBox";
     public static final String CONTAINER = "de.edgelord.saltyengine.uiElements.container";
+    public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
+    public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
 
     public UIElement(Coordinates2f position, float width, float height, String tag) {
         super(tag);

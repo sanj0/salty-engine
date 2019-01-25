@@ -16,6 +16,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
@@ -29,6 +30,7 @@ import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
+import de.edgelord.saltyengine.ui.elements.ProgressBar;
 import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -40,6 +42,7 @@ import java.io.IOException;
 public class TestingScene extends Scene {
 
     private Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
+    private ProgressBar progress = new ProgressBar(Game.getHost().getHorizontalCentrePosition(500f), 75, 500, 25);
 
     public TestingScene(String foo, Integer bar) {
         setFriction(0.005f);
@@ -84,6 +87,12 @@ public class TestingScene extends Scene {
     @Override
     public void onFixedTick() {
         light.positionByCentre(Input.getCursorPosition());
+
+        if (progress.getCurrentValue() >= progress.getMaxValue()) {
+            progress.setCurrentValue(0f);
+        } else {
+            progress.setCurrentValue(progress.getCurrentValue() + 0.01f);
+        }
         super.onFixedTick();
     }
 
@@ -93,10 +102,14 @@ public class TestingScene extends Scene {
 
         PauseButton pauseButton = new PauseButton();
         RoundedTextBox textBox = new RoundedTextBox(LanguageManager.getText("textBox"), 10, 600, 1180, 100, 25, 50);
+
+        progress.setCornerArc(20);
+        progress.setBackgroundColor(ColorUtil.ACTIVE_GREEN);
         textBox.setFont(textBox.getFont().deriveFont(18f));
 
         getUI().addElement(pauseButton);
         getUI().addElement(textBox);
+        getUI().addElement(progress);
     }
 
     private void initPhysicsTest() {
