@@ -15,6 +15,12 @@ Steps to reproduce the behavior:
 1. Add the component `xy`
 2. call `something()`
 
+- code snipped:
+```java
+addComponent(new xy(this, "xy"));
+getComponent("xy").something();
+```
+
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
