@@ -23,16 +23,18 @@ import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.utils.PointLogger;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class Tester extends Game {
 
     private static AudioPlayer audioPlayer;
 
-    private static void initGame() {
+    private static void initGame() throws IOException {
 
         Game.init(GameConfig.config(1200f, 900f, "testing", 1L));
 
@@ -50,7 +52,7 @@ public class Tester extends Game {
         getHost().setBackgroundColor(Color.lightGray);
     }
 
-    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, IOException {
         initGame();
 
         SceneManager.addScene("testingScene", TestingScene.class);
@@ -59,6 +61,7 @@ public class Tester extends Game {
         serializeOnExit();
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
+        PointLogger.init("points");
 
         //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 

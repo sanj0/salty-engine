@@ -49,6 +49,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
 
         Input.mouseDrags = true;
         processMousePosition(e);
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseDragged(e));
     }
 
     @Override
@@ -62,6 +63,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         }
 
         processMousePosition(e);
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseMoved(e));
     }
 
     private void processMousePosition(MouseEvent e) {

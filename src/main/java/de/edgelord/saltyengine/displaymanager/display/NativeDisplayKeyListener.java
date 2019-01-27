@@ -53,6 +53,8 @@ public class NativeDisplayKeyListener implements KeyListener {
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().keyTyped(e);
         }
+
+        Input.getKeyboardHandlers().forEach(keyboardInputHandler -> keyboardInputHandler.keyTyped(e));
     }
 
     @Override
@@ -86,12 +88,9 @@ public class NativeDisplayKeyListener implements KeyListener {
         }
 
         Input.keyboardInput.handleKeyPressed(e);
-        Input.lastInputKey = currentKey;
-        Input.inputUp = inputUp;
-        Input.inputDown = inputDown;
-        Input.inputRight = inputRight;
-        Input.inputLeft = inputLeft;
+        updateInputStates();
         Input.lastInput = e;
+        Input.getKeyboardHandlers().forEach(keyboardInputHandler -> keyboardInputHandler.keyPressed(e));
     }
 
     @Override
@@ -125,12 +124,18 @@ public class NativeDisplayKeyListener implements KeyListener {
         }
 
         Input.keyboardInput.handleKeyReleased(e);
+        updateInputStates();
+        Input.lastInput = null;
+
+        Input.getKeyboardHandlers().forEach(keyboardInputHandler -> keyboardInputHandler.keyReleased(e));
+    }
+
+    private void updateInputStates() {
         Input.lastInputKey = currentKey;
         Input.inputUp = inputUp;
         Input.inputDown = inputDown;
         Input.inputRight = inputRight;
         Input.inputLeft = inputLeft;
-        Input.lastInput = null;
     }
 
     public KeyboardInputHandler getKeyboardHandler() {

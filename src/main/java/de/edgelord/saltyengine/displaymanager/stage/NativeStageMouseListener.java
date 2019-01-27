@@ -38,6 +38,8 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mouseClicked(e);
         }
+
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseClicked(e));
     }
 
     @Override
@@ -51,6 +53,7 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         }
 
         Input.mouseDown = true;
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mousePressed(e));
     }
 
     @Override
@@ -65,6 +68,7 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
 
         Input.mouseDrags = false;
         Input.mouseDown = false;
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseReleased(e));
     }
 
     @Override
@@ -76,6 +80,8 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mouseEnteredScreen(e);
         }
+
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseEnteredScreen(e));
     }
 
     @Override
@@ -87,5 +93,7 @@ public class NativeStageMouseListener extends MouseInputHandlerListener implemen
         if (SceneManager.getCurrentScene().getUI() != null) {
             SceneManager.getCurrentScene().getUI().mouseExitedScreen(e);
         }
+
+        Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseExitedScreen(e));
     }
 }
