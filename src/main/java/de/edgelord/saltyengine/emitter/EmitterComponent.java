@@ -70,7 +70,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * Determines after how many fixed ticks the particles of one wave should disappear again.
      */
-    private int lifespan = 1000;
+    private int lifetime = 1000;
 
     /**
      * The number of the current wave. This value is incremented after spawning each wave, so the first spawned wave has the number 0.
@@ -272,7 +272,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     public Particle createParticle() {
         try {
 
-            Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifespan, speed, this);
+            Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifetime, speed, this);
 
             if (fixedParticleDimensions != null) {
                 particle.setDimensions(fixedParticleDimensions);
@@ -358,12 +358,12 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.impactMode = impactMode;
     }
 
-    public int getLifespan() {
-        return lifespan;
+    public int getLifetime() {
+        return lifetime;
     }
 
-    public void setLifespan(int lifespan) {
-        this.lifespan = lifespan;
+    public void setLifetime(int lifetime) {
+        this.lifetime = lifetime;
     }
 
     public float getSpeed() {

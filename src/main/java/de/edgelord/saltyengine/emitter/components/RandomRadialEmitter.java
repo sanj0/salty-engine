@@ -34,6 +34,16 @@ public class RandomRadialEmitter extends EmitterComponent {
     private Directions lockedDirections = new Directions();
 
     /**
+     * The min angle for the emitted particles.
+     */
+    private float minAngle = 0;
+
+    /**
+     * The max angle for the emitted particles.
+     */
+    private float maxAngle = 360;
+
+    /**
      * {@inheritDoc}
      */
     public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
@@ -58,7 +68,7 @@ public class RandomRadialEmitter extends EmitterComponent {
         Particle particle = createParticle();
 
         particle.positionByCentre(getParent().getTransform().getCentre());
-        particle.setRotationDegrees(GeneralUtil.randomInt(0, 360));
+        particle.setRotationDegrees(GeneralUtil.randomInt(minAngle, maxAngle));
         particle.setLockedDirections(lockedDirections);
 
         return particle;
@@ -75,5 +85,21 @@ public class RandomRadialEmitter extends EmitterComponent {
 
     public void setLockedDirections(Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
+    }
+
+    public float getMinAngle() {
+        return minAngle;
+    }
+
+    public void setMinAngle(float minAngle) {
+        this.minAngle = minAngle;
+    }
+
+    public float getMaxAngle() {
+        return maxAngle;
+    }
+
+    public void setMaxAngle(float maxAngle) {
+        this.maxAngle = maxAngle;
     }
 }
