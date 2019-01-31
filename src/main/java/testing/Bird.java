@@ -17,16 +17,12 @@
 package testing;
 
 import de.edgelord.saltyengine.components.animation.AnimationRender;
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.emitter.components.RandomRadialEmitter;
-import de.edgelord.saltyengine.emitter.modifiers.GravityParticleModifier;
 import de.edgelord.saltyengine.emitter.modifiers.RandomSpeedParticleModifier;
-import de.edgelord.saltyengine.emitter.modifiers.RemoveOnZeroSpeedParticleModifier;
-import de.edgelord.saltyengine.emitter.modifiers.SpeedOperatorParticleModifier;
 import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
 import de.edgelord.saltyengine.emitter.prc.RandomColorProfileParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.GameObject;

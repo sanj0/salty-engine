@@ -40,6 +40,12 @@ public class SaltySystem {
     public static ImageFactory defaultImageFactory = new ImageFactory(defaultResource);
     public static FontFactory defaultFontFactory = new FontFactory(defaultResource);
 
+    /**
+     * Determines whether to check for events on the cursor entering and leaving a {@link de.edgelord.saltyengine.gameobject.GameObject}
+     * which can be very performance-expensive.
+     */
+    public static boolean gameObjectMouseEventsAgent = true;
+
     public static Font defaultFont;
 
     static {

@@ -290,4 +290,16 @@ public class Scene {
     public void setLightSystem(LightSystem lightSystem) {
         this.lightSystem = lightSystem;
     }
+
+    public List<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
+    public List<FixedTask> getFixedTasks() {
+        return fixedTasks;
+    }
+
+    public List<DrawingRoutine> getDrawingRoutines() {
+        return drawingRoutines;
+    }
 }

@@ -16,6 +16,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.DeflectionOnMouseOverComponent;
 import de.edgelord.saltyengine.components.FixedRate;
 import de.edgelord.saltyengine.components.animation.AnimationRender;
 import de.edgelord.saltyengine.components.animation.LinearTransformAnimations;
@@ -29,6 +30,7 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
@@ -64,6 +66,9 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         addComponent(animationRender);
         addComponent(soundTiming);
+        DeflectionOnMouseOverComponent deflection = new DeflectionOnMouseOverComponent(this, "deflection", 50, 500, true);
+        deflection.setReturnDimensions(new Dimensions(150, 101));
+        addComponent(deflection);
     }
 
     private void initAnimations(final BufferedImage spriteSheetImage) {

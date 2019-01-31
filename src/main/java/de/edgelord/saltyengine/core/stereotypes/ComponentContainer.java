@@ -120,6 +120,22 @@ public abstract class ComponentContainer implements TransformedObject {
         });
     }
 
+    public void doComponentCursorEntersParent() {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.onCursorEntersParent();
+            }
+        });
+    }
+
+    public void doComponentCursorExitsParent() {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.onCursorExitsParent();
+            }
+        });
+    }
+
     /**
      * Places this object in the centre of the {@link de.edgelord.saltyengine.core.Host} {@link Game#getHost()}
      */

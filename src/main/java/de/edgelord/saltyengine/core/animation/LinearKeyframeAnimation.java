@@ -30,6 +30,8 @@ public class LinearKeyframeAnimation {
 
     private int currentFrame = -1;
 
+    private boolean unCalculatedChanges = false;
+
     public LinearKeyframeAnimation(List<Keyframe> keyframes) {
         this.keyframes = keyframes;
 
@@ -55,19 +57,24 @@ public class LinearKeyframeAnimation {
      */
     public float nextDelta() {
 
+        if (unCalculatedChanges) {
+            System.out.println("Warning: You have made changes to an LinearKeyFrameAnimation without recalculating the animation!");
+        }
+
         if (!animationEnded()) {
 
             currentFrame++;
             return animation.get(currentFrame);
         } else {
-            // If there is a request out of the available timeline, there should be no delta returned so 0
+            // If there is a request out of the available timeline, there should be no delta, so return 0
             return 0f;
         }
     }
 
     public void calculateAnimation() {
 
-        currentFrame = 0;
+        currentFrame = -1;
+        unCalculatedChanges = false;
 
         // Sort the list by the timing of the keyframes
         keyframes.sort(Comparator.comparingInt(Keyframe::getTiming));
@@ -99,10 +106,12 @@ public class LinearKeyframeAnimation {
 
     public void add(Keyframe keyframe) {
         keyframes.add(keyframe);
+        unCalculatedChanges = true;
     }
 
     public void add(int timing, float value) {
         keyframes.add(new Keyframe(timing, value));
+        unCalculatedChanges = true;
     }
 
     public void remove(Keyframe keyframe) {

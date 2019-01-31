@@ -42,6 +42,7 @@ public class UISystem {
 
                 if (!element.mouseHoversOver()) {
                     element.mouseEntered(Input.cursor);
+                    element.doComponentCursorEntersParent();
                 }
 
                 element.mouseHover(Input.cursor);
@@ -49,6 +50,7 @@ public class UISystem {
             } else if (element.mouseHoversOver()) {
                 element.setMouseHoversOver(false);
                 element.mouseExited(Input.cursor);
+                element.doComponentCursorExitsParent();
             }
 
             element.onFixedTick();

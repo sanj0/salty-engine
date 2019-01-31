@@ -24,6 +24,9 @@ import de.edgelord.saltyengine.transform.Dimensions;
  */
 public class SizeOperatorParticleModifier extends SpeedOperatorParticleModifier {
 
+    /**
+     * The {@link Dimensions} that are used for the operations.
+     */
     private Dimensions factorDimensions;
 
     public SizeOperatorParticleModifier(Dimensions factorDimensions, Operation operation) {

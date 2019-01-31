@@ -49,6 +49,14 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
     @Override
     public abstract void onCollision(CollisionEvent e);
 
+    public void onCursorEntersParent() {
+
+    }
+
+    public void onCursorExitsParent() {
+
+    }
+
     /*
      * You won't need that method often for a component
      */

@@ -93,7 +93,7 @@ public class Dimensions {
         return new Dimensions(0, 0);
     }
 
-    public static Dimensions mawidth() {
+    public static Dimensions max() {
         return new Dimensions(Float.MAX_VALUE, Float.MAX_VALUE);
     }
 
@@ -101,9 +101,9 @@ public class Dimensions {
         return new Dimensions(Float.MIN_VALUE, Float.MIN_VALUE);
     }
 
-    public static Dimensions random(int min, int mawidth) {
+    public static Dimensions random(int min, int max) {
         Random random = new Random();
-        return new Dimensions(random.nextInt(mawidth - min) + min, random.nextInt(mawidth - min) + min);
+        return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
     public static Dimensions one() {
@@ -121,7 +121,7 @@ public class Dimensions {
     /**
      * Returns a new <code>Dimensions</code> with the same {@link #width} and {@link #height} as this one.
      *
-     * @return a "copheight" of this <code>Dimensions</code>
+     * @return a "copy" of this <code>Dimensions</code>
      */
     @Override
     protected Object clone() {

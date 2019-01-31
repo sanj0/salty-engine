@@ -59,6 +59,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private final RecalculateHitboxComponent recalculateHitboxComponent;
     private final HitboxCollider defaultCollider;
 
+    private boolean cursorAlreadyTouching = false;
+
     /**
      * If this is set to true, this GameObject will not have a collision detection. Use this for
      * stationary objects like obstacles, houses and generally all kind of GameObjects that
@@ -131,6 +133,10 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 
+    public void onCursorEnters() {}
+
+    public void onCursorExits() {}
+
     /**
      * This method can be overridden but It's not necessary and you won't need this often, so it's not abstract
      *
@@ -156,7 +162,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         onFixedTick();
     }
 
-    public void doCollisionDetection(final List<GameObject> gameObjects) {
+    public final void doCollisionDetection(final List<GameObject> gameObjects) {
 
         Directions collisionDirections = new Directions();
         List<CollisionEvent> collisions = new ArrayList<>();
@@ -190,6 +196,16 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
             components.forEach(component -> component.onCollisionDetectionFinish(collisions));
             onCollisionDetectionFinish(collisions);
         }
+    }
+
+    public final void doCursorEnters() {
+        doComponentCursorEntersParent();
+        onCursorEnters();
+    }
+
+    public final void doCursorExits() {
+        doComponentCursorExitsParent();
+        onCursorExits();
     }
 
     @Override
@@ -433,5 +449,13 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setTrigger(boolean trigger) {
         isTrigger = trigger;
+    }
+
+    public boolean isCursorAlreadyTouching() {
+        return cursorAlreadyTouching;
+    }
+
+    public void setCursorAlreadyTouching(boolean cursorAlreadyTouching) {
+        this.cursorAlreadyTouching = cursorAlreadyTouching;
     }
 }

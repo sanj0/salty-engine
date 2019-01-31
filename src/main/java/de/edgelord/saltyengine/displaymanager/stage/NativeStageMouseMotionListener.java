@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -64,6 +65,21 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
 
         processMousePosition(e);
         Input.getMouseHandlers().forEach(mouseInputHandler -> mouseInputHandler.mouseMoved(e));
+
+        if (SaltySystem.gameObjectMouseEventsAgent) {
+            SceneManager.getCurrentScene().getGameObjects().forEach(gameObject -> {
+
+                if (gameObject.mouseTouches()) {
+                    if (!gameObject.isCursorAlreadyTouching()) {
+                        gameObject.doCursorEnters();
+                    }
+                    gameObject.setCursorAlreadyTouching(true);
+                } else if (gameObject.isCursorAlreadyTouching()){
+                    gameObject.setCursorAlreadyTouching(false);
+                    gameObject.doCursorExits();
+                }
+            });
+        }
     }
 
     private void processMousePosition(MouseEvent e) {
