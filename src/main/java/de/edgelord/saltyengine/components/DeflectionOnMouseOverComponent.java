@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
@@ -35,17 +35,16 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
      */
     private LinearKeyframeAnimation keyframeAnimation = new LinearKeyframeAnimation();
 
-    /**
-     * The {@link Dimensions} to which this component's parent returns when the cursor touches it no more.
-     */
-    private Dimensions returnDimensions;
+    private Coordinates2f returnPosition;
+
+    private float totalDeflection = 0f;
 
     /**
-     * Whether or not to loop the animation or only playing it whenever the cursor enters the parent
+     * Whether to loop the animation or only playing it whenever the cursor enters the parent
      */
     private boolean loop;
 
-    private float currentReplacement = 0;
+    private boolean shouldPlay = false;
 
     private boolean singleDeflection = false;
 
@@ -67,7 +66,9 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
         keyframeAnimation.add(interval * 2, 0);
         keyframeAnimation.calculateAnimation();
 
-        returnDimensions = new Dimensions(getParent().getWidth(), getParent().getHeight());
+        Dimensions currentDimensions = getParent().getDimensions();
+        Coordinates2f currentCentre = getParent().getTransform().getCentre();
+        returnPosition = new Coordinates2f(currentCentre.getX(), currentCentre.getY());
     }
 
     @Override
@@ -75,16 +76,19 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
 
         if (!loop) {
             singleDeflection = true;
+        } else {
+            shouldPlay = true;
         }
     }
 
     @Override
     public void onCursorExitsParent() {
-        getParent().setDimensions(returnDimensions);
-        getParent().setX(getParent().getX() + currentReplacement);
-        getParent().setY(getParent().getY() + currentReplacement);
-        currentReplacement = 0;
+        getParent().getDimensions().subtract(totalDeflection, totalDeflection);
+        getParent().positionByCentre(returnPosition);
         singleDeflection = false;
+        shouldPlay = false;
+        totalDeflection = 0f;
+        keyframeAnimation.restart();
     }
 
     @Override
@@ -101,16 +105,16 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
             }
         }
 
-        if (loop || singleDeflection) {
-            if (Input.getCursor().intersects(getParent().getTransform())) {
-                nextFrame();
-            }
+        if (shouldPlay || singleDeflection) {
+            nextFrame();
         }
+
+        updatePosition();
     }
 
     private void nextFrame() {
         float delta = keyframeAnimation.nextDelta();
-        currentReplacement += delta / 2f;
+        totalDeflection += delta;
 
         getParent().setWidth(getParent().getWidth() + delta);
         getParent().setX(getParent().getX() - (delta / 2f));
@@ -118,17 +122,20 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
         getParent().setY(getParent().getY() - (delta / 2f));
     }
 
+    /**
+     * Updates the return position to which this component's parent returns after the mouse leaves it again.
+     * This is called every fixed tick, so there should be no need to call it manually.
+     */
+    public void updatePosition() {
+
+        Coordinates2f centre = getParent().getTransform().getCentre();
+        returnPosition.setX(centre.getX());
+        returnPosition.setY(centre.getY());
+    }
+
     @Override
     public void onCollision(CollisionEvent e) {
 
-    }
-
-    public Dimensions getReturnDimensions() {
-        return returnDimensions;
-    }
-
-    public void setReturnDimensions(Dimensions returnDimensions) {
-        this.returnDimensions = returnDimensions;
     }
 
     public boolean isLoop() {

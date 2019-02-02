@@ -35,6 +35,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * A simple static util class that allows the programmer to log points from the scene into a file to make placement
@@ -52,6 +53,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
     public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.changeAlpha(ColorUtil.BLUE, 0.5f);
     public static Color POINT_VISUALIZING_COLOR = ColorUtil.changeAlpha(ColorUtil.RED, 0.35f);
+    private static Scanner scanner = new Scanner(System.in);
 
     private PointLogger(String fileName) throws IOException {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
@@ -94,7 +96,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
             saltyGraphics.drawOval(visualizingTransform(lastPoint));
         }
 
-        saltyGraphics.setColor(ColorUtil.BLUE);
+        saltyGraphics.setColor(SAVED_POINTS_VISUALIZING_COLOR);
         for (Coordinates2f coordinates2f : savedPoints) {
             saltyGraphics.drawOval(visualizingTransform(coordinates2f));
         }
@@ -128,10 +130,11 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     public void mouseClicked(MouseEvent e) {
 
         if (e.isAltDown() || e.isShiftDown()) {
-            int number = savedPoints.size();
-            System.out.println("saving points " + lastPoint.toString() + " as point" + number);
-            points.addTag("point" + number, lastPoint.getX() + ", " + lastPoint.getY());
+            System.out.println("Enter a name for point " + lastPoint.getX() + " | " + lastPoint.getY() + " and press [ENTER]");
+            String name = scanner.nextLine();
+            points.addTag(name, lastPoint.getX() + ", " + lastPoint.getY());
             savedPoints.add(lastPoint);
+            System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
         } else {
             lastPoint = Input.getCursorPosition();
             System.out.println("Temporally saved " + lastPoint.getX() + ", " +  lastPoint.getY() + " as the last point. Click while holding shift or alt to save it.");

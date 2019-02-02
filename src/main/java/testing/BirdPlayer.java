@@ -67,7 +67,6 @@ public class BirdPlayer extends GameObject implements Serializable {
         addComponent(animationRender);
         addComponent(soundTiming);
         DeflectionOnMouseOverComponent deflection = new DeflectionOnMouseOverComponent(this, "deflection", 50, 500, true);
-        deflection.setReturnDimensions(new Dimensions(150, 101));
         addComponent(deflection);
     }
 
