@@ -48,6 +48,8 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
 
     private boolean singleDeflection = false;
 
+    private boolean impact = false;
+
     /**
      * The constructor.
      *
@@ -83,8 +85,7 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
 
     @Override
     public void onCursorExitsParent() {
-        getParent().getDimensions().subtract(totalDeflection, totalDeflection);
-        getParent().positionByCentre(returnPosition);
+        resetTransform();
         singleDeflection = false;
         shouldPlay = false;
         totalDeflection = 0f;
@@ -99,17 +100,28 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
     public void onFixedTick() {
 
         if (keyframeAnimation.animationEnded()) {
+
+            if (impact) {
+                resetTransform();
+                impact = false;
+            }
+
             keyframeAnimation.restart();
             if (!loop) {
                 singleDeflection = false;
             }
         }
 
-        if (shouldPlay || singleDeflection) {
+        if (shouldPlay || singleDeflection || impact) {
             nextFrame();
         }
 
         updatePosition();
+    }
+
+    private void resetTransform() {
+        getParent().getDimensions().subtract(totalDeflection, totalDeflection);
+        getParent().positionByCentre(returnPosition);
     }
 
     private void nextFrame() {
@@ -144,5 +156,22 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
 
     public void setLoop(boolean loop) {
         this.loop = loop;
+    }
+
+    public void impact() {
+        this.impact = true;
+    }
+
+    /**
+     * Cancels the animation and resets everything.
+     * If {@link #loop} is true, the animation start again when the cursor enters the parent again.
+     */
+    public void cancel() {
+        resetTransform();
+        singleDeflection = false;
+        impact = false;
+        shouldPlay = false;
+        totalDeflection = 0f;
+        keyframeAnimation.restart();
     }
 }

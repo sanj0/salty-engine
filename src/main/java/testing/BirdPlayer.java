@@ -118,6 +118,16 @@ public class BirdPlayer extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
+        DeflectionOnMouseOverComponent component = (DeflectionOnMouseOverComponent) getComponent("deflection");
+
+        if (Input.getKeyboardInput().isKey_y()) {
+            component.cancel();
+        }
+
+        if (Input.getKeyboardInput().isKey_x()) {
+            component.impact();
+        }
+
         getTransform().setRotationCentreToMiddle();
 
         accelerateTo(speed, Input.getInput());
