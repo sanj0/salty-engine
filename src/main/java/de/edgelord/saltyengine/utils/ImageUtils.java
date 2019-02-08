@@ -39,6 +39,16 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_GIF = "gif";
 
     /**
+     * Returns the {@link Dimensions} of the given image.
+     *
+     * @param image the size of the given image as {@link Dimensions}
+     * @return the dimensions of the given image
+     */
+    public static Dimensions getImageDimensions(BufferedImage image) {
+        return new Dimensions(image.getWidth(), image.getHeight());
+    }
+
+    /**
      * Creates a new {@link BufferedImage} with the given size and draws the given {@link Drawable} onto it.
      *
      * @param drawable       what to draw onto the image
