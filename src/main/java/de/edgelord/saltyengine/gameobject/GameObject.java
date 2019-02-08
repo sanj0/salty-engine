@@ -133,9 +133,11 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 
-    public void onCursorEnters() {}
+    public void onCursorEnters() {
+    }
 
-    public void onCursorExits() {}
+    public void onCursorExits() {
+    }
 
     /**
      * This method can be overridden but It's not necessary and you won't need this often, so it's not abstract

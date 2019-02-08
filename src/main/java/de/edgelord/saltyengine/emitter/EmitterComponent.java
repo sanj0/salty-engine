@@ -144,7 +144,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param amount       the amount of emitted particles per wave
      * @param waveInterval the time to be passed between each wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float speed, float amount, int waveInterval) {
+    public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
 
         this.particle = particle;
@@ -158,13 +158,13 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * only emit a single wave of particles every time {@link #impact()} is called.
      * {@link #waveInterval} is overloaded with <code>1</code>.
      *
-     * @param parent the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
-     * @param name the id-name of the component
+     * @param parent   the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
+     * @param name     the id-name of the component
      * @param particle the particle to be emitted. obtained via {@link Object#getClass()}
-     * @param speed the speed of the particles spawned by this emitter.
-     * @param amount the amount of emitted particles per wave
+     * @param speed    the speed of the particles spawned by this emitter.
+     * @param amount   the amount of emitted particles per wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class< ? extends Particle > particle, float speed, float amount) {
+    public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
         this(parent, name, particle, speed, amount, 1);
 
         impactMode = true;
@@ -324,6 +324,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
      * Removes the given {@link ParticleModifier} from the {@link #modifierStack}.
+     *
      * @param modifier the modifier to be removed from the stack.
      */
     public void removeModifier(ParticleModifier modifier) {

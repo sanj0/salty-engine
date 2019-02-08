@@ -38,7 +38,7 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
     /**
      * The constructor.
      *
-     * @param factor the factory to be used as the second part of the math operations.
+     * @param factor    the factory to be used as the second part of the math operations.
      * @param operation the math operation do apply to each {@link Particle}'s speed
      */
     public SpeedOperatorParticleModifier(float factor, Operation operation) {

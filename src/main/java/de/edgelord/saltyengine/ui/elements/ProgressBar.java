@@ -40,8 +40,8 @@ public class ProgressBar extends UIElement {
 
     /**
      * The diameter of the rounding at each corner of the two rectangles.
-     *
-     *This is zero by default.
+     * <p>
+     * This is zero by default.
      */
     private float cornerArc = 0;
 
@@ -53,9 +53,9 @@ public class ProgressBar extends UIElement {
     /**
      * A constructor that takes everything in as floats.
      *
-     * @param x the position on the x axis.
-     * @param y the position on the y axis.
-     * @param width the width.
+     * @param x      the position on the x axis.
+     * @param y      the position on the y axis.
+     * @param width  the width.
      * @param height the height.
      */
     public ProgressBar(float x, float y, float width, float height) {

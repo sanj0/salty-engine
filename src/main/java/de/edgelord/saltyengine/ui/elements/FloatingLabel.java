@@ -68,7 +68,7 @@ public class FloatingLabel extends Label {
 
     @Override
     public void drawBackground(SaltyGraphics saltyGraphics) {
-        
+
     }
 
     private void recalculateSize(FontMetrics metrics) {

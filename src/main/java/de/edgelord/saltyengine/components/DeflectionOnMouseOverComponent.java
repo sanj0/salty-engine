@@ -28,7 +28,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 /**
  * Uses a {@link LinearKeyframeAnimation} to make its parent grow and shrink again when the cursor touches is.
  */
-public class DeflectionOnMouseOverComponent extends Component< ComponentContainer > {
+public class DeflectionOnMouseOverComponent extends Component<ComponentContainer> {
 
     /**
      * The animation that is used.
@@ -53,11 +53,11 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
     /**
      * The constructor.
      *
-     * @param parent the parent of this component
-     * @param name the name of this component
+     * @param parent   the parent of this component
+     * @param name     the name of this component
      * @param distance the distance of the focus-animation
      * @param interval the amount of ticks between the deflections
-     * @param loop whether to loop the animation or only playing it whenever the cursor enters the parent
+     * @param loop     whether to loop the animation or only playing it whenever the cursor enters the parent
      */
     public DeflectionOnMouseOverComponent(ComponentContainer parent, String name, float distance, int interval, boolean loop) {
         super(parent, name, Components.GFX_COMPONENT);
@@ -96,6 +96,7 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
     public void draw(SaltyGraphics saltyGraphics) {
 
     }
+
     @Override
     public void onFixedTick() {
 
@@ -143,6 +144,15 @@ public class DeflectionOnMouseOverComponent extends Component< ComponentContaine
         Coordinates2f centre = getParent().getTransform().getCentre();
         returnPosition.setX(centre.getX());
         returnPosition.setY(centre.getY());
+    }
+
+    /**
+     * Calls {@link #cancel()} before disabling.
+     */
+    @Override
+    public void disable() {
+        cancel();
+        super.disable();
     }
 
     @Override

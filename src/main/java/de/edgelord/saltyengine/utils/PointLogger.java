@@ -42,7 +42,6 @@ import java.util.Scanner;
  * easier.
  * You click once to temporally save a point and click while shift or alt is down to safe the point.
  * When the game is quit, all saved points are written into a file.
- *
  */
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
@@ -137,7 +136,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
             System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
         } else {
             lastPoint = Input.getCursorPosition();
-            System.out.println("Temporally saved " + lastPoint.getX() + ", " +  lastPoint.getY() + " as the last point. Click while holding shift or alt to save it.");
+            System.out.println("Temporally saved " + lastPoint.getX() + ", " + lastPoint.getY() + " as the last point. Click while holding shift or alt to save it.");
         }
     }
 

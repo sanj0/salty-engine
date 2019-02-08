@@ -34,29 +34,29 @@ import de.edgelord.saltyengine.transform.Transform;
  * to ignore the gravity using {@link de.edgelord.saltyengine.components.SimplePhysicsComponent#setGravityEnabled(boolean)}
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
-public class NullGameObject extends GameObject {
+public class EmptyGameObject extends GameObject {
 
-    public NullGameObject(float xPos, float yPos, float width, float height, String tag) {
+    public EmptyGameObject(float xPos, float yPos, float width, float height, String tag) {
         super(xPos, yPos, width, height, tag);
     }
 
-    public NullGameObject(Transform transform, String tag) {
+    public EmptyGameObject(Transform transform, String tag) {
         super(transform, tag);
     }
 
-    public NullGameObject(Coordinates coordinates, Dimensions dimensions, String tag) {
+    public EmptyGameObject(Coordinates coordinates, Dimensions dimensions, String tag) {
         super(coordinates, dimensions, tag);
     }
 
-    public NullGameObject(Coordinates2f position, Dimensions dimensions, String tag) {
+    public EmptyGameObject(Coordinates2f position, Dimensions dimensions, String tag) {
         super(position, dimensions, tag);
     }
 
-    public NullGameObject(Coordinates2f position, float width, float height, String tag) {
+    public EmptyGameObject(Coordinates2f position, float width, float height, String tag) {
         super(position, width, height, tag);
     }
 
-    public NullGameObject(float xPos, float yPos, Dimensions dimensions, String tag) {
+    public EmptyGameObject(float xPos, float yPos, Dimensions dimensions, String tag) {
         super(xPos, yPos, dimensions, tag);
     }
 

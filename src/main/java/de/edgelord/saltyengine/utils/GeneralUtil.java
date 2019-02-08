@@ -86,8 +86,7 @@ public class GeneralUtil {
     /**
      * @return the ip-address of this machine.
      * @throws UnknownHostException if the local host name could not
-     *              be resolved into an address.
-     *
+     *                              be resolved into an address.
      * @see InetAddress#getLocalHost()
      */
     public static String getIP() throws UnknownHostException {

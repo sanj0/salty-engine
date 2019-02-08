@@ -25,7 +25,7 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
  * <p>
  * Example usage:
  *
- * <code>GameObject myGameObject = new NullGameObject(Positions.forDecimal(0.5f, 0.75f), Dimensions.one(), "myGO");</code>
+ * <code>GameObject myGameObject = new EmptyGameObject(Positions.forDecimal(0.5f, 0.75f), Dimensions.one(), "myGO");</code>
  */
 public class Positions {
 

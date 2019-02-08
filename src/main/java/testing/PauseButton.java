@@ -45,6 +45,8 @@ public class PauseButton extends Button {
     @Override
     public void onClick(MouseEvent e) {
 
+        disable();
+
         if (e.getClickCount() == 2) {
             System.out.println("Exit Game due to double-click onto that pause button");
             System.exit(0);

@@ -21,12 +21,12 @@ import de.edgelord.saltyengine.input.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UISystem {
 
-    private List<UIElement> elements = new LinkedList<>();
+    private List<UIElement> elements = new CopyOnWriteArrayList<>();
 
     public void drawUI(SaltyGraphics saltyGraphics) {
         for (UIElement element : elements) {

@@ -18,8 +18,8 @@ package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
+import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.gameobject.NullGameObject;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Coordinates2f;
@@ -237,14 +237,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param tilePosition the tile which is the starting point for the hitbox
      * @param size         the size (measured in tile - not in pixels) for the hitbox
      * @param scene        the scene the GameObject is to be added to
-     * @return the created and already added {@link NullGameObject}
+     * @return the created and already added {@link EmptyGameObject}
      */
     public GameObject addHitbox(Coordinates tilePosition, Dimensions size, Scene scene) {
         Coordinates2f tilePos = getTilePosition(tilePosition, true);
         float width = size.getWidth() * tileSize.getWidth();
         float height = size.getHeight() * tileSize.getHeight();
 
-        GameObject hitbox = new NullGameObject(tilePos.getX(), tilePos.getY(), width, height, "tileHitbox-" + tilePos.getX() + "," + tilePos.getY() + ";" + width + "," + height);
+        GameObject hitbox = new EmptyGameObject(tilePos.getX(), tilePos.getY(), width, height, "tileHitbox-" + tilePos.getX() + "," + tilePos.getY() + ";" + width + "," + height);
 
         scene.addGameObject(hitbox);
 
@@ -259,7 +259,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param width  the width (measured in tiles)
      * @param height the height (measured in tiles)
      * @param scene  the Scene the hitbox is to be added to
-     * @return the added {@link NullGameObject}
+     * @return the added {@link EmptyGameObject}
      */
     public GameObject addHitbox(int tileX, int tileY, int width, int height, Scene scene) {
         return addHitbox(new Coordinates(tileX, tileY), new Dimensions(width, height), scene);

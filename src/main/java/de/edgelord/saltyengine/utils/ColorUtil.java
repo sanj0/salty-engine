@@ -155,6 +155,82 @@ public class ColorUtil {
     public static final Color YELLOW = new Color(210, 210, 50);
 
     /**
+     * Blends the two given colors by the given ratio.
+     *
+     * @param color1 the first color
+     * @param color2 the second color
+     * @param ratio  the blend ratio
+     * @return a blend between the two colors by the given ratio
+     */
+    public static Color blend(Color color1, Color color2, float ratio) {
+        if (ratio > 1f) {
+            ratio = 1f;
+        } else if (ratio < 0f) {
+            ratio = 0f;
+        }
+
+        int argb1 = color1.getRGB();
+        int argb2 = color2.getRGB();
+
+        int alpha1 = getAlpha(argb1);
+        int red1 = getRed(argb1);
+        int green1 = getGreen(argb1);
+        int blue1 = getBlue(argb1);
+
+        int alpha2 = getAlpha(argb2);
+        int red2 = getRed(argb2);
+        int green2 = getGreen(argb2);
+        int blue2 = getBlue(argb2);
+
+        int alpha = (int) (alpha1 + (alpha2 - alpha1) * ratio);
+        int red = (int) (red1 + (red2 - red1) * ratio);
+        int green = (int) (green1 + (green2 - green1) * ratio);
+        int blue = (int) (blue1 + (blue2 - blue1) * ratio);
+
+        return new Color(alpha << 24 | red << 16 | green << 8 | blue);
+    }
+
+    /**
+     * Returns the alpha value from the given argb value.
+     *
+     * @param argb the argb value of the color
+     * @return the alpha value from the given argb color
+     */
+    public static int getAlpha(int argb) {
+        return (argb >>> 24);
+    }
+
+    /**
+     * Returns the red value from the given argb value.
+     *
+     * @param argb the argb value of the color
+     * @return the red value from the given argb color
+     */
+    public static int getRed(int argb) {
+        return ((argb & 0xff0000) >> 16);
+    }
+
+    /**
+     * Returns the green value from the given argb value.
+     *
+     * @param argb the argb value of the color
+     * @return the green value from the given argb color
+     */
+    public static int getGreen(int argb) {
+        return ((argb & 0xff00) >> 8);
+    }
+
+    /**
+     * Returns the blue value from the given argb value.
+     *
+     * @param argb the argb value of the color
+     * @return the blue value from the given argb color
+     */
+    public static int getBlue(int argb) {
+        return (argb & 0xff);
+    }
+
+    /**
      * Returns the given color with the given alpha value. The value goes from 0f to 1f, 0f meaning complete transparency,
      * 1f meaning full visibility.
      *

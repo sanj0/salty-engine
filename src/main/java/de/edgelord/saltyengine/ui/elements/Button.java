@@ -33,8 +33,11 @@ public abstract class Button extends UIElement {
     private int textWidth, textHeight;
     private Color hoverColor = ColorUtil.changeBrightness(getBackgroundColor(), -0.15f);
     private Color clickColor = ColorUtil.changeBrightness(getBackgroundColor(), 0.15f);
+    private Color disabledColor = ColorUtil.blend(ColorUtil.LIGHT_GRAY, getBackgroundColor(), 0.20f);
     private Color currentBackgroundColor = getBackgroundColor();
     private int arc = 15;
+
+    private boolean enabled = true;
 
     public Button(String text, Coordinates2f position, int width, int height) {
         super(position, width, height, BUTTON);
@@ -76,18 +79,19 @@ public abstract class Button extends UIElement {
     @Override
     public void mouseMoved(MouseEvent e) {
 
-        if (mouseHoversOver()) {
-
-            currentBackgroundColor = hoverColor;
-        } else {
-            currentBackgroundColor = getBackgroundColor();
+        if (enabled) {
+            if (mouseHoversOver()) {
+                currentBackgroundColor = hoverColor;
+            } else {
+                currentBackgroundColor = getBackgroundColor();
+            }
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
 
-        if (mouseHoversOver()) {
+        if (mouseHoversOver() && enabled) {
             currentBackgroundColor = clickColor;
         }
     }
@@ -95,10 +99,12 @@ public abstract class Button extends UIElement {
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        currentBackgroundColor = getBackgroundColor();
+        if (enabled) {
+            currentBackgroundColor = getBackgroundColor();
 
-        if (mouseHoversOver()) {
-            onClick(e);
+            if (mouseHoversOver()) {
+                onClick(e);
+            }
         }
     }
 
@@ -116,6 +122,7 @@ public abstract class Button extends UIElement {
         this.currentBackgroundColor = backgroundColor;
         this.hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
         this.clickColor = ColorUtil.changeBrightness(backgroundColor, 0.15f);
+        disabledColor = ColorUtil.blend(ColorUtil.LIGHT_GRAY, getBackgroundColor(), 0.20f);
     }
 
     public int getArc() {
@@ -124,5 +131,27 @@ public abstract class Button extends UIElement {
 
     public void setArc(int arc) {
         this.arc = arc;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            enable();
+        } else {
+            disable();
+        }
+    }
+
+    public void disable() {
+        currentBackgroundColor = disabledColor;
+        enabled = false;
+    }
+
+    public void enable() {
+        currentBackgroundColor = getBackgroundColor();
+        enabled = true;
     }
 }

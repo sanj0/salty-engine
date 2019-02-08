@@ -851,7 +851,7 @@ public class SaltyGraphics {
      * Sets the rotation of the graphics around the given point to the given amount of degrees with considering the current rotation.
      *
      * @param rotation the new rotation
-     * @param centre the centre of the rotation.
+     * @param centre   the centre of the rotation.
      * @see Graphics2D#rotate(double, double, double)
      */
     public void setRotation(float rotation, Coordinates2f centre) {
@@ -871,6 +871,7 @@ public class SaltyGraphics {
 
     /**
      * Resets the rotation made by the given object to this graphics.
+     *
      * @param object the object.
      */
     public void resetObjectRotation(TransformedObject object) {

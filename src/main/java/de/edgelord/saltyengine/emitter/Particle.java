@@ -74,10 +74,10 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     /**
      * The constructor.
      *
-     * @param waveNumber the number of the wave that this particle is spawned in.
+     * @param waveNumber   the number of the wave that this particle is spawned in.
      * @param restLifetime the rest of this particles lifetime.
-     * @param speed the speed of this particle.
-     * @param parent the emitter that spawned this particle.
+     * @param speed        the speed of this particle.
+     * @param parent       the emitter that spawned this particle.
      */
     public Particle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
         this.waveNumber = waveNumber;

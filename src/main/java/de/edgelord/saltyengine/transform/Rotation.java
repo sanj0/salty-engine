@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.transform;
 
-import static java.lang.Math.abs;
 import static java.lang.Math.toDegrees;
 
 /**

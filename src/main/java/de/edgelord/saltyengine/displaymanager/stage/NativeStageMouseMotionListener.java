@@ -74,7 +74,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
                         gameObject.doCursorEnters();
                     }
                     gameObject.setCursorAlreadyTouching(true);
-                } else if (gameObject.isCursorAlreadyTouching()){
+                } else if (gameObject.isCursorAlreadyTouching()) {
                     gameObject.setCursorAlreadyTouching(false);
                     gameObject.doCursorExits();
                 }

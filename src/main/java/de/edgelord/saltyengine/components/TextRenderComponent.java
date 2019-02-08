@@ -28,7 +28,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextRenderComponent extends Component< ComponentContainer > {
+public class TextRenderComponent extends Component<ComponentContainer> {
 
     private Font font = SaltySystem.defaultFont;
     private float leading = font.getSize() * 1.3f;

@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * An implementation of {@link ParticleModifier} that applies a random speed to each {@link Particle}.
  * The random speed is between {@link #minSpeed} and {@link #maxSpeed} and gets, due to integer precision, multiplied by {@link #factor}.
- *
+ * <p>
  * If {@link #newSpeedEachTick} is true, all Particle will get a new random speed, if it is <code>false</code>, each particle will only
  * get a random speed once.
  */
@@ -61,9 +61,9 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
     /**
      * the constructor.
      *
-     * @param minSpeed the minimum speed
-     * @param maxSpeed the maximum speed
-     * @param factor the factory by which each randomly generated speed is multiplied
+     * @param minSpeed         the minimum speed
+     * @param maxSpeed         the maximum speed
+     * @param factor           the factory by which each randomly generated speed is multiplied
      * @param newSpeedEachTick whether or not to generate a random speed for a {@link Particle} all over again.
      */
     public RandomSpeedParticleModifier(int minSpeed, int maxSpeed, float factor, boolean newSpeedEachTick) {
