@@ -3,7 +3,7 @@
 
 ![salty-engine-logo](logos/logo_small.png)
 
-Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be the most user-friendly and easy-to-use 2D Game making tool for Java.
+Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be a very user-friendly and easy-to-use 2D Game making tool for Java.
 
 ### It isn't just a library for rendering
 It also includes GameObject management, camera moving,
@@ -12,10 +12,10 @@ resource management, but also support for scene and
 stage management as well as saving with
 [stdf](github.com/edgelord314/stdf).
 
-Minimal **tested** hardware requirements (for [Escape the Junk](#games-made-with-salty-engine)):
+Minimal **tested** hardware requirements made possible by [JProfiler, a java profiler](https://www.ej-technologies.com/products/jprofiler/overview.html) (for [Escape the Junk](#games-made-with-salty-engine)):
 - Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60GHz (dual core)
 - only integrated graphics
-- 4GB RAM
+- 200MB RAM
 
 **NOTE: When you release a game that's made with Salty Engine, feel free to [send me an email](mailto:malte.dostal@gmail.com) that I can add it to [this section](#games-made-with-salty-engine)** <br></br>
 **NOTE 2: The default font (`SaltySystem.defaultFont`) is the same on all systems to ensure the same looking graphics on every computer. This font is powered by Google Fonts and is published under the Apache 2 license as well.**  
