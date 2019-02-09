@@ -24,6 +24,7 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.PointLogger;
+import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -61,7 +62,8 @@ public class Tester extends Game {
         serializeOnExit();
 
         SceneManager.setCurrentScene("testingScene", "foo", 842);
-        PointLogger.init("points");
+        // PointLogger.init("points");
+        RectangleCreator.init();
 
         //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 
