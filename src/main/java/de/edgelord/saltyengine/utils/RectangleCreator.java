@@ -182,7 +182,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
             downLeft.setY(y + 100);
         } else if (e.isShiftDown() || e.isAltDown()) {
             savedTransforms.add(currentTransform);
-            rects.addTag("rect" + savedTransforms.size(), currentTransform.getX() + ", " + currentTransform.getY() + ", " + currentTransform.getWidth() + ", " + currentTransform.getHeight());
+            rects.addTag("rect" + savedTransforms.size(), currentTransform.getX() + "f, " + currentTransform.getY() + "f, " + currentTransform.getWidth() + "f, " + currentTransform.getHeight() + "f");
             currentTransform = null;
         }
     }
