@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.utils.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
@@ -38,8 +39,8 @@ import java.awt.image.BufferedImage;
  * <p>
  * The default {@link Dimensions} is {@link #DEFAULT_DIMENSIONS}.
  *
- * @see de.edgelord.saltyengine.core.ImageLoader
- * @see de.edgelord.saltyengine.core.ImageLoader#getOrLoadImage(String, String, ImageFactory)
+ * @see ImageLoader
+ * @see ImageLoader#getOrLoadImage(String, String, ImageFactory)
  */
 public abstract class ImageParticle extends Particle {
 

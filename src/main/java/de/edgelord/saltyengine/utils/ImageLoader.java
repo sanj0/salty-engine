@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.core;
+package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.utils.SaltySystem;

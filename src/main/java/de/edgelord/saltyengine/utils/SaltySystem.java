@@ -34,11 +34,11 @@ public class SaltySystem {
 
     public static long fixedTickMillis = 1;
 
-    public static InnerResource defaultResource = new InnerResource();
-    public static OuterResource defaultHiddenOuterResource = new OuterResource(true);
-    public static OuterResource defaultOuterResource = new OuterResource(false);
-    public static ImageFactory defaultImageFactory = new ImageFactory(defaultResource);
-    public static FontFactory defaultFontFactory = new FontFactory(defaultResource);
+    public static InnerResource defaultResource;
+    public static OuterResource defaultHiddenOuterResource;
+    public static OuterResource defaultOuterResource;
+    public static ImageFactory defaultImageFactory;
+    public static FontFactory defaultFontFactory;
 
     /**
      * Determines whether to check for events on the cursor entering and leaving a {@link de.edgelord.saltyengine.gameobject.GameObject}
@@ -47,14 +47,6 @@ public class SaltySystem {
     public static boolean gameObjectMouseEventsAgent = true;
 
     public static Font defaultFont;
-
-    static {
-        try {
-            defaultFont = defaultFontFactory.getFont("res/fonts/OpenSans-Regular.ttf", 10f);
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Sets the {@link Font} {@link #defaultFont} to all {@link UIElement}s in the

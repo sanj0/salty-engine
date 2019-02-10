@@ -35,7 +35,7 @@ public class Tester extends Game {
 
     private static AudioPlayer audioPlayer;
 
-    private static void initGame() throws IOException {
+    private static void initGame() {
 
         Game.init(GameConfig.config(1200f, 900f, "testing", 1L));
 
@@ -53,7 +53,7 @@ public class Tester extends Game {
         getHost().setBackgroundColor(Color.lightGray);
     }
 
-    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, IOException {
+    public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         initGame();
 
         SceneManager.addScene("testingScene", TestingScene.class);

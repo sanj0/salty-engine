@@ -21,12 +21,16 @@ import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
 import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
+import de.edgelord.saltyengine.factory.FontFactory;
+import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.io.serialization.Serializer;
+import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -85,8 +89,21 @@ public class Game {
         gameDimensions = host.getCurrentDimensions();
 
         Game.host = host;
+        initSaltySystem(gameName);
+    }
+
+    private static void initSaltySystem(String gameName) {
+        Game.gameName = gameName;
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
+        SaltySystem.defaultResource = new InnerResource();
+        SaltySystem.defaultImageFactory = new ImageFactory(SaltySystem.defaultResource);
+        SaltySystem.defaultFontFactory = new FontFactory(SaltySystem.defaultResource);
+        try {
+            SaltySystem.defaultFont = SaltySystem.defaultFontFactory.getFont("res/fonts/OpenSans-Regular.ttf", 10f);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void internalPreInitDisplayManager(GameConfig config) {
@@ -97,8 +114,7 @@ public class Game {
         host = new DisplayManager(new DisplayRatio(new Dimensions(config.getResWidth(), config.getResHeight())), config.getGameName(), engine);
         gameDimensions = new Dimensions(config.getResWidth(), config.getResHeight());
 
-        SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
-        SaltySystem.defaultOuterResource = new OuterResource(false);
+        initSaltySystem(config.getGameName());
     }
 
     private static void enableOpenGl() {
