@@ -84,19 +84,20 @@ public class InnerResource implements Resource {
 
         checkTmpDir();
 
-        InputStream inputStream = classLoader.getResourceAsStream(arrangePath(relativePath));
-
+        InputStream inputStream = this.classLoader.getResourceAsStream(this.arrangePath(relativePath));
         File file = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/" + relativePath.replaceAll("/", "."));
-
         file.createNewFile();
 
         OutputStream outputStream = new FileOutputStream(file);
+        byte[] buffer = new byte[4096];
 
-        byte[] buffer = new byte[inputStream.available()];
-        inputStream.read(buffer);
+        int readBytes;
+        while((readBytes = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, readBytes);
+        }
 
-        outputStream.write(buffer);
-
+        inputStream.close();
+        outputStream.close();
         return file;
     }
 
