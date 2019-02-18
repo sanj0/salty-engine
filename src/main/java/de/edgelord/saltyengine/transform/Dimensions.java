@@ -43,40 +43,48 @@ public class Dimensions {
         this.height = height;
     }
 
-    public void add(float width1, float height1) {
+    public Dimensions add(float width1, float height1) {
         width += width1;
         height += height1;
+        
+        return this;
     }
 
-    public void add(Dimensions dimensions1) {
-        add(dimensions1.getWidth(), dimensions1.getHeight());
+    public Dimensions add(Dimensions dimensions1) {
+        return add(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public void multiply(float width1, float height1) {
+    public Dimensions multiply(float width1, float height1) {
         width *= width1;
         height *= height1;
+
+        return this;
     }
 
-    public void multiply(Dimensions dimensions1) {
-        multiply(dimensions1.getWidth(), dimensions1.getHeight());
+    public Dimensions multiply(Dimensions dimensions1) {
+        return multiply(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public void divide(float width1, float height1) {
+    public Dimensions divide(float width1, float height1) {
         width /= width1;
         height /= height1;
+
+        return this;
     }
 
-    public void divide(Dimensions dimensions1) {
-        divide(dimensions1.getWidth(), dimensions1.getHeight());
+    public Dimensions divide(Dimensions dimensions1) {
+        return divide(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public void subtract(float width1, float height1) {
+    public Dimensions subtract(float width1, float height1) {
         width -= width1;
         height -= height1;
+
+        return this;
     }
 
-    public void subtract(Dimensions dimensions1) {
-        subtract(dimensions1.getWidth(), dimensions1.getHeight());
+    public Dimensions subtract(Dimensions dimensions1) {
+        return subtract(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
     @Override

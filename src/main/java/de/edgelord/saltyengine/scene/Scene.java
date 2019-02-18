@@ -53,7 +53,7 @@ public class Scene {
 
     private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
     private float friction = Force.DEFAULT_FRICTION;
-    private boolean gravityEnabled = true;
+    private boolean gravityEnabled = false;
 
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());

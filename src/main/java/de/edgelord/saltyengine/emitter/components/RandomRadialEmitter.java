@@ -67,7 +67,7 @@ public class RandomRadialEmitter extends EmitterComponent {
 
         Particle particle = createParticle();
 
-        particle.positionByCentre(getParent().getTransform().getCentre());
+        particle.positionByCentre(getSpawnPoint());
         particle.setRotationDegrees(GeneralUtil.randomInt(minAngle, maxAngle));
         particle.setLockedDirections(lockedDirections);
 

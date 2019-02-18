@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -30,10 +31,11 @@ import java.awt.image.ImageObserver;
 public class SaltyGraphics {
 
     private Graphics2D graphics2D;
-    private float currentRotation;
 
     public SaltyGraphics(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
+
+        setFont(SaltySystem.defaultFont);
     }
 
     /*

@@ -64,7 +64,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
             ticks++;
         }
 
-        if (ticks == cooldownTime) {
+        if (ticks >= cooldownTime) {
             coolingDown = false;
             ticks = 0;
         }
@@ -85,4 +85,12 @@ public abstract class CooldownComponent extends Component implements Runnable {
 
     @Override
     public abstract void run();
+
+    public int getCooldownTime() {
+        return cooldownTime;
+    }
+
+    public void setCooldownTime(int cooldownTime) {
+        this.cooldownTime = cooldownTime;
+    }
 }

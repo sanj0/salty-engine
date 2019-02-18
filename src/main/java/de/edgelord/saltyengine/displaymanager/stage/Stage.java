@@ -57,7 +57,8 @@ public class Stage extends JPanel {
     private Coordinates2f currentImgPos = new Coordinates2f(0, 0);
 
     private boolean highQuality = true;
-    private RenderingHints renderingHints;
+    private RenderingHints hqRenderingHints;
+    private RenderingHints lqRenderingHints;
 
     public Stage(final Container container, final Engine engine) {
         this(container, engine, 0, 0, container.getWidth(), container.getHeight());
@@ -94,23 +95,25 @@ public class Stage extends JPanel {
         setIgnoreRepaint(true);
         setFocusable(false);
 
-        if (highQuality) {
-            renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
-            putToRenderHints(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            putToRenderHints(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-            putToRenderHints(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_QUALITY);
-        } else {
-            renderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
-            putToRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
-            putToRenderHints(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_SPEED);
-            putToRenderHints(KEY_COLOR_RENDERING, VALUE_COLOR_RENDER_SPEED);
-        }
+        hqRenderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
+        putToHQRenderHints(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        putToHQRenderHints(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        putToHQRenderHints(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_QUALITY);
+
+        lqRenderingHints = new RenderingHints(KEY_ANTIALIASING, VALUE_ANTIALIAS_OFF);
+        putToLQRenderHints(KEY_RENDERING, VALUE_RENDER_SPEED);
+        putToLQRenderHints(KEY_ALPHA_INTERPOLATION, VALUE_ALPHA_INTERPOLATION_SPEED);
+        putToLQRenderHints(KEY_COLOR_RENDERING, VALUE_COLOR_RENDER_SPEED);
 
         initNativeMouseListener();
     }
 
-    public void putToRenderHints(Key key, Object value) {
-        renderingHints.put(key, value);
+    public void putToHQRenderHints(Key key, Object value) {
+        hqRenderingHints.put(key, value);
+    }
+
+    public void putToLQRenderHints(Key key, Object value) {
+        lqRenderingHints.put(key, value);
     }
 
     protected void paintComponent(Graphics graphics) {
@@ -136,7 +139,7 @@ public class Stage extends JPanel {
     private void renderToGraphics(Graphics2D graphics2D) {
         graphics2D.setClip(0, 0, originWidth, originHeight);
 
-        graphics2D.setRenderingHints(renderingHints);
+        graphics2D.setRenderingHints(getRenderHints());
 
         Game.getCamera().setViewToGraphics(graphics2D);
 
@@ -203,7 +206,7 @@ public class Stage extends JPanel {
     }
 
     public RenderingHints getRenderHints() {
-        return renderingHints;
+        return highQuality ? hqRenderingHints : lqRenderingHints;
     }
 
     public Dimensions getResolution() {

@@ -34,7 +34,7 @@ public class SaltySystem {
 
     public static long fixedTickMillis = 1;
 
-    public static InnerResource defaultResource;
+    public static InnerResource defaultResource = new InnerResource();
     public static OuterResource defaultHiddenOuterResource;
     public static OuterResource defaultOuterResource;
     public static ImageFactory defaultImageFactory;

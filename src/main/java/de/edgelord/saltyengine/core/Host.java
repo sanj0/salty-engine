@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 /**
@@ -73,6 +74,13 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      * @return the name of the saved image
      */
     public abstract String takeScreenshot();
+
+    /**
+     * Returns a screenshot of the current rendered game without saving it anywhere.
+     *
+     * @return a screenshot of the game
+     */
+    public abstract BufferedImage getScreenshot();
 
     /**
      * This method toggles fullscreen mode. When this method is called and the game is not in fullscreen mode,

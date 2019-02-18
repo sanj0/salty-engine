@@ -53,6 +53,11 @@ import java.util.List;
 public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
+     * The point on which emitters may spawn the {@link Particle}s.
+     */
+    private Coordinates2f spawnPoint;
+
+    /**
      * If this is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}is called.
      */
     private boolean impactMode = false;
@@ -112,9 +117,6 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     private Dimensions fixedParticleDimensions = null;
 
     private int ticks = 0;
-    private int ticks2 = 0;
-    private int nextWaveToRemove = 0;
-    private int wavesToRemove = 0;
     private boolean impactOnNextTick = false;
 
     /**
@@ -151,6 +153,8 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.amount = amount;
         this.waveInterval = waveInterval;
         this.speed = speed;
+
+        spawnPoint = getParent().getTransform().getCentre();
     }
 
     /**
@@ -246,7 +250,6 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
             addParticle(spawnParticle());
         }
         currentWave++;
-        wavesToRemove++;
     }
 
     /**
@@ -413,5 +416,17 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     public void setFixedParticleDimensions(Dimensions fixedParticleDimensions) {
         this.fixedParticleDimensions = fixedParticleDimensions;
+    }
+
+    public Coordinates2f getSpawnPoint() {
+        return spawnPoint;
+    }
+
+    public void setSpawnPoint(Coordinates2f spawnPoint) {
+        this.spawnPoint = spawnPoint;
+    }
+
+    public ParticleRenderContext getRenderContext() {
+        return renderContext;
     }
 }

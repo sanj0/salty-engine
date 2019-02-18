@@ -48,40 +48,48 @@ public class Coordinates2f {
         this.y = y;
     }
 
-    public void add(float x1, float y1) {
+    public Coordinates2f add(float x1, float y1) {
         x += x1;
         y += y1;
+
+        return this;
     }
 
-    public void add(Coordinates2f pos1) {
-        add(pos1.getX(), pos1.getY());
+    public Coordinates2f add(Coordinates2f pos1) {
+        return add(pos1.getX(), pos1.getY());
     }
 
-    public void multiply(float x1, float y1) {
+    public Coordinates2f multiply(float x1, float y1) {
         x *= x1;
         y *= y1;
+
+        return this;
     }
 
-    public void multiply(Coordinates2f pos1) {
-        multiply(pos1.getX(), pos1.getY());
+    public Coordinates2f multiply(Coordinates2f pos1) {
+        return multiply(pos1.getX(), pos1.getY());
     }
 
-    public void divide(float x1, float y1) {
+    public Coordinates2f divide(float x1, float y1) {
         x /= x1;
         y /= y1;
+
+        return this;
     }
 
-    public void divide(Coordinates2f pos1) {
-        divide(pos1.getX(), pos1.getY());
+    public Coordinates2f divide(Coordinates2f pos1) {
+        return divide(pos1.getX(), pos1.getY());
     }
 
-    public void subtract(float x1, float y1) {
+    public Coordinates2f subtract(float x1, float y1) {
         x -= x1;
         y -= y1;
+
+        return this;
     }
 
-    public void subtract(Coordinates2f pos1) {
-        subtract(pos1.getX(), pos1.getY());
+    public Coordinates2f subtract(Coordinates2f pos1) {
+        return subtract(pos1.getX(), pos1.getY());
     }
 
     public Coordinates convertToCoordinates() {

@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 public class PaneledGameHost extends Host {
@@ -90,6 +91,11 @@ public class PaneledGameHost extends Host {
     @Override
     public String takeScreenshot() {
         return stage.newScreenshot();
+    }
+
+    @Override
+    public BufferedImage getScreenshot() {
+        return stage.renderToImage();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class GeneralUtil {
      * @return a new random int between the given bounds
      */
     public static int randomInt(float min, float max) {
-        int r = random.nextInt(Math.round(max) - Math.round(min));
+        int r = random.nextInt((Math.round(max) - Math.round(min)) + 1);
         return Math.round(r + min);
     }
 

@@ -25,6 +25,7 @@ import de.edgelord.saltyengine.displaymanager.stage.Stage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 public class DisplayManager extends Host {
@@ -93,6 +94,11 @@ public class DisplayManager extends Host {
     @Override
     public String takeScreenshot() {
         return stage.newScreenshot();
+    }
+
+    @Override
+    public BufferedImage getScreenshot() {
+        return stage.renderToImage();
     }
 
     @Override
