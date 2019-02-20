@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,25 +14,15 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.core.interfaces;
+package de.edgelord.saltyengine.input;
 
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 
-public interface MouseInputHandler {
+public interface KeyboardInputHandler {
 
-    void mouseMoved(MouseEvent e);
+    void keyPressed(KeyEvent e);
 
-    void mouseDragged(MouseEvent e);
+    void keyReleased(KeyEvent e);
 
-    void mousePressed(MouseEvent e);
-
-    void mouseReleased(MouseEvent e);
-
-    void mouseClicked(MouseEvent e);
-
-    void mouseExitedScreen(MouseEvent e);
-
-    void mouseEnteredScreen(MouseEvent e);
-
-    void mouseWheelMoved(MouseEvent e);
+    void keyTyped(KeyEvent e);
 }

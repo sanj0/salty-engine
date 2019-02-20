@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.displaymanager.display;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
+import de.edgelord.saltyengine.input.KeyboardInputHandler;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 

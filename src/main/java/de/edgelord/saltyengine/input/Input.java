@@ -17,8 +17,6 @@
 package de.edgelord.saltyengine.input;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
-import de.edgelord.saltyengine.core.interfaces.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;

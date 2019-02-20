@@ -17,7 +17,7 @@
 package testing.dummys;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.interfaces.KeyboardInputHandler;
+import de.edgelord.saltyengine.input.KeyboardInputHandler;
 
 import java.awt.event.KeyEvent;
 
