@@ -41,6 +41,7 @@ public class SimpleHitbox implements Hitbox {
     public void recalculate() {
 
         transform.setPosition(new Coordinates2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
+        transform.setRotationDegrees(getParent().getRotationDegrees());
     }
 
     @Override

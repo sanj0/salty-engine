@@ -34,6 +34,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -128,7 +129,7 @@ public class BirdPlayer extends GameObject implements Serializable {
             component.impact();
         }
 
-        getTransform().setRotationCentreToMiddle();
+        //getTransform().setRotationCentreToMiddle();
 
         accelerateTo(speed, Input.getInput());
 
@@ -159,6 +160,16 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+
+        saltyGraphics.setColor(Color.RED);
+
+        //saltyGraphics.resetObjectRotation(this);
+        for (Coordinates2f point : getHitbox().getTransform().getAsPoints()) {
+            saltyGraphics.drawOval(point.subtract(10, 10), new Dimensions(20, 20));
+        }
+
+        saltyGraphics.outlineRect(getHitbox().getTransform());
+        //saltyGraphics.setRotation(getRotationDegrees(), getTransform().getRotationCentreAbsolute());
     }
 
     @Override

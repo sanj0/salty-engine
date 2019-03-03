@@ -71,6 +71,40 @@ public class TriangleShape extends SaltyShape {
         return new Transform(x, y, maxX - x, maxY - y);
     }
 
+    /**
+     * Returns the points fitting the giving index, ranging from 0 to 2.
+     * @param index the index of the point
+     * @return the point
+     */
+    public Coordinates2f getPoint(int index) {
+
+        if (index < 0 || index > 2) {
+            throw new IllegalArgumentException("cannot access triangle points outside the index 0 - 2");
+        }
+
+        switch (index) {
+            case 0 :
+                return getPoint1();
+
+            case 1 :
+                return getPoint2();
+
+            case 2 :
+                return getPoint3();
+        }
+
+        return null;
+    }
+
+    /**
+     * @return the points of this triangle as an array.
+     */
+    public Coordinates2f[] getPoints() {
+        return new Coordinates2f[] {
+                getPoint1(), getPoint2(), getPoint3()
+        };
+    }
+
     public Coordinates2f getPoint1() {
         return point1;
     }

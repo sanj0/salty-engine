@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.transform;
 
+import de.edgelord.saltyengine.core.Game;
+
 import java.util.Random;
 
 public class Coordinates2f {
@@ -46,6 +48,38 @@ public class Coordinates2f {
 
     public void setY(float y) {
         this.y = y;
+    }
+
+    /**
+     * Returns a new instance of <code>Coordinates2f</code> with the absolute ("relative to the panel") position of this
+     * relative (to the position of the {@link de.edgelord.saltyengine.core.camera.Camera}) position.
+     *
+     * @return the absolute position of this relative position
+     */
+    public Coordinates2f getAbsolutePosition() {
+        return new Coordinates2f(x, y).add(Game.getCamera().getPosition());
+    }
+
+    /**
+     * Rotates the points described by this <code>Coordinates2f</code> around the given one and returns ths.
+     *
+     * @param centre the centre of the rotation
+     * @param angle the angle of the rotation in degrees
+     * @return this
+     */
+    public Coordinates2f rotateAround(Coordinates2f centre, float angle) {
+
+        float xTranslated = x - centre.getX();
+        float yTranslated = y - centre.getY();
+        double a = Math.toRadians(angle);
+
+        double rotatedX = yTranslated * Math.cos(a) - xTranslated * Math.sin(a);
+        double rotatedY = yTranslated * Math.sin(a) + xTranslated * Math.cos(a);
+
+        x = (float) (rotatedX + centre.getX());
+        y = (float) (rotatedY + centre.getY());
+
+        return this;
     }
 
     public Coordinates2f add(float x1, float y1) {

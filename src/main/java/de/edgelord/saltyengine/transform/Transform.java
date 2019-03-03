@@ -17,8 +17,11 @@
 package de.edgelord.saltyengine.transform;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.effect.geom.TriangleShape;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.utils.GeneralUtil;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Transform {
@@ -38,14 +41,77 @@ public class Transform {
     }
 
     /**
+     * Returns the rectangle described by this <code>Transform</code> as two correctly rotated {@link TriangleShape}s.
+     *
+     * @return the array of polygons.
+     */
+    public TriangleShape[] getAsTriangles() {
+
+        Coordinates2f[] points = getAsPoints();
+        Coordinates2f point0 = points[0];
+        Coordinates2f point1 = points[1];
+        Coordinates2f point2 = points[2];
+        Coordinates2f point3 = points[3];
+
+        return new TriangleShape[] {
+                new TriangleShape(point0, point1, point2),
+                new TriangleShape(point2, point3, point0)
+        };
+    }
+
+    /**
+     * Returns the corner points of the rotated Transform.
+     * 0 being the upper left corner, 1 being the upper right corner, 2 being the lower right corner and 3 being the lower left corner
+     * @return the array of points, correctly rotated around the rotation centre.
+     */
+    public Coordinates2f[] getAsPoints() {
+
+        float rotation = getRotationDegrees();
+        
+        Coordinates2f coordinates0 = new Coordinates2f(getX(), getMaxY()).rotateAround(getRotationCentreAbsolute(), rotation);
+        Coordinates2f coordinates1 = new Coordinates2f(getMaxX(), getMaxY()).rotateAround(getRotationCentreAbsolute(), rotation);
+        Coordinates2f coordinates2 = new Coordinates2f(getMaxX(), getY()).rotateAround(getRotationCentreAbsolute(), rotation);
+        Coordinates2f coordinates3 = new Coordinates2f(getX(), getY()).rotateAround(getRotationCentreAbsolute(), rotation);
+
+        return new Coordinates2f[] {
+                coordinates0, coordinates1, coordinates2, coordinates3
+        };
+    }
+
+    /**
+     * Returns whether the rectangle described by this <code>Transform</code> intersects the one of the given or not.
+     * This method takes the rotation of both <code>Transform</code>s into consideration.
+     *
+     * @param other the other <code>Transform</code>
+     * @return the intersection between this and the given <code>Transform</code>
+     */
+    public boolean intersects(Transform other) {
+
+        TriangleShape[] triangles = getAsTriangles();
+        TriangleShape[] otherTriangles = other.getAsTriangles();
+
+        for (TriangleShape triangle : triangles) {
+            for (TriangleShape otherTriangle : otherTriangles) {
+
+                if (GeneralUtil.checkTriangleIntersection(triangle, otherTriangle)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Returns whether the rectangle described by this Transform intersects the one
      * of the given.
+     * This does not work with rotation. See {@link #intersects(Transform)} for a method that uses the rotation
      *
      * @param other the other Transform
      * @return whether this Transform intersects the given one
      * @see Rectangle2D#intersects(Rectangle2D)
      */
-    public boolean intersects(Transform other) {
+    public boolean simpleIntersects(Transform other) {
 
         int xOther = Math.round(other.getX()) - 1;
         int yOther = Math.round(other.getY()) - 1;

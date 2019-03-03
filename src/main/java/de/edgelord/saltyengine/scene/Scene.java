@@ -28,9 +28,7 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.ui.UISystem;
 
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class represents what is currently drawn and calculated.
@@ -63,6 +61,49 @@ public class Scene {
 
     public Scene() {
 
+    }
+
+    /**
+     * Returns the first {@link GameObject} found in this scene with the given tag.
+     *
+     * @param tag the tag
+     * @return the first found <code>GameObject</code> with the given tag
+     */
+    public GameObject getGameObjectByTag(String tag) {
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+                GameObject gameObject = gameObjects.get(i);
+
+                if (gameObject.getTag().equals(tag)) {
+                    return gameObject;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns all {@link GameObject}s in this <code>Scene</code> with the given tag.
+     *
+     * @param tag the tag
+     * @return an array of all the <code>GameObject</code>s with the given tag
+     */
+    public GameObject[] getGameObjectsByTag(String tag) {
+
+        ArrayList<GameObject> objects = new ArrayList<>();
+
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < gameObjects.size(); i++) {
+                GameObject gameObject = gameObjects.get(i);
+
+                if (gameObject.getTag().equals(tag)) {
+                    objects.add(gameObject);
+                }
+            }
+        }
+
+        return (GameObject[]) objects.toArray();
     }
 
     public void disableGravity() {
@@ -175,7 +216,7 @@ public class Scene {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
                 Coordinates2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
-                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
+                //saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
 
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);

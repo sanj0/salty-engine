@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
+import de.edgelord.saltyengine.effect.geom.TriangleShape;
 import de.edgelord.saltyengine.emitter.components.RandomRadialEmitter;
 import de.edgelord.saltyengine.emitter.modifiers.RandomSpeedParticleModifier;
 import de.edgelord.saltyengine.emitter.particles.RoundRectangleParticle;
@@ -29,10 +30,13 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Bird extends GameObject implements Serializable {
@@ -82,6 +86,8 @@ public class Bird extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
+        System.out.println(getTransform().getRotationCentreAbsolute());
+
         getTransform().rotateToPoint(Input.getCursorPosition());
 
         if (Input.getKeyboardInput().isSpace()) {
@@ -97,6 +103,14 @@ public class Bird extends GameObject implements Serializable {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+
+        //saltyGraphics.resetObjectRotation(this);
+        for (Coordinates2f point : getHitbox().getTransform().getAsPoints()) {
+            saltyGraphics.drawOval(point.subtract(10, 10), new Dimensions(20, 20));
+        }
+
+        saltyGraphics.outlineRect(getHitbox().getTransform());
+        //saltyGraphics.setRotation(getRotationDegrees(), getTransform().getRotationCentreAbsolute());
     }
 
     @Override

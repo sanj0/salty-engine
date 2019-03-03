@@ -20,18 +20,6 @@ import static java.lang.Math.toDegrees;
 
 /**
  * This class describes the rotation of an Object around the relative position {@link #centre} by {@link #rotationDegrees} degrees.
- * <p>
- * TODO: make the transform move with the rotation using this formula:
- * xRelative = xCorner - xCenterRectangle;
- * yRelative = yCorner - yCenterRectangle;
- * <p>
- * rad = angle / 180 * math.PI;
- * <p>
- * px = xRelative  * math.cos(rad) - yRelative  * math.sin(rad);
- * py = xRelative  * math.sin(rad) + yRelative  * math.cos(rad);
- * <p>
- * xNew = px + xCenterRectangle;
- * yNew = py + yCenterRectangle;
  */
 public class Rotation {
     private Coordinates2f centre;

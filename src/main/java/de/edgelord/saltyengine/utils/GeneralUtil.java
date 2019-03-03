@@ -16,9 +16,12 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.effect.geom.TriangleShape;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import java.awt.*;
+import java.awt.geom.Area;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -81,6 +84,53 @@ public class GeneralUtil {
      */
     public static Coordinates2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
         return new Coordinates2f(randomInt(minX, maxX), randomInt(minY, maxY));
+    }
+
+    public static boolean checkPolygonIntersection(Polygon a, Polygon b) {
+        Area areaA = new Area(a);
+        Area areaB = new Area(b);
+
+        areaA.intersect(areaB);
+
+        return !areaA.isEmpty();
+    }
+
+    public static boolean checkTriangleIntersection(TriangleShape a, TriangleShape b) {
+        for (int x = 0; x < 2; x++) {
+            TriangleShape triangle = (x == 0) ? a : b;
+
+            for (int i1 = 0; i1 < 3; i1++) {
+                int i2 = (i1 + 1) % 3;
+                Coordinates2f p1 = triangle.getPoint(i1);
+                Coordinates2f p2 = triangle.getPoint(i2);
+                Coordinates2f normal = new Coordinates2f(p2.getY() - p1.getY(), p1.getX() - p2.getX());
+                double minA = Double.POSITIVE_INFINITY;
+                double maxA = Double.NEGATIVE_INFINITY;
+                for (Coordinates2f p : a.getPoints()) {
+                    double projected = normal.getX() * p.getX() + normal.getY() * p.getY();
+                    if (projected < minA) {
+                        minA = projected;
+                    }
+                    if (projected > maxA) {
+                        maxA = projected;
+                    }
+                }
+                double minB = Double.POSITIVE_INFINITY;
+                double maxB = Double.NEGATIVE_INFINITY;
+                for (Coordinates2f p : b.getPoints()) {
+                    double projected = normal.getX() * p.getX() + normal.getY() * p.getY();
+                    if (projected < minB) {
+                        minB = projected;
+                    }
+                    if (projected > maxB) {
+                        maxB = projected;
+                    }
+                }
+                if (maxA < minB || maxB < minA)
+                    return false;
+            }
+        }
+        return true;
     }
 
     /**

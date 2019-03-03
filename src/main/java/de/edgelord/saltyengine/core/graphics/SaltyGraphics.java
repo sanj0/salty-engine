@@ -287,6 +287,7 @@ public class SaltyGraphics {
         renderPolygon(true, points);
     }
 
+    // FIXME: 2019-03-01 weirdly doesn't work anymore - a few more testing required
     private void renderPolygon(boolean outline, Coordinates2f... points) {
         int[] xPoints = new int[points.length];
         int[] yPoints = new int[points.length];
