@@ -137,6 +137,8 @@ public class Stage extends JPanel {
     }
 
     private void renderToGraphics(Graphics2D graphics2D) {
+        float scale = Game.getCamera().getScale();
+        graphics2D.scale(scale, scale);
         graphics2D.setClip(0, 0, originWidth, originHeight);
 
         graphics2D.setRenderingHints(getRenderHints());

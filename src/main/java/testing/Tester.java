@@ -21,15 +21,23 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
+import de.edgelord.saltyengine.net.NetworkingInterface;
+import de.edgelord.saltyengine.net.Packet;
+import de.edgelord.saltyengine.net.SaltyClient;
+import de.edgelord.saltyengine.net.SaltyServer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.PointLogger;
 import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 public class Tester extends Game {
 
@@ -65,12 +73,49 @@ public class Tester extends Game {
         // PointLogger.init("points");
         RectangleCreator.init();
 
+        try {
+            testNet();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 
         //fadeIn.setDuration(3500);
         //fadeIn.fadeInit();
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
+    }
+
+    public static void testNet() throws IOException {
+
+        if (JOptionPane.showConfirmDialog(null, "Would you like to start the server?") == 1) {
+            SaltyServer saltyServer = new SaltyServer() {
+                @Override
+                public void handleIncomingData(String data) {
+
+                    System.out.println("client > " + data);
+
+                    if (data.equals("handshake")) {
+                        try {
+                            sendData("hello world", InetAddress.getByName("localhost"), NetworkingInterface.PORT);
+                        } catch (UnknownHostException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            saltyServer.start();
+        }
+
+        SaltyClient saltyClient = new SaltyClient("localhost") {
+            @Override
+            public void handleIncomingData(String data) {
+                System.out.println("server > " + data);
+            }
+        };
+        saltyClient.start();
+        saltyClient.sendData("handshake");
     }
 
     public static AudioPlayer getAudioPlayer() {
