@@ -57,6 +57,11 @@ public class Camera {
      */
     private float rotation = 0f;
 
+    /**
+     * The scale.
+     */
+    private float scale = 1.0f;
+
     private AffineTransform originalTransform = null;
 
     private Coordinates2f lastPosition = new Coordinates2f(0f, 0f);
@@ -222,5 +227,13 @@ public class Camera {
     @Deprecated
     public float getRotation() {
         return rotation;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 }

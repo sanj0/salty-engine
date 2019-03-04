@@ -65,6 +65,8 @@ public class Tester extends Game {
         // PointLogger.init("points");
         RectangleCreator.init();
 
+        Game.getCamera().setScale(1.5f);
+
         //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 
         //fadeIn.setDuration(3500);

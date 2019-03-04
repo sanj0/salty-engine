@@ -46,6 +46,7 @@ public class Display extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new NativeDisplayListener());
+        setCursor(new Cursor(1));
     }
 
     public MouseInputHandler getDisplayMouseHandler() {
