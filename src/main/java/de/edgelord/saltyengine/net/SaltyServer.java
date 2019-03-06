@@ -18,10 +18,13 @@ package de.edgelord.saltyengine.net;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SaltyServer extends Thread implements NetworkingInterface {
 
     private DatagramSocket socket;
+    private List<MPEntity> connectedEntities = new ArrayList<>();
 
     public SaltyServer() throws SocketException {
 
@@ -42,5 +45,57 @@ public abstract class SaltyServer extends Thread implements NetworkingInterface 
         byte[] dataBytes = data.getBytes();
         DatagramPacket packet = new DatagramPacket(dataBytes, dataBytes.length, ipAddress, port);
         socket.send(packet);
+    }
+
+    public void sendDataToAll(byte[] data) throws IOException {
+        for (MPEntity entity : connectedEntities) {
+            sendData(new String(data), entity.getIpAddress(), entity.getPort());
+        }
+    }
+
+    public MPEntity getEntityByName(String name) {
+        for (MPEntity entity : connectedEntities) {
+            if (entity.getUsername().equals(name)) {
+                return entity;
+            }
+        }
+
+        return null;
+    }
+
+    public int size() {
+        return connectedEntities.size();
+    }
+
+    public boolean isEmpty() {
+        return connectedEntities.isEmpty();
+    }
+
+    public boolean contains(Object o) {
+        return connectedEntities.contains(o);
+    }
+
+    public boolean addEntity(MPEntity mpEntity) {
+        return connectedEntities.add(mpEntity);
+    }
+
+    public boolean removeEntity(Object o) {
+        return connectedEntities.remove(o);
+    }
+
+    public void clear() {
+        connectedEntities.clear();
+    }
+
+    public MPEntity getEntity(int index) {
+        return connectedEntities.get(index);
+    }
+
+    public void addEntity(int index, MPEntity element) {
+        connectedEntities.add(index, element);
+    }
+
+    public MPEntity removeEntity(int index) {
+        return connectedEntities.remove(index);
     }
 }

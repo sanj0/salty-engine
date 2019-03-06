@@ -29,7 +29,6 @@ public class NetworkingExampleMain {
 
         Scanner scanner = new Scanner(System.in);
 
-        /*
         SaltyServer saltyServer = new SaltyServer() {
             @Override
             public void handleIncoming(String data, InetAddress ipAddress, int port) {
@@ -44,10 +43,10 @@ public class NetworkingExampleMain {
             }
         };
         saltyServer.start();
-        */
 
 
-        SaltyClient saltyClient = new SaltyClient("localhost") {
+        /*
+        SaltyClient saltyClient = new SaltyClient("79.218.179.179") {
             @Override
             public void handleIncoming(String data, InetAddress ipAddress, int port) {
                 System.out.println("server > " + data);
@@ -59,5 +58,6 @@ public class NetworkingExampleMain {
             String msg = scanner.nextLine();
             saltyClient.sendData(msg);
         }
+        */
     }
 }

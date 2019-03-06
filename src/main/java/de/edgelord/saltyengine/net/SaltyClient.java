@@ -45,4 +45,8 @@ public abstract class SaltyClient extends Thread implements NetworkingInterface 
         DatagramPacket packet = new DatagramPacket(dataBytes, dataBytes.length, serverIP, NetworkingInterface.PORT);
         socket.send(packet);
     }
+
+    public InetAddress getServerIP() {
+        return serverIP;
+    }
 }
