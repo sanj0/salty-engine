@@ -216,7 +216,7 @@ public class Scene {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
                 Coordinates2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
-                //saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
+                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
 
                 gameObject.draw(saltyGraphics);
                 gameObject.doComponentDrawing(saltyGraphics);

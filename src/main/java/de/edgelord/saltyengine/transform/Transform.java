@@ -78,6 +78,18 @@ public class Transform {
         };
     }
 
+    public Polygon getAsPolygon() {
+
+        Coordinates2f[] points = getAsPoints();
+        Polygon polygon = new Polygon();
+
+        for (Coordinates2f coordinates2f : points) {
+            polygon.addPoint((int) coordinates2f.getX(), (int) coordinates2f.getY());
+        }
+
+        return polygon;
+    }
+
     /**
      * Returns whether the rectangle described by this <code>Transform</code> intersects the one of the given or not.
      * This method takes the rotation of both <code>Transform</code>s into consideration.
@@ -87,6 +99,11 @@ public class Transform {
      */
     public boolean intersects(Transform other) {
 
+        Polygon thisPol = getAsPolygon();
+
+        return GeneralUtil.checkPolygonIntersection(thisPol, other.getAsPolygon());
+
+        /*
         TriangleShape[] triangles = getAsTriangles();
         TriangleShape[] otherTriangles = other.getAsTriangles();
 
@@ -100,6 +117,7 @@ public class Transform {
         }
 
         return false;
+        */
     }
 
     /**

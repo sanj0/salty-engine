@@ -163,13 +163,13 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         saltyGraphics.setColor(Color.RED);
 
-        //saltyGraphics.resetObjectRotation(this);
+        /*
         for (Coordinates2f point : getHitbox().getTransform().getAsPoints()) {
             saltyGraphics.drawOval(point.subtract(10, 10), new Dimensions(20, 20));
         }
 
         saltyGraphics.outlineRect(getHitbox().getTransform());
-        //saltyGraphics.setRotation(getRotationDegrees(), getTransform().getRotationCentreAbsolute());
+        */
     }
 
     @Override

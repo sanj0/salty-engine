@@ -86,8 +86,6 @@ public class Bird extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
-        System.out.println(getTransform().getRotationCentreAbsolute());
-
         getTransform().rotateToPoint(Input.getCursorPosition());
 
         if (Input.getKeyboardInput().isSpace()) {
@@ -104,13 +102,13 @@ public class Bird extends GameObject implements Serializable {
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
 
-        //saltyGraphics.resetObjectRotation(this);
+        /*
         for (Coordinates2f point : getHitbox().getTransform().getAsPoints()) {
             saltyGraphics.drawOval(point.subtract(10, 10), new Dimensions(20, 20));
         }
 
         saltyGraphics.outlineRect(getHitbox().getTransform());
-        //saltyGraphics.setRotation(getRotationDegrees(), getTransform().getRotationCentreAbsolute());
+        */
     }
 
     @Override
