@@ -26,6 +26,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
+import org.jogamp.glg2d.GLG2DCanvas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,7 +92,7 @@ public class Stage extends JPanel {
         this.originHeight = height;
         this.resolution = new Dimensions(originWidth, originHeight);
         setBackground(Color.WHITE);
-        container.add(this);
+        container.add(new GLG2DCanvas(this));
         setIgnoreRepaint(true);
         setFocusable(false);
 
