@@ -27,6 +27,7 @@ import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 import org.jogamp.glg2d.GLG2DCanvas;
+import org.jogamp.glg2d.GLGraphics2D;
 
 import javax.swing.*;
 import java.awt.*;
@@ -120,7 +121,7 @@ public class Stage extends JPanel {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         ticks++;
-        final Graphics2D graphics2D = (Graphics2D) graphics;
+        final GLGraphics2D graphics2D = (GLGraphics2D) graphics;
 
         BufferedImage renderedImage = renderToImage();
 

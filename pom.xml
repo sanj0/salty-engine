@@ -44,7 +44,7 @@
         <dependency>
             <groupId>org.jogamp.glg2d</groupId>
             <artifactId>glg2d</artifactId>
-            <version>0.3-SNAPSHOT</version>
+            <version>0.5-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.edgelord.sysDepFiles</groupId>
