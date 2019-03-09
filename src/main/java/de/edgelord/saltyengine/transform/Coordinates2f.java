@@ -69,6 +69,8 @@ public class Coordinates2f {
      */
     public Coordinates2f rotateAround(Coordinates2f centre, float angle) {
 
+        angle -= 90;
+
         float xTranslated = x - centre.getX();
         float yTranslated = y - centre.getY();
         double a = Math.toRadians(angle);
