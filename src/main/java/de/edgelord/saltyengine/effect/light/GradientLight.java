@@ -26,13 +26,13 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class GradientLight extends Light {
 
-    private BufferedImage light;
-    private BufferedImage coloredLight;
+    private VolatileImage light;
+    private VolatileImage coloredLight;
     private EnumShape shape;
 
     private float[] arcIfRoundRect;

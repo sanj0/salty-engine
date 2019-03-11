@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -25,6 +26,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.*;
 
 public class InnerResource implements Resource {
@@ -33,20 +35,19 @@ public class InnerResource implements Resource {
     private File tmpDir = null;
 
     @Override
-    public BufferedImage getImageResource(String relativePath) {
+    public VolatileImage getImageResource(String relativePath) {
 
         String arrangedPath = arrangePath(relativePath);
 
         try (InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
 
-            return ImageIO.read(inputStream);
+            BufferedImage image = ImageIO.read(inputStream);
+            return ImageUtils.toVolatileImage(image);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // If the return statement above fails, return a new empty BufferedImage with 314 x 314 pixels and ImageType 1
-
-        return new BufferedImage(314, 314, 1);
+        return null;
     }
 
     @Override
@@ -92,7 +93,7 @@ public class InnerResource implements Resource {
         byte[] buffer = new byte[4096];
 
         int readBytes;
-        while((readBytes = inputStream.read(buffer)) > 0) {
+        while ((readBytes = inputStream.read(buffer)) > 0) {
             outputStream.write(buffer, 0, readBytes);
         }
 

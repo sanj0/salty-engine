@@ -18,9 +18,9 @@ package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.core.WindowClosingHooks;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.stdf.Species;

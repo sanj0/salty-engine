@@ -36,7 +36,7 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.IOException;
 
 public class TestingScene extends Scene {
@@ -115,7 +115,7 @@ public class TestingScene extends Scene {
     private void initPhysicsTest() {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final VolatileImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
         final Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
@@ -135,12 +135,11 @@ public class TestingScene extends Scene {
 
     public void initForcesTest() {
 
-        final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final VolatileImage birdSpritesheet = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
-        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 100), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 100), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(bottomBird);
         addGameObject(upperBird);
@@ -159,11 +158,11 @@ public class TestingScene extends Scene {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 0), SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 0), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(player);
 
-        final BufferedImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final VolatileImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         // Adding all those cute birds to the Scene
 

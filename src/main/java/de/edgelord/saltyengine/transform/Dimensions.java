@@ -46,7 +46,7 @@ public class Dimensions {
     public Dimensions add(float width1, float height1) {
         width += width1;
         height += height1;
-        
+
         return this;
     }
 

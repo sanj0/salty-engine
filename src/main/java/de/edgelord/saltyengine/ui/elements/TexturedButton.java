@@ -21,15 +21,15 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TexturedButton extends Button {
 
     private boolean drawText = true;
-    private BufferedImage texture;
+    private VolatileImage texture;
 
-    public TexturedButton(String text, Coordinates2f position, int width, int height, BufferedImage texture) {
+    public TexturedButton(String text, Coordinates2f position, int width, int height, VolatileImage texture) {
         super(text, position, width, height);
 
         this.texture = texture;
@@ -57,11 +57,11 @@ public abstract class TexturedButton extends Button {
         this.drawText = drawText;
     }
 
-    public BufferedImage getTexture() {
+    public VolatileImage getTexture() {
         return texture;
     }
 
-    public void setTexture(BufferedImage texture) {
+    public void setTexture(VolatileImage texture) {
         this.texture = texture;
     }
 }

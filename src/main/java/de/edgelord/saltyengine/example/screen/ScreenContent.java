@@ -20,14 +20,14 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 public class ScreenContent {
 
     private float xOrigin;
     private float yOrigin;
 
-    private BufferedImage bgImage = SaltySystem.defaultImageFactory.getOptimizedImageResource("res/pictures/bg.png");
+    private VolatileImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/bg.png");
 
     private Coordinates2f origin;
 

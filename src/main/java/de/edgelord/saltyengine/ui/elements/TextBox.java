@@ -22,15 +22,14 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TextBox extends TextElement {
 
-    private float cursor = 1;
-    private float speed = 0.020f;
+    private float cursor = 1f;
+    private float speed = 1f;
     private TextRenderComponent textRenderComponent;
 
     public TextBox(String text, Coordinates2f position, float width, float height, float offsetX, float offsetY) {
@@ -45,11 +44,15 @@ public abstract class TextBox extends TextElement {
     }
 
     @Override
-    public void drawForeground(SaltyGraphics graphics) {
+    public void onFixedTick() {
         if (cursor < getText().length()) {
             textRenderComponent.setText(getText().substring(0, Math.round(cursor)));
         }
-        cursor += (float) Time.getDeltaTime() * speed;
+        cursor += 0.05f;
+    }
+
+    @Override
+    public void drawForeground(SaltyGraphics graphics) {
     }
 
     public void start() {

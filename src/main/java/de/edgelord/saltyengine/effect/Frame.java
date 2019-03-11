@@ -19,14 +19,14 @@ package de.edgelord.saltyengine.effect;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 public class Frame implements Cosmetic {
 
-    private BufferedImage image;
+    private VolatileImage image;
     //private AdvancedCosmetics advancedCosmetics = null;
 
-    public Frame(BufferedImage image) {
+    public Frame(VolatileImage image) {
 
         this.image = image;
     }
@@ -36,11 +36,11 @@ public class Frame implements Cosmetic {
         saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
     }
 
-    public BufferedImage getImage() {
+    public VolatileImage getImage() {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
+    public void setImage(VolatileImage image) {
         this.image = image;
     }
 }

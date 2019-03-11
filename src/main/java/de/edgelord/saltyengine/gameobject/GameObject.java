@@ -273,8 +273,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
      * that the given {@link Directions} has.
      *
-     * @param acceleration   the target acceleration for all directions that the given <code>Directions</code> has.
-     * @param directions the <code>Directions</code> in which to accelerate.
+     * @param acceleration the target acceleration for all directions that the given <code>Directions</code> has.
+     * @param directions   the <code>Directions</code> in which to accelerate.
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerate(float acceleration, Directions directions) {

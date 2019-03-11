@@ -32,7 +32,7 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
  * <p>
  * The spawned {@link Particle}s are falling down with {@link #getSpeed()} pixels per fixed tick and there are constantly spawning new ones.
  * You can the spawning rate using {@link #setWaveInterval(int)}.
- *
+ * <p>
  * This implementation of {@link EmitterComponent} ignores the suggested spawn point. You can control the actual used spawn point with both offsets.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)

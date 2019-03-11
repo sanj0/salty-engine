@@ -25,7 +25,6 @@ public interface SceneCollider {
      *
      * @param object1 the first <code>GameObject</code>
      * @param object2 the second <code>GameObject</code>
-     *
      * @return the result of the check
      */
     CollisionDetectionResult checkCollision(GameObject object1, GameObject object2);

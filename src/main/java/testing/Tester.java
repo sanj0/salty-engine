@@ -23,12 +23,10 @@ import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.PointLogger;
 import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class Tester extends Game {

@@ -29,7 +29,7 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToDataConverter;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -80,9 +80,9 @@ import java.util.Map;
  */
 public abstract class StaticTileGrid extends DrawingRoutine {
 
-    private HashMap<Coordinates, BufferedImage> tiles = new HashMap<>();
+    private HashMap<Coordinates, VolatileImage> tiles = new HashMap<>();
 
-    private BufferedImage tileGrid;
+    private VolatileImage tileGrid;
 
     private boolean resizeTiles = false;
     private Dimensions tileSize;
@@ -116,7 +116,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         saltyGraphics.drawImage(tileGrid, position.getX(), position.getY());
     }
 
-    public abstract void buildTileGrid(HashMap<Coordinates, BufferedImage> grid);
+    public abstract void buildTileGrid(HashMap<Coordinates, VolatileImage> grid);
 
     /**
      * Reads a Tilemap file created with Salty Tilemap Creator
@@ -136,14 +136,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
         return new StaticTileGrid(drawingPosition, position, new Dimensions(ValueToDataConverter.convertToFloat(metaInf, "tile-height"), ValueToDataConverter.convertToFloat(metaInf, "tile-width"))) {
             @Override
-            public void buildTileGrid(HashMap<Coordinates, BufferedImage> grid) {
+            public void buildTileGrid(HashMap<Coordinates, VolatileImage> grid) {
 
-                Map<String, BufferedImage> imageMap = new HashMap<>();
+                Map<String, VolatileImage> imageMap = new HashMap<>();
 
                 for (int i = 0; i < ValueToDataConverter.convertToInteger(images, "entry-count"); i++) {
                     String value = images.getTagValue("image" + i);
                     String[] values = value.split(",");
-                    imageMap.put(values[0], SaltySystem.defaultImageFactory.getOptimizedImageResource(values[1]));
+                    imageMap.put(values[0], SaltySystem.defaultImageFactory.getImageResource(values[1]));
                 }
 
                 for (int i = 0; i < ValueToDataConverter.convertToInteger(tiles, "entry-count"); i++) {
@@ -158,11 +158,11 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         };
     }
 
-    private BufferedImage createStaticGridPicture() {
+    private VolatileImage createStaticGridPicture() {
 
         int maxX = 0;
         int maxY = 0;
-        BufferedImage image;
+        VolatileImage image;
         Iterator iterator;
         SaltyGraphics graphics;
 
@@ -183,14 +183,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
         }
 
-        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        image = SaltySystem.createVolatileImage(width, height);
         graphics = new SaltyGraphics(image.createGraphics());
 
         iterator = tiles.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry) iterator.next();
 
-            BufferedImage tileImage = (BufferedImage) pair.getValue();
+            VolatileImage tileImage = (VolatileImage) pair.getValue();
             Coordinates coordinates = (Coordinates) pair.getKey();
             Coordinates2f tilePos = getTilePosition(coordinates, false);
 
@@ -202,7 +202,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Fills a specific rectangular "area" within the given HashMap with the given {@link BufferedImage}
+     * Fills a specific rectangular "area" within the given HashMap with the given {@link VolatileImage}
      * The "area" starts at the given {@link Coordinates} and ends after the given width and the given height was reached.
      * You can use this within {@link #buildTileGrid(HashMap)}
      *
@@ -212,7 +212,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param width        the width of the rectangle
      * @param height       the height of the rectangle
      */
-    public void fillArea(HashMap<Coordinates, BufferedImage> grid, BufferedImage tile, Coordinates startingTile, int width, int height) {
+    public void fillArea(HashMap<Coordinates, VolatileImage> grid, VolatileImage tile, Coordinates startingTile, int width, int height) {
 
         int currentX = startingTile.getX();
         int currentY = startingTile.getY();

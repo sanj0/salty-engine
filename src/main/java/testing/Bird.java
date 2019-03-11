@@ -33,7 +33,7 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 public class Bird extends GameObject implements Serializable {
 
@@ -42,7 +42,7 @@ public class Bird extends GameObject implements Serializable {
 
     private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, .1f, 1);
 
-    public Bird(final BufferedImage image, final int xPos, final int yPos) {
+    public Bird(final VolatileImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
         spritesheetAnimation = new SpritesheetAnimation(this);

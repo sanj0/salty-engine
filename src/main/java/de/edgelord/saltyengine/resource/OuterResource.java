@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -25,6 +26,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -45,17 +47,15 @@ public class OuterResource implements Resource {
     }
 
     @Override
-    public BufferedImage getImageResource(String relativePath) {
+    public VolatileImage getImageResource(String relativePath) {
 
         try {
-            return getImage(relativePath);
+            return ImageUtils.toVolatileImage(getImage(relativePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // If the return statement above fails, return a new empty BufferedImage with 314 x 314 pixels and TYPE_BYTE_GRAY
-
-        return new BufferedImage(314, 314, BufferedImage.TYPE_BYTE_GRAY);
+        return null;
     }
 
     @Override

@@ -26,7 +26,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 public abstract class PrimitivesRenderComponent extends RenderComponent {
 
@@ -39,7 +39,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
     // The stroke (like a pen) with which the component should DRAW the primitives
     private float lineWidth = 3f;
 
-    private BufferedImage primitiveImage;
+    private VolatileImage primitiveImage;
 
     private Drawable primitiveDraw;
 

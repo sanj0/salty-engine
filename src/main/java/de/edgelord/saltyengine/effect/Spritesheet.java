@@ -17,9 +17,10 @@
 package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,12 +28,12 @@ import java.util.Objects;
 
 public class Spritesheet {
 
-    private BufferedImage image = null;
+    private VolatileImage image = null;
     private int spriteWidth, spriteHeight;
 
     private SpritePattern spritePattern;
 
-    public Spritesheet(BufferedImage image, int spriteWidth, int spriteHeight) {
+    public Spritesheet(VolatileImage image, int spriteWidth, int spriteHeight) {
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
 
@@ -56,16 +57,16 @@ public class Spritesheet {
         return frames;
     }
 
-    public BufferedImage getSprite(int id) {
+    public VolatileImage getSprite(int id) {
 
         Rectangle rectangle = spritePattern.getRectangle(id);
 
-        return image.getSubimage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        return ImageUtils.getSubImage(image, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
-    public BufferedImage getManualSprite(int x, int y) {
+    public VolatileImage getManualSprite(int x, int y) {
 
-        return this.image.getSubimage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
+        return ImageUtils.getSubImage(image, --x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
     }
 
     public int getSpriteWidth() {

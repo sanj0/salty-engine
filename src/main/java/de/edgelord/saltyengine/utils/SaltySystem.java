@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
-import java.io.IOException;
+import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
@@ -33,6 +33,8 @@ public class SaltySystem {
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;
+
+    public static GraphicsConfiguration gfxConfig = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
     public static InnerResource defaultResource = new InnerResource();
     public static OuterResource defaultHiddenOuterResource;
@@ -47,6 +49,16 @@ public class SaltySystem {
     public static boolean gameObjectMouseEventsAgent = true;
 
     public static Font defaultFont;
+
+    public static VolatileImage createVolatileImage(int width, int height) {
+
+        VolatileImage image = gfxConfig.createCompatibleVolatileImage(width, height, Transparency.TRANSLUCENT);
+        Graphics2D graphics2D = image.createGraphics();
+        graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
+        graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
+        graphics2D.dispose();
+        return image;
+    }
 
     /**
      * Sets the {@link Font} {@link #defaultFont} to all {@link UIElement}s in the

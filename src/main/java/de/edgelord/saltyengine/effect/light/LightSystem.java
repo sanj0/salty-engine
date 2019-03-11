@@ -22,16 +22,17 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LightSystem implements Drawable {
 
     private Color lightMapColor;
-    protected BufferedImage lightMap;
+    protected VolatileImage lightMap;
     //private BufferedImage plainLightMap;
     private List<Light> lights = new ArrayList<>();
 
@@ -39,7 +40,7 @@ public class LightSystem implements Drawable {
         this.lightMapColor = lightMapColor;
 
         Dimensions res = Game.getGameDimensions();
-        lightMap = new BufferedImage((int) res.getWidth(), (int) res.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        lightMap = SaltySystem.createVolatileImage((int) res.getWidth(), (int) res.getHeight());
         //plainLightMap = new BufferedImage((int) res.getWidth() + 500, (int) res.getHeight() + 500, BufferedImage.TYPE_INT_ARGB);
     }
 
@@ -84,7 +85,7 @@ public class LightSystem implements Drawable {
         //graphics2D.dispose();
     }
 
-    private Graphics2D drawBackgroundToImage(BufferedImage image) {
+    private Graphics2D drawBackgroundToImage(VolatileImage image) {
         Graphics2D graphics2D = image.createGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());

@@ -23,7 +23,7 @@ import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageLoader;
 
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 
 /**
  * An abstract <code>Particle</code> which renders {@link #image} obtained from {@link #getImage()}.
@@ -46,7 +46,7 @@ public abstract class ImageParticle extends Particle {
 
     public static Dimensions DEFAULT_DIMENSIONS = new Dimensions(10f, 10f);
 
-    private BufferedImage image;
+    private VolatileImage image;
 
     /**
      * {@inheritDoc}
@@ -61,7 +61,7 @@ public abstract class ImageParticle extends Particle {
     /**
      * @return the image to be rendered by this particle
      */
-    public abstract BufferedImage getImage();
+    public abstract VolatileImage getImage();
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {

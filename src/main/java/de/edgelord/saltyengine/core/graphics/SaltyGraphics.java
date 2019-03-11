@@ -25,8 +25,8 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.awt.image.VolatileImage;
 
 public class SaltyGraphics {
 
@@ -320,7 +320,7 @@ public class SaltyGraphics {
      * @param height the height with which the image should be drawn
      * @see Graphics2D#drawImage(Image, int, int, int, int, ImageObserver)
      */
-    public void drawImage(BufferedImage image, float x, float y, float width, float height) {
+    public void drawImage(VolatileImage image, float x, float y, float width, float height) {
         graphics2D.drawImage(image, Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
     }
 
@@ -329,9 +329,9 @@ public class SaltyGraphics {
      *
      * @param image    the image to be drawn
      * @param position the position of the image
-     * @see #drawImage(BufferedImage, float, float, float, float)
+     * @see #drawImage(VolatileImage, float, float, float, float)
      */
-    public void drawImage(BufferedImage image, Coordinates2f position) {
+    public void drawImage(VolatileImage image, Coordinates2f position) {
         drawImage(image, position.getX(), position.getY(), Math.round(image.getWidth()), Math.round(image.getHeight()));
     }
 
@@ -341,9 +341,9 @@ public class SaltyGraphics {
      * @param image the image to be drawn
      * @param x     the x position of the image
      * @param y     the y position of the image
-     * @see #drawImage(BufferedImage, float, float, float, float)
+     * @see #drawImage(VolatileImage, float, float, float, float)
      */
-    public void drawImage(BufferedImage image, float x, float y) {
+    public void drawImage(VolatileImage image, float x, float y) {
         drawImage(image, x, y, Math.round(image.getWidth()), Math.round(image.getHeight()));
     }
 
@@ -352,9 +352,9 @@ public class SaltyGraphics {
      *
      * @param image     the image to be drawn
      * @param transform the transform from which to take the position and dimensions of the image to be drawn with
-     * @see #drawImage(BufferedImage, float, float, float, float)
+     * @see #drawImage(VolatileImage, float, float, float, float)
      */
-    public void drawImage(BufferedImage image, Transform transform) {
+    public void drawImage(VolatileImage image, Transform transform) {
         drawImage(image, transform.getX(), transform.getY(), transform.getWidth(), transform.getHeight());
     }
 
@@ -365,17 +365,17 @@ public class SaltyGraphics {
      * @param position   the position of the image
      * @param dimensions the dimensions with to DRAW the image
      */
-    public void drawImage(BufferedImage image, Coordinates2f position, Dimensions dimensions) {
+    public void drawImage(VolatileImage image, Coordinates2f position, Dimensions dimensions) {
         drawImage(image, position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
     /**
-     * Draws an image by calling <code>outlineImage(BufferedImage, Transform)</code>
+     * Draws an image by calling <code>outlineImage(VolatileImage, Transform)</code>
      *
      * @param image  the image to be drawn
      * @param object the ComponentContainer from which to take the Transform to DRAW the image
      */
-    public void drawImage(BufferedImage image, TransformedObject object) {
+    public void drawImage(VolatileImage image, TransformedObject object) {
         drawImage(image, object.getTransform());
     }
 

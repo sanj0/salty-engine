@@ -20,7 +20,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,7 +28,7 @@ import java.net.URL;
 
 public interface Resource {
 
-    BufferedImage getImageResource(String relativePath);
+    VolatileImage getImageResource(String relativePath);
 
     Clip getAudioResource(String relativePath);
 

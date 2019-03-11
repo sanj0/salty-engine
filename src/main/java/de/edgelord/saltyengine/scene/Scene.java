@@ -34,7 +34,6 @@ import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

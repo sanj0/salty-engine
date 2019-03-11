@@ -29,7 +29,7 @@ import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -121,7 +121,7 @@ public class Stage extends JPanel {
         ticks++;
         final Graphics2D graphics2D = (Graphics2D) graphics;
 
-        BufferedImage renderedImage = renderToImage();
+        VolatileImage renderedImage = renderToImage();
 
         float width = Game.getHost().getCurrentWidth();
         float height = Game.getHost().getCurrentHeight();
@@ -160,8 +160,8 @@ public class Stage extends JPanel {
         }
     }
 
-    public BufferedImage renderToImage() {
-        BufferedImage image = new BufferedImage(originWidth, originHeight, BufferedImage.TYPE_INT_ARGB);
+    public VolatileImage renderToImage() {
+        VolatileImage image = SaltySystem.createVolatileImage(originWidth, originHeight);
 
         Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);
@@ -175,7 +175,7 @@ public class Stage extends JPanel {
         name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         try {
-            ImageUtils.saveImage(renderToImage(), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
+            ImageUtils.saveImage(ImageUtils.toBufferedImage(renderToImage()), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
         } catch (IOException e) {
             e.printStackTrace();
         }
