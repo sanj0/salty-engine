@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * The package for {@link de.edgelord.saltyengine.components.collider.ColliderComponent}s.
+ * The package for everything having to do with general collision detection.
  */
-package de.edgelord.saltyengine.components.collider;
+package de.edgelord.saltyengine.collision;

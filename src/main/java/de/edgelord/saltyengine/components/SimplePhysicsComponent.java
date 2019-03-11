@@ -126,7 +126,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
         for (CollisionEvent collisionEvent : collisions) {
 
-            if (!tagsToIgnore.contains(collisionEvent.getRoot().getTag()) && !collisionEvent.getRoot().isTrigger()) {
+            if (!tagsToIgnore.contains(collisionEvent.getOtherGameObject().getTag()) && !collisionEvent.getOtherGameObject().isTrigger()) {
                 switch (collisionEvent.getCollisionDirection()) {
 
 

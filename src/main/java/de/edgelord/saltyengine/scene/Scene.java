@@ -16,8 +16,12 @@
 
 package de.edgelord.saltyengine.scene;
 
+import de.edgelord.saltyengine.collision.CollisionDetectionResult;
+import de.edgelord.saltyengine.collision.PrioritySceneCollider;
+import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.effect.light.LightSystem;
@@ -26,9 +30,11 @@ import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.ui.UISystem;
+import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -60,6 +66,8 @@ public class Scene {
     private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
+
+    private SceneCollider sceneCollider = new PrioritySceneCollider();
 
     public Scene() {
 
@@ -211,17 +219,49 @@ public class Scene {
 
         synchronized (concurrentBlock) {
 
-            for (int i = 0; i < gameObjects.size(); i++) {
+            int size = getGameObjectCount();
+            for (int i = 0; i < size; i++) {
                 GameObject gameObject = gameObjects.get(i);
+
+                if (gameObject.isClearCollisions()) {
+                    gameObject.getCollisions().clear();
+                    gameObject.setClearCollisions(false);
+                }
 
                 if (!gameObject.isInitialized()) {
                     gameObject.initialize();
                     gameObject.setInitialized(true);
                 }
 
-                gameObject.doCollisionDetection(gameObjects);
+                for (int i2 = i + 1; i2 < size; i2++) {
+                    GameObject gameObject2 = gameObjects.get(i2);
+
+                    if (gameObject2.isClearCollisions()) {
+                        gameObject2.getCollisions().clear();
+                        gameObject2.setClearCollisions(false);
+                    }
+
+                    CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
+
+                    if (collisionDetectionResult.isCollision()) {
+                        CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
+                        CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
+
+                        gameObject.getCollisions().add(collision);
+                        gameObject.onCollision(collision);
+                        gameObject.getComponents().forEach(component -> component.onCollision(collision));
+
+                        gameObject2.onCollision(collision2);
+                        gameObject2.getCollisions().add(collision2);
+                        gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
+                    }
+                }
+
+                gameObject.getComponents().forEach(component -> component.onCollisionDetectionFinish(gameObject.getCollisions()));
+                gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
                 gameObject.doComponentOnFixedTick();
                 gameObject.doFixedTick();
+                gameObject.setClearCollisions(true);
             }
         }
 
@@ -231,6 +271,14 @@ public class Scene {
 
             ui.onFixedTick();
         }
+    }
+
+    public SceneCollider getSceneCollider() {
+        return sceneCollider;
+    }
+
+    public void setSceneCollider(SceneCollider sceneCollider) {
+        this.sceneCollider = sceneCollider;
     }
 
     public void setUI(UISystem uiSystem) {

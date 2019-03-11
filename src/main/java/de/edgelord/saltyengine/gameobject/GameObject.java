@@ -16,10 +16,9 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.components.RecalculateHitboxComponent;
+import de.edgelord.saltyengine.collision.Collider;
+import de.edgelord.saltyengine.collision.HitboxCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
-import de.edgelord.saltyengine.components.collider.ColliderComponent;
-import de.edgelord.saltyengine.components.collider.HitboxCollider;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -40,24 +39,22 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static de.edgelord.saltyengine.scene.Scene.concurrentBlock;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class GameObject extends ComponentContainer implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
     public static final String DEFAULT_RECALCULATE_HITBOX_NAME = "de.edgelord.saltyengine.coreComponents.recalculateHitbox";
-    public static final String DEFAULT_COLLIDER_COMPONENT_NAME = "de.edgelord.saltyengine.coreComponents.collider";
 
     private final List<Component> components = new CopyOnWriteArrayList<>();
+    private final List<CollisionEvent> collisions = new CopyOnWriteArrayList<>();
+    private boolean clearCollisions = true;
 
     private final SimplePhysicsComponent physicsComponent;
-    private final RecalculateHitboxComponent recalculateHitboxComponent;
-    private final HitboxCollider defaultCollider;
+
+    private Collider collider;
 
     private boolean cursorAlreadyTouching = false;
 
@@ -79,8 +76,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      */
     private boolean isTrigger = false;
 
-    private String colliderComponent = DEFAULT_COLLIDER_COMPONENT_NAME;
-
     private Hitbox hitbox;
     private float mass = 1f;
 
@@ -93,12 +88,9 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
-        recalculateHitboxComponent = new RecalculateHitboxComponent(this, GameObject.DEFAULT_RECALCULATE_HITBOX_NAME);
-        defaultCollider = new HitboxCollider(this, DEFAULT_COLLIDER_COMPONENT_NAME);
+        collider = new HitboxCollider();
 
         components.add(physicsComponent);
-        components.add(recalculateHitboxComponent);
-        components.add(defaultCollider);
     }
 
     public GameObject(Transform transform, String tag) {
@@ -164,9 +156,9 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         onFixedTick();
     }
 
+    /*
     public final void doCollisionDetection(final List<GameObject> gameObjects) {
 
-        Directions collisionDirections = new Directions();
         List<CollisionEvent> collisions = new ArrayList<>();
 
         if (!stationary) {
@@ -183,7 +175,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
                             Directions.Direction currentCollisionDirection =
                                     requestCollider().getCollisionDirection(other);
 
-                            collisionDirections.addDirection(currentCollisionDirection);
                             final CollisionEvent eSelf = new CollisionEvent(other, currentCollisionDirection);
 
                             collisions.add(eSelf);
@@ -199,6 +190,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
             onCollisionDetectionFinish(collisions);
         }
     }
+    */
 
     public final void doCursorEnters() {
         doComponentCursorEntersParent();
@@ -240,11 +232,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         }
 
         return null;
-    }
-
-    public ColliderComponent requestCollider() {
-
-        return (ColliderComponent) getComponent(colliderComponent);
     }
 
     /**
@@ -405,16 +392,12 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return physicsComponent;
     }
 
-    public RecalculateHitboxComponent getRecalculateHitboxComponent() {
-        return recalculateHitboxComponent;
+    public Collider getCollider() {
+        return collider;
     }
 
-    public ColliderComponent getDefaultColliderCollider() {
-        return defaultCollider;
-    }
-
-    public void setColliderComponent(String colliderComponent) {
-        this.colliderComponent = colliderComponent;
+    public void setCollider(Collider collider) {
+        this.collider = collider;
     }
 
     public boolean isStationary() {
@@ -459,5 +442,17 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setCursorAlreadyTouching(boolean cursorAlreadyTouching) {
         this.cursorAlreadyTouching = cursorAlreadyTouching;
+    }
+
+    public List<CollisionEvent> getCollisions() {
+        return collisions;
+    }
+
+    public boolean isClearCollisions() {
+        return clearCollisions;
+    }
+
+    public void setClearCollisions(boolean clearCollisions) {
+        this.clearCollisions = clearCollisions;
     }
 }

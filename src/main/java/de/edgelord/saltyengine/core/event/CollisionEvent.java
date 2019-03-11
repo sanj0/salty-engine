@@ -24,17 +24,17 @@ import de.edgelord.saltyengine.utils.Directions;
  */
 public class CollisionEvent {
 
-    private final GameObject root;
+    private final GameObject otherGameObject;
     private Directions.Direction collisionDirection;
 
-    public CollisionEvent(final GameObject root, final Directions.Direction collisionDirection) {
+    public CollisionEvent(final GameObject otherGameObject, final Directions.Direction collisionDirection) {
 
-        this.root = root;
+        this.otherGameObject = otherGameObject;
         this.collisionDirection = collisionDirection;
     }
 
-    public GameObject getRoot() {
-        return root;
+    public GameObject getOtherGameObject() {
+        return otherGameObject;
     }
 
     public Directions.Direction getCollisionDirection() {
