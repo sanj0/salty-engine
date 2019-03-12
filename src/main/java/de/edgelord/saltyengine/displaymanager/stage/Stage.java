@@ -134,6 +134,7 @@ public class Stage extends JPanel {
         currentImgPos = new Coordinates2f(xPos, yPos);
 
         graphics2D.drawImage(renderedImage, xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
+        renderedImage.flush();
     }
 
     private void renderToGraphics(Graphics2D graphics2D) {
@@ -161,7 +162,7 @@ public class Stage extends JPanel {
     }
 
     public VolatileImage renderToImage() {
-        VolatileImage image = SaltySystem.createVolatileImage(originWidth, originHeight);
+        VolatileImage image = createVolatileImage(originWidth, originHeight);
 
         Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);

@@ -321,7 +321,20 @@ public class SaltyGraphics {
      * @see Graphics2D#drawImage(Image, int, int, int, int, ImageObserver)
      */
     public void drawImage(VolatileImage image, float x, float y, float width, float height) {
-        graphics2D.drawImage(image, Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
+
+        int imageState = /*image.validate(SaltySystem.gfxConfig)*/VolatileImage.IMAGE_OK;
+
+        if (imageState == VolatileImage.IMAGE_INCOMPATIBLE) {
+            System.err.println("Warning: a VolatileImage is incompatible!");
+        } else if (imageState == VolatileImage.IMAGE_RESTORED) {
+            System.err.println("Warning: a VolatileImage could not be rendered because it needs to be restored!");
+        }
+
+        if (!image.contentsLost()) {
+            graphics2D.drawImage(image, Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
+        } else {
+            System.err.println("Warning: a VolatileImage could not be rendered because it lost its content!");
+        }
     }
 
     /**
