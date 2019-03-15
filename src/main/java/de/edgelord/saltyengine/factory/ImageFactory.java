@@ -21,7 +21,6 @@ import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 
 public class ImageFactory extends Factory {
 

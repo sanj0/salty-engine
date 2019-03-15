@@ -27,7 +27,6 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.VolatileImage;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class GradientLight extends Light {

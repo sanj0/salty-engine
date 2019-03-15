@@ -27,7 +27,6 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
-import java.awt.image.VolatileImage;
 
 public class SaltyGraphics {
 

@@ -18,7 +18,6 @@ package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -27,7 +26,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.IOException;
 

@@ -30,7 +30,6 @@ import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.DataReader;
 import de.edgelord.stdf.reading.ValueToDataConverter;
 
-import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;

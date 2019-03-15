@@ -22,7 +22,6 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.awt.event.MouseEvent;
-import java.awt.image.VolatileImage;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class TexturedButton extends Button {

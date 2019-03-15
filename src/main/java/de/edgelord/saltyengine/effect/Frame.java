@@ -20,8 +20,6 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 
-import java.awt.image.VolatileImage;
-
 public class Frame implements Cosmetic {
 
     private SaltyImage image;

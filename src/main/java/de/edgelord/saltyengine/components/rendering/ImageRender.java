@@ -22,8 +22,6 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.Components;
 
-import java.awt.image.VolatileImage;
-
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class ImageRender extends RenderComponent {
 

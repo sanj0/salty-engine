@@ -24,8 +24,6 @@ import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageLoader;
 
-import java.awt.image.VolatileImage;
-
 /**
  * An abstract <code>Particle</code> which renders {@link #image} obtained from {@link #getImage()}.
  * It is highly recommended to implment that method like this:

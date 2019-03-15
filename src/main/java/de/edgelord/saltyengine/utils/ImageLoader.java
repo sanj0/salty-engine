@@ -20,7 +20,6 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.factory.ImageFactory;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 import java.util.HashMap;
 
 public class ImageLoader {

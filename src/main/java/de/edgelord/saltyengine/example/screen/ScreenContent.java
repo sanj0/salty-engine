@@ -21,8 +21,6 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
-import java.awt.image.VolatileImage;
-
 public class ScreenContent {
 
     private float xOrigin;

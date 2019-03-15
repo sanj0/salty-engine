@@ -27,7 +27,6 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.VolatileImage;
 
 public abstract class PrimitivesRenderComponent extends RenderComponent {
 

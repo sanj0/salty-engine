@@ -39,7 +39,7 @@ public class SaltyImage implements Cosmetic, Disposable {
      * After any rendering to this image using e.g. {@link #createGraphics()}, {@link #saveImage()} has to be called
      * in order to make the image reproducible.
      *
-     * @param width the width of the image
+     * @param width  the width of the image
      * @param height the height of the image
      */
     public SaltyImage(float width, float height) {
