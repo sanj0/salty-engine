@@ -324,7 +324,7 @@ public class SaltyGraphics {
 
         if (image.contentsLost()) {
             image.validate(SaltySystem.gfxConfig);
-            image.reproduceImage();
+            //image.reproduceImage();
         }
 
         graphics2D.drawImage(image.getImage(), Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
