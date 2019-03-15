@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
@@ -35,14 +36,14 @@ public class InnerResource implements Resource {
     private File tmpDir = null;
 
     @Override
-    public VolatileImage getImageResource(String relativePath) {
+    public SaltyImage getImageResource(String relativePath) {
 
         String arrangedPath = arrangePath(relativePath);
 
         try (InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
 
             BufferedImage image = ImageIO.read(inputStream);
-            return ImageUtils.toVolatileImage(image);
+            return new SaltyImage(image);
         } catch (IOException e) {
             e.printStackTrace();
         }

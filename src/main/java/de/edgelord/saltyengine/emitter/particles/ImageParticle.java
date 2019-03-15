@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.emitter.particles;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.factory.ImageFactory;
@@ -46,7 +47,7 @@ public abstract class ImageParticle extends Particle {
 
     public static Dimensions DEFAULT_DIMENSIONS = new Dimensions(10f, 10f);
 
-    private VolatileImage image;
+    private SaltyImage image;
 
     /**
      * {@inheritDoc}
@@ -61,7 +62,7 @@ public abstract class ImageParticle extends Particle {
     /**
      * @return the image to be rendered by this particle
      */
-    public abstract VolatileImage getImage();
+    public abstract SaltyImage getImage();
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {

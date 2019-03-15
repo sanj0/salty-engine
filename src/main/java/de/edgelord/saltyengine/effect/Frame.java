@@ -17,16 +17,17 @@
 package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 
 import java.awt.image.VolatileImage;
 
 public class Frame implements Cosmetic {
 
-    private VolatileImage image;
+    private SaltyImage image;
     //private AdvancedCosmetics advancedCosmetics = null;
 
-    public Frame(VolatileImage image) {
+    public Frame(SaltyImage image) {
 
         this.image = image;
     }
@@ -36,11 +37,11 @@ public class Frame implements Cosmetic {
         saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
     }
 
-    public VolatileImage getImage() {
+    public SaltyImage getImage() {
         return image;
     }
 
-    public void setImage(VolatileImage image) {
+    public void setImage(SaltyImage image) {
         this.image = image;
     }
 }

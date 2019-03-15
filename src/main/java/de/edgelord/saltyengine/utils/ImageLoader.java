@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.factory.ImageFactory;
 
 import java.awt.image.BufferedImage;
@@ -24,12 +25,12 @@ import java.util.HashMap;
 
 public class ImageLoader {
 
-    private static HashMap<String, VolatileImage> images = new HashMap<>();
+    private static HashMap<String, SaltyImage> images = new HashMap<>();
 
     /**
      * The default {@link BufferedImage} to be returned if the requested wasn't found.
      */
-    private static VolatileImage defaultImage = SaltySystem.createVolatileImage(10, 10);
+    private static SaltyImage defaultImage = new SaltyImage(10, 10);
 
     /**
      * This method will load a new Image with the given name into the map
@@ -66,9 +67,9 @@ public class ImageLoader {
      * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
      * @param imageFactory the Factory from which to load the image
-     * @return the {@link VolatileImage} corresponding to the given name and/or path
+     * @return the {@link SaltyImage} corresponding to the given name and/or path
      */
-    public static VolatileImage getOrLoadImage(String name, String relativePath, ImageFactory imageFactory) {
+    public static SaltyImage getOrLoadImage(String name, String relativePath, ImageFactory imageFactory) {
 
         if (!imageAlreadyLoaded(name)) {
             loadNewImage(name, relativePath, imageFactory);
@@ -83,9 +84,9 @@ public class ImageLoader {
      *
      * @param name         the id-name of the image
      * @param relativePath the relative path to image to load it from if it isn't already
-     * @return the {@link VolatileImage} corresponding to the given name and/or path
+     * @return the {@link SaltyImage} corresponding to the given name and/or path
      */
-    public static VolatileImage getOrLoadImage(String name, String relativePath) {
+    public static SaltyImage getOrLoadImage(String name, String relativePath) {
         return getOrLoadImage(name, relativePath, SaltySystem.defaultImageFactory);
     }
 
@@ -101,24 +102,24 @@ public class ImageLoader {
     }
 
     /**
-     * Returns true if the given {@link VolatileImage} is already in the list
+     * Returns true if the given {@link SaltyImage} is already in the list
      * of loaded images. Returns false if not
      *
      * @param image the image to be checked.
      * @return whether the image with the given name is already loaded or not
      */
-    public static boolean imageAlreadyLoaded(VolatileImage image) {
+    public static boolean imageAlreadyLoaded(SaltyImage image) {
         return images.containsValue(image);
     }
 
     /**
-     * Returns the {@link BufferedImage} that corresponds to the given name.
+     * Returns the {@link SaltyImage} that corresponds to the given name.
      * If it can't be found, this method will return the default Image {@link #defaultImage}
      *
      * @param name the name of the image to be returned
      * @return the image corresponding to the given name
      */
-    public static VolatileImage getImage(String name) {
+    public static SaltyImage getImage(String name) {
         return images.getOrDefault(name, defaultImage);
     }
 

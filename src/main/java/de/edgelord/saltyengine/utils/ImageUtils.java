@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.geom.SaltyShape;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -61,28 +62,49 @@ public class ImageUtils {
      */
     public static VolatileImage toVolatileImage(BufferedImage image) {
         VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(), image.getHeight());
-
-        Graphics2D graphics2D = volatileImage.createGraphics();
-        graphics2D.drawImage(image, 0, 0, null);
-        graphics2D.dispose();
-
-        return volatileImage;
+        return copyTo(image, volatileImage);
     }
 
     /**
-     * Convert the given {@link VolatileImage} to a {@link BufferedImage}.
+     * Convert the given {@link VolatileImage} to a {@link BufferedImage} using {@link VolatileImage#getSnapshot()}.
      *
      * @param image the image source
      * @return the given image as a {@link BufferedImage}
      */
     public static BufferedImage toBufferedImage(VolatileImage image) {
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getTransparency());
+        return image.getSnapshot();
+    }
 
-        Graphics2D graphics2D = bufferedImage.createGraphics();
-        graphics2D.drawImage(image, 0, 0, null);
+    /**
+     * Copies the given {@link BufferedImage} source into the given {@link VolatileImage} target.
+     *
+     * @param source the source image
+     * @param target the target image
+     * @return the given {@link VolatileImage} target which now contains the given source image
+     */
+    public static VolatileImage copyTo(BufferedImage source, VolatileImage target) {
+        copyImageTo(source, target);
+        return target;
+    }
+
+    /**
+     * Copies the given {@link VolatileImage} source into the given {@link BufferedImage} target.
+     *
+     * @param source the source image
+     * @param target the target image
+     * @return the given {@link BufferedImage} target which now contains the given source image
+     */
+    public static BufferedImage copyTo(VolatileImage source, BufferedImage target) {
+        copyImageTo(source, target);
+        return target;
+    }
+
+    private static void copyImageTo(Image source, Image target) {
+        Graphics2D graphics2D = (Graphics2D) target.getGraphics();
+        graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
+        graphics2D.clearRect(0, 0, source.getWidth(null), source.getHeight(null));
+        graphics2D.drawImage(source, 0, 0, target.getWidth(null), target.getHeight(null), null);
         graphics2D.dispose();
-
-        return bufferedImage;
     }
 
     /**
@@ -96,16 +118,16 @@ public class ImageUtils {
     }
 
     /**
-     * Creates a new {@link VolatileImage} with the given size and draws the given {@link Drawable} onto it.
+     * Creates a new {@link SaltyImage} with the given size and draws the given {@link Drawable} onto it.
      *
      * @param drawable       what to draw onto the image
      * @param size           the size of the image
      * @param renderingHints the renderhints to use for drawing the image
-     * @return a {@link VolatileImage} with the given size and the given {@link Drawable} performed on it
+     * @return a {@link SaltyImage} with the given size and the given {@link Drawable} performed on it
      */
-    public static VolatileImage createPrimitiveImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
+    public static SaltyImage createPrimitiveImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
 
-        VolatileImage image = SaltySystem.createVolatileImage(Math.round(size.getWidth()), Math.round(size.getHeight()));
+        SaltyImage image = new SaltyImage(size.getWidth(), size.getHeight());
 
         Graphics2D graphics2D = image.createGraphics();
         graphics2D.setRenderingHints(renderingHints);
@@ -113,11 +135,12 @@ public class ImageUtils {
         drawable.draw(new SaltyGraphics(graphics2D));
         graphics2D.dispose();
 
+        image.saveImage();
         return image;
     }
 
     /**
-     * Creates a {@link VolatileImage} with the size of the given {@link SaltyShape} and draws it gradient-like into.
+     * Creates a {@link SaltyImage} with the size of the given {@link SaltyShape} and draws it gradient-like into.
      * <p>
      * The given {@link Drawable} is called once before the rendering to e.g. call {@link SaltyGraphics#setColor(Color)}
      * or {@link SaltyGraphics#setPaint(Paint)} on the used {@link Graphics2D} of the image. The given {@link RenderingHints}
@@ -131,11 +154,11 @@ public class ImageUtils {
      *                        to have the same quality as the rest of the game
      * @param intensity       the intensity of the gradient. That effects hot it looks.
      * @param startAlpha      the alpha value of the centre
-     * @return a {@link VolatileImage} containing the given {@link SaltyShape} drawn as a gradient.
+     * @return a {@link SaltyImage} containing the given {@link SaltyShape} drawn as a gradient.
      */
-    public static VolatileImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
+    public static SaltyImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
 
-        VolatileImage image = SaltySystem.createVolatileImage(Math.round(shape.getWidth()), Math.round(shape.getHeight()));
+        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getWidth());
         Graphics2D graphics = (Graphics2D) image.getGraphics();
 
         if (graphicsPrepare != null) {
@@ -159,6 +182,7 @@ public class ImageUtils {
             shape.draw(new SaltyGraphics(graphics));
         }
 
+        image.saveImage();
         return image;
     }
 
@@ -175,23 +199,23 @@ public class ImageUtils {
      * @param startAlpha      the alpha value at the centre
      * @param size            the size of the shape and the image
      * @param arcIfRoundRect  an arc if the given {@link EnumShape} is {@link EnumShape#ROUND_RECTANGLE}
-     * @return a {@link VolatileImage} containing a {@link SaltyShape} drawn as a gradient.
+     * @return a {@link SaltyImage} containing a {@link SaltyShape} drawn as a gradient.
      */
-    public static VolatileImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
 
         return createPrimitiveGradient(SaltyShape.createShape(shapeType, new Transform(0, 0, size.getWidth(), size.getHeight()), arcIfRoundRect), graphicsPrepare, renderingHints, intensity, startAlpha);
     }
 
-    public static VolatileImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, graphicsPrepare, renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
-    public static VolatileImage createPrimitiveGradient(EnumShape shapeType, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, saltyGraphics -> {
         }, renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
-    public static VolatileImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, saltyGraphics -> {
         }, Game.getHost().getRenderHints(), intensity, 255D, size, arcIfRoundRect);
     }
@@ -205,8 +229,8 @@ public class ImageUtils {
      * @param renderingHints the quality to render the shape
      * @return a new image containing the given shape in the given color with the given quality
      */
-    public static VolatileImage createShapeImage(SaltyShape shape, Color color, RenderingHints renderingHints) {
-        VolatileImage image = SaltySystem.createVolatileImage(Math.round(shape.getWidth()), Math.round(shape.getHeight()));
+    public static SaltyImage createShapeImage(SaltyShape shape, Color color, RenderingHints renderingHints) {
+        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getHeight());
 
         Graphics2D graphics = image.createGraphics();
         graphics.setColor(color);
@@ -214,19 +238,20 @@ public class ImageUtils {
         shape.drawAtZero(graphics);
         graphics.dispose();
 
+        image.saveImage();
         return image;
     }
 
     /**
-     * Creates a new {@link VolatileImage} with the size of the given {@link SaltyShape} and draws the shape onto it,
+     * Creates a new {@link SaltyImage} with the size of the given {@link SaltyShape} and draws the shape onto it,
      * with having called the draw method of the given {@link Drawable} before to e.g. set the color or paint.
      *
      * @param shape           the {@link SaltyShape} to be rendered to the image.
      * @param graphicsPrepare a {@link Drawable} to prepare e.g. the Color of the shape
-     * @return a new {@link VolatileImage} with the given {@link SaltyShape} drawn onto.
+     * @return a new {@link SaltyImage} with the given {@link SaltyShape} drawn onto.
      */
-    public static VolatileImage createShapeImage(SaltyShape shape, Drawable graphicsPrepare) {
-        VolatileImage image = SaltySystem.createVolatileImage(Math.round(shape.getWidth()), Math.round(shape.getHeight()));
+    public static SaltyImage createShapeImage(SaltyShape shape, Drawable graphicsPrepare) {
+        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getHeight());
         SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
 
         graphicsPrepare.draw(graphics);
@@ -234,6 +259,7 @@ public class ImageUtils {
 
         graphics.getGraphics2D().dispose();
 
+        image.saveImage();
         return image;
     }
 
@@ -248,7 +274,7 @@ public class ImageUtils {
      * @param arcIfRoundRect the ard if the given shape is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new image with the given size containing the given shape in the given color with the given quality
      */
-    public static VolatileImage createShapeImage(EnumShape shape, Dimensions size, Color color, RenderingHints renderingHints, float... arcIfRoundRect) {
+    public static SaltyImage createShapeImage(EnumShape shape, Dimensions size, Color color, RenderingHints renderingHints, float... arcIfRoundRect) {
         return createShapeImage(SaltyShape.createShape(shape, new Transform(Coordinates2f.zero(), size), arcIfRoundRect), color, renderingHints);
     }
 

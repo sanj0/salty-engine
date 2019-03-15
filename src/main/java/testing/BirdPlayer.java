@@ -25,6 +25,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
 import de.edgelord.saltyengine.effect.SpritesheetAnimation;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
@@ -51,7 +52,7 @@ public class BirdPlayer extends GameObject implements Serializable {
     private AnimationRender animationRender;
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
-    public BirdPlayer(final Coordinates2f position, final VolatileImage spriteSheetImage) {
+    public BirdPlayer(final Coordinates2f position, final SaltyImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);
@@ -69,7 +70,7 @@ public class BirdPlayer extends GameObject implements Serializable {
         addComponent(deflection);
     }
 
-    private void initAnimations(final VolatileImage spriteSheetImage) {
+    private void initAnimations(final SaltyImage spriteSheetImage) {
 
         spritesheetAnimation = new SpritesheetAnimation(this);
         spritesheet = new Spritesheet(spriteSheetImage, 150, 101);

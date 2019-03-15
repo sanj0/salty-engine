@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -80,9 +81,9 @@ import java.util.Map;
  */
 public abstract class StaticTileGrid extends DrawingRoutine {
 
-    private HashMap<Coordinates, VolatileImage> tiles = new HashMap<>();
+    private HashMap<Coordinates, SaltyImage> tiles = new HashMap<>();
 
-    private VolatileImage tileGrid;
+    private SaltyImage tileGrid;
 
     private boolean resizeTiles = false;
     private Dimensions tileSize;
@@ -116,7 +117,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         saltyGraphics.drawImage(tileGrid, position.getX(), position.getY());
     }
 
-    public abstract void buildTileGrid(HashMap<Coordinates, VolatileImage> grid);
+    public abstract void buildTileGrid(HashMap<Coordinates, SaltyImage> grid);
 
     /**
      * Reads a Tilemap file created with Salty Tilemap Creator
@@ -136,9 +137,9 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
         return new StaticTileGrid(drawingPosition, position, new Dimensions(ValueToDataConverter.convertToFloat(metaInf, "tile-height"), ValueToDataConverter.convertToFloat(metaInf, "tile-width"))) {
             @Override
-            public void buildTileGrid(HashMap<Coordinates, VolatileImage> grid) {
+            public void buildTileGrid(HashMap<Coordinates, SaltyImage> grid) {
 
-                Map<String, VolatileImage> imageMap = new HashMap<>();
+                Map<String, SaltyImage> imageMap = new HashMap<>();
 
                 for (int i = 0; i < ValueToDataConverter.convertToInteger(images, "entry-count"); i++) {
                     String value = images.getTagValue("image" + i);
@@ -158,11 +159,11 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         };
     }
 
-    private VolatileImage createStaticGridPicture() {
+    private SaltyImage createStaticGridPicture() {
 
         int maxX = 0;
         int maxY = 0;
-        VolatileImage image;
+        SaltyImage image;
         Iterator iterator;
         SaltyGraphics graphics;
 
@@ -183,14 +184,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
         }
 
-        image = SaltySystem.createVolatileImage(width, height);
+        image = new SaltyImage(width, height);
         graphics = new SaltyGraphics(image.createGraphics());
 
         iterator = tiles.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry) iterator.next();
 
-            VolatileImage tileImage = (VolatileImage) pair.getValue();
+            SaltyImage tileImage = (SaltyImage) pair.getValue();
             Coordinates coordinates = (Coordinates) pair.getKey();
             Coordinates2f tilePos = getTilePosition(coordinates, false);
 
@@ -198,11 +199,12 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         }
         graphics.getGraphics2D().dispose();
 
+        image.saveImage();
         return image;
     }
 
     /**
-     * Fills a specific rectangular "area" within the given HashMap with the given {@link VolatileImage}
+     * Fills a specific rectangular "area" within the given HashMap with the given {@link SaltyImage}
      * The "area" starts at the given {@link Coordinates} and ends after the given width and the given height was reached.
      * You can use this within {@link #buildTileGrid(HashMap)}
      *
@@ -212,7 +214,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param width        the width of the rectangle
      * @param height       the height of the rectangle
      */
-    public void fillArea(HashMap<Coordinates, VolatileImage> grid, VolatileImage tile, Coordinates startingTile, int width, int height) {
+    public void fillArea(HashMap<Coordinates, SaltyImage> grid, SaltyImage tile, Coordinates startingTile, int width, int height) {
 
         int currentX = startingTile.getX();
         int currentY = startingTile.getY();

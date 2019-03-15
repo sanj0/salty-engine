@@ -218,8 +218,7 @@ public class Scene {
 
         synchronized (concurrentBlock) {
 
-            int size = getGameObjectCount();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < gameObjects.size(); i++) {
                 GameObject gameObject = gameObjects.get(i);
 
                 if (gameObject.isClearCollisions()) {
@@ -232,7 +231,7 @@ public class Scene {
                     gameObject.setInitialized(true);
                 }
 
-                for (int i2 = i + 1; i2 < size; i2++) {
+                for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
                     GameObject gameObject2 = gameObjects.get(i2);
 
                     if (gameObject2.isClearCollisions()) {

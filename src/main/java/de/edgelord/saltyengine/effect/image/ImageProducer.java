@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,26 +14,22 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.factory;
+package de.edgelord.saltyengine.effect.image;
 
-import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 
-public class ImageFactory extends Factory {
+public interface ImageProducer {
 
-    public ImageFactory(Resource resource) {
-        super(resource);
+    void produceImage(VolatileImage image);
+
+    static ImageProducer fromBufferedImage(final BufferedImage source) {
+        return image -> ImageUtils.copyTo(source, image);
     }
 
-    public SaltyImage getImageResource(String relativePath) {
-        return getResource().getImageResource(relativePath);
-    }
-
-    public BufferedImage getBufferedImageResource(String relativePath) {
-        return ImageUtils.toBufferedImage(getImageResource(relativePath).getImage());
+    static ImageProducer fromVolatileImage(final VolatileImage source) {
+        return fromBufferedImage(ImageUtils.toBufferedImage(source));
     }
 }

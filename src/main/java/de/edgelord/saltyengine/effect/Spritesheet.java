@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.effect;
 
+import de.edgelord.saltyengine.core.interfaces.Disposable;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.ImageUtils;
 
@@ -26,14 +28,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Spritesheet {
+public class Spritesheet implements Disposable {
 
-    private VolatileImage image = null;
+    private SaltyImage image = null;
     private int spriteWidth, spriteHeight;
 
     private SpritePattern spritePattern;
 
-    public Spritesheet(VolatileImage image, int spriteWidth, int spriteHeight) {
+    public Spritesheet(SaltyImage image, int spriteWidth, int spriteHeight) {
         this.spriteWidth = spriteWidth;
         this.spriteHeight = spriteHeight;
 
@@ -61,12 +63,12 @@ public class Spritesheet {
 
         Rectangle rectangle = spritePattern.getRectangle(id);
 
-        return ImageUtils.getSubImage(image, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        return image.getSubImage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
-    public VolatileImage getManualSprite(int x, int y) {
+    public SaltyImage getManualSprite(int x, int y) {
 
-        return ImageUtils.getSubImage(image, --x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
+        return new SaltyImage(image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
     }
 
     public int getSpriteWidth() {
@@ -100,5 +102,10 @@ public class Spritesheet {
     public int hashCode() {
 
         return Objects.hash(image, spriteWidth, spriteHeight, spritePattern);
+    }
+
+    @Override
+    public void dispose() {
+        image.dispose();
     }
 }

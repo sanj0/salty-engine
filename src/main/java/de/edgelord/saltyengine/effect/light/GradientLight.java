@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.effect.light;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -31,8 +32,8 @@ import java.awt.image.VolatileImage;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class GradientLight extends Light {
 
-    private VolatileImage light;
-    private VolatileImage coloredLight;
+    private SaltyImage light;
+    private SaltyImage coloredLight;
     private EnumShape shape;
 
     private float[] arcIfRoundRect;
@@ -66,12 +67,12 @@ public class GradientLight extends Light {
 
     @Override
     public void draw(Graphics2D graphics) {
-        graphics.drawImage(light, Math.round(getX()), Math.round(getY()), null);
+        graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     @Override
     public void drawColorMap(Graphics2D graphics) {
-        graphics.drawImage(coloredLight, Math.round(getX()), Math.round(getY()), null);
+        graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     public EnumShape getShape() {

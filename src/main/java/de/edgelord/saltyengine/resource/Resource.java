@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.resource;
 
+import de.edgelord.saltyengine.effect.image.SaltyImage;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -28,7 +30,7 @@ import java.net.URL;
 
 public interface Resource {
 
-    VolatileImage getImageResource(String relativePath);
+    SaltyImage getImageResource(String relativePath);
 
     Clip getAudioResource(String relativePath);
 

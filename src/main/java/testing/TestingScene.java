@@ -18,6 +18,7 @@ package testing;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
@@ -115,7 +116,7 @@ public class TestingScene extends Scene {
     private void initPhysicsTest() {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
-        final VolatileImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final SaltyImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird bird1_1 = new Bird(birdSpritesheet, 1, 1);
         final Bird bird3_1 = new Bird(birdSpritesheet, 3, 1);
@@ -135,7 +136,7 @@ public class TestingScene extends Scene {
 
     public void initForcesTest() {
 
-        final VolatileImage birdSpritesheet = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final SaltyImage birdSpritesheet = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
@@ -162,7 +163,7 @@ public class TestingScene extends Scene {
 
         addGameObject(player);
 
-        final VolatileImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
+        final SaltyImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         // Adding all those cute birds to the Scene
 

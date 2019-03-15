@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
@@ -47,10 +48,10 @@ public class OuterResource implements Resource {
     }
 
     @Override
-    public VolatileImage getImageResource(String relativePath) {
+    public SaltyImage getImageResource(String relativePath) {
 
         try {
-            return ImageUtils.toVolatileImage(getImage(relativePath));
+            return new SaltyImage(getImage(relativePath));
         } catch (IOException e) {
             e.printStackTrace();
         }

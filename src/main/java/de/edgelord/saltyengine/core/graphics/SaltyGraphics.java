@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.core.graphics;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -320,21 +321,14 @@ public class SaltyGraphics {
      * @param height the height with which the image should be drawn
      * @see Graphics2D#drawImage(Image, int, int, int, int, ImageObserver)
      */
-    public void drawImage(VolatileImage image, float x, float y, float width, float height) {
+    public void drawImage(SaltyImage image, float x, float y, float width, float height) {
 
-        int imageState = /*image.validate(SaltySystem.gfxConfig)*/VolatileImage.IMAGE_OK;
-
-        if (imageState == VolatileImage.IMAGE_INCOMPATIBLE) {
-            System.err.println("Warning: a VolatileImage is incompatible!");
-        } else if (imageState == VolatileImage.IMAGE_RESTORED) {
-            System.err.println("Warning: a VolatileImage could not be rendered because it needs to be restored!");
+        if (image.contentsLost()) {
+            image.validate(SaltySystem.gfxConfig);
+            image.reproduceImage();
         }
 
-        if (!image.contentsLost()) {
-            graphics2D.drawImage(image, Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
-        } else {
-            System.err.println("Warning: a VolatileImage could not be rendered because it lost its content!");
-        }
+        graphics2D.drawImage(image.getImage(), Math.round(x), Math.round(y), Math.round(width), Math.round(height), null);
     }
 
     /**
@@ -342,9 +336,9 @@ public class SaltyGraphics {
      *
      * @param image    the image to be drawn
      * @param position the position of the image
-     * @see #drawImage(VolatileImage, float, float, float, float)
+     * @see #drawImage(SaltyImage, float, float, float, float)
      */
-    public void drawImage(VolatileImage image, Coordinates2f position) {
+    public void drawImage(SaltyImage image, Coordinates2f position) {
         drawImage(image, position.getX(), position.getY(), Math.round(image.getWidth()), Math.round(image.getHeight()));
     }
 
@@ -354,9 +348,9 @@ public class SaltyGraphics {
      * @param image the image to be drawn
      * @param x     the x position of the image
      * @param y     the y position of the image
-     * @see #drawImage(VolatileImage, float, float, float, float)
+     * @see #drawImage(SaltyImage, float, float, float, float)
      */
-    public void drawImage(VolatileImage image, float x, float y) {
+    public void drawImage(SaltyImage image, float x, float y) {
         drawImage(image, x, y, Math.round(image.getWidth()), Math.round(image.getHeight()));
     }
 
@@ -365,9 +359,9 @@ public class SaltyGraphics {
      *
      * @param image     the image to be drawn
      * @param transform the transform from which to take the position and dimensions of the image to be drawn with
-     * @see #drawImage(VolatileImage, float, float, float, float)
+     * @see #drawImage(SaltyImage, float, float, float, float)
      */
-    public void drawImage(VolatileImage image, Transform transform) {
+    public void drawImage(SaltyImage image, Transform transform) {
         drawImage(image, transform.getX(), transform.getY(), transform.getWidth(), transform.getHeight());
     }
 
@@ -378,17 +372,17 @@ public class SaltyGraphics {
      * @param position   the position of the image
      * @param dimensions the dimensions with to DRAW the image
      */
-    public void drawImage(VolatileImage image, Coordinates2f position, Dimensions dimensions) {
+    public void drawImage(SaltyImage image, Coordinates2f position, Dimensions dimensions) {
         drawImage(image, position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
     /**
-     * Draws an image by calling <code>outlineImage(VolatileImage, Transform)</code>
+     * Draws an image by calling <code>drawImage(SaltyImage, Transform)</code>
      *
      * @param image  the image to be drawn
      * @param object the ComponentContainer from which to take the Transform to DRAW the image
      */
-    public void drawImage(VolatileImage image, TransformedObject object) {
+    public void drawImage(SaltyImage image, TransformedObject object) {
         drawImage(image, object.getTransform());
     }
 

@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
@@ -39,7 +40,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
     // The stroke (like a pen) with which the component should DRAW the primitives
     private float lineWidth = 3f;
 
-    private VolatileImage primitiveImage;
+    private SaltyImage primitiveImage;
 
     private Drawable primitiveDraw;
 

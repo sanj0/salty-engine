@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.Components;
 
 import java.awt.image.VolatileImage;
@@ -27,7 +28,7 @@ import java.awt.image.VolatileImage;
 public class ImageRender extends RenderComponent {
 
     // The image to render
-    private VolatileImage image;
+    private SaltyImage image;
 
     /**
      * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
@@ -38,7 +39,7 @@ public class ImageRender extends RenderComponent {
      * @param image  the image to be drawn by this component
      * @see de.edgelord.saltyengine.core.Component
      */
-    public ImageRender(ComponentContainer parent, String name, VolatileImage image) {
+    public ImageRender(ComponentContainer parent, String name, SaltyImage image) {
         super(parent, name, Components.RENDER_COMPONENT);
 
         this.image = image;
@@ -49,5 +50,13 @@ public class ImageRender extends RenderComponent {
 
         // Draw the image
         saltyGraphics.drawImage(image, getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+    }
+
+    public SaltyImage getImage() {
+        return image;
+    }
+
+    public void setImage(SaltyImage image) {
+        this.image = image;
     }
 }

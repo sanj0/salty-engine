@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
@@ -27,7 +28,7 @@ public class ScreenContent {
     private float xOrigin;
     private float yOrigin;
 
-    private VolatileImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/bg.png");
+    private SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/bg.png");
 
     private Coordinates2f origin;
 
