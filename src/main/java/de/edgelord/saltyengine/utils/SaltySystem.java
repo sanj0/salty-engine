@@ -28,8 +28,8 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.13-SNAPSHOT";
-    public static String version = "0.14.13";
+    public static String versionTag = "0.14.14-SNAPSHOT";
+    public static String version = "0.14.14";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;
