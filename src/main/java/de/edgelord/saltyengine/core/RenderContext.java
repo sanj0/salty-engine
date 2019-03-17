@@ -77,6 +77,7 @@ public abstract class RenderContext {
 
     public void setColor(Color color) {
         this.color = color;
+        this.paint = color;
     }
 
     public Paint getPaint() {
@@ -117,7 +118,7 @@ public abstract class RenderContext {
      * @param graphics the graphics to configure.
      */
     public void applyConfiguration(SaltyGraphics graphics) {
-        graphics.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.round(alpha * 255f)));
+        graphics.setColor(getColorWithAlpha());
         graphics.setPaint(paint);
         graphics.setStroke(stroke);
     }
