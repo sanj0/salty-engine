@@ -231,9 +231,8 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Adds a GameObject with {@link de.edgelord.saltyengine.gameobject.GameObject#setStationary(boolean)} true and a hitbox
-     * starting at the left upper corner of the tile with the given coordinates and with the given size in tiles to the given
-     * scene.
+     * Adds an {@link EmptyGameObject} starting at the left upper corner of the tile with the given coordinates
+     * and with the given size in tiles to the given scene.
      *
      * @param tilePosition the tile which is the starting point for the hitbox
      * @param size         the size (measured in tile - not in pixels) for the hitbox
