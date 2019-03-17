@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.effect.light.PointLight;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
@@ -58,7 +59,7 @@ public class LightComponent extends GFXComponent {
     }
 
     public LightComponent(ComponentContainer parent, String name) {
-        this(parent, name, TransformRelationMode.CENTRE, new PointLight(parent.getTransform()));
+        this(parent, name, TransformRelationMode.CENTRE, new PointLight((Transform) parent.getTransform().clone()));
     }
 
     @Override
@@ -70,7 +71,7 @@ public class LightComponent extends GFXComponent {
         TransformRelationUtil.positionRelativeTo(relationToParent, getParent().getTransform(), light.getTransform());
     }
 
-    public void addToLightSystem() {
+    private void addToLightSystem() {
         LightSystem currentLightSystem = SceneManager.getCurrentScene().getLightSystem();
 
         if (currentLightSystem == null) {
@@ -78,5 +79,21 @@ public class LightComponent extends GFXComponent {
         }
 
         currentLightSystem.addLight(light);
+    }
+
+    public TransformRelationMode getRelationToParent() {
+        return relationToParent;
+    }
+
+    public void setRelationToParent(TransformRelationMode relationToParent) {
+        this.relationToParent = relationToParent;
+    }
+
+    public Light getLight() {
+        return light;
+    }
+
+    public void setLight(Light light) {
+        this.light = light;
     }
 }

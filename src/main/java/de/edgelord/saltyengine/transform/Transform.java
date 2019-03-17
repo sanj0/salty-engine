@@ -381,4 +381,9 @@ public class Transform {
             return false;
         }
     }
+
+    @Override
+    public Object clone() {
+        return new Transform((Coordinates2f) position.clone(), (Dimensions) dimensions.clone());
+    }
 }

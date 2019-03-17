@@ -77,7 +77,6 @@ public class LightSystem implements Drawable {
             light.draw(graphics);
         });
         graphics.dispose();
-        lightMap.saveImage();
     }
 
     private void updatePlainLightMap() {
