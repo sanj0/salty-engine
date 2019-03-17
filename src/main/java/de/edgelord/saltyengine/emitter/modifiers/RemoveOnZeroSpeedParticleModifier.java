@@ -21,18 +21,31 @@ import de.edgelord.saltyengine.emitter.ParticleModifier;
 
 /**
  * A {@link de.edgelord.saltyengine.emitter.ParticleModifier} that removes a {@link de.edgelord.saltyengine.emitter.Particle}
- * when its speed is 0 or smaller.
+ * when its speed is {@link #gate} or smaller. With the default constructor, the default value for {@link #gate} is <code>0.01f</code>.
  */
 public class RemoveOnZeroSpeedParticleModifier implements ParticleModifier {
 
-    public RemoveOnZeroSpeedParticleModifier() {
+    private float gate = 0.01f;
 
+    public RemoveOnZeroSpeedParticleModifier() {
+    }
+
+    public RemoveOnZeroSpeedParticleModifier(float gate) {
+        this.gate = gate;
     }
 
     @Override
     public void modifyParticle(Particle particle) {
-        if (particle.getSpeed() <= 0f) {
+        if (particle.getSpeed() <= gate) {
             particle.setRestLifetime(0);
         }
+    }
+
+    public float getGate() {
+        return gate;
+    }
+
+    public void setGate(float gate) {
+        this.gate = gate;
     }
 }
