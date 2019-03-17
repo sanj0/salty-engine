@@ -59,18 +59,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private boolean cursorAlreadyTouching = false;
 
     /**
-     * If this is set to true, this GameObject will not have a collision detection. Use this for
-     * stationary objects like obstacles, houses and generally all kind of GameObjects that
-     * aren't moving due to heavy performance improvements.
-     * Whenever the {@link #onCollision(CollisionEvent)} implementation is empty, set this to true
-     * to improve the performance of the game a lot. Other GameObjects still collide with this one then,
-     * but this one will never collide with others which is redundant when the {@link #onCollision(CollisionEvent)}
-     * implementation is empty.
-     * Please note that gravity and other forces won't take effect on stationary GameObjects
-     */
-    private boolean stationary = false;
-
-    /**
      * If this is true, the physics of any other GameObject in the {@link de.edgelord.saltyengine.scene.Scene} will
      * ignore this one on collision, but the collision is still detected.
      */
@@ -398,14 +386,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setCollider(Collider collider) {
         this.collider = collider;
-    }
-
-    public boolean isStationary() {
-        return stationary;
-    }
-
-    public void setStationary(boolean stationary) {
-        this.stationary = stationary;
     }
 
     public float getMass() {

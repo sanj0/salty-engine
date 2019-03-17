@@ -77,32 +77,30 @@ public class SimplePhysicsComponent extends Component<GameObject> {
             getForce(DEFAULT_GRAVITY).setAcceleration(0f);
         }
 
-        if (!getParent().isStationary()) {
-            float horizontalDelta = 0f;
-            float verticalDelta = 0f;
-            final int deltaT = (int) SaltySystem.fixedTickMillis;
+        float horizontalDelta = 0f;
+        float verticalDelta = 0f;
+        final int deltaT = (int) SaltySystem.fixedTickMillis;
 
-            for (final Force force : forces) {
+        for (final Force force : forces) {
 
-                switch (force.getDirection()) {
-                    case RIGHT:
-                        horizontalDelta += force.deltaDistance(deltaT);
-                        break;
-                    case LEFT:
-                        horizontalDelta -= force.deltaDistance(deltaT);
-                        break;
-                    case UP:
-                        verticalDelta -= force.deltaDistance(deltaT);
-                        break;
-                    case DOWN:
-                        verticalDelta += force.deltaDistance(deltaT);
-                        break;
-                }
+            switch (force.getDirection()) {
+                case RIGHT:
+                    horizontalDelta += force.deltaDistance(deltaT);
+                    break;
+                case LEFT:
+                    horizontalDelta -= force.deltaDistance(deltaT);
+                    break;
+                case UP:
+                    verticalDelta -= force.deltaDistance(deltaT);
+                    break;
+                case DOWN:
+                    verticalDelta += force.deltaDistance(deltaT);
+                    break;
             }
-
-            getParent().moveX(horizontalDelta);
-            getParent().moveY(verticalDelta);
         }
+
+        getParent().moveX(horizontalDelta);
+        getParent().moveY(verticalDelta);
     }
 
     @Override
@@ -127,24 +125,23 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         for (CollisionEvent collisionEvent : collisions) {
 
             if (!tagsToIgnore.contains(collisionEvent.getOtherGameObject().getTag()) && !collisionEvent.getOtherGameObject().isTrigger()) {
-                switch (collisionEvent.getCollisionDirection()) {
 
+                Directions.Direction direction = collisionEvent.getCollisionDirection();
+                collisionDirections.addDirection(direction);
+
+                switch (direction) {
 
                     case RIGHT:
                         rightCollision = true;
-                        collisionDirections.addDirection(Directions.Direction.RIGHT);
                         break;
                     case LEFT:
                         leftCollision = true;
-                        collisionDirections.addDirection(Directions.Direction.LEFT);
                         break;
                     case UP:
                         upCollision = true;
-                        collisionDirections.addDirection(Directions.Direction.UP);
                         break;
                     case DOWN:
                         downCollision = true;
-                        collisionDirections.addDirection(Directions.Direction.DOWN);
                         break;
                     case EMPTY:
                         break;

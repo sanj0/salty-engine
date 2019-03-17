@@ -30,10 +30,12 @@ import de.edgelord.saltyengine.utils.TransformRelationUtil;
 /**
  * This {@link de.edgelord.saltyengine.core.Component} makes a {@link Light} follow its parent using the rule
  * described in {@link #relationToParent} and {@link TransformRelationUtil}.
- * The light and the mode can be set in one of the constructors, if not the defaults are:
+ * The light and the mode can be set in one of the constructors, if not, the defaults are:
  * {@code TransformRelationMode.CENTRE}
  * and
  * {@code new PointLight(parent.getTransform())}
+ *
+ * <b>Important:</b> this class extends {@link GFXComponent}, so you will need to enable it first in order to work!
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class LightComponent extends GFXComponent {
