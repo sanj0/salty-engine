@@ -162,7 +162,7 @@ public class Stage extends JPanel {
     }
 
     public VolatileImage renderToImage() {
-        VolatileImage image = createVolatileImage(originWidth, originHeight);
+        VolatileImage image = SaltySystem.createVolatileImage(originWidth, originHeight);
 
         Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);
