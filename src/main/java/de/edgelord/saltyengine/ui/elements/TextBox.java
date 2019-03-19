@@ -29,7 +29,7 @@ import java.awt.*;
 public abstract class TextBox extends TextElement {
 
     private float cursor = 1f;
-    private float speed = 1f;
+    private float speed = 0.075f;
     private TextRenderComponent textRenderComponent;
 
     public TextBox(String text, Coordinates2f position, float width, float height, float offsetX, float offsetY) {
@@ -48,7 +48,7 @@ public abstract class TextBox extends TextElement {
         if (cursor < getText().length()) {
             textRenderComponent.setText(getText().substring(0, Math.round(cursor)));
         }
-        cursor += 0.05f;
+        cursor += speed;
     }
 
     @Override
