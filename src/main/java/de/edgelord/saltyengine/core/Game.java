@@ -26,6 +26,7 @@ import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -34,7 +35,7 @@ import java.awt.*;
 import java.io.IOException;
 
 /**
- * The central core class for a Salty Engine game. To start a game, call whether
+ * The central core class for a Salty Engine game. To start a game, call either
  * {@link #init(GameConfig)} or {@link #init(Host, String, long)} <br>
  * <p>
  * and then
@@ -43,22 +44,49 @@ import java.io.IOException;
  */
 public class Game {
 
+    /**
+     * The default {@link GFXController} for the game. Any {@link Component}s added to this {@link de.edgelord.saltyengine.core.stereotypes.ComponentContainer}
+     * will be applied in any {@link de.edgelord.saltyengine.scene.Scene} at any time.
+     */
     private static GFXController defaultGFXController = new GFXController();
 
+    /**
+     * The name of the game. Until the game is initialized, this will be {@code salty-engine} by default.
+     */
     public static String gameName = "salty-engine";
+
+    /**
+     * If this is set to true, {@link Scene#onFixedTick()} is not called until this is set to false again.
+     */
     public static boolean paused = false;
+
+    /**
+     * The {@link Camera} of the game.
+     */
     private static Camera camera = new Camera();
 
+    /**
+     * The original dimensions of the game aka it's resolution. This will be it's resolution at any time,
+     * a bigger window will only resist in scaling up, not in a higher resolution as this is easier in terms of logic
+     * for the user of this library and in terms of rendering for this library.
+     */
     private static Dimensions gameDimensions;
 
     /**
-     * Proposes the <code>Host</code> to draw the FPS {@link Time#getFPS()} or not.
+     * Proposes the <code>Host</code> either to draw the FPS {@link Time#getFPS()} or not.
      * All <code>Host</code>s included in this library will accept that. 3rd party
      * <code>Host</code>s may not and do not have to.
      */
     private static boolean drawFPS = true;
 
+    /**
+     * The {@link Host} of this game. The <code>Host</code> will do the rendering and has some more useful methods.
+     */
     private static Host host;
+
+    /**
+     * The {@link Engine} that runs the game. It repaints the {@link #host} and calls the {@link Scene#onFixedTick()}.
+     */
     private static Engine engine;
 
     /**
@@ -125,10 +153,18 @@ public class Game {
         return gameDimensions;
     }
 
+    /**
+     * Returns the width value of {@link #gameDimensions}.
+     * @return the width of the game resolution
+     */
     public static float getGameWidth() {
         return gameDimensions.getWidth();
     }
 
+    /**
+     * Returns the height value of {@link #gameDimensions}.
+     * @return the height of the game resolution
+     */
     public static float getGameHeight() {
         return gameDimensions.getHeight();
     }
@@ -187,6 +223,12 @@ public class Game {
         return host;
     }
 
+    /**
+     * Casts the {@link #host} to {@link DisplayManager} and returns it. This only works if the <code>DisplayManager</code>
+     * as default is used.
+     *
+     * @return the {@link #host} as a {@link DisplayManager}
+     */
     public static DisplayManager getHostAsDisplayManager() {
         return (DisplayManager) host;
     }
@@ -227,6 +269,11 @@ public class Game {
         Game.camera = camera;
     }
 
+    /**
+     * Once this method is called, the game will call {@link Serializer#doSerialization()} when the game is exited.
+     *
+     * @param safeFile the name of the savefile
+     */
     public static void saveOnExit(String safeFile) {
         WindowClosingHooks.addShutdownHook(() -> {
             try {
@@ -237,14 +284,24 @@ public class Game {
         });
     }
 
+    /**
+     * Once this method is called, the game will call {@link Serializer#doSerialization()} when the game is exited.
+     */
     public static void saveOnExit() {
         saveOnExit(Serializer.getSaveFileName());
     }
 
+    /**
+     * Calls {@link #saveOnExit()}
+     */
     public static void serializeOnExit() {
         saveOnExit();
     }
 
+    /**
+     * Calls {@link #saveOnExit(String)}.
+     * @param safeFile the name of the savefile
+     */
     public static void serializeOnExit(String safeFile) {
         saveOnExit(safeFile);
     }
