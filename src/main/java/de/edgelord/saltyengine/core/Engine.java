@@ -24,23 +24,55 @@ import de.edgelord.saltyengine.utils.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The {@link Game#getEngine() engine} handles the repainting of the {@link Host} and the fixed ticks.
+ * The user of this library normally doesn't need to get in contact with this class.
+ */
 public class Engine {
 
+    /**
+     * The milliseconds between each fixed tick.
+     */
     private long fixedTickMillis;
+
+    /**
+     * The {@link Timer} for the fixed ticks.
+     */
     private Timer fixedTimer = new Timer();
+
+    /**
+     * The {@link Timer} that repaints the {@link Host}.
+     */
     private Timer repaintTimer = new Timer();
+
+    /**
+     * Only used internally to stop the timers.
+     */
     private boolean isCloseRequested = false;
 
+    /**
+     * Creates a new instance with the given fixed tick millis. This happens automatically when initializing the {@link Game}.
+     *
+     * @param fixedTickMillis the milliseconds between each fixed tick
+     */
     public Engine(long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
     }
 
+    /**
+     * Starts the rendering and the fixed ticks. This happens automatically when the {@link Game} starts.
+     */
     public void start() {
 
         startFixedTicks();
         startRendering();
     }
 
+    /**
+     * Starts the rendering with the given fixed FPS and the fixed ticks. This happens automatically.
+     *
+     * @param FPS the fps of the game.
+     */
     public void start(long FPS) {
         startFixedTicks();
         startRepainting(FPS);
@@ -52,11 +84,19 @@ public class Engine {
         startRepainting();
     }
 
+    /**
+     * Renders the game one time. This happens automatically.
+     *
+     * @param saltyGraphics the graphics to render to
+     */
     public void render(SaltyGraphics saltyGraphics) {
 
         SceneManager.getCurrentScene().draw(saltyGraphics);
     }
 
+    /**
+     * Starts the fixed ticks with {@link #fixedTickMillis}. This happens automatically.
+     */
     public void startFixedTicks() {
 
         SaltySystem.fixedTickMillis = fixedTickMillis;
@@ -115,6 +155,9 @@ public class Engine {
         }, 0);
     }
 
+    /**
+     * Signalizes the engine that it should end.
+     */
     public void close() {
 
         isCloseRequested = true;
