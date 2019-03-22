@@ -60,7 +60,7 @@ public abstract class ComponentContainer implements TransformedObject {
     /**
      * Adds the given {@link Component}
      *
-     * @param component the component to add
+     * @param component the {@link Component} to add
      */
     public abstract void addComponent(Component component);
 

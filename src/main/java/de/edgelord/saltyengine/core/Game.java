@@ -155,6 +155,7 @@ public class Game {
 
     /**
      * Returns the width value of {@link #gameDimensions}.
+     *
      * @return the width of the game resolution
      */
     public static float getGameWidth() {
@@ -163,6 +164,7 @@ public class Game {
 
     /**
      * Returns the height value of {@link #gameDimensions}.
+     *
      * @return the height of the game resolution
      */
     public static float getGameHeight() {
@@ -300,6 +302,7 @@ public class Game {
 
     /**
      * Calls {@link #saveOnExit(String)}.
+     *
      * @param safeFile the name of the savefile
      */
     public static void serializeOnExit(String safeFile) {

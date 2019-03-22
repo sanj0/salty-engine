@@ -127,14 +127,14 @@ public class ImageLoader {
      *
      * @param name the id-name of the image to be removed.
      */
-    public void removeImage(String name) {
+    public static void removeImage(String name) {
         images.remove(name);
     }
 
     /**
      * Removes all images from the list
      */
-    public void removeAll() {
+    public static void removeAll() {
         images.clear();
     }
 }
