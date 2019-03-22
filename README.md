@@ -6,11 +6,8 @@
 Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be a very user-friendly and easy-to-use 2D Game making tool for Java.
 
 ### It isn't just a library for rendering
-It also includes GameObject management, camera moving,
-display management, support for hitboxes, input, and
-resource management, but also support for scene and
-stage management as well as saving with
-[stdf](github.com/edgelord314/stdf).
+It also includes collision detection, physics, several visual effects, over 100 beautiful colors, useful utility classes, hardware acceleration as well as saving with
+[stdf](github.com/edgelord314/stdf) and much more, spread accross **more than 230 classes with an average of approximately 90 lines**
 
 Minimal **tested** hardware requirements made possible by [JProfiler, a java profiler](https://www.ej-technologies.com/products/jprofiler/overview.html) (for [Escape the Junk](#games-made-with-salty-engine)):
 - Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60GHz (dual core)
@@ -51,7 +48,7 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 - A simple yet working physics engine
 - Keyboard and mouse input as simple as possible for the developer
 - JavaDoc for unclear/complicated methods, fields and classes
-- **examples of the basics within the library** (package `testing`)
+- **examples of the basics within the library** (package `testing` and `example`)
 
 ### Contra: 
 - the physics are too simple for some games (only rectangular hitboxes, no rotation by the physics...)
