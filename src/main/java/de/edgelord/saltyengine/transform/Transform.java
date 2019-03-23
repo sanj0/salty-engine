@@ -129,19 +129,6 @@ public class Transform {
     }
 
     /**
-     * Appends the relation between the two given {@link Transform}s to the given
-     * Directions.
-     *
-     * @param other      the {@link Transform} whose relation to the other to return
-     * @param directions the Directions to append the relation to
-     * @see #getRelation(Transform)
-     */
-    public void appendRelation(final Transform other, Directions directions) {
-
-        directions.addDirection(getRelation(other));
-    }
-
-    /**
      * This method returns the relation between this and the given {@link Transform} as a Direction.
      * That'll only work properly if the two Transforms intersect.
      *

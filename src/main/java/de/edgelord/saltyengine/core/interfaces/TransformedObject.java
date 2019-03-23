@@ -110,7 +110,11 @@ public interface TransformedObject {
      */
     default void moveToFacedDirection(float delta) {
 
-        double radians = Math.toRadians(getRotationDegrees());
+        moveInAngle(getRotationDegrees(), delta);
+    }
+
+    default void moveInAngle(float degrees, float delta) {
+        double radians = Math.toRadians(degrees);
 
         basicMove(delta * (float) Math.cos(radians), Directions.BasicDirection.x);
         basicMove(delta * (float) Math.sin(radians), Directions.BasicDirection.y);

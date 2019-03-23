@@ -23,6 +23,8 @@ import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.utils.GeneralUtil;
 import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
@@ -52,6 +54,9 @@ public class Tester extends Game {
     }
 
     public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+
+        System.out.println(GeneralUtil.getAngle(new Coordinates2f(0, 0), new Coordinates2f(0, 100)));
+
         initGame();
 
         SceneManager.addScene("testingScene", TestingScene.class);

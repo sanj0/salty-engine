@@ -85,6 +85,8 @@ public class Bird extends GameObject implements Serializable {
 
         getTransform().rotateToPoint(Input.getCursorPosition());
 
+        moveToFacedDirection(.2f);
+
         if (Input.getKeyboardInput().isSpace()) {
             emitter.impact();
         }

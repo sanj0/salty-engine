@@ -24,6 +24,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Math.toDegrees;
+
 /**
  * A set of static method to make general thing easier.
  */
@@ -33,6 +35,18 @@ public class GeneralUtil {
      * The <code>Random</code> instance used for all utils that need one.
      */
     private static Random random = new Random();
+
+    /**
+     * Returns the angle between the two given points and the origin (0 | 0).
+     *
+     * @param p1 the first point
+     * @param p2 the second point
+     * @return the angle between the given two points as degrees
+     */
+    public static float getAngle(Coordinates2f p1, Coordinates2f p2) {
+        double arc = Math.atan2(p2.getY() - (p1.getY()), p2.getX() - (p1.getX()));
+        return (float) toDegrees(arc) + 90f;
+    }
 
     /**
      * Generates a random int between the given two.
