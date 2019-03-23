@@ -47,7 +47,7 @@ public class Bird extends GameObject implements Serializable {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
         spritesheetAnimation = new SpritesheetAnimation(this);
-        spritesheet = new Spritesheet(image, getWidthAsInt(), getHeightAsInt());
+        spritesheet = new Spritesheet(image, getWidth(), getHeight());
 
         spritesheetAnimation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 

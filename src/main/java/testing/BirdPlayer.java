@@ -34,7 +34,6 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
-import java.awt.image.VolatileImage;
 import java.util.List;
 
 public class BirdPlayer extends GameObject implements Serializable {

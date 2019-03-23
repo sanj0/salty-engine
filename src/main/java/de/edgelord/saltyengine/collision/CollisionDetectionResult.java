@@ -18,11 +18,27 @@ package de.edgelord.saltyengine.collision;
 
 import de.edgelord.saltyengine.utils.Directions;
 
+/**
+ * This class stores the result of a collision detection between two {@link de.edgelord.saltyengine.gameobject.GameObject}s.
+ */
 public class CollisionDetectionResult {
 
+    /**
+     * This is <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s collides and <code>false</code> when not.
+     */
     private boolean collision;
+
+    /**
+     * The {@link de.edgelord.saltyengine.utils.Directions.Direction} in which the first of the two (the "root") collided with the second one.
+     */
     private Directions.Direction rootCollisionDirection;
 
+    /**
+     * The constructor.
+     *
+     * @param collision <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s collides and <code>false</code> when not
+     * @param rootCollisionDirection the {@link de.edgelord.saltyengine.utils.Directions.Direction} in which the first of the two (the "root") collided with the second one
+     */
     public CollisionDetectionResult(boolean collision, Directions.Direction rootCollisionDirection) {
         this.collision = collision;
         this.rootCollisionDirection = rootCollisionDirection;
@@ -32,15 +48,7 @@ public class CollisionDetectionResult {
         return collision;
     }
 
-    public void setCollision(boolean collision) {
-        this.collision = collision;
-    }
-
     public Directions.Direction getRootCollisionDirection() {
         return rootCollisionDirection;
-    }
-
-    public void setRootCollisionDirection(Directions.Direction rootCollisionDirection) {
-        this.rootCollisionDirection = rootCollisionDirection;
     }
 }

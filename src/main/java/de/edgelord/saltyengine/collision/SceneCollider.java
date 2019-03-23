@@ -18,6 +18,10 @@ package de.edgelord.saltyengine.collision;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 
+/**
+ * This is the class highest in the hierarchy of collision detection classes. Any {@link de.edgelord.saltyengine.scene.Scene}
+ * has an instance of an implementation, by default {@link PrioritySceneCollider}.
+ */
 public interface SceneCollider {
 
     /**

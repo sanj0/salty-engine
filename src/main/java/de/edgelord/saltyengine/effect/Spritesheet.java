@@ -34,9 +34,9 @@ public class Spritesheet implements Disposable {
 
     private SpritePattern spritePattern;
 
-    public Spritesheet(SaltyImage image, int spriteWidth, int spriteHeight) {
-        this.spriteWidth = spriteWidth;
-        this.spriteHeight = spriteHeight;
+    public Spritesheet(SaltyImage image, float spriteWidth, float spriteHeight) {
+        this.spriteWidth = Math.round(spriteWidth);
+        this.spriteHeight = Math.round(spriteHeight);
 
         this.image = image;
     }

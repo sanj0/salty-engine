@@ -37,7 +37,6 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.awt.image.VolatileImage;
 import java.io.IOException;
 
 public class TestingScene extends Scene {
