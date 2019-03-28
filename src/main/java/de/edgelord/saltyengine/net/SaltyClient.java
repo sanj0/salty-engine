@@ -18,11 +18,15 @@ package de.edgelord.saltyengine.net;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SaltyClient extends Thread implements NetworkingInterface {
 
     private InetAddress serverIP;
     private DatagramSocket socket;
+
+    private List<MPEntity> remoteEntities = new ArrayList<>();
 
     public SaltyClient(String serverIPAddress) throws SocketException, UnknownHostException {
 
@@ -46,7 +50,57 @@ public abstract class SaltyClient extends Thread implements NetworkingInterface 
         socket.send(packet);
     }
 
+    public int getPort() {
+        return socket.getPort();
+    }
+
     public InetAddress getServerIP() {
         return serverIP;
+    }
+
+    public MPEntity getEntityByName(String name) {
+        for (MPEntity entity : remoteEntities) {
+            if (entity.getUsername().equals(name)) {
+                return entity;
+            }
+        }
+
+        return null;
+    }
+
+    public int size() {
+        return remoteEntities.size();
+    }
+
+    public boolean isEmpty() {
+        return remoteEntities.isEmpty();
+    }
+
+    public boolean contains(Object o) {
+        return remoteEntities.contains(o);
+    }
+
+    public boolean addEntity(MPEntity mpEntity) {
+        return remoteEntities.add(mpEntity);
+    }
+
+    public boolean removeEntity(Object o) {
+        return remoteEntities.remove(o);
+    }
+
+    public void clear() {
+        remoteEntities.clear();
+    }
+
+    public MPEntity getEntity(int index) {
+        return remoteEntities.get(index);
+    }
+
+    public void addEntity(int index, MPEntity element) {
+        remoteEntities.add(index, element);
+    }
+
+    public MPEntity removeEntity(int index) {
+        return remoteEntities.remove(index);
     }
 }

@@ -28,10 +28,12 @@ public class MPEntity extends GameObject {
     private int port;
     private String username;
 
-    public MPEntity(float xPos, float yPos, float width, float height, String username) {
+    public MPEntity(float xPos, float yPos, float width, float height, String username, InetAddress ipAddress, int port) {
         super(xPos, yPos, width, height, "de.edgelord.saltyengine.net.MPEntity");
 
         this.username = username;
+        this.ipAddress = ipAddress;
+        this.port = port;
     }
 
     @Override

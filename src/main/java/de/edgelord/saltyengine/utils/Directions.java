@@ -157,6 +157,15 @@ public class Directions {
         return (this.directions & dir) == dir;
     }
 
+    /**
+     * Returns <code>true</code> if this <code>Directions</code> doesn't have RIGHT, nor LEFT, nor UP nor DOWN.
+     *
+     * @return whether this directions is empty or not
+     */
+    public boolean isEmpty() {
+        return !hasDirection(Direction.RIGHT) && !hasDirection(Direction.LEFT) && !hasDirection(Direction.UP) && !hasDirection(Direction.DOWN);
+    }
+
     private int getDirNumber(Direction direction) {
         switch (direction) {
 
