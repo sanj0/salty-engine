@@ -21,9 +21,11 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.AudioFactory;
+import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.utils.CheatCodeListener;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -51,6 +53,8 @@ public class Tester extends Game {
         //audioPlayer.setClipVolume("joy_sticky", 0.75f);
 
         getHost().setBackgroundColor(Color.lightGray);
+
+        addCheatCodeListener();
     }
 
     public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
@@ -74,6 +78,31 @@ public class Tester extends Game {
         //fadeIn.fadeInit();
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
+    }
+
+    /**
+     * Adds a {@link CheatCodeListener} that listens for "exit".
+     */
+    private static void addCheatCodeListener() {
+
+        CheatCodeListener cheater = new CheatCodeListener() {
+            @Override
+            public boolean handleCheatCode(String cheatcode) {
+                if (cheatcode.equals("exit")) {
+                    System.exit(0);
+                    return true;
+                }
+
+                if (cheatcode.equals("gravity")) {
+                    for (GameObject gameObject : SceneManager.getCurrentScene().getGameObjects()) {
+                        gameObject.getPhysics().setGravityEnabled(true);
+                    }
+                    return true;
+                }
+
+                return false;
+            }
+        };
     }
 
     public static AudioPlayer getAudioPlayer() {
