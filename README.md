@@ -20,9 +20,10 @@ Minimal **tested** hardware requirements made possible by [JProfiler, a java pro
 ## Content
 1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
-3. [Games made with Salty Engine](#games-made-with-salty-engine)
-4. [Collaborate](#collaborate)
-5. [Help](#help)
+3. [How to use the Salty Engine](#how-to-use-salty-engine)
+4. [Games made with Salty Engine](#games-made-with-salty-engine)
+5. [Collaborate](#collaborate)
+6. [Help](#help)
 
 
 # Why using Salty Engine?
@@ -117,6 +118,11 @@ To get a usable JAR of this library, you can whether download an existing releas
    
    Or you copy the JAR `target/salty-engine-[version]-jar-with-dependencies.jar` relative to the directory of the cloned project and add it to the buildpath manually using e.g. your IDE.
 
+# How to use Salty Engine
+
+There is a series of videos uploaded to YouTube that exaplain how to use Salty Engine
+
+1. [How to install Salty Engine](https://youtu.be/7rQp3EQbX_k)
 
 # Games made with Salty Engine
 
