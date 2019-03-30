@@ -16,8 +16,8 @@
 
 package de.edgelord.saltyengine.gameobject;
 
-import de.edgelord.saltyengine.collision.Collider;
-import de.edgelord.saltyengine.collision.HitboxCollider;
+import de.edgelord.saltyengine.collision.collider.Collider;
+import de.edgelord.saltyengine.collision.collider.HitboxCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;

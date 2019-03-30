@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.collision;
+package de.edgelord.saltyengine.collision.collider;
 
+import de.edgelord.saltyengine.collision.CollisionDetectionResult;
+import de.edgelord.saltyengine.collision.PrioritySceneCollider;
+import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**
@@ -41,7 +44,12 @@ public abstract class Collider {
     /**
      * The name of the default {@link HitboxCollider}.
      */
-    public static final String HITBOX_COLLIDER = "de.edgelord.saltyengine.collision.HitboxCollider";
+    public static final String HITBOX_COLLIDER = "de.edgelord.saltyengine.collision.collider.HitboxCollider";
+
+    /**
+     * The name of the {@link ShapeCollider}.
+     */
+    public static final String SHAPE_COLLIDER = "de.edgelord.saltyengine.collision.collider.ShapeCollider";
 
     /**
      * The constructor.
@@ -52,6 +60,17 @@ public abstract class Collider {
     public Collider(int priority, String name) {
         this.priority = priority;
         this.name = name;
+    }
+
+    /**
+     * Returns the {@link Collider} of the given two, that isn't <code>this</code>.
+     *
+     * @param collider1 the first collider
+     * @param collider2 the second collider
+     * @return the one <code>Collider</code> from the given two that isn't <code>this</code>.
+     */
+    public Collider getOtherCollider(Collider collider1, Collider collider2) {
+        return collider1 != this ? collider1 : collider2;
     }
 
     /**

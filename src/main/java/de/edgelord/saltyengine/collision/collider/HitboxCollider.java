@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.collision;
+package de.edgelord.saltyengine.collision.collider;
 
+import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.transform.Transform;

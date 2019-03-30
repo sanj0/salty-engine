@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.collision;
 
+import de.edgelord.saltyengine.collision.collider.Collider;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**

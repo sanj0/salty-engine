@@ -37,6 +37,10 @@ public class Transform {
         this(new Coordinates2f(x, y), new Dimensions(width, height));
     }
 
+    public Transform(Rectangle2D rect) {
+        this(new Coordinates2f( (float) rect.getX(), (float) rect.getY()), new Dimensions( (float) rect.getWidth(), (float) rect.getHeight()));
+    }
+
     /**
      * Returns whether the rectangle described by this Transform intersects the one
      * of the given.

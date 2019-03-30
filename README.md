@@ -131,14 +131,15 @@ Made by edgelord314 and LoOoNeliEst for Ludum Dare 42. You can play it [here](ht
 ![Escape the Junk](games/Escape-the-Junk.png)
 
 # Collaborate
-Do you want to collaborate? Feel free to open a pull-request (preferably well documentated and only well tested code). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
-If you want to get access to the comfortable and heavily used TODO list for this project create a (free) [Wunderlist](https://www.wunderlist.com/) account and send me your username.
+Do you want to collaborate? Feel free to open a pull-request (preferably well documented and only well tested code). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
 
 # Help
-For help with how to use, there are three ways:
+For help with how to use, there are five ways:
 
 - read the [project wiki](https://github.com/edgelord314/salty-engine/wiki)
 - join the [official discord server](https://discord.gg/VW45ySv), where I and other developers can help you personally
+- take a look at [this section of the README](#how-to-use-salty-engine)
 - take a look at the package [`testing`](https://github.com/edgelord314/salty-engine/tree/master/src/main/java/testing), where   
   we test the features of this library
+- take a look at the package [`example`](https://github.com/edgelord314/salty-engine/tree/master/src/main/java/de/edgelord/saltyengine/example)
   
