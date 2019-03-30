@@ -20,7 +20,7 @@ Minimal **tested** hardware requirements made possible by [JProfiler, a java pro
 ## Content
 1. [Why using Salty Engine](#why-using-salty-engine)
 2. [Build Instructions](#build-instructions)
-3. [How to use the Salty Engine](#how-to-use-salty-engine)
+3. [How to use Salty Engine](#how-to-use-salty-engine)
 4. [Games made with Salty Engine](#games-made-with-salty-engine)
 5. [Collaborate](#collaborate)
 6. [Help](#help)
