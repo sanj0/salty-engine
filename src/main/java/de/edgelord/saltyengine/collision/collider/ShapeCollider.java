@@ -30,6 +30,9 @@ import java.awt.geom.Area;
  */
 public class ShapeCollider extends Collider {
 
+    /**
+     * The {@link Shape} used for collision detection.
+     */
     private Shape shape;
 
     /**
