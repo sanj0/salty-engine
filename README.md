@@ -121,6 +121,10 @@ There is a series of videos uploaded to YouTube that exaplain how to use Salty E
 Made by edgelord314 and LoOoNeliEst for Ludum Dare 42. You can play it [here](https://ldjam.com/events/ludum-dare/42/escape-the-junk).
 ![Escape the Junk](games/Escape-the-Junk.png)
 
+### Moon Defender
+A fun little pixel-style prototype of a top-down shooter, made by edgelord314. You can play it [here](https://edgelord314.itch.io/moon-defender)
+![Moon Defender](https://img.itch.zone/aW1hZ2UvMzk4NzQ1LzE5NzYwNjAucG5n/794x1000/a%2Fz8su.png)
+
 # Collaborate
 Do you want to collaborate? Feel free to open a pull-request (preferably well documented and only well tested code). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
 
