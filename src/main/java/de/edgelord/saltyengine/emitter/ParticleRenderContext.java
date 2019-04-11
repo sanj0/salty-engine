@@ -16,22 +16,22 @@
 
 package de.edgelord.saltyengine.emitter;
 
-import de.edgelord.saltyengine.core.RenderContext;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.BasicRenderContext;
 
 import java.awt.*;
 
-public abstract class ParticleRenderContext extends RenderContext {
+public abstract class ParticleRenderContext extends BasicRenderContext {
     public ParticleRenderContext(Color color, Paint paint, Stroke stroke) {
         super(color, paint, stroke);
     }
 
     /**
-     * Sets the next configuration ot the given graphics. As for some particles needed, the result may be random generated.
+     * Sets the next configuration to the given graphics. As for some particles needed, the result may be randomly generated.
      *
-     * @param graphics the graphics to set up.
+     * @param graphics the graphics to set up
      * @param subject  the particle to be rendered next. This may be used e.g. to have a {@link Particle} specif
-     *                 configuration set based on its hash.
+     *                 configuration set based on its hash
      */
     public abstract void nextParticleRenderConfig(SaltyGraphics graphics, Particle subject);
 }
