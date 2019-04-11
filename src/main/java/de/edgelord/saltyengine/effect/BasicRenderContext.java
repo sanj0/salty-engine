@@ -56,8 +56,8 @@ public class BasicRenderContext implements RenderContext {
     /**
      * The constructor.
      *
-     * @param color the {@link Color} to render with
-     * @param paint the {@link Paint} to render with
+     * @param color  the {@link Color} to render with
+     * @param paint  the {@link Paint} to render with
      * @param stroke the {@link Stroke} to render with
      */
     public BasicRenderContext(Color color, Paint paint, Stroke stroke) {

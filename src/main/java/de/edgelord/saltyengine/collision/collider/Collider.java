@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 /**
  * A class that defines when a {@link GameObject} collides with another.
  * The default one ({@link GameObject#getCollider() collider}) is a {@link HitboxCollider}. <p>
- *
+ * <p>
  * This class is used by the {@link SceneCollider} of the {@link de.edgelord.saltyengine.scene.Scene}.
  * With the default one being {@link PrioritySceneCollider}, when checking the collision between two <code>GameObject</code>s,
  * the <code>Collider</code> with the higher {@link #priority} is taken.
@@ -55,7 +55,7 @@ public abstract class Collider {
      * The constructor.
      *
      * @param priority the priority of this collider
-     * @param name the name
+     * @param name     the name
      */
     public Collider(int priority, String name) {
         this.priority = priority;

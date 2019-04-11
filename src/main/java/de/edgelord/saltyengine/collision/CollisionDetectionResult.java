@@ -36,7 +36,7 @@ public class CollisionDetectionResult {
     /**
      * The constructor.
      *
-     * @param collision <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s collides and <code>false</code> when not
+     * @param collision              <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s collides and <code>false</code> when not
      * @param rootCollisionDirection the {@link de.edgelord.saltyengine.utils.Directions.Direction} in which the first of the two (the "root") collided with the second one
      */
     public CollisionDetectionResult(boolean collision, Directions.Direction rootCollisionDirection) {

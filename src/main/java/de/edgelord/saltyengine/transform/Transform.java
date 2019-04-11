@@ -38,7 +38,7 @@ public class Transform {
     }
 
     public Transform(Rectangle2D rect) {
-        this(new Coordinates2f( (float) rect.getX(), (float) rect.getY()), new Dimensions( (float) rect.getWidth(), (float) rect.getHeight()));
+        this(new Coordinates2f((float) rect.getX(), (float) rect.getY()), new Dimensions((float) rect.getWidth(), (float) rect.getHeight()));
     }
 
     /**

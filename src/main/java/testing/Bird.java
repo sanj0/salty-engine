@@ -34,8 +34,6 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.stdf.Species;
 
-import java.awt.image.VolatileImage;
-
 public class Bird extends GameObject implements Serializable {
 
     private final SpritesheetAnimation spritesheetAnimation;
