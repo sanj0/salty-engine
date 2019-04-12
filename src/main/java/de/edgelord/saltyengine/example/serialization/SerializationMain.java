@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.example.serialization;
 
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ import java.io.IOException;
 public class SerializationMain {
 
     public static void main(String[] args) {
+        Game.init(GameConfig.config(0, 0, "Serialization Example", 5));
         // Add a new Saver to the list
         Serializer.add(new Saver());
         // Add a new AdvancedSaver to the list
@@ -34,7 +37,7 @@ public class SerializationMain {
         //
         // It should be
         // in [Your homefolder]/.[game name]
-        // In this example, as we are never telling the game how it is called, the name will be "salty-engine"
+        // In this example, we set the game name to be "Serialization Example" in the Game#init call.
         // The method could throw an IOException, so we have to put it into a try/catch structure.
         try {
             Serializer.doDeserialization();

@@ -36,7 +36,7 @@ public class AdvancedSaver implements Serializable {
     @Override
     public void serialize(Species species) {
         species.addTag(COUNTER_TAG, ++counter);
-        species.addTag(REDUNDANT_MESSAGE_TAG, "This*_*is*_*a*_*redundant*_*message*_*to*_*show*_*that*_*you*_*have*_*to*_*encode*_*spaces*_*with*_*these*_*weird*_*combinations*_*of*_*stars*_*and*_*underscores!");
+        species.addTag(REDUNDANT_MESSAGE_TAG, "This is a redundant message to show that you don't have to encode spaces with these weird combinations of stars and underscores any more!");
         species.addTag(CAMERA_POSITION_TAG, Game.getCamera().getX() + "," + Game.getCamera().getY());
     }
 

@@ -24,10 +24,10 @@ import de.edgelord.saltyengine.ui.elements.BorderedLabel;
 public class ScreenExampleMain extends Game {
 
     public static void main(String[] args) {
-        Game.getHostAsDisplayManager().getStage().setHighQuality(true);
-
-        Game.init(GameConfig.config(920, 720, "Example of a simple Screen", 10));
+        Game.init(GameConfig.config(920, 720, "Example of a simple Screen", 5));
         Game.start();
+
+        Game.getHostAsDisplayManager().getStage().setHighQuality(true);
 
         SceneManager.getCurrentScene().addGameObject(new Screen());
 

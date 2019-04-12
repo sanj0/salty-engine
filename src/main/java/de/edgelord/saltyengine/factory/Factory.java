@@ -27,7 +27,6 @@ public class Factory {
     }
 
     public Resource getResource() {
-
         return resource;
     }
 }

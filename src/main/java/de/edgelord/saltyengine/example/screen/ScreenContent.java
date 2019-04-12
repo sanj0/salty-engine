@@ -26,7 +26,7 @@ public class ScreenContent {
     private float xOrigin;
     private float yOrigin;
 
-    private SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/bg.png");
+    private SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
     private Coordinates2f origin;
 
