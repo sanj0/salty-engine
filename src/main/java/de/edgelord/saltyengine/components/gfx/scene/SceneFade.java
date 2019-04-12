@@ -19,7 +19,6 @@ package de.edgelord.saltyengine.components.gfx.scene;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.scene.SceneManager;
 
@@ -86,8 +85,8 @@ public class SceneFade extends SceneGFXComponent {
     /**
      * The constructor.
      *
-     * @param name the name of this {@link de.edgelord.saltyengine.components.gfx.GFXComponent}
-     * @param mode the mode of the fade
+     * @param name        the name of this {@link de.edgelord.saltyengine.components.gfx.GFXComponent}
+     * @param mode        the mode of the fade
      * @param targetColor the {@link #targetColor} of the fade
      */
     public SceneFade(String name, Mode mode, Color targetColor) {
@@ -123,7 +122,8 @@ public class SceneFade extends SceneGFXComponent {
     /**
      * This method is supposed to get overridden when it's used like a trigger but it's not necessary
      */
-    public void onFadeFinish() { }
+    public void onFadeFinish() {
+    }
 
     /**
      * This is called when the fade is finished.
