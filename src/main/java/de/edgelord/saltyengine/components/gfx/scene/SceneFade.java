@@ -25,19 +25,71 @@ import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.*;
 
+/**
+ * And implementation of {@link SceneGFXComponent} that makes the current {@link de.edgelord.saltyengine.scene.Scene} fade in
+ * or out from/to a {@link #targetColor} in a specified {@link #duration}. To start this, you have to call {@link #fadeInit()} and {@link #startGFX()} <br>
+ * As soon as the fade is finished, this <code>SceneFade</code> removes its used {@link DrawingRoutine} and itself from the current <code>Scene</code> and the {@link de.edgelord.saltyengine.core.graphics.GFXController}
+ * and the method {@link #onFadeFinish()} is called. This way, you could chain a fade-out and a fade-in together.
+ */
 public class SceneFade extends SceneGFXComponent {
 
+    /**
+     * The target color of the fade. This is either the starting color (for an in-fade) or the ending color (for an out-fade)
+     */
     private Color targetColor;
+
+    /**
+     * The current color of the fade.
+     */
     private Color currentColor;
+
+    /**
+     * The {@link Mode} of the fade.
+     */
     private Mode mode;
+
+    /**
+     * The {@link LinearKeyframeAnimation} used for the fade.
+     */
     private LinearKeyframeAnimation fadeFX;
+
+    /**
+     * The duration. This is {@code 1500} by default. For a different value, you have to call {@link #setDuration(int)} before calling {@link #fadeInit()}.
+     */
     private int duration = 1500;
+
+    /**
+     * The current alpha of the fade color.
+     */
     private float currentAlpha;
 
+    /**
+     * The {@link DrawingRoutine} used for drawing the fade to make sure that the fade is above any {@link de.edgelord.saltyengine.gameobject.GameObject}s.
+     */
     private DrawingRoutine fadeDraw;
 
-    public enum Mode {FADE_IN, FADE_OUT}
+    /**
+     * The mode of the fade.
+     */
+    public enum Mode {
 
+        /**
+         * Fade in animation.
+         */
+        FADE_IN,
+        /**
+         * Fade out animation.
+         */
+        FADE_OUT
+    }
+
+    /**
+     * The constructor.
+     *
+     * @param name the name of this {@link de.edgelord.saltyengine.components.gfx.GFXComponent}
+     * @param mode the mode of the fade
+     * @param targetColor the {@link #targetColor} of the fade
+     */
     public SceneFade(String name, Mode mode, Color targetColor) {
         super(name);
 
@@ -53,7 +105,14 @@ public class SceneFade extends SceneGFXComponent {
         SceneManager.getCurrentScene().addDrawingRoutine(fadeDraw);
     }
 
-    public SceneFade(ComponentContainer parent, String name, Mode mode) {
+    /**
+     * A constructor that sets {@link #targetColor} to plain black if the given {@link Mode} is {@link Mode#FADE_OUT} and
+     * plain white if it is {@link Mode#FADE_IN}.
+     *
+     * @param name the name of this {@link de.edgelord.saltyengine.components.gfx.GFXComponent}
+     * @param mode the mode of the fade
+     */
+    public SceneFade(String name, Mode mode) {
         this(name, mode, Color.BLACK);
 
         if (mode == Mode.FADE_IN) {
@@ -64,14 +123,19 @@ public class SceneFade extends SceneGFXComponent {
     /**
      * This method is supposed to get overridden when it's used like a trigger but it's not necessary
      */
-    public void onFadeFinish() {
-    }
+    public void onFadeFinish() { }
 
+    /**
+     * This is called when the fade is finished.
+     */
     private void end() {
         SceneManager.getCurrentScene().removeDrawingRoutine(fadeDraw);
         remove();
     }
 
+    /**
+     * Initializes the fade. You have to call this before you cal {@link #startGFX()}.
+     */
     public void fadeInit() {
 
         if (mode == Mode.FADE_OUT) {
@@ -88,11 +152,19 @@ public class SceneFade extends SceneGFXComponent {
         fadeFX.calculateAnimation();
     }
 
+    /**
+     * This is used by the {@link #fadeDraw} to draw the fade.
+     *
+     * @param saltyGraphics the graphics to render to
+     */
     private void drawFade(SaltyGraphics saltyGraphics) {
         saltyGraphics.setColor(currentColor);
         saltyGraphics.drawRect(0, 0, Game.getGameWidth(), Game.getGameHeight());
     }
 
+    /**
+     * Fades the fade.
+     */
     @Override
     public void onFixedTick() {
 
@@ -119,6 +191,11 @@ public class SceneFade extends SceneGFXComponent {
         }
     }
 
+    /**
+     * An empty implementation because the drawing is done by the {@link #fadeDraw DrawingRoutine}.
+     *
+     * @param saltyGraphics teh graphics to render to
+     */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
     }

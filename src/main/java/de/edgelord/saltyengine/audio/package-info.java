@@ -16,6 +16,6 @@
 
 /**
  * All about Audio, with an {@link de.edgelord.saltyengine.audio.Audio} base-class and an {@link de.edgelord.saltyengine.audio.AudioPlayer}
- * as the interface for the library user.
+ * as the interface for the library user. This package is fully documented right now.
  */
 package de.edgelord.saltyengine.audio;

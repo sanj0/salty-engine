@@ -29,9 +29,9 @@ public class AdvancedSaver implements Serializable {
 
     private int counter = 0;
 
-    private static final String CAMERA_POSITION_TAG = "camPos";
-    private static final String COUNTER_TAG = "counter";
-    private static final String REDUNDANT_MESSAGE_TAG = "message";
+    private final String CAMERA_POSITION_TAG = "camPos";
+    private final String COUNTER_TAG = "counter";
+    private final String REDUNDANT_MESSAGE_TAG = "message";
 
     @Override
     public void serialize(Species species) {
