@@ -37,10 +37,14 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     public static final float DEFAULT_GRAVITY_ACCELERATION = 2000f;
 
     private boolean gravityForThisEnabled = true;
-
     private List<String> tagsToIgnore = new ArrayList<>();
-
     private final List<Force> forces = new LinkedList<>();
+
+    /**
+     * The minimal value of the {@link Force#deltaDistance(int)} before its {@link Force#getAcceleration()} is set ot 0f.
+     * The default value (which works fine for the default gravity, friction and mass of the {@link GameObject}s) is <code>0.5f</code>
+     */
+    private float threshold = 0.5f;
 
     public SimplePhysicsComponent(final GameObject parent, final String name) {
         super(parent, name, Components.PHYSICS_COMPONENT);
@@ -82,6 +86,13 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         final int deltaT = (int) SaltySystem.fixedTickMillis;
 
         for (final Force force : forces) {
+
+            final float deltaDistance = force.deltaDistance(deltaT);
+
+            if (deltaDistance <= threshold) {
+                force.setAcceleration(0f);
+                continue;
+            }
 
             switch (force.getDirection()) {
                 case RIGHT:
@@ -221,6 +232,14 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     public void setGravityEnabled(boolean enabled) {
         this.gravityForThisEnabled = enabled;
+    }
+
+    public float getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(float threshold) {
+        this.threshold = threshold;
     }
 
     /**

@@ -22,7 +22,16 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 
+/**
+ * A basic implementation of {@link RenderContext} with: <br>
+ * - a{@link Color} <br>
+ * - a {@link Paint} <br>
+ * - a {@link Stroke} <br>
+ * - a {@link #alpha} <br>
+ * - and a {@link Font}
+ */
 public class BasicRenderContext implements RenderContext {
+
     /**
      * The Color with which to render. <br>
      * It may be set using {@link #setColor(Color)} and may be obtained using {@link #getColor()}
@@ -131,7 +140,6 @@ public class BasicRenderContext implements RenderContext {
      * Applies the graphics configurations described by this context to the given graphics and returns previous one.
      *
      * @param graphics the graphics to configure.
-     * @return new previous {@link RenderContext} of the given {@link SaltyGraphics}.
      */
     public void applyConfiguration(SaltyGraphics graphics) {
 

@@ -80,18 +80,6 @@ public class Force {
         return distance;
     }
 
-    public void setDistance(final float distance) {
-        this.distance = distance;
-    }
-
-    public float getDeltaDistance() {
-        return deltaDistance;
-    }
-
-    public void setDeltaDistance(final float deltaDistance) {
-        this.deltaDistance = deltaDistance;
-    }
-
     public float getVelocity() {
         return velocity;
     }
