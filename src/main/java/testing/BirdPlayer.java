@@ -117,6 +117,7 @@ public class BirdPlayer extends GameObject implements Serializable {
     @Override
     public void onFixedTick() {
 
+        // a very bad and slow call for lazy developers
         DeflectionOnMouseOverComponent component = (DeflectionOnMouseOverComponent) getComponent("deflection");
 
         if (Input.getKeyboardInput().isKey_y()) {
@@ -133,25 +134,25 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         if (Input.inputUp) {
             if (soundTiming.now()) {
-                Tester.getAudioPlayer().play("bird_flap");
+                //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputDown) {
             if (soundTiming.now()) {
-                Tester.getAudioPlayer().play("bird_flap");
+                //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputRight) {
             if (soundTiming.now()) {
-                Tester.getAudioPlayer().play("bird_flap");
+                //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
         if (Input.inputLeft) {
             if (soundTiming.now()) {
-                Tester.getAudioPlayer().play("bird_flap");
+                //Tester.getAudioPlayer().play("bird_flap");
             }
         }
     }

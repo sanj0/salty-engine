@@ -46,7 +46,7 @@ public class Tester extends Game {
         Tester.audioPlayer = new AudioPlayer(new AudioFactory(new InnerResource()));
 
         //Tester.audioPlayer.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
-        Tester.audioPlayer.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
+        //Tester.audioPlayer.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
 
         //Tester.audioPlayer.loop("joy_sticky");
 

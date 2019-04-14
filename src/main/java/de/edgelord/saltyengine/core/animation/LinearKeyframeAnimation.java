@@ -16,74 +16,27 @@
 
 package de.edgelord.saltyengine.core.animation;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
-public class LinearKeyframeAnimation {
-
-    private List<Keyframe> keyframes;
-    // This List only contains relative Values!
-    private HashMap<Integer, Float> animation = new HashMap<>();
-    private int end = 0;
-
-    private int currentFrame = -1;
-
-    private boolean unCalculatedChanges = false;
+public class LinearKeyframeAnimation extends KeyframeAnimation {
 
     public LinearKeyframeAnimation(List<Keyframe> keyframes) {
-        this.keyframes = keyframes;
-
-        add(0, 0);
+        super(keyframes);
     }
 
     public LinearKeyframeAnimation() {
-        this(new ArrayList<>());
+        super();
     }
 
-    public List<Keyframe> getKeyframes() {
-        return keyframes;
-    }
-
-    public void setKeyframes(List<Keyframe> keyframes) {
-        this.keyframes = keyframes;
-    }
-
-    /**
-     * Important: This method only returns a delta value!
-     *
-     * @return the next delta-step of the linear keyframe animation
-     */
-    public float nextDelta() {
-
-        if (unCalculatedChanges) {
-            System.out.println("Warning: You have made changes to an LinearKeyFrameAnimation without recalculating the animation!");
-        }
-
-        if (!animationEnded()) {
-
-            currentFrame++;
-            return animation.get(currentFrame);
-        } else {
-            // If there is a request out of the available timeline, there should be no delta, so return 0
-            return 0f;
-        }
-    }
-
+    @Override
     public void calculateAnimation() {
 
-        currentFrame = -1;
-        unCalculatedChanges = false;
-
-        // Sort the list by the timing of the keyframes
-        keyframes.sort(Comparator.comparingInt(Keyframe::getTiming));
-
-        end = keyframes.get(keyframes.size() - 1).getTiming();
+        prepareAnimation();
 
         int index = 0;
 
-        while (index < keyframes.size() - 1) {
+        List<Keyframe> keyframes = getKeyframes();
+        while (index < getKeyframes().size() - 1) {
 
             int i = 0;
             int duration = keyframes.get(index + 1).getTiming() - keyframes.get(index).getTiming();
@@ -92,50 +45,11 @@ public class LinearKeyframeAnimation {
             while (i < duration) {
 
                 // System.out.println("timing: " + (i + keyframes.get(index).getTiming()) + " value: " + step);
-                animation.put(i + keyframes.get(index).getTiming(), step);
+                getAnimation().put(i + keyframes.get(index).getTiming(), step);
                 i++;
             }
 
             index++;
         }
-    }
-
-    public boolean animationEnded() {
-        return !(currentFrame < end - 1);
-    }
-
-    public void add(Keyframe keyframe) {
-        keyframes.add(keyframe);
-        unCalculatedChanges = true;
-    }
-
-    public void add(int timing, float value) {
-        keyframes.add(new Keyframe(timing, value));
-        unCalculatedChanges = true;
-    }
-
-    public void remove(Keyframe keyframe) {
-        keyframes.remove(keyframe);
-    }
-
-    public void removeByTiming(int timing) {
-
-        keyframes.removeIf(keyframe -> keyframe.getTiming() == timing);
-    }
-
-    public void removeByKey(float key) {
-        keyframes.removeIf(keyframe -> keyframe.getKey() == key);
-    }
-
-    public void restart() {
-        currentFrame = -1;
-    }
-
-    public int getCurrentFrame() {
-        return currentFrame;
-    }
-
-    public void setCurrentFrame(int currentFrame) {
-        this.currentFrame = currentFrame;
     }
 }
