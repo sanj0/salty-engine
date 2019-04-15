@@ -105,8 +105,15 @@ public class Rotation {
     }
 
     public static float getNormalizedDegrees(float degrees) {
-        for (; degrees <= 360; ) {
-            degrees -= 360;
+
+        if (degrees < 0) {
+            while (degrees <= -360) {
+                degrees += 360;
+            }
+        } else {
+            while (degrees >= 360) {
+                degrees -= 360;
+            }
         }
 
         return degrees;
