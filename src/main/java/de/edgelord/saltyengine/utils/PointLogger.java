@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.stdf.Species;
@@ -45,8 +45,8 @@ import java.util.Scanner;
  */
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
-    private static Coordinates2f lastPoint = Coordinates2f.zero();
-    private static List<Coordinates2f> savedPoints = new ArrayList<>();
+    private static Vector2f lastPoint = Vector2f.zero();
+    private static List<Vector2f> savedPoints = new ArrayList<>();
     private static DataWriter writer;
     private static Species points = new Species("points");
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
@@ -96,12 +96,12 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         }
 
         saltyGraphics.setColor(SAVED_POINTS_VISUALIZING_COLOR);
-        for (Coordinates2f coordinates2f : savedPoints) {
-            saltyGraphics.drawOval(visualizingTransform(coordinates2f));
+        for (Vector2f vector2F : savedPoints) {
+            saltyGraphics.drawOval(visualizingTransform(vector2F));
         }
     }
 
-    private static Transform visualizingTransform(Coordinates2f point) {
+    private static Transform visualizingTransform(Vector2f point) {
         return new Transform(point.getX() - (POINTS_VISUALIZING_DIMENSIONS.getWidth() / 2f), point.getY() - (POINTS_VISUALIZING_DIMENSIONS.getHeight() / 2f), POINTS_VISUALIZING_DIMENSIONS.getWidth(), POINTS_VISUALIZING_DIMENSIONS.getHeight());
     }
 

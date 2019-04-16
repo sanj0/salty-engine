@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
@@ -86,8 +86,8 @@ public class RandomRainEmitter extends EmitterComponent {
         return newParticle;
     }
 
-    private Coordinates2f newRandomSpawnPoint(Particle p) {
-        return new Coordinates2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
+    private Vector2f newRandomSpawnPoint(Particle p) {
+        return new Vector2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
     }
 
     public float getLeftOffset() {

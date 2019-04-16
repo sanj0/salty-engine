@@ -41,10 +41,10 @@ public class Coordinates {
         return this.getX() > other.getX();
     }
 
-    public void parseCoordinates(Coordinates2f coordinates2f) {
+    public void parseCoordinates(Vector2f vector2F) {
 
-        this.setX((int) coordinates2f.getX());
-        this.setY((int) coordinates2f.getY());
+        this.setX((int) vector2F.getX());
+        this.setY((int) vector2F.getY());
     }
 
     public int getX() {

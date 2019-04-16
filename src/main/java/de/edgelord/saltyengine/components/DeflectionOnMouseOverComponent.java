@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
@@ -35,7 +35,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      */
     private LinearKeyframeAnimation keyframeAnimation = new LinearKeyframeAnimation();
 
-    private Coordinates2f returnPosition;
+    private Vector2f returnPosition;
 
     private float totalDeflection = 0f;
 
@@ -69,8 +69,8 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         keyframeAnimation.calculateAnimation();
 
         Dimensions currentDimensions = getParent().getDimensions();
-        Coordinates2f currentCentre = getParent().getTransform().getCentre();
-        returnPosition = new Coordinates2f(currentCentre.getX(), currentCentre.getY());
+        Vector2f currentCentre = getParent().getTransform().getCentre();
+        returnPosition = new Vector2f(currentCentre.getX(), currentCentre.getY());
     }
 
     @Override
@@ -141,7 +141,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      */
     public void updatePosition() {
 
-        Coordinates2f centre = getParent().getTransform().getCentre();
+        Vector2f centre = getParent().getTransform().getCentre();
         returnPosition.setX(centre.getX());
         returnPosition.setY(centre.getY());
     }

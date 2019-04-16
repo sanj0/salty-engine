@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.effect.BasicRenderContext;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -77,7 +77,7 @@ public class SaltyGraphics {
      * @param dimensions the dimension of the rect
      * @see #drawRect(float, float, float, float)
      */
-    public void drawRect(Coordinates2f position, Dimensions dimensions) {
+    public void drawRect(Vector2f position, Dimensions dimensions) {
         drawRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
@@ -125,7 +125,7 @@ public class SaltyGraphics {
      * @param dimensions the dimensions of the rect
      * @see #outlineRect(float, float, float, float)
      */
-    public void outlineRect(Coordinates2f position, Dimensions dimensions) {
+    public void outlineRect(Vector2f position, Dimensions dimensions) {
         outlineRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
@@ -173,7 +173,7 @@ public class SaltyGraphics {
      * @param dimensions the dimensions of the oval
      * @see #drawOval(float, float, float, float)
      */
-    public void drawOval(Coordinates2f position, Dimensions dimensions) {
+    public void drawOval(Vector2f position, Dimensions dimensions) {
         drawOval(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
@@ -220,7 +220,7 @@ public class SaltyGraphics {
      * @param dimensions the dimensions of the oval
      * @see #outlineOval(float, float, float, float)
      */
-    public void outlineOval(Coordinates2f position, Dimensions dimensions) {
+    public void outlineOval(Vector2f position, Dimensions dimensions) {
         outlineOval(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
@@ -245,7 +245,7 @@ public class SaltyGraphics {
      * @param point2 the second point of the triangle
      * @param point3 the third point of the triangle
      */
-    public void drawTriangle(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
+    public void drawTriangle(Vector2f point1, Vector2f point2, Vector2f point3) {
 
         renderPolygon(false, point1, point2, point3);
     }
@@ -257,7 +257,7 @@ public class SaltyGraphics {
      * @param point2 the second point of the triangle
      * @param point3 the third point of the triangle
      */
-    public void outlineTriangle(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
+    public void outlineTriangle(Vector2f point1, Vector2f point2, Vector2f point3) {
 
         renderPolygon(true, point1, point2, point3);
     }
@@ -267,28 +267,28 @@ public class SaltyGraphics {
      */
 
     /**
-     * Draws a filled polygon from the given {@link Coordinates2f}s.
-     * You can pass in as many <code>Coordinates2f</code>s as you want, separated by a comma each.
+     * Draws a filled polygon from the given {@link Vector2f}s.
+     * You can pass in as many <code>Vector2f</code>s as you want, separated by a comma each.
      *
      * @param points the points of the polygon
      */
-    public void drawPolygon(Coordinates2f... points) {
+    public void drawPolygon(Vector2f... points) {
 
         renderPolygon(false, points);
     }
 
     /**
-     * Outlines a polygon from the given {@link Coordinates2f}s.
-     * You can pass in as many <code>Coordinates2f</code>s as you want, separated by a comma each.
+     * Outlines a polygon from the given {@link Vector2f}s.
+     * You can pass in as many <code>Vector2f</code>s as you want, separated by a comma each.
      *
      * @param points the points of the polygon
      */
-    public void outlinePolygon(Coordinates2f... points) {
+    public void outlinePolygon(Vector2f... points) {
 
         renderPolygon(true, points);
     }
 
-    private void renderPolygon(boolean outline, Coordinates2f... points) {
+    private void renderPolygon(boolean outline, Vector2f... points) {
         int[] xPoints = new int[points.length];
         int[] yPoints = new int[points.length];
 
@@ -338,7 +338,7 @@ public class SaltyGraphics {
      * @param position the position of the image
      * @see #drawImage(SaltyImage, float, float, float, float)
      */
-    public void drawImage(SaltyImage image, Coordinates2f position) {
+    public void drawImage(SaltyImage image, Vector2f position) {
         drawImage(image, position.getX(), position.getY(), Math.round(image.getWidth()), Math.round(image.getHeight()));
     }
 
@@ -372,7 +372,7 @@ public class SaltyGraphics {
      * @param position   the position of the image
      * @param dimensions the dimensions with to DRAW the image
      */
-    public void drawImage(SaltyImage image, Coordinates2f position, Dimensions dimensions) {
+    public void drawImage(SaltyImage image, Vector2f position, Dimensions dimensions) {
         drawImage(image, position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight());
     }
 
@@ -451,7 +451,7 @@ public class SaltyGraphics {
      * @param arcHeight  the diameter of the vertical arc
      * @see #drawRoundRect(float, float, float, float, float, float)
      */
-    public void drawRoundRect(Coordinates2f position, Dimensions dimensions, float arcWidth, float arcHeight) {
+    public void drawRoundRect(Vector2f position, Dimensions dimensions, float arcWidth, float arcHeight) {
         drawRoundRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), arcWidth, arcHeight);
     }
 
@@ -463,7 +463,7 @@ public class SaltyGraphics {
      * @param arc        the horizontal and vertical diameter of the arc
      * @see #drawRoundRect(float, float, float, float, float, float)
      */
-    public void drawRoundRect(Coordinates2f position, Dimensions dimensions, float arc) {
+    public void drawRoundRect(Vector2f position, Dimensions dimensions, float arc) {
         drawRoundRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), arc, arc);
     }
 
@@ -555,7 +555,7 @@ public class SaltyGraphics {
      * @param arcHeight  the diameter of the vertical arc
      * @see #outlineRoundRect(float, float, float, float, float, float)
      */
-    public void outlineRoundRect(Coordinates2f position, Dimensions dimensions, float arcWidth, float arcHeight) {
+    public void outlineRoundRect(Vector2f position, Dimensions dimensions, float arcWidth, float arcHeight) {
         outlineRoundRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), arcWidth, arcHeight);
     }
 
@@ -567,7 +567,7 @@ public class SaltyGraphics {
      * @param arc        the horizontal and vertical diameter of the arc
      * @see #outlineRoundRect(float, float, float, float, float, float)
      */
-    public void outlineRoundRect(Coordinates2f position, Dimensions dimensions, float arc) {
+    public void outlineRoundRect(Vector2f position, Dimensions dimensions, float arc) {
         outlineRoundRect(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), arc, arc);
     }
 
@@ -686,7 +686,7 @@ public class SaltyGraphics {
      * @param startPoint the start point of the line
      * @param endPoint   the end point of the line
      */
-    public void drawLine(Coordinates2f startPoint, Coordinates2f endPoint) {
+    public void drawLine(Vector2f startPoint, Vector2f endPoint) {
         drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
     }
 
@@ -698,7 +698,7 @@ public class SaltyGraphics {
      * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
-    public void drawLine(Coordinates2f startPoint, Coordinates2f endPoint, Stroke temporaryStroke) {
+    public void drawLine(Vector2f startPoint, Vector2f endPoint, Stroke temporaryStroke) {
         drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY(), temporaryStroke);
     }
 
@@ -710,7 +710,7 @@ public class SaltyGraphics {
      * @param endPoint the end point
      * @see #drawLine(float, float, float, float)
      */
-    public void drawLine(float x1, float y1, Coordinates2f endPoint) {
+    public void drawLine(float x1, float y1, Vector2f endPoint) {
         drawLine(x1, y1, endPoint.getX(), endPoint.getY());
     }
 
@@ -723,7 +723,7 @@ public class SaltyGraphics {
      * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
-    public void drawLine(float x1, float y1, Coordinates2f endPoint, Stroke temporaryStroke) {
+    public void drawLine(float x1, float y1, Vector2f endPoint, Stroke temporaryStroke) {
         drawLine(x1, y1, endPoint.getX(), endPoint.getY(), temporaryStroke);
     }
 
@@ -735,7 +735,7 @@ public class SaltyGraphics {
      * @param y2         y position of the end point
      * @see #drawLine(float, float, float, float)
      */
-    public void drawLine(Coordinates2f startPoint, float x2, float y2) {
+    public void drawLine(Vector2f startPoint, float x2, float y2) {
         drawLine(startPoint.getX(), startPoint.getY(), x2, y2);
     }
 
@@ -748,7 +748,7 @@ public class SaltyGraphics {
      * @param temporaryStroke the temporary Stroke with which to DRAW the line
      * @see #drawLine(float, float, float, float, Stroke)
      */
-    public void drawLine(Coordinates2f startPoint, float x2, float y2, Stroke temporaryStroke) {
+    public void drawLine(Vector2f startPoint, float x2, float y2, Stroke temporaryStroke) {
         drawLine(startPoint.getX(), startPoint.getY(), x2, y2, temporaryStroke);
     }
 
@@ -797,7 +797,7 @@ public class SaltyGraphics {
      * @param position the position of the baseLine of the first letter
      * @see #drawText(Object, float, float)
      */
-    public void drawText(Object text, Coordinates2f position) {
+    public void drawText(Object text, Vector2f position) {
         drawText(text, position.getX(), position.getY());
     }
 
@@ -809,7 +809,7 @@ public class SaltyGraphics {
      * @param temporaryFont the temporary Font with which to DRAW the text
      * @see #drawText(Object, float, float, Font)
      */
-    public void drawText(Object text, Coordinates2f position, Font temporaryFont) {
+    public void drawText(Object text, Vector2f position, Font temporaryFont) {
         drawText(text, position.getX(), position.getY(), temporaryFont);
     }
 
@@ -863,7 +863,7 @@ public class SaltyGraphics {
      * @param centre   the centre of the rotation.
      * @see Graphics2D#rotate(double, double, double)
      */
-    public void setRotation(float rotation, Coordinates2f centre) {
+    public void setRotation(float rotation, Vector2f centre) {
 
         graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()), centre.getX(), centre.getY());
     }
@@ -972,7 +972,7 @@ public class SaltyGraphics {
     // * @param centre
     // */
     /*
-    public void rotate(float degrees, Coordinates2f centre) {
+    public void rotate(float degrees, Vector2f centre) {
 
     }
     */

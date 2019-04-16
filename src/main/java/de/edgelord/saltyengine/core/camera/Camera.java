@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.core.camera;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
@@ -32,7 +32,7 @@ import java.awt.geom.AffineTransform;
  *
  * <p>
  * You can manipulate that by using the {@link #position} of the camera. You can edit that value by
- * using the methods {@link #move(Directions.Direction, float)} and {@link #setPosition(Coordinates2f)}.
+ * using the methods {@link #move(Directions.Direction, float)} and {@link #setPosition(Vector2f)}.
  *
  * <p>
  * You can also manipulate the manner of entity rendering with the {@link #rotation} of the camera.
@@ -50,7 +50,7 @@ public class Camera {
      *
      * @see #move(Directions.Direction, float)
      */
-    private Coordinates2f position = new Coordinates2f(0f, 0f);
+    private Vector2f position = new Vector2f(0f, 0f);
 
     /**
      * The rotation of the camera in degrees
@@ -59,7 +59,7 @@ public class Camera {
 
     private AffineTransform originalTransform = null;
 
-    private Coordinates2f lastPosition = new Coordinates2f(0f, 0f);
+    private Vector2f lastPosition = new Vector2f(0f, 0f);
 
     /**
      * The standard constructor.
@@ -125,24 +125,24 @@ public class Camera {
      *
      * <pre>
      *     {@code
-     *     // Create a Coordinates2f at 100|100
-     *     Coordinates2f absolutePosition = new Coordinates2f(100, 100);
+     *     // Create a Vector2f at 100|100
+     *     Vector2f absolutePosition = new Vector2f(100, 100);
      *
      *     // Moves the camera to 10|10
      *     Game.getCamera().setPosition(10, 10);
      *
-     *     // The Coordinates2f relativePosition would be at 90|90
+     *     // The Vector2f relativePosition would be at 90|90
      *     // so that when you draw a GameObject at this position with the camera being moved to 10|10,
      *     // it still has those original 100|100 relative to the window.
-     *     Coordinates2f relativePosition = Game.getCamera().getRelativePosition(absolutePosition);
+     *     Vector2f relativePosition = Game.getCamera().getRelativePosition(absolutePosition);
      *     }
      * </pre>
      *
      * @param absolutePosition the position relative to
      * @return the absolute position with considering the position of this camera for the given relative position
      */
-    public Coordinates2f getRelativePosition(Coordinates2f absolutePosition) {
-        Coordinates2f absPos = new Coordinates2f(absolutePosition.getX(), absolutePosition.getY());
+    public Vector2f getRelativePosition(Vector2f absolutePosition) {
+        Vector2f absPos = new Vector2f(absolutePosition.getX(), absolutePosition.getY());
         absPos.subtract(getPosition());
 
         return absPos;
@@ -153,7 +153,7 @@ public class Camera {
      * You can obtain this value easier by using {@link Input#getCursor()}
      *
      * @return the cursor with the position of this camera considered.
-     * @see #getRelativePosition(Coordinates2f)
+     * @see #getRelativePosition(Vector2f)
      */
     public Transform getRelativeCursor() {
         return new Transform(getRelativeCursorPosition(), Dimensions.one());
@@ -165,7 +165,7 @@ public class Camera {
      *
      * @return the cursor position manipulated in a way that it fits the position of this camera.
      */
-    public Coordinates2f getRelativeCursorPosition() {
+    public Vector2f getRelativeCursorPosition() {
         return getRelativePosition(Input.getCursorPosition());
     }
 
@@ -175,7 +175,7 @@ public class Camera {
      * @param position the new position of this camera
      * @see #move(Directions.Direction, float)
      */
-    public void setPosition(Coordinates2f position) {
+    public void setPosition(Vector2f position) {
         this.position = position;
     }
 
@@ -186,7 +186,7 @@ public class Camera {
      * @param y the y position of this camera
      */
     public void setPosition(float x, float y) {
-        this.position = new Coordinates2f(x, y);
+        this.position = new Vector2f(x, y);
     }
 
     public void setX(float x) {
@@ -207,7 +207,7 @@ public class Camera {
         this.rotation = rotation;
     }
 
-    public Coordinates2f getPosition() {
+    public Vector2f getPosition() {
         return position;
     }
 

@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.MouseInputHandler;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -54,7 +54,7 @@ public class Stage extends JPanel {
     private int ticks = 0;
     private int fpsRefreshGate = 25;
 
-    private Coordinates2f currentImgPos = new Coordinates2f(0, 0);
+    private Vector2f currentImgPos = new Vector2f(0, 0);
 
     private boolean highQuality = true;
     private RenderingHints hqRenderingHints;
@@ -131,7 +131,7 @@ public class Stage extends JPanel {
         int xPos = getWidth() / 2 - imageDisplayWidth / 2;
         int yPos = Math.max(getHeight() / 2 - imageDisplayHeight / 2, 0);
 
-        currentImgPos = new Coordinates2f(xPos, yPos);
+        currentImgPos = new Vector2f(xPos, yPos);
 
         graphics2D.drawImage(renderedImage, xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
         renderedImage.flush();
@@ -184,7 +184,7 @@ public class Stage extends JPanel {
         return name;
     }
 
-    public Coordinates2f getImagePosition() {
+    public Vector2f getImagePosition() {
         return currentImgPos;
     }
 

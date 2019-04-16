@@ -30,7 +30,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.stdf.Species;
 import de.edgelord.stdf.reading.ValueToListConverter;
 
@@ -51,7 +51,7 @@ public class BirdPlayer extends GameObject implements Serializable {
     private AnimationRender animationRender;
     private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
-    public BirdPlayer(final Coordinates2f position, final SaltyImage spriteSheetImage) {
+    public BirdPlayer(final Vector2f position, final SaltyImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");
 
         initAnimations(spriteSheetImage);

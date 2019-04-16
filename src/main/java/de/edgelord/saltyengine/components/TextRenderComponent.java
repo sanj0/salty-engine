@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -36,10 +36,10 @@ public class TextRenderComponent extends Component<ComponentContainer> {
     private List<String> lines = new ArrayList<>();
     private boolean recalculate = true;
     private String wordSeparator = " ";
-    private Coordinates2f offset;
+    private Vector2f offset;
     private float lineLength;
 
-    public TextRenderComponent(ComponentContainer parent, String name, float lineLength, Coordinates2f offset) {
+    public TextRenderComponent(ComponentContainer parent, String name, float lineLength, Vector2f offset) {
         super(parent, name, Components.RENDER_COMPONENT);
 
         this.lineLength = lineLength;
@@ -122,11 +122,11 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         this.wordSeparator = wordSeparator;
     }
 
-    public Coordinates2f getOffset() {
+    public Vector2f getOffset() {
         return offset;
     }
 
-    public void setOffset(Coordinates2f offset) {
+    public void setOffset(Vector2f offset) {
         this.offset = offset;
     }
 

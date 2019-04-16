@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.effect.light;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 
@@ -44,7 +44,7 @@ public class StaticLightSystem extends LightSystem {
             scheduleUpdate = false;
         }
 
-        saltyGraphics.drawImage(lightMap, Coordinates2f.zero());
+        saltyGraphics.drawImage(lightMap, Vector2f.zero());
     }
 
     public void scheduleUpdate() {

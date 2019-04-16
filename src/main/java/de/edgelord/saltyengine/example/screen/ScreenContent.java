@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 public class ScreenContent {
@@ -28,7 +28,7 @@ public class ScreenContent {
 
     private SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
-    private Coordinates2f origin;
+    private Vector2f origin;
 
     public ScreenContent(float xOrigin, float yOrigin) {
 
@@ -54,6 +54,6 @@ public class ScreenContent {
     }
 
     private void updateOrigin() {
-        origin = new Coordinates2f(xOrigin, yOrigin);
+        origin = new Vector2f(xOrigin, yOrigin);
     }
 }

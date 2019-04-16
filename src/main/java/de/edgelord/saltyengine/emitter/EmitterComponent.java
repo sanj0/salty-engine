@@ -23,7 +23,7 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.GeneralUtil;
@@ -55,7 +55,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * The point on which emitters may spawn the {@link Particle}s.
      */
-    private Coordinates2f spawnPoint;
+    private Vector2f spawnPoint;
 
     /**
      * If this is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}is called.
@@ -188,7 +188,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * Spawns a single new particle with the following steps:
      * <p>
      * 1. Create a {@link Particle} using {@link #createParticle()}
-     * 2. Set a emitter-specific position using {@link Particle#setPosition(Coordinates2f)}
+     * 2. Set a emitter-specific position using {@link Particle#setPosition(Vector2f)}
      * 3. return it
      *
      * @return the spawned particle to be added to the list
@@ -418,11 +418,11 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.fixedParticleDimensions = fixedParticleDimensions;
     }
 
-    public Coordinates2f getSpawnPoint() {
+    public Vector2f getSpawnPoint() {
         return spawnPoint;
     }
 
-    public void setSpawnPoint(Coordinates2f spawnPoint) {
+    public void setSpawnPoint(Vector2f spawnPoint) {
         this.spawnPoint = spawnPoint;
     }
 

@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.CheatCodeListener;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 import de.edgelord.saltyengine.utils.RectangleCreator;
@@ -59,7 +59,7 @@ public class Tester extends Game {
 
     public static void main(final String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
-        System.out.println(GeneralUtil.getAngle(new Coordinates2f(0, 0), new Coordinates2f(0, 100)));
+        System.out.println(GeneralUtil.getAngle(new Vector2f(0, 0), new Vector2f(0, 100)));
 
         initGame();
 

@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.effect.light;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.ColorUtil;
@@ -70,11 +70,11 @@ public abstract class Light implements TransformedObject {
         this.color = ColorUtil.TRANSPARENT_COLOR;
     }
 
-    public Light(Coordinates2f position, Dimensions dimensions, Color color) {
+    public Light(Vector2f position, Dimensions dimensions, Color color) {
         this(new Transform(position, dimensions), color);
     }
 
-    public Light(Coordinates2f position, Dimensions dimensions) {
+    public Light(Vector2f position, Dimensions dimensions) {
         this(new Transform(position, dimensions));
     }
 

@@ -17,9 +17,9 @@
 package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public interface Cosmetic {
 
-    void draw(SaltyGraphics saltyGraphics, Coordinates2f position, float width, float height);
+    void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 }

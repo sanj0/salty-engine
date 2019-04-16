@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 
@@ -40,7 +40,7 @@ public class Grid {
     /**
      * The origin point of the grid.
      */
-    private Coordinates2f origin;
+    private Vector2f origin;
 
     /**
      * The base constructor.
@@ -48,7 +48,7 @@ public class Grid {
      * @param tileSize the {@link #tileSize size of one tile}
      * @param origin   the {@link #origin origin of the grid}
      */
-    public Grid(Dimensions tileSize, Coordinates2f origin) {
+    public Grid(Dimensions tileSize, Vector2f origin) {
         this.tileSize = tileSize;
         this.origin = origin;
     }
@@ -62,22 +62,22 @@ public class Grid {
      * @param originY    the y position of the origin of the grid
      */
     public Grid(float tileWidth, float tileHeight, float originX, float originY) {
-        this(new Dimensions(tileWidth, tileHeight), new Coordinates2f(originX, originY));
+        this(new Dimensions(tileWidth, tileHeight), new Vector2f(originX, originY));
     }
 
     /**
      * Constructs a new instance with the given {@link #tileSize tile size}
-     * and an {@link #origin} at {@link Coordinates2f#zero()}.
+     * and an {@link #origin} at {@link Vector2f#zero()}.
      *
      * @param tileSize the {@link #tileSize size of one tile}
      */
     public Grid(Dimensions tileSize) {
-        this(tileSize, Coordinates2f.zero());
+        this(tileSize, Vector2f.zero());
     }
 
     /**
      * Constructs a new instance with the given {@link #tileSize tile size}
-     * and an {@link #origin} at {@link Coordinates2f#zero()}.
+     * and an {@link #origin} at {@link Vector2f#zero()}.
      *
      * @param tileWidth  the width of one tile
      * @param tileHeight the height of one tile
@@ -127,7 +127,7 @@ public class Grid {
     /**
      * Returns a {@link Transform} with the following values: <p>
      * <p>
-     * - the {@link Coordinates2f position} of the tile with the given coordinates within this grid
+     * - the {@link Vector2f position} of the tile with the given coordinates within this grid
      * - the {@link Dimensions dimensinos} of on tile, which is {@link #tileSize}
      *
      * @param x the x position of the tile within this grid
@@ -161,7 +161,7 @@ public class Grid {
      *
      * @return the value of {@link #origin}
      */
-    public Coordinates2f getOrigin() {
+    public Vector2f getOrigin() {
         return origin;
     }
 
@@ -170,7 +170,7 @@ public class Grid {
      *
      * @param origin the new value of {@link #origin}
      */
-    public void setOrigin(Coordinates2f origin) {
+    public void setOrigin(Vector2f origin) {
         this.origin = origin;
     }
 }

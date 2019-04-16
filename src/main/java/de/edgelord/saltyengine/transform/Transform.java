@@ -29,7 +29,7 @@ public class Transform {
     /**
      * The position of this <code>Transform</code>.
      */
-    private Coordinates2f position;
+    private Vector2f position;
 
     /**
      * The {@link Dimensions} of this <code>Transform</code>.
@@ -47,7 +47,7 @@ public class Transform {
      * @param position the {@link #position}
      * @param dimensions the {@link #dimensions}
      */
-    public Transform(Coordinates2f position, Dimensions dimensions) {
+    public Transform(Vector2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
         this.rotation = new Rotation(getWidth() / 2f, getHeight() / 2f);
@@ -61,10 +61,10 @@ public class Transform {
      * @param width the width
      * @param height the height
      *
-     * @see #Transform(Coordinates2f, Dimensions)
+     * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(float x, float y, float width, float height) {
-        this(new Coordinates2f(x, y), new Dimensions(width, height));
+        this(new Vector2f(x, y), new Dimensions(width, height));
     }
 
     /**
@@ -72,37 +72,37 @@ public class Transform {
      *
      * @param rect the rectangle
      *
-     * @see #Transform(Coordinates2f, Dimensions)
+     * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(Rectangle2D rect) {
-        this(new Coordinates2f((float) rect.getX(), (float) rect.getY()), new Dimensions((float) rect.getWidth(), (float) rect.getHeight()));
+        this(new Vector2f((float) rect.getX(), (float) rect.getY()), new Dimensions((float) rect.getWidth(), (float) rect.getHeight()));
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Coordinates2f#zero()} and {@link Dimensions#zero()}.
+     * Returns a new <code>Transform</code> with {@link Vector2f#zero()} and {@link Dimensions#zero()}.
      *
      * @return a new <code>Transform</code> where everything is <code>0f</code>
      */
     public static Transform zero() {
-        return new Transform(Coordinates2f.zero(), Dimensions.zero());
+        return new Transform(Vector2f.zero(), Dimensions.zero());
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Coordinates2f#max()} and {@link Dimensions#max()}.
+     * Returns a new <code>Transform</code> with {@link Vector2f#max()} and {@link Dimensions#max()}.
      *
      * @return a new <code>Transform</code> with max values for position and dimensions
      */
     public static Transform max() {
-        return new Transform(Coordinates2f.max(), Dimensions.max());
+        return new Transform(Vector2f.max(), Dimensions.max());
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Coordinates2f#min()} and {@link Dimensions#min()}.
+     * Returns a new <code>Transform</code> with {@link Vector2f#min()} and {@link Dimensions#min()}.
      *
      * @return a new <code>Transform</code> with min values for position and dimensions
      */
     public static Transform min() {
-        return new Transform(Coordinates2f.min(), Dimensions.min());
+        return new Transform(Vector2f.min(), Dimensions.min());
     }
 
     /**
@@ -114,11 +114,11 @@ public class Transform {
      * @param dimMax the max value for the dimensions
      * @return a new random <code>Transform</code>
      *
-     * @see Coordinates2f#random(int, int)
+     * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
     public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
-        return new Transform(Coordinates2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
+        return new Transform(Vector2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
     }
 
     /**
@@ -128,7 +128,7 @@ public class Transform {
      * @param max the max value
      * @return a new random <code>Transform</code>
      *
-     * @see Coordinates2f#random(int, int)
+     * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
     public static Transform random(int min, int max) {
@@ -269,14 +269,14 @@ public class Transform {
     }
 
     /**
-     * Positions this <code>Transform</code> centre at the given {@link Coordinates2f}.
+     * Positions this <code>Transform</code> centre at the given {@link Vector2f}.
      *
      * @param centre the next centre of this <code>Transform</code>
      */
-    public void positionByCentre(Coordinates2f centre) {
+    public void positionByCentre(Vector2f centre) {
         float centreShiftX = getWidth() / 2f;
         float centreShiftY = getHeight() / 2;
-        position = new Coordinates2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
+        position = new Vector2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
     }
 
     /**
@@ -287,26 +287,26 @@ public class Transform {
      *
      * @return the centre of this <code>Transform</code>
      */
-    public Coordinates2f getCentre() {
-        return new Coordinates2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
+    public Vector2f getCentre() {
+        return new Vector2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }
 
     /**
-     * Rotats this <code>Transform</code> to directly face the given {@link Coordinates2f point}.
+     * Rotats this <code>Transform</code> to directly face the given {@link Vector2f point}.
      *
      * @param point the point to rotate to
      */
-    public void rotateToPoint(Coordinates2f point) {
+    public void rotateToPoint(Vector2f point) {
         rotation.rotateToPoint(point, this);
     }
 
     /**
-     * Calls {@link #rotateToPoint(Coordinates2f)} to make this <code>Transform</code> face the given point.
+     * Calls {@link #rotateToPoint(Vector2f)} to make this <code>Transform</code> face the given point.
      *
      * @param x the x position of the point
      * @param y the y position od the point
      *
-     * @see  #rotateToPoint(Coordinates2f)
+     * @see  #rotateToPoint(Vector2f)
      */
     public void rotateToPoint(float x, float y) {
         rotation.rotateToPoint(x, y, this);
@@ -410,7 +410,7 @@ public class Transform {
      *
      * @param x the new value of this <code>Transform</code>'s x position
      *
-     * @see Coordinates2f#setX(float)
+     * @see Vector2f#setX(float)
      */
     public void setX(float x) {
         position.setX(x);
@@ -441,7 +441,7 @@ public class Transform {
      *
      * @param y the new value of this <code>Transform</code>'s y position
      *
-     * @see Coordinates2f#setY(float)
+     * @see Vector2f#setY(float)
      */
     public void setY(float y) {
         position.setY(y);
@@ -452,7 +452,7 @@ public class Transform {
      *
      * @return {@link #position} as {@link Coordinates}
      *
-     * @see Coordinates2f#convertToCoordinates()
+     * @see Vector2f#convertToCoordinates()
      */
     public Coordinates getCoordinates() {
         return position.convertToCoordinates();
@@ -465,7 +465,7 @@ public class Transform {
      *
      * @see Rotation#getCentreAbsolute(Transform)
      */
-    public Coordinates2f getRotationCentreAbsolute() {
+    public Vector2f getRotationCentreAbsolute() {
         return rotation.getCentreAbsolute(this);
     }
 
@@ -496,7 +496,7 @@ public class Transform {
      * @see Rotation#getCentre()
      * @see #getRotationCentreAbsolute()
      */
-    public Coordinates2f getRotationCentre() {
+    public Vector2f getRotationCentre() {
         return rotation.getCentre();
     }
 
@@ -505,20 +505,20 @@ public class Transform {
      *
      * @param rotationCentre the nex relative rotation centre
      *
-     * @see Rotation#setCentre(Coordinates2f)
+     * @see Rotation#setCentre(Vector2f)
      */
-    public void setRotationCentre(Coordinates2f rotationCentre) {
+    public void setRotationCentre(Vector2f rotationCentre) {
         rotation.setCentre(rotationCentre);
     }
 
     /**
      * Sets the centre of {@link #rotation} to the centre.
      *
-     * @see #setRotationCentre(Coordinates2f)
+     * @see #setRotationCentre(Vector2f)
      * @see #getCentre()
      */
     public void setRotationCentreToCentre() {
-        rotation.setCentre(new Coordinates2f(getWidth() / 2f, getHeight() / 2f));
+        rotation.setCentre(new Vector2f(getWidth() / 2f, getHeight() / 2f));
     }
 
     /**
@@ -526,7 +526,7 @@ public class Transform {
      *
      * @return the value of {@link #position}
      */
-    public Coordinates2f getPosition() {
+    public Vector2f getPosition() {
         return position;
     }
 
@@ -535,7 +535,7 @@ public class Transform {
      *
      * @param position the new value of {@link #position}
      */
-    public void setPosition(Coordinates2f position) {
+    public void setPosition(Vector2f position) {
         this.position = position;
     }
 
@@ -598,6 +598,6 @@ public class Transform {
 
     @Override
     public Object clone() {
-        return new Transform((Coordinates2f) position.clone(), (Dimensions) dimensions.clone());
+        return new Transform((Vector2f) position.clone(), (Dimensions) dimensions.clone());
     }
 }

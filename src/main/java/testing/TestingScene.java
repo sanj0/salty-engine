@@ -28,7 +28,7 @@ import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.ui.elements.ProgressBar;
@@ -62,7 +62,7 @@ public class TestingScene extends Scene {
 
         /*
         try {
-            addDrawingRoutine(StaticTileGrid.readSTM(new File("/Users/edgelord/Salty Tilemap Creator/map.stm.sdb"), new Coordinates2f(110, 110), DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS));
+            addDrawingRoutine(StaticTileGrid.readSTM(new File("/Users/edgelord/Salty Tilemap Creator/map.stm.sdb"), new Vector2f(110, 110), DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class TestingScene extends Scene {
     }
 
     private void initUITest() {
-        FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Coordinates2f(0, 25));
+        FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
         floatingLabel.centreOnXAxis(true);
         floatingLabel.setForegroundColor(Color.black);
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
@@ -139,7 +139,7 @@ public class TestingScene extends Scene {
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
         final Bird bottomBird = new Bird(birdSpritesheet, 3, 4);
-        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 100), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 100), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(bottomBird);
         addGameObject(upperBird);
@@ -158,7 +158,7 @@ public class TestingScene extends Scene {
 
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
 
-        final BirdPlayer player = new BirdPlayer(new Coordinates2f(0, 0), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
+        final BirdPlayer player = new BirdPlayer(new Vector2f(0, 0), SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet_player.png"));
 
         addGameObject(player);
 

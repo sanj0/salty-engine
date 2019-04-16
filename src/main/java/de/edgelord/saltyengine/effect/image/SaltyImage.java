@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.effect.image;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Disposable;
 import de.edgelord.saltyengine.effect.Cosmetic;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -72,7 +72,7 @@ public class SaltyImage implements Cosmetic, Disposable {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Coordinates2f position, float width, float height) {
+    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
         saltyGraphics.drawImage(this, position, new Dimensions(width, height));
     }
 

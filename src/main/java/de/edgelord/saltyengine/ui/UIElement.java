@@ -25,7 +25,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.input.KeyboardInputHandler;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -57,7 +57,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
     public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
 
-    public UIElement(Coordinates2f position, float width, float height, String tag) {
+    public UIElement(Vector2f position, float width, float height, String tag) {
         super(tag);
 
         setTransform(new Transform(position, new Dimensions(width, height)));

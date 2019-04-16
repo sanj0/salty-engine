@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.components.TextRenderComponent;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 
@@ -32,14 +32,14 @@ public abstract class TextBox extends TextElement {
     private float speed = 0.075f;
     private TextRenderComponent textRenderComponent;
 
-    public TextBox(String text, Coordinates2f position, float width, float height, float offsetX, float offsetY) {
+    public TextBox(String text, Vector2f position, float width, float height, float offsetX, float offsetY) {
         this(text, new Transform(position, new Dimensions(width, height)), offsetX, offsetY);
     }
 
     public TextBox(String text, Transform transform, float offsetX, float offsetY) {
         super(text, transform, TEXT_BOX);
 
-        textRenderComponent = new TextRenderComponent(this, "text-renderer", getWidth() - offsetX, new Coordinates2f(offsetX, offsetY));
+        textRenderComponent = new TextRenderComponent(this, "text-renderer", getWidth() - offsetX, new Vector2f(offsetX, offsetY));
         addComponent(textRenderComponent);
     }
 

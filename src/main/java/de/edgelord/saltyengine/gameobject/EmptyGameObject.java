@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 
@@ -48,11 +48,11 @@ public class EmptyGameObject extends GameObject {
         super(coordinates, dimensions, tag);
     }
 
-    public EmptyGameObject(Coordinates2f position, Dimensions dimensions, String tag) {
+    public EmptyGameObject(Vector2f position, Dimensions dimensions, String tag) {
         super(position, dimensions, tag);
     }
 
-    public EmptyGameObject(Coordinates2f position, float width, float height, String tag) {
+    public EmptyGameObject(Vector2f position, float width, float height, String tag) {
         super(position, width, height, tag);
     }
 

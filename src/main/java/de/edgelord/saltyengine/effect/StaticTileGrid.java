@@ -23,7 +23,7 @@ import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.stdf.Species;
@@ -86,9 +86,9 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
     private boolean resizeTiles = false;
     private Dimensions tileSize;
-    private Coordinates2f position;
+    private Vector2f position;
 
-    public StaticTileGrid(DrawingPosition drawingPosition, Coordinates2f position, Dimensions tileSize) {
+    public StaticTileGrid(DrawingPosition drawingPosition, Vector2f position, Dimensions tileSize) {
         super(drawingPosition);
 
         this.position = position;
@@ -99,15 +99,15 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     public StaticTileGrid(DrawingPosition drawingPosition, float x, float y, float width, float height) {
-        this(drawingPosition, new Coordinates2f(x, y), new Dimensions(width, height));
+        this(drawingPosition, new Vector2f(x, y), new Dimensions(width, height));
     }
 
-    public StaticTileGrid(Coordinates2f position, Dimensions tileSize) {
+    public StaticTileGrid(Vector2f position, Dimensions tileSize) {
         this(DrawingPosition.BEFORE_GAMEOBJECTS, position, tileSize);
     }
 
     public StaticTileGrid(float x, float y, float tileWidth, float tileHeight) {
-        this(DrawingPosition.BEFORE_GAMEOBJECTS, new Coordinates2f(x, y), new Dimensions(tileWidth, tileHeight));
+        this(DrawingPosition.BEFORE_GAMEOBJECTS, new Vector2f(x, y), new Dimensions(tileWidth, tileHeight));
     }
 
     @Override
@@ -127,7 +127,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @return a new {@link StaticTileGrid}
      * @throws IOException when the file can't be read
      */
-    public static StaticTileGrid readSTM(File stm, Coordinates2f position, DrawingPosition drawingPosition) throws IOException {
+    public static StaticTileGrid readSTM(File stm, Vector2f position, DrawingPosition drawingPosition) throws IOException {
 
         DataReader dataReader = new DataReader(stm);
         Species metaInf = dataReader.getSpecies("meta-inf");
@@ -192,7 +192,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
             SaltyImage tileImage = (SaltyImage) pair.getValue();
             Coordinates coordinates = (Coordinates) pair.getKey();
-            Coordinates2f tilePos = getTilePosition(coordinates, false);
+            Vector2f tilePos = getTilePosition(coordinates, false);
 
             graphics.drawImage(tileImage, tilePos.getX(), tilePos.getY(), tileSize.getWidth(), tileSize.getHeight());
         }
@@ -240,7 +240,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @return the created and already added {@link EmptyGameObject}
      */
     public GameObject addHitbox(Coordinates tilePosition, Dimensions size, Scene scene) {
-        Coordinates2f tilePos = getTilePosition(tilePosition, true);
+        Vector2f tilePos = getTilePosition(tilePosition, true);
         float width = size.getWidth() * tileSize.getWidth();
         float height = size.getHeight() * tileSize.getHeight();
 
@@ -265,12 +265,12 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         return addHitbox(new Coordinates(tileX, tileY), new Dimensions(width, height), scene);
     }
 
-    public Coordinates2f getTilePosition(Coordinates tile, boolean absolute) {
+    public Vector2f getTilePosition(Coordinates tile, boolean absolute) {
 
         if (absolute) {
-            return new Coordinates2f(position.getX() + (tile.getX() * tileSize.getWidth()), position.getY() + (tile.getY() * tileSize.getHeight()));
+            return new Vector2f(position.getX() + (tile.getX() * tileSize.getWidth()), position.getY() + (tile.getY() * tileSize.getHeight()));
         } else {
-            return new Coordinates2f(tile.getX() * tileSize.getWidth(), tile.getY() * tileSize.getHeight());
+            return new Vector2f(tile.getX() * tileSize.getWidth(), tile.getY() * tileSize.getHeight());
         }
     }
 

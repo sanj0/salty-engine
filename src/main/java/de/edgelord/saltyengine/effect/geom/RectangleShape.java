@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.effect.geom;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 
@@ -30,7 +30,7 @@ public class RectangleShape extends SaltyShape {
         super(transform, EnumShape.RECTANGLE);
     }
 
-    public RectangleShape(Coordinates2f position, Dimensions dimensions) {
+    public RectangleShape(Vector2f position, Dimensions dimensions) {
         super(position, dimensions, EnumShape.RECTANGLE);
     }
 

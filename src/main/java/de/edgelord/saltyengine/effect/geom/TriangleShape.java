@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.effect.geom;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**
@@ -31,11 +31,11 @@ import de.edgelord.saltyengine.transform.Transform;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class TriangleShape extends SaltyShape {
 
-    private Coordinates2f point1;
-    private Coordinates2f point2;
-    private Coordinates2f point3;
+    private Vector2f point1;
+    private Vector2f point2;
+    private Vector2f point3;
 
-    public TriangleShape(Coordinates2f point1, Coordinates2f point2, Coordinates2f point3) {
+    public TriangleShape(Vector2f point1, Vector2f point2, Vector2f point3) {
         super(Transform.zero(), EnumShape.TRIANGLE);
 
         this.point1 = point1;
@@ -71,29 +71,29 @@ public class TriangleShape extends SaltyShape {
         return new Transform(x, y, maxX - x, maxY - y);
     }
 
-    public Coordinates2f getPoint1() {
+    public Vector2f getPoint1() {
         return point1;
     }
 
-    public void setPoint1(Coordinates2f point1) {
+    public void setPoint1(Vector2f point1) {
         this.point1 = point1;
         this.setTransform(getTriangleTransform());
     }
 
-    public Coordinates2f getPoint2() {
+    public Vector2f getPoint2() {
         return point2;
     }
 
-    public void setPoint2(Coordinates2f point2) {
+    public void setPoint2(Vector2f point2) {
         this.point2 = point2;
         this.setTransform(getTriangleTransform());
     }
 
-    public Coordinates2f getPoint3() {
+    public Vector2f getPoint3() {
         return point3;
     }
 
-    public void setPoint3(Coordinates2f point3) {
+    public void setPoint3(Vector2f point3) {
         this.point3 = point3;
         this.setTransform(getTriangleTransform());
     }

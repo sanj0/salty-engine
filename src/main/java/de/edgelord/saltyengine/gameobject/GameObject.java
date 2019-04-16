@@ -34,7 +34,7 @@ import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
@@ -124,7 +124,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(tag);
 
-        setTransform(new Transform(new Coordinates2f(xPos, yPos), new Dimensions(width, height)));
+        setTransform(new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height)));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
@@ -162,7 +162,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param dimensions the dimensions
      * @param tag        the tag
      */
-    public GameObject(Coordinates2f position, Dimensions dimensions, String tag) {
+    public GameObject(Vector2f position, Dimensions dimensions, String tag) {
         this(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
@@ -174,7 +174,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param height   the height
      * @param tag      the tag
      */
-    public GameObject(Coordinates2f position, float width, float height, String tag) {
+    public GameObject(Vector2f position, float width, float height, String tag) {
         this(position.getX(), position.getY(), width, height, tag);
     }
 

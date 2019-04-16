@@ -28,7 +28,7 @@ import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -181,7 +181,7 @@ public class Scene {
         synchronized (concurrentBlock) {
             for (GameObject gameObject : gameObjects) {
                 AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                Coordinates2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
+                Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
                 saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
 
                 gameObject.draw(saltyGraphics);

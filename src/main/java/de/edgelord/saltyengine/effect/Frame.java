@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public class Frame implements Cosmetic {
 
@@ -31,7 +31,7 @@ public class Frame implements Cosmetic {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Coordinates2f position, float width, float height) {
+    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
         saltyGraphics.drawImage(image, position.getX(), position.getY(), width, height);
     }
 

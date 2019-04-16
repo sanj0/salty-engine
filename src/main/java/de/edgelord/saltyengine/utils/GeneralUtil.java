@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.utils;
 
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.net.InetAddress;
@@ -43,7 +43,7 @@ public class GeneralUtil {
      * @param p2 the second point
      * @return the angle between the given two points as degrees
      */
-    public static float getAngle(Coordinates2f p1, Coordinates2f p2) {
+    public static float getAngle(Vector2f p1, Vector2f p2) {
         double arc = Math.atan2(p2.getY() - (p1.getY()), p2.getX() - (p1.getX()));
         return (float) toDegrees(arc) + 90f;
     }
@@ -85,16 +85,16 @@ public class GeneralUtil {
     }
 
     /**
-     * Returns a random {@link Coordinates2f}. The given floats are rounded to integers.
+     * Returns a random {@link Vector2f}. The given floats are rounded to integers.
      *
      * @param minX the min x
      * @param maxX the max x
      * @param minY the min y
      * @param maxY the max y
-     * @return a new random {@link Coordinates2f}.
+     * @return a new random {@link Vector2f}.
      */
-    public static Coordinates2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
-        return new Coordinates2f(randomInt(minX, maxX), randomInt(minY, maxY));
+    public static Vector2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
+        return new Vector2f(randomInt(minX, maxX), randomInt(minY, maxY));
     }
 
     /**

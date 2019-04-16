@@ -34,20 +34,20 @@ import static java.lang.Math.toDegrees;
  * yNew = py + yCenterRectangle;
  */
 public class Rotation {
-    private Coordinates2f centre;
+    private Vector2f centre;
     private float rotationDegrees;
 
-    public Rotation(Coordinates2f centre, float rotationDegrees) {
+    public Rotation(Vector2f centre, float rotationDegrees) {
         this.centre = centre;
         this.rotationDegrees = rotationDegrees;
     }
 
-    public Rotation(Coordinates2f centre) {
+    public Rotation(Vector2f centre) {
         this(centre, 0f);
     }
 
     public Rotation(float centreX, float centreY, float rotationDegrees) {
-        this(new Coordinates2f(centreX, centreY), rotationDegrees);
+        this(new Vector2f(centreX, centreY), rotationDegrees);
     }
 
     public Rotation(float centreX, float centreY) {
@@ -58,14 +58,14 @@ public class Rotation {
         this(0, 0);
     }
 
-    public void rotateToPoint(Coordinates2f point, Transform parent) {
-        Coordinates2f absCentre = getCentreAbsolute(parent);
+    public void rotateToPoint(Vector2f point, Transform parent) {
+        Vector2f absCentre = getCentreAbsolute(parent);
         double arc = Math.atan2(point.getY() - (absCentre.getY()), point.getX() - (absCentre.getX()));
         rotationDegrees = (float) toDegrees(arc);
     }
 
     public void rotateToPoint(float x, float y, Transform parent) {
-        rotateToPoint(new Coordinates2f(x, y), parent);
+        rotateToPoint(new Vector2f(x, y), parent);
     }
 
     @Override
@@ -79,15 +79,15 @@ public class Rotation {
         }
     }
 
-    public Coordinates2f getCentreAbsolute(Transform parent) {
-        return new Coordinates2f(centre.getX() + parent.getX(), centre.getY() + parent.getY());
+    public Vector2f getCentreAbsolute(Transform parent) {
+        return new Vector2f(centre.getX() + parent.getX(), centre.getY() + parent.getY());
     }
 
-    public Coordinates2f getCentre() {
+    public Vector2f getCentre() {
         return centre;
     }
 
-    public void setCentre(Coordinates2f centre) {
+    public void setCentre(Vector2f centre) {
         this.centre = centre;
     }
 

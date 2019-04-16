@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * This class is an abstract label-like implementation of the class {@link TextElement}
@@ -27,7 +27,7 @@ import de.edgelord.saltyengine.transform.Coordinates2f;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Label extends TextElement {
 
-    public Label(String text, Coordinates2f position, float width, float height) {
+    public Label(String text, Vector2f position, float width, float height) {
         super(text, position, width, height, LABEL);
     }
 }

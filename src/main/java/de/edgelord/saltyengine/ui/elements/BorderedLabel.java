@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 
@@ -29,12 +29,12 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class BorderedLabel extends Label {
 
-    public BorderedLabel(String text, Coordinates2f position, float width, float height) {
+    public BorderedLabel(String text, Vector2f position, float width, float height) {
         super(text, position, width, height);
     }
 
     public BorderedLabel(String text, float x, float y, float width, float height) {
-        this(text, new Coordinates2f(x, y), width, height);
+        this(text, new Vector2f(x, y), width, height);
     }
 
     @Override

@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.MouseEvent;
 
@@ -29,7 +29,7 @@ public abstract class TexturedButton extends Button {
     private boolean drawText = true;
     private SaltyImage texture;
 
-    public TexturedButton(String text, Coordinates2f position, int width, int height, SaltyImage texture) {
+    public TexturedButton(String text, Vector2f position, int width, int height, SaltyImage texture) {
         super(text, position, width, height);
 
         this.texture = texture;

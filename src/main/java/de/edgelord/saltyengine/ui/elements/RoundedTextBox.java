@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Transform;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
@@ -27,10 +27,10 @@ public class RoundedTextBox extends TextBox {
     private float arc = 15f;
 
     public RoundedTextBox(String text, float x, float y, float width, float height, float offsetX, float offsetY) {
-        this(text, new Transform(x, y, width, height), new Coordinates2f(offsetX, offsetY));
+        this(text, new Transform(x, y, width, height), new Vector2f(offsetX, offsetY));
     }
 
-    public RoundedTextBox(String text, Transform transform, Coordinates2f offset) {
+    public RoundedTextBox(String text, Transform transform, Vector2f offset) {
         super(text, transform, offset.getX(), offset.getY());
     }
 

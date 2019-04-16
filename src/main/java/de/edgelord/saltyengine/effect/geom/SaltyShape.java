@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.transform.Coordinates2f;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
@@ -45,7 +45,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
         this.transform = transform;
     }
 
-    public SaltyShape(Coordinates2f position, Dimensions dimensions, EnumShape shapeType) {
+    public SaltyShape(Vector2f position, Dimensions dimensions, EnumShape shapeType) {
         this(new Transform(position, dimensions), shapeType);
     }
 
@@ -99,8 +99,8 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     }
 
     public void drawAtZero(Graphics2D graphics) {
-        Coordinates2f pos = getPosition();
-        setPosition(Coordinates2f.zero());
+        Vector2f pos = getPosition();
+        setPosition(Vector2f.zero());
         draw(new SaltyGraphics(graphics));
         setPosition(pos);
     }
