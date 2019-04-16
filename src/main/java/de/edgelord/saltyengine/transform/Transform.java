@@ -21,28 +21,122 @@ import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.Rectangle2D;
 
+/**
+ * This class resembles a rectangle with a {@link #position}, {@link #dimensions} and a {@link #rotation}.
+ */
 public class Transform {
 
+    /**
+     * The position of this <code>Transform</code>.
+     */
     private Coordinates2f position;
+
+    /**
+     * The {@link Dimensions} of this <code>Transform</code>.
+     */
     private Dimensions dimensions;
+
+    /**
+     * The {@link Rotation} of this <code>Transform</code>.
+     */
     private Rotation rotation;
 
+    /**
+     * The base constructor.
+     *
+     * @param position the {@link #position}
+     * @param dimensions the {@link #dimensions}
+     */
     public Transform(Coordinates2f position, Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
         this.rotation = new Rotation(getWidth() / 2f, getHeight() / 2f);
     }
 
+    /**
+     * A constructor.
+     *
+     * @param x the x position
+     * @param y the y position
+     * @param width the width
+     * @param height the height
+     *
+     * @see #Transform(Coordinates2f, Dimensions)
+     */
     public Transform(float x, float y, float width, float height) {
         this(new Coordinates2f(x, y), new Dimensions(width, height));
     }
 
+    /**
+     * Constructs a new instance by adapting the values of the given {@link Rectangle2D}.
+     *
+     * @param rect the rectangle
+     *
+     * @see #Transform(Coordinates2f, Dimensions)
+     */
     public Transform(Rectangle2D rect) {
         this(new Coordinates2f((float) rect.getX(), (float) rect.getY()), new Dimensions((float) rect.getWidth(), (float) rect.getHeight()));
     }
 
     /**
-     * Returns whether the rectangle described by this Transform intersects the one
+     * Returns a new <code>Transform</code> with {@link Coordinates2f#zero()} and {@link Dimensions#zero()}.
+     *
+     * @return a new <code>Transform</code> where everything is <code>0f</code>
+     */
+    public static Transform zero() {
+        return new Transform(Coordinates2f.zero(), Dimensions.zero());
+    }
+
+    /**
+     * Returns a new <code>Transform</code> with {@link Coordinates2f#max()} and {@link Dimensions#max()}.
+     *
+     * @return a new <code>Transform</code> with max values for position and dimensions
+     */
+    public static Transform max() {
+        return new Transform(Coordinates2f.max(), Dimensions.max());
+    }
+
+    /**
+     * Returns a new <code>Transform</code> with {@link Coordinates2f#min()} and {@link Dimensions#min()}.
+     *
+     * @return a new <code>Transform</code> with min values for position and dimensions
+     */
+    public static Transform min() {
+        return new Transform(Coordinates2f.min(), Dimensions.min());
+    }
+
+    /**
+     * Returns a new random <code>Transform</code>.
+     *
+     * @param posMin the min value for the position
+     * @param posMax the max value for the position
+     * @param dimMin the min value for the dimensions
+     * @param dimMax the max value for the dimensions
+     * @return a new random <code>Transform</code>
+     *
+     * @see Coordinates2f#random(int, int)
+     * @see Dimensions#random(int, int)
+     */
+    public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
+        return new Transform(Coordinates2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
+    }
+
+    /**
+     * Returns a new random <code>Transform</code>.
+     *
+     * @param min the min value
+     * @param max the max value
+     * @return a new random <code>Transform</code>
+     *
+     * @see Coordinates2f#random(int, int)
+     * @see Dimensions#random(int, int)
+     */
+    public static Transform random(int min, int max) {
+        return random(min, max, min, max);
+    }
+
+    /**
+     * Returns whether the rectangle described by this <code>Transform</code> intersects the one
      * of the given.
      *
      * @param other the other Transform
@@ -74,7 +168,7 @@ public class Transform {
     /**
      * Returns whether this transform is on screen or not, considering the position of the {@link Game#getCamera()}
      *
-     * @return whether the rectangle described by this transform is visible or not.
+     * @return whether the rectangle described by this transform is inside the view of the {@link Game#getCamera() camera} or not
      */
     public boolean isVisible() {
         return intersects(new Transform(Game.getCamera().getPosition(), Game.getGameDimensions()));
@@ -82,9 +176,9 @@ public class Transform {
 
     /**
      * Returns true if the rectangle described by the given Transform is
-     * completely within this.
+     * completely within this <code>Transform</code>.
      *
-     * @param other the Transform to test containing from
+     * @param other the other <code>Transform</code>
      * @return whether this rectangle contains the given
      * @see Rectangle2D#contains(Rectangle2D)
      */
@@ -93,9 +187,10 @@ public class Transform {
     }
 
     /**
-     * Return the relation between two non-intersecting <code>Transform</code>s;
-     * <code>this</code> and the given. This method only looks at the horizontal axis,
-     * so it'll return whether {@link de.edgelord.saltyengine.utils.Directions.Direction#RIGHT}
+     * Returns the relation between two non-intersecting <code>Transform</code>s;
+     * <code>this</code> and the given. <br>
+     * This method only considers the horizontal axis,
+     * so it'll return either {@link de.edgelord.saltyengine.utils.Directions.Direction#RIGHT}
      * or {@link de.edgelord.saltyengine.utils.Directions.Direction#LEFT}
      *
      * @param other another <code>Transform</code>
@@ -113,9 +208,10 @@ public class Transform {
     }
 
     /**
-     * Return the relation between two non-intersecting <code>Transform</code>s;
-     * <code>this</code> and the given. This method only looks at the vertical axis,
-     * so it'll return whether {@link de.edgelord.saltyengine.utils.Directions.Direction#UP}
+     * Returns the relation between two non-intersecting <code>Transform</code>s;
+     * <code>this</code> and the given. <br>
+     * This method only considers the vertical axis,
+     * so it'll return either {@link de.edgelord.saltyengine.utils.Directions.Direction#UP}
      * or {@link de.edgelord.saltyengine.utils.Directions.Direction#DOWN}
      *
      * @param other another <code>Transform</code>
@@ -136,10 +232,10 @@ public class Transform {
      * This method returns the relation between this and the given {@link Transform} as a Direction.
      * That'll only work properly if the two Transforms intersect.
      *
-     * @param other the <code>gameObject</code> from which the relation to
+     * @param other the <code>Transform</code> from which the relation to
      *              <code>this</code> will be returned
      * @return the relation between the two {@link Transform}s as a Direction from
-     * the perspective of <code>root</code>.
+     * the perspective of this <code>Transform</code>
      */
     public Directions.Direction getRelation(final Transform other) {
 
@@ -172,69 +268,161 @@ public class Transform {
         return Directions.Direction.EMPTY;
     }
 
+    /**
+     * Positions this <code>Transform</code> centre at the given {@link Coordinates2f}.
+     *
+     * @param centre the next centre of this <code>Transform</code>
+     */
     public void positionByCentre(Coordinates2f centre) {
         float centreShiftX = getWidth() / 2f;
         float centreShiftY = getHeight() / 2;
         position = new Coordinates2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
     }
 
+    /**
+     * Returns the centre of the rectangle described by this <code>Transform</code>.
+     * <p>
+     * <code>centre(x) = getX() + getWidth() / 2f</code>
+     * <code>centre(y) = getY() + getHeight() / 2f</code>
+     *
+     * @return the centre of this <code>Transform</code>
+     */
     public Coordinates2f getCentre() {
         return new Coordinates2f(getX() + getWidth() / 2f, getY() + getHeight() / 2f);
     }
 
+    /**
+     * Rotats this <code>Transform</code> to directly face the given {@link Coordinates2f point}.
+     *
+     * @param point the point to rotate to
+     */
     public void rotateToPoint(Coordinates2f point) {
         rotation.rotateToPoint(point, this);
     }
 
+    /**
+     * Calls {@link #rotateToPoint(Coordinates2f)} to make this <code>Transform</code> face the given point.
+     *
+     * @param x the x position of the point
+     * @param y the y position od the point
+     *
+     * @see  #rotateToPoint(Coordinates2f)
+     */
     public void rotateToPoint(float x, float y) {
         rotation.rotateToPoint(x, y, this);
     }
 
+    /**
+     * Returns a {@link Rectangle2D} with the exact position and dimensions of this <code>Transform</code>.
+     *
+     * @return a {@link Rectangle2D} that resembles this <code>Transform</code> without rotation
+     */
     public Rectangle2D getRect() {
         return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
     }
 
+    /**
+     * Returns the width of this <code>Transform</code>.
+     *
+     * @return the width of this <code>Transform</code>
+     *
+     * @see Dimensions#getWidth()
+     */
     public float getWidth() {
         return dimensions.getWidth();
     }
 
+    /**
+     * Returns the width of this <code>Transform</code> rounded to an integer.
+     *
+     * @return the width of this <code>Transform</code> rounded to an integer
+     *
+     * @see Dimensions#getWidth()
+     * @see Math#round(float)
+     */
     public int getWidthAsInt() {
-        return (int) dimensions.getWidth();
+        return Math.round(getWidth());
     }
 
+    /**
+     * Sets the width of the {@link #dimensions}.
+     *
+     * @param width the new width
+     */
     public void setWidth(float width) {
         dimensions.setWidth(width);
     }
 
+    /**
+     * Returns the height of this <code>Transform</code>.
+     *
+     * @return the height of this <code>Transform</code>
+     *
+     * @see Dimensions#getHeight() ()
+     */
     public float getHeight() {
         return dimensions.getHeight();
     }
 
+    /**
+     * Returns the height of this <code>Transform</code> rounded to an integer.
+     *
+     * @return the height of this <code>Transform</code> rounded to an integer
+     *
+     * @see Dimensions#getHeight()
+     * @see Math#round(float)
+     */
     public int getHeightAsInt() {
-        return (int) dimensions.getHeight();
+        return Math.round(getHeight());
     }
 
+    /**
+     * Sets the height of the {@link #dimensions}.
+     *
+     * @param height the new height
+     */
     public void setHeight(float height) {
         dimensions.setHeight(height);
     }
 
+    /**
+     * Returns the height of this <code>Transform</code>.
+     *
+     * @return the height of this <code>Transform</code>
+     *
+     * @see Dimensions#getHeight()
+     */
     public float getX() {
         return position.getX();
     }
 
     /**
-     * @return the maximum x value of the rectangle described by this Transform. That position is
-     * <p>
-     * {@code x + width}
+     * Returns the maximum x value of this rectangle, which is {@code x + width}.
+     *
+     * @return the maximum x value of the rectangle described by this Transform
      */
     public float getMaxX() {
         return getX() + getWidth();
     }
 
+    /**
+     * Sets the x position of this <code>Transform</code>.
+     *
+     * @param x the new value of this <code>Transform</code>'s x position
+     *
+     * @see Coordinates2f#setX(float)
+     */
     public void setX(float x) {
         position.setX(x);
     }
 
+    /**
+     * Returns the width of this <code>Transform</code>.
+     *
+     * @return the width of this <code>Transform</code>
+     *
+     * @see Dimensions#getWidth()
+     */
     public float getY() {
         return position.getY();
     }
@@ -248,108 +436,143 @@ public class Transform {
         return getY() + getHeight();
     }
 
+    /**
+     * Sets the y position of this <code>Transform</code>.
+     *
+     * @param y the new value of this <code>Transform</code>'s y position
+     *
+     * @see Coordinates2f#setY(float)
+     */
     public void setY(float y) {
         position.setY(y);
     }
 
+    /**
+     * Returns the {@link #position} as {@link Coordinates}.
+     *
+     * @return {@link #position} as {@link Coordinates}
+     *
+     * @see Coordinates2f#convertToCoordinates()
+     */
     public Coordinates getCoordinates() {
         return position.convertToCoordinates();
     }
 
-    public Coordinates2f getPosition() {
-        return position;
-    }
-
-    public void setPosition(Coordinates2f position) {
-        this.position = position;
-    }
-
-    public Dimensions getDimensions() {
-        return dimensions;
-    }
-
-    public void setDimensions(Dimensions dimensions) {
-        this.dimensions = dimensions;
-    }
-
-    public Rotation getRotation() {
-        return rotation;
-    }
-
-    public void setRotation(Rotation rotation) {
-        this.rotation = rotation;
-    }
-
+    /**
+     * Returns the absolute position of the centre of rotation of this <code>Transform</code>'s {@link #rotation}.
+     *
+     * @return the absolute position of the rotation of this <code>Transform</code>
+     *
+     * @see Rotation#getCentreAbsolute(Transform)
+     */
     public Coordinates2f getRotationCentreAbsolute() {
         return rotation.getCentreAbsolute(this);
     }
 
+    /**
+     * Returns the degrees by which this <code>Transform</code> is rotated.
+     *
+     * @return the rotation of this <code>Transform</code>
+     *
+     * @see Rotation#getRotationDegrees()
+     */
     public float getRotationDegrees() {
         return rotation.getRotationDegrees();
     }
 
+    /**
+     * Sets the degrees by which this <code>Transform</code> is rotated.
+     *
+     * @param rotationDegrees the nex rotation
+     */
     public void setRotationDegrees(float rotationDegrees) {
         rotation.setRotationDegrees(rotationDegrees);
     }
 
+    /**
+     * Returns the centre of {@link #rotation} relative to the {@link #position}.
+     *
+     * @return the relative rotation centre
+     * @see Rotation#getCentre()
+     * @see #getRotationCentreAbsolute()
+     */
     public Coordinates2f getRotationCentre() {
         return rotation.getCentre();
     }
 
+    /**
+     * Sets the centre of {@link #rotation} relative to the {@link #position}.
+     *
+     * @param rotationCentre the nex relative rotation centre
+     *
+     * @see Rotation#setCentre(Coordinates2f)
+     */
     public void setRotationCentre(Coordinates2f rotationCentre) {
         rotation.setCentre(rotationCentre);
     }
 
-    public void setRotationCentreToMiddle() {
+    /**
+     * Sets the centre of {@link #rotation} to the centre.
+     *
+     * @see #setRotationCentre(Coordinates2f)
+     * @see #getCentre()
+     */
+    public void setRotationCentreToCentre() {
         rotation.setCentre(new Coordinates2f(getWidth() / 2f, getHeight() / 2f));
     }
 
-    public static Transform zero() {
-        return new Transform(Coordinates2f.zero(), Dimensions.zero());
+    /**
+     * Gets {@link #position}.
+     *
+     * @return the value of {@link #position}
+     */
+    public Coordinates2f getPosition() {
+        return position;
     }
 
-    public static Transform max() {
-        return new Transform(Coordinates2f.max(), Dimensions.max());
+    /**
+     * Sets {@link #position)}.
+     *
+     * @param position the new value of {@link #position}
+     */
+    public void setPosition(Coordinates2f position) {
+        this.position = position;
     }
 
-    public static Transform min() {
-        return new Transform(Coordinates2f.min(), Dimensions.min());
+    /**
+     * Gets {@link #dimensions}.
+     *
+     * @return the value of {@link #dimensions}
+     */
+    public Dimensions getDimensions() {
+        return dimensions;
     }
 
-    public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
-        return new Transform(Coordinates2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
+    /**
+     * Sets {@link #dimensions)}.
+     *
+     * @param dimensions the new value of {@link #dimensions}
+     */
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
     }
 
-    public static Transform random(int min, int max) {
-        return random(min, max, min, max);
+    /**
+     * Gets {@link #rotation}.
+     *
+     * @return the value of {@link #rotation}
+     */
+    public Rotation getRotation() {
+        return rotation;
     }
 
-    public static Transform random(int bound) {
-        return random(bound, bound, bound, bound);
-    }
-
-    public Transform addToPosition(float xDelta, float yDelta) {
-        Transform newTransform = new Transform((Coordinates2f) position.clone(), (Dimensions) dimensions.clone());
-
-        newTransform.position.add(xDelta, yDelta);
-
-        return newTransform;
-    }
-
-    public Transform addToPosition(Coordinates2f delta) {
-        return addToPosition(delta.getX(), delta.getY());
-    }
-
-    public Transform subtractFromPosition(float xDelta, float yDelta) {
-        Transform newTransform = new Transform((Coordinates2f) position.clone(), (Dimensions) getDimensions().clone());
-
-        newTransform.getPosition().subtract(xDelta, yDelta);
-
-        return newTransform;
-    }
-
-    public Transform subtractFromPosition(Coordinates2f delta) {
-        return subtractFromPosition(delta.getX(), delta.getY());
+    /**
+     * Sets {@link #rotation)}.
+     *
+     * @param rotation the new value of {@link #rotation}
+     */
+    public void setRotation(Rotation rotation) {
+        this.rotation = rotation;
     }
 
     @Override

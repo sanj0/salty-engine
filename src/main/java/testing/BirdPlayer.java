@@ -128,7 +128,7 @@ public class BirdPlayer extends GameObject implements Serializable {
             component.impact();
         }
 
-        getTransform().setRotationCentreToMiddle();
+        getTransform().setRotationCentreToCentre();
 
         accelerateTo(speed, Input.getInput());
 

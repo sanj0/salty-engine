@@ -123,7 +123,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      *
      * @param stm             the file
      * @param position        the position of the tilemap in user-space
-     * @param drawingPosition whether to draw it before or after the {@link GameObject}s etc.
+     * @param drawingPosition either to draw it before or after the {@link GameObject}s etc.
      * @return a new {@link StaticTileGrid}
      * @throws IOException when the file can't be read
      */

@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**
- * Locks its parent to the given {@link Transform} by using whether its {@link de.edgelord.saltyengine.hitbox.Hitbox} or its {@link Transform}.
+ * Locks its parent to the given {@link Transform} by using either its {@link de.edgelord.saltyengine.hitbox.Hitbox} or its {@link Transform}.
  * What to use is defined in {@link #mode}. The default is {@link #MODE_TRANSFORM}
  */
 public class LockToBounds extends Component<GameObject> {

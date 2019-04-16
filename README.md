@@ -48,7 +48,7 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 - ... (probably missed some points here) ...
 
 # Build instructions
-To get a usable JAR of this library, you can whether download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
+To get a usable JAR of this library, you can either download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
 
 0. Requirements:
     - [git](https://git-scm.com) has to be installed properly
@@ -86,7 +86,7 @@ To get a usable JAR of this library, you can whether download an existing releas
    ./mvnw clean install
    ```
 
-4. You can now whether use maven to get the lib into the build path of your project (recommended) or use the built JAR directly.
+4. You can now either use maven to get the lib into the build path of your project (recommended) or use the built JAR directly.
    For maven, add the following to your `pom.xml`:
 
    ```xml
