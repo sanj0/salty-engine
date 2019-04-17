@@ -22,7 +22,7 @@ Minimal **tested** hardware requirements made possible by [JProfiler, a java pro
 You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)` (or with the fps in front), but consider using one to support us :)
 
 
-### Pro:
+### Features (at least some of them):
 - simple Display management
 - have the game in a panel inside your own window if you want
 - easy rendering process with ```SaltyGraphics```
@@ -41,11 +41,6 @@ You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)
 - Keyboard and mouse input as simple as possible for the developer
 - JavaDoc for unclear/complicated methods, fields and classes
 - **examples of the basics within the library** (package `testing` and `example`)
-
-### Contra:
-- the physics are too simple for some games (only rectangular hitboxes, no rotation by the physics...)
-- mostly no JavaDoc
-- ... (probably missed some points here) ...
 
 # Build instructions
 To get a usable JAR of this library, you can either download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
@@ -111,6 +106,7 @@ To get a usable JAR of this library, you can either download an existing release
 
 # How to use Salty Engine
 
+You can very easily start a Salty Engine game project using [this](https://www.github.com/edgelord314/salty-engine-setup) tool. It basically creates a runnable project template.
 There is a series of videos uploaded to YouTube that exaplain how to use Salty Engine
 
 1. [How to install Salty Engine](https://youtu.be/7rQp3EQbX_k)
