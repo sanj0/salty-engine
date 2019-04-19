@@ -531,7 +531,7 @@ public class Transform {
     }
 
     /**
-     * Sets {@link #position)}.
+     * Sets {@link #position}.
      *
      * @param position the new value of {@link #position}
      */
@@ -549,7 +549,7 @@ public class Transform {
     }
 
     /**
-     * Sets {@link #dimensions)}.
+     * Sets {@link #dimensions}.
      *
      * @param dimensions the new value of {@link #dimensions}
      */
@@ -567,7 +567,7 @@ public class Transform {
     }
 
     /**
-     * Sets {@link #rotation)}.
+     * Sets {@link #rotation}.
      *
      * @param rotation the new value of {@link #rotation}
      */

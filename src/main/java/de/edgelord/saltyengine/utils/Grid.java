@@ -166,7 +166,7 @@ public class Grid {
     }
 
     /**
-     * Sets {@link #origin)}.
+     * Sets {@link #origin}.
      *
      * @param origin the new value of {@link #origin}
      */
