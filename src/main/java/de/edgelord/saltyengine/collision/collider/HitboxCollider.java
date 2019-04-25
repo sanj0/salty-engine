@@ -47,9 +47,7 @@ public class HitboxCollider extends Collider {
     public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
 
         Hitbox hitbox1 = object1.getHitbox();
-        hitbox1.recalculate();
         Hitbox hitbox2 = object2.getHitbox();
-        hitbox2.recalculate();
 
         return new CollisionDetectionResult(hitbox1.collides(object2), hitbox1.getTransform().getRelation(hitbox2.getTransform()));
     }

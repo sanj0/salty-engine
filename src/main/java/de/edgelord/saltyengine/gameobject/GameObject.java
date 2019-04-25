@@ -252,7 +252,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method is used internally to call {@link #onFixedTick()} and do some stuff with the physics.
+     * This method is used internally to call {@link #onFixedTick()} and do some stuff with the physics as well as {@link Hitbox#recalculate() updating} the {@link #hitbox}.
      */
     public void doFixedTick() {
         // Remove acceleration from default forces
@@ -267,6 +267,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(0f);
 
+        hitbox.recalculate();
         onFixedTick();
     }
 

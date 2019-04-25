@@ -26,6 +26,8 @@ import java.awt.*;
 
 public class DrawHitboxComponent extends Component<GameObject> {
 
+    private static Color color = new Color(1, 0, 0, 0.25f);
+
     public DrawHitboxComponent(GameObject parent, String name) {
         super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);
     }
@@ -38,9 +40,9 @@ public class DrawHitboxComponent extends Component<GameObject> {
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
-        saltyGraphics.setColor(new Color(1, 0, 0, 0.25f));
-
-        saltyGraphics.drawRect(getParent().getHitbox().getTransform().getPosition().getX(), getParent().getHitbox().getTransform().getPosition().getY(), getParent().getHitbox().getTransform().getWidth(), getParent().getHitbox().getTransform().getHeight());
+        saltyGraphics.resetObjectRotation(getParent());
+        saltyGraphics.setColor(color);
+        saltyGraphics.drawRect(getParent().getHitbox().getTransform());
     }
 
     @Override

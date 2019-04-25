@@ -234,10 +234,20 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         this.gravityForThisEnabled = enabled;
     }
 
+    /**
+     * Gets {@link #threshold}.
+     *
+     * @return the value of {@link #threshold}
+     */
     public float getThreshold() {
         return threshold;
     }
 
+    /**
+     * Sets {@link #threshold}.
+     *
+     * @param threshold the new value of {@link #threshold}
+     */
     public void setThreshold(float threshold) {
         this.threshold = threshold;
     }
