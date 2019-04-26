@@ -28,6 +28,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -71,6 +72,12 @@ public class Game {
      * for the user of this library and in terms of rendering for this library.
      */
     private static Dimensions gameDimensions;
+
+    /**
+     * The centre point of the game. <br>
+     * centre C(width / 2 | height / 2)
+     */
+    private static Vector2f centre;
 
     /**
      * Proposes the <code>Host</code> either to draw the FPS {@link Time#getFPS()} or not.
@@ -121,6 +128,7 @@ public class Game {
     }
 
     private static void initSaltySystem(String gameName) {
+        centre = new Vector2f(gameDimensions.getWidth() / 2f, gameDimensions.getHeight() / 2f);
         Game.gameName = gameName;
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
@@ -269,6 +277,10 @@ public class Game {
 
     public static void setCamera(Camera camera) {
         Game.camera = camera;
+    }
+
+    public static Vector2f getCentre() {
+        return centre;
     }
 
     /**

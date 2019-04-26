@@ -138,17 +138,18 @@ public class SceneFade extends SceneGFXComponent {
      */
     public void fadeInit() {
 
-        if (mode == Mode.FADE_OUT) {
-            currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), 0);
-            currentAlpha = 0;
-        } else {
-            currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), 255);
-            currentAlpha = 255;
-        }
-
         fadeFX = new LinearKeyframeAnimation();
 
-        fadeFX.add(duration, 255);
+        if (mode == Mode.FADE_OUT) {
+            currentAlpha = 0;
+            fadeFX.add(duration, 255);
+        } else {
+            currentAlpha = 255;
+            fadeFX.add(0, 255);
+            fadeFX.add(duration, 0);
+        }
+
+        currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), (int) currentAlpha);
         fadeFX.calculateAnimation();
     }
 
@@ -178,15 +179,7 @@ public class SceneFade extends SceneGFXComponent {
                 return;
             }
 
-            switch (mode) {
-
-                case FADE_IN:
-                    currentAlpha -= alphaDelta;
-                    break;
-                case FADE_OUT:
-                    currentAlpha += alphaDelta;
-                    break;
-            }
+            currentAlpha += alphaDelta;
             currentColor = new Color(targetColor.getRed(), targetColor.getGreen(), targetColor.getBlue(), (int) (currentAlpha));
         }
     }

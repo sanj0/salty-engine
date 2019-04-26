@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.effect.image;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Disposable;
 import de.edgelord.saltyengine.effect.Cosmetic;
+import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageUtils;
@@ -71,6 +72,16 @@ public class SaltyImage implements Cosmetic, Disposable {
         producer.produceImage(image);
     }
 
+    /**
+     * Creates a new instance with the image located at the given path relative to the project root.
+     * The image is obtained using {@link SaltySystem#defaultImageFactory}.
+     *
+     * @param path the relative path of image
+     */
+    public SaltyImage(String path) {
+        this(SaltySystem.defaultImageFactory.getBufferedImageResource(path));
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
         saltyGraphics.drawImage(this, position, new Dimensions(width, height));
@@ -117,6 +128,7 @@ public class SaltyImage implements Cosmetic, Disposable {
      * Saves the current state of the {@link VolatileImage} to a new {@link ImageProducer} meaning that every custom drawing
      * to the image will be reproduced after a loss of content.
      */
+    @Deprecated
     public void saveImage() {
         producer = ImageProducer.fromBufferedImage(getSnapshot());
     }
@@ -163,6 +175,10 @@ public class SaltyImage implements Cosmetic, Disposable {
 
     public int getHeight(ImageObserver observer) {
         return image.getHeight(observer);
+    }
+
+    public Dimensions getDimensions() {
+        return new Dimensions(getWidth(), getHeight());
     }
 
     public Object getProperty(String name, ImageObserver observer) {
