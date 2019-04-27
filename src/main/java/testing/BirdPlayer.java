@@ -120,6 +120,9 @@ public class BirdPlayer extends GameObject implements Serializable {
         // a very bad and slow call for lazy developers
         DeflectionOnMouseOverComponent component = (DeflectionOnMouseOverComponent) getComponent("deflection");
 
+        if (Input.getKeyboardInput().isSpace()) {
+        }
+
         if (Input.getKeyboardInput().isKey_y()) {
             component.cancel();
         }

@@ -187,6 +187,19 @@ public class Transform {
     }
 
     /**
+     * Returns <code>true</code> if the given point is inside the rectangle described by this <code>Transform</code>.
+     *
+     * @param point the point
+     * @return whether the given point is inside the rectangle described by this <code>Transform</code> or not
+     *
+     * @see #getRect()
+     * @see Rectangle2D#contains(double, double)
+     */
+    public boolean contains(Vector2f point) {
+        return getRect().contains(point.getX(), point.getY());
+    }
+
+    /**
      * Returns the relation between two non-intersecting <code>Transform</code>s;
      * <code>this</code> and the given. <br>
      * This method only considers the horizontal axis,

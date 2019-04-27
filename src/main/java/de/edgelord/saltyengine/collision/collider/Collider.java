@@ -52,6 +52,11 @@ public abstract class Collider {
     public static final String SHAPE_COLLIDER = "de.edgelord.saltyengine.collision.collider.ShapeCollider";
 
     /**
+     * The name of the {@link CircleCollider}.
+     */
+    public static final String CIRCLE_COLLIDER = "de.edgelord.saltyengine.collision.collider.CircleCollider";
+
+    /**
      * The constructor.
      *
      * @param priority the priority of this collider

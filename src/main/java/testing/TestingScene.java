@@ -16,13 +16,16 @@
 
 package testing;
 
+import de.edgelord.saltyengine.collision.collider.CircleCollider;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.factory.ImageFactory;
+import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.io.serialization.Serializer;
@@ -59,6 +62,17 @@ public class TestingScene extends Scene {
         addUI();
 
         disableGravity();
+
+        addGameObject(new EmptyGameObject(50, 50, 100, 100, "test-circle-intersection") {
+            {
+                setCollider(new CircleCollider());
+            }
+
+            @Override
+            public void draw(SaltyGraphics saltyGraphics) {
+                saltyGraphics.drawOval(this);
+            }
+        });
 
         /*
         try {
