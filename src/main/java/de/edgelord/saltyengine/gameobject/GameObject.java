@@ -39,6 +39,7 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -113,6 +114,11 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private boolean initialized = false;
 
     /**
+     * A list of tags that the collision detection should ignore in order to save performance.
+     */
+    private List<String> collisionDetectionIgnore = new LinkedList<>();
+
+    /**
      * The base constructor.
      *
      * @param xPos   the x position in the scene
@@ -172,7 +178,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param position the position
      * @param width    th width
      * @param height   the height
-     * @param tag      the tag
+     * @param tag      the tagfranziska_covert_songs
      */
     public GameObject(Vector2f position, float width, float height, String tag) {
         this(position.getX(), position.getY(), width, height, tag);
@@ -271,7 +277,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         onFixedTick();
     }
 
-    /**
+    /**franziska_covert_songs
      * This is used internally to handle the event of the cursor entering this <code>GameObject</code>.
      */
     public final void doCursorEnters() {
@@ -566,5 +572,13 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setClearCollisions(boolean clearCollisions) {
         this.clearCollisions = clearCollisions;
+    }
+
+    public List<String> getCollisionDetectionIgnore() {
+        return collisionDetectionIgnore;
+    }
+
+    public void setCollisionDetectionIgnore(List<String> collisionDetectionIgnore) {
+        this.collisionDetectionIgnore = collisionDetectionIgnore;
     }
 }

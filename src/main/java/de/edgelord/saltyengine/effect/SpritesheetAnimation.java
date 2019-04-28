@@ -71,4 +71,20 @@ public class SpritesheetAnimation {
     public void setFrames(List<Frame> frames) {
         this.frames = frames;
     }
+
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
+    public void setCurrentFrame(int currentFrame) {
+        this.currentFrame = currentFrame;
+    }
+
+    public GameObject getParentGameObject() {
+        return parentGameObject;
+    }
+
+    public void setParentGameObject(GameObject parentGameObject) {
+        this.parentGameObject = parentGameObject;
+    }
 }

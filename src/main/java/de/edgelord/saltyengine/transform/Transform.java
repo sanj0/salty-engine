@@ -19,6 +19,8 @@ package de.edgelord.saltyengine.transform;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.utils.Directions;
 
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -332,6 +334,23 @@ public class Transform {
      */
     public Rectangle2D getRect() {
         return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
+    }
+
+    /**
+     * Returns a rotated instance of {@link #getRect()}.
+     *
+     * @return a {@link Shape} that resembles this <code>Transform</code> with rotation
+     *
+     * @see #getRect()
+     * @see AffineTransform
+     */
+    public Shape getTransformedRect() {
+
+        Vector2f centre = getRotationCentreAbsolute();
+
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(Math.toRadians(Rotation.getNormalizedDegrees(getRotationDegrees())), centre.getX(), centre.getY());
+        return affineTransform.createTransformedShape(getRect());
     }
 
     /**

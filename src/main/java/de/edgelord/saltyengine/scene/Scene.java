@@ -239,19 +239,21 @@ public class Scene {
                         gameObject2.setClearCollisions(false);
                     }
 
-                    CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
+                    if (!gameObject.getCollisionDetectionIgnore().contains(gameObject2.getTag())) {
+                        CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
 
-                    if (collisionDetectionResult.isCollision()) {
-                        CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
-                        CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
+                        if (collisionDetectionResult.isCollision()) {
+                            CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
+                            CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
 
-                        gameObject.getCollisions().add(collision);
-                        gameObject.onCollision(collision);
-                        gameObject.getComponents().forEach(component -> component.onCollision(collision));
+                            gameObject.getCollisions().add(collision);
+                            gameObject.onCollision(collision);
+                            gameObject.getComponents().forEach(component -> component.onCollision(collision));
 
-                        gameObject2.onCollision(collision2);
-                        gameObject2.getCollisions().add(collision2);
-                        gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
+                            gameObject2.onCollision(collision2);
+                            gameObject2.getCollisions().add(collision2);
+                            gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
+                        }
                     }
                 }
 
