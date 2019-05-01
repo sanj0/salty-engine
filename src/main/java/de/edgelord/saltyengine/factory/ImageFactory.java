@@ -28,11 +28,12 @@ public class ImageFactory extends Factory {
         super(resource);
     }
 
+    @Deprecated
     public SaltyImage getImageResource(String relativePath) {
         return getResource().getImageResource(relativePath);
     }
 
-    public BufferedImage getBufferedImageResource(String relativePath) {
-        return ImageUtils.toBufferedImage(getImageResource(relativePath).getImage());
+    public SaltyImage getPreferredImageResource(String relativePath) {
+        return getResource().getImageResource(relativePath);
     }
 }

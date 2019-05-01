@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -41,7 +42,7 @@ public class InnerResource implements Resource {
         try (InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
 
             BufferedImage image = ImageIO.read(inputStream);
-            return new SaltyImage(image);
+            return SaltySystem.createPreferredImage(image);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -183,7 +183,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
         }
 
-        image = new SaltyImage(width, height);
+        image = SaltySystem.createPreferredImage(width, height);
         graphics = new SaltyGraphics(image.createGraphics());
 
         iterator = tiles.entrySet().iterator();
@@ -198,7 +198,6 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         }
         graphics.getGraphics2D().dispose();
 
-        image.saveImage();
         return image;
     }
 

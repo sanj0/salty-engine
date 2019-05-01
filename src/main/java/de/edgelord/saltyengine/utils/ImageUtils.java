@@ -55,24 +55,29 @@ public class ImageUtils {
     }
 
     /**
-     * Converts the given {@link BufferedImage} to a compatible, hardware-accelerated {@link VolatileImage}.
+     * Converts the given {@link Image} to a compatible, potentially hardware-accelerated {@link VolatileImage}.
      *
      * @param image the image source
      * @return the given image as a {@link VolatileImage}
      */
-    public static VolatileImage toVolatileImage(BufferedImage image) {
-        VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(), image.getHeight());
-        return copyTo(image, volatileImage);
+    public static VolatileImage toVolatileImage(Image image) {
+        VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
+        copyImageTo(image, volatileImage);
+
+        return volatileImage;
     }
 
     /**
-     * Convert the given {@link VolatileImage} to a {@link BufferedImage} using {@link VolatileImage#getSnapshot()}.
+     * Convert the given {@link Image} to a {@link BufferedImage}.
      *
      * @param image the image source
      * @return the given image as a {@link BufferedImage}
      */
-    public static BufferedImage toBufferedImage(VolatileImage image) {
-        return image.getSnapshot();
+    public static BufferedImage toBufferedImage(Image image) {
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()), BufferedImage.TYPE_INT_ARGB);
+        copyImageTo(image, bufferedImage);
+
+        return bufferedImage;
     }
 
     /**
@@ -110,11 +115,11 @@ public class ImageUtils {
     /**
      * Returns the {@link Dimensions} of the given image.
      *
-     * @param image the size of the given image as {@link Dimensions}
+     * @param image the image
      * @return the dimensions of the given image
      */
-    public static Dimensions getImageDimensions(VolatileImage image) {
-        return new Dimensions(image.getWidth(), image.getHeight());
+    public static Dimensions getImageDimensions(Image image) {
+        return new Dimensions(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
     }
 
     /**
@@ -127,7 +132,7 @@ public class ImageUtils {
      */
     public static SaltyImage createPrimitiveImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
 
-        SaltyImage image = new SaltyImage(size.getWidth(), size.getHeight());
+        SaltyImage image = SaltySystem.createPreferredImage(size.getWidth(), size.getHeight());
 
         Graphics2D graphics2D = image.createGraphics();
         graphics2D.setRenderingHints(renderingHints);
@@ -135,7 +140,6 @@ public class ImageUtils {
         drawable.draw(new SaltyGraphics(graphics2D));
         graphics2D.dispose();
 
-        image.saveImage();
         return image;
     }
 
@@ -158,7 +162,7 @@ public class ImageUtils {
      */
     public static SaltyImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
 
-        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getWidth());
+        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getWidth());
         Graphics2D graphics = (Graphics2D) image.getGraphics();
 
         if (graphicsPrepare != null) {
@@ -182,7 +186,6 @@ public class ImageUtils {
             shape.draw(new SaltyGraphics(graphics));
         }
 
-        image.saveImage();
         return image;
     }
 
@@ -230,7 +233,7 @@ public class ImageUtils {
      * @return a new image containing the given shape in the given color with the given quality
      */
     public static SaltyImage createShapeImage(SaltyShape shape, Color color, RenderingHints renderingHints) {
-        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getHeight());
+        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
 
         Graphics2D graphics = image.createGraphics();
         graphics.setColor(color);
@@ -238,7 +241,6 @@ public class ImageUtils {
         shape.drawAtZero(graphics);
         graphics.dispose();
 
-        image.saveImage();
         return image;
     }
 
@@ -251,7 +253,7 @@ public class ImageUtils {
      * @return a new {@link SaltyImage} with the given {@link SaltyShape} drawn onto.
      */
     public static SaltyImage createShapeImage(SaltyShape shape, Drawable graphicsPrepare) {
-        SaltyImage image = new SaltyImage(shape.getWidth(), shape.getHeight());
+        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
         SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
 
         graphicsPrepare.draw(graphics);
@@ -259,7 +261,6 @@ public class ImageUtils {
 
         graphics.getGraphics2D().dispose();
 
-        image.saveImage();
         return image;
     }
 

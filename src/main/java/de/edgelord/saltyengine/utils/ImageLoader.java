@@ -29,7 +29,7 @@ public class ImageLoader {
     /**
      * The default {@link BufferedImage} to be returned if the requested wasn't found.
      */
-    private static SaltyImage defaultImage = new SaltyImage(10, 10);
+    private static SaltyImage defaultImage = SaltySystem.createPreferredImage(10, 10);
 
     /**
      * This method will load a new Image with the given name into the map

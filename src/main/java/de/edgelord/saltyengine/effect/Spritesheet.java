@@ -19,15 +19,17 @@ package de.edgelord.saltyengine.effect;
 import de.edgelord.saltyengine.core.interfaces.Disposable;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.awt.image.VolatileImage;
 import java.io.File;
+import java.io.Flushable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Spritesheet implements Disposable {
+public class Spritesheet implements Flushable {
 
     private SaltyImage image = null;
     private int spriteWidth, spriteHeight;
@@ -58,7 +60,7 @@ public class Spritesheet implements Disposable {
         return frames;
     }
 
-    public VolatileImage getSprite(int id) {
+    public SaltyImage getSprite(int id) {
 
         Rectangle rectangle = spritePattern.getRectangle(id);
 
@@ -67,7 +69,7 @@ public class Spritesheet implements Disposable {
 
     public SaltyImage getManualSprite(int x, int y) {
 
-        return new SaltyImage(image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
+        return image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
     }
 
     public int getSpriteWidth() {
@@ -104,7 +106,7 @@ public class Spritesheet implements Disposable {
     }
 
     @Override
-    public void dispose() {
-        image.dispose();
+    public void flush() {
+        image.flush();
     }
 }

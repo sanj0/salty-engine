@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ColorUtil;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class LightSystem implements Drawable {
         this.lightMapColor = lightMapColor;
 
         Dimensions res = Game.getGameDimensions();
-        lightMap = new SaltyImage(res.getWidth(), res.getHeight());
+        lightMap = SaltySystem.createPreferredImage(res.getWidth(), res.getHeight());
         //plainLightMap = new BufferedImage((int) res.getWidth() + 500, (int) res.getHeight() + 500, BufferedImage.TYPE_INT_ARGB);
     }
 

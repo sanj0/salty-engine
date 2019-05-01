@@ -16,6 +16,9 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.effect.image.SaltyBufferedImage;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.effect.image.SaltyVolatileImage;
 import de.edgelord.saltyengine.factory.FontFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
@@ -35,6 +38,12 @@ public class SaltySystem {
     public static long fixedTickMillis = 1;
 
     public static GraphicsConfiguration gfxConfig = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+
+    /**
+     * The type of image that should be used by e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
+     * the {@link ImageUtils} and the {@link de.edgelord.saltyengine.components.rendering.PrimitivesRenderComponent}.
+     */
+    public static ImageType preferredImageType = ImageType.VOLATILE;
 
     public static InnerResource defaultResource = new InnerResource();
     public static OuterResource defaultHiddenOuterResource;
@@ -74,10 +83,77 @@ public class SaltySystem {
         }
     }
 
+    public static SaltyImage createPreferredImage(float width, float height) {
+
+        int imageWidth = Math.round(width);
+        int imageHeight = Math.round(height);
+
+        switch (preferredImageType) {
+            case BUFFERED:
+                return new SaltyBufferedImage(imageWidth, imageHeight);
+            case VOLATILE:
+                return new SaltyVolatileImage(width, height);
+        }
+
+        return null;
+    }
+
+    public static SaltyImage createPreferredImage(String path) {
+        switch (preferredImageType) {
+            case BUFFERED:
+                return new SaltyBufferedImage(path);
+            case VOLATILE:
+                return new SaltyVolatileImage(path);
+        }
+
+        return null;
+    }
+
+    public static SaltyImage toPreferredImage(SaltyImage source) {
+        switch (preferredImageType) {
+            case BUFFERED:
+                return new SaltyBufferedImage(source);
+            case VOLATILE:
+                return new SaltyVolatileImage(source);
+        }
+
+        return null;
+    }
+
+    public static SaltyImage createPreferredImage(Image source) {
+        switch (preferredImageType) {
+            case BUFFERED:
+                return new SaltyBufferedImage(source);
+            case VOLATILE:
+                return new SaltyVolatileImage(source);
+        }
+
+        return null;
+    }
+
     public enum VersionMode {
         SNAPSHOT,
         ALPHA,
         BETA,
         RELEASE
+    }
+
+    /**
+     * An enum to specify whether a {@link de.edgelord.saltyengine.effect.image.SaltyBufferedImage buffered image} or a
+     * {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage volatile image} should be used.
+     */
+    public enum ImageType {
+
+        /**
+         * A {@link de.edgelord.saltyengine.effect.image.SaltyBufferedImage buffered image} should be used. <br>
+         * While buffered images can potentially be a lot slower, they are stable and do not unload.
+         */
+        BUFFERED,
+
+        /**
+         * A {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage volatile image} should be used <br>
+         * While volatile images can potentially be a lot faster, they are volatile and therefore can be unloaded at any time.
+         */
+        VOLATILE
     }
 }

@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.systemdependentfiles.SystemDependentFiles;
 
 import javax.imageio.ImageIO;
@@ -49,7 +50,7 @@ public class OuterResource implements Resource {
     public SaltyImage getImageResource(String relativePath) {
 
         try {
-            return new SaltyImage(getImage(relativePath));
+            return SaltySystem.createPreferredImage(getImage(relativePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
