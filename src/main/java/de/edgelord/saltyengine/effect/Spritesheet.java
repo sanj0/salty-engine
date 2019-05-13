@@ -16,13 +16,10 @@
 
 package de.edgelord.saltyengine.effect;
 
-import de.edgelord.saltyengine.core.interfaces.Disposable;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.Flushable;
 import java.util.LinkedList;

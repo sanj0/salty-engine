@@ -20,10 +20,10 @@ import de.edgelord.saltyengine.core.interfaces.CentrePositionProvider;
 import de.edgelord.saltyengine.core.interfaces.Creatable;
 import de.edgelord.saltyengine.core.interfaces.CurrentDimensionsProvider;
 import de.edgelord.saltyengine.core.interfaces.Repaintable;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 /**
@@ -80,7 +80,7 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      *
      * @return a screenshot of the game
      */
-    public abstract BufferedImage getScreenshot();
+    public abstract SaltyImage getScreenshot();
 
     /**
      * This method toggles fullscreen mode. When this method is called and the game is not in fullscreen mode,

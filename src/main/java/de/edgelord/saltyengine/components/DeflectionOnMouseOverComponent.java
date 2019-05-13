@@ -22,8 +22,8 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * Uses a {@link LinearKeyframeAnimation} to make its parent grow and shrink again when the cursor touches is.

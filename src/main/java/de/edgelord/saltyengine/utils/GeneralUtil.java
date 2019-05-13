@@ -16,8 +16,8 @@
 
 package de.edgelord.saltyengine.utils;
 
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

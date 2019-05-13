@@ -44,7 +44,7 @@ public class Transform {
     /**
      * The base constructor.
      *
-     * @param position the {@link #position}
+     * @param position   the {@link #position}
      * @param dimensions the {@link #dimensions}
      */
     public Transform(Vector2f position, Dimensions dimensions) {
@@ -56,11 +56,10 @@ public class Transform {
     /**
      * A constructor.
      *
-     * @param x the x position
-     * @param y the y position
-     * @param width the width
+     * @param x      the x position
+     * @param y      the y position
+     * @param width  the width
      * @param height the height
-     *
      * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(float x, float y, float width, float height) {
@@ -71,7 +70,6 @@ public class Transform {
      * Constructs a new instance by adapting the values of the given {@link Rectangle2D}.
      *
      * @param rect the rectangle
-     *
      * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(Rectangle2D rect) {
@@ -113,7 +111,6 @@ public class Transform {
      * @param dimMin the min value for the dimensions
      * @param dimMax the max value for the dimensions
      * @return a new random <code>Transform</code>
-     *
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
@@ -127,7 +124,6 @@ public class Transform {
      * @param min the min value
      * @param max the max value
      * @return a new random <code>Transform</code>
-     *
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
@@ -305,8 +301,7 @@ public class Transform {
      *
      * @param x the x position of the point
      * @param y the y position od the point
-     *
-     * @see  #rotateToPoint(Vector2f)
+     * @see #rotateToPoint(Vector2f)
      */
     public void rotateToPoint(float x, float y) {
         rotation.rotateToPoint(x, y, this);
@@ -325,7 +320,6 @@ public class Transform {
      * Returns the width of this <code>Transform</code>.
      *
      * @return the width of this <code>Transform</code>
-     *
      * @see Dimensions#getWidth()
      */
     public float getWidth() {
@@ -336,7 +330,6 @@ public class Transform {
      * Returns the width of this <code>Transform</code> rounded to an integer.
      *
      * @return the width of this <code>Transform</code> rounded to an integer
-     *
      * @see Dimensions#getWidth()
      * @see Math#round(float)
      */
@@ -357,7 +350,6 @@ public class Transform {
      * Returns the height of this <code>Transform</code>.
      *
      * @return the height of this <code>Transform</code>
-     *
      * @see Dimensions#getHeight() ()
      */
     public float getHeight() {
@@ -368,7 +360,6 @@ public class Transform {
      * Returns the height of this <code>Transform</code> rounded to an integer.
      *
      * @return the height of this <code>Transform</code> rounded to an integer
-     *
      * @see Dimensions#getHeight()
      * @see Math#round(float)
      */
@@ -389,7 +380,6 @@ public class Transform {
      * Returns the height of this <code>Transform</code>.
      *
      * @return the height of this <code>Transform</code>
-     *
      * @see Dimensions#getHeight()
      */
     public float getX() {
@@ -409,7 +399,6 @@ public class Transform {
      * Sets the x position of this <code>Transform</code>.
      *
      * @param x the new value of this <code>Transform</code>'s x position
-     *
      * @see Vector2f#setX(float)
      */
     public void setX(float x) {
@@ -420,7 +409,6 @@ public class Transform {
      * Returns the width of this <code>Transform</code>.
      *
      * @return the width of this <code>Transform</code>
-     *
      * @see Dimensions#getWidth()
      */
     public float getY() {
@@ -440,7 +428,6 @@ public class Transform {
      * Sets the y position of this <code>Transform</code>.
      *
      * @param y the new value of this <code>Transform</code>'s y position
-     *
      * @see Vector2f#setY(float)
      */
     public void setY(float y) {
@@ -451,7 +438,6 @@ public class Transform {
      * Returns the {@link #position} as {@link Coordinates}.
      *
      * @return {@link #position} as {@link Coordinates}
-     *
      * @see Vector2f#convertToCoordinates()
      */
     public Coordinates getCoordinates() {
@@ -462,7 +448,6 @@ public class Transform {
      * Returns the absolute position of the centre of rotation of this <code>Transform</code>'s {@link #rotation}.
      *
      * @return the absolute position of the rotation of this <code>Transform</code>
-     *
      * @see Rotation#getCentreAbsolute(Transform)
      */
     public Vector2f getRotationCentreAbsolute() {
@@ -473,7 +458,6 @@ public class Transform {
      * Returns the degrees by which this <code>Transform</code> is rotated.
      *
      * @return the rotation of this <code>Transform</code>
-     *
      * @see Rotation#getRotationDegrees()
      */
     public float getRotationDegrees() {
@@ -504,7 +488,6 @@ public class Transform {
      * Sets the centre of {@link #rotation} relative to the {@link #position}.
      *
      * @param rotationCentre the nex relative rotation centre
-     *
      * @see Rotation#setCentre(Vector2f)
      */
     public void setRotationCentre(Vector2f rotationCentre) {

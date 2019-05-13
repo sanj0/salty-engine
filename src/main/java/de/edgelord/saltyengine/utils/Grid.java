@@ -17,9 +17,9 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * A utility class to place objects in a grid.

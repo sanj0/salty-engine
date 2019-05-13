@@ -20,16 +20,16 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.input.MouseInputHandler;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.VolatileImage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -121,7 +121,7 @@ public class Stage extends JPanel {
         ticks++;
         final Graphics2D graphics2D = (Graphics2D) graphics;
 
-        VolatileImage renderedImage = renderToImage();
+        SaltyImage renderedImage = renderToImage();
 
         float width = Game.getHost().getCurrentWidth();
         float height = Game.getHost().getCurrentHeight();
@@ -133,7 +133,7 @@ public class Stage extends JPanel {
 
         currentImgPos = new Vector2f(xPos, yPos);
 
-        graphics2D.drawImage(renderedImage, xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
+        graphics2D.drawImage(renderedImage.getImage(), xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
         renderedImage.flush();
     }
 
@@ -161,8 +161,8 @@ public class Stage extends JPanel {
         }
     }
 
-    public VolatileImage renderToImage() {
-        VolatileImage image = SaltySystem.createVolatileImage(originWidth, originHeight);
+    public SaltyImage renderToImage() {
+        SaltyImage image = SaltySystem.createPreferredImage(originWidth, originHeight);
 
         Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);
@@ -176,7 +176,7 @@ public class Stage extends JPanel {
         name += LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         try {
-            ImageUtils.saveImage(ImageUtils.toBufferedImage(renderToImage()), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
+            ImageUtils.saveImage(ImageUtils.toBufferedImage(renderToImage().getImage()), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
         } catch (IOException e) {
             e.printStackTrace();
         }

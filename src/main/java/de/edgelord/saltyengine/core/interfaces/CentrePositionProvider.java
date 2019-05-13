@@ -17,8 +17,8 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 public interface CentrePositionProvider {
 

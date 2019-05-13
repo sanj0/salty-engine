@@ -43,7 +43,7 @@ public class SaltySystem {
      * The type of image that should be used by e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
      * the {@link ImageUtils} and the {@link de.edgelord.saltyengine.components.rendering.PrimitivesRenderComponent}.
      */
-    public static ImageType preferredImageType = ImageType.VOLATILE;
+    public static ImageType preferredImageType = ImageType.BUFFERED;
 
     public static InnerResource defaultResource = new InnerResource();
     public static OuterResource defaultHiddenOuterResource;

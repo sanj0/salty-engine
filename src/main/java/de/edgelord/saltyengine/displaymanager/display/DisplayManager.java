@@ -20,13 +20,12 @@ import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.displaymanager.stage.Stage;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.input.KeyboardInputHandler;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 public class DisplayManager extends Host {
@@ -98,8 +97,8 @@ public class DisplayManager extends Host {
     }
 
     @Override
-    public BufferedImage getScreenshot() {
-        return ImageUtils.toBufferedImage(stage.renderToImage());
+    public SaltyImage getScreenshot() {
+        return stage.renderToImage();
     }
 
     @Override

@@ -20,9 +20,9 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.ImageUtils;
 

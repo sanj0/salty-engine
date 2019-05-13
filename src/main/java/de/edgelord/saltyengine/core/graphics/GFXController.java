@@ -21,9 +21,9 @@ import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.ArrayList;
 import java.util.Collections;

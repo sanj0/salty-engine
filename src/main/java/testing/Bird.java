@@ -39,7 +39,7 @@ public class Bird extends GameObject implements Serializable {
     private final SpritesheetAnimation spritesheetAnimation;
     private final Spritesheet spritesheet;
 
-    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitty", RoundRectangleParticle.class, .1f, 1);
+    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitter", RoundRectangleParticle.class, .1f, 1);
 
     public Bird(final SaltyImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
@@ -56,8 +56,6 @@ public class Bird extends GameObject implements Serializable {
         getHitboxAsSimpleHitbox().setWidth(85);
         getHitboxAsSimpleHitbox().setHeight(75);
 
-        // Improves performance a lot!
-        //setStationary(true);
         emitter.setRenderContext(new RandomColorProfileParticleRenderContext(ColorUtil.DODGER_BLUE, ColorUtil.BLUE, ColorUtil.AQUA_MARINE_BLUE));
         emitter.addModifier(new RandomSpeedParticleModifier(1, 10, 0.1f, false));
 

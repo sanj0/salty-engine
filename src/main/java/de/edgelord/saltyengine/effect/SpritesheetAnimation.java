@@ -30,17 +30,14 @@ public class SpritesheetAnimation {
     private GameObject parentGameObject;
 
     public SpritesheetAnimation(GameObject parentGameObject) {
-
         this.parentGameObject = parentGameObject;
     }
 
     public SpritesheetAnimation(LinkedList<Frame> frames) {
-
         this.frames = frames;
     }
 
     public void drawCurrentFrame(SaltyGraphics saltyGraphics) {
-
         frames.get(currentFrame).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
     }
 

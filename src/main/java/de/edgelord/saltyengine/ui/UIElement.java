@@ -25,9 +25,9 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.input.KeyboardInputHandler;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;

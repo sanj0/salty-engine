@@ -20,9 +20,9 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.effect.BasicRenderContext;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -328,12 +328,11 @@ public class SaltyGraphics {
     /**
      * Draws the given {@link SaltyImage} at the given position with the given width and height.
      *
-     * @param image the image
-     * @param x the x position
-     * @param y the y position
-     * @param width the width
+     * @param image  the image
+     * @param x      the x position
+     * @param y      the y position
+     * @param width  the width
      * @param height the height
-     *
      * @see SaltyImage#draw(SaltyGraphics, Vector2f, float, float)
      */
     public void drawImage(SaltyImage image, float x, float y, float width, float height) {
@@ -354,9 +353,8 @@ public class SaltyGraphics {
     /**
      * Draws the given {@link SaltyImage} with its original size at the given position.
      *
-     * @param image the image
+     * @param image    the image
      * @param position the position
-     *
      * @see SaltyImage#draw(SaltyGraphics, Vector2f)
      */
     public void drawImage(SaltyImage image, Vector2f position) {
@@ -379,8 +377,8 @@ public class SaltyGraphics {
      * Draws the given {@link SaltyImage} at the given x and y position.
      *
      * @param image the image
-     * @param x the x position
-     * @param y the y position
+     * @param x     the x position
+     * @param y     the y position
      */
     public void drawImage(SaltyImage image, float x, float y) {
         image.draw(this, new Vector2f(x, y));
@@ -400,11 +398,11 @@ public class SaltyGraphics {
     /**
      * Draws the given {@link SaltyImage} with the given {@link Transform}.
      *
-     * @param image the image
+     * @param image     the image
      * @param transform the <code>Transform</code>
      */
     public void drawImage(SaltyImage image, Transform transform) {
-        drawImage(image, transform.getPosition(),transform.getDimensions());
+        drawImage(image, transform.getPosition(), transform.getDimensions());
     }
 
     /**
@@ -421,8 +419,8 @@ public class SaltyGraphics {
     /**
      * Draws the given {@link SaltyImage} with the given {@link Vector2f position} and {@link Dimensions}.
      *
-     * @param image the image
-     * @param position the position
+     * @param image      the image
+     * @param position   the position
      * @param dimensions the dimensions
      */
     public void drawImage(SaltyImage image, Vector2f position, Dimensions dimensions) {
@@ -443,9 +441,8 @@ public class SaltyGraphics {
      * Draws the given {@link SaltyImage} using {@link #drawImage(SaltyImage, Transform)} and the {@link TransformedObject#getTransform() transform}
      * from the given object.
      *
-     * @param image the image
+     * @param image  the image
      * @param object the <code>TransformedObject</code>
-     *
      * @see #drawImage(Image, Transform)
      */
     public void drawImage(SaltyImage image, TransformedObject object) {

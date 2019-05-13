@@ -18,9 +18,6 @@ package de.edgelord.saltyengine.factory;
 
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.resource.Resource;
-import de.edgelord.saltyengine.utils.ImageUtils;
-
-import java.awt.image.BufferedImage;
 
 public class ImageFactory extends Factory {
 

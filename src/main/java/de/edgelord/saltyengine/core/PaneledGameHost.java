@@ -17,12 +17,11 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.displaymanager.stage.Stage;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 public class PaneledGameHost extends Host {
@@ -95,8 +94,8 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public BufferedImage getScreenshot() {
-        return ImageUtils.toBufferedImage(stage.renderToImage());
+    public SaltyImage getScreenshot() {
+        return stage.renderToImage();
     }
 
     @Override

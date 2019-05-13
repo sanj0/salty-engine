@@ -24,9 +24,9 @@ import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.geom.SaltyShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.resource.OuterResource;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

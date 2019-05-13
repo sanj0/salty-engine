@@ -16,15 +16,7 @@
 
 package de.edgelord.saltyengine.example.splash;
 
-import de.edgelord.saltyengine.core.Game;/*
-import de.edgelord.saltyengine.core.GameConfig;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
-import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.SaltySystem;
-import de.edgelord.saltyengine.utils.splash.Splash;
-import de.edgelord.saltyengine.utils.splash.SplashScene;
-
-import java.awt.*;*/
+import de.edgelord.saltyengine.core.Game;
 
 /*/**
  * An example main on how to use {@link de.edgelord.saltyengine.utils.splash.SplashScene}

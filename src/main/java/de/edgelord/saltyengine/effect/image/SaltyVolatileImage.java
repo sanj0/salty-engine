@@ -18,8 +18,8 @@ package de.edgelord.saltyengine.effect.image;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

@@ -18,9 +18,9 @@ package de.edgelord.saltyengine.hitbox;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class SimpleHitbox implements Hitbox {

@@ -18,8 +18,8 @@ package de.edgelord.saltyengine.effect.geom;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
  * A triangle around {@link #point1}, {@link #point2} and {@link #point3}.

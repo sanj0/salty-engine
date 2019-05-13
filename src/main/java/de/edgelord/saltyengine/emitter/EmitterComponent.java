@@ -23,8 +23,8 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
