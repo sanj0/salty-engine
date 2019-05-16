@@ -19,8 +19,16 @@ package de.edgelord.saltyengine.components.gfx.scene;
 import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Game;
 
+/**
+ * A {@link GFXComponent} that is designed for the use with the {@link Game#getDefaultGFXController() default GFXController}.
+ */
 public abstract class SceneGFXComponent extends GFXComponent {
 
+    /**
+     * The constructor. Adds this <code>Component</code> to the {@link Game#getDefaultGFXController() default GFXController}.
+     *
+     * @param name the id-name
+     */
     public SceneGFXComponent(String name) {
         super(Game.getDefaultGFXController(), name);
         Game.getDefaultGFXController().addGFX(this);

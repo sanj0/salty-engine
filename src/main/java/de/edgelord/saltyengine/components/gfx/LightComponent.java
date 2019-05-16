@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.effect.light.PointLight;
+import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
@@ -33,16 +34,31 @@ import de.edgelord.saltyengine.utils.TransformRelationUtil;
  * The light and the mode can be set in one of the constructors, if not, the defaults are:
  * {@code TransformRelationMode.CENTRE}
  * and
- * {@code new PointLight(parent.getTransform())}
+ * {@code new PointLight(parent.getTransform())} <p>
  *
- * <b>Important:</b> this class extends {@link GFXComponent}, so you will need to enable it first in order to work!
+ * <b>Important:</b> this class extends {@link GFXComponent}, so you will need to enable it first in order to see the light!
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class LightComponent extends GFXComponent {
 
+    /**
+     * The relation to the parent object.
+     */
     private TransformRelationMode relationToParent;
+
+    /**
+     * The light.
+     */
     private Light light;
 
+    /**
+     * The base constructor.
+     *
+     * @param parent the parent
+     * @param name the id-name
+     * @param relationToParent the relation of the light ot the parent
+     * @param light the light
+     */
     public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent, Light light) {
         super(parent, name);
 
@@ -52,27 +68,59 @@ public class LightComponent extends GFXComponent {
         addToLightSystem();
     }
 
+    /**
+     * A constructor. Overloads {@link #relationToParent} with {@link TransformRelationMode#CENTRE}.
+     *
+     * @param parent the parent
+     * @param name the id-name
+     * @param light the light
+     */
     public LightComponent(ComponentContainer parent, String name, Light light) {
         this(parent, name, TransformRelationMode.CENTRE, light);
     }
 
+    /**
+     * A constructor. Overloads {@link #light} with {@code new PointLight(parent.getTransform())}.
+     *
+     * @param parent the parent
+     * @param name the id-name
+     * @param relationToParent the light
+     */
     public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent) {
         this(parent, name, relationToParent, new PointLight(parent.getTransform()));
     }
 
+    /**
+     * A constructor. Overloads {@link #light} with {@code new PointLight(parent.getTransform())}
+     * and {@link #relationToParent} with {@link TransformRelationMode#CENTRE}.
+     *
+     * @param parent the parent
+     * @param name the id-name
+     */
     public LightComponent(ComponentContainer parent, String name) {
         this(parent, name, TransformRelationMode.CENTRE, new PointLight((Transform) parent.getTransform().clone()));
     }
 
+    /**
+     * Empty implementation.
+     *
+     * @param saltyGraphics the graphics to draw to
+     */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
     }
 
+    /**
+     * Repositions the {@link #light} using {@link TransformRelationUtil#positionRelativeTo(TransformRelationMode, Transform, Transform...)}.
+     */
     @Override
     public void onFixedTick() {
         TransformRelationUtil.positionRelativeTo(relationToParent, getParent().getTransform(), light.getTransform());
     }
 
+    /**
+     * Adds the {@link #light} to the {@link Scene#getLightSystem() LightSystem} of the {@link SceneManager#getCurrentScene() current Scene}.
+     */
     private void addToLightSystem() {
         LightSystem currentLightSystem = SceneManager.getCurrentScene().getLightSystem();
 

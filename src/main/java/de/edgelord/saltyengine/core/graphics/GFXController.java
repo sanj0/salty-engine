@@ -112,7 +112,7 @@ public class GFXController extends ComponentContainer {
         for (int i = 0; i < components.size(); i++) {
             Component component = components.get(i);
 
-            if (component.getTag().equals(Components.GFX_COMPONENT)) {
+            if (component.getTag().equals(Components.GFX_COMPONENT) && component.isEnabled()) {
                 GFXComponent gfxComponent = (GFXComponent) component;
 
                 gfxComponent.draw(saltyGraphics);
@@ -125,7 +125,7 @@ public class GFXController extends ComponentContainer {
         for (int i = 0; i < components.size(); i++) {
             Component component = components.get(i);
 
-            if (component.getTag().equals(Components.GFX_COMPONENT)) {
+            if (component.getTag().equals(Components.GFX_COMPONENT) && component.isEnabled()) {
                 GFXComponent gfxComponent = (GFXComponent) component;
 
                 gfxComponent.onFixedTick();

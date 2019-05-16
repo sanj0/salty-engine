@@ -61,10 +61,17 @@ public class TestingScene extends Scene {
 
         disableGravity();
 
-        SceneFade fade = new SceneFade("fade-in", ColorUtil.WHITE, 1500, SceneFade.Fade.IN, this) {
+        SceneFade fadeIn = new SceneFade("fade-in", Color.BLACK, 3500, SceneFade.Fade.IN, this) {
             @Override
             public void onFadeFinish() {
-                System.out.println("fade ended");
+                System.out.println("Fading finished!");
+            }
+        };
+
+        SceneFade fade = new SceneFade("fade-out", ColorUtil.BLACK, 2000, SceneFade.Fade.OUT, this) {
+            @Override
+            public void onFadeFinish() {
+                fadeIn.startGFX();
             }
         };
         fade.startGFX();

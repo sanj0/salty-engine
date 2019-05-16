@@ -112,8 +112,11 @@ public abstract class SceneFade extends SceneGFXComponent {
         drawingRoutine = new DrawingRoutine(DrawingRoutine.DrawingPosition.LAST) {
             @Override
             public void draw(SaltyGraphics saltyGraphics) {
-                saltyGraphics.setColor(ColorUtil.changeAlpha(color, currentAlpha));
-                saltyGraphics.drawRect(Vector2f.zero(), Game.getGameDimensions());
+
+                if (isEnabled()) {
+                    saltyGraphics.setColor(ColorUtil.changeAlpha(color, currentAlpha));
+                    saltyGraphics.drawRect(Vector2f.zero(), Game.getGameDimensions());
+                }
             }
         };
 
