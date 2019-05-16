@@ -210,6 +210,14 @@ public class Scene {
         }
 
         Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
+
+        synchronized (concurrentBlock) {
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.LAST) {
+                    drawingRoutine.draw(saltyGraphics);
+                }
+            }
+        }
     }
 
     public void onFixedTick() {

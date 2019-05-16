@@ -135,6 +135,7 @@ public class Stage extends JPanel {
 
         graphics2D.drawImage(renderedImage.getImage(), xPos, yPos, imageDisplayWidth, imageDisplayHeight, null);
         renderedImage.flush();
+        graphics2D.dispose();
     }
 
     private void renderToGraphics(Graphics2D graphics2D) {

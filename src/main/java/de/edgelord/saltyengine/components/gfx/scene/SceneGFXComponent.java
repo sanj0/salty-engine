@@ -23,5 +23,6 @@ public abstract class SceneGFXComponent extends GFXComponent {
 
     public SceneGFXComponent(String name) {
         super(Game.getDefaultGFXController(), name);
+        Game.getDefaultGFXController().addGFX(this);
     }
 }

@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 import java.util.Random;
 
+@Deprecated
 public class WobblingEffect extends GFXComponent {
 
     private int maxHeightDelta;

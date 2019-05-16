@@ -73,6 +73,9 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
 
     }
 
+    /**
+     * Removes this <code>Component</code> from its <code>Container</code> by calling {@link ComponentContainer#removeComponent(Component)}.
+     */
     public void remove() {
         getParent().removeComponent(this);
     }

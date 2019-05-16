@@ -16,6 +16,7 @@
 
 package testing;
 
+import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -59,6 +60,14 @@ public class TestingScene extends Scene {
         addUI();
 
         disableGravity();
+
+        SceneFade fade = new SceneFade("fade-in", ColorUtil.WHITE, 1500, SceneFade.Fade.IN, this) {
+            @Override
+            public void onFadeFinish() {
+                System.out.println("fade ended");
+            }
+        };
+        fade.startGFX();
 
         /*
         try {

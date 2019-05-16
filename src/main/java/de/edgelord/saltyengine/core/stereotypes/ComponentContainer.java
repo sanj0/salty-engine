@@ -73,7 +73,7 @@ public abstract class ComponentContainer implements TransformedObject {
     public abstract void removeComponent(String identifier);
 
     /**
-     * Removes the given {@link Component}
+     * Removes the given {@link Component}. <br>
      * The implementation should be different from {@link #getComponent(String)}
      * due to better performance possible when directly removing a Component
      *
