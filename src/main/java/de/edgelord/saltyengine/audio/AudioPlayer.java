@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.audio;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.util.LinkedList;
 
@@ -72,8 +73,10 @@ public class AudioPlayer {
      */
     public void loadNewAudio(String name, String relativePath) {
 
-        audios.add(new Audio(name, audioFactory.getClip(relativePath)));
-        multiplyAudioVolume(getAudio(name), masterVolume);
+        if (SaltySystem.audioEnabled) {
+            audios.add(new Audio(name, audioFactory.getClip(relativePath)));
+            multiplyAudioVolume(getAudio(name), masterVolume);
+        }
     }
 
     /**
@@ -86,7 +89,9 @@ public class AudioPlayer {
      */
     public void play(String name) {
 
-        getAudio(name).play();
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).play();
+        }
     }
 
     /**
@@ -99,7 +104,9 @@ public class AudioPlayer {
      */
     public void loop(String name) {
 
-        getAudio(name).loop();
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).loop();
+        }
     }
 
     /**
@@ -112,7 +119,9 @@ public class AudioPlayer {
      */
     public void stop(String name) {
 
-        getAudio(name).stop();
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).stop();
+        }
     }
 
     /**
@@ -140,7 +149,9 @@ public class AudioPlayer {
      * @see Audio#setVolume(float)
      */
     public void setClipVolume(String name, float volume) {
-        getAudio(name).setVolume(volume);
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).setVolume(volume);
+        }
     }
 
     /**
@@ -167,10 +178,13 @@ public class AudioPlayer {
      * @param masterVolume the new master volume
      */
     public void setMasterVolume(float masterVolume) {
-        this.masterVolume = masterVolume;
 
-        for (Audio audio : audios) {
-            multiplyAudioVolume(audio, masterVolume);
+        if (SaltySystem.audioEnabled) {
+            this.masterVolume = masterVolume;
+
+            for (Audio audio : audios) {
+                multiplyAudioVolume(audio, masterVolume);
+            }
         }
     }
 
