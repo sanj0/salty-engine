@@ -71,10 +71,10 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     private void initAnimations(final SaltyImage spriteSheetImage) {
 
-        spritesheetAnimation = new SpritesheetAnimation(this);
+        spritesheetAnimation = new SpritesheetAnimation();
         spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
 
-        spritesheetAnimation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
+        spritesheetAnimation.setFrames(spritesheet.getFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
         keyFrameAnimationX.addKeyframe(3000, 0);
         keyFrameAnimationX.addKeyframe(9000, 700);

@@ -44,10 +44,10 @@ public class Bird extends GameObject implements Serializable {
     public Bird(final SaltyImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
 
-        spritesheetAnimation = new SpritesheetAnimation(this);
+        spritesheetAnimation = new SpritesheetAnimation();
         spritesheet = new Spritesheet(image, getWidth(), getHeight());
 
-        spritesheetAnimation.setFrames(spritesheet.getManualFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
+        spritesheetAnimation.setFrames(spritesheet.getFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
 
         addComponent(new AnimationRender(this, "de.edgelord.saltyengine.testing.bird.animationRender", spritesheetAnimation, 90));
 

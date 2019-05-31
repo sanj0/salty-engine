@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
+import com.sun.istack.internal.Nullable;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
@@ -53,7 +54,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
         this(new Transform(x, y, width, height), shapeType);
     }
 
-    public static SaltyShape createShape(EnumShape shapeType, Transform transform, float... arcIfRoundRect) {
+    public static SaltyShape createShape(EnumShape shapeType, Transform transform, @Nullable float... arcIfRoundRect) {
         switch (shapeType) {
 
             case RECTANGLE:
@@ -69,7 +70,8 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
             case LINE:
                 return new LineShape(transform);
             case TRIANGLE:
-                throw new IllegalArgumentException("Cannot create a SaltyShape from a EnumShape#TRIANGLE!");
+                Vector2f centre = transform.getCentre();
+                return new TriangleShape(new Vector2f(transform.getX(), transform.getMaxY()), new Vector2f(centre.getX(), transform.getY()), new Vector2f(transform.getMaxX(), transform.getMaxY()));
         }
 
         return null;

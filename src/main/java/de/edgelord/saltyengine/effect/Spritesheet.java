@@ -19,8 +19,6 @@ package de.edgelord.saltyengine.effect;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Coordinates;
 
-import java.awt.*;
-import java.io.File;
 import java.io.Flushable;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +29,6 @@ public class Spritesheet implements Flushable {
     private SaltyImage image = null;
     private int spriteWidth, spriteHeight;
 
-    private SpritePattern spritePattern;
 
     public Spritesheet(SaltyImage image, float spriteWidth, float spriteHeight) {
         this.spriteWidth = Math.round(spriteWidth);
@@ -40,33 +37,23 @@ public class Spritesheet implements Flushable {
         this.image = image;
     }
 
-    public Spritesheet(File spritePatternFile) {
-
-        this.spritePattern = new SpritePattern(spritePatternFile);
+    public SpritesheetAnimation getAnimation(Coordinates... coordinates){
+        return new SpritesheetAnimation(getFrames(coordinates));
     }
 
-    public List<Frame> getManualFrames(Coordinates... coordinates) {
+    public List<Frame> getFrames(Coordinates... coordinates) {
 
         List<Frame> frames = new LinkedList<>();
 
         for (Coordinates currentCoordinates : coordinates) {
-
-            frames.add(new Frame(getManualSprite(currentCoordinates.getX(), currentCoordinates.getY())));
+            frames.add(getFrame(currentCoordinates.getX(), currentCoordinates.getY()));
         }
 
         return frames;
     }
 
-    public SaltyImage getSprite(int id) {
-
-        Rectangle rectangle = spritePattern.getRectangle(id);
-
-        return image.getSubImage(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-    }
-
-    public SaltyImage getManualSprite(int x, int y) {
-
-        return image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight());
+    public Frame getFrame(int x, int y) {
+        return new Frame(image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
     }
 
     public int getSpriteWidth() {
@@ -92,14 +79,13 @@ public class Spritesheet implements Flushable {
         Spritesheet that = (Spritesheet) o;
         return spriteWidth == that.spriteWidth &&
                 spriteHeight == that.spriteHeight &&
-                Objects.equals(image, that.image) &&
-                Objects.equals(spritePattern, that.spritePattern);
+                Objects.equals(image, that.image);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(image, spriteWidth, spriteHeight, spritePattern);
+        return Objects.hash(image, spriteWidth, spriteHeight);
     }
 
     @Override

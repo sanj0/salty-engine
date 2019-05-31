@@ -83,7 +83,7 @@ public class AnimationRender extends RenderComponent {
     public void draw(SaltyGraphics saltyGraphics) {
 
         if (spritesheetAnimation != null) {
-            spritesheetAnimation.drawCurrentFrame(saltyGraphics);
+            spritesheetAnimation.drawCurrentFrame(getParent(), saltyGraphics);
         }
     }
 

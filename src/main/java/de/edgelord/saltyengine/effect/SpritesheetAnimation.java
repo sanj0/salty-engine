@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 import java.util.LinkedList;
@@ -24,24 +25,22 @@ import java.util.List;
 
 public class SpritesheetAnimation {
 
-    private List<Frame> frames = new LinkedList<>();
+    private List<Frame> frames;
     private int currentFrame = 0;
 
-    private GameObject parentGameObject;
-
-    public SpritesheetAnimation(GameObject parentGameObject) {
-        this.parentGameObject = parentGameObject;
-    }
-
-    public SpritesheetAnimation(LinkedList<Frame> frames) {
+    public SpritesheetAnimation(List<Frame> frames) {
         this.frames = frames;
     }
 
-    public void drawCurrentFrame(SaltyGraphics saltyGraphics) {
-        frames.get(currentFrame).draw(saltyGraphics, parentGameObject.getPosition(), parentGameObject.getWidth(), parentGameObject.getHeight());
+    public SpritesheetAnimation() {
+        this.frames = new LinkedList<>();
     }
 
-    public void resetFrameNumber() {
+    public void drawCurrentFrame(TransformedObject parentObject, SaltyGraphics saltyGraphics) {
+        frames.get(currentFrame).draw(saltyGraphics, parentObject.getPosition(), parentObject.getWidth(), parentObject.getHeight());
+    }
+
+    public void restart() {
         currentFrame = 0;
     }
 
