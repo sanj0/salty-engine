@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class Spritesheet implements Flushable {
 
-    private SaltyImage image = null;
+    private SaltyImage image;
     private int spriteWidth, spriteHeight;
 
 

@@ -22,9 +22,13 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
 
+import java.awt.*;
+
 /**
  * A simple {@link UIElement} that outlines a rectangle with {@link #getBackgroundColor()} and then
- * draws the same rectangle filled above, with a length calculated by {@link #maxValue} and {@link #currentValue}.
+ * draws the same rectangle filled above, with a length calculated by {@link #maxValue} and {@link #currentValue}. <p>
+ * The outline is seen as the foreground and therefore uses the {@link #getForegroundColor() foreground color} while the bar itself is seen
+ * as the background and therefore uses the {@link #getBackgroundColor() background color}.
  */
 public class ProgressBar extends UIElement {
 
@@ -49,6 +53,13 @@ public class ProgressBar extends UIElement {
      * The current dimensions of the bar.
      */
     private Dimensions currentBar = Dimensions.zero();
+
+    /**
+     * The stroke used for outlining the bar.
+     * <p>
+     * This is <code>null</code> by default to use the one from the {@link SaltyGraphics} passed into {@link #draw(SaltyGraphics)}
+     */
+    private Stroke outlineStroke = null;
 
     /**
      * A constructor that takes everything in as floats.
@@ -78,15 +89,16 @@ public class ProgressBar extends UIElement {
 
     @Override
     public void drawBackground(SaltyGraphics saltyGraphics) {
-
-        saltyGraphics.outlineRoundRect(this, cornerArc);
-
         saltyGraphics.drawRoundRect(getPosition(), currentBar, cornerArc);
     }
 
     @Override
     public void drawForeground(SaltyGraphics saltyGraphics) {
+        if (outlineStroke != null) {
+            saltyGraphics.setStroke(outlineStroke);
+        }
 
+        saltyGraphics.outlineRoundRect(this, cornerArc);
     }
 
     /**
@@ -97,33 +109,77 @@ public class ProgressBar extends UIElement {
         currentBar.setWidth(getWidth() / (maxValue / currentValue));
     }
 
+    /**
+     * Gets {@link #maxValue}.
+     *
+     * @return the value of {@link #maxValue}
+     */
     public float getMaxValue() {
         return maxValue;
     }
 
+    /**
+     * Sets {@link #maxValue} and {@link #recalculateBar() recalculates} the bar.
+     *
+     * @param maxValue the new value of {@link #maxValue}
+     */
     public void setMaxValue(float maxValue) {
         this.maxValue = maxValue;
         recalculateBar();
     }
 
+    /**
+     * Gets {@link #currentValue}.
+     *
+     * @return the value of {@link #currentValue}
+     */
     public float getCurrentValue() {
         return currentValue;
     }
 
+    /**
+     * Sets {@link #currentValue} and {@link #recalculateBar() recalculates} the bar.
+     *
+     * @param currentValue the new value of {@link #currentValue}
+     */
     public void setCurrentValue(float currentValue) {
         this.currentValue = currentValue;
         recalculateBar();
     }
 
+    /**
+     * Gets {@link #cornerArc}.
+     *
+     * @return the value of {@link #cornerArc}
+     */
     public float getCornerArc() {
         return cornerArc;
     }
 
+    /**
+     * Sets {@link #cornerArc}.
+     *
+     * @param cornerArc the new value of {@link #cornerArc}
+     */
     public void setCornerArc(float cornerArc) {
         this.cornerArc = cornerArc;
     }
 
-    public Dimensions getCurrentBar() {
-        return currentBar;
+    /**
+     * Gets {@link #outlineStroke}.
+     *
+     * @return the value of {@link #outlineStroke}
+     */
+    public Stroke getOutlineStroke() {
+        return outlineStroke;
+    }
+
+    /**
+     * Sets {@link #outlineStroke}.
+     *
+     * @param outlineStroke the new value of {@link #outlineStroke}
+     */
+    public void setOutlineStroke(Stroke outlineStroke) {
+        this.outlineStroke = outlineStroke;
     }
 }
