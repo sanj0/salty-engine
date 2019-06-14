@@ -288,7 +288,6 @@ public class Scene {
         Game.getDefaultGFXController().doGFXFixedTick();
 
         if (ui != null) {
-
             ui.onFixedTick();
         }
     }

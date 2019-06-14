@@ -34,6 +34,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.ui.elements.FloatingLabel;
 import de.edgelord.saltyengine.ui.elements.ProgressBar;
 import de.edgelord.saltyengine.ui.elements.RoundedTextBox;
+import de.edgelord.saltyengine.ui.elements.Switch;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
@@ -94,10 +95,15 @@ public class TestingScene extends Scene {
     private void initUITest() {
         FloatingLabel floatingLabel = new FloatingLabel("Use WASD or the arrow keys to move the red bird!", new Vector2f(0, 25));
         floatingLabel.centreOnXAxis(true);
-        floatingLabel.setForegroundColor(Color.black);
+        floatingLabel.setForegroundColor(Color.white);
         floatingLabel.setFont(floatingLabel.getFont().deriveFont(20f));
 
         getUI().addElement(floatingLabel);
+
+        Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3 * 25), 125), 3, true);
+
+        getUI().addElement(mySwitch);
+
     }
 
     @Override
