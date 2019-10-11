@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -31,9 +30,6 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class FloatingLabel extends Label {
 
-    private boolean centreOnXAxis = false;
-    private boolean centreOnYAxis = false;
-
     public FloatingLabel(String text, Vector2f position) {
         super(text, position, 0, 0);
     }
@@ -46,24 +42,7 @@ public class FloatingLabel extends Label {
     public void drawForeground(SaltyGraphics saltyGraphics) {
 
         recalculateSize(saltyGraphics.getFontMetrics());
-
-        if (centreOnXAxis) {
-            setX(Game.getHost().getHorizontalCentrePosition(getWidth()));
-        }
-
-        if (centreOnYAxis) {
-            setY(Game.getHost().getVerticalCentrePosition(getHeight()));
-        }
-
-        if (!isSuppressClipping()) {
-            saltyGraphics.setClip(getTransform());
-        }
-
-        saltyGraphics.drawText(getText(), getX(), getY() + saltyGraphics.getFontMetrics().getMaxAscent());
-
-        if (!isSuppressClipping()) {
-            saltyGraphics.resetClip();
-        }
+        saltyGraphics.drawText(getText(), getX(), getY(), SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
     }
 
     @Override
@@ -71,16 +50,8 @@ public class FloatingLabel extends Label {
 
     }
 
-    private void recalculateSize(FontMetrics metrics) {
+    public void recalculateSize(FontMetrics metrics) {
         setWidth(metrics.stringWidth(getText()));
         setHeight(metrics.getMaxAscent() + metrics.getMaxDescent());
-    }
-
-    public void centreOnXAxis(boolean centre) {
-        this.centreOnXAxis = centre;
-    }
-
-    public void centreOnYAxis(boolean centre) {
-        this.centreOnYAxis = centre;
     }
 }

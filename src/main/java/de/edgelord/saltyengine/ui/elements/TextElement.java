@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
+import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -26,31 +27,6 @@ import de.edgelord.saltyengine.ui.UIElement;
 public abstract class TextElement extends UIElement {
 
     private String text;
-
-    private HorizontalAlignment horizontalAlignment = HorizontalAlignment.CENTERED;
-    private VerticalAlignment verticalAlignment = VerticalAlignment.CENTERED;
-
-    /**
-     * The horizontal alignments for the text within the bounds of the label.
-     * An implementation of TextElement should take this into account.
-     * The default is {@link HorizontalAlignment#CENTERED}
-     */
-    public enum HorizontalAlignment {
-        RIGHT,
-        LEFT,
-        CENTERED
-    }
-
-    /**
-     * The vertical alignments for the text within the bounds of the label.
-     * An implementation of TextElement should take this into account.
-     * The default is {@link VerticalAlignment#CENTERED}
-     */
-    public enum VerticalAlignment {
-        TOP,
-        BOTTOM,
-        CENTERED
-    }
 
     public TextElement(String text, Vector2f position, float width, float height, String tag) {
         this(text, new Transform(position, new Dimensions(width, height)), tag);
@@ -68,21 +44,5 @@ public abstract class TextElement extends UIElement {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public HorizontalAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
-    }
-
-    public VerticalAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    public void setVerticalAlignment(VerticalAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
     }
 }

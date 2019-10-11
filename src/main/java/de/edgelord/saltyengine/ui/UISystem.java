@@ -27,6 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UISystem {
 
     private List<UIElement> elements = new CopyOnWriteArrayList<>();
+    private UIElement currentlyFocused = null;
 
     public void drawUI(SaltyGraphics saltyGraphics) {
         for (UIElement element : elements) {
@@ -97,7 +98,16 @@ public class UISystem {
 
     public void mousePressed(MouseEvent e) {
 
+        if (currentlyFocused != null) {
+            currentlyFocused.setFocused(false);
+        }
+
         for (UIElement element : elements) {
+
+            if (element.getTransform().contains(Input.getAbsoluteCursor())) {
+                element.setFocused(true);
+                currentlyFocused = element;
+            }
             element.mousePressed(e);
         }
     }

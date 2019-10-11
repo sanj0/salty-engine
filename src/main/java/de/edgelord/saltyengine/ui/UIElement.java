@@ -57,6 +57,8 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
     public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
 
+    private boolean focused = false;
+
     public UIElement(Vector2f position, float width, float height, String tag) {
         super(tag);
 
@@ -83,6 +85,10 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         drawBackground(saltyGraphics);
         saltyGraphics.setColor(getForegroundColor());
         drawForeground(saltyGraphics);
+        if (isFocused()) {
+            saltyGraphics.setColor(Color.RED);
+            saltyGraphics.outlineRect(this);
+        }
     }
 
     /**
@@ -231,5 +237,23 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
 
     public void setForegroundColor(Color foregroundColor) {
         this.foregroundColor = foregroundColor;
+    }
+
+    /**
+     * Gets {@link #focused}.
+     *
+     * @return the value of {@link #focused}
+     */
+    protected boolean isFocused() {
+        return focused;
+    }
+
+    /**
+     * Sets {@link #focused}.
+     *
+     * @param focused the new value of {@link #focused}
+     */
+    protected void setFocused(boolean focused) {
+        this.focused = focused;
     }
 }

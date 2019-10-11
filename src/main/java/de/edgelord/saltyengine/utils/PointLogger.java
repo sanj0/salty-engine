@@ -129,14 +129,14 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     public void mouseClicked(MouseEvent e) {
 
         if (e.isAltDown() || e.isShiftDown()) {
-            System.out.println("Enter a name for point " + lastPoint.getX() + " | " + lastPoint.getY() + " and press [ENTER]");
+            System.out.println("Enter a name for point " + getPointIndicator(lastPoint) + " and press [ENTER]");
             String name = scanner.nextLine();
             points.addTag(name, lastPoint.getX() + ", " + lastPoint.getY());
             savedPoints.add(lastPoint);
             System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
         } else {
             lastPoint = Input.getCursorPosition();
-            System.out.println("Temporally saved " + lastPoint.getX() + ", " + lastPoint.getY() + " as the last point. Click while holding shift or alt to save it.");
+            System.out.println("Temporally saved " + getPointIndicator(lastPoint) + " as the last point. Click while holding shift or alt to save it.");
         }
     }
 
@@ -153,5 +153,9 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     @Override
     public void mouseWheelMoved(MouseEvent e) {
 
+    }
+
+    private String getPointIndicator(Vector2f point) {
+        return "(" + (int) point.getX() + " | " + (int) point.getY() + ")";
     }
 }

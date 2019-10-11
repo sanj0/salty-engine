@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.effect.geom;
 
-import com.sun.istack.internal.Nullable;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
@@ -54,7 +53,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
         this(new Transform(x, y, width, height), shapeType);
     }
 
-    public static SaltyShape createShape(EnumShape shapeType, Transform transform, @Nullable float... arcIfRoundRect) {
+    public static SaltyShape createShape(EnumShape shapeType, Transform transform, float... arcIfRoundRect) {
         switch (shapeType) {
 
             case RECTANGLE:

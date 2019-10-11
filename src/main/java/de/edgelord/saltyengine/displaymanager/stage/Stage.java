@@ -158,7 +158,7 @@ public class Stage extends JPanel {
             saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
             saltyGraphics.setColor(Color.RED);
             String fps = String.valueOf(Math.round(lastFps));
-            saltyGraphics.drawText("FPS: " + fps, 0, (float) saltyGraphics.getFontMetrics().getStringBounds(fps, saltyGraphics.getGraphics2D()).getHeight());
+            saltyGraphics.drawText("FPS: " + fps, 0, 0, SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
         }
     }
 

@@ -19,12 +19,13 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.awt.*;
 
 /**
  * This is the standard implementation of a {@link Label}, with the given text only
- * be drawn within the bounds and no line breaks, meaning this label is one-line.
+ * be drawn at the centre of the bounds and no line breaks, meaning this label is one-line.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class BorderedLabel extends Label {
@@ -43,69 +44,7 @@ public class BorderedLabel extends Label {
 
     @Override
     public void drawForeground(SaltyGraphics saltyGraphics) {
-
-        float textXPos = 0f;
-        float textYPos = 0f;
-        FontMetrics fontMetrics = saltyGraphics.getFontMetrics();
-
-        if (!isSuppressClipping()) {
-            saltyGraphics.setClip(getTransform());
-        }
-
-        switch (getHorizontalAlignment()) {
-
-            case RIGHT:
-                textXPos = getHorizontalRightAlignmentPosition(fontMetrics);
-                break;
-            case LEFT:
-                textXPos = getHorizontalLeftAlignmentPosition();
-                break;
-            case CENTERED:
-                textXPos = getHorizontalCenteredAlignmentPosition(fontMetrics);
-                break;
-        }
-
-        switch (getVerticalAlignment()) {
-
-            case TOP:
-                textYPos = getVerticalTopAlignmentPosition(fontMetrics);
-                break;
-            case BOTTOM:
-                textYPos = getVerticalBottomAlignmentPosition(fontMetrics);
-                break;
-            case CENTERED:
-                textYPos = getVerticalCenteredAlignmentPosition(fontMetrics);
-                break;
-        }
-
-        saltyGraphics.drawText(getText(), getX() + textXPos, getY() + textYPos);
-
-        if (!isSuppressClipping()) {
-            saltyGraphics.resetClip();
-        }
-    }
-
-    private float getVerticalTopAlignmentPosition(FontMetrics fontMetrics) {
-        return fontMetrics.getMaxAscent();
-    }
-
-    private float getVerticalBottomAlignmentPosition(FontMetrics fontMetrics) {
-        return getHeight() - fontMetrics.getHeight();
-    }
-
-    private float getVerticalCenteredAlignmentPosition(FontMetrics fontMetrics) {
-        return (getHeight() + fontMetrics.getHeight()) / 2;
-    }
-
-    private float getHorizontalLeftAlignmentPosition() {
-        return 0;
-    }
-
-    private float getHorizontalRightAlignmentPosition(FontMetrics fontMetrics) {
-        return getWidth() - fontMetrics.stringWidth(getText());
-    }
-
-    private float getHorizontalCenteredAlignmentPosition(FontMetrics fontMetrics) {
-        return (getWidth() - fontMetrics.stringWidth(getText())) / 2;
+        Vector2f centre = getTransform().getCentre();
+        saltyGraphics.drawText(getText(), centre.getX(), centre.getY(), SaltyGraphics.TextAnchor.CENTRE);
     }
 }

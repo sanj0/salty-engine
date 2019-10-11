@@ -55,7 +55,6 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         if (recalculate) {
             lines.clear();
             String[] words = text.split(wordSeparator);
-            //leading = fontMetrics.getLineMetrics(getText(), saltyGraphics.getGraphics2D()).getLeading();
             float currentX = 0;
             StringBuilder lineBuilder = new StringBuilder();
 
@@ -78,9 +77,9 @@ public class TextRenderComponent extends Component<ComponentContainer> {
             recalculate = false;
         }
 
-        float currentY = 0;
+        float currentY = -leading;
         for (String line : lines) {
-            saltyGraphics.drawText(line, getParent().getPosition().getX() + offset.getX(), currentY + getParent().getY() + offset.getY());
+            saltyGraphics.drawText(line, getParent().getPosition().getX() + offset.getX(), currentY + getParent().getY() + offset.getY(), SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
 
             currentY += leading;
         }

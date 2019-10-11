@@ -41,11 +41,8 @@ public class DrawPositionComponent extends Component {
         saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         saltyGraphics.setColor(Color.BLACK);
 
-        saltyGraphics.drawText(String.valueOf(getParent().getX()), getParent().getX(), getParent().getY() - 5);
-
-        String yPosition = String.valueOf(getParent().getY());
-
-        saltyGraphics.drawText(yPosition, getParent().getX() - (yPosition.length() * 7), getParent().getY() + 25);
+        saltyGraphics.drawText(getParent().getX(), getParent().getX(), getParent().getY(), SaltyGraphics.TextAnchor.BOTTOM_LEFT_CORNER);
+        saltyGraphics.drawText(getParent().getY(), getParent().getX(), getParent().getY(), SaltyGraphics.TextAnchor.TOP_RIGHT_CORNER);
     }
 
     @Override

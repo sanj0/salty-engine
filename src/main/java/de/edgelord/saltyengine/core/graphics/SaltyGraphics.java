@@ -44,6 +44,34 @@ public class SaltyGraphics {
      */
 
     /*
+    Draw a point (Vector2f)
+     */
+
+    /**
+     * The base method to draw a {@link Vector2f point} with a given diameter.
+     * This method draws a circle using {@link #drawOval(float, float, float, float)} aeround the given x and y
+     * coordinates with the given diameter
+     *
+     * @param x the x position of the centre of the circle that represents the point
+     * @param y the y position of the centre of the circle that represents the point
+     * @param diameter the diameter of the circle around the given point
+     */
+    public void drawPoint(float x, float y, float diameter) {
+        float shift = diameter / 2f;
+        drawOval(x - shift, y - shift, diameter, diameter);
+    }
+
+    /**
+     * Draws the given {@link Vector2f point} using {@link #drawPoint(float, float, float)}.
+     *
+     * @param point the point to be drawn
+     * @param diameter the diameter of the circle around the given point
+     */
+    public void drawPoint(Vector2f point, float diameter) {
+        drawPoint(point.getX(), point.getY(), diameter);
+    }
+
+    /*
     Fill a rect
      */
 
@@ -819,6 +847,14 @@ public class SaltyGraphics {
     Bindings for drawing text
      */
 
+    public enum TextAnchor {
+        TOP_LEFT_CORNER,
+        BOTTOM_LEFT_CORNER,
+        TOP_RIGHT_CORNER,
+        BOTTOM_RIGHT_CORNER,
+        CENTRE
+    }
+
     /**
      * The base method to draw a String using the current <code>Font</code> of the graphics.
      * It converts the given {@link Object} to a {@link String} using its {@link Object#toString()}.
@@ -830,27 +866,36 @@ public class SaltyGraphics {
      * @param y    the y position of the baseLine of the first character
      * @see Graphics2D#drawString(String, float, float)
      */
-    public void drawText(Object text, float x, float y) {
-        graphics2D.drawString(text.toString(), x, y);
-    }
+    public void drawText(Object text, float x, float y, TextAnchor anchor) {
 
-    /**
-     * The base method to draw a String using a temporary <code>Font</code>
-     *
-     * @param text          the String to be drawn
-     * @param x             the x position of the baseLine of the first character
-     * @param y             the y position of the baseLine of the first character
-     * @param temporaryFont the temporary Font with which to draw the text
-     * @see #drawText(Object, float, float)
-     */
-    public void drawText(Object text, float x, float y, Font temporaryFont) {
+        String string = text.toString();
+        float xPos = 0;
+        float yPos = 0;
+        FontMetrics fontMetrics = getFontMetrics();
 
-        Font font = getFont();
-
-        setFont(temporaryFont);
-        drawText(text, x, y);
-
-        setFont(font);
+        switch (anchor) {
+            case TOP_LEFT_CORNER:
+                xPos = x;
+                yPos = y + fontMetrics.getAscent();
+                break;
+            case BOTTOM_LEFT_CORNER:
+                xPos = x;
+                yPos = y - fontMetrics.getDescent();
+                break;
+            case TOP_RIGHT_CORNER:
+                xPos = x - fontMetrics.stringWidth(string);
+                yPos = y + fontMetrics.getAscent();
+                break;
+            case BOTTOM_RIGHT_CORNER:
+                xPos = x - fontMetrics.stringWidth(string);
+                yPos = y - fontMetrics.getDescent();
+                break;
+            case CENTRE:
+                xPos = x - (fontMetrics.stringWidth(string) / 2f);
+                yPos = y + fontMetrics.getAscent() - ((fontMetrics.getAscent() + fontMetrics.getDescent()) / 2f);
+                break;
+        }
+        graphics2D.drawString(string, xPos, yPos);
     }
 
     /**
@@ -858,22 +903,10 @@ public class SaltyGraphics {
      *
      * @param text     the text to be drawn
      * @param position the position of the baseLine of the first letter
-     * @see #drawText(Object, float, float)
+     * @see #drawText(Object, float, float, TextAnchor)
      */
-    public void drawText(Object text, Vector2f position) {
-        drawText(text, position.getX(), position.getY());
-    }
-
-    /**
-     * Draws the given text with the given temporary Font by calling the base method
-     *
-     * @param text          the text to be drawn
-     * @param position      the position of the baseLine of the first letter
-     * @param temporaryFont the temporary Font with which to draw the text
-     * @see #drawText(Object, float, float, Font)
-     */
-    public void drawText(Object text, Vector2f position, Font temporaryFont) {
-        drawText(text, position.getX(), position.getY(), temporaryFont);
+    public void drawText(Object text, Vector2f position, TextAnchor anchor) {
+        drawText(text, position.getX(), position.getY(), anchor);
     }
 
     /*

@@ -30,7 +30,6 @@ import java.awt.event.MouseEvent;
 public abstract class Button extends UIElement {
 
     private String text;
-    private int textWidth, textHeight;
     private Color hoverColor = ColorUtil.changeBrightness(getBackgroundColor(), -0.15f);
     private Color clickColor = ColorUtil.changeBrightness(getBackgroundColor(), 0.15f);
     private Color disabledColor = ColorUtil.blend(ColorUtil.LIGHT_GRAY, getBackgroundColor(), 0.20f);
@@ -57,13 +56,8 @@ public abstract class Button extends UIElement {
     public void drawForeground(SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setFont(getFont());
-
-        textWidth = saltyGraphics.getFontMetrics().stringWidth(text);
-        textHeight = saltyGraphics.getFontMetrics().getAscent();
-
         saltyGraphics.setColor(getForegroundColor());
-
-        saltyGraphics.drawText(text, getX() + ((getWidth() - textWidth) / 2), getY() + ((getHeight() + textHeight) / 2));
+        saltyGraphics.drawText(text, getTransform().getCentre(), SaltyGraphics.TextAnchor.CENTRE);
     }
 
     @Override
