@@ -93,6 +93,7 @@ public class ColorUtil {
     public static final Color DODGER_BLUE = new Color(30, 144, 255);
     public static final Color MIDNIGHT_BLUE = new Color(25, 25, 112);
     public static final Color ROYAL_BLUE = new Color(65, 105, 255);
+    public static final Color OCEAN_BLUE = new Color(0, 119, 190);
 
     // Yellow and Brown Colors:
     public static final Color GOLD = new Color(255, 215, 0);
