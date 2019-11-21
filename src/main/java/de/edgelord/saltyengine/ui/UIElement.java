@@ -85,10 +85,6 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         drawBackground(saltyGraphics);
         saltyGraphics.setColor(getForegroundColor());
         drawForeground(saltyGraphics);
-        if (isFocused()) {
-            saltyGraphics.setColor(Color.RED);
-            saltyGraphics.outlineRect(this);
-        }
     }
 
     /**
