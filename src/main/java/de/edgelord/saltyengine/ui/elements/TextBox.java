@@ -65,6 +65,12 @@ public abstract class TextBox extends TextElement {
     }
 
     @Override
+    public void setText(String text) {
+        super.setText(text);
+        start();
+    }
+
+    @Override
     public void setFont(Font font) {
         super.setFont(font);
         textRenderComponent.setFont(font);

@@ -116,10 +116,11 @@ public class Stage extends JPanel {
         lqRenderingHints.put(key, value);
     }
 
+    @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         ticks++;
-        final Graphics2D graphics2D = (Graphics2D) graphics;
+        final Graphics2D graphics2D = (Graphics2D) graphics.create();
 
         SaltyImage renderedImage = renderToImage();
 

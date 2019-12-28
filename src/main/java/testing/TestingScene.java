@@ -32,9 +32,12 @@ import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.ui.elements.*;
+import de.edgelord.saltyengine.ui.elements.swing.JTextElement;
 import de.edgelord.saltyengine.utils.ColorUtil;
+import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -74,6 +77,8 @@ public class TestingScene extends Scene {
         };
         fade.startGFX();
 
+        RectangleCreator.init();
+
         /*
         try {
             addDrawingRoutine(StaticTileGrid.readSTM(new File("/Users/edgelord/Salty Tilemap Creator/map.stm.sdb"), new Vector2f(110, 110), DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS));
@@ -97,11 +102,12 @@ public class TestingScene extends Scene {
         getUI().addElement(label);
 
         Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3 * 25), 125), 3, true);
-        Slider mySlider = new Slider(new Vector2f(100, 100), 500, 30);
+        Slider mySlider = new Slider(Game.getHost().getHorizontalCentrePosition(500), 200, 500, 30);
 
         getUI().addElement(mySwitch);
         getUI().addElement(mySlider);
 
+        JTextElement textElement = new JTextElement(new JTextField(), new Transform(10, 10, 100, 25));
     }
 
     @Override

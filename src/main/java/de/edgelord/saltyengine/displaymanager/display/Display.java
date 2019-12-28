@@ -30,7 +30,7 @@ public class Display extends JFrame {
     private MouseInputHandler displayMouseHandler = null;
     private boolean fullscreen = false;
 
-    GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    private GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public Display(DisplayRatio displayRatio, String windowTitle) {
 

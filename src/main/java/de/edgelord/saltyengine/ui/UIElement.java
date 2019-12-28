@@ -56,6 +56,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String CONTAINER = "de.edgelord.saltyengine.uiElements.container";
     public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
     public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
+    public static final String SWING_ELEMENT = "de.edgelord.saltyengine.uiElements.swingElement";
 
     private boolean focused = false;
 
@@ -190,6 +191,12 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         graphics.setColor(getBackgroundColor());
         graphics.setFont(getFont());
     }
+
+    /**
+     * This method is called whenever this <code>UIElement</code> is removed from
+     * a {@link UISystem}
+     */
+    public void onRemove() { }
 
     public Font getFont() {
         return font;
