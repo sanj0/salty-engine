@@ -22,9 +22,9 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
-public class MonoBehaviour extends Component<GameObject> {
+public class GameObjectBehaviour extends Component<GameObject> {
 
-    public MonoBehaviour(GameObject parent, String name) {
+    public GameObjectBehaviour(GameObject parent, String name) {
         super(parent, name, Components.MONO_BEHAVIOUR);
     }
 
