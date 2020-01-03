@@ -31,6 +31,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
 
+// FIXME: 03.01.20 drag behavior is very buggy
 public class Slider extends UIElement {
 
     /**

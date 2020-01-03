@@ -17,7 +17,6 @@
 package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UIElement;
@@ -58,9 +57,9 @@ public class Switch extends UIElement {
     /**
      * The constructor.
      *
-     * @param position the position of the switch within the {@link de.edgelord.saltyengine.scene.Scene}
+     * @param position   the position of the switch within the {@link de.edgelord.saltyengine.scene.Scene}
      * @param sizeFactor the factor of the size. The width is {@code sizeFactor * 25f}, the height {@code sizeFactor * 10f}
-     * @param active the initial state of this switch
+     * @param active     the initial state of this switch
      */
     public Switch(Vector2f position, float sizeFactor, boolean active) {
         super(position, sizeFactor * 25f, sizeFactor * 10f, UIElement.SETTINGS_ELEMENT);
@@ -111,7 +110,8 @@ public class Switch extends UIElement {
     /**
      * A by default empty method that is called whenever the {@link #active state} of this switch changes.
      */
-    public void stateChanged() {}
+    public void stateChanged() {
+    }
 
     /**
      * Gets {@link #activatedColor}.

@@ -42,6 +42,11 @@ public class Input {
      * Please use this for every input that has to do with controls etc etc
      */
     public static Keyboard keyboardInput = new Keyboard();
+
+    /**
+     * The absolute (meaning relative to the normal userspace)
+     * position of the mouse cursor.
+     */
     public static Vector2f cursorPosition = new Vector2f(0, 0);
     public static Transform cursor = new Transform(0, 0, 0, 0);
     public static boolean mouseDrags = false;
@@ -102,14 +107,11 @@ public class Input {
     }
 
     public static Vector2f getCursorPosition() {
-        return cursorPosition;
+        return Game.getCamera().getRelativePosition(cursorPosition);
     }
 
     public static Vector2f getAbsoluteCursorPosition() {
-        Vector2f cursorPos = new Vector2f(cursorPosition);
-        cursorPos.add(Game.getCamera().getPosition());
-
-        return cursorPos;
+        return cursorPosition;
     }
 
     public static Transform getCursor() {

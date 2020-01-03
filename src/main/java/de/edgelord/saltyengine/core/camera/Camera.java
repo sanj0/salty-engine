@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2019 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,111 +16,161 @@
 
 package de.edgelord.saltyengine.core.camera;
 
-import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Rotation;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 
 /**
- * Class which controls how entities are rendered onto the screen.
- *
+ * An interface for a simple 2D camera.
  * <p>
- * You can manipulate that by using the {@link #position} of the camera. You can edit that value by
- * using the methods {@link #move(Directions.Direction, float)} and {@link #setPosition(Vector2f)}.
- *
- * <p>
- * You can also manipulate the manner of entity rendering with the {@link #rotation} of the camera.
- * For that, you can use the method {@link #setRotation(float)}
- *
- * <p>
- * The instance of this class that is useful for the user is {@link Game#getCamera()} which can be accessed by using
- * {@link Game#getCamera()}
+ * A camera, in this sense, takes input and generate an according {@link de.edgelord.saltyengine.effect.image.SaltyImage image}.
  */
-public class Camera {
+public interface Camera {
 
     /**
-     * The position of the camera in user-space. This is only a virtual position because there is no really existing
-     * camera in the scene.
+     * Renders the given Drawable onto a {@link SaltyImage} and returns it.
+     * <p>
+     * The image returned by this method will always have the
+     * exact {@link Dimensions} of {@link #getSize()}.
      *
-     * @see #move(Directions.Direction, float)
+     * @param subject the Drawable to render
+     * @return a visual representation of the given Drawable as this camera sees it
      */
-    private Vector2f position = new Vector2f(0f, 0f);
+    SaltyImage render(Drawable subject);
 
     /**
-     * The rotation of the camera in degrees
+     * Sets the position of this camera.
+     * <p>
+     * The position of this camera is relative to
+     * the normal user space and directly influences
+     * the output of this camera produced with
+     * {@link #render(Drawable)}.
+     *
+     * @param position the new position of this camera
      */
-    private float rotation = 0f;
-
-    private AffineTransform originalTransform = null;
-
-    private Vector2f lastPosition = new Vector2f(0f, 0f);
+    void setPosition(Vector2f position);
 
     /**
-     * The standard constructor.
+     * Returns the position of this camera as set and
+     * described by {@link #setPosition(Vector2f)}.
+     *
+     * @return the current position of this camera
      */
-    public Camera() {
+    Vector2f getPosition();
+
+    /**
+     * Sets the size of this camera.
+     * <p>
+     * The size of the camera directly determines
+     * the size of its output produced with
+     * {@link #render(Drawable)}.
+     *
+     * @param size the new size of this camera
+     */
+    void setSize(Dimensions size);
+
+    /**
+     * Returns the size of this camera
+     * as set and described in {@link #setSize(Dimensions)}.
+     *
+     * @return the current size of this camera
+     */
+    Dimensions getSize();
+
+    /**
+     * Sets the resolution of this camera.
+     * <p>
+     * The resolution decsribes with how many
+     * pixel the camera can render. <br>
+     * This does not affect the size
+     * of the image produced with {@link #render(Drawable)}.
+     *
+     * @param resolution the new resolution of this camera
+     */
+    void setResolution(Dimensions resolution);
+
+    /**
+     * Returns the current resolution of this camera
+     * as set and described in {@link #setResolution(Dimensions)}.
+     *
+     * @return the current resolution of this camera
+     */
+    Dimensions getResolution();
+
+    /**
+     * Sets the rotation of this camera.
+     * <p>
+     * This does not affect the size of the output produced
+     * with {@link #render(Drawable)}.
+     *
+     * @param rotation the new rotation of this camera
+     */
+    void setRotation(Rotation rotation);
+
+    /**
+     * Returns the rotation of this camera
+     * as set and described in {@link #setResolution(Dimensions)}.
+     *
+     * @return the current rotation of this camera
+     */
+    Rotation getRotation();
+
+    /**
+     * Sets the current scale of the camera.
+     * <p>
+     * A scale of <code>1f</code> is default and does not change the image,
+     * a scale of <code>0f</code> would make the camera see nothing and a scale
+     * of <code>2f</code> would make everything twice as big.
+     * <p>
+     * This scale does not affect the size of the image produced by {@link #render(Drawable)}.
+     *
+     * @param scale the new scale
+     */
+    void setScale(float scale);
+
+    /**
+     * Returns the scale as set and described in {@link #setScale(float)}.
+     *
+     * @return the current scale of this camera
+     */
+    float getScale();
+
+    /**
+     * Returns an instance of {@link AffineTransform} that directly
+     * represents the values of this camera in <br>
+     * {@link #getScale() scale} <br>
+     * {@link #getPosition() position} <br>
+     * {@link #getRotation() rotation} <br>
+     *
+     * @return a {@link AffineTransform} that directly represents the state of this camera
+     */
+    default AffineTransform getAffineTransform() {
+        double scale = getScale();
+        Vector2f position = getPosition();
+        double rotation = getRotation().getRotationDegrees();
+        Vector2f rotationAnchor = getRotation().getCentre();
+        double scaleTranslateAmountX = getResolution().getWidth() - getSize().getWidth();
+        double scaleTranslateAmountY = getResolution().getHeight() - getSize().getHeight();
+
+        AffineTransform transform = new AffineTransform();
+        transform.rotate(Math.toRadians(rotation), rotationAnchor.getX(), rotationAnchor.getY());
+        transform.translate(scaleTranslateAmountX, scaleTranslateAmountY);
+        transform.scale(scale, scale);
+        transform.translate(position.getX(), position.getY());
+
+        return transform;
     }
 
     /**
-     * Sets the view of this camera to the given {@link Graphics2D}
-     *
-     * @param graphics the {@link Graphics2D} to be manipulated
-     */
-    public void setViewToGraphics(Graphics2D graphics) {
-        if (originalTransform == null) {
-            originalTransform = graphics.getTransform();
-        }
-
-        graphics.translate(lastPosition.getX() + position.getX(), lastPosition.getY() + position.getY());
-        graphics.rotate(Math.toRadians(rotation), Game.getGameWidth() / 2, Game.getGameHeight() / 2);
-    }
-
-    /**
-     * Resets the view of the given {@link SaltyGraphics} to a rotation of 0 and a position of 0|0.
-     * This only works properly when the {@link Graphics2D} was manipulated by {@link #setViewToGraphics(Graphics2D)}
-     * before.
-     *
-     * @param graphics the {@link Graphics2D} to reset
-     */
-    public void tmpResetViewToGraphics(SaltyGraphics graphics) {
-        graphics.setRotation(0);
-        graphics.getGraphics2D().translate(getX() * -1, getY() * -1);
-    }
-
-    /**
-     * Moves the camera.
-     *
-     * @param direction the {@link de.edgelord.saltyengine.utils.Directions.Direction} of the movement.
-     *                  Actually, there is no camera movement simulated and all of the rendered entities will move
-     *                  in this direction instead of the camera to move.
-     * @param delta     the length of the movement in pixels.
-     */
-    public void move(Directions.Direction direction, float delta) {
-        switch (direction) {
-
-            case RIGHT:
-                setX(getX() + delta);
-                break;
-            case LEFT:
-                setX(getX() - delta);
-                break;
-            case UP:
-                setY(getY() - delta);
-                break;
-            case DOWN:
-                setY(getY() + delta);
-                break;
-        }
-    }
-
-    /**
-     * Returns the position relative to the position of the camera.
+     * Returns the position of the given Vector relative to the position of the camera.
      * Example:
      *
      * <pre>
@@ -138,14 +188,21 @@ public class Camera {
      *     }
      * </pre>
      *
-     * @param absolutePosition the position relative to
+     * @param absolutePosition an absolute position
      * @return the absolute position with considering the position of this camera for the given relative position
      */
-    public Vector2f getRelativePosition(Vector2f absolutePosition) {
-        Vector2f absPos = new Vector2f(absolutePosition.getX(), absolutePosition.getY());
-        absPos.subtract(getPosition());
+    default Vector2f getRelativePosition(Vector2f absolutePosition) {
+        AffineTransform transform = getAffineTransform();
+        try {
+            transform.invert();
+        } catch (NoninvertibleTransformException e) {
+            e.printStackTrace();
+        }
+        Point2D srcPoint = new Point2D.Float(absolutePosition.getX(), absolutePosition.getY());
+        Point2D dstPoint = new Point2D.Float();
+        transform.transform(srcPoint, dstPoint);
 
-        return absPos;
+        return new Vector2f((float) dstPoint.getX(), (float) dstPoint.getY());
     }
 
     /**
@@ -155,7 +212,7 @@ public class Camera {
      * @return the cursor with the position of this camera considered.
      * @see #getRelativePosition(Vector2f)
      */
-    public Transform getRelativeCursor() {
+    default Transform getRelativeCursor() {
         return new Transform(getRelativeCursorPosition(), Dimensions.one());
     }
 
@@ -165,62 +222,7 @@ public class Camera {
      *
      * @return the cursor position manipulated in a way that it fits the position of this camera.
      */
-    public Vector2f getRelativeCursorPosition() {
-        return getRelativePosition(Input.getCursorPosition());
-    }
-
-    /**
-     * Sets the position of this virtual camera in the scene.
-     *
-     * @param position the new position of this camera
-     * @see #move(Directions.Direction, float)
-     */
-    public void setPosition(Vector2f position) {
-        this.position = position;
-    }
-
-    /**
-     * Sets the position of this virtual camera in the scene.
-     *
-     * @param x the x position of this camera
-     * @param y the y position of this camera
-     */
-    public void setPosition(float x, float y) {
-        this.position = new Vector2f(x, y);
-    }
-
-    public void setX(float x) {
-        position.setX(x);
-    }
-
-    public void setY(float y) {
-        position.setY(y);
-    }
-
-    /**
-     * Sets the rotation of this camera in degrees.
-     *
-     * @param rotation the rotation degrees of this camera.
-     */
-    @Deprecated
-    public void setRotation(float rotation) {
-        this.rotation = rotation;
-    }
-
-    public Vector2f getPosition() {
-        return position;
-    }
-
-    public float getX() {
-        return position.getX();
-    }
-
-    public float getY() {
-        return position.getY();
-    }
-
-    @Deprecated
-    public float getRotation() {
-        return rotation;
+    default Vector2f getRelativeCursorPosition() {
+        return Input.getCursorPosition();
     }
 }

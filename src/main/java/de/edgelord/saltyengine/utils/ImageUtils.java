@@ -30,6 +30,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.io.IOException;
@@ -39,6 +40,25 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_PNG = "png";
     public static String IMAGE_FORMAT_JPG = "jpg";
     public static String IMAGE_FORMAT_GIF = "gif";
+
+    /**
+     * Creates a new {@link SaltyImage} with the given
+     * width and height and draws the given image onto it, filling
+     * the new image entirely.
+     *
+     * @param image  the image to resize
+     * @param width  the width of the new image
+     * @param height the height of the new image
+     * @return a new image which contains the old image
+     */
+    public static SaltyImage resize(SaltyImage image, float width, float height) {
+        SaltyImage destination = SaltySystem.createPreferredImage(width, height);
+        Graphics2D graphics2D = destination.createGraphics();
+        AffineTransform transform = AffineTransform.getScaleInstance((double) width / image.getWidth(), (double) height / image.getHeight());
+        graphics2D.drawImage(image.getImage(), transform, null);
+
+        return destination;
+    }
 
     /**
      * Returns a sub-image of the given {@link VolatileImage}.

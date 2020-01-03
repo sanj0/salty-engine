@@ -52,8 +52,8 @@ public class SaltyGraphics {
      * This method draws a circle using {@link #drawOval(float, float, float, float)} aeround the given x and y
      * coordinates with the given diameter
      *
-     * @param x the x position of the centre of the circle that represents the point
-     * @param y the y position of the centre of the circle that represents the point
+     * @param x        the x position of the centre of the circle that represents the point
+     * @param y        the y position of the centre of the circle that represents the point
      * @param diameter the diameter of the circle around the given point
      */
     public void drawPoint(float x, float y, float diameter) {
@@ -64,7 +64,7 @@ public class SaltyGraphics {
     /**
      * Draws the given {@link Vector2f point} using {@link #drawPoint(float, float, float)}.
      *
-     * @param point the point to be drawn
+     * @param point    the point to be drawn
      * @param diameter the diameter of the circle around the given point
      */
     public void drawPoint(Vector2f point, float diameter) {
@@ -961,7 +961,7 @@ public class SaltyGraphics {
      */
     public void setRotation(float rotation, Vector2f centre) {
 
-        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()), centre.getX(), centre.getY());
+        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation().getRotationDegrees()), centre.getX(), centre.getY());
     }
 
     /**
@@ -971,7 +971,7 @@ public class SaltyGraphics {
      * @see Graphics2D#rotate(double)
      */
     public void setRotation(float rotation) {
-        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation()));
+        graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation().getRotationDegrees()));
     }
 
     /**

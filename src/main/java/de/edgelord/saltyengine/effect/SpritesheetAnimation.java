@@ -18,7 +18,6 @@ package de.edgelord.saltyengine.effect;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
-import de.edgelord.saltyengine.gameobject.GameObject;
 
 import java.util.LinkedList;
 import java.util.List;

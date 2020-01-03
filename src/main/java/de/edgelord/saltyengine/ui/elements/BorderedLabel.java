@@ -19,9 +19,6 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.awt.*;
 
 /**
  * This is the standard implementation of a {@link Label}, with the given text only

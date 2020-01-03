@@ -54,10 +54,10 @@ public class LightComponent extends GFXComponent {
     /**
      * The base constructor.
      *
-     * @param parent the parent
-     * @param name the id-name
+     * @param parent           the parent
+     * @param name             the id-name
      * @param relationToParent the relation of the light ot the parent
-     * @param light the light
+     * @param light            the light
      */
     public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent, Light light) {
         super(parent, name);
@@ -72,8 +72,8 @@ public class LightComponent extends GFXComponent {
      * A constructor. Overloads {@link #relationToParent} with {@link TransformRelationMode#CENTRE}.
      *
      * @param parent the parent
-     * @param name the id-name
-     * @param light the light
+     * @param name   the id-name
+     * @param light  the light
      */
     public LightComponent(ComponentContainer parent, String name, Light light) {
         this(parent, name, TransformRelationMode.CENTRE, light);
@@ -82,8 +82,8 @@ public class LightComponent extends GFXComponent {
     /**
      * A constructor. Overloads {@link #light} with {@code new PointLight(parent.getTransform())}.
      *
-     * @param parent the parent
-     * @param name the id-name
+     * @param parent           the parent
+     * @param name             the id-name
      * @param relationToParent the light
      */
     public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent) {
@@ -95,7 +95,7 @@ public class LightComponent extends GFXComponent {
      * and {@link #relationToParent} with {@link TransformRelationMode#CENTRE}.
      *
      * @param parent the parent
-     * @param name the id-name
+     * @param name   the id-name
      */
     public LightComponent(ComponentContainer parent, String name) {
         this(parent, name, TransformRelationMode.CENTRE, new PointLight((Transform) parent.getTransform().clone()));

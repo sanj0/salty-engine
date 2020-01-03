@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -82,16 +81,6 @@ public class Engine {
     private void startRendering() {
 
         startRepainting();
-    }
-
-    /**
-     * Renders the game one time. This happens automatically.
-     *
-     * @param saltyGraphics the graphics to render to
-     */
-    public void render(SaltyGraphics saltyGraphics) {
-
-        SceneManager.getCurrentScene().draw(saltyGraphics);
     }
 
     /**

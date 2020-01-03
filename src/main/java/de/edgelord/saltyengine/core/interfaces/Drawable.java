@@ -20,8 +20,17 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 
 import java.awt.*;
 
+/**
+ * A <code>Drawable</code> is an object than can be drawn
+ * using a {@link SaltyGraphics SaltyGraphics object}.
+ */
 public interface Drawable {
 
+    /**
+     * Draws this object using the given {@link SaltyGraphics}.
+     *
+     * @param saltyGraphics the graphics to draw to
+     */
     void draw(SaltyGraphics saltyGraphics);
 
     static Drawable colorPrepare(Color color) {

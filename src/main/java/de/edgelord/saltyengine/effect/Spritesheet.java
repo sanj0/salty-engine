@@ -37,7 +37,7 @@ public class Spritesheet implements Flushable {
         this.image = image;
     }
 
-    public SpritesheetAnimation getAnimation(Coordinates... coordinates){
+    public SpritesheetAnimation getAnimation(Coordinates... coordinates) {
         return new SpritesheetAnimation(getFrames(coordinates));
     }
 

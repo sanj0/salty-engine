@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.input.MouseInputHandler;
+import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ImageUtils;
@@ -40,7 +41,6 @@ import static java.awt.RenderingHints.*;
 public class Stage extends JPanel {
 
     private final Container container;
-    private final Engine engine;
     private NativeStageMouseListener nativeMouseListener = null;
     private NativeStageMouseMotionListener nativeMouseMotionListener = null;
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
@@ -54,6 +54,11 @@ public class Stage extends JPanel {
     private int ticks = 0;
     private int fpsRefreshGate = 25;
 
+    /**
+     * The current image position is the position
+     * of the rendered image within this panel,
+     * which is changed by the letterbox scaling.
+     */
     private Vector2f currentImgPos = new Vector2f(0, 0);
 
     private boolean highQuality = true;
@@ -66,7 +71,6 @@ public class Stage extends JPanel {
 
     public Stage(final Container container, final Engine engine, int x, int y, int width, int height) {
         this.container = container;
-        this.engine = engine;
 
         init(x, y, width, height);
     }
@@ -74,9 +78,7 @@ public class Stage extends JPanel {
     protected void initNativeMouseListener() {
 
         nativeMouseListener = new NativeStageMouseListener(null);
-
         nativeMouseMotionListener = new NativeStageMouseMotionListener(null, this);
-
         nativeMouseWheelListener = new NativeStageMouseWheelListener(null);
 
         addMouseListener(nativeMouseListener);
@@ -140,14 +142,14 @@ public class Stage extends JPanel {
 
     private void renderToGraphics(Graphics2D graphics2D) {
         graphics2D.setClip(0, 0, originWidth, originHeight);
-
         graphics2D.setRenderingHints(getRenderHints());
 
-        Game.getCamera().setViewToGraphics(graphics2D);
+        //Game.getCamera().setViewToGraphics(graphics2D);
 
         SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
 
-        engine.render(saltyGraphics);
+        //engine.render(saltyGraphics);
+        saltyGraphics.drawImage(Game.getCamera().render(SceneManager.getCurrentScene()), 0, 0);
 
         if (Game.isDrawFPS()) {
             if (ticks == fpsRefreshGate) {

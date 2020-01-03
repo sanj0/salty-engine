@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.core.camera.Camera;
+import de.edgelord.saltyengine.core.camera.Camera2D;
 import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
 import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
@@ -28,6 +28,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
@@ -63,7 +64,7 @@ public class Game {
     /**
      * The {@link Camera} of the game.
      */
-    private static Camera camera = new Camera();
+    private static Camera2D camera;
 
     /**
      * The original dimensions of the game aka it's resolution. This will be it's resolution at any time,
@@ -110,7 +111,6 @@ public class Game {
     }
 
     private static void internalPreInitForForeignHost(Host host, String gameName, long fixedTickMillis) {
-
         enableOpenGl();
 
         engine = new Engine(fixedTickMillis);
@@ -122,6 +122,7 @@ public class Game {
 
     private static void initSaltySystem(String gameName) {
         Game.gameName = gameName;
+        camera = new Camera2D(new Vector2f(0, 0), getGameDimensions(), getGameDimensions(), 1f);
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
         SaltySystem.defaultResource = new InnerResource();
@@ -263,11 +264,11 @@ public class Game {
         Game.drawFPS = drawFPS;
     }
 
-    public static Camera getCamera() {
+    public static Camera2D getCamera() {
         return camera;
     }
 
-    public static void setCamera(Camera camera) {
+    public static void setCamera(Camera2D camera) {
         Game.camera = camera;
     }
 

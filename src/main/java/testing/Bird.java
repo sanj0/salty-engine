@@ -17,6 +17,7 @@
 package testing;
 
 import de.edgelord.saltyengine.components.animation.AnimationRender;
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.Spritesheet;
@@ -91,6 +92,30 @@ public class Bird extends GameObject implements Serializable {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);
         } else {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);
+        }
+
+        if (Input.keyboardInput.isArrow_right()) {
+            Game.getCamera().move(Directions.Direction.RIGHT, .2f);
+        } else if (Input.keyboardInput.isArrow_left()) {
+            Game.getCamera().move(Directions.Direction.LEFT, .2f);
+        }
+
+        if (Input.keyboardInput.isArrow_up()) {
+            Game.getCamera().move(Directions.Direction.UP, .2f);
+        } else if (Input.keyboardInput.isArrow_down()) {
+            Game.getCamera().move(Directions.Direction.DOWN, .2f);
+        }
+
+        if (Input.keyboardInput.isKey_q()) {
+            Game.getCamera().setRotationDegrees(Game.getCamera().getRotationDegrees() + .1f);
+        } else if (Input.keyboardInput.isKey_e()) {
+            Game.getCamera().setRotationDegrees(Game.getCamera().getRotationDegrees() - .1f);
+        }
+
+        if (Input.keyboardInput.isKey_w()) {
+            Game.getCamera().setScale(Game.getCamera().getScale() + .0001f);
+        } else if (Input.keyboardInput.isKey_s()) {
+            Game.getCamera().setScale(Game.getCamera().getScale() - .0001f);
         }
     }
 

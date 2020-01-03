@@ -23,6 +23,8 @@ import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
+import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
@@ -48,14 +50,11 @@ import java.util.List;
  * <p>
  * The current scene is stored in {@link SceneManager#getCurrentScene()}.
  * For more information, please take a look at the documentation of that class.
- * <p>
- * IMPORTANT: Do nothing with GFX in any implementations of this class. If you do so, these GFX will be applied to the
- * scene that was active before!
  */
-public class Scene {
+public class Scene implements Drawable, FixedTickRoutine {
 
     /**
-     * The first 16 figures of the number {@link Math#PI} to block concurrency.
+     * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
      */
     public static final Object concurrentBlock = "3141592653589793";
 
@@ -82,8 +81,117 @@ public class Scene {
 
     private SceneCollider sceneCollider = new PrioritySceneCollider();
 
-    public Scene() {
+    @Override
+    public void draw(SaltyGraphics saltyGraphics) {
 
+        synchronized (concurrentBlock) {
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
+                    drawingRoutine.draw(saltyGraphics);
+                }
+            }
+        }
+
+        synchronized (concurrentBlock) {
+            for (GameObject gameObject : gameObjects) {
+                AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
+                Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
+                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
+
+                gameObject.draw(saltyGraphics);
+                gameObject.doComponentDrawing(saltyGraphics);
+
+                saltyGraphics.setTransform(before);
+            }
+        }
+
+        synchronized (concurrentBlock) {
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
+                    drawingRoutine.draw(saltyGraphics);
+                }
+            }
+        }
+
+        //Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
+        saltyGraphics.setTransform(new AffineTransform());
+
+        if (lightSystem != null) {
+            lightSystem.draw(saltyGraphics);
+        }
+
+        if (ui != null) {
+            ui.drawUI(saltyGraphics);
+        }
+
+        Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
+
+        synchronized (concurrentBlock) {
+            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.LAST) {
+                    drawingRoutine.draw(saltyGraphics);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onFixedTick() {
+
+        doFixedTasks();
+
+        synchronized (concurrentBlock) {
+
+            for (int i = 0; i < gameObjects.size(); i++) {
+                GameObject gameObject = gameObjects.get(i);
+
+                if (gameObject.isClearCollisions()) {
+                    gameObject.getCollisions().clear();
+                    gameObject.setClearCollisions(false);
+                }
+
+                if (!gameObject.isInitialized()) {
+                    gameObject.initialize();
+                    gameObject.setInitialized(true);
+                }
+
+
+                for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
+                    GameObject gameObject2 = gameObjects.get(i2);
+                    if (gameObject2.isClearCollisions()) {
+                        gameObject2.getCollisions().clear();
+                        gameObject2.setClearCollisions(false);
+                    }
+
+                    CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
+
+                    if (collisionDetectionResult.isCollision()) {
+                        CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
+                        CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
+
+                        gameObject.getCollisions().add(collision);
+                        gameObject.onCollision(collision);
+                        gameObject.getComponents().forEach(component -> component.onCollision(collision));
+
+                        gameObject2.onCollision(collision2);
+                        gameObject2.getCollisions().add(collision2);
+                        gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
+                    }
+                }
+
+                gameObject.getComponents().forEach(component -> component.onCollisionDetectionFinish(gameObject.getCollisions()));
+                gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
+                gameObject.doComponentOnFixedTick();
+                gameObject.doFixedTick();
+                gameObject.setClearCollisions(true);
+            }
+        }
+
+        Game.getDefaultGFXController().doGFXFixedTick();
+
+        if (ui != null) {
+            ui.onFixedTick();
+        }
     }
 
     public void disableGravity() {
@@ -179,116 +287,6 @@ public class Scene {
 
                 fixedTask.onFixedTick();
             }
-        }
-    }
-
-    public void draw(SaltyGraphics saltyGraphics) {
-
-        synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
-                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
-                    drawingRoutine.draw(saltyGraphics);
-                }
-            }
-        }
-
-        synchronized (concurrentBlock) {
-            for (GameObject gameObject : gameObjects) {
-                AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
-                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
-
-                gameObject.draw(saltyGraphics);
-                gameObject.doComponentDrawing(saltyGraphics);
-
-                saltyGraphics.setTransform(before);
-            }
-        }
-
-        synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
-                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
-                    drawingRoutine.draw(saltyGraphics);
-                }
-            }
-        }
-
-        Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
-
-        if (lightSystem != null) {
-            lightSystem.draw(saltyGraphics);
-        }
-
-        if (ui != null) {
-            ui.drawUI(saltyGraphics);
-        }
-
-        Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
-
-        synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
-                if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.LAST) {
-                    drawingRoutine.draw(saltyGraphics);
-                }
-            }
-        }
-    }
-
-    public void onFixedTick() {
-
-        doFixedTasks();
-
-        synchronized (concurrentBlock) {
-
-            for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
-
-                if (gameObject.isClearCollisions()) {
-                    gameObject.getCollisions().clear();
-                    gameObject.setClearCollisions(false);
-                }
-
-                if (!gameObject.isInitialized()) {
-                    gameObject.initialize();
-                    gameObject.setInitialized(true);
-                }
-
-
-                for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
-                    GameObject gameObject2 = gameObjects.get(i2);
-                    if (gameObject2.isClearCollisions()) {
-                        gameObject2.getCollisions().clear();
-                        gameObject2.setClearCollisions(false);
-                    }
-
-                    CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
-
-                    if (collisionDetectionResult.isCollision()) {
-                        CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
-                        CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
-
-                        gameObject.getCollisions().add(collision);
-                        gameObject.onCollision(collision);
-                        gameObject.getComponents().forEach(component -> component.onCollision(collision));
-
-                        gameObject2.onCollision(collision2);
-                        gameObject2.getCollisions().add(collision2);
-                        gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
-                    }
-                }
-
-                gameObject.getComponents().forEach(component -> component.onCollisionDetectionFinish(gameObject.getCollisions()));
-                gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
-                gameObject.doComponentOnFixedTick();
-                gameObject.doFixedTick();
-                gameObject.setClearCollisions(true);
-            }
-        }
-
-        Game.getDefaultGFXController().doGFXFixedTick();
-
-        if (ui != null) {
-            ui.onFixedTick();
         }
     }
 
