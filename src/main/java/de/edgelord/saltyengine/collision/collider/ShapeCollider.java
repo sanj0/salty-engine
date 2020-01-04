@@ -54,7 +54,7 @@ public class ShapeCollider extends Collider {
 
         Area collisionArea = new Area(shape);
 
-        switch (otherCollider.getName()) {
+        switch (otherCollider.getType()) {
             case HITBOX_COLLIDER:
                 collisionArea.intersect(new Area(otherGameObject.getHitbox().getTransform().getRect()));
                 return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(otherGameObject.getHitbox().getTransform()));

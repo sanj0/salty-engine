@@ -89,6 +89,5 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         cursorPos.divide(currentScale, currentScale);
 
         Input.cursorPosition = cursorPos;
-        Input.cursor = new Transform(Input.cursorPosition, Dimensions.one());
     }
 }

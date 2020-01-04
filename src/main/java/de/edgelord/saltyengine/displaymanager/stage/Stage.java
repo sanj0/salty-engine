@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.displaymanager.stage;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameListener;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -34,6 +35,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.function.Consumer;
 
 import static java.awt.RenderingHints.*;
 
@@ -171,6 +173,9 @@ public class Stage extends JPanel {
         renderToGraphics(graphics2D);
         graphics2D.dispose();
 
+        for (GameListener gameListener : Game.getGameListeners()) {
+            image = gameListener.onRenderFinish(image);
+        }
         return image;
     }
 

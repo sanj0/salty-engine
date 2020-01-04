@@ -63,12 +63,10 @@ public class Tester extends Game {
 
         initGame();
 
-        SceneManager.addScene("testingScene", TestingScene.class);
-
         start(60, SplashWindow.Splash.NO_SPLASH);
         serializeOnExit();
 
-        SceneManager.setCurrentScene("testingScene", "foo", 842);
+        SceneManager.setCurrentScene(new TestingScene());
         // PointLogger.init("points");
         RectangleCreator.init();
 

@@ -39,27 +39,27 @@ public abstract class Collider {
     /**
      * The name of this collider.
      */
-    private String name;
+    private int type;
 
     /**
      * The name of the default {@link HitboxCollider}.
      */
-    public static final String HITBOX_COLLIDER = "de.edgelord.saltyengine.collision.collider.HitboxCollider";
+    public static final int HITBOX_COLLIDER = 0;
 
     /**
      * The name of the {@link ShapeCollider}.
      */
-    public static final String SHAPE_COLLIDER = "de.edgelord.saltyengine.collision.collider.ShapeCollider";
+    public static final int SHAPE_COLLIDER = 1;
 
     /**
      * The constructor.
      *
      * @param priority the priority of this collider
-     * @param name     the name
+     * @param type     the name
      */
-    public Collider(int priority, String name) {
+    public Collider(int priority, int type) {
         this.priority = priority;
-        this.name = name;
+        this.type = type;
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class Collider {
         return priority;
     }
 
-    public String getName() {
-        return name;
+    public int getType() {
+        return type;
     }
 }

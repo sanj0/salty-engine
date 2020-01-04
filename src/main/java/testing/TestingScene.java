@@ -43,7 +43,7 @@ public class TestingScene extends Scene {
     private Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
     private ProgressBar progress = new ProgressBar(Game.getHost().getHorizontalCentrePosition(500f), 75, 500, 25);
 
-    public TestingScene(String foo, Integer bar) {
+    public TestingScene() {
         setFriction(0.005f);
 
         try {

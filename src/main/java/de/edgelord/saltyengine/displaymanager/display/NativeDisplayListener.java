@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.displaymanager.display;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameListener;
 import de.edgelord.saltyengine.core.WindowClosingHooks;
 
 import java.awt.event.WindowEvent;
@@ -27,16 +28,19 @@ import java.awt.event.WindowEvent;
  * <p>
  * - when the window is closing:
  * <p>
- * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#getEngine()}
- * <p>
+ * - calls {@link GameListener#onClose()} on all assigned <code>GameListener</code>s
+ * <br>
  * - run the shutdown hooks by calling {@link WindowClosingHooks#runHooks()}
- * <p>
+ * <br>
+ * - close the {@link de.edgelord.saltyengine.core.Engine} by calling {@link Engine#close()} to {@link Game#getEngine()}
+ * <br>
  * - exiting the program by calling {@link System#exit(int)}
  */
 public class NativeDisplayListener extends DisplayListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
+        Game.forEachGameListener(GameListener::onClose);
         WindowClosingHooks.runHooks();
         Game.getEngine().close();
         System.exit(0);

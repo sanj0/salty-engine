@@ -44,7 +44,6 @@ public class DisplayManager extends Host {
 
     @Override
     public void create() {
-
         display.create();
         createKeyListener();
     }

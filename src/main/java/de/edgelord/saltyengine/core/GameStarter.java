@@ -50,9 +50,10 @@ public class GameStarter {
                 }
             } else {
                 startGame(false, null, fps);
+                Game.forEachGameListener(GameListener::onStart);
             }
         } catch (Exception e) {
-            System.err.println("Seems like something gone wrong while starting the game. Maybe you called Game#start before you called Game#init?");
+            System.err.println("Seems like something gone wrong while starting the game. Maybe there was a call to Game#start before Game#init?");
             e.printStackTrace();
         }
     }

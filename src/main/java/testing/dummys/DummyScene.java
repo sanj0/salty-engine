@@ -21,7 +21,6 @@ import de.edgelord.saltyengine.scene.Scene;
 public class DummyScene extends Scene {
 
     public DummyScene() {
-
         setGravityEnabled(false);
     }
 }

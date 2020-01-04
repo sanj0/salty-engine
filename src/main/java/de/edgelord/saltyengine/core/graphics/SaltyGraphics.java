@@ -1177,7 +1177,7 @@ public class SaltyGraphics {
      * Return the length of the given text when rendered.
      *
      * @param text the string from which to compute the length when rendered
-     * @return teh length of the given text when rendered
+     * @return the length of the given text when rendered
      */
     public float getTextLength(String text) {
         return getFontMetrics().stringWidth(text);

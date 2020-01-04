@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.core;
 
+import de.edgelord.saltyengine.core.camera.Camera;
 import de.edgelord.saltyengine.core.camera.Camera2D;
 import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
@@ -34,6 +35,9 @@ import de.edgelord.saltyengine.utils.Time;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * The central core class for a Salty Engine game. To start a game, call either
@@ -89,6 +93,11 @@ public class Game {
      * The {@link Engine} that runs the game. It repaints the {@link #host} and calls the {@link Scene#onFixedTick()}.
      */
     private static Engine engine;
+
+    /**
+     * The list of {@link GameListener} that are assigned.
+     */
+    private static List<GameListener> gameListeners = new ArrayList<>();
 
     /**
      * Initialized the game with the given {@link GameConfig} and a {@link DisplayManager} as {@link Host}.
@@ -216,6 +225,32 @@ public class Game {
     public static void start(long fixedFPS) {
 
         GameStarter.startGame(fixedFPS, SplashWindow.Splash.SPOTLIGHT_SPLASH);
+    }
+
+    /**
+     * Adds the given {@link GameListener} to the list.
+     *
+     * @param gameListener the new <code>GameListener</code>
+     */
+    public static void addGameListener(GameListener gameListener) {
+        gameListeners.add(gameListener);
+    }
+
+    /**
+     * Removes the given {@link GameListener} from the list.
+     *
+     * @param gameListener a {@link GameListener}
+     */
+    public static void removeGameListener(GameListener gameListener) {
+        gameListeners.remove(gameListener);
+    }
+
+    public static void forEachGameListener(Consumer<? super GameListener> action) {
+        gameListeners.forEach(action);
+    }
+
+    public static List<GameListener> getGameListeners() {
+        return gameListeners;
     }
 
     protected static void setEngine(Engine engine) {

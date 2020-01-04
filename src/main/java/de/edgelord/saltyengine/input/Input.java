@@ -48,7 +48,6 @@ public class Input {
      * position of the mouse cursor.
      */
     public static Vector2f cursorPosition = new Vector2f(0, 0);
-    public static Transform cursor = new Transform(0, 0, 0, 0);
     public static boolean mouseDrags = false;
     public static boolean mouseDown = false;
 
@@ -115,7 +114,7 @@ public class Input {
     }
 
     public static Transform getCursor() {
-        return cursor;
+        return new Transform(getCursorPosition(), Dimensions.one());
     }
 
     public static Transform getAbsoluteCursor() {

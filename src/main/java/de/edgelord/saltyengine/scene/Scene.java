@@ -113,12 +113,16 @@ public class Scene implements Drawable, FixedTickRoutine {
             }
         }
 
+        Game.forEachGameListener(gameListener -> gameListener.onGameRenderFinish(saltyGraphics));
+
         //Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
         saltyGraphics.setTransform(new AffineTransform());
 
         if (lightSystem != null) {
             lightSystem.draw(saltyGraphics);
         }
+
+        Game.forEachGameListener(gameListener -> gameListener.onPostLightRenderFinish(saltyGraphics));
 
         if (ui != null) {
             ui.drawUI(saltyGraphics);

@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.ui;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.input.Input;
+import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -37,20 +38,21 @@ public class UISystem {
     }
 
     public void onFixedTick() {
+        Transform cursor = Input.getAbsoluteCursor();
         for (UIElement element : elements) {
 
-            if (element.getTransform().contains(Input.getAbsoluteCursor())) {
+            if (element.getTransform().contains(cursor)) {
 
                 if (!element.mouseHoversOver()) {
-                    element.mouseEntered(Input.cursor);
+                    element.mouseEntered(cursor);
                     element.doComponentCursorEntersParent();
                 }
 
-                element.mouseHover(Input.cursor);
+                element.mouseHover(cursor);
                 element.setMouseHoversOver(true);
             } else if (element.mouseHoversOver()) {
                 element.setMouseHoversOver(false);
-                element.mouseExited(Input.cursor);
+                element.mouseExited(cursor);
                 element.doComponentCursorExitsParent();
             }
 
