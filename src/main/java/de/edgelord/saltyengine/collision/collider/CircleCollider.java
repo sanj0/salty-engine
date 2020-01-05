@@ -29,7 +29,7 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
  * An implementation of {@link Collider} that uses
  * a circle as the "hitbox".
  * Using CircleColliders only would make the collision detection very fast. <p>
- *
+ * <p>
  * Note that for the circle, the width of {@link de.edgelord.saltyengine.hitbox.Hitbox}
  * is being used and that the height is therefore ignored, but as the centre
  * of the circle is needed, the user should always ensure that width and height

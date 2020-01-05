@@ -17,14 +17,13 @@
 package de.edgelord.saltyengine.scene;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.GameListener;
 
 import java.lang.reflect.InvocationTargetException;
 
 /**
  * This class provides static stuff for
  * managing the {@link #currentScene current active Scene}.
- *
+ * <p>
  * Apart from the obvious getting/setting,
  * to reload the current {@link Scene},
  * use {@link #reloadCurrentScene(Object...)}.

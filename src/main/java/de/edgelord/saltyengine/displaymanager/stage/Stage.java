@@ -35,7 +35,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.function.Consumer;
 
 import static java.awt.RenderingHints.*;
 

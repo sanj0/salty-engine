@@ -56,7 +56,7 @@ public interface GameListener {
      * Calls when a {@link GameObject} collides with another <code>GameObject</code>.
      *
      * @param subject the first collision partner
-     * @param e the event of the collision, including the other collision partner
+     * @param e       the event of the collision, including the other collision partner
      */
     void onCollision(GameObject subject, CollisionEvent e);
 
@@ -92,7 +92,6 @@ public interface GameListener {
      *     return image;
      * }
      * }</pre>
-     *
      *
      * @param image the final image
      * @return the image that is actually being drawn to the screen

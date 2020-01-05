@@ -23,7 +23,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 import static java.lang.Math.toDegrees;
 
@@ -46,8 +45,8 @@ public class GeneralUtil {
      * and {@code max} if {@code v} is greater than {@code max}
      *
      * @param value a value
-     * @param min the smaller end of the range
-     * @param max the greater end of the range
+     * @param min   the smaller end of the range
+     * @param max   the greater end of the range
      * @return the given value clamped to the given range
      */
     public static float clamp(float value, float min, float max) {
