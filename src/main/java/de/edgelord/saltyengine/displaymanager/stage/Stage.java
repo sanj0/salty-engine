@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.displaymanager.stage;
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameListener;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -62,9 +63,8 @@ public class Stage extends JPanel {
      */
     private Vector2f currentImgPos = new Vector2f(0, 0);
 
-    private boolean highQuality = true;
-    private RenderingHints hqRenderingHints;
-    private RenderingHints lqRenderingHints;
+    public static RenderingHints hqRenderingHints;
+    public static RenderingHints lqRenderingHints;
 
     public Stage(final Container container, final Engine engine) {
         this(container, engine, 0, 0, container.getWidth(), container.getHeight());
@@ -143,7 +143,7 @@ public class Stage extends JPanel {
 
     private void renderToGraphics(Graphics2D graphics2D) {
         graphics2D.setClip(0, 0, originWidth, originHeight);
-        graphics2D.setRenderingHints(getRenderHints());
+        graphics2D.setRenderingHints(GraphicsConfiguration.renderingHints);
 
         //Game.getCamera().setViewToGraphics(graphics2D);
 
@@ -203,18 +203,6 @@ public class Stage extends JPanel {
         this.nativeMouseListener.setMouseHandler(mouseHandler);
         this.nativeMouseMotionListener.setMouseHandler(mouseHandler);
         this.nativeMouseWheelListener.setMouseHandler(mouseHandler);
-    }
-
-    public boolean isHighQuality() {
-        return highQuality;
-    }
-
-    public void setHighQuality(final boolean highQuality) {
-        this.highQuality = highQuality;
-    }
-
-    public RenderingHints getRenderHints() {
-        return highQuality ? hqRenderingHints : lqRenderingHints;
     }
 
     public Dimensions getResolution() {

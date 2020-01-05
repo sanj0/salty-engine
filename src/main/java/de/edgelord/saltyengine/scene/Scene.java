@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
@@ -118,7 +119,7 @@ public class Scene implements Drawable, FixedTickRoutine {
         //Game.getCamera().tmpResetViewToGraphics(saltyGraphics);
         saltyGraphics.setTransform(new AffineTransform());
 
-        if (lightSystem != null) {
+        if (lightSystem != null && GraphicsConfiguration.renderLight) {
             lightSystem.draw(saltyGraphics);
         }
 

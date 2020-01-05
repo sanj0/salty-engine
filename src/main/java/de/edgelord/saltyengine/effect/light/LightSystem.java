@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.effect.light;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -67,7 +68,7 @@ public class LightSystem implements Drawable {
         //updatePlainLightMap();
         Graphics2D graphics = drawBackgroundToImage(lightMap);
 
-        graphics.setRenderingHints(Game.getHost().getRenderHints());
+        graphics.setRenderingHints(GraphicsConfiguration.renderingHints);
 
         Composite oldComp = graphics.getComposite();
 

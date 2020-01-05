@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.emitter;
 
 import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -259,11 +260,14 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
-        saltyGraphics.resetObjectRotation(getParent());
-        for (int i = 0; i < currentParticles.size(); i++) {
-            Particle particle = currentParticles.get(i);
-            renderContext.nextParticleRenderConfig(saltyGraphics, particle);
-            particle.draw(saltyGraphics);
+
+        if (GraphicsConfiguration.renderGFX) {
+            saltyGraphics.resetObjectRotation(getParent());
+            for (int i = 0; i < currentParticles.size(); i++) {
+                Particle particle = currentParticles.get(i);
+                renderContext.nextParticleRenderConfig(saltyGraphics, particle);
+                particle.draw(saltyGraphics);
+            }
         }
     }
 

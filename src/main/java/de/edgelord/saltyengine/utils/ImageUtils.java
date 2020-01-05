@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
@@ -168,13 +169,13 @@ public class ImageUtils {
      * <p>
      * The given {@link Drawable} is called once before the rendering to e.g. call {@link SaltyGraphics#setColor(Color)}
      * or {@link SaltyGraphics#setPaint(Paint)} on the used {@link Graphics2D} of the image. The given {@link RenderingHints}
-     * are also set to the graphics, normally you want to use {@link Host#getRenderHints()} for that.
+     * are also set to the graphics, normally you want to use {@link GraphicsConfiguration#renderingHints} for that.
      * <p>
      * The gradient will be radial and it'll have the given alpha in the centre. The given intensity effects how the gradient looks.
      *
      * @param shape           the {@link SaltyShape} to draw as a gradient
      * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It can be null.
-     * @param renderingHints  hints to define the quality. Most likely, you want to use {@link Host#getRenderHints()}
+     * @param renderingHints  hints to define the quality. Most likely, you want to use {@link GraphicsConfiguration#renderingHints}
      *                        to have the same quality as the rest of the game
      * @param intensity       the intensity of the gradient. That effects hot it looks.
      * @param startAlpha      the alpha value of the centre
@@ -240,7 +241,7 @@ public class ImageUtils {
 
     public static SaltyImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, saltyGraphics -> {
-        }, Game.getHost().getRenderHints(), intensity, 255D, size, arcIfRoundRect);
+        }, GraphicsConfiguration.renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
     /**

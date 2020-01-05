@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.effect.light;
 
-import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -150,7 +150,7 @@ public class GradientLight extends Light {
 
     public void updateLightImage() {
         light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
-        }, Game.getHost().getRenderHints(), getIntensity(), getDimensions(), arcIfRoundRect);
-        coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, Game.getHost().getRenderHints(), getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
+        }, GraphicsConfiguration.renderingHints, getIntensity(), getDimensions(), arcIfRoundRect);
+        coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, GraphicsConfiguration.renderingHints, getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
     }
 }

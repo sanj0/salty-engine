@@ -81,6 +81,7 @@ public class Bird extends GameObject implements Serializable {
     public void onFixedTick() {
 
         getTransform().rotateToPoint(Input.getCursorPosition());
+        emitter.setSpawnPoint(getTransform().getCentre());
 
         moveToFacedDirection(.2f);
 

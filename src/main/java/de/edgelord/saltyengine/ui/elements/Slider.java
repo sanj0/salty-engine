@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.geom.SaltyShape;
@@ -81,6 +81,6 @@ public class Slider extends UIElement {
     }
 
     private void createIndicator(Color color) {
-        indicatorImage = ImageUtils.createShapeImage(indicatorShape, color, Game.getHost().getRenderHints());
+        indicatorImage = ImageUtils.createShapeImage(indicatorShape, color, GraphicsConfiguration.renderingHints);
     }
 }

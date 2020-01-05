@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.Component;
-import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -88,7 +88,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
         primitiveImage = ImageUtils.createPrimitiveImage(saltyGraphics -> {
             setUpGraphics(saltyGraphics);
             primitiveDraw.draw(saltyGraphics);
-        }, new Dimensions(getParent().getWidth() + (lineWidth * 2), getParent().getHeight() + (lineWidth * 2)), Game.getHost().getRenderHints());
+        }, new Dimensions(getParent().getWidth() + (lineWidth * 2), getParent().getHeight() + (lineWidth * 2)), GraphicsConfiguration.renderingHints);
     }
 
     public Color getColor() {

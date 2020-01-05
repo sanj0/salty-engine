@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.core.graphics;
 
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.effect.BasicRenderContext;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -36,6 +37,7 @@ public class SaltyGraphics {
     public SaltyGraphics(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
 
+        graphics2D.setRenderingHints(GraphicsConfiguration.renderingHints);
         setFont(SaltySystem.defaultFont);
     }
 

@@ -27,8 +27,6 @@ public class ScreenExampleMain extends Game {
         Game.init(GameConfig.config(920, 720, "Example of a simple Screen", 5));
         Game.start();
 
-        Game.getHostAsDisplayManager().getStage().setHighQuality(true);
-
         SceneManager.getCurrentScene().addGameObject(new Screen());
 
         BorderedLabel usage = new BorderedLabel("Use WASD or the arrow keys to move the content of the screen!", 0, 25, Game.getGameWidth(), 35);

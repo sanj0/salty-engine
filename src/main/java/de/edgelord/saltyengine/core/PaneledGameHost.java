@@ -74,11 +74,6 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public RenderingHints getRenderHints() {
-        return stage.getRenderHints();
-    }
-
-    @Override
     public ImageObserver getImageObserver() {
         return stage;
     }

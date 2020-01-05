@@ -50,11 +50,6 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
     public abstract void setBackgroundColor(Color color);
 
     /**
-     * @return the {@link RenderingHints} used by this Host to define the quality of the render.
-     */
-    public abstract RenderingHints getRenderHints();
-
-    /**
      * Returns an {@link ImageObserver} the can be used to e.g. render animated gifs.
      *
      * @return a usable {@link ImageObserver}
@@ -94,7 +89,7 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      * @param toggle true if the key "F" should toggle fullscreen mode, false if not
      * @see #toggleFullscreen()
      */
-    public void FToToggleFullscreen(boolean toggle) {
+    public void fToToggleFullscreen(boolean toggle) {
         this.fullscreenToggleF = toggle;
     }
 
