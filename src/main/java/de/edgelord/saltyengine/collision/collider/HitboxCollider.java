@@ -35,7 +35,7 @@ public class HitboxCollider extends Collider {
     }
 
     /**
-     * This implementation first {@link Hitbox#recalculate() recalculates} the {@link GameObject#getHitbox() hitbox} of the
+     * This implementation gets the {@link GameObject#getHitbox() hitbox} of the
      * two given <code>GameObject</code>s and then calls {@link Hitbox#collides(GameObject)} from the first hitbox and for
      * the collision direction, it calls {@link de.edgelord.saltyengine.transform.Transform#getRelation(Transform)}.
      *

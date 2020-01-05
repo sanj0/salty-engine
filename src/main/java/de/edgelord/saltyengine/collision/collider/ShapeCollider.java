@@ -23,10 +23,10 @@ import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 
 /**
  * This implementation determines the {@link CollisionDetectionResult} with a {@link #shape Shape}.
- * WARNING: this is not tested yet!
  */
 public class ShapeCollider extends Collider {
 
@@ -57,6 +57,12 @@ public class ShapeCollider extends Collider {
         switch (otherCollider.getType()) {
             case HITBOX_COLLIDER:
                 collisionArea.intersect(new Area(otherGameObject.getHitbox().getTransform().getRect()));
+                return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(otherGameObject.getHitbox().getTransform()));
+
+            case CIRCLE_COLLIDER:
+                CircleCollider collider = (CircleCollider) otherCollider;
+                Transform hitbox = collider.getHitbox();
+                collisionArea.intersect(new Area(new Ellipse2D.Float(hitbox.getX(), hitbox.getY(), hitbox.getWidth(), hitbox.getHeight())));
                 return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(otherGameObject.getHitbox().getTransform()));
 
             case SHAPE_COLLIDER:

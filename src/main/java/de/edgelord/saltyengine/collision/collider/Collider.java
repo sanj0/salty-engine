@@ -42,14 +42,19 @@ public abstract class Collider {
     private int type;
 
     /**
-     * The name of the default {@link HitboxCollider}.
+     * The type of the default {@link HitboxCollider}.
      */
     public static final int HITBOX_COLLIDER = 0;
 
     /**
-     * The name of the {@link ShapeCollider}.
+     * The type of the {@link ShapeCollider}.
      */
     public static final int SHAPE_COLLIDER = 1;
+
+    /**
+     * The type of the {@link CircleCollider}.
+     */
+    public static final int CIRCLE_COLLIDER = 2;
 
     /**
      * The constructor.
