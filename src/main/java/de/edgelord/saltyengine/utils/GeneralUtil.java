@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 
@@ -34,7 +35,24 @@ public class GeneralUtil {
     /**
      * The <code>Random</code> instance used for all utils that need one.
      */
-    private static Random random = new Random();
+    private static SecureRandom random = new SecureRandom();
+
+    /**
+     * Returns the given value inside the given range.
+     * So for the given value {@code v} and the range {@code min} to {@code max},
+     * this method would return <p>
+     * {@code v} if it lies between {@code min} ... {@code max} <br>
+     * {@code min} if {@code v} is smaller than {@code min} <br>
+     * and {@code max} if {@code v} is greater than {@code max}
+     *
+     * @param value a value
+     * @param min the smaller end of the range
+     * @param max the greater end of the range
+     * @return the given value clamped to the given range
+     */
+    public static float clamp(float value, float min, float max) {
+        return Math.max(min, Math.min(max, value));
+    }
 
     /**
      * Returns the angle between the two given points and the origin (0 | 0).
