@@ -39,7 +39,7 @@ public class Tester extends Game {
 
     private static void initGame() {
 
-        Game.init(GameConfig.config(1200f, 900f, "testing", 1L));
+        init(GameConfig.config(1200f, 900f, "testing", 1L));
 
         System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 
