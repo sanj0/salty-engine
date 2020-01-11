@@ -142,6 +142,7 @@ public class Game {
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
+        WindowClosingHooks.addShutdownHook(() -> Game.forEachGameListener(GameListener::onClose));
     }
 
     private static void internalPreInitDisplayManager(GameConfig config) {

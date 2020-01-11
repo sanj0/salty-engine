@@ -40,7 +40,6 @@ public class NativeDisplayListener extends DisplayListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Game.forEachGameListener(GameListener::onClose);
         WindowClosingHooks.runHooks();
         Game.getEngine().close();
         System.exit(0);

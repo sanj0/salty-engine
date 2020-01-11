@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameListener;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -39,6 +40,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * This class represents what is currently drawn and calculated.
@@ -181,6 +183,7 @@ public class Scene implements Drawable, FixedTickRoutine {
                         gameObject2.onCollision(collision2);
                         gameObject2.getCollisions().add(collision2);
                         gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
+                        Game.forEachGameListener(gameListener -> gameListener.onCollision(gameObject, collision));
                     }
                 }
 
