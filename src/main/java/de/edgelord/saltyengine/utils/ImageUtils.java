@@ -35,6 +35,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ImageUtils {
 
@@ -217,7 +218,7 @@ public class ImageUtils {
      *
      * @param shapeType       the type of the shape
      * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It can be null
-     * @param renderingHints  hints to define the quality. You normally want to use {@link Host#getRenderHints()}
+     * @param renderingHints  hints to define the quality. You normally want to use {@link GraphicsConfiguration#renderingHints}
      *                        for the same quality as the rest of the game
      * @param intensity       the intensity of the gradient. This defines how it looks.
      * @param startAlpha      the alpha value at the centre
@@ -227,7 +228,7 @@ public class ImageUtils {
      */
     public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
 
-        return createPrimitiveGradient(SaltyShape.createShape(shapeType, new Transform(0, 0, size.getWidth(), size.getHeight()), arcIfRoundRect), graphicsPrepare, renderingHints, intensity, startAlpha);
+        return createPrimitiveGradient(Objects.requireNonNull(SaltyShape.createShape(shapeType, new Transform(0, 0, size.getWidth(), size.getHeight()), arcIfRoundRect)), graphicsPrepare, renderingHints, intensity, startAlpha);
     }
 
     public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
