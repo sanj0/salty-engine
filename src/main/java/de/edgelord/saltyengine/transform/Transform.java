@@ -141,10 +141,10 @@ public class Transform {
      */
     public boolean intersects(Transform other) {
 
-        int xOther = Math.round(other.getX()) - 1;
-        int yOther = Math.round(other.getY()) - 1;
-        int widthOther = Math.round(other.getWidth() - 1);
-        int heightOther = Math.round(other.getHeight() - 1);
+        int xOther = Math.round(other.getX());
+        int yOther = Math.round(other.getY());
+        int widthOther = Math.round(other.getWidth());
+        int heightOther = Math.round(other.getHeight());
 
         int x = Math.round(getX());
         int y = Math.round(getY());
@@ -157,7 +157,7 @@ public class Transform {
 
         return (xOther + widthOther > x &&
                 yOther + heightOther > y &&
-                xOther < x + height &&
+                xOther < x + width &&
                 yOther < y + height);
     }
 

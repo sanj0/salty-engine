@@ -109,7 +109,6 @@ public interface TransformedObject {
      * @param delta the distance for the movement
      */
     default void moveToFacedDirection(float delta) {
-
         moveInAngle(getRotationDegrees(), delta);
     }
 
