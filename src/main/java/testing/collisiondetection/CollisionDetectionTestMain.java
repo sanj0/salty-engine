@@ -24,7 +24,7 @@ public class CollisionDetectionTestMain extends Game {
 
     public static void main(String[] args) {
         init(GameConfig.config(1920, 1080, "Collisoin Detection Test", 5));
-        start(60, SplashWindow.Splash.NO_SPLASH);
+        start(60);
 
         SceneManager.setCurrentScene(new CollisionDetectionTestScene());
     }
