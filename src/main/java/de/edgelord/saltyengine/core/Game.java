@@ -21,7 +21,6 @@ import de.edgelord.saltyengine.core.camera.Camera2D;
 import de.edgelord.saltyengine.core.graphics.GFXController;
 import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
 import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
-import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
 import de.edgelord.saltyengine.factory.FontFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.io.serialization.Serializer;
@@ -40,12 +39,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * The central core class for a Salty Engine game. To start a game, call either
+ * The central core class of a Salty Engine game. To start a game, call either
  * {@link #init(GameConfig)} or {@link #init(Host, String, long)} <br>
- * <p>
- * and then
- * <p>
- * {@link #start()}, {@link #start(long)}, {@link #start(long, SplashWindow.Splash)} or {@link #start(SplashWindow.Splash)}
+ * <br>
+ * and then <br>
+ * {@link #start()}, {@link #start(long)}
  */
 public class Game {
 
@@ -183,49 +181,23 @@ public class Game {
     }
 
     /**
-     * Starts the game with the given {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} before and running
-     * with the maximum fps.
-     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
-     *
-     * @param splash the {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} to be displayed before the game
-     */
-    public static void start(SplashWindow.Splash splash) {
-
-        GameStarter.startGame(-1, splash);
-    }
-
-    /**
-     * Starts the game with the given fps and the given {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash}.
-     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
-     *
-     * @param fixedFPS the fps with which the game should run
-     * @param splash   the {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} to be displayed when the game starts
-     */
-    public static void start(long fixedFPS, SplashWindow.Splash splash) {
-
-        GameStarter.startGame(fixedFPS, splash);
-    }
-
-    /**
-     * Starts the game with the default {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} and as much fps as
-     * possible.
-     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     * Starts the game with no fps cap. <p>
+     * {@link #init(GameConfig)} or {@link #init(Host, String, long)} has to be called first.
      */
     public static void start() {
 
-        GameStarter.startGame(-1, SplashWindow.Splash.SPOTLIGHT_SPLASH);
+        GameStarter.startGame(-1);
     }
 
     /**
-     * Start the game with the default {@link de.edgelord.saltyengine.displaymanager.display.SplashWindow.Splash} and the given
-     * fps.
-     * You should call {@link #init(GameConfig)} or {@link #init(Host, String, long)} first.
+     * Starts the game with the given fps. <p>
+     * {@link #init(GameConfig)} or {@link #init(Host, String, long)} has to be called first.
      *
-     * @param fixedFPS the fps with which the game should run.
+     * @param fixedFPS the fps with which the game should run
      */
     public static void start(long fixedFPS) {
 
-        GameStarter.startGame(fixedFPS, SplashWindow.Splash.SPOTLIGHT_SPLASH);
+        GameStarter.startGame(fixedFPS);
     }
 
     /**

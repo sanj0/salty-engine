@@ -16,53 +16,9 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
-
-import javax.swing.*;
-
 public class GameStarter {
 
-    private static boolean locked = true;
-
-    protected static void startGame(long fps, SplashWindow.Splash splash) {
-
-        try {
-            if (splash != SplashWindow.Splash.NO_SPLASH) {
-
-                SplashWindow splashWindow = new SplashWindow(splash);
-                splashWindow.setVisible(true);
-
-                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        Thread.sleep(6000);
-                        return null;
-                    }
-
-                    protected void done() {
-                        startGame(true, splashWindow, fps);
-                    }
-                };
-                worker.execute();
-
-                while (isLocked()) {
-                    System.out.print("");
-                }
-            } else {
-                startGame(false, null, fps);
-                Game.forEachGameListener(GameListener::onStart);
-            }
-        } catch (Exception e) {
-            System.err.println("Seems like something gone wrong while starting the game. Maybe there was a call to Game#start before Game#init?");
-            e.printStackTrace();
-        }
-    }
-
-    private static void startGame(boolean splash, SplashWindow splashWindow, long fps) {
-        if (splash) {
-            splashWindow.setVisible(false);
-        }
-
+    protected static void startGame(long fps) {
         Game.getHost().create();
 
         if (fps == -1) {
@@ -70,18 +26,7 @@ public class GameStarter {
         } else {
             Game.getEngine().start(fps);
         }
+        Game.forEachGameListener(GameListener::onStart);
 
-        if (splash) {
-            splashWindow.dispose();
-        }
-        setLocked(false);
-    }
-
-    private static boolean isLocked() {
-        return locked;
-    }
-
-    public static void setLocked(boolean locked) {
-        GameStarter.locked = locked;
     }
 }

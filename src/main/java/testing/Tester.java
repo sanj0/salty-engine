@@ -19,15 +19,9 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
-import de.edgelord.saltyengine.core.GameListener;
-import de.edgelord.saltyengine.core.event.CollisionEvent;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.displaymanager.display.SplashWindow;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
-import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.CheatCodeListener;
@@ -36,7 +30,6 @@ import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
 
 public class Tester extends Game {
 
