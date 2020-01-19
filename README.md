@@ -18,9 +18,6 @@ Minimal **tested** hardware requirements made possible by [JProfiler, a java pro
 **NOTE 2: The default font (`SaltySystem.defaultFont`) is the same on all systems to ensure the same looking graphics on every computer. This font is powered by Google Fonts and is published under the Apache 2 license as well.**  
 
 # Why using Salty Engine?
-**Note:** When you call `Game#start()`, a splashscreen wil appear, saying "Created with Salty Engine". For that, you have five different options using the enum `SplashWindow#Splash` and using `Game#start(Splash splash)` or `Game#start(long fps, Splash splash)`.
-You can also disable the Splash using `Game.start(SplashWindow.Splash.NO_SPLASH)` (or with the fps in front), but consider using one to support us :)
-
 
 ### Features (at least some of them):
 - simple Display management
