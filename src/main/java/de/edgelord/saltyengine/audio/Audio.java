@@ -114,9 +114,21 @@ public class Audio {
      * Stops the clip.
      *
      * @see Clip#stop()
+     * @see Clip#setFramePosition(int)
      * @see AudioPlayer
      */
     public void stop() {
+        clip.stop();
+        clip.setFramePosition(0);
+    }
+
+    /**
+     * Pauses the clip.
+     *
+     * @see Clip#stop()
+     * @see AudioPlayer
+     */
+    public void pause() {
         clip.stop();
     }
 

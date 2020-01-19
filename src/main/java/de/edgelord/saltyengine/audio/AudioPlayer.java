@@ -80,7 +80,7 @@ public class AudioPlayer {
     }
 
     /**
-     * Searches for an <code>Audio</code> with the given name in the list and when found playing it.
+     * Searches for an <code>Audio</code> with the given name in the list and when found plays it.
      * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
      * <code>play()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
@@ -88,39 +88,50 @@ public class AudioPlayer {
      * @see Audio#play()
      */
     public void play(String name) {
-
         if (SaltySystem.audioEnabled) {
             getAudio(name).play();
         }
     }
 
     /**
-     * Searches for a <code>Audio</code> with the given name in the list and when found looping it.
-     * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
+     * Searches for a <code>Audio</code> with the given name in the list and when found loops it.
+     * The methods returns after the first found <code>Audio</code> and triggering its
      * <code>loop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be looped
      * @see Audio#loop()
      */
     public void loop(String name) {
-
         if (SaltySystem.audioEnabled) {
             getAudio(name).loop();
         }
     }
 
     /**
-     * Searches for a <code>Audio</code> with the given name in the list and when found stopping it.
-     * For performance reasons, the methods returns after the first found <code>Audio</code> and triggering its
+     * Searches for a <code>Audio</code> with the given name in the list and when found stops it.
+     * The methods returns after the first found <code>Audio</code> and triggering its
      * <code>stop()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
      *
      * @param name the id-name of the <code>Audio</code> which should be stopped
      * @see Audio#stop()
      */
     public void stop(String name) {
-
         if (SaltySystem.audioEnabled) {
             getAudio(name).stop();
+        }
+    }
+
+    /**
+     * Searches for a <code>Audio</code> with the given name in the list and when found pauses it.
+     * The methods returns after the first found <code>Audio</code> and triggering its
+     * <code>pause()</code> method, so adding multiple <code>Audio</code> with the same name won't act as maybe excepted.
+     *
+     * @param name the id-name of the <code>Audio</code> which should be paused
+     * @see Audio#pause()
+     */
+    public void pause(String name) {
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).pause();
         }
     }
 
