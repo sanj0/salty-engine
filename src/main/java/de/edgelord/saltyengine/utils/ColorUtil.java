@@ -39,6 +39,9 @@ import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ColorUtil {
 
@@ -154,6 +157,33 @@ public class ColorUtil {
 
     public static final Color PLAIN_YELLOW = new Color(255, 255, 0);
     public static final Color YELLOW = new Color(210, 210, 50);
+
+    public static final List<Color> allColors = new LinkedList<>();
+
+    static {
+        Field[] fields = ColorUtil.class.getFields();
+
+        for (Field field : fields) {
+
+            if (field.getType() == Color.class) {
+                try {
+                    allColors.add((Color) field.get(null));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns a random entry from {@link #allColors}
+     * using {@link GeneralUtil#randomObjectFromList(List)}.
+     *
+     * @return a random color
+     */
+    public static Color randomColor() {
+        return (Color) GeneralUtil.randomObjectFromList(allColors);
+    }
 
     /**
      * Blends the two given colors by the given ratio.
