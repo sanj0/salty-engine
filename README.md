@@ -116,7 +116,11 @@ Made by edgelord314 and LoOoNeliEst for Ludum Dare 42. You can play it [here](ht
 
 ### Moon Defender
 A fun little pixel-style prototype of a top-down shooter, made by edgelord314. You can play it [here](https://edgelord314.itch.io/moon-defender)
-![Moon Defender](https://img.itch.zone/aW1hZ2UvMzk4NzQ1LzE5NzYwNjAucG5n/794x1000/a%2Fz8su.png)
+![Moon Defender](https://img.itch.zone/aW1nLzI4ODk1NjQucG5n/315x250%23c/k3gwyf.png)
+
+### Br34k0ut 
+A simple, colorful clone of Breakout by Atari. You can play it [here](https://edgelord314.itch.io/br34k0ut)
+![Br34k0ut](https://img.itch.zone/aW1nLzI4ODk5ODEucG5n/347x500/rgYDOZ.png)
 
 # Collaborate
 Do you want to collaborate? Feel free to open a pull-request (preferably well documented and only well tested code). Also, feel free to [join the official discord server](https://discord.gg/VW45ySv) <p>
