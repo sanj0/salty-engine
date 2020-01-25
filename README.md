@@ -119,7 +119,7 @@ A fun little pixel-style prototype of a top-down shooter, made by edgelord314. Y
 ![Moon Defender](https://img.itch.zone/aW1nLzI4ODk1NjQucG5n/315x250%23c/k3gwyf.png)
 
 ### Br34k0ut 
-A simple, colorful clone of Breakout by Atari. You can play it [here](https://edgelord314.itch.io/br34k0ut)
+A simple, colorful clone of Breakout by Atari. You can play it [here](https://edgelord314.itch.io/br34k0ut) <p>
 ![Br34k0ut](https://img.itch.zone/aW1nLzI4ODk5ODEucG5n/347x500/rgYDOZ.png)
 
 # Collaborate
