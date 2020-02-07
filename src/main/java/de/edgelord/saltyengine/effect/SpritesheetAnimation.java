@@ -66,4 +66,22 @@ public class SpritesheetAnimation {
     public void setFrames(List<Frame> frames) {
         this.frames = frames;
     }
+
+    /**
+     * Gets {@link #currentFrame}.
+     *
+     * @return the value of {@link #currentFrame}
+     */
+    public int getCurrentFrame() {
+        return currentFrame;
+    }
+
+    /**
+     * Sets {@link #currentFrame}.
+     *
+     * @param currentFrame the new value of {@link #currentFrame}
+     */
+    public void setCurrentFrame(int currentFrame) {
+        this.currentFrame = currentFrame;
+    }
 }

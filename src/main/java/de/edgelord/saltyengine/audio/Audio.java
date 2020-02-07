@@ -16,11 +16,13 @@
 
 package de.edgelord.saltyengine.audio;
 
+import de.edgelord.saltyengine.utils.GeneralUtil;
+
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 /**
- * This class represents a audio resource.
+ * This class represents an audio resource.
  * It contains a {@link #clip} which is the actual audio, as well as a {@link #name}.
  *
  * @see AudioPlayer
@@ -42,6 +44,13 @@ public class Audio {
      * The volume of the clip, from 0f to 2f.
      */
     private float volume = 1f;
+
+    /**
+     * The pan value of te clip, ranging from
+     * -1f (completely left) to
+     * 1f (completely right)
+     */
+    private float pan = 0f;
 
     /**
      * The only constructor taking in all necessary parameters.
@@ -139,13 +148,18 @@ public class Audio {
      */
     public void setVolume(float volume) {
 
-        if (volume < 0f || volume > 2f) {
-            throw new IllegalArgumentException("volume for a clip can't be greater than 2f nor smaller than 0f!");
-        }
-
+        volume = GeneralUtil.clamp(volume, 0f, 2f);
         FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(20f * (float) Math.log10(volume));
         this.volume = volume;
+    }
+
+    public void setPan(float pan) {
+
+        pan = GeneralUtil.clamp(pan, -1f, 1f);
+        FloatControl panControl = (FloatControl) getClip().getControl(FloatControl.Type.PAN);
+        panControl.setValue(pan);
+        this.pan = pan;
     }
 
     /**
@@ -153,5 +167,14 @@ public class Audio {
      */
     public float getVolume() {
         return volume;
+    }
+
+    /**
+     * Gets {@link #pan}.
+     *
+     * @return the value of {@link #pan}
+     */
+    public float getPan() {
+        return pan;
     }
 }

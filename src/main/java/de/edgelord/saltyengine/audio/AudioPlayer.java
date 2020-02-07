@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.audio;
 
+import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
@@ -155,7 +156,7 @@ public class AudioPlayer {
      * Searches for the Audio with the given name and sets its volume to the given one using
      * {@link Audio#setVolume(float)}
      *
-     * @param name   the name of the {@link Audio} of which to change the Volume
+     * @param name   the name of the {@link Audio} of which to change the volume
      * @param volume the target volume
      * @see Audio#setVolume(float)
      */
@@ -174,6 +175,31 @@ public class AudioPlayer {
      */
     public float getClipVolume(String name) {
         return getAudio(name).getVolume();
+    }
+
+    /**
+     * Searches for the Audio with the given name and sets its pan to the given one using
+     * {@link Audio#setPan(float)}
+     *
+     * @param name   the name of the {@link Audio} of which to change the pan
+     * @param pan the target pan
+     * @see Audio#setPan(float)
+     */
+    public void setClipPan(String name, float pan) {
+        if (SaltySystem.audioEnabled) {
+            getAudio(name).setPan(pan);
+        }
+    }
+
+    /**
+     * Returns the pan of the audio with the given name.
+     *
+     * @param name the name of the desired {@link Audio}
+     * @return the pan of the audio
+     * @see Audio#getPan() ()
+     */
+    public float getClipPan(String name) {
+        return getAudio(name).getPan();
     }
 
     /**

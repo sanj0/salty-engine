@@ -16,13 +16,17 @@
 
 package testing;
 
+import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
+import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.LanguageManager;
@@ -42,6 +46,9 @@ public class TestingScene extends Scene {
 
     private Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
     private ProgressBar progress = new ProgressBar(Game.getHost().getHorizontalCentrePosition(500f), 75, 500, 25);
+
+    //private KeyframeAnimation audioPanAnimation = new LinearKeyframeAnimation();
+    //private AudioPlayer player = new AudioPlayer(new AudioFactory(SaltySystem.defaultOuterResource));
 
     public TestingScene() {
         setFriction(0.005f);
@@ -81,7 +88,21 @@ public class TestingScene extends Scene {
             e.printStackTrace();
         }
         */
+        //testAudioPan();
     }
+
+    /*
+    //private void testAudioPan() {
+    //
+    //    for (int i = 0; i < 100; i++) {
+    //        audioPanAnimation.add(i * 2000, i % 2 == 0 ? -1f : 1f);
+    //    }
+    //    audioPanAnimation.calculateAnimation();
+    //
+    //    player.loadNewAudio("test-audio", "test-audio.wav");
+    //    player.loop("test-audio");
+    //}
+    */
 
     private void addLight() {
         setLightSystem(new LightSystem(new Color(0, 0, 0, 225)));
@@ -106,6 +127,9 @@ public class TestingScene extends Scene {
 
     @Override
     public void onFixedTick() {
+        //if (!audioPanAnimation.animationEnded()) {
+        //    player.setClipPan("test-audio", player.getClipPan("test-audio") - audioPanAnimation.nextDelta());
+        //}
         light.positionByCentre(Input.getAbsoluteCursorPosition());
 
         if (progress.getCurrentValue() >= progress.getMaxValue()) {

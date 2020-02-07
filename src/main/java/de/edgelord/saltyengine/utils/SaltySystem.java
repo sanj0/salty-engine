@@ -31,13 +31,14 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.15-SNAPSHOT";
-    public static String version = "0.14.15";
+    public static String versionTag = "0.14.18-SNAPSHOT";
+    public static String version = "0.14.18";
     public static VersionMode versionMode = VersionMode.SNAPSHOT;
 
     public static long fixedTickMillis = 1;
 
-    public static GraphicsConfiguration gfxConfig = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    public static GraphicsConfiguration gfxConfig =
+            GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
     public static boolean audioEnabled = true;
 
@@ -54,7 +55,8 @@ public class SaltySystem {
     public static FontFactory defaultFontFactory;
 
     /**
-     * Determines whether to check for events on the cursor entering and leaving a {@link de.edgelord.saltyengine.gameobject.GameObject}
+     * Determines whether to check for events on the cursor entering
+     * and leaving a {@link de.edgelord.saltyengine.gameobject.GameObject}
      * which can be very performance-expensive.
      */
     public static boolean gameObjectMouseEventsAgent = true;
