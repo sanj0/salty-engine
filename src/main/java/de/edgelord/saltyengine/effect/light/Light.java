@@ -86,6 +86,12 @@ public abstract class Light implements TransformedObject {
         this(new Transform(x, y, width, height));
     }
 
+    public Light(Transform transform, Color color, float brightness, float intensity) {
+        this(transform, color);
+        this.brightness = brightness;
+        this.intensity = intensity;
+    }
+
     public void prepareGraphics(SaltyGraphics graphics) {
         graphics.setColor(color);
     }

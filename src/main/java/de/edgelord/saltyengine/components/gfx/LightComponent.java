@@ -64,8 +64,6 @@ public class LightComponent extends GFXComponent {
 
         this.light = light;
         this.relationToParent = relationToParent;
-
-        addToLightSystem();
     }
 
     /**
@@ -116,6 +114,11 @@ public class LightComponent extends GFXComponent {
     @Override
     public void onFixedTick() {
         TransformRelationUtil.positionRelativeTo(relationToParent, getParent().getTransform(), light.getTransform());
+    }
+
+    @Override
+    public void initialize() {
+        addToLightSystem();
     }
 
     /**

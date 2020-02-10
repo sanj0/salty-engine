@@ -22,6 +22,8 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
+import java.awt.*;
+
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class PointLight extends GradientLight {
 
@@ -35,5 +37,29 @@ public class PointLight extends GradientLight {
 
     public PointLight(Vector2f position, float radius) {
         this(new Transform(position, new Dimensions(radius, radius)));
+    }
+
+    public PointLight(Transform transform, Color color) {
+        super(transform, color, EnumShape.OVAL);
+    }
+
+    public PointLight(Vector2f position, Dimensions dimensions, Color color) {
+        super(position, dimensions, color, EnumShape.OVAL);
+    }
+
+    public PointLight(Vector2f position, Dimensions dimensions) {
+        super(position, dimensions, EnumShape.OVAL);
+    }
+
+    public PointLight(float x, float y, float width, float height, Color color) {
+        super(x, y, width, height, color, EnumShape.OVAL);
+    }
+
+    public PointLight(float x, float y, float width, float height) {
+        super(x, y, width, height, EnumShape.OVAL);
+    }
+
+    public PointLight(Transform transform, Color color, float brightness, float intensity) {
+        super(transform, color, brightness, intensity, EnumShape.OVAL);
     }
 }
