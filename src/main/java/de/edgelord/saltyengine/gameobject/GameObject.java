@@ -422,7 +422,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         }
 
         switch (direction) {
-
             case RIGHT:
                 getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(velocity);
                 break;

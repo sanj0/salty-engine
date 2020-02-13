@@ -117,8 +117,11 @@ public class LightComponent extends GFXComponent {
     }
 
     @Override
-    public void initialize() {
-        addToLightSystem();
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            addToLightSystem();
+        }
+        super.setEnabled(enabled);
     }
 
     /**

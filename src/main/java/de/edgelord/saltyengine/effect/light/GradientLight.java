@@ -65,19 +65,19 @@ public class GradientLight extends Light {
     }
 
     public GradientLight(Transform transform, Color color, float brightness, float intensity, EnumShape shape, float... arcIfRoundRect) {
-        super(transform, color, brightness, intensity);
+        this(transform, color, shape, arcIfRoundRect);
         this.shape = shape;
         this.arcIfRoundRect = arcIfRoundRect;
     }
 
     @Override
     public void draw(Graphics2D graphics) {
-        graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
+            graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     @Override
     public void drawColorMap(Graphics2D graphics) {
-        graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
+            graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     public EnumShape getShape() {
