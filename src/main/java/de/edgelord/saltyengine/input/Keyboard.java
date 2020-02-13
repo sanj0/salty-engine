@@ -18,6 +18,12 @@ package de.edgelord.saltyengine.input;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * Represents a virtual keyboard with all common keys.
+ * The states of the keys represented as booleans are
+ * updated on every <code>KeyEvent</code> that occurred
+ * in the {@link de.edgelord.saltyengine.displaymanager.display.Display}.
+ */
 public class Keyboard {
 
     /*
@@ -30,120 +36,120 @@ public class Keyboard {
     private boolean shift = false;
     private boolean control = false;
     private boolean alt = false;
-    private boolean caps_lock = false;
+    private boolean capsLock = false;
     private boolean escape = false;
-    private boolean page_up = false;
-    private boolean page_down = false;
+    private boolean pageUp = false;
+    private boolean pageDown = false;
     private boolean space = false;
 
     /*
     Arrow Keys
      */
-    private boolean arrow_right = false;
-    private boolean arrow_left = false;
-    private boolean arrow_up = false;
-    private boolean arrow_down = false;
+    private boolean rightArrow = false;
+    private boolean leftArrow = false;
+    private boolean upArrow = false;
+    private boolean downArrow = false;
 
     /*
     Math keys
      */
-    private boolean key_comma = false;
-    private boolean key_period = false; /* = "."*/
-    private boolean key_minus = false;
-    private boolean key_plus = false;
-    private boolean key_less = false;
-    private boolean key_greater = false;
+    private boolean comma = false;
+    private boolean period = false; /* = "."*/
+    private boolean minus = false;
+    private boolean plus = false;
+    private boolean less = false;
+    private boolean greater = false;
 
     /*
     Numbers from 0 to 9
      */
-    private boolean number_0 = false;
-    private boolean number_1 = false;
-    private boolean number_2 = false;
-    private boolean number_3 = false;
-    private boolean number_4 = false;
-    private boolean number_5 = false;
-    private boolean number_6 = false;
-    private boolean number_7 = false;
-    private boolean number_8 = false;
-    private boolean number_9 = false;
+    private boolean number0 = false;
+    private boolean number1 = false;
+    private boolean number2 = false;
+    private boolean number3 = false;
+    private boolean number4 = false;
+    private boolean number5 = false;
+    private boolean number6 = false;
+    private boolean number7 = false;
+    private boolean number8 = false;
+    private boolean number9 = false;
 
     /*
     Letters from A to Z
      */
-    private boolean key_a = false;
-    private boolean key_b = false;
-    private boolean key_c = false;
-    private boolean key_d = false;
-    private boolean key_e = false;
-    private boolean key_f = false;
-    private boolean key_g = false;
-    private boolean key_h = false;
-    private boolean key_i = false;
-    private boolean key_j = false;
-    private boolean key_k = false;
-    private boolean key_l = false;
-    private boolean key_m = false;
-    private boolean key_n = false;
-    private boolean key_o = false;
-    private boolean key_p = false;
-    private boolean key_q = false;
-    private boolean key_r = false;
-    private boolean key_s = false;
-    private boolean key_t = false;
-    private boolean key_u = false;
-    private boolean key_v = false;
-    private boolean key_w = false;
-    private boolean key_x = false;
-    private boolean key_y = false;
-    private boolean key_z = false;
+    private boolean a = false;
+    private boolean b = false;
+    private boolean c = false;
+    private boolean d = false;
+    private boolean e = false;
+    private boolean f = false;
+    private boolean g = false;
+    private boolean h = false;
+    private boolean i = false;
+    private boolean j = false;
+    private boolean k = false;
+    private boolean l = false;
+    private boolean m = false;
+    private boolean n = false;
+    private boolean o = false;
+    private boolean p = false;
+    private boolean q = false;
+    private boolean r = false;
+    private boolean s = false;
+    private boolean t = false;
+    private boolean u = false;
+    private boolean v = false;
+    private boolean w = false;
+    private boolean x = false;
+    private boolean y = false;
+    private boolean z = false;
 
     /*
     Numpad-numbers from 0 to 9
      */
-    private boolean numpad_0 = false;
-    private boolean numpad_1 = false;
-    private boolean numpad_2 = false;
-    private boolean numpad_3 = false;
-    private boolean numpad_4 = false;
-    private boolean numpad_5 = false;
-    private boolean numpad_6 = false;
-    private boolean numpad_7 = false;
-    private boolean numpad_8 = false;
-    private boolean numpad_9 = false;
+    private boolean numpad0 = false;
+    private boolean numpad1 = false;
+    private boolean numpad2 = false;
+    private boolean numpad3 = false;
+    private boolean numpad4 = false;
+    private boolean numpad5 = false;
+    private boolean numpad6 = false;
+    private boolean numpad7 = false;
+    private boolean numpad8 = false;
+    private boolean numpad9 = false;
 
     /*
     Function keys from 1 to 12
      */
-    private boolean function_1 = false;
-    private boolean function_2 = false;
-    private boolean function_3 = false;
-    private boolean function_4 = false;
-    private boolean function_5 = false;
-    private boolean function_6 = false;
-    private boolean function_7 = false;
-    private boolean function_8 = false;
-    private boolean function_9 = false;
-    private boolean function_10 = false;
-    private boolean function_11 = false;
-    private boolean function_12 = false;
+    private boolean function1 = false;
+    private boolean function2 = false;
+    private boolean function3 = false;
+    private boolean function4 = false;
+    private boolean function5 = false;
+    private boolean function6 = false;
+    private boolean function7 = false;
+    private boolean function8 = false;
+    private boolean function9 = false;
+    private boolean function10 = false;
+    private boolean function11 = false;
+    private boolean function12 = false;
 
     /*
     Currency signs
      */
-    private boolean currency_euro = false;
-    private boolean currency_dollar = false;
+    private boolean euro = false;
+    private boolean dollar = false;
 
     /*
     Other keys that can be accessed without using e.g. shift and some brackets
      */
-    private boolean key_hash = false;
-    private boolean parenthesis_open = false;
-    private boolean parenthesis_close = false;
-    private boolean brace_open = false;
-    private boolean brace_close = false;
-    private boolean squareBracket_open = false;
-    private boolean squareBracket_close = false;
+    private boolean hash = false;
+    private boolean openParenthesis = false;
+    private boolean closeParenthesis = false;
+    private boolean openBrace = false;
+    private boolean closeBrace = false;
+    private boolean openSquareBracket = false;
+    private boolean closeSquareBracket = false;
 
     public void handleKeyPressed(KeyEvent keyPressedEvent) {
 
@@ -157,10 +163,8 @@ public class Keyboard {
 
     private void flagMatchingKeyAs(boolean targetFlag, KeyEvent event) {
 
-        switch (event.getKeyChar()) {
-            case ' ':
-                space = targetFlag;
-                break;
+        if (event.getKeyChar() == ' ') {
+            space = targetFlag;
         }
 
         switch (event.getKeyCode()) {
@@ -190,630 +194,1075 @@ public class Keyboard {
                 alt = targetFlag;
                 break;
             case KeyEvent.VK_CAPS_LOCK:
-                caps_lock = targetFlag;
+                capsLock = targetFlag;
                 break;
             case KeyEvent.VK_ESCAPE:
                 escape = targetFlag;
                 break;
             case KeyEvent.VK_PAGE_UP:
-                page_up = targetFlag;
+                pageUp = targetFlag;
                 break;
             case KeyEvent.VK_PAGE_DOWN:
-                page_down = targetFlag;
+                pageDown = targetFlag;
                 break;
 
             /*
             Arrow keys
              */
             case KeyEvent.VK_RIGHT:
-                arrow_right = targetFlag;
+                rightArrow = targetFlag;
                 break;
             case KeyEvent.VK_LEFT:
-                arrow_left = targetFlag;
+                leftArrow = targetFlag;
                 break;
             case KeyEvent.VK_UP:
-                arrow_up = targetFlag;
+                upArrow = targetFlag;
                 break;
             case KeyEvent.VK_DOWN:
-                arrow_down = targetFlag;
+                downArrow = targetFlag;
                 break;
 
             /*
             Math keys
              */
             case KeyEvent.VK_COMMA:
-                key_comma = targetFlag;
+                comma = targetFlag;
                 break;
             case KeyEvent.VK_PERIOD:
-                key_period = targetFlag;
+                period = targetFlag;
                 break;
             case KeyEvent.VK_MINUS:
-                key_minus = targetFlag;
+                minus = targetFlag;
                 break;
             case KeyEvent.VK_PLUS:
-                key_plus = targetFlag;
+                plus = targetFlag;
                 break;
 
             /*
             Numbers from 0 to 9
              */
             case KeyEvent.VK_0:
-                number_0 = targetFlag;
+                number0 = targetFlag;
                 break;
             case KeyEvent.VK_1:
-                number_1 = targetFlag;
+                number1 = targetFlag;
                 break;
             case KeyEvent.VK_2:
-                number_2 = targetFlag;
+                number2 = targetFlag;
                 break;
             case KeyEvent.VK_3:
-                number_3 = targetFlag;
+                number3 = targetFlag;
                 break;
             case KeyEvent.VK_4:
-                number_4 = targetFlag;
+                number4 = targetFlag;
                 break;
             case KeyEvent.VK_5:
-                number_5 = targetFlag;
+                number5 = targetFlag;
                 break;
             case KeyEvent.VK_6:
-                number_6 = targetFlag;
+                number6 = targetFlag;
                 break;
             case KeyEvent.VK_7:
-                number_7 = targetFlag;
+                number7 = targetFlag;
                 break;
             case KeyEvent.VK_8:
-                number_8 = targetFlag;
+                number8 = targetFlag;
                 break;
             case KeyEvent.VK_9:
-                number_9 = targetFlag;
+                number9 = targetFlag;
                 break;
 
             /*
             Letters from A to Z
              */
             case KeyEvent.VK_A:
-                key_a = targetFlag;
+                a = targetFlag;
                 break;
             case KeyEvent.VK_B:
-                key_b = targetFlag;
+                b = targetFlag;
                 break;
             case KeyEvent.VK_C:
-                key_c = targetFlag;
+                c = targetFlag;
                 break;
             case KeyEvent.VK_D:
-                key_d = targetFlag;
+                d = targetFlag;
                 break;
             case KeyEvent.VK_E:
-                key_e = targetFlag;
+                e = targetFlag;
                 break;
             case KeyEvent.VK_F:
-                key_f = targetFlag;
+                f = targetFlag;
                 break;
             case KeyEvent.VK_G:
-                key_g = targetFlag;
+                g = targetFlag;
                 break;
             case KeyEvent.VK_H:
-                key_h = targetFlag;
+                h = targetFlag;
                 break;
             case KeyEvent.VK_I:
-                key_i = targetFlag;
+                i = targetFlag;
                 break;
             case KeyEvent.VK_J:
-                key_j = targetFlag;
+                j = targetFlag;
                 break;
             case KeyEvent.VK_K:
-                key_k = targetFlag;
+                k = targetFlag;
                 break;
             case KeyEvent.VK_L:
-                key_l = targetFlag;
+                l = targetFlag;
                 break;
             case KeyEvent.VK_M:
-                key_m = targetFlag;
+                m = targetFlag;
                 break;
             case KeyEvent.VK_N:
-                key_n = targetFlag;
+                n = targetFlag;
                 break;
             case KeyEvent.VK_O:
-                key_o = targetFlag;
+                o = targetFlag;
                 break;
             case KeyEvent.VK_P:
-                key_p = targetFlag;
+                p = targetFlag;
                 break;
             case KeyEvent.VK_Q:
-                key_q = targetFlag;
+                q = targetFlag;
                 break;
             case KeyEvent.VK_R:
-                key_r = targetFlag;
+                r = targetFlag;
                 break;
             case KeyEvent.VK_S:
-                key_s = targetFlag;
+                s = targetFlag;
                 break;
             case KeyEvent.VK_T:
-                key_t = targetFlag;
+                t = targetFlag;
                 break;
             case KeyEvent.VK_U:
-                key_u = targetFlag;
+                u = targetFlag;
                 break;
             case KeyEvent.VK_V:
-                key_v = targetFlag;
+                v = targetFlag;
                 break;
             case KeyEvent.VK_W:
-                key_w = targetFlag;
+                w = targetFlag;
                 break;
             case KeyEvent.VK_X:
-                key_x = targetFlag;
+                x = targetFlag;
                 break;
             case KeyEvent.VK_Y:
-                key_y = targetFlag;
+                y = targetFlag;
                 break;
             case KeyEvent.VK_Z:
-                key_z = targetFlag;
+                z = targetFlag;
                 break;
 
             /*
             Numpad-numbers from 0 to 9
              */
             case KeyEvent.VK_NUMPAD0:
-                numpad_0 = targetFlag;
+                numpad0 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD1:
-                numpad_1 = targetFlag;
+                numpad1 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD2:
-                numpad_2 = targetFlag;
+                numpad2 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD3:
-                numpad_3 = targetFlag;
+                numpad3 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD4:
-                numpad_4 = targetFlag;
+                numpad4 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD5:
-                numpad_5 = targetFlag;
+                numpad5 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD6:
-                numpad_6 = targetFlag;
+                numpad6 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD7:
-                numpad_7 = targetFlag;
+                numpad7 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD8:
-                numpad_8 = targetFlag;
+                numpad8 = targetFlag;
                 break;
             case KeyEvent.VK_NUMPAD9:
-                numpad_9 = targetFlag;
+                numpad9 = targetFlag;
                 break;
 
             /*
             Function keys from 1 to 12
              */
             case KeyEvent.VK_F1:
-                function_1 = targetFlag;
+                function1 = targetFlag;
                 break;
             case KeyEvent.VK_F2:
-                function_2 = targetFlag;
+                function2 = targetFlag;
                 break;
             case KeyEvent.VK_F3:
-                function_3 = targetFlag;
+                function3 = targetFlag;
                 break;
             case KeyEvent.VK_F4:
-                function_4 = targetFlag;
+                function4 = targetFlag;
                 break;
             case KeyEvent.VK_F5:
-                function_5 = targetFlag;
+                function5 = targetFlag;
                 break;
             case KeyEvent.VK_F6:
-                function_6 = targetFlag;
+                function6 = targetFlag;
                 break;
             case KeyEvent.VK_F7:
-                function_7 = targetFlag;
+                function7 = targetFlag;
                 break;
             case KeyEvent.VK_F8:
-                function_8 = targetFlag;
+                function8 = targetFlag;
                 break;
             case KeyEvent.VK_F9:
-                function_9 = targetFlag;
+                function9 = targetFlag;
                 break;
             case KeyEvent.VK_F10:
-                function_10 = targetFlag;
+                function10 = targetFlag;
                 break;
             case KeyEvent.VK_F11:
-                function_11 = targetFlag;
+                function11 = targetFlag;
                 break;
             case KeyEvent.VK_F12:
-                function_12 = targetFlag;
+                function12 = targetFlag;
                 break;
 
             /*
             Currency signs
              */
             case KeyEvent.VK_EURO_SIGN:
-                currency_euro = targetFlag;
+                euro = targetFlag;
                 break;
             case KeyEvent.VK_DOLLAR:
-                currency_dollar = targetFlag;
+                dollar = targetFlag;
                 break;
 
             /*
             Other keys that can be accessed without using e.g. shift and some brackets
              */
             case KeyEvent.VK_NUMBER_SIGN:
-                key_hash = targetFlag;
+                hash = targetFlag;
                 break;
             case KeyEvent.VK_LEFT_PARENTHESIS:
-                parenthesis_open = targetFlag;
+                openParenthesis = targetFlag;
                 break;
             case KeyEvent.VK_RIGHT_PARENTHESIS:
-                parenthesis_close = targetFlag;
+                closeParenthesis = targetFlag;
                 break;
             case KeyEvent.VK_BRACELEFT:
-                brace_open = targetFlag;
+                openBrace = targetFlag;
                 break;
             case KeyEvent.VK_BRACERIGHT:
-                brace_close = targetFlag;
+                closeBrace = targetFlag;
                 break;
             case KeyEvent.VK_OPEN_BRACKET:
-                squareBracket_open = targetFlag;
+                openSquareBracket = targetFlag;
                 break;
             case KeyEvent.VK_CLOSE_BRACKET:
-                squareBracket_close = targetFlag;
+                closeSquareBracket = targetFlag;
                 break;
         }
     }
 
+    /**
+     * Gets {@link #enter}.
+     *
+     * @return the value of {@link #enter}
+     */
     public boolean isEnter() {
         return enter;
     }
 
+    /**
+     * Gets {@link #backspace}.
+     *
+     * @return the value of {@link #backspace}
+     */
     public boolean isBackspace() {
         return backspace;
     }
 
+    /**
+     * Gets {@link #delete}.
+     *
+     * @return the value of {@link #delete}
+     */
     public boolean isDelete() {
         return delete;
     }
 
+    /**
+     * Gets {@link #tab}.
+     *
+     * @return the value of {@link #tab}
+     */
     public boolean isTab() {
         return tab;
     }
 
+    /**
+     * Gets {@link #shift}.
+     *
+     * @return the value of {@link #shift}
+     */
     public boolean isShift() {
         return shift;
     }
 
+    /**
+     * Gets {@link #control}.
+     *
+     * @return the value of {@link #control}
+     */
     public boolean isControl() {
         return control;
     }
 
+    /**
+     * Gets {@link #alt}.
+     *
+     * @return the value of {@link #alt}
+     */
     public boolean isAlt() {
         return alt;
     }
 
-    public boolean isCaps_lock() {
-        return caps_lock;
+    /**
+     * Gets {@link #capsLock}.
+     *
+     * @return the value of {@link #capsLock}
+     */
+    public boolean isCapsLock() {
+        return capsLock;
     }
 
+    /**
+     * Gets {@link #escape}.
+     *
+     * @return the value of {@link #escape}
+     */
     public boolean isEscape() {
         return escape;
     }
 
-    public boolean isPage_up() {
-        return page_up;
+    /**
+     * Gets {@link #pageUp}.
+     *
+     * @return the value of {@link #pageUp}
+     */
+    public boolean isPageUp() {
+        return pageUp;
     }
 
-    public boolean isPage_down() {
-        return page_down;
+    /**
+     * Gets {@link #pageDown}.
+     *
+     * @return the value of {@link #pageDown}
+     */
+    public boolean isPageDown() {
+        return pageDown;
     }
 
+    /**
+     * Gets {@link #space}.
+     *
+     * @return the value of {@link #space}
+     */
     public boolean isSpace() {
         return space;
     }
 
-    public boolean isArrow_right() {
-        return arrow_right;
-    }
-
-    public boolean isArrow_left() {
-        return arrow_left;
-    }
-
-    public boolean isArrow_up() {
-        return arrow_up;
-    }
-
-    public boolean isArrow_down() {
-        return arrow_down;
-    }
-
-    public boolean isKey_comma() {
-        return key_comma;
-    }
-
-    public boolean isKey_period() {
-        return key_period;
-    }
-
-    public boolean isKey_minus() {
-        return key_minus;
-    }
-
-    public boolean isKey_plus() {
-        return key_plus;
-    }
-
-    public boolean isKey_less() {
-        return key_less;
-    }
-
-    public boolean isKey_greater() {
-        return key_greater;
-    }
-
-    public boolean isNumber_0() {
-        return number_0;
-    }
-
-    public boolean isNumber_1() {
-        return number_1;
-    }
-
-    public boolean isNumber_2() {
-        return number_2;
-    }
-
-    public boolean isNumber_3() {
-        return number_3;
-    }
-
-    public boolean isNumber_4() {
-        return number_4;
-    }
-
-    public boolean isNumber_5() {
-        return number_5;
-    }
-
-    public boolean isNumber_6() {
-        return number_6;
-    }
-
-    public boolean isNumber_7() {
-        return number_7;
-    }
-
-    public boolean isNumber_8() {
-        return number_8;
-    }
-
-    public boolean isNumber_9() {
-        return number_9;
-    }
-
-    public boolean isKey_a() {
-        return key_a;
-    }
-
-    public boolean isKey_b() {
-        return key_b;
-    }
-
-    public boolean isKey_c() {
-        return key_c;
-    }
-
-    public boolean isKey_d() {
-        return key_d;
-    }
-
-    public boolean isKey_e() {
-        return key_e;
-    }
-
-    public boolean isKey_f() {
-        return key_f;
-    }
-
-    public boolean isKey_g() {
-        return key_g;
-    }
-
-    public boolean isKey_h() {
-        return key_h;
-    }
-
-    public boolean isKey_i() {
-        return key_i;
-    }
-
-    public boolean isKey_j() {
-        return key_j;
-    }
-
-    public boolean isKey_k() {
-        return key_k;
-    }
-
-    public boolean isKey_l() {
-        return key_l;
-    }
-
-    public boolean isKey_m() {
-        return key_m;
-    }
-
-    public boolean isKey_n() {
-        return key_n;
-    }
-
-    public boolean isKey_o() {
-        return key_o;
-    }
-
-    public boolean isKey_p() {
-        return key_p;
-    }
-
-    public boolean isKey_q() {
-        return key_q;
-    }
-
-    public boolean isKey_r() {
-        return key_r;
-    }
-
-    public boolean isKey_s() {
-        return key_s;
-    }
-
-    public boolean isKey_t() {
-        return key_t;
-    }
-
-    public boolean isKey_u() {
-        return key_u;
-    }
-
-    public boolean isKey_v() {
-        return key_v;
-    }
-
-    public boolean isKey_w() {
-        return key_w;
-    }
-
-    public boolean isKey_x() {
-        return key_x;
-    }
-
-    public boolean isKey_y() {
-        return key_y;
-    }
-
-    public boolean isKey_z() {
-        return key_z;
-    }
-
-    public boolean isNumpad_0() {
-        return numpad_0;
-    }
-
-    public boolean isNumpad_1() {
-        return numpad_1;
-    }
-
-    public boolean isNumpad_2() {
-        return numpad_2;
-    }
-
-    public boolean isNumpad_3() {
-        return numpad_3;
-    }
-
-    public boolean isNumpad_4() {
-        return numpad_4;
-    }
-
-    public boolean isNumpad_5() {
-        return numpad_5;
-    }
-
-    public boolean isNumpad_6() {
-        return numpad_6;
-    }
-
-    public boolean isNumpad_7() {
-        return numpad_7;
-    }
-
-    public boolean isNumpad_8() {
-        return numpad_8;
-    }
-
-    public boolean isNumpad_9() {
-        return numpad_9;
-    }
-
-    public boolean isFunction_1() {
-        return function_1;
-    }
-
-    public boolean isFunction_2() {
-        return function_2;
-    }
-
-    public boolean isFunction_3() {
-        return function_3;
-    }
-
-    public boolean isFunction_4() {
-        return function_4;
-    }
-
-    public boolean isFunction_5() {
-        return function_5;
-    }
-
-    public boolean isFunction_6() {
-        return function_6;
-    }
-
-    public boolean isFunction_7() {
-        return function_7;
-    }
-
-    public boolean isFunction_8() {
-        return function_8;
-    }
-
-    public boolean isFunction_9() {
-        return function_9;
-    }
-
-    public boolean isFunction_10() {
-        return function_10;
-    }
-
-    public boolean isFunction_11() {
-        return function_11;
-    }
-
-    public boolean isFunction_12() {
-        return function_12;
-    }
-
-    public boolean isCurrency_euro() {
-        return currency_euro;
-    }
-
-    public boolean isCurrency_dollar() {
-        return currency_dollar;
-    }
-
-    public boolean isKey_hash() {
-        return key_hash;
-    }
-
-    public boolean isParenthesis_open() {
-        return parenthesis_open;
-    }
-
-    public boolean isParenthesis_close() {
-        return parenthesis_close;
-    }
-
-    public boolean isBrace_open() {
-        return brace_open;
-    }
-
-    public boolean isBrace_close() {
-        return brace_close;
-    }
-
-    public boolean isSquareBracket_open() {
-        return squareBracket_open;
-    }
-
-    public boolean isSquareBracket_close() {
-        return squareBracket_close;
+    /**
+     * Gets {@link #rightArrow}.
+     *
+     * @return the value of {@link #rightArrow}
+     */
+    public boolean isRightArrow() {
+        return rightArrow;
+    }
+
+    /**
+     * Gets {@link #leftArrow}.
+     *
+     * @return the value of {@link #leftArrow}
+     */
+    public boolean isLeftArrow() {
+        return leftArrow;
+    }
+
+    /**
+     * Gets {@link #upArrow}.
+     *
+     * @return the value of {@link #upArrow}
+     */
+    public boolean isUpArrow() {
+        return upArrow;
+    }
+
+    /**
+     * Gets {@link #downArrow}.
+     *
+     * @return the value of {@link #downArrow}
+     */
+    public boolean isDownArrow() {
+        return downArrow;
+    }
+
+    /**
+     * Gets {@link #comma}.
+     *
+     * @return the value of {@link #comma}
+     */
+    public boolean isComma() {
+        return comma;
+    }
+
+    /**
+     * Gets {@link #period}.
+     *
+     * @return the value of {@link #period}
+     */
+    public boolean isPeriod() {
+        return period;
+    }
+
+    /**
+     * Gets {@link #minus}.
+     *
+     * @return the value of {@link #minus}
+     */
+    public boolean isMinus() {
+        return minus;
+    }
+
+    /**
+     * Gets {@link #plus}.
+     *
+     * @return the value of {@link #plus}
+     */
+    public boolean isPlus() {
+        return plus;
+    }
+
+    /**
+     * Gets {@link #less}.
+     *
+     * @return the value of {@link #less}
+     */
+    public boolean isLess() {
+        return less;
+    }
+
+    /**
+     * Gets {@link #greater}.
+     *
+     * @return the value of {@link #greater}
+     */
+    public boolean isGreater() {
+        return greater;
+    }
+
+    /**
+     * Gets {@link #number0}.
+     *
+     * @return the value of {@link #number0}
+     */
+    public boolean isNumber0() {
+        return number0;
+    }
+
+    /**
+     * Gets {@link #number1}.
+     *
+     * @return the value of {@link #number1}
+     */
+    public boolean isNumber1() {
+        return number1;
+    }
+
+    /**
+     * Gets {@link #number2}.
+     *
+     * @return the value of {@link #number2}
+     */
+    public boolean isNumber2() {
+        return number2;
+    }
+
+    /**
+     * Gets {@link #number3}.
+     *
+     * @return the value of {@link #number3}
+     */
+    public boolean isNumber3() {
+        return number3;
+    }
+
+    /**
+     * Gets {@link #number4}.
+     *
+     * @return the value of {@link #number4}
+     */
+    public boolean isNumber4() {
+        return number4;
+    }
+
+    /**
+     * Gets {@link #number5}.
+     *
+     * @return the value of {@link #number5}
+     */
+    public boolean isNumber5() {
+        return number5;
+    }
+
+    /**
+     * Gets {@link #number6}.
+     *
+     * @return the value of {@link #number6}
+     */
+    public boolean isNumber6() {
+        return number6;
+    }
+
+    /**
+     * Gets {@link #number7}.
+     *
+     * @return the value of {@link #number7}
+     */
+    public boolean isNumber7() {
+        return number7;
+    }
+
+    /**
+     * Gets {@link #number8}.
+     *
+     * @return the value of {@link #number8}
+     */
+    public boolean isNumber8() {
+        return number8;
+    }
+
+    /**
+     * Gets {@link #number9}.
+     *
+     * @return the value of {@link #number9}
+     */
+    public boolean isNumber9() {
+        return number9;
+    }
+
+    /**
+     * Gets {@link #a}.
+     *
+     * @return the value of {@link #a}
+     */
+    public boolean isA() {
+        return a;
+    }
+
+    /**
+     * Gets {@link #b}.
+     *
+     * @return the value of {@link #b}
+     */
+    public boolean isB() {
+        return b;
+    }
+
+    /**
+     * Gets {@link #c}.
+     *
+     * @return the value of {@link #c}
+     */
+    public boolean isC() {
+        return c;
+    }
+
+    /**
+     * Gets {@link #d}.
+     *
+     * @return the value of {@link #d}
+     */
+    public boolean isD() {
+        return d;
+    }
+
+    /**
+     * Gets {@link #e}.
+     *
+     * @return the value of {@link #e}
+     */
+    public boolean isE() {
+        return e;
+    }
+
+    /**
+     * Gets {@link #f}.
+     *
+     * @return the value of {@link #f}
+     */
+    public boolean isF() {
+        return f;
+    }
+
+    /**
+     * Gets {@link #g}.
+     *
+     * @return the value of {@link #g}
+     */
+    public boolean isG() {
+        return g;
+    }
+
+    /**
+     * Gets {@link #h}.
+     *
+     * @return the value of {@link #h}
+     */
+    public boolean isH() {
+        return h;
+    }
+
+    /**
+     * Gets {@link #i}.
+     *
+     * @return the value of {@link #i}
+     */
+    public boolean isI() {
+        return i;
+    }
+
+    /**
+     * Gets {@link #j}.
+     *
+     * @return the value of {@link #j}
+     */
+    public boolean isJ() {
+        return j;
+    }
+
+    /**
+     * Gets {@link #k}.
+     *
+     * @return the value of {@link #k}
+     */
+    public boolean isK() {
+        return k;
+    }
+
+    /**
+     * Gets {@link #l}.
+     *
+     * @return the value of {@link #l}
+     */
+    public boolean isL() {
+        return l;
+    }
+
+    /**
+     * Gets {@link #m}.
+     *
+     * @return the value of {@link #m}
+     */
+    public boolean isM() {
+        return m;
+    }
+
+    /**
+     * Gets {@link #n}.
+     *
+     * @return the value of {@link #n}
+     */
+    public boolean isN() {
+        return n;
+    }
+
+    /**
+     * Gets {@link #o}.
+     *
+     * @return the value of {@link #o}
+     */
+    public boolean isO() {
+        return o;
+    }
+
+    /**
+     * Gets {@link #p}.
+     *
+     * @return the value of {@link #p}
+     */
+    public boolean isP() {
+        return p;
+    }
+
+    /**
+     * Gets {@link #q}.
+     *
+     * @return the value of {@link #q}
+     */
+    public boolean isQ() {
+        return q;
+    }
+
+    /**
+     * Gets {@link #r}.
+     *
+     * @return the value of {@link #r}
+     */
+    public boolean isR() {
+        return r;
+    }
+
+    /**
+     * Gets {@link #s}.
+     *
+     * @return the value of {@link #s}
+     */
+    public boolean isS() {
+        return s;
+    }
+
+    /**
+     * Gets {@link #t}.
+     *
+     * @return the value of {@link #t}
+     */
+    public boolean isT() {
+        return t;
+    }
+
+    /**
+     * Gets {@link #u}.
+     *
+     * @return the value of {@link #u}
+     */
+    public boolean isU() {
+        return u;
+    }
+
+    /**
+     * Gets {@link #v}.
+     *
+     * @return the value of {@link #v}
+     */
+    public boolean isV() {
+        return v;
+    }
+
+    /**
+     * Gets {@link #w}.
+     *
+     * @return the value of {@link #w}
+     */
+    public boolean isW() {
+        return w;
+    }
+
+    /**
+     * Gets {@link #x}.
+     *
+     * @return the value of {@link #x}
+     */
+    public boolean isX() {
+        return x;
+    }
+
+    /**
+     * Gets {@link #y}.
+     *
+     * @return the value of {@link #y}
+     */
+    public boolean isY() {
+        return y;
+    }
+
+    /**
+     * Gets {@link #z}.
+     *
+     * @return the value of {@link #z}
+     */
+    public boolean isZ() {
+        return z;
+    }
+
+    /**
+     * Gets {@link #numpad0}.
+     *
+     * @return the value of {@link #numpad0}
+     */
+    public boolean isNumpad0() {
+        return numpad0;
+    }
+
+    /**
+     * Gets {@link #numpad1}.
+     *
+     * @return the value of {@link #numpad1}
+     */
+    public boolean isNumpad1() {
+        return numpad1;
+    }
+
+    /**
+     * Gets {@link #numpad2}.
+     *
+     * @return the value of {@link #numpad2}
+     */
+    public boolean isNumpad2() {
+        return numpad2;
+    }
+
+    /**
+     * Gets {@link #numpad3}.
+     *
+     * @return the value of {@link #numpad3}
+     */
+    public boolean isNumpad3() {
+        return numpad3;
+    }
+
+    /**
+     * Gets {@link #numpad4}.
+     *
+     * @return the value of {@link #numpad4}
+     */
+    public boolean isNumpad4() {
+        return numpad4;
+    }
+
+    /**
+     * Gets {@link #numpad5}.
+     *
+     * @return the value of {@link #numpad5}
+     */
+    public boolean isNumpad5() {
+        return numpad5;
+    }
+
+    /**
+     * Gets {@link #numpad6}.
+     *
+     * @return the value of {@link #numpad6}
+     */
+    public boolean isNumpad6() {
+        return numpad6;
+    }
+
+    /**
+     * Gets {@link #numpad7}.
+     *
+     * @return the value of {@link #numpad7}
+     */
+    public boolean isNumpad7() {
+        return numpad7;
+    }
+
+    /**
+     * Gets {@link #numpad8}.
+     *
+     * @return the value of {@link #numpad8}
+     */
+    public boolean isNumpad8() {
+        return numpad8;
+    }
+
+    /**
+     * Gets {@link #numpad9}.
+     *
+     * @return the value of {@link #numpad9}
+     */
+    public boolean isNumpad9() {
+        return numpad9;
+    }
+
+    /**
+     * Gets {@link #function1}.
+     *
+     * @return the value of {@link #function1}
+     */
+    public boolean isFunction1() {
+        return function1;
+    }
+
+    /**
+     * Gets {@link #function2}.
+     *
+     * @return the value of {@link #function2}
+     */
+    public boolean isFunction2() {
+        return function2;
+    }
+
+    /**
+     * Gets {@link #function3}.
+     *
+     * @return the value of {@link #function3}
+     */
+    public boolean isFunction3() {
+        return function3;
+    }
+
+    /**
+     * Gets {@link #function4}.
+     *
+     * @return the value of {@link #function4}
+     */
+    public boolean isFunction4() {
+        return function4;
+    }
+
+    /**
+     * Gets {@link #function5}.
+     *
+     * @return the value of {@link #function5}
+     */
+    public boolean isFunction5() {
+        return function5;
+    }
+
+    /**
+     * Gets {@link #function6}.
+     *
+     * @return the value of {@link #function6}
+     */
+    public boolean isFunction6() {
+        return function6;
+    }
+
+    /**
+     * Gets {@link #function7}.
+     *
+     * @return the value of {@link #function7}
+     */
+    public boolean isFunction7() {
+        return function7;
+    }
+
+    /**
+     * Gets {@link #function8}.
+     *
+     * @return the value of {@link #function8}
+     */
+    public boolean isFunction8() {
+        return function8;
+    }
+
+    /**
+     * Gets {@link #function9}.
+     *
+     * @return the value of {@link #function9}
+     */
+    public boolean isFunction9() {
+        return function9;
+    }
+
+    /**
+     * Gets {@link #function10}.
+     *
+     * @return the value of {@link #function10}
+     */
+    public boolean isFunction10() {
+        return function10;
+    }
+
+    /**
+     * Gets {@link #function11}.
+     *
+     * @return the value of {@link #function11}
+     */
+    public boolean isFunction11() {
+        return function11;
+    }
+
+    /**
+     * Gets {@link #function12}.
+     *
+     * @return the value of {@link #function12}
+     */
+    public boolean isFunction12() {
+        return function12;
+    }
+
+    /**
+     * Gets {@link #euro}.
+     *
+     * @return the value of {@link #euro}
+     */
+    public boolean isEuro() {
+        return euro;
+    }
+
+    /**
+     * Gets {@link #dollar}.
+     *
+     * @return the value of {@link #dollar}
+     */
+    public boolean isDollar() {
+        return dollar;
+    }
+
+    /**
+     * Gets {@link #hash}.
+     *
+     * @return the value of {@link #hash}
+     */
+    public boolean isHash() {
+        return hash;
+    }
+
+    /**
+     * Gets {@link #openParenthesis}.
+     *
+     * @return the value of {@link #openParenthesis}
+     */
+    public boolean isOpenParenthesis() {
+        return openParenthesis;
+    }
+
+    /**
+     * Gets {@link #closeParenthesis}.
+     *
+     * @return the value of {@link #closeParenthesis}
+     */
+    public boolean isCloseParenthesis() {
+        return closeParenthesis;
+    }
+
+    /**
+     * Gets {@link #openBrace}.
+     *
+     * @return the value of {@link #openBrace}
+     */
+    public boolean isOpenBrace() {
+        return openBrace;
+    }
+
+    /**
+     * Gets {@link #closeBrace}.
+     *
+     * @return the value of {@link #closeBrace}
+     */
+    public boolean isCloseBrace() {
+        return closeBrace;
+    }
+
+    /**
+     * Gets {@link #openSquareBracket}.
+     *
+     * @return the value of {@link #openSquareBracket}
+     */
+    public boolean isOpenSquareBracket() {
+        return openSquareBracket;
+    }
+
+    /**
+     * Gets {@link #closeSquareBracket}.
+     *
+     * @return the value of {@link #closeSquareBracket}
+     */
+    public boolean isCloseSquareBracket() {
+        return closeSquareBracket;
     }
 }

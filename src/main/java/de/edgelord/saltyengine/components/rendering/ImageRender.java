@@ -22,6 +22,10 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.Components;
 
+/**
+ * A {@link de.edgelord.saltyengine.core.Component} that draws an
+ * {@link #image} using its parent's position and size.
+ */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class ImageRender extends RenderComponent {
 
@@ -47,13 +51,23 @@ public class ImageRender extends RenderComponent {
     public void draw(SaltyGraphics saltyGraphics) {
 
         // Draw the image
-        saltyGraphics.drawImage(image, getParent().getX(), getParent().getY(), getParent().getWidth(), getParent().getHeight());
+        saltyGraphics.drawImage(image, getParent());
     }
 
+    /**
+     * Gets {@link #image}.
+     *
+     * @return the value of {@link #image}
+     */
     public SaltyImage getImage() {
         return image;
     }
 
+    /**
+     * Sets {@link #image}.
+     *
+     * @param image the new value of {@link #image}
+     */
     public void setImage(SaltyImage image) {
         this.image = image;
     }

@@ -95,27 +95,27 @@ public class Bird extends GameObject implements Serializable {
             getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);
         }
 
-        if (Input.keyboardInput.isArrow_right()) {
+        if (Input.keyboardInput.isRightArrow()) {
             Game.getCamera().move(Directions.Direction.RIGHT, .2f);
-        } else if (Input.keyboardInput.isArrow_left()) {
+        } else if (Input.keyboardInput.isLeftArrow()) {
             Game.getCamera().move(Directions.Direction.LEFT, .2f);
         }
 
-        if (Input.keyboardInput.isArrow_up()) {
+        if (Input.keyboardInput.isUpArrow()) {
             Game.getCamera().move(Directions.Direction.UP, .2f);
-        } else if (Input.keyboardInput.isArrow_down()) {
+        } else if (Input.keyboardInput.isDownArrow()) {
             Game.getCamera().move(Directions.Direction.DOWN, .2f);
         }
 
-        if (Input.keyboardInput.isKey_q()) {
+        if (Input.keyboardInput.isQ()) {
             Game.getCamera().setRotationDegrees(Game.getCamera().getRotationDegrees() + .1f);
-        } else if (Input.keyboardInput.isKey_e()) {
+        } else if (Input.keyboardInput.isE()) {
             Game.getCamera().setRotationDegrees(Game.getCamera().getRotationDegrees() - .1f);
         }
 
-        if (Input.keyboardInput.isKey_w()) {
+        if (Input.keyboardInput.isW()) {
             Game.getCamera().setScale(Game.getCamera().getScale() + .0001f);
-        } else if (Input.keyboardInput.isKey_s()) {
+        } else if (Input.keyboardInput.isS()) {
             Game.getCamera().setScale(Game.getCamera().getScale() - .0001f);
         }
     }

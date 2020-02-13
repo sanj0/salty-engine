@@ -137,18 +137,38 @@ public class LightComponent extends GFXComponent {
         currentLightSystem.addLight(light);
     }
 
+    /**
+     * Gets {@link #relationToParent}.
+     *
+     * @return the value of {@link #relationToParent}
+     */
     public TransformRelationMode getRelationToParent() {
         return relationToParent;
     }
 
+    /**
+     * Sets {@link #relationToParent}.
+     *
+     * @param relationToParent the new value of {@link #relationToParent}
+     */
     public void setRelationToParent(TransformRelationMode relationToParent) {
         this.relationToParent = relationToParent;
     }
 
+    /**
+     * Gets {@link #light}.
+     *
+     * @return the value of {@link #light}
+     */
     public Light getLight() {
         return light;
     }
 
+    /**
+     * Sets {@link #light}.
+     *
+     * @param light the new value of {@link #light}
+     */
     public void setLight(Light light) {
         this.light = light;
     }
