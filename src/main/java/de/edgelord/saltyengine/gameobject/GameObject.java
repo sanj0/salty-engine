@@ -44,7 +44,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A <code>GameObject</code> can be added to a {@link de.edgelord.saltyengine.scene.Scene} using {@link de.edgelord.saltyengine.scene.Scene#addGameObject(GameObject)}.
- * It will then have collision detection with all of the other <code>GameObject</code>s in the <code>Scene</code>, it will
+ * It will then have collision detection with all the other <code>GameObject</code>s in the <code>Scene</code>, it will
  * be drawn using {@link #draw(SaltyGraphics)}, initialized using {@link #initialize()} and updated every fixed tick using {@link #onFixedTick()}.
  * <p>
  * For more information, please visit the project's wiki on https://www.github.com/edgelord314/salty-engine/wiki
@@ -69,7 +69,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private final List<CollisionEvent> collisions = new CopyOnWriteArrayList<>();
 
     /**
-     * Used for internal purposes to make sure that the list of {@link #collisions} are cleared once per collision detection.
+     * Used for internal purposes to make sure that the list of {@link #collisions} is cleared once per collision detection.
      */
     private boolean clearCollisions = true;
 

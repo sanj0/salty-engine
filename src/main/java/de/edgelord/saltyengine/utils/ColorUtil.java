@@ -64,6 +64,8 @@ public class ColorUtil {
     public static final Color ORANGE = new Color(255, 165, 0);
 
     // Green Colors:
+    public static final Color GRASS_GREEN = new Color(62, 136, 73);
+    public static final Color TREE_GREEN = new Color(12, 174, 91);
     public static final Color OLIVE_COLOR = new Color(128, 128, 0);
     public static final Color DARK_GREEN_COLOR = new Color(0, 128, 0);
     public static final Color YELLOW_GREEN = new Color(154, 205, 50);
@@ -111,6 +113,7 @@ public class ColorUtil {
     public static final Color SAND_BROWN = new Color(244, 164, 96);
     public static final Color MOCCASIN = new Color(255, 228, 181);
     public static final Color ROSY_BRON = new Color(188, 143, 143);
+    public static final Color TREE_BROWN = new Color(97, 59, 22);
 
     // Purple Colors:
     public static final Color PURPLE_COLOR = new Color(128, 0, 128);
@@ -129,9 +132,13 @@ public class ColorUtil {
     public static final Color GRAY = new Color(105, 105, 105);
     public static final Color LIGHT_GRAY = new Color(150, 150, 150);
     public static final Color LIGHTER_GRAY = new Color(200, 200, 200);
+    public static final Color VINTAGE_GRAY_1 = new Color(129, 127, 113);
+    public static final Color VINTAGE_GRAY_2 = new Color(75, 74, 58);
+    public static final Color VINTAGE_GRAY_3 = new Color(47, 45, 26);
     public static final Color GHOST_WHITE = new Color(248, 248, 255);
     public static final Color SNOW_WHITE = new Color(255, 250, 250);
     public static final Color WHITE_SMOKE = new Color(245, 245, 245);
+    public static final Color VONTAGE_WHITE = new Color(217, 215, 200);
     public static final Color WHITE = new Color(255, 255, 255);
 
     // Other Colors:

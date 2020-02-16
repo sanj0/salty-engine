@@ -164,7 +164,7 @@ public interface Camera {
         transform.rotate(Math.toRadians(rotation), rotationAnchor.getX(), rotationAnchor.getY());
         transform.translate(scaleTranslateAmountX, scaleTranslateAmountY);
         transform.scale(scale, scale);
-        transform.translate(position.getX(), position.getY());
+        transform.translate(-position.getX(), -position.getY());
 
         return transform;
     }
