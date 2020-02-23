@@ -49,6 +49,10 @@ public class Slider extends UIElement {
         createIndicator(getForegroundColor());
     }
 
+    public Slider(float x, float y, float width, float height) {
+        this(new Vector2f(x, y), width, height);
+    }
+
     public Slider(Vector2f position, float width, float height, SaltyImage indicatorImage) {
         super(position, width, height, UIElement.SETTINGS_ELEMENT);
 

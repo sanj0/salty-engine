@@ -33,6 +33,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Usage: <br>
+ * <code>RectangleCreator rc = RectangleCreator.init()</code>
+ *
+ *
+ */
 public class RectangleCreator extends DrawingRoutine implements MouseInputHandler {
 
     private static DataWriter writer;

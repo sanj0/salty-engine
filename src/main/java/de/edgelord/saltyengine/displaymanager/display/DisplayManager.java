@@ -25,6 +25,7 @@ import de.edgelord.saltyengine.input.KeyboardInputHandler;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
@@ -93,6 +94,16 @@ public class DisplayManager extends Host {
     @Override
     public SaltyImage getScreenshot() {
         return stage.renderToImage();
+    }
+
+    @Override
+    public void addComponent(JComponent component) throws UnsupportedOperationException {
+        stage.add(component);
+    }
+
+    @Override
+    public void removeComponent(JComponent component) throws UnsupportedOperationException {
+        stage.remove(component);
     }
 
     @Override

@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
@@ -91,6 +92,16 @@ public class PaneledGameHost extends Host {
     @Override
     public SaltyImage getScreenshot() {
         return stage.renderToImage();
+    }
+
+    @Override
+    public void addComponent(JComponent component) throws UnsupportedOperationException {
+        stage.add(component);
+    }
+
+    @Override
+    public void removeComponent(JComponent component) throws UnsupportedOperationException {
+        stage.remove(component);
     }
 
     @Override

@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.core.interfaces.Repaintable;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
@@ -76,6 +77,24 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      * @return a screenshot of the game
      */
     public abstract SaltyImage getScreenshot();
+
+    /**
+     * Adds the given <code>JComponent</code> to the <code>Host</code>.
+     * If the Host does not allow for that, it throws an {@link UnsupportedOperationException}
+     *
+     * @param component the <code>JComponent</code> to add to the <code>Host</code>
+     * @throws UnsupportedOperationException if the <code>Host</code> cannot add the <code>JComponent</code>
+     */
+    public abstract void addComponent(JComponent component) throws UnsupportedOperationException;
+
+    /**
+     * Removes the given <code>JComponent</code> from the <code>Host</code>.
+     * If the Host does not allow for that, it throws an {@link UnsupportedOperationException}
+     *
+     * @param component the <code>JComponent</code> to remove from the <code>Host</code>
+     * @throws UnsupportedOperationException if the <code>Host</code> cannot remove the <code>JComponent</code>
+     */
+    public abstract void removeComponent(JComponent component) throws UnsupportedOperationException;
 
     /**
      * This method toggles fullscreen mode. When this method is called and the game is not in fullscreen mode,
