@@ -25,7 +25,7 @@ import de.edgelord.saltyengine.utils.Directions;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 
-public class JTextElement extends SwingUiElement {
+public class JTextElement extends SwingUIElement {
 
     public JTextElement(JTextComponent component, Vector2f position, float width, float height) {
         super(component, position, width, height);

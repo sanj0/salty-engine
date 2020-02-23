@@ -24,11 +24,11 @@ import de.edgelord.saltyengine.ui.UIElement;
 
 import javax.swing.*;
 
-public class SwingUiElement extends UIElement {
+public class SwingUIElement extends UIElement {
 
     private JComponent component;
 
-    public SwingUiElement(JComponent component, Vector2f position, float width, float height) {
+    public SwingUIElement(JComponent component, Vector2f position, float width, float height) {
         super(position, width, height, UIElement.SWING_ELEMENT);
         this.component = component;
 
@@ -36,7 +36,7 @@ public class SwingUiElement extends UIElement {
         initComponent();
     }
 
-    public SwingUiElement(JComponent component, Transform transform) {
+    public SwingUIElement(JComponent component, Transform transform) {
         super(transform, UIElement.SWING_ELEMENT);
         this.component = component;
 
