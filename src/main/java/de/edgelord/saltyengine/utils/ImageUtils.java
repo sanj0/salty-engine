@@ -18,7 +18,6 @@ package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
-import de.edgelord.saltyengine.core.Host;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
@@ -185,7 +184,7 @@ public class ImageUtils {
     public static SaltyImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
 
         SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getWidth());
-        Graphics2D graphics = (Graphics2D) image.getGraphics();
+        Graphics2D graphics = image.createGraphics();
 
         if (graphicsPrepare != null) {
             graphicsPrepare.draw(new SaltyGraphics(graphics));

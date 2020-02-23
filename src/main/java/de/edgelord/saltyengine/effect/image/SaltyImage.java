@@ -17,14 +17,43 @@
 package de.edgelord.saltyengine.effect.image;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
+import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 
 public interface SaltyImage {
+
+    default SaltyGraphics getGraphics() {
+        return new SaltyGraphics(createGraphics());
+    }
+
+    /**
+     * Draws the given {@link Drawable} to the image
+     * using {@link Drawable#draw(SaltyGraphics)} like so:
+     * {@code drawable.draw(getGraphics())}.
+     *
+     * @param drawable the {@code Drawable} to draw to this image
+     */
+    default void drawTo(Drawable drawable) {
+        drawable.draw(getGraphics());
+    }
+
+    /**
+     * Clears the content of this image with a
+     * {@link de.edgelord.saltyengine.utils.ColorUtil#TRANSPARENT_COLOR transparent color}.
+     */
+    default void erase() {
+        SaltyGraphics graphics = getGraphics();
+
+        graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
+        graphics.clear(0, 0, getWidth(), getHeight());
+        graphics.getGraphics2D().dispose();
+    }
 
     void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 
@@ -47,8 +76,6 @@ public interface SaltyImage {
     int getWidth();
 
     int getHeight();
-
-    Graphics getGraphics();
 
     Graphics2D createGraphics();
 

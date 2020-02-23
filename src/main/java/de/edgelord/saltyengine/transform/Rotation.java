@@ -27,8 +27,8 @@ import static java.lang.Math.toDegrees;
  * <p>
  * rad = angle / 180 * math.PI;
  * <p>
- * px = xRelative  * math.cos(rad) - yRelative  * math.sin(rad);
- * py = xRelative  * math.sin(rad) + yRelative  * math.cos(rad);
+ * px = xRelative  * math.cos(rad) - yRelative * math.sin(rad);
+ * py = xRelative  * math.sin(rad) + yRelative * math.cos(rad);
  * <p>
  * xNew = px + xCenterRectangle;
  * yNew = py + yCenterRectangle;

@@ -23,8 +23,8 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Input {
 
@@ -51,8 +51,8 @@ public class Input {
     public static boolean mouseDrags = false;
     public static boolean mouseDown = false;
 
-    private static List<KeyboardInputHandler> keyboardHandlers = new ArrayList<>();
-    private static List<MouseInputHandler> mouseHandlers = new ArrayList<>();
+    private static List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
+    private static List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
 
     public static Directions getInput() {
 

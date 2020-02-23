@@ -167,11 +167,6 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     @Override
-    public Graphics getGraphics() {
-        return image.getGraphics();
-    }
-
-    @Override
     public Graphics2D createGraphics() {
         return image.createGraphics();
     }

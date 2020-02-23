@@ -72,12 +72,12 @@ public class GradientLight extends Light {
 
     @Override
     public void draw(Graphics2D graphics) {
-            graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
+        graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     @Override
     public void drawColorMap(Graphics2D graphics) {
-            graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
+        graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     public EnumShape getShape() {

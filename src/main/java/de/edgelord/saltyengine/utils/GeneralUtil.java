@@ -27,7 +27,7 @@ import java.util.List;
 import static java.lang.Math.toDegrees;
 
 /**
- * A set of static method to make general thing easier.
+ * A set of static methods to make general things easier.
  */
 public class GeneralUtil {
 

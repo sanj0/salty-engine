@@ -57,6 +57,11 @@ public abstract class Collider {
     public static final int CIRCLE_COLLIDER = 2;
 
     /**
+     * The type of the {@link GhostCollider}.
+     */
+    public static final int GHOST_COLLIDER = 3;
+
+    /**
      * The constructor.
      *
      * @param priority the priority of this collider

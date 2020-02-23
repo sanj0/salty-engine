@@ -40,7 +40,6 @@ public class CircleCollider extends Collider implements TransformedObject {
     private Transform hitbox;
     private Directions lockedDirections = new Directions();
 
-
     /**
      * The constructor.
      */

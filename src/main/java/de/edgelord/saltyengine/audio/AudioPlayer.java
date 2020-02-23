@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.audio;
 
-import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
@@ -181,8 +180,8 @@ public class AudioPlayer {
      * Searches for the Audio with the given name and sets its pan to the given one using
      * {@link Audio#setPan(float)}
      *
-     * @param name   the name of the {@link Audio} of which to change the pan
-     * @param pan the target pan
+     * @param name the name of the {@link Audio} of which to change the pan
+     * @param pan  the target pan
      * @see Audio#setPan(float)
      */
     public void setClipPan(String name, float pan) {
