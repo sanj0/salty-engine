@@ -16,13 +16,10 @@
 
 package de.edgelord.saltyengine.io.serialization;
 
+import de.edgelord.saltyengine.io.FileReader;
+import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.utils.SaltySystem;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.DataReader;
-import de.edgelord.stdf.reading.FileReader;
-import de.edgelord.stdf.writing.DataWriter;
-import de.edgelord.stdf.writing.FileWriter;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Static fields and methods for serializing and deserializing
+ * data easily within the engine.
+ */
 public class Serializer {
 
     /**
@@ -46,11 +47,11 @@ public class Serializer {
      */
     private static boolean addChecksum = true;
 
-    private static MessageDigest md5Creator;
+    private static MessageDigest hashCreator;
 
     static {
         try {
-            md5Creator = MessageDigest.getInstance("sha1");
+            hashCreator = MessageDigest.getInstance("sha1");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -74,7 +75,7 @@ public class Serializer {
             FileReader saveReader = new FileReader(writer.getFile());
             FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
 
-            String checksum = new String(md5Creator.digest(prepareForChecksumCreation(saveReader.readFile())));
+            String checksum = new String(hashCreator.digest(prepareForChecksumCreation(saveReader.readFile())));
 
             checksumWriter.writeThrough(removeSpacesAndNewLines(checksum));
         }
@@ -98,7 +99,7 @@ public class Serializer {
         String checksum = checksumReader.readFile();
 
         byte[] saveFileBytes = prepareForChecksumCreation(saveReader.readFile());
-        String savefileSum = new String(md5Creator.digest(saveFileBytes));
+        String savefileSum = new String(hashCreator.digest(saveFileBytes));
 
         if (removeSpacesAndNewLines(checksum).equals(removeSpacesAndNewLines(savefileSum))) {
             isCorrupt = false;

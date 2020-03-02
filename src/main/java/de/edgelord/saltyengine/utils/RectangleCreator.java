@@ -21,11 +21,10 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
+import de.edgelord.saltyengine.io.serialization.DataWriter;
+import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.scripts.ReformatFile;
-import de.edgelord.stdf.writing.DataWriter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -80,7 +79,6 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
             writer.addSpecies(rects);
             try {
                 writer.syncFile();
-                ReformatFile.reformat(writer.getFile());
                 System.out.println("Rects have been written to " + writer.getFile().getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();

@@ -17,8 +17,7 @@
 package de.edgelord.saltyengine.example.serialization;
 
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.ValueToDataConverter;
+import de.edgelord.saltyengine.io.serialization.Species;
 
 public class Saver implements Serializable {
 
@@ -36,13 +35,8 @@ public class Saver implements Serializable {
     @Override
     public void deserialize(Species species) {
         // This method reads the data. With the given Species, you can read tag values. All tags you add to the species won't be
-        // saved. You could say that the given Species is read-only.
-        // ValueToDataConverter.convertToInteger converts the given value from the given species to an integer. There are more
-        // types available.
-        // ValueToListConverter converts a value to a list, see more in the class "AdvancedSaver"
-        //
-        // You can also read a String by simply calling species.getTagValue("highScore");
-        highScore = ValueToDataConverter.convertToInteger(species, "highScore");
+        // saved.
+        highScore = Integer.parseInt(species.getTagValue("highScore"));
     }
 
     @Override

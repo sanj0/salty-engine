@@ -1,0 +1,79 @@
+/*
+ * Copyright 2020 Malte Dostal
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package de.edgelord.saltyengine.io.serialization;
+
+import de.edgelord.saltyengine.io.FileWriter;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+
+public class DataWriter {
+
+    private LinkedList<Species> speciesList = new LinkedList<>();
+    private FileWriter fileWriter;
+
+    public DataWriter(File file) throws IOException {
+        this(new FileWriter(file));
+    }
+
+    public DataWriter(FileWriter fileWriter) throws IOException {
+
+        if (!fileWriter.getFile().exists()) {
+            fileWriter.getFile().createNewFile();
+        }
+
+        this.fileWriter = fileWriter;
+    }
+
+    /**
+     * Adds the given Species to the list of Species which will be written
+     * to the file when requested
+     *
+     * @param species the Species which should be added to the list
+     */
+    public void addSpecies(Species species) {
+        speciesList.add(species);
+    }
+
+    /**
+     * Writes the content of all Species from the list and their
+     * subspecies to the file. With that, all existing content of the file
+     * will be overwritten.
+     */
+    public void syncFile() throws IOException {
+
+        StringBuilder contentBuilder = new StringBuilder();
+        for (Species species : speciesList) {
+            contentBuilder.append(species.getSyntax());
+        }
+
+        fileWriter.writeThrough(contentBuilder.toString());
+    }
+
+    public FileWriter getFileWriter() {
+        return fileWriter;
+    }
+
+    public void setFileWriter(FileWriter fileWriter) {
+        this.fileWriter = fileWriter;
+    }
+
+    public File getFile() {
+        return getFileWriter().getFile();
+    }
+}

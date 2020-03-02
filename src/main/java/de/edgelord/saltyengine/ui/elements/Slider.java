@@ -31,7 +31,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
 
-// FIXME: 03.01.20 drag behavior is very buggy
 public class Slider extends UIElement {
 
     /**
@@ -59,6 +58,17 @@ public class Slider extends UIElement {
         this.indicatorImage = indicatorImage;
     }
 
+    public void stateChanged(){ }
+
+    /**
+     * Returns the value of this <code>Slider</code> between 0f and 1f.
+     *
+     * @return the 0f-1f value of this <code>Slider</code>
+     */
+    public float getValue() {
+        return indicatorPositionX / getWidth();
+    }
+
     @Override
     public void drawBackground(SaltyGraphics saltyGraphics) {
         saltyGraphics.outlineRect(this);
@@ -71,11 +81,21 @@ public class Slider extends UIElement {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (isFocused()) {
-            float xPos = Input.getAbsoluteCursorPosition().getX() - getX();
+        processInput();
+    }
 
-            if (xPos <= getTransform().getMaxX() && xPos >= getX()) {
-                indicatorPositionX = xPos;
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        processInput();
+    }
+
+    private void processInput() {
+        if (mouseHoversOver()) {
+            float cursorX = Input.getAbsoluteCursorPosition().getX();
+
+            if (cursorX <= getTransform().getMaxX() && cursorX >= getX()) {
+                indicatorPositionX = cursorX - getX();
+                stateChanged();
             }
         }
     }

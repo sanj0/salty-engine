@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,13 +14,33 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.io.serialization;
+package de.edgelord.saltyengine.io;
 
-public interface Serializable {
+import java.io.File;
 
-    void serialize(Species species);
+public class FileIO {
 
-    void deserialize(Species species);
+    private File file;
 
-    String getDataSetName();
+    public FileIO(File file) {
+        this.file = file;
+    }
+
+    /**
+     * Gets {@link #file}.
+     *
+     * @return the value of {@link #file}
+     */
+    public File getFile() {
+        return file;
+    }
+
+    /**
+     * Sets {@link #file}.
+     *
+     * @param file the new value of {@link #file}
+     */
+    public void setFile(File file) {
+        this.file = file;
+    }
 }

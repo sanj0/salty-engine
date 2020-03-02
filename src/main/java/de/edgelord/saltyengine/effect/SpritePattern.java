@@ -16,10 +16,9 @@
 
 package de.edgelord.saltyengine.effect;
 
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.DataReader;
-import de.edgelord.stdf.reading.ValueToDataConverter;
-import de.edgelord.stdf.reading.ValueToListConverter;
+import de.edgelord.saltyengine.io.serialization.DataReader;
+import de.edgelord.saltyengine.io.serialization.Species;
+import de.edgelord.saltyengine.io.serialization.ValueToListConverter;
 
 import java.awt.*;
 import java.io.File;
@@ -49,7 +48,7 @@ public class SpritePattern {
         Species spritePattern = dataReader.getMainSpecies();
         Species pattern = spritePattern.getSubSpecies("pattern");
 
-        sprites = ValueToDataConverter.convertToInteger(spritePattern, "sprites");
+        sprites = Integer.parseInt(spritePattern.getTagValue("sprites"));
 
         while (currentIndex != sprites) {
 

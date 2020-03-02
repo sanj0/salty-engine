@@ -29,10 +29,9 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
+import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.ValueToListConverter;
 
 import java.util.List;
 
@@ -168,11 +167,7 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void deserialize(Species species) {
-        List<String> camPos = ValueToListConverter.convertToList(species, "camPos", ",");
-        /*
-        Game.getCamera().setX(Float.valueOf(camPos.get(0)));
-        Game.getCamera().setY(Float.valueOf(camPos.get(1)));
-        */
+
     }
 
     @Override

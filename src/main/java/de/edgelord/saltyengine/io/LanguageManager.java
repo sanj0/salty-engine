@@ -16,8 +16,8 @@
 
 package de.edgelord.saltyengine.io;
 
+import de.edgelord.saltyengine.io.serialization.DataReader;
 import de.edgelord.saltyengine.resource.Resource;
-import de.edgelord.stdf.reading.DataReader;
 
 import java.io.IOException;
 

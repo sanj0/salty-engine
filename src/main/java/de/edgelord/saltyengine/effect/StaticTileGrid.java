@@ -21,14 +21,13 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.io.serialization.DataReader;
+import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
-import de.edgelord.stdf.Species;
-import de.edgelord.stdf.reading.DataReader;
-import de.edgelord.stdf.reading.ValueToDataConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -134,19 +133,21 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         Species images = dataReader.getSpecies("images");
         Species tiles = dataReader.getSpecies("tiles");
 
-        return new StaticTileGrid(drawingPosition, position, new Dimensions(ValueToDataConverter.convertToFloat(metaInf, "tile-height"), ValueToDataConverter.convertToFloat(metaInf, "tile-width"))) {
+        return new StaticTileGrid(drawingPosition, position, new Dimensions(Float.parseFloat(metaInf.getTagValue("tile-height")), Float.parseFloat(metaInf.getTagValue("tile-width")))) {
             @Override
             public void buildTileGrid(HashMap<Coordinates, SaltyImage> grid) {
 
                 Map<String, SaltyImage> imageMap = new HashMap<>();
+                int imagesCount = Integer.parseInt(images.getTagValue("entry-count"));
+                int tilesCount = Integer.parseInt(tiles.getTagValue("entry-count"));
 
-                for (int i = 0; i < ValueToDataConverter.convertToInteger(images, "entry-count"); i++) {
+                for (int i = 0; i < imagesCount; i++) {
                     String value = images.getTagValue("image" + i);
                     String[] values = value.split(",");
                     imageMap.put(values[0], SaltySystem.defaultImageFactory.getImageResource(values[1]));
                 }
 
-                for (int i = 0; i < ValueToDataConverter.convertToInteger(tiles, "entry-count"); i++) {
+                for (int i = 0; i < tilesCount; i++) {
                     String value = tiles.getTagValue("tile" + i);
                     String[] values = value.split(",");
                     String[] coordinates = values[1].split("#");

@@ -30,10 +30,10 @@ import de.edgelord.saltyengine.emitter.prc.RandomColorProfileParticleRenderConte
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
+import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
-import de.edgelord.stdf.Species;
 
 public class Bird extends GameObject implements Serializable {
 
