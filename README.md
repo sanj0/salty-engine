@@ -40,13 +40,21 @@ Minimal **tested** hardware requirements made possible by [JProfiler, a java pro
 - **examples of the basics within the library** (package `testing` and `example`)
 
 # Build instructions
-To get a usable JAR of this library, you can either download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
+You can build Salty Engine using `maven` and add it to your project by adding this to your pom.xml file:
+```
+<dependencies>
+    <dependency>
+        <groupId>de.edgelord.salty-engine</groupId>
+        <artifactId>salty-engine</artifactId>
+        <version>[version]</version>
+    </dependency>
+</dependencies>
+```
+Or: to get a usable JAR of this library, you can either download an existing release [here](https://github.com/edgelord314/salty-engine/releases/) or build one yourself following these instructions:
 
 0. Requirements:
     - [git](https://git-scm.com) has to be installed properly
-    - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the environment var JAVA_HOME points to 1.8)
-    - you have to install the dependencies first, on macOs and linux you can use the script install-dependencies.sh,
-    on windows you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) manually, using the steps 1-3
+    - Java version 1.10 has to be installed, no newer version works! (When you have more java versions installed, make sure that the environment var JAVA_HOME points to 1.10)
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in
 
    ```bash
@@ -60,8 +68,6 @@ To get a usable JAR of this library, you can either download an existing release
    ```bash
    cd salty-engine
    ```
-   `stdf` for stdf and <br>
-   `sysDepFiles` for sysDepFiles <br>
 
    into the cmd or terminal
 

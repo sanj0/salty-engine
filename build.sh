@@ -23,7 +23,7 @@
 
 VERSION=$(printf 'VERSION=${project.version}\n0\n' | ./mvnw org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION' | cut -f2 -d"=")
 
-if [ "$1" == "-help" ]; then
+if [[ "$1" == "-help" ]]; then
     printf "\n"
     printf "This little script builds the maven project \"salty-engine\" version "
     echo ${VERSION}
@@ -39,11 +39,11 @@ fi
 
 JAR=$(ls target | sort | grep ^salty-engine | head -1)
 
-if [ "$1" == "-run" ]; then
+if [[ "$1" == "-run" ]]; then
     java -jar target/${JAR}
 fi
 
-if [ "$1" == "-help" ]; then
+if [[ "$1" == "-help" ]]; then
     printf POSSIBLE OPTIONS:
     printf -run : runs the built jar
     printf -help : display this little crappy help
