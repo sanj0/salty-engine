@@ -31,9 +31,9 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.18-SNAPSHOT";
+    public static String versionTag = "0.14.19-local";
     public static String version = "0.14.18";
-    public static VersionMode versionMode = VersionMode.SNAPSHOT;
+    public static VersionMode versionMode = VersionMode.LOCAL;
 
     public static long fixedTickMillis = 1;
 
@@ -136,6 +136,7 @@ public class SaltySystem {
     }
 
     public enum VersionMode {
+        LOCAL,
         SNAPSHOT,
         ALPHA,
         BETA,

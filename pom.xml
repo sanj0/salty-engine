@@ -22,7 +22,7 @@
 
     <groupId>de.edgelord.salty-engine</groupId>
     <artifactId>salty-engine</artifactId>
-    <version>0.14.18-local</version>
+    <version>0.14.19-local</version>
 
     <name>Salty Engine</name>
     <url>https://github.com/edgelord314/salty-engine/</url>
