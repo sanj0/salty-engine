@@ -6,8 +6,8 @@
 Salty Engine is a Java library for making a whole 2D Game with only one single engine. It aims to be a very user-friendly and easy-to-use 2D Game making tool for Java.
 
 ### It isn't just a library for rendering
-It also includes collision detection, physics, several visual effects, over 100 beautiful colors, useful utility classes, hardware acceleration as well as saving with
-[stdf](github.com/edgelord314/stdf) and much more, spread accross **more than 230 classes with an average of approximately 90 lines**
+It also includes collision detection, physics, several visual effects, over 100 beautiful colors, useful utility classes, hardware acceleration as well as saving data and much more, 
+spread accross **more than 230 classes with an average of approximately 90 lines**
 
 Minimal **tested** hardware requirements made possible by [JProfiler, a java profiler](https://www.ej-technologies.com/products/jprofiler/overview.html) (for [Escape the Junk](#games-made-with-salty-engine)):
 - Intel(R) Celeron(R) CPU N3150 @ 1.60GHz 1.60GHz (dual core)
@@ -46,7 +46,7 @@ To get a usable JAR of this library, you can either download an existing release
     - [git](https://git-scm.com) has to be installed properly
     - Java version 1.8 has to be installed, no newer version works! (When you have more java versions installed, make sure that the environment var JAVA_HOME points to 1.8)
     - you have to install the dependencies first, on macOs and linux you can use the script install-dependencies.sh,
-    on windows you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) and [stdf](https://github.com/edgelord314/stdf) manually, using the steps 1-3
+    on windows you have to build [sysDepFiles](https://github.com/edgelord314/sysDepFiles) manually, using the steps 1-3
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in
 
    ```bash
@@ -104,7 +104,7 @@ To get a usable JAR of this library, you can either download an existing release
 # How to use Salty Engine
 
 You can very easily start a Salty Engine game project using [this](https://www.github.com/edgelord314/salty-engine-setup) tool. It basically creates a runnable project template.
-There is a series of videos uploaded to YouTube that exaplain how to use Salty Engine
+There is a series of videos uploaded to YouTube that explain how to use Salty Engine
 
 1. [How to install Salty Engine](https://youtu.be/7rQp3EQbX_k)
 
