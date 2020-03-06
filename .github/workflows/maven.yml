@@ -23,8 +23,3 @@ jobs:
         architecture: x64 # (x64 or x86) - defaults to x64
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-      
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
