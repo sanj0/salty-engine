@@ -1,3 +1,5 @@
+![Java CI with Maven](https://github.com/edgelord314/salty-engine/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+
 | ![version-badge](https://img.shields.io/badge/version-0.14.15-orange.svg) <br> ![release-badge](https://img.shields.io/badge/release-0.14.8-brightgreen.svg) <br> ![license-badge](https://img.shields.io/hexpm/l/plug.svg) <br> ![price-badge](https://img.shields.io/badge/price-free-red.svg) | ![salty-engine-logo](logos/logo_small.png) | [Why using Salty Engine](#why-using-salty-engine) <br> [Build Instructions](#build-instructions) <br> [How to use Salty Engine](#how-to-use-salty-engine) <br> [Games made with Salty Engine](#games-made-with-salty-engine) <br> [Collaborate](#collaborate) <br> [Help](#help) |
 |:---|:---:|---:|
 
