@@ -58,7 +58,8 @@ public class Slider extends UIElement {
         this.indicatorImage = indicatorImage;
     }
 
-    public void stateChanged(){ }
+    public void stateChanged() {
+    }
 
     /**
      * Returns the value of this <code>Slider</code> between 0f and 1f.

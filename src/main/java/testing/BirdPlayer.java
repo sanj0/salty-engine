@@ -33,8 +33,6 @@ import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
 
-import java.util.List;
-
 public class BirdPlayer extends GameObject implements Serializable {
 
     private SpritesheetAnimation spritesheetAnimation;

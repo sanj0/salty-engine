@@ -196,7 +196,8 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
      * This method is called whenever this <code>UIElement</code> is removed from
      * a {@link UISystem}
      */
-    public void onRemove() { }
+    public void onRemove() {
+    }
 
     public Font getFont() {
         return font;

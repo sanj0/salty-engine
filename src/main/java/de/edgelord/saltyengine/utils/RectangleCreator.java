@@ -35,8 +35,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Usage: <br>
  * <code>RectangleCreator rc = RectangleCreator.init()</code>
- *
- *
  */
 public class RectangleCreator extends DrawingRoutine implements MouseInputHandler {
 
