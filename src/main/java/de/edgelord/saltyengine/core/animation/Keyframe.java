@@ -16,29 +16,66 @@
 
 package de.edgelord.saltyengine.core.animation;
 
+/**
+ * A <code>Keyframe</code> stores a {@link #timecode}
+ * and a corresponding {@link #value}
+ */
 public class Keyframe {
 
-    private int timing;
-    private float key;
+    /**
+     * The timecode of this <code>Keyframe</code>
+     */
+    private int timecode;
 
-    public Keyframe(int timing, float key) {
-        this.timing = timing;
-        this.key = key;
+    /**
+     * The value of this <code>Keyframe</code>
+     */
+    private float value;
+
+    /**
+     * The constructor.
+     *
+     * @param timecode the timecode
+     * @param value    the value
+     */
+    public Keyframe(int timecode, float value) {
+        this.timecode = timecode;
+        this.value = value;
     }
 
-    public int getTiming() {
-        return timing;
+    /**
+     * Gets {@link #timecode}.
+     *
+     * @return the value of {@link #timecode}
+     */
+    public int getTimecode() {
+        return timecode;
     }
 
-    public void setTiming(int timing) {
-        this.timing = timing;
+    /**
+     * Sets {@link #timecode}.
+     *
+     * @param timecode the new value of {@link #timecode}
+     */
+    public void setTimecode(int timecode) {
+        this.timecode = timecode;
     }
 
-    public float getKey() {
-        return key;
+    /**
+     * Gets {@link #value}.
+     *
+     * @return the value of {@link #value}
+     */
+    public float getValue() {
+        return value;
     }
 
-    public void setKey(float key) {
-        this.key = key;
+    /**
+     * Sets {@link #value}.
+     *
+     * @param value the new value of {@link #value}
+     */
+    public void setValue(float value) {
+        this.value = value;
     }
 }

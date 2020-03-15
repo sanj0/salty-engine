@@ -18,37 +18,44 @@ package de.edgelord.saltyengine.core.animation;
 
 import java.util.List;
 
+/**
+ * A {@link KeyframeAnimation} implementation which uses
+ * linear transitions between values.
+ */
 public class LinearKeyframeAnimation extends KeyframeAnimation {
 
+    /**
+     * A constructor.
+     *
+     * @param keyframes the initial list of <code>Keyframe</code>s
+     */
     public LinearKeyframeAnimation(List<Keyframe> keyframes) {
         super(keyframes);
     }
 
+    /**
+     * A constructor that initializes an empty
+     * animation.
+     */
     public LinearKeyframeAnimation() {
         super();
     }
 
     @Override
     public void calculateAnimation() {
-
         prepareAnimation();
 
         int index = 0;
-
         List<Keyframe> keyframes = getKeyframes();
         while (index < getKeyframes().size() - 1) {
-
             int i = 0;
-            int duration = keyframes.get(index + 1).getTiming() - keyframes.get(index).getTiming();
-            float step = (keyframes.get(index + 1).getKey() - keyframes.get(index).getKey()) / duration;
+            int duration = keyframes.get(index + 1).getTimecode() - keyframes.get(index).getTimecode();
+            float step = (keyframes.get(index + 1).getValue() - keyframes.get(index).getValue()) / duration;
 
             while (i < duration) {
-
-                // System.out.println("timing: " + (i + keyframes.get(index).getTiming()) + " value: " + step);
-                getAnimation().put(i + keyframes.get(index).getTiming(), step);
+                getAnimation().put(i + keyframes.get(index).getTimecode(), step);
                 i++;
             }
-
             index++;
         }
     }

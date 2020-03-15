@@ -82,6 +82,10 @@ public class ImageUtils {
      * @return the given image as a {@link VolatileImage}
      */
     public static VolatileImage toVolatileImage(Image image) {
+
+        if (image instanceof VolatileImage) {
+            return (VolatileImage) image;
+        }
         VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
         copyImageTo(image, volatileImage);
 
@@ -95,6 +99,10 @@ public class ImageUtils {
      * @return the given image as a {@link BufferedImage}
      */
     public static BufferedImage toBufferedImage(Image image) {
+
+        if (image instanceof BufferedImage) {
+            return (BufferedImage) image;
+        }
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()), BufferedImage.TYPE_INT_ARGB);
         copyImageTo(image, bufferedImage);
 
