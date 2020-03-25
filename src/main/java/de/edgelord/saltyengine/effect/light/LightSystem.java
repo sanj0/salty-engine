@@ -32,10 +32,10 @@ import java.util.List;
 
 public class LightSystem implements Drawable {
 
-    private Color lightMapColor;
+    private final Color lightMapColor;
     protected SaltyImage lightMap;
     //private BufferedImage plainLightMap;
-    private List<Light> lights = new ArrayList<>();
+    private final List<Light> lights = new ArrayList<>();
 
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;
@@ -67,7 +67,6 @@ public class LightSystem implements Drawable {
     protected void updateLightMap() {
         //updatePlainLightMap();
         Graphics2D graphics = drawBackgroundToImage(lightMap);
-
         graphics.setRenderingHints(GraphicsConfiguration.renderingHints);
 
         Composite oldComp = graphics.getComposite();
@@ -101,5 +100,14 @@ public class LightSystem implements Drawable {
         updateLightMap();
         //saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Vector2f(-250, -250)));
         saltyGraphics.drawImage(lightMap, Vector2f.zero());
+    }
+
+    /**
+     * Gets {@link #lights}.
+     *
+     * @return the value of {@link #lights}
+     */
+    public List<Light> getLights() {
+        return lights;
     }
 }

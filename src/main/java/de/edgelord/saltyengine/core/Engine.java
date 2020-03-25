@@ -62,7 +62,6 @@ public class Engine {
      * Starts the rendering and the fixed ticks. This happens automatically when the {@link Game} starts.
      */
     public void start() {
-
         startFixedTicks();
         startRendering();
     }
@@ -79,7 +78,6 @@ public class Engine {
     }
 
     private void startRendering() {
-
         startRepainting();
     }
 
@@ -108,7 +106,6 @@ public class Engine {
      * @param FPS the fps to use for the game to be repainted
      */
     private void startRepainting(long FPS) {
-
         repaintTimer.scheduleAtFixedRate(new TimerTask() {
 
             long nanosBeforeLastTime = 0;
@@ -125,14 +122,11 @@ public class Engine {
     }
 
     private void startRepainting() {
-
         repaintTimer.schedule(new TimerTask() {
-
             long nanosBeforeLastTime = 0;
 
             @Override
             public void run() {
-
                 while (!isCloseRequested) {
 
                     Game.getHost().repaint();

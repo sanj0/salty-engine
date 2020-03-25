@@ -49,8 +49,8 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     private static DataWriter writer;
     private static Species points = new Species("points");
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
-    public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.changeAlpha(ColorUtil.BLUE, 0.5f);
-    public static Color POINT_VISUALIZING_COLOR = ColorUtil.changeAlpha(ColorUtil.RED, 0.35f);
+    public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.BLUE, 0.5f);
+    public static Color POINT_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.RED, 0.35f);
     private static Scanner scanner = new Scanner(System.in);
 
     private PointLogger(String fileName) throws IOException {

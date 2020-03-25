@@ -20,6 +20,7 @@ import de.edgelord.saltyengine.components.gfx.scene.SceneFade;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.effect.geom.EnumShape;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.effect.light.GlobalLight;
 import de.edgelord.saltyengine.effect.light.GradientLight;
 import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
@@ -92,21 +93,9 @@ public class TestingScene extends Scene {
         //testAudioPan();
     }
 
-    /*
-    //private void testAudioPan() {
-    //
-    //    for (int i = 0; i < 100; i++) {
-    //        audioPanAnimation.add(i * 2000, i % 2 == 0 ? -1f : 1f);
-    //    }
-    //    audioPanAnimation.calculateAnimation();
-    //
-    //    player.loadNewAudio("test-audio", "test-audio.wav");
-    //    player.loop("test-audio");
-    //}
-    */
-
     private void addLight() {
-        setLightSystem(new LightSystem(new Color(0, 0, 0, 225)));
+        setLightSystem(new LightSystem(Color.BLACK));
+        getLightSystem().addLight(new GlobalLight(ColorUtil.NAVY_BLUE_COLOR, .1f));
         getLightSystem().addLight(light);
         getLightSystem().addLight(new GradientLight(new Transform(0, 0, 200, 200), EnumShape.ROUND_RECTANGLE));
     }

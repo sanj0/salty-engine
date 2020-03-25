@@ -96,8 +96,24 @@ public abstract class Light implements TransformedObject {
         graphics.setColor(color);
     }
 
+    /**
+     * Draws the visuals of this light without color
+     * onto the given {@link Graphics2D graphics}
+     * of the {@link LightSystem}.
+     *
+     * @param graphics the graphic to render the light to
+     */
     public abstract void draw(Graphics2D graphics);
 
+    /**
+     * Draws the colored part of the visuals of the light
+     * to the given {@link Graphics2D graphics} of the
+     * {@link LightSystem}. <p>
+     * Together with {@link #draw(Graphics2D)}, this
+     * completes the visuals of this <code>Light</code>
+     *
+     * @param graphics the graphics to render the color visual to
+     */
     public abstract void drawColorMap(Graphics2D graphics);
 
     @Override

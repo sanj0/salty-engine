@@ -269,15 +269,29 @@ public class ColorUtil {
     }
 
     /**
-     * Returns the given color with the given alpha value. The value goes from 0f to 1f, 0f meaning complete transparency,
+     * Returns the given color with the given alpha value.
+     * The value goes from 0 to 255, 0 meaning complete transparency,
+     * 255 meaning full visibility.
+     *
+     * @param color the {@link Color} to return
+     * @param alpha the alpha value of the color
+     * @return the given color with the given alpha value
+     */
+    public static Color withAlpha(Color color,  int alpha) {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+    }
+
+    /**
+     * Returns the given color with the given alpha value.
+     * The value goes from 0f to 1f, 0f meaning complete transparency,
      * 1f meaning full visibility.
      *
      * @param color the {@link Color} to return
      * @param alpha the alpha value of the color
      * @return the given color with the given alpha value
      */
-    public static Color changeAlpha(Color color, float alpha) {
-        return new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (alpha * 255f));
+    public static Color withAlpha(Color color, float alpha) {
+        return withAlpha(color, (int) (alpha * 255f));
     }
 
     /**
@@ -287,22 +301,19 @@ public class ColorUtil {
      * @param color  Color to make darker.
      * @param amount Darkness fraction.
      * @return Darker color.
+     *
+     * @deprecated
      */
     public static Color changeBrightness(Color color, float amount) {
         int red = (int) Math.round(color.getRed() * (1.0 - amount));
         int green = (int) Math.round(color.getGreen() * (1.0 - amount));
         int blue = (int) Math.round(color.getBlue() * (1.0 - amount));
 
-        if (red < 0) red = 0;
-        else if (red > 255) red = 255;
-        if (green < 0) green = 0;
-        else if (green > 255) green = 255;
-        if (blue < 0) blue = 0;
-        else if (blue > 255) blue = 255;
+        red = Math.round(GeneralUtil.clamp(red, 0, 255));
+        green = Math.round(GeneralUtil.clamp(green, 0, 255));
+        blue = Math.round(GeneralUtil.clamp(blue, 0, 255));
 
-        int alpha = color.getAlpha();
-
-        return new Color(red, green, blue, alpha);
+        return new Color(red, green, blue, color.getAlpha());
     }
 
     /**

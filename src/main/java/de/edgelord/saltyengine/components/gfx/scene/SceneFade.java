@@ -114,7 +114,7 @@ public abstract class SceneFade extends SceneGFXComponent {
             public void draw(SaltyGraphics saltyGraphics) {
 
                 if (isEnabled()) {
-                    saltyGraphics.setColor(ColorUtil.changeAlpha(color, currentAlpha));
+                    saltyGraphics.setColor(ColorUtil.withAlpha(color, currentAlpha));
                     saltyGraphics.drawRect(Vector2f.zero(), Game.getGameDimensions());
                 }
             }

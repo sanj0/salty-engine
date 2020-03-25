@@ -66,8 +66,8 @@ public class GradientLight extends Light {
 
     public GradientLight(Transform transform, Color color, float brightness, float intensity, EnumShape shape, float... arcIfRoundRect) {
         this(transform, color, shape, arcIfRoundRect);
-        this.shape = shape;
-        this.arcIfRoundRect = arcIfRoundRect;
+        setBrightness(brightness);
+        setIntensity(intensity);
     }
 
     @Override
@@ -78,6 +78,12 @@ public class GradientLight extends Light {
     @Override
     public void drawColorMap(Graphics2D graphics) {
         graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
+    }
+
+    public void updateLightImage() {
+        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
+        }, GraphicsConfiguration.renderingHints, getIntensity(), getDimensions(), arcIfRoundRect);
+        coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, GraphicsConfiguration.renderingHints, getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
     }
 
     public EnumShape getShape() {
@@ -152,11 +158,5 @@ public class GradientLight extends Light {
     public void setColorAlpha(int colorAlpha) {
         super.setColorAlpha(colorAlpha);
         updateLightImage();
-    }
-
-    public void updateLightImage() {
-        light = ImageUtils.createPrimitiveGradient(shape, saltyGraphics -> {
-        }, GraphicsConfiguration.renderingHints, getIntensity(), getDimensions(), arcIfRoundRect);
-        coloredLight = ImageUtils.createPrimitiveGradient(shape, this::prepareGraphics, GraphicsConfiguration.renderingHints, getIntensity(), getColorAlpha(), getDimensions(), arcIfRoundRect);
     }
 }

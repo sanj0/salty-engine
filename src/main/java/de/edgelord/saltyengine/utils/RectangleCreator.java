@@ -48,8 +48,8 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     private Transform downLeft = new Transform(0, 0, 30, 30);
     private Transform downRight = new Transform(0, 0, 30, 30);
 
-    public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.changeAlpha(Color.RED, .25f);
-    public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.changeAlpha(Color.BLUE, .25f);
+    public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.RED, .25f);
+    public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.BLUE, .25f);
 
     private boolean originMove = false;
     private boolean upRightMove = false;

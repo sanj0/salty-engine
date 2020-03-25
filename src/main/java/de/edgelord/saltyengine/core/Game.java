@@ -28,6 +28,7 @@ import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
@@ -144,7 +145,6 @@ public class Game {
     }
 
     private static void internalPreInitDisplayManager(GameConfig config) {
-
         enableOpenGl();
 
         engine = new Engine(config.getFixedTickMillis());
@@ -156,6 +156,17 @@ public class Game {
 
     private static void enableOpenGl() {
         System.setProperty("sun.java2d.opengl", "True");
+    }
+
+    /**
+     * Returns a new {@link Transform} represented by:
+     * <br>
+     * {@code Vector2f(0, 0), getGameDimensions()}
+     *
+     * @return the virtual <code>Transform</code> of the game
+     */
+    public static Transform getGameTransform() {
+        return new Transform(Vector2f.zero(), Game.getGameDimensions());
     }
 
     public static Dimensions getGameDimensions() {
