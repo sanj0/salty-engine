@@ -41,7 +41,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     private final List<Force> forces = new LinkedList<>();
 
     /**
-     * The minimal value of the {@link Force#deltaDistance(int)} before its {@link Force#getAcceleration()} is set ot 0f.
+     * The minimal value of the {@link Force#deltaDistance(int)} before its {@link Force#getAcceleration()} is set to 0f.
      * The default value (which works fine for the default gravity, friction and mass of the {@link GameObject}s) is <code>0.5f</code>
      */
     private float threshold = 0.5f;
@@ -96,16 +96,16 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
             switch (force.getDirection()) {
                 case RIGHT:
-                    horizontalDelta += force.deltaDistance(deltaT);
+                    horizontalDelta += deltaDistance;
                     break;
                 case LEFT:
-                    horizontalDelta -= force.deltaDistance(deltaT);
+                    horizontalDelta -= deltaDistance;
                     break;
                 case UP:
-                    verticalDelta -= force.deltaDistance(deltaT);
+                    verticalDelta -= deltaDistance;
                     break;
                 case DOWN:
-                    verticalDelta += force.deltaDistance(deltaT);
+                    verticalDelta += deltaDistance;
                     break;
             }
         }

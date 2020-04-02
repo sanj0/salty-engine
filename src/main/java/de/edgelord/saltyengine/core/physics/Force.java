@@ -16,120 +16,83 @@
 
 package de.edgelord.saltyengine.core.physics;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.transform.Vector2f;
 
+/**
+ * A <code>Force</code> represents a push to
+ * a given {@link de.edgelord.saltyengine.transform.Vector2f vector}
+ * with a given acceleration and velocity.
+ *
+ * The intention is that all <code>Force</code>s
+ * of of one <code>MotionState</code> object
+ * are added using vector maths.
+ */
 public class Force {
-
-    private static final float VALUE_SCALE = 1000;
-
-    public static float DEFAULT_FRICTION = 0.0025f;
+    private Vector2f direction;
     private float acceleration;
     private float velocity;
-    private float distance;
-    private float deltaDistance;
-    private Directions.Direction direction;
-    private String name;
-    private GameObject parent;
-    private boolean countersCollision = false;
 
-    public Force(final float acceleration, final GameObject parent, final Directions.Direction direction, final String name) {
-        this(acceleration, 0, 0, parent, direction, name);
-    }
-
-    public Force(final float acceleration, final float velocity, final GameObject parent, final Directions.Direction direction, final String name) {
-        this(acceleration, velocity, 0, parent, direction, name);
-    }
-
-    public Force(final float acceleration, final float velocity, final float distance, final GameObject parent, final Directions.Direction direction, final String name) {
+    public Force(Vector2f direction, float acceleration, float velocity) {
+        this.direction = direction;
         this.acceleration = acceleration;
         this.velocity = velocity;
-        this.distance = distance;
-        this.parent = parent;
+    }
+
+    public Force(Vector2f direction, float acceleration) {
+        this(direction, acceleration, 0);
+    }
+
+    /**
+     * Gets {@link #direction}.
+     *
+     * @return the value of {@link #direction}
+     */
+    public Vector2f getDirection() {
+        return direction;
+    }
+
+    /**
+     * Sets {@link #direction}.
+     *
+     * @param direction the new value of {@link #direction}
+     */
+    public void setDirection(Vector2f direction) {
         this.direction = direction;
-        this.name = name;
     }
 
-    public float deltaDistance(final int deltaT) {
-
-        final float counterForce = velocity * SceneManager.getCurrentScene().getFriction();
-        float counterAcceleration = 0f;
-
-        if (!countersCollision) {
-            counterAcceleration = -(counterForce * parent.getMass());
-        }
-
-        final float accelerationRes = acceleration + counterAcceleration;
-
-        velocity += accelerationRes * deltaT;
-
-        if (countersCollision) {
-            velocity = 0;
-        }
-
-        deltaDistance = velocity * deltaT;
-        distance += deltaDistance;
-        if (countersCollision) {
-            return 0;
-        }
-        return deltaDistance;
-    }
-
-    public float getDistance() {
-        return distance;
-    }
-
-    public float getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(final float velocity) {
-        if (!countersCollision) {
-            this.velocity = velocity / (VALUE_SCALE * 10);
-        }
-    }
-
+    /**
+     * Gets {@link #acceleration}.
+     *
+     * @return the value of {@link #acceleration}
+     */
     public float getAcceleration() {
         return acceleration;
     }
 
-    public void setAcceleration(final float acceleration) {
-
-        if (!countersCollision) {
-            this.acceleration = acceleration / (VALUE_SCALE * VALUE_SCALE);
-        }
+    /**
+     * Sets {@link #acceleration}.
+     *
+     * @param acceleration the new value of {@link #acceleration}
+     */
+    public void setAcceleration(float acceleration) {
+        this.acceleration = acceleration;
     }
 
-    public Directions.Direction getDirection() {
-        return direction;
+    /**
+     * Gets {@link #velocity}.
+     *
+     * @return the value of {@link #velocity}
+     */
+    public float getVelocity() {
+        return velocity;
     }
 
-    public void setDirection(final Directions.Direction direction) {
-        this.direction = direction;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public GameObject getParent() {
-        return parent;
-    }
-
-    public void setParent(final GameObject parent) {
-        this.parent = parent;
-    }
-
-    public boolean isCountersCollision() {
-        return countersCollision;
-    }
-
-    public void setCountersCollision(final boolean countersCollision) {
-        this.countersCollision = countersCollision;
+    /**
+     * Sets {@link #velocity}.
+     *
+     * @param velocity the new value of {@link #velocity}
+     */
+    public void setVelocity(float velocity) {
+        this.velocity = velocity;
     }
 }

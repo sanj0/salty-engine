@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.Game;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * This class provides static stuff for
+ * This class provides static utility for
  * managing the {@link #currentScene current active Scene}.
  * <p>
  * Apart from the obvious getting/setting,

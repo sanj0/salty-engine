@@ -21,6 +21,28 @@ public class Directions {
     private int directions;
 
     /**
+     * Return <code>true</code> if the given <code>Direction</code>
+     * is either {@link Direction#LEFT} or {@link Direction#RIGHT}.
+     *
+     * @param direction the direction to test for horizontal-ity
+     * @return whether teh given <code>Direction</code> is horizontal or not
+     */
+    public static boolean isHorizontal(Direction direction) {
+        return direction == Direction.RIGHT || direction == Direction.LEFT;
+    }
+
+    /**
+     * Return <code>true</code> if the given <code>Direction</code>
+     * is either {@link Direction#UP} or {@link Direction#DOWN}.
+     *
+     * @param direction the direction to test for vertical-ity
+     * @return whether teh given <code>Direction</code> is vertical or not
+     */
+    public static boolean isVertical(Direction direction) {
+        return direction == Direction.UP || direction == Direction.DOWN;
+    }
+
+    /**
      * This method is used for mirroring Directions, for example for input Direction.RIGHT,
      * it would return Direction.LEFT.
      *
@@ -53,7 +75,7 @@ public class Directions {
      * @param directions the directions to mirror
      * @return the mirrored directions
      */
-    public static Directions mirrorDirections(Directions directions) {
+    public static Directions mirrorDirections(final Directions directions) {
 
         Directions mirroredDirections = new Directions();
 

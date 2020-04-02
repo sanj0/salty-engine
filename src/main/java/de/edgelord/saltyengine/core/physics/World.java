@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,24 +14,12 @@
  * limitations under the License.
  */
 
-package testing;
+package de.edgelord.saltyengine.core.physics;
 
-import java.applet.Applet;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-public class AppletWrapper extends Applet {
-
-    @Override
-    public void start() {
-        new Thread("app-main-thread") {
-            public void run() {
-                runApplication();
-            }
-        }.start();
-    }
-
-    private void runApplication() {
-        Tester.main(new String[0]);
-    }
+/**
+ * The <code>World</code> is the virtual scenery in which
+ * the physics-part of the engine takes place.
+ *
+ */
+public class World {
 }

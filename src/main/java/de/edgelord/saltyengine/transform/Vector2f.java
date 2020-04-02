@@ -32,11 +32,18 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
+    public Vector2f normalize(float magnitude) {
+        x /= magnitude;
+        y /= magnitude;
+
+        return this;
+    }
+
     /**
      * Returns the distance between this and the given point.
      *
      * @param point a point
-     * @return teh distance between this and the given point
+     * @return the distance between this and the given point
      */
     public float distance(Vector2f point) {
         double ac = Math.abs(point.y - y);

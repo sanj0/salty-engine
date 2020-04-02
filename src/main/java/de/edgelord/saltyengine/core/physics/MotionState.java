@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
-package testing;
+package de.edgelord.saltyengine.core.physics;
 
-import java.applet.Applet;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
+import de.edgelord.saltyengine.transform.Vector2f;
 
-public class AppletWrapper extends Applet {
+import java.util.ArrayList;
+import java.util.List;
 
-    @Override
-    public void start() {
-        new Thread("app-main-thread") {
-            public void run() {
-                runApplication();
-            }
-        }.start();
-    }
+/**
+ * The <code>MotionState</code> defines
+ * the state of motion of a {@link PhysicsObject}.
+ */
+public class MotionState {
 
-    private void runApplication() {
-        Tester.main(new String[0]);
+    List<Force> forces = new ArrayList<>();
+
+    private Vector2f sumForces() {
+        Vector2f result = Vector2f.zero();
+        for (Force force : forces) {
+            result.add(force.getDirection().normalize(force.getVelocity()));
+        }
+
+        return result;
     }
 }

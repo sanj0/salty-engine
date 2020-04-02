@@ -50,9 +50,7 @@ public class LockToBounds extends Component<GameObject> {
 
     @Override
     public void onFixedTick() {
-
         switch (mode) {
-
             case MODE_TRANSFORM:
                 if (!bounds.contains(getParent().getTransform())) {
                     getParent().getLockedDirections().addDirection(bounds.getRelation(getParent().getTransform()));
