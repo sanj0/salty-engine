@@ -32,11 +32,54 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
-    public Vector2f normalize(float magnitude) {
-        x /= magnitude;
-        y /= magnitude;
+    public Vector2f withMagnitude(float newMagnitude) {
+        double magnitude = magnitude();
+        double ratio = newMagnitude / magnitude;
+        float x = (float) (this.x * ratio);
+        float y = (float) (this.y * ratio);
+
+        return new Vector2f(x, y);
+    }
+
+    /**
+     * Sets a new magnitude to this <code>vector</code>
+     * by changing its <code>x</code> and <code>y</code>
+     * coordinates.
+     *
+     * @param newMagnitude the new magnitude for this <code>vector</code>
+     * @return <code>this</code> vector
+     */
+    public Vector2f setMagnitude(float newMagnitude) {
+        Vector2f newVector = withMagnitude(newMagnitude);
+
+        setX(newVector.x);
+        setY(newVector.y);
 
         return this;
+    }
+
+    public Vector2f normalized() {
+        return normalize(magnitude());
+    }
+
+    public Vector2f normalize() {
+        Vector2f newVector = normalize(magnitude());
+
+        setX(newVector.x);
+        setY(newVector.y);
+
+        return this;
+    }
+
+    private Vector2f normalize(double magnitude) {
+        float x = (float) (this.x / magnitude);
+        float y = (float) (this.y / magnitude);
+
+        return new Vector2f(x, y);
+    }
+
+    public double magnitude() {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
 
     /**

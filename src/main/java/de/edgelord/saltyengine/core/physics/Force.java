@@ -32,14 +32,35 @@ public class Force {
     private float acceleration;
     private float velocity;
 
+    private long accelerationDuration = -1;
+
     public Force(Vector2f direction, float acceleration, float velocity) {
-        this.direction = direction;
+        this.direction = direction.normalize();
         this.acceleration = acceleration;
         this.velocity = velocity;
     }
 
     public Force(Vector2f direction, float acceleration) {
         this(direction, acceleration, 0);
+    }
+
+    public float deltaDistance(long dt) {
+
+        if (accelerationDuration != -1) {
+            if (accelerationDuration - dt <= 0) {
+                acceleration = 0;
+            }
+        }
+
+        float v0 = velocity;
+        velocity = v0 + acceleration * dt;
+
+        return velocity * dt;
+    }
+
+    public void setAcceleration(float acceleration, long duration) {
+        setAcceleration(acceleration);
+        accelerationDuration = duration;
     }
 
     /**
@@ -57,7 +78,7 @@ public class Force {
      * @param direction the new value of {@link #direction}
      */
     public void setDirection(Vector2f direction) {
-        this.direction = direction;
+        this.direction = direction.normalize();
     }
 
     /**

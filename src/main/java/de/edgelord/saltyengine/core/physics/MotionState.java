@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.core.physics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -29,12 +30,45 @@ public class MotionState {
 
     List<Force> forces = new ArrayList<>();
 
-    private Vector2f sumForces() {
+    public Vector2f sumForces(long dt) {
         Vector2f result = Vector2f.zero();
         for (Force force : forces) {
-            result.add(force.getDirection().normalize(force.getVelocity()));
+            result.add(force.getDirection().withMagnitude(force.deltaDistance(dt)));
         }
 
         return result;
+    }
+
+
+    public int size() {
+        return forces.size();
+    }
+
+    public boolean contains(Object o) {
+        return forces.contains(o);
+    }
+
+    public boolean add(Force force) {
+        return forces.add(force);
+    }
+
+    public boolean remove(Object o) {
+        return forces.remove(o);
+    }
+
+    public boolean addAll(Collection<? extends Force> c) {
+        return forces.addAll(c);
+    }
+
+    public void clear() {
+        forces.clear();
+    }
+
+    public Force get(int index) {
+        return forces.get(index);
+    }
+
+    public Force remove(int index) {
+        return forces.remove(index);
     }
 }

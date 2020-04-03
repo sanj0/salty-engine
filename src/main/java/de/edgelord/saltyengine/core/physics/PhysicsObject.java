@@ -29,7 +29,87 @@ import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 public class PhysicsObject {
 
     private TransformedObject parent;
-    private float mass;
+    /*TODO: */private float mass;
     private MotionState motionState;
-    private float surfaceFriction;
+    /*TODO: */private float surfaceFriction;
+
+    public PhysicsObject(TransformedObject parent) {
+        this.parent = parent;
+    }
+
+    public void tick(long dt) {
+        parent.getPosition().add(motionState.sumForces(dt));
+    }
+
+    /**
+     * Gets {@link #parent}.
+     *
+     * @return the value of {@link #parent}
+     */
+    public TransformedObject getParent() {
+        return parent;
+    }
+
+    /**
+     * Sets {@link #parent}.
+     *
+     * @param parent the new value of {@link #parent}
+     */
+    public void setParent(TransformedObject parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * Gets {@link #mass}.
+     *
+     * @return the value of {@link #mass}
+     */
+    public float getMass() {
+        return mass;
+    }
+
+    /**
+     * Sets {@link #mass}.
+     *
+     * @param mass the new value of {@link #mass}
+     */
+    public void setMass(float mass) {
+        this.mass = mass;
+    }
+
+    /**
+     * Gets {@link #motionState}.
+     *
+     * @return the value of {@link #motionState}
+     */
+    public MotionState getMotionState() {
+        return motionState;
+    }
+
+    /**
+     * Sets {@link #motionState}.
+     *
+     * @param motionState the new value of {@link #motionState}
+     */
+    public void setMotionState(MotionState motionState) {
+        this.motionState = motionState;
+    }
+
+    /**
+     * Gets {@link #surfaceFriction}.
+     *
+     * @return the value of {@link #surfaceFriction}
+     */
+    public float getSurfaceFriction() {
+        return surfaceFriction;
+    }
+
+    /**
+     * Sets {@link #surfaceFriction}.
+     *
+     * @param surfaceFriction the new value of {@link #surfaceFriction}
+     */
+    public void setSurfaceFriction(float surfaceFriction) {
+        this.surfaceFriction = surfaceFriction;
+    }
 }
