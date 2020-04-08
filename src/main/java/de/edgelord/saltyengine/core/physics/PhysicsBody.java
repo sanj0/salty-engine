@@ -19,24 +19,55 @@ package de.edgelord.saltyengine.core.physics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 
 /**
- * A <code>PhysicsObject</code> is an object
+ * A <code>PhysicsBody</code> is an object
  * within the virtual {@link World world}, that
- * is effected by other <code>PhysicsObject</code>s
+ * is effected by other <code>PhysicsBody</code>s
  * within the <code>World</code>, effects other
- * <code>PhysicsObject</code>s in the <code>World</code>
+ * <code>PhysicsBody</code>s in the <code>World</code>
  * and is effected by the <code>World</code> itself.
  */
-public class PhysicsObject {
+public class PhysicsBody {
 
+    /**
+     * The parent object of this <code>PhysicsBody</code> is
+     * the {@link TransformedObject object} that this PhysicsBody
+     */
     private TransformedObject parent;
-    /*TODO: */private float mass;
-    private MotionState motionState;
-    /*TODO: */private float surfaceFriction;
 
-    public PhysicsObject(TransformedObject parent) {
+    /**
+     * The mass of this <code>PhysicsBody</code>.
+     * !TODO: integrate mass of PhysicsBody into calculations!
+     */
+    private float mass;
+
+    /**
+     * The motion state of this body.
+     */
+    private MotionState motionState;
+
+    /**
+     * The surface friction of this <code>PhysicsBody</code>.
+     * !TODO: integrate surface friction of PhysicsBody into calculations!
+     */
+    private float surfaceFriction;
+
+    /**
+     * A constructor.
+     *
+     * @param parent the {@link #parent} of this <code>PhysicsBody</code>
+     */
+    public PhysicsBody(TransformedObject parent) {
         this.parent = parent;
+
+        motionState = new MotionState();
     }
 
+    /**
+     * Ticks this <code>PhysicsBody</code> and therefore updates its parent's position
+     * according to the sum of its {@link MotionState}'s {@link Force}s.
+     *
+     * @param dt the delta time that passed after the last tick
+     */
     public void tick(long dt) {
         parent.getPosition().add(motionState.sumForces(dt));
     }

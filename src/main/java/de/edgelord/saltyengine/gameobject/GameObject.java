@@ -18,7 +18,6 @@ package de.edgelord.saltyengine.gameobject;
 
 import de.edgelord.saltyengine.collision.collider.Collider;
 import de.edgelord.saltyengine.collision.collider.HitboxCollider;
-import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -27,7 +26,6 @@ import de.edgelord.saltyengine.core.interfaces.CollideAble;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.InitializeAble;
-import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
@@ -37,7 +35,6 @@ import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.Directions;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -51,11 +48,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class GameObject extends ComponentContainer implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
-
-    /**
-     * The name of the default {@link SimplePhysicsComponent} {@link #physicsComponent}.
-     */
-    public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
 
     /**
      * The list of {@link Component}s that this <code>GameObject</code> currently has.
@@ -72,12 +64,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * Used for internal purposes to make sure that the list of {@link #collisions} is cleared once per collision detection.
      */
     private boolean clearCollisions = true;
-
-    /**
-     * The default physics component, used for stopping the <code>GameObject</code> when a collision in a direction
-     * occurs and to accelerate it using e.g. {@link #accelerate(float, Directions.Direction)} or {@link #accelerateTo(float, Directions.Direction)}.
-     */
-    private final SimplePhysicsComponent physicsComponent;
 
     /**
      * The collider of this <code>GameObject</code>, used to check collisions between this and other <code>GameObject</code>s.
@@ -127,10 +113,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         setTransform(new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height)));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
-        physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);
         collider = new HitboxCollider();
-
-        components.add(physicsComponent);
     }
 
     /**
@@ -252,20 +235,9 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method is used internally to call {@link #onFixedTick()} and do some stuff with the physics as well as {@link Hitbox#recalculate() updating} the {@link #hitbox}.
+     * This method is used internally to call {@link #onFixedTick()} as well as {@link Hitbox#recalculate() updating} the {@link #hitbox}.
      */
     public void doFixedTick() {
-        // Remove acceleration from default forces
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(0f);
-
-        // Remove velocity from default velocity forces
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(0f);
-        getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(0f);
 
         hitbox.recalculate();
         onFixedTick();
@@ -346,128 +318,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method sets the {@link Force#getAcceleration() acceleration} of the default force in the
-     * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
-     * This is the recommended way fro player control in a few cases because the momentum of this GameObject will
-     * slowly fade out and so the controls aren't precise. However, this might be useful for some physics-related games.
-     *
-     * @param acceleration the acceleration to be set to the specific default force
-     * @param direction    the direction in which to accelerate the GameObject
-     */
-    public void accelerate(float acceleration, Directions.Direction direction) {
-
-        if (getLockedDirections().hasDirection(direction)) {
-            return;
-        }
-
-        switch (direction) {
-
-            case RIGHT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(acceleration);
-                break;
-            case LEFT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(acceleration);
-                break;
-            case UP:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_FORCE).setAcceleration(acceleration);
-                break;
-            case DOWN:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_FORCE).setAcceleration(acceleration);
-                break;
-            case EMPTY:
-                System.out.println("[WARNING] Can not accelerate in Direction Directions.Direction.EMPTY!");
-                break;
-        }
-    }
-
-    /**
-     * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
-     * that the given {@link Directions} has.
-     *
-     * @param acceleration the target acceleration for all directions that the given <code>Directions</code> has.
-     * @param directions   the <code>Directions</code> in which to accelerate.
-     * @see #accelerateTo(float, Directions.Direction)
-     */
-    public void accelerate(float acceleration, Directions directions) {
-
-        if (directions.hasDirection(Directions.Direction.UP)) {
-            accelerate(acceleration, Directions.Direction.UP);
-        }
-
-        if (directions.hasDirection(Directions.Direction.DOWN)) {
-            accelerate(acceleration, Directions.Direction.DOWN);
-        }
-
-        if (directions.hasDirection(Directions.Direction.RIGHT)) {
-            accelerate(acceleration, Directions.Direction.RIGHT);
-        }
-
-        if (directions.hasDirection(Directions.Direction.LEFT)) {
-            accelerate(acceleration, Directions.Direction.LEFT);
-        }
-    }
-
-    /**
-     * This method sets the {@link Force#getVelocity() velocity} of the default velocity force with the
-     * given direction to the given value. This velocity only rests for one tick.
-     * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
-     *
-     * @param velocity  the velocity to be set to the specific force
-     * @param direction the direction of the default force to be manipulated
-     */
-    public void accelerateTo(float velocity, Directions.Direction direction) {
-
-        if (getLockedDirections().hasDirection(direction)) {
-            return;
-        }
-
-        switch (direction) {
-            case RIGHT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(velocity);
-                break;
-            case LEFT:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_VELOCITY_FORCE).setVelocity(velocity);
-                break;
-            case UP:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(velocity);
-                break;
-            case DOWN:
-                getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(velocity);
-                break;
-            case EMPTY:
-                System.out.println("[WARNING] Cannot set the velocity for Direction Directions.Direction.EMPTY!");
-                break;
-        }
-    }
-
-    /**
-     * Calls {@link #accelerateTo(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
-     * that the given {@link Directions} has.
-     *
-     * @param velocity   the target velocity for all directions that the given <code>Directions</code> has
-     * @param directions the <code>Directions</code> in which to accelerate to the given velocity
-     * @see #accelerateTo(float, Directions.Direction)
-     */
-    public void accelerateTo(float velocity, Directions directions) {
-
-        if (directions.hasDirection(Directions.Direction.UP)) {
-            accelerateTo(velocity, Directions.Direction.UP);
-        }
-
-        if (directions.hasDirection(Directions.Direction.DOWN)) {
-            accelerateTo(velocity, Directions.Direction.DOWN);
-        }
-
-        if (directions.hasDirection(Directions.Direction.RIGHT)) {
-            accelerateTo(velocity, Directions.Direction.RIGHT);
-        }
-
-        if (directions.hasDirection(Directions.Direction.LEFT)) {
-            accelerateTo(velocity, Directions.Direction.LEFT);
-        }
-    }
-
-    /**
      * Returns whether the cursor touches the {@link #getTransform() transform} of this <code>GameObject</code> or not.
      *
      * @return <code>true</code> if the cursor touches the {@link #getTransform() transform} of this <code>GameObject</code> and <code>false</code> if not.
@@ -505,10 +355,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setHitbox(final Hitbox hitbox) {
         this.hitbox = hitbox;
-    }
-
-    public SimplePhysicsComponent getPhysics() {
-        return physicsComponent;
     }
 
     public Collider getCollider() {

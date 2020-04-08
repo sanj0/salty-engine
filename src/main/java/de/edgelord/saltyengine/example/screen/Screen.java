@@ -21,7 +21,6 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.input.Input;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 
 import java.awt.*;
@@ -38,8 +37,6 @@ public class Screen extends GameObject {
 
         screen = new Transform(getX() + 10, getY() + 10, getWidth() - 20, getHeight() - 20);
         screenContent = new ScreenContent(getX(), getY());
-
-        SceneManager.getCurrentScene().disableGravity();
     }
 
     @Override
@@ -55,15 +52,15 @@ public class Screen extends GameObject {
     @Override
     public void onFixedTick() {
 
-        if (Input.inputLeft) {
+        if (Input.left) {
             screenContent.moveX(7f);
-        } else if (Input.inputRight) {
+        } else if (Input.right) {
             screenContent.moveX(-7f);
         }
 
-        if (Input.inputUp) {
+        if (Input.up) {
             screenContent.moveY(7f);
-        } else if (Input.inputDown) {
+        } else if (Input.down) {
             screenContent.moveY(-7f);
         }
     }

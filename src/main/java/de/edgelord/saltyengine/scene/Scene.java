@@ -19,14 +19,12 @@ package de.edgelord.saltyengine.scene;
 import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
-import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
-import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
@@ -58,21 +56,6 @@ public class Scene implements Drawable, FixedTickRoutine {
      * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
      */
     public static final Object concurrentBlock = "3141592653589793";
-
-    /**
-     * The gravity used by all {@link GameObject}s in this Scene.
-     */
-    private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
-
-    /**
-     * The friction used by all {@link GameObject}s in this Scene.
-     */
-    private float friction = Force.DEFAULT_FRICTION;
-
-    /**
-     * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
-     */
-    private boolean gravityEnabled = false;
 
     private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
     private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
@@ -200,28 +183,6 @@ public class Scene implements Drawable, FixedTickRoutine {
         }
     }
 
-    public void disableGravity() {
-        synchronized (concurrentBlock) {
-            gravityEnabled = false;
-            for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
-
-                gameObject.getPhysics().setGravityEnabled(false);
-            }
-        }
-    }
-
-    public void enableGravity() {
-        synchronized (concurrentBlock) {
-            gravityEnabled = true;
-            for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
-
-                gameObject.getPhysics().setGravityEnabled(true);
-            }
-        }
-    }
-
     public void addFixedTask(FixedTask fixedTask) {
 
         synchronized (concurrentBlock) {
@@ -236,16 +197,13 @@ public class Scene implements Drawable, FixedTickRoutine {
     }
 
     public void addGameObject(GameObject gameObject) {
-
         synchronized (concurrentBlock) {
-            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
             gameObjects.add(gameObject);
         }
     }
 
     public void addGameObject(int index, GameObject gameObject) {
         synchronized (concurrentBlock) {
-            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
             gameObjects.add(index, gameObject);
         }
     }
@@ -287,7 +245,6 @@ public class Scene implements Drawable, FixedTickRoutine {
     }
 
     public void doFixedTasks() {
-
         synchronized (concurrentBlock) {
             for (FixedTask fixedTask : fixedTasks) {
 
@@ -327,30 +284,6 @@ public class Scene implements Drawable, FixedTickRoutine {
     public int getFixedTaskCount() {
         synchronized (concurrentBlock) {
             return fixedTasks.size();
-        }
-    }
-
-    public float getGravity() {
-        return gravity;
-    }
-
-    public void setGravity(float gravity) {
-        this.gravity = gravity;
-    }
-
-    public float getFriction() {
-        return friction;
-    }
-
-    public void setFriction(float friction) {
-        this.friction = friction;
-    }
-
-    public void setGravityEnabled(boolean gravityEnabled) {
-        if (gravityEnabled) {
-            enableGravity();
-        } else {
-            disableGravity();
         }
     }
 

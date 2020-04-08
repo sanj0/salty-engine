@@ -28,10 +28,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Input {
 
-    public static boolean inputUp = false;
-    public static boolean inputDown = false;
-    public static boolean inputRight = false;
-    public static boolean inputLeft = false;
+    public static boolean up = false;
+    public static boolean down = false;
+    public static boolean right = false;
+    public static boolean left = false;
     public static char lastInputKey;
     /**
      * You have to add a ifn check if you use this!
@@ -54,43 +54,54 @@ public class Input {
     private static List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
     private static List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
 
+    /**
+     * Converts the current keyboard directional input to
+     * a unit vector.
+     *
+     * @return a unit vector representing the current directional keyboard input
+     * (WASD and the arrows)
+     */
+    public static Vector2f inputVector() {
+        return new Vector2f(up ? -1 : down ? 1 : 0, right ? 1 : left ? -1 : 0).normalize();
+    }
+
     public static Directions getInput() {
 
         Directions input = new Directions();
 
-        if (inputUp) {
+        if (up) {
             input.addDirection(Directions.Direction.UP);
         }
 
-        if (inputDown) {
+        if (down) {
             input.addDirection(Directions.Direction.DOWN);
         }
 
-        if (inputRight) {
+        if (right) {
             input.addDirection(Directions.Direction.RIGHT);
         }
 
-        if (inputLeft) {
+        if (left) {
             input.addDirection(Directions.Direction.LEFT);
         }
 
         return input;
     }
 
-    public static boolean isInputUp() {
-        return inputUp;
+    public static boolean isUp() {
+        return up;
     }
 
-    public static boolean isInputDown() {
-        return inputDown;
+    public static boolean isDown() {
+        return down;
     }
 
-    public static boolean isInputRight() {
-        return inputRight;
+    public static boolean isRight() {
+        return right;
     }
 
-    public static boolean isInputLeft() {
-        return inputLeft;
+    public static boolean isLeft() {
+        return left;
     }
 
     public static char getLastInputKey() {

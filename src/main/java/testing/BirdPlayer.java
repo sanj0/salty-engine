@@ -127,27 +127,25 @@ public class BirdPlayer extends GameObject implements Serializable {
 
         getTransform().setRotationCentreToCentre();
 
-        accelerateTo(speed, Input.getInput());
-
-        if (Input.inputUp) {
+        if (Input.up) {
             if (soundTiming.now()) {
                 //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
-        if (Input.inputDown) {
+        if (Input.down) {
             if (soundTiming.now()) {
                 //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
-        if (Input.inputRight) {
+        if (Input.right) {
             if (soundTiming.now()) {
                 //Tester.getAudioPlayer().play("bird_flap");
             }
         }
 
-        if (Input.inputLeft) {
+        if (Input.left) {
             if (soundTiming.now()) {
                 //Tester.getAudioPlayer().play("bird_flap");
             }

@@ -19,8 +19,8 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
+import de.edgelord.saltyengine.core.physics.World;
 import de.edgelord.saltyengine.factory.AudioFactory;
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -81,7 +81,7 @@ public class Tester extends Game {
      */
     private static void addCheatCodeListener() {
 
-        CheatCodeListener cheater = new CheatCodeListener() {
+        new CheatCodeListener() {
             @Override
             public boolean handleCheatCode(String cheatcode) {
                 if (cheatcode.equals("exit")) {
@@ -90,9 +90,7 @@ public class Tester extends Game {
                 }
 
                 if (cheatcode.equals("gravity")) {
-                    for (GameObject gameObject : SceneManager.getCurrentScene().getGameObjects()) {
-                        gameObject.getPhysics().setGravityEnabled(true);
-                    }
+                    World.setGravityEnabled(true);
                     return true;
                 }
 

@@ -65,10 +65,6 @@ public class Bird extends GameObject implements Serializable {
 
     @Override
     public void initialize() {
-
-        getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
-        // getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
-
         System.out.println("Info: Initialised a new Bird");
     }
 
@@ -87,12 +83,6 @@ public class Bird extends GameObject implements Serializable {
 
         if (Input.getKeyboardInput().isSpace()) {
             emitter.impact();
-        }
-
-        if (Input.keyboardInput.isSpace()) {
-            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(1000f);
-        } else {
-            getPhysics().getForce("testing.Bird.testingForce").setAcceleration(0f);
         }
 
         if (Input.keyboardInput.isRightArrow()) {

@@ -19,56 +19,67 @@ package de.edgelord.saltyengine.core.physics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
  * The <code>MotionState</code> defines
- * the state of motion of a {@link PhysicsObject}.
+ * the state of motion of a {@link PhysicsBody}.
  */
 public class MotionState {
 
+    /**
+     * The list of {@link Force}s that
+     * effect the motion state.
+     */
     List<Force> forces = new ArrayList<>();
 
+    /**
+     * Sums the {@link Force#deltaPixels(long) delta distances} of
+     * every <code>Force</code> of this <code>MotionState</code>
+     * to a single {@link Vector2f vector}.
+     *
+     * @param dt the delta time that passed after the last tick
+     * @return a {@link Vector2f vector} that resembles all <code>Force</code>s
+     * of this motion state after the given time delta
+     */
     public Vector2f sumForces(long dt) {
         Vector2f result = Vector2f.zero();
         for (Force force : forces) {
-            result.add(force.getDirection().withMagnitude(force.deltaDistance(dt)));
+            float dp = force.deltaPixels(dt);
+            result.add(force.getDirection().multiplied(new Vector2f(dp, dp)));
         }
 
         return result;
     }
 
-
-    public int size() {
-        return forces.size();
-    }
-
-    public boolean contains(Object o) {
-        return forces.contains(o);
-    }
-
+    /**
+     * Delegated from {@link #forces}, adds the given
+     * {@link Force} to this <code>MotionState</code>.
+     *
+     * @param force the <code>Force</code> to add to this <code>MotionState</code>
+     * @return <code>true</code> (as specified by {@link java.util.Collection#add(Object)})
+     */
     public boolean add(Force force) {
         return forces.add(force);
     }
 
-    public boolean remove(Object o) {
-        return forces.remove(o);
+    /**
+     * Delegated from {@link #forces}, removes the given
+     * {@link Force} from this <code>MotionState</code>.
+     *
+     * @param force the <code>Force</code> to remove from this <code>MotionState</code>
+     * @return <code>true</code> if this <code>MotionState</code> contained the given <code>Force</code>
+     */
+    public boolean remove(Force force) {
+        return forces.remove(force);
     }
 
-    public boolean addAll(Collection<? extends Force> c) {
-        return forces.addAll(c);
-    }
-
-    public void clear() {
-        forces.clear();
-    }
-
-    public Force get(int index) {
-        return forces.get(index);
-    }
-
-    public Force remove(int index) {
-        return forces.remove(index);
+    /**
+     * Gets {@link #forces}.
+     *
+     * @return the value of {@link #forces}
+     */
+    public List<Force> getForces() {
+        return forces;
     }
 }

@@ -29,9 +29,6 @@ import de.edgelord.saltyengine.transform.Vector2f;
  * {@link GameObject#onCollision(CollisionEvent)} <br>
  * {@link GameObject#onFixedTick()} <br>
  * {@link GameObject#draw(SaltyGraphics)}
- * <p>
- * Inside the {@link #initialize()}, this GameObject is set to ignore the gravity using
- * {@link de.edgelord.saltyengine.components.SimplePhysicsComponent#setGravityEnabled(boolean)}
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class EmptyGameObject extends GameObject {
@@ -62,7 +59,6 @@ public class EmptyGameObject extends GameObject {
 
     @Override
     public void initialize() {
-        getPhysics().setGravityEnabled(false);
     }
 
     @Override

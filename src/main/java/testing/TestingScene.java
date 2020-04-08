@@ -51,8 +51,6 @@ public class TestingScene extends Scene {
     //private AudioPlayer player = new AudioPlayer(new AudioFactory(SaltySystem.defaultOuterResource));
 
     public TestingScene() {
-        setFriction(0.005f);
-
         try {
             LanguageManager.init("res/lyrics", SaltySystem.defaultResource);
         } catch (IOException e) {
@@ -63,8 +61,6 @@ public class TestingScene extends Scene {
         initForcesTest();
         initUITest();
         addUI();
-
-        disableGravity();
 
         SceneFade fadeIn = new SceneFade("fade-in", Color.BLACK, 3500, SceneFade.Fade.IN, this) {
             @Override

@@ -132,10 +132,10 @@ public class NativeDisplayKeyListener implements KeyListener {
 
     private void updateInputStates() {
         Input.lastInputKey = currentKey;
-        Input.inputUp = inputUp;
-        Input.inputDown = inputDown;
-        Input.inputRight = inputRight;
-        Input.inputLeft = inputLeft;
+        Input.up = inputUp;
+        Input.down = inputDown;
+        Input.right = inputRight;
+        Input.left = inputLeft;
     }
 
     public KeyboardInputHandler getKeyboardHandler() {

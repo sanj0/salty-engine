@@ -111,6 +111,12 @@ public class Vector2f {
         this.y = y;
     }
 
+    public Vector2f added(Vector2f vec1) {
+        Vector2f vec = new Vector2f(this);
+
+        return vec.add(vec1);
+    }
+
     public Vector2f add(float x1, float y1) {
         x += x1;
         y += y1;
@@ -120,6 +126,12 @@ public class Vector2f {
 
     public Vector2f add(Vector2f pos1) {
         return add(pos1.getX(), pos1.getY());
+    }
+
+    public Vector2f multiplied(Vector2f vec1) {
+        Vector2f vec = new Vector2f(this);
+
+        return vec.multiply(vec1);
     }
 
     public Vector2f multiply(float x1, float y1) {
@@ -133,6 +145,12 @@ public class Vector2f {
         return multiply(pos1.getX(), pos1.getY());
     }
 
+    public Vector2f divided(Vector2f vec1) {
+        Vector2f vec = new Vector2f(this);
+
+        return vec.divide(vec1);
+    }
+
     public Vector2f divide(float x1, float y1) {
         x /= x1;
         y /= y1;
@@ -142,6 +160,12 @@ public class Vector2f {
 
     public Vector2f divide(Vector2f pos1) {
         return divide(pos1.getX(), pos1.getY());
+    }
+
+    public Vector2f subtracted(Vector2f vec1) {
+        Vector2f vec = new Vector2f(this);
+
+        return vec.subtract(vec1);
     }
 
     public Vector2f subtract(float x1, float y1) {
