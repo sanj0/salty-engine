@@ -16,32 +16,56 @@
 
 package de.edgelord.saltyengine.core.event;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.saltyengine.core.physics.PhysicsBody;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * This class is used for handling collisions between GameObjects. It has all necessary parameters for physics etc.
+ * An event that describes the collision between two objects
  */
 public class CollisionEvent {
 
-    private final GameObject otherGameObject;
-    private Directions.Direction collisionDirection;
+    private Vector2f normal;
+    private PhysicsBody owner;
+    private PhysicsBody partner;
 
-    public CollisionEvent(final GameObject otherGameObject, final Directions.Direction collisionDirection) {
-
-        this.otherGameObject = otherGameObject;
-        this.collisionDirection = collisionDirection;
+    public CollisionEvent(Vector2f normal, PhysicsBody owner, PhysicsBody partner) {
+        this.normal = normal;
+        this.owner = owner;
+        this.partner = partner;
     }
 
-    public GameObject getOtherGameObject() {
-        return otherGameObject;
+    /**
+     * Fires this event using
+     * {@code owner.getParent().onCollision(this)}
+     */
+    public void fire() {
+        owner.getParent().onCollision(this);
     }
 
-    public Directions.Direction getCollisionDirection() {
-        return collisionDirection;
+    /**
+     * Gets {@link #normal}.
+     *
+     * @return the value of {@link #normal}
+     */
+    public Vector2f getNormal() {
+        return normal;
     }
 
-    public void setCollisionDirection(Directions.Direction collisionDirection) {
-        this.collisionDirection = collisionDirection;
+    /**
+     * Gets {@link #owner}.
+     *
+     * @return the value of {@link #owner}
+     */
+    public PhysicsBody getOwner() {
+        return owner;
+    }
+
+    /**
+     * Gets {@link #partner}.
+     *
+     * @return the value of {@link #partner}
+     */
+    public PhysicsBody getPartner() {
+        return partner;
     }
 }

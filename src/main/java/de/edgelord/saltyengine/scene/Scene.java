@@ -16,12 +16,10 @@
 
 package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
-import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
@@ -31,7 +29,6 @@ import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
-import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
@@ -128,6 +125,7 @@ public class Scene implements Drawable, FixedTickRoutine {
 
         doFixedTasks();
 
+        /*
         synchronized (concurrentBlock) {
 
             for (int i = 0; i < gameObjects.size(); i++) {
@@ -175,6 +173,7 @@ public class Scene implements Drawable, FixedTickRoutine {
                 gameObject.setClearCollisions(true);
             }
         }
+        */
 
         Game.getDefaultGFXController().doGFXFixedTick();
 

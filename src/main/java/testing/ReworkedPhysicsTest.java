@@ -18,8 +18,8 @@ package testing;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.core.physics.PhysicsBody;
 import de.edgelord.saltyengine.core.physics.World;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
@@ -28,7 +28,6 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -47,16 +46,32 @@ public class ReworkedPhysicsTest extends Game {
         start();
 
         // creates a new PhysicsBody with a new EmptyGameObject as its parent
-        PhysicsBody object = new PhysicsBody(new EmptyGameObject(0, 0, 100, 100, "physics-object"));
+        PhysicsBody object = new PhysicsBody(new EmptyGameObject(100, 750, 500, 10, "physics-object") {
+            @Override
+            public void onCollision(CollisionEvent event) {
+                System.out.println("collision!");
+            }
+        });
+        object.setFreeze(true);
+
+        PhysicsBody object2 = new PhysicsBody(new EmptyGameObject(500, 500, 50, 50, "physics-object") {
+            @Override
+            public void onCollision(CollisionEvent event) {
+                System.out.println("collision2!");
+            }
+        });
         // adds the created PhysicsBody to the World simulation
         World.add(object);
+        World.add(object2);
+
+        // !FIXME: Adding the force below to the object fixes it to place at 0, 0
         // Creates a new Force object with a unit vector that points upwards
         // and an acceleration of 9.18, which should therefore completely counter
         // the default gravity, which points straight down and therefore in the
         // exact opposite direction, yet has the same acceleration.
-        Force force = new Force(new Vector2f(0, 0), 0);
+        //Force force = new Force(new Vector2f(0, 0), 0);
         // Adds the created Force to the PhysicsBody's MotionState
-        object.getMotionState().add(force);
+        //object.getMotionState().add(force);
 
         // Sets the current scene to an anonymous
         // implementation that ticks the World instead of doing
@@ -67,16 +82,14 @@ public class ReworkedPhysicsTest extends Game {
                 // ticks the physics World and therefore updates
                 // all PhysicsBody within it.
                 World.tick(SaltySystem.fixedTickMillis);
-                //force.setDirection(Input.inputVector());
-                force.setAcceleration(5, 2);
             }
         });
 
         // Adds a new PhysicsBodyVisualizer to the current Scene that visualizes the created PhysicsBody
         // as a gray box in user space
         SceneManager.getCurrentScene().addDrawingRoutine(new PhysicsBodyVisualizer(object));
+        SceneManager.getCurrentScene().addDrawingRoutine(new PhysicsBodyVisualizer(object2));
 
-        // !FIXME
         // Adds an anonymous implementation of a MouseInputHandler
         // to the corresponding list within the Input class
         // that toggles the gravity of the World on every mouseClicked event

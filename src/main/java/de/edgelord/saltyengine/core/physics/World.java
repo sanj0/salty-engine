@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.core.physics;
 
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.util.*;
@@ -78,13 +79,22 @@ public class World {
      * @param dt the time that passed after the last tick
      */
     public static void tick(long dt) {
+
+        List<CollisionEvent[]> collisions = CollisionDetector.collisionDetection(bodies);
+
+        for (CollisionEvent[] collisionEvents : collisions) {
+            collisionEvents[0].fire();
+            collisionEvents[1].fire();
+            CollisionResolver.resolveCollision(collisionEvents[0]);
+        }
+
         for (int i = 0; i < bodies.size(); i++) {
             PhysicsBody body = bodies.get(i);
             body.tick(dt);
 
-            if (gravityEnabled) {
+            if (gravityEnabled && !body.isFreeze()) {
                 float dg = gravityForces.get(body).deltaPixels(dt);
-                body.getParent().getPosition().add(0, dg);
+                body.getParent().getPosition().add(gravityDirection.multiplied(new Vector2f(dg, dg)));
             }
         }
     }

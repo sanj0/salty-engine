@@ -31,7 +31,15 @@ public class MotionState {
      * The list of {@link Force}s that
      * effect the motion state.
      */
-    List<Force> forces = new ArrayList<>();
+    private List<Force> forces = new ArrayList<>();
+
+    /**
+     * The (more of less) current velocity of
+     * this <code>MotionState</code>.
+     * This is updated with every call to {@link #sumForces(long)}
+     * and therefore with every {@link World#tick(long) tick}.
+     */
+    private Vector2f velocity = Vector2f.zero();
 
     /**
      * Sums the {@link Force#deltaPixels(long) delta distances} of
@@ -43,13 +51,24 @@ public class MotionState {
      * of this motion state after the given time delta
      */
     public Vector2f sumForces(long dt) {
+        Vector2f dtV = new Vector2f(dt, dt);
         Vector2f result = Vector2f.zero();
         for (Force force : forces) {
             float dp = force.deltaPixels(dt);
             result.add(force.getDirection().multiplied(new Vector2f(dp, dp)));
         }
 
+        velocity = result.divided(dtV);
         return result;
+    }
+
+    /**
+     * Gets {@link #velocity}.
+     *
+     * @return the value of {@link #velocity}
+     */
+    public Vector2f getVelocity() {
+        return velocity;
     }
 
     /**

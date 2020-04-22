@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.core.physics;
 
-import de.edgelord.saltyengine.core.interfaces.TransformedObject;
+import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**
  * A <code>PhysicsBody</code> is an object
@@ -30,9 +30,9 @@ public class PhysicsBody {
 
     /**
      * The parent object of this <code>PhysicsBody</code> is
-     * the {@link TransformedObject object} that this PhysicsBody
+     * the {@link GameObject object} that this PhysicsBody
      */
-    private TransformedObject parent;
+    private GameObject parent;
 
     /**
      * The mass of this <code>PhysicsBody</code>.
@@ -51,12 +51,14 @@ public class PhysicsBody {
      */
     private float surfaceFriction;
 
+    private boolean freeze = false;
+
     /**
      * A constructor.
      *
      * @param parent the {@link #parent} of this <code>PhysicsBody</code>
      */
-    public PhysicsBody(TransformedObject parent) {
+    public PhysicsBody(GameObject parent) {
         this.parent = parent;
 
         motionState = new MotionState();
@@ -69,7 +71,9 @@ public class PhysicsBody {
      * @param dt the delta time that passed after the last tick
      */
     public void tick(long dt) {
-        parent.getPosition().add(motionState.sumForces(dt));
+        if (!freeze) {
+            parent.getPosition().add(motionState.sumForces(dt));
+        }
     }
 
     /**
@@ -77,7 +81,7 @@ public class PhysicsBody {
      *
      * @return the value of {@link #parent}
      */
-    public TransformedObject getParent() {
+    public GameObject getParent() {
         return parent;
     }
 
@@ -86,7 +90,7 @@ public class PhysicsBody {
      *
      * @param parent the new value of {@link #parent}
      */
-    public void setParent(TransformedObject parent) {
+    public void setParent(GameObject parent) {
         this.parent = parent;
     }
 
@@ -142,5 +146,23 @@ public class PhysicsBody {
      */
     public void setSurfaceFriction(float surfaceFriction) {
         this.surfaceFriction = surfaceFriction;
+    }
+
+    /**
+     * Gets {@link #freeze}.
+     *
+     * @return the value of {@link #freeze}
+     */
+    public boolean isFreeze() {
+        return freeze;
+    }
+
+    /**
+     * Sets {@link #freeze}.
+     *
+     * @param freeze the new value of {@link #freeze}
+     */
+    public void setFreeze(boolean freeze) {
+        this.freeze = freeze;
     }
 }

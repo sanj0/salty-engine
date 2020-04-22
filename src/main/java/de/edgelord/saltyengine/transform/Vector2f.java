@@ -32,6 +32,10 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
+    public float dotProduct(Vector2f v1) {
+        return x * v1.x + y * v1.y;
+    }
+
     public Vector2f withMagnitude(float newMagnitude) {
         double magnitude = magnitude();
         double ratio = newMagnitude / magnitude;
@@ -219,6 +223,10 @@ public class Vector2f {
 
     public static Vector2f one() {
         return new Vector2f(1, 1);
+    }
+
+    public static Vector2f negativeOne() {
+        return new Vector2f(-1, -1);
     }
 
     @Override
