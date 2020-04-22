@@ -75,7 +75,6 @@ public class SystemDependentFiles {
         checkUser();
 
         switch (os) {
-
             case MAC_OS:
                 return macOSUserDirPrefix + user + "/";
             case LINUX:

@@ -78,10 +78,8 @@ public class OuterResource implements Resource {
     private void prepareSourceDirectory() {
 
         if (hidden) {
-
             sourceDirectory = SystemDependentFiles.getUserFile("." + Game.gameName);
         } else {
-
             sourceDirectory = SystemDependentFiles.getUserFile(Game.gameName);
         }
     }
@@ -89,10 +87,8 @@ public class OuterResource implements Resource {
     private File getFile(String relativePath) {
 
         if (relativePath.startsWith("/")) {
-
             return new File(sourceDirectory.getAbsolutePath() + relativePath);
         } else {
-
             return new File(sourceDirectory.getAbsolutePath() + "/" + relativePath);
         }
     }

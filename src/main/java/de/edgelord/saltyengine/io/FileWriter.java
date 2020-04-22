@@ -43,6 +43,5 @@ public class FileWriter extends FileIO {
         BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
 
         bw.write(text);
-        bw.close();
     }
 }
