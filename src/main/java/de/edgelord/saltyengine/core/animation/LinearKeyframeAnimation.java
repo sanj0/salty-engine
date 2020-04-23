@@ -41,6 +41,17 @@ public class LinearKeyframeAnimation extends KeyframeAnimation {
         super();
     }
 
+    /**
+     * A constructor that initializes the
+     * keyframes list with the given vararg
+     * of {@link Keyframe}s.
+     *
+     * @param frames the {@link Keyframe frames} to initialize the animation with
+     */
+    public LinearKeyframeAnimation(Keyframe... frames) {
+        super(frames);
+    }
+
     @Override
     public void calculateAnimation() {
         prepareAnimation();

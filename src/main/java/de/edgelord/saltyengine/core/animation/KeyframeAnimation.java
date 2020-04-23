@@ -71,6 +71,17 @@ public abstract class KeyframeAnimation {
     }
 
     /**
+     * A constructor that initializes the
+     * {@link #keyframes} list with the given vararg
+     * of {@link Keyframe}s.
+     *
+     * @param frames the {@link Keyframe frames} to initialize the animation with
+     */
+    public KeyframeAnimation(Keyframe... frames) {
+        this(Arrays.asList(frames));
+    }
+
+    /**
      * Important: This method only returns a delta value!
      *
      * @return the next delta-step of the linear keyframe animation
