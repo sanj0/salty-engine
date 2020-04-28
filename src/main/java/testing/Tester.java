@@ -23,10 +23,7 @@ import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.SceneManager;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.CheatCodeListener;
-import de.edgelord.saltyengine.utils.GeneralUtil;
-import de.edgelord.saltyengine.utils.RectangleCreator;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -56,17 +53,13 @@ public class Tester extends Game {
     }
 
     public static void main(final String[] args) {
-
-        System.out.println(GeneralUtil.getAngle(new Vector2f(0, 0), new Vector2f(0, 100)));
-
         initGame();
-
         start(60);
         serializeOnExit();
 
         SceneManager.setCurrentScene(new TestingScene());
         // PointLogger.init("points");
-        RectangleCreator.init();
+        //RectangleCreator.init();
 
         //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
 

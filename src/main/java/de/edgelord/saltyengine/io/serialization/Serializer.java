@@ -71,12 +71,10 @@ public class Serializer {
         writer.syncFile();
 
         if (addChecksum) {
-
             FileReader saveReader = new FileReader(writer.getFile());
             FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
 
             String checksum = new String(hashCreator.digest(prepareForChecksumCreation(saveReader.readFile())));
-
             checksumWriter.writeThrough(removeSpacesAndNewLines(checksum));
         }
     }

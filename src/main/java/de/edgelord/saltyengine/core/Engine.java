@@ -142,7 +142,6 @@ public class Engine {
      * Signalizes the engine that it should end.
      */
     public void close() {
-
         isCloseRequested = true;
     }
 }
