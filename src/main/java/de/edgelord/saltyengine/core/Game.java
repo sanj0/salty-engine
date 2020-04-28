@@ -118,6 +118,26 @@ public class Game {
         internalPreInitForForeignHost(host, gameName, fixedTickMillis);
     }
 
+    /**
+     * Quits the game and then the JVM
+     * by calling {@link System#exit(int)} with
+     * an exit code of 0.
+     * <p>
+     * This method first runs all {@link WindowClosingHooks}
+     * using {@link WindowClosingHooks#runHooks()} and then
+     * closes the {@link #engine Engine} using {@link Engine#close()}.
+     * The last thing this method does is then quitting the JVM.
+     * <p>
+     * This method will never return normally and only do the
+     * {@link Serializer serialitazion} if {@link #serializeOnExit()}
+     * was called beforehand.
+     */
+    public static void quit() {
+        WindowClosingHooks.runHooks();
+        Game.getEngine().close();
+        System.exit(0);
+    }
+
     private static void internalPreInitForForeignHost(Host host, String gameName, long fixedTickMillis) {
         enableOpenGl();
 

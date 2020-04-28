@@ -91,6 +91,7 @@ public class TestingScene extends Scene {
         }
         */
         //testAudioPan();
+        //Game.quit();
     }
 
     private void addLight() {
