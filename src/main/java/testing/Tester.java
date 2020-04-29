@@ -67,13 +67,15 @@ public class Tester extends Game {
         //fadeIn.fadeInit();
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
+        Game.executeLater(() -> {
+            System.out.println("hello there");
+        }, 5000);
     }
 
     /**
      * Adds a {@link CheatCodeListener} that listens for "exit".
      */
     private static void addCheatCodeListener() {
-
         CheatCodeListener cheater = new CheatCodeListener() {
             @Override
             public boolean handleCheatCode(String cheatcode) {

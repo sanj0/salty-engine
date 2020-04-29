@@ -138,6 +138,18 @@ public class Game {
         System.exit(0);
     }
 
+    /**
+     * Executes the given <code>Runnable</code>
+     * after the given amount of {@link SaltySystem#fixedTickMillis fixed ticks}.
+     *
+     * @param task  the task to execute later
+     * @param delay the delay (in {@link SaltySystem#fixedTickMillis fixed ticks})
+     *              after which to execute the given task
+     */
+    public static void executeLater(Runnable task, long delay) {
+        getEngine().getScheduledTasks().add(new ScheduledTask(task, delay));
+    }
+
     private static void internalPreInitForForeignHost(Host host, String gameName, long fixedTickMillis) {
         enableOpenGl();
 

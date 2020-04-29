@@ -20,6 +20,8 @@ import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,6 +50,13 @@ public class Engine {
      * Only used internally to stop the timers.
      */
     private boolean isCloseRequested = false;
+
+    /**
+     * The lost of task scheduled for
+     * later execution by
+     * {@link Game#executeLater(Runnable, long)}
+     */
+    private List<ScheduledTask> scheduledTasks = new ArrayList<>();
 
     /**
      * Creates a new instance with the given fixed tick millis. This happens automatically when initializing the {@link Game}.
@@ -93,6 +102,11 @@ public class Engine {
             public void run() {
                 if (!Game.isPaused()) {
                     SceneManager.getCurrentScene().onFixedTick();
+
+                    for (int i = 0; i < scheduledTasks.size(); i++) {
+                        scheduledTasks.get(i).onFixedTick();
+                    }
+                    System.out.println("scheduled tasks: " + scheduledTasks.size());
                 }
             }
         }, 0, fixedTickMillis);
@@ -112,7 +126,6 @@ public class Engine {
 
             @Override
             public void run() {
-
                 Time.setDeltaNanos((System.nanoTime() - nanosBeforeLastTime) / 1000);
                 nanosBeforeLastTime = System.nanoTime();
 
@@ -128,9 +141,7 @@ public class Engine {
             @Override
             public void run() {
                 while (!isCloseRequested) {
-
                     Game.getHost().repaint();
-
                     Time.setDeltaNanos((System.nanoTime() - nanosBeforeLastTime) / 1000);
                     nanosBeforeLastTime = System.nanoTime();
                 }
@@ -143,5 +154,14 @@ public class Engine {
      */
     public void close() {
         isCloseRequested = true;
+    }
+
+    /**
+     * Gets {@link #scheduledTasks}.
+     *
+     * @return the value of {@link #scheduledTasks}
+     */
+    protected List<ScheduledTask> getScheduledTasks() {
+        return scheduledTasks;
     }
 }
