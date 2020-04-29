@@ -35,7 +35,7 @@ public class SceneManager {
      * The <code>Scene</code> that is currently being rendered and
      * processed.
      */
-    private static Scene currentScene = new Scene();
+    private static Scene currentScene = new EmptyScene();
 
     /**
      * Gets {@link #currentScene}.
@@ -49,11 +49,27 @@ public class SceneManager {
     /**
      * Sets {@link #currentScene}.
      *
-     * @param scene the new value of {@link #currentScene}
+     * @param scene      the new value of {@link #currentScene}
+     * @param initialize whether the <code>Scene</code> should be
+     *                   {@link Scene#initialize() initialized} by this method or not.
+     */
+    public static void setCurrentScene(Scene scene, boolean initialize) {
+        currentScene = scene;
+
+        if (initialize) {
+            scene.initialize();
+        }
+        Game.forEachGameListener(gameListener -> gameListener.onSceneStart(currentScene));
+    }
+
+    /**
+     * Sets {@link #currentScene} and then
+     * {@link Scene#initialize() initializes} it.
+     *
+     * @param scene the new active <code>Scene</code>
      */
     public static void setCurrentScene(Scene scene) {
-        currentScene = scene;
-        Game.forEachGameListener(gameListener -> gameListener.onSceneStart(currentScene));
+        setCurrentScene(scene, true);
     }
 
     /**

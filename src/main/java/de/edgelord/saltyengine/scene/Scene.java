@@ -26,6 +26,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
+import de.edgelord.saltyengine.core.interfaces.InitializeAble;
 import de.edgelord.saltyengine.core.physics.Force;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
@@ -51,8 +52,12 @@ import java.util.List;
  * <p>
  * The current scene is stored in {@link SceneManager#getCurrentScene()}.
  * For more information, please take a look at the documentation of that class.
+ *
+ * Any initializing should be done within {@link #initialize()}
+ * instead of a constructor, which is called after setting a
+ * new instance of a <code>Scene</code> object as the {@link SceneManager#setCurrentScene(Scene) current}.
  */
-public class Scene implements Drawable, FixedTickRoutine {
+public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAble {
 
     /**
      * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
@@ -81,6 +86,13 @@ public class Scene implements Drawable, FixedTickRoutine {
     private UISystem ui = new UISystem();
 
     private SceneCollider sceneCollider = new PrioritySceneCollider();
+
+    /**
+     * Initializes the <code>Scene</code> and all its initial
+     * components. Is invokes by {@link SceneManager#setCurrentScene(Scene)}
+     */
+    @Override
+    public abstract void initialize();
 
     @Override
     public void draw(SaltyGraphics saltyGraphics) {

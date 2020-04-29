@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-package testing.collisiondetection;
+package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.scene.Scene;
-
-public class CollisionDetectionTestScene extends Scene {
-
-    @Override
+/**
+ * An empty implementation of a {@link Scene}.
+ * This should not be used as a template for an actual game scene!
+ */
+public class EmptyScene extends Scene {
     public void initialize() {
-        addGameObject(new CircleGameObject());
-        addGameObject(new RectangleGameObject(500, 500, 300, 137));
-        addGameObject(new DummyCircleGameObject());
     }
 }

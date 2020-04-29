@@ -50,7 +50,8 @@ public class TestingScene extends Scene {
     //private KeyframeAnimation audioPanAnimation = new LinearKeyframeAnimation();
     //private AudioPlayer player = new AudioPlayer(new AudioFactory(SaltySystem.defaultOuterResource));
 
-    public TestingScene() {
+    @Override
+    public void initialize() {
         setFriction(0.005f);
 
         try {
