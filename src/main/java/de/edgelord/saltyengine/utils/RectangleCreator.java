@@ -38,16 +38,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class RectangleCreator extends DrawingRoutine implements MouseInputHandler {
 
+    private static final Species rects = new Species("points");
     public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.RED, .25f);
     public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.BLUE, .25f);
     private static DataWriter writer;
-    private static final Species rects = new Species("points");
     private final List<Transform> savedTransforms = new CopyOnWriteArrayList<>();
-    private Transform currentTransform = null;
     private final Transform origin = new Transform(0, 0, 30, 30);
     private final Transform upRight = new Transform(0, 0, 30, 30);
     private final Transform downLeft = new Transform(0, 0, 30, 30);
     private final Transform downRight = new Transform(0, 0, 30, 30);
+    private Transform currentTransform = null;
     private boolean originMove = false;
     private boolean upRightMove = false;
     private boolean downLeftMove = false;

@@ -46,11 +46,11 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
     public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
     public static final String SWING_ELEMENT = "de.edgelord.saltyengine.uiElements.swingElement";
+    private final List<Component> components = new CopyOnWriteArrayList<>();
     private Font font = SaltySystem.defaultFont;
     private Color backgroundColor = Color.DARK_GRAY;
     private Color foregroundColor = Color.WHITE;
     private boolean mouseHoversOver = false;
-    private final List<Component> components = new CopyOnWriteArrayList<>();
     private boolean suppressClipping = false;
     private boolean focused = false;
 

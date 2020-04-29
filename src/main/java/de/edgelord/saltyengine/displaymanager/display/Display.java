@@ -27,10 +27,9 @@ import java.awt.*;
 public class Display extends JFrame {
 
     private final String windowTitle;
+    private final GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     private MouseInputHandler displayMouseHandler = null;
     private boolean fullscreen = false;
-
-    private final GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public Display(DisplayRatio displayRatio, String windowTitle) {
 

@@ -82,10 +82,9 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     private final HashMap<Coordinates, SaltyImage> tiles = new HashMap<>();
 
     private final SaltyImage tileGrid;
-
+    private final Vector2f position;
     private boolean resizeTiles = false;
     private Dimensions tileSize;
-    private final Vector2f position;
 
     public StaticTileGrid(DrawingPosition drawingPosition, Vector2f position, Dimensions tileSize) {
         super(drawingPosition);

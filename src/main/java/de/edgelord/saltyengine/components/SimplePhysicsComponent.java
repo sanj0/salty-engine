@@ -76,8 +76,8 @@ public class SimplePhysicsComponent extends Component<GameObject> {
      */
     public static final String DEFAULT_LEFTWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsVelocityForce";
     private final List<Force> forces = new LinkedList<>();
-    private boolean gravityForThisEnabled = true;
     private final List<String> tagsToIgnore = new ArrayList<>();
+    private boolean gravityForThisEnabled = true;
     /**
      * The minimal value of the {@link Force#deltaDistance(int)} before its {@link Force#getAcceleration()} is set ot 0f.
      * The default value (which works fine for the default gravity, friction and mass of the {@link GameObject}s) is <code>0.5f</code>

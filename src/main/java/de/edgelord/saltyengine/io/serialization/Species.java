@@ -21,9 +21,9 @@ import java.util.List;
 
 public class Species {
 
-    private String content;
     private final String name;
     private final List<Species> subSpecies = new LinkedList<>();
+    private String content;
 
     public Species(String name, String content) {
         this.content = content;

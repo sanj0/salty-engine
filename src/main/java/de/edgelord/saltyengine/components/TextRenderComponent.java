@@ -30,10 +30,10 @@ import java.util.List;
 
 public class TextRenderComponent extends Component<ComponentContainer> {
 
+    private final List<String> lines = new ArrayList<>();
     private Font font = SaltySystem.defaultFont;
     private float leading = font.getSize() * 1.3f;
     private String text;
-    private final List<String> lines = new ArrayList<>();
     private boolean recalculate = true;
     private String wordSeparator = " ";
     private Vector2f offset;

@@ -49,6 +49,10 @@ import java.util.function.Consumer;
 public class Game {
 
     /**
+     * The list of {@link GameListener} that are assigned.
+     */
+    private static final List<GameListener> gameListeners = new ArrayList<>();
+    /**
      * The name of the game. Until the game is initialized, this will be {@code salty-engine} by default.
      */
     public static String gameName = "salty-engine";
@@ -65,35 +69,26 @@ public class Game {
      * The {@link Camera} of the game.
      */
     private static Camera2D camera;
-
     /**
      * The original dimensions of the game aka it's resolution. This will be it's resolution at any time,
      * a bigger window will only resist in scaling up, not in a higher resolution as this is easier in terms of logic
      * for the user of this library and in terms of rendering for this library.
      */
     private static Dimensions gameDimensions;
-
     /**
      * Proposes the <code>Host</code> either to draw the FPS {@link Time#getFPS()} or not.
      * All <code>Host</code>s included in this library will accept that. 3rd party
      * <code>Host</code>s may not and do not have to.
      */
     private static boolean drawFPS = true;
-
     /**
      * The {@link Host} of this game. The <code>Host</code> will do the rendering and has some more useful methods.
      */
     private static Host host;
-
     /**
      * The {@link Engine} that runs the game. It repaints the {@link #host} and calls the {@link Scene#onFixedTick()}.
      */
     private static Engine engine;
-
-    /**
-     * The list of {@link GameListener} that are assigned.
-     */
-    private static final List<GameListener> gameListeners = new ArrayList<>();
 
     /**
      * Initialized the game with the given {@link GameConfig} and a {@link DisplayManager} as {@link Host}.

@@ -59,25 +59,22 @@ import de.edgelord.saltyengine.gameobject.Components;
 public class LinearTransformAnimations extends Component {
 
     /**
-     * If this is true, the {@link #animation} will be recalculated using {@link LinearKeyframeAnimation#calculateAnimation()}
-     * at the next fixed tick, and this boolean will be reset to false again.
-     */
-    private boolean recalculateOnNextStep = true;
-
-    /**
      * The keyframe animation used to animate the {@link de.edgelord.saltyengine.transform.Transform}.
      */
     private final LinearKeyframeAnimation animation = new LinearKeyframeAnimation();
-
-    /**
-     * Whether the animation should be looped or not. Default getters and setters exist.
-     */
-    private boolean loop = false;
-
     /**
      * What the animation should control
      */
     private final Control control;
+    /**
+     * If this is true, the {@link #animation} will be recalculated using {@link LinearKeyframeAnimation#calculateAnimation()}
+     * at the next fixed tick, and this boolean will be reset to false again.
+     */
+    private boolean recalculateOnNextStep = true;
+    /**
+     * Whether the animation should be looped or not. Default getters and setters exist.
+     */
+    private boolean loop = false;
 
     /**
      * {@inheritDoc}

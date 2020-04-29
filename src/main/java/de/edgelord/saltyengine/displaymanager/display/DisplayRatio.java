@@ -26,9 +26,9 @@ import de.edgelord.saltyengine.transform.Dimensions;
  */
 public class DisplayRatio {
 
-    private float scale = 1f;
     private final Dimensions originalResolution;
     private final Dimensions currentDimensions;
+    private float scale = 1f;
 
     public DisplayRatio(Dimensions originalResolution) {
         this.originalResolution = originalResolution;

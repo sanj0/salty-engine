@@ -45,21 +45,18 @@ public abstract class SceneFade extends SceneGFXComponent {
      * The <code>DrawingRoutine</code> that  is used to draw the fade.
      */
     private final DrawingRoutine drawingRoutine;
-
-    /**
-     * The current alpha value of the fade.
-     */
-    private float currentAlpha;
-
     /**
      * The <code>KeyframeAnimation</code> used to animated the fade.
      */
     private final KeyframeAnimation animation;
-
     /**
      * The <code>Scene</code> that contains the fade.
      */
     private final Scene container;
+    /**
+     * The current alpha value of the fade.
+     */
+    private float currentAlpha;
 
     /**
      * The constructor.

@@ -33,30 +33,26 @@ import java.util.List;
 public class RandomSpeedParticleModifier implements ParticleModifier {
 
     /**
-     * The minimum speed that is randomly generated.
-     */
-    private int minSpeed;
-
-    /**
-     * The maximum speed that is randomly generated.
-     */
-    private int maxSpeed;
-
-    /**
-     * The factory by which the randomly generated speed is multiplied.
-     */
-    private float factor;
-
-    /**
      * If this is <code>true</code>, each {@link Particle} gets a new random speed every fixed tick, if it is
      * <code>false</code>, every {@link Particle} will only get a random speed once.
      */
     private final boolean newSpeedEachTick;
-
     /**
      * The internally used list to store particles that were already served.
      */
     private final List<Particle> alreadySet = new LinkedList<>();
+    /**
+     * The minimum speed that is randomly generated.
+     */
+    private int minSpeed;
+    /**
+     * The maximum speed that is randomly generated.
+     */
+    private int maxSpeed;
+    /**
+     * The factory by which the randomly generated speed is multiplied.
+     */
+    private float factor;
 
     /**
      * the constructor.

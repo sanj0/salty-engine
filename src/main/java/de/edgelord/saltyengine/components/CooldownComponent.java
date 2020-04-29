@@ -31,11 +31,10 @@ import java.util.function.BooleanSupplier;
  */
 public abstract class CooldownComponent extends Component implements Runnable {
 
+    private final BooleanSupplier shouldRun;
     private int cooldownTime;
     private boolean coolingDown = false;
     private int ticks = 0;
-
-    private final BooleanSupplier shouldRun;
 
     /**
      * The default constructor.

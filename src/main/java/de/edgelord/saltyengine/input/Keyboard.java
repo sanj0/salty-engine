@@ -26,6 +26,8 @@ import java.awt.event.KeyEvent;
  */
 public class Keyboard {
 
+    private final boolean less = false;
+    private final boolean greater = false;
     /*
     Special keys
      */
@@ -41,7 +43,6 @@ public class Keyboard {
     private boolean pageUp = false;
     private boolean pageDown = false;
     private boolean space = false;
-
     /*
     Arrow Keys
      */
@@ -49,7 +50,6 @@ public class Keyboard {
     private boolean leftArrow = false;
     private boolean upArrow = false;
     private boolean downArrow = false;
-
     /*
     Math keys
      */
@@ -57,9 +57,6 @@ public class Keyboard {
     private boolean period = false; /* = "."*/
     private boolean minus = false;
     private boolean plus = false;
-    private final boolean less = false;
-    private final boolean greater = false;
-
     /*
     Numbers from 0 to 9
      */

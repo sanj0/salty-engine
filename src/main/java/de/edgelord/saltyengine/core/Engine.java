@@ -45,18 +45,16 @@ public class Engine {
      * The {@link Timer} that repaints the {@link Host}.
      */
     private final Timer repaintTimer = new Timer();
-
-    /**
-     * Only used internally to stop the timers.
-     */
-    private boolean isCloseRequested = false;
-
     /**
      * The lost of task scheduled for
      * later execution by
      * {@link Game#executeLater(Runnable, long)}
      */
     private final List<ScheduledTask> scheduledTasks = new ArrayList<>();
+    /**
+     * Only used internally to stop the timers.
+     */
+    private boolean isCloseRequested = false;
 
     /**
      * Creates a new instance with the given fixed tick millis. This happens automatically when initializing the {@link Game}.

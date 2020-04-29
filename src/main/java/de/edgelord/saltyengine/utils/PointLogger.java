@@ -44,14 +44,14 @@ import java.util.Scanner;
  */
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
+    private static final List<Vector2f> savedPoints = new ArrayList<>();
+    private static final Species points = new Species("points");
+    private static final Scanner scanner = new Scanner(System.in);
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
     public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.BLUE, 0.5f);
     public static Color POINT_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.RED, 0.35f);
     private static Vector2f lastPoint = Vector2f.zero();
-    private static final List<Vector2f> savedPoints = new ArrayList<>();
     private static DataWriter writer;
-    private static final Species points = new Species("points");
-    private static final Scanner scanner = new Scanner(System.in);
 
     private PointLogger(String fileName) throws IOException {
         super(DrawingPosition.AFTER_GAMEOBJECTS);

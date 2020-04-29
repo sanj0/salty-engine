@@ -54,45 +54,41 @@ import java.util.List;
 public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
+     * A thread-safe {@link List} containing all the current {@link Particle}s
+     */
+    private final List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
+    /**
      * The point on which emitters may spawn the {@link Particle}s.
      */
     private Vector2f spawnPoint;
-
     /**
      * If this is set to <code>true</code>, the emitter will only emit a single wave every time {@link #impact()}is called.
      */
     private boolean impactMode = false;
-
     /**
      * The amount of particles to spawn in one wave
      */
     private float amount;
-
     /**
      * The amount of ticks after which a new wave of Particles should be emitted
      */
     private int waveInterval;
-
     /**
      * Determines after how many fixed ticks the particles of one wave should disappear again.
      */
     private int lifetime = 1000;
-
     /**
      * The number of the current wave. This value is incremented after spawning each wave, so the first spawned wave has the number 0.
      */
     private int currentWave = 0;
-
     /**
      * The speed of the particles.
      */
     private float speed;
-
     /**
      * The modifier stack.
      */
     private List<ParticleModifier> modifierStack = new ArrayList<>();
-
     /**
      * A fixed min dimensions for new {@link Particle}s, being set after the initialization of each particle.
      * <p>
@@ -101,7 +97,6 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * If either this or {@link #fixedMaxParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
      */
     private Dimensions fixedMinParticleDimensions = null;
-
     /**
      * A fixed max dimensions for new {@link Particle}s, being set after the initialization of each particle.
      * <p>
@@ -110,27 +105,18 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * If either this or {@link #fixedMinParticleDimensions} are <code>null</code>, the particles dimensions stays untouched.
      */
     private Dimensions fixedMaxParticleDimensions = null;
-
     /**
      * If this is not <code>null</code>, every {@link Particle} that is emitted by this {@link EmitterComponent} will
      * have that exact size.
      */
     private Dimensions fixedParticleDimensions = null;
-
     private int ticks = 0;
     private boolean impactOnNextTick = false;
-
     /**
      * The {@link ParticleRenderContext} that is used to render the particles.
      * By default, it is a {@link PlainColorParticleRenderContext} with a {@link ColorUtil#BLACK} color.
      */
     private ParticleRenderContext renderContext = new PlainColorParticleRenderContext(ColorUtil.BLACK);
-
-    /**
-     * A thread-safe {@link List} containing all the current {@link Particle}s
-     */
-    private final List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
-
     /**
      * The {@link Class} object of the particle to be emitted.
      */

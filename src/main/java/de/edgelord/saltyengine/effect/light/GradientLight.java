@@ -31,11 +31,10 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class GradientLight extends Light {
 
+    private final float[] arcIfRoundRect;
     private SaltyImage light;
     private SaltyImage coloredLight;
     private EnumShape shape;
-
-    private final float[] arcIfRoundRect;
 
     public GradientLight(Transform transform, Color color, EnumShape shape, float... arcIfRoundRect) {
         super(transform, color);

@@ -36,18 +36,16 @@ import java.awt.*;
  */
 public class SceneOverlay extends SceneGFXComponent {
 
+    private final DrawingRoutine drawColorOverlay;
     /**
      * The {@link Color} which will be rendered onto the screen
      */
     private Color overlayColor;
-
     /**
      * The alpha value with which the {@link #overlayColor} will be rendered.
      * This value goes from 0f (fully transparent) to 1f (no transparency)
      */
     private float alpha;
-
-    private final DrawingRoutine drawColorOverlay;
 
     public SceneOverlay(String name, Color overlayColor, float alpha) {
         super(name);

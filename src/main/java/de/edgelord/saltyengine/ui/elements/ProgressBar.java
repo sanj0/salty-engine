@@ -33,27 +33,23 @@ import java.awt.*;
 public class ProgressBar extends UIElement {
 
     /**
+     * The current dimensions of the bar.
+     */
+    private final Dimensions currentBar = Dimensions.zero();
+    /**
      * The maximum value, when this is reached, the progress bar will be full.
      */
     private float maxValue = 100;
-
     /**
      * The current value of the progress.
      */
     private float currentValue = 0;
-
     /**
      * The diameter of the rounding at each corner of the two rectangles.
      * <p>
      * This is zero by default.
      */
     private float cornerArc = 0;
-
-    /**
-     * The current dimensions of the bar.
-     */
-    private final Dimensions currentBar = Dimensions.zero();
-
     /**
      * The stroke used for outlining the bar.
      * <p>

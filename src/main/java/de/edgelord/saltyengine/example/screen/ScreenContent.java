@@ -23,11 +23,9 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 public class ScreenContent {
 
+    private final SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
     private float xOrigin;
     private float yOrigin;
-
-    private final SaltyImage bgImage = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
-
     private Vector2f origin;
 
     public ScreenContent(float xOrigin, float yOrigin) {

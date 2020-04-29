@@ -45,6 +45,7 @@ public class Stage extends JPanel {
     public static RenderingHints hqRenderingHints;
     public static RenderingHints lqRenderingHints;
     private final Container container;
+    private final int fpsRefreshGate = 25;
     private NativeStageMouseListener nativeMouseListener = null;
     private NativeStageMouseMotionListener nativeMouseMotionListener = null;
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
@@ -54,7 +55,6 @@ public class Stage extends JPanel {
     private Dimensions resolution;
     private float lastFps = 0f;
     private int ticks = 0;
-    private final int fpsRefreshGate = 25;
     /**
      * The current image position is the position
      * of the rendered image within this panel,

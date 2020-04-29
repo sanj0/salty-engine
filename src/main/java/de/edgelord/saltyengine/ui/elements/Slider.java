@@ -33,14 +33,12 @@ import java.util.Objects;
 
 public class Slider extends UIElement {
 
+    private final SaltyShape indicatorShape = Objects.requireNonNull(SaltyShape.createShape(EnumShape.RECTANGLE, new Transform(0, 0, 5, 25)));
     /**
      * The relative position of the indicator.
      */
     private float indicatorPositionX = 0f;
-
     private SaltyImage indicatorImage;
-
-    private final SaltyShape indicatorShape = Objects.requireNonNull(SaltyShape.createShape(EnumShape.RECTANGLE, new Transform(0, 0, 5, 25)));
 
     public Slider(Vector2f position, float width, float height) {
         super(position, width, height, null);

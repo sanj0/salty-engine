@@ -63,25 +63,21 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
      */
     public static final Object concurrentBlock = "3141592653589793";
-
+    private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
+    private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
+    private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**
      * The gravity used by all {@link GameObject}s in this Scene.
      */
     private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
-
     /**
      * The friction used by all {@link GameObject}s in this Scene.
      */
     private float friction = Force.DEFAULT_FRICTION;
-
     /**
      * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
      */
     private boolean gravityEnabled = false;
-
-    private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
-    private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
-    private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
 

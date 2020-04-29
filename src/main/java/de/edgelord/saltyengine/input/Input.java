@@ -28,6 +28,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Input {
 
+    private static final List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
+    private static final List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
     public static boolean inputUp = false;
     public static boolean inputDown = false;
     public static boolean inputRight = false;
@@ -42,7 +44,6 @@ public class Input {
      * Please use this for every input that has to do with controls etc etc
      */
     public static Keyboard keyboardInput = new Keyboard();
-
     /**
      * The absolute (meaning relative to the normal userspace)
      * position of the mouse cursor.
@@ -50,9 +51,6 @@ public class Input {
     public static Vector2f cursorPosition = new Vector2f(0, 0);
     public static boolean mouseDrags = false;
     public static boolean mouseDown = false;
-
-    private static final List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
-    private static final List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
 
     public static Directions getInput() {
 
