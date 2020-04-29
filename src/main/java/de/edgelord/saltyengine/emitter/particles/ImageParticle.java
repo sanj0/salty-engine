@@ -45,7 +45,7 @@ public abstract class ImageParticle extends Particle {
 
     public static Dimensions DEFAULT_DIMENSIONS = new Dimensions(10f, 10f);
 
-    private SaltyImage image;
+    private final SaltyImage image;
 
     /**
      * {@inheritDoc}

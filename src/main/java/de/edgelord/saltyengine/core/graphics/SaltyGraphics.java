@@ -32,7 +32,7 @@ import java.awt.image.ImageObserver;
 
 public class SaltyGraphics {
 
-    private Graphics2D graphics2D;
+    private final Graphics2D graphics2D;
 
     public SaltyGraphics(Graphics2D graphics2D) {
         this.graphics2D = graphics2D;
@@ -849,14 +849,6 @@ public class SaltyGraphics {
     Bindings for drawing text
      */
 
-    public enum TextAnchor {
-        TOP_LEFT_CORNER,
-        BOTTOM_LEFT_CORNER,
-        TOP_RIGHT_CORNER,
-        BOTTOM_RIGHT_CORNER,
-        CENTRE
-    }
-
     /**
      * The base method to draw a String using the current <code>Font</code> of the graphics.
      * It converts the given {@link Object} to a {@link String} using its {@link Object#toString()}.
@@ -911,49 +903,6 @@ public class SaltyGraphics {
         drawText(text, position.getX(), position.getY(), anchor);
     }
 
-    /*
-    Bindings for setting the configuration of the drawing context
-     */
-
-    /**
-     * Sets the color of the Graphics
-     *
-     * @param color the color to be set the graphics to
-     * @see Graphics2D#setColor(Color)
-     */
-    public void setColor(Color color) {
-        graphics2D.setColor(color);
-    }
-
-    /**
-     * Sets the <code>Font</code> of the graphics
-     *
-     * @param font the new defaultFont
-     */
-    public void setFont(Font font) {
-        graphics2D.setFont(font);
-    }
-
-    /**
-     * Sets the stroke of the Graphics
-     *
-     * @param stroke the stroke to be set the graphics to
-     * @see Graphics2D#setStroke(Stroke)
-     */
-    public void setStroke(Stroke stroke) {
-        graphics2D.setStroke(stroke);
-    }
-
-    /**
-     * Sets the paint of the graphics
-     *
-     * @param paint the new paint for the graphics
-     * @see Graphics2D#setPaint(Paint)
-     */
-    public void setPaint(Paint paint) {
-        graphics2D.setPaint(paint);
-    }
-
     /**
      * Sets the rotation of the graphics around the given point to the given amount of degrees with considering the current rotation.
      *
@@ -965,6 +914,10 @@ public class SaltyGraphics {
 
         graphics2D.rotate(Math.toRadians(rotation + Game.getCamera().getRotation().getRotationDegrees()), centre.getX(), centre.getY());
     }
+
+    /*
+    Bindings for setting the configuration of the drawing context
+     */
 
     /**
      * Sets the rotation of the graphics to the given amount of degrees.
@@ -983,16 +936,6 @@ public class SaltyGraphics {
      */
     public void resetObjectRotation(TransformedObject object) {
         setRotation(-object.getRotationDegrees(), object.getTransform().getRotationCentreAbsolute());
-    }
-
-    /**
-     * Sets the Composite of the Graphics
-     *
-     * @param composite the new composite for the graphics
-     * @see Graphics2D#setComposite(Composite)
-     */
-    public void setComposite(Composite composite) {
-        graphics2D.setComposite(composite);
     }
 
     /**
@@ -1051,6 +994,61 @@ public class SaltyGraphics {
         setClip(0, 0, Game.getGameWidth(), Game.getGameHeight());
     }
 
+    public void setTransform(AffineTransform affineTransform) {
+        graphics2D.setTransform(affineTransform);
+    }
+
+    /**
+     * Applies the configuration of the given {@link RenderContext} to this graphics. <br>
+     * <code>graphics.setRenderContext(renderContext)</code> <br>has an equal result to calling <br><code>renderContext.applyConfiguration(graphics)</code>.
+     *
+     * @param renderContext the {@link RenderContext} whose configuration is to be applied to this graphics.
+     */
+    public void setRenderContext(RenderContext renderContext) {
+        renderContext.applyConfiguration(this);
+    }
+
+    /**
+     * Returns the current color of the Graphics.
+     * With this Color, all of the primitives (e.g. Rectangles, Ovals) are filled and outlined
+     *
+     * @return the current color of the graphics
+     * @see Graphics2D#getColor()
+     */
+    public Color getColor() {
+        return graphics2D.getColor();
+    }
+
+    /**
+     * Sets the color of the Graphics
+     *
+     * @param color the color to be set the graphics to
+     * @see Graphics2D#setColor(Color)
+     */
+    public void setColor(Color color) {
+        graphics2D.setColor(color);
+    }
+
+    /**
+     * Returns the current Font of the Graphics.
+     * With this Font, all of the text is drawn
+     *
+     * @return the current defaultFont of the graphics
+     * @see Graphics2D#getFont()
+     */
+    public Font getFont() {
+        return graphics2D.getFont();
+    }
+
+    /**
+     * Sets the <code>Font</code> of the graphics
+     *
+     * @param font the new defaultFont
+     */
+    public void setFont(Font font) {
+        graphics2D.setFont(font);
+    }
+
 
     ///**
     // * Rotates the graphics by the given degrees plus the game's camera rotation.
@@ -1075,46 +1073,6 @@ public class SaltyGraphics {
     }
     */
 
-    public void setTransform(AffineTransform affineTransform) {
-        graphics2D.setTransform(affineTransform);
-    }
-
-    /**
-     * Applies the configuration of the given {@link RenderContext} to this graphics. <br>
-     * <code>graphics.setRenderContext(renderContext)</code> <br>has an equal result to calling <br><code>renderContext.applyConfiguration(graphics)</code>.
-     *
-     * @param renderContext the {@link RenderContext} whose configuration is to be applied to this graphics.
-     */
-    public void setRenderContext(RenderContext renderContext) {
-        renderContext.applyConfiguration(this);
-    }
-
-    /*
-    Bindings for getting the configuration of the drawing context
-     */
-
-    /**
-     * Returns the current color of the Graphics.
-     * With this Color, all of the primitives (e.g. Rectangles, Ovals) are filled and outlined
-     *
-     * @return the current color of the graphics
-     * @see Graphics2D#getColor()
-     */
-    public Color getColor() {
-        return graphics2D.getColor();
-    }
-
-    /**
-     * Returns the current Font of the Graphics.
-     * With this Font, all of the text is drawn
-     *
-     * @return the current defaultFont of the graphics
-     * @see Graphics2D#getFont()
-     */
-    public Font getFont() {
-        return graphics2D.getFont();
-    }
-
     /**
      * Returns the current <code>FontRenderContext</code> of the graphics
      *
@@ -1136,6 +1094,20 @@ public class SaltyGraphics {
         return graphics2D.getStroke();
     }
 
+    /*
+    Bindings for getting the configuration of the drawing context
+     */
+
+    /**
+     * Sets the stroke of the Graphics
+     *
+     * @param stroke the stroke to be set the graphics to
+     * @see Graphics2D#setStroke(Stroke)
+     */
+    public void setStroke(Stroke stroke) {
+        graphics2D.setStroke(stroke);
+    }
+
     /**
      * Returns the current Paint of the Graphics.
      * With this paint, all of the primitives (e.g. Rectangles and Ovals) are filled.
@@ -1149,6 +1121,16 @@ public class SaltyGraphics {
     }
 
     /**
+     * Sets the paint of the graphics
+     *
+     * @param paint the new paint for the graphics
+     * @see Graphics2D#setPaint(Paint)
+     */
+    public void setPaint(Paint paint) {
+        graphics2D.setPaint(paint);
+    }
+
+    /**
      * Returns the current Composite of the graphics
      *
      * @return the current Composite of the graphics
@@ -1156,6 +1138,16 @@ public class SaltyGraphics {
      */
     public Composite getComposite() {
         return graphics2D.getComposite();
+    }
+
+    /**
+     * Sets the Composite of the Graphics
+     *
+     * @param composite the new composite for the graphics
+     * @see Graphics2D#setComposite(Composite)
+     */
+    public void setComposite(Composite composite) {
+        graphics2D.setComposite(composite);
     }
 
     /**
@@ -1205,5 +1197,13 @@ public class SaltyGraphics {
         renderContext.setFont(getFont());
 
         return renderContext;
+    }
+
+    public enum TextAnchor {
+        TOP_LEFT_CORNER,
+        BOTTOM_LEFT_CORNER,
+        TOP_RIGHT_CORNER,
+        BOTTOM_RIGHT_CORNER,
+        CENTRE
     }
 }

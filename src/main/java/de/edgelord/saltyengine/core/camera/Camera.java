@@ -47,6 +47,14 @@ public interface Camera {
     SaltyImage render(Drawable subject);
 
     /**
+     * Returns the position of this camera as set and
+     * described by {@link #setPosition(Vector2f)}.
+     *
+     * @return the current position of this camera
+     */
+    Vector2f getPosition();
+
+    /**
      * Sets the position of this camera.
      * <p>
      * The position of this camera is relative to
@@ -59,12 +67,12 @@ public interface Camera {
     void setPosition(Vector2f position);
 
     /**
-     * Returns the position of this camera as set and
-     * described by {@link #setPosition(Vector2f)}.
+     * Returns the size of this camera
+     * as set and described in {@link #setSize(Dimensions)}.
      *
-     * @return the current position of this camera
+     * @return the current size of this camera
      */
-    Vector2f getPosition();
+    Dimensions getSize();
 
     /**
      * Sets the size of this camera.
@@ -78,12 +86,12 @@ public interface Camera {
     void setSize(Dimensions size);
 
     /**
-     * Returns the size of this camera
-     * as set and described in {@link #setSize(Dimensions)}.
+     * Returns the current resolution of this camera
+     * as set and described in {@link #setResolution(Dimensions)}.
      *
-     * @return the current size of this camera
+     * @return the current resolution of this camera
      */
-    Dimensions getSize();
+    Dimensions getResolution();
 
     /**
      * Sets the resolution of this camera.
@@ -98,12 +106,12 @@ public interface Camera {
     void setResolution(Dimensions resolution);
 
     /**
-     * Returns the current resolution of this camera
+     * Returns the rotation of this camera
      * as set and described in {@link #setResolution(Dimensions)}.
      *
-     * @return the current resolution of this camera
+     * @return the current rotation of this camera
      */
-    Dimensions getResolution();
+    Rotation getRotation();
 
     /**
      * Sets the rotation of this camera.
@@ -116,12 +124,11 @@ public interface Camera {
     void setRotation(Rotation rotation);
 
     /**
-     * Returns the rotation of this camera
-     * as set and described in {@link #setResolution(Dimensions)}.
+     * Returns the scale as set and described in {@link #setScale(float)}.
      *
-     * @return the current rotation of this camera
+     * @return the current scale of this camera
      */
-    Rotation getRotation();
+    float getScale();
 
     /**
      * Sets the current scale of the camera.
@@ -135,13 +142,6 @@ public interface Camera {
      * @param scale the new scale
      */
     void setScale(float scale);
-
-    /**
-     * Returns the scale as set and described in {@link #setScale(float)}.
-     *
-     * @return the current scale of this camera
-     */
-    float getScale();
 
     /**
      * Returns an instance of {@link AffineTransform} that directly

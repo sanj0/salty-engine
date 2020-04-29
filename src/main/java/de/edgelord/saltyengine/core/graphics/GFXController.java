@@ -31,11 +31,15 @@ import java.util.List;
 
 public class GFXController extends ComponentContainer {
 
-    private List<Component> components = Collections.synchronizedList(new ArrayList<>());
-    private Transform transform = new Transform(new Vector2f(0, 0), new Dimensions(0, 0));
+    private final List<Component> components = Collections.synchronizedList(new ArrayList<>());
+    private final Transform transform = new Transform(new Vector2f(0, 0), new Dimensions(0, 0));
 
     public GFXController() {
         super("de.edgelord.saltyengine.gfxController");
+    }
+
+    public static GFXController getDefaultGFXController() {
+        return Game.getDefaultGFXController();
     }
 
     @Override
@@ -166,9 +170,5 @@ public class GFXController extends ComponentContainer {
 
     @Override
     public void setTransform(Transform transform) {
-    }
-
-    public static GFXController getDefaultGFXController() {
-        return Game.getDefaultGFXController();
     }
 }

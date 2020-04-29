@@ -35,18 +35,16 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 public class BirdPlayer extends GameObject implements Serializable {
 
+    private final float speed = 2500f;
     private SpritesheetAnimation spritesheetAnimation;
     private Spritesheet spritesheet;
+    private final LinearTransformAnimations keyFrameAnimationX = new LinearTransformAnimations(this, "mySuperAnimationX", LinearTransformAnimations.Control.X_POS);
+    private final LinearTransformAnimations keyFrameAnimationRotation = new LinearTransformAnimations(this, "mySuperAnimationRotation", LinearTransformAnimations.Control.ROTATION);
+    private final LinearTransformAnimations keyFrameAnimationWidth = new LinearTransformAnimations(this, "mySuperAnimationWidth", LinearTransformAnimations.Control.WIDTH);
+    private final LinearTransformAnimations keyFrameAnimationHeight = new LinearTransformAnimations(this, "mySuperAnimationHeight", LinearTransformAnimations.Control.HEIGHT);
 
-    private final float speed = 2500f;
-
-    private LinearTransformAnimations keyFrameAnimationX = new LinearTransformAnimations(this, "mySuperAnimationX", LinearTransformAnimations.Control.X_POS);
-    private LinearTransformAnimations keyFrameAnimationRotation = new LinearTransformAnimations(this, "mySuperAnimationRotation", LinearTransformAnimations.Control.ROTATION);
-    private LinearTransformAnimations keyFrameAnimationWidth = new LinearTransformAnimations(this, "mySuperAnimationWidth", LinearTransformAnimations.Control.WIDTH);
-    private LinearTransformAnimations keyFrameAnimationHeight = new LinearTransformAnimations(this, "mySuperAnimationHeight", LinearTransformAnimations.Control.HEIGHT);
-
-    private AnimationRender animationRender;
-    private FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
+    private final AnimationRender animationRender;
+    private final FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
 
     public BirdPlayer(final Vector2f position, final SaltyImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");

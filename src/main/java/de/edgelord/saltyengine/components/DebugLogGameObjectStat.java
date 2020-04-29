@@ -26,7 +26,7 @@ import java.awt.*;
 
 public class DebugLogGameObjectStat extends Component {
 
-    private FixedRate fixedRate = new FixedRate(getParent(), "de.edgelord.saltyengine.DebugLogGameObjectStat$1<tmp>", 100);
+    private final FixedRate fixedRate = new FixedRate(getParent(), "de.edgelord.saltyengine.DebugLogGameObjectStat$1<tmp>", 100);
 
     public DebugLogGameObjectStat(ComponentContainer parent, String name) {
         super(parent, name, Components.CORE_COMPONENT);

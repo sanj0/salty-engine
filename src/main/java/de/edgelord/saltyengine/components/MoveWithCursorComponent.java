@@ -29,7 +29,7 @@ import de.edgelord.saltyengine.utils.TransformRelationUtil;
 @DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class MoveWithCursorComponent extends Component {
 
-    private TransformRelationMode relation;
+    private final TransformRelationMode relation;
 
     public MoveWithCursorComponent(ComponentContainer parent, String name, TransformRelationMode relation) {
         super(parent, name, Components.GAME_COMPONENT);

@@ -142,6 +142,13 @@ public class Audio {
     }
 
     /**
+     * @return the volume of this audio
+     */
+    public float getVolume() {
+        return volume;
+    }
+
+    /**
      * Sets the volume of the clip, 1f is the normal volume, 0f is completely quiet and 2f is twice as loud.
      *
      * @param volume the new volume of this audio
@@ -154,21 +161,6 @@ public class Audio {
         this.volume = volume;
     }
 
-    public void setPan(float pan) {
-
-        pan = GeneralUtil.clamp(pan, -1f, 1f);
-        FloatControl panControl = (FloatControl) getClip().getControl(FloatControl.Type.PAN);
-        panControl.setValue(pan);
-        this.pan = pan;
-    }
-
-    /**
-     * @return the volume of this audio
-     */
-    public float getVolume() {
-        return volume;
-    }
-
     /**
      * Gets {@link #pan}.
      *
@@ -176,5 +168,13 @@ public class Audio {
      */
     public float getPan() {
         return pan;
+    }
+
+    public void setPan(float pan) {
+
+        pan = GeneralUtil.clamp(pan, -1f, 1f);
+        FloatControl panControl = (FloatControl) getClip().getControl(FloatControl.Type.PAN);
+        panControl.setValue(pan);
+        this.pan = pan;
     }
 }

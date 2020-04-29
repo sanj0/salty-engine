@@ -29,9 +29,9 @@ import java.awt.*;
 public class Screen extends GameObject {
 
     private final Transform screen;
-    private ScreenContent screenContent;
+    private final ScreenContent screenContent;
 
-    private String usageMessage = "Use WASD or the arrow keys to move the screen content!";
+    private final String usageMessage = "Use WASD or the arrow keys to move the screen content!";
 
     public Screen() {
         super(Game.getHost().getCentrePosition(250, 450), 250, 450, "screen");

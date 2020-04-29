@@ -49,21 +49,18 @@ import java.util.function.Consumer;
 public class Game {
 
     /**
-     * The default {@link GFXController} for the game. Any {@link Component}s added to this {@link de.edgelord.saltyengine.core.stereotypes.ComponentContainer}
-     * will be applied in any {@link de.edgelord.saltyengine.scene.Scene} at any time.
-     */
-    private static GFXController defaultGFXController = new GFXController();
-
-    /**
      * The name of the game. Until the game is initialized, this will be {@code salty-engine} by default.
      */
     public static String gameName = "salty-engine";
-
     /**
      * If this is set to true, {@link Scene#onFixedTick()} is not called until this is set to false again.
      */
     public static boolean paused = false;
-
+    /**
+     * The default {@link GFXController} for the game. Any {@link Component}s added to this {@link de.edgelord.saltyengine.core.stereotypes.ComponentContainer}
+     * will be applied in any {@link de.edgelord.saltyengine.scene.Scene} at any time.
+     */
+    private static GFXController defaultGFXController = new GFXController();
     /**
      * The {@link Camera} of the game.
      */
@@ -96,7 +93,7 @@ public class Game {
     /**
      * The list of {@link GameListener} that are assigned.
      */
-    private static List<GameListener> gameListeners = new ArrayList<>();
+    private static final List<GameListener> gameListeners = new ArrayList<>();
 
     /**
      * Initialized the game with the given {@link GameConfig} and a {@link DisplayManager} as {@link Host}.
@@ -269,10 +266,6 @@ public class Game {
         return gameListeners;
     }
 
-    protected static void setEngine(Engine engine) {
-        Game.engine = engine;
-    }
-
     public static Host getHost() {
         return host;
     }
@@ -289,6 +282,10 @@ public class Game {
 
     public static Engine getEngine() {
         return engine;
+    }
+
+    protected static void setEngine(Engine engine) {
+        Game.engine = engine;
     }
 
     public static boolean isPaused() {

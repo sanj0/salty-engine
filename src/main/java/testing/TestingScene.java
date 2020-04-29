@@ -44,8 +44,8 @@ import java.io.IOException;
 
 public class TestingScene extends Scene {
 
-    private Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
-    private ProgressBar progress = new ProgressBar(Game.getHost().getHorizontalCentrePosition(500f), 75, 500, 25);
+    private final Light light = new GradientLight(0, 0, 300, 300, ColorUtil.GOLD, EnumShape.OVAL);
+    private final ProgressBar progress = new ProgressBar(Game.getHost().getHorizontalCentrePosition(500f), 75, 500, 25);
 
     //private KeyframeAnimation audioPanAnimation = new LinearKeyframeAnimation();
     //private AudioPlayer player = new AudioPlayer(new AudioFactory(SaltySystem.defaultOuterResource));

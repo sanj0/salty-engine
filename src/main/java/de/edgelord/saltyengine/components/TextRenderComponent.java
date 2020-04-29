@@ -33,7 +33,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
     private Font font = SaltySystem.defaultFont;
     private float leading = font.getSize() * 1.3f;
     private String text;
-    private List<String> lines = new ArrayList<>();
+    private final List<String> lines = new ArrayList<>();
     private boolean recalculate = true;
     private String wordSeparator = " ";
     private Vector2f offset;
@@ -95,11 +95,6 @@ public class TextRenderComponent extends Component<ComponentContainer> {
 
     }
 
-    public void setText(String text) {
-        this.text = text;
-        recalculate = true;
-    }
-
     public Font getFont() {
         return font;
     }
@@ -111,6 +106,11 @@ public class TextRenderComponent extends Component<ComponentContainer> {
 
     public String getText() {
         return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        recalculate = true;
     }
 
     public String getWordSeparator() {

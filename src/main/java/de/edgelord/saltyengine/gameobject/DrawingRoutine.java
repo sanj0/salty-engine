@@ -20,8 +20,6 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 
 public abstract class DrawingRoutine implements Drawable {
 
-    public enum DrawingPosition {BEFORE_GAMEOBJECTS, AFTER_GAMEOBJECTS, LAST}
-
     private DrawingPosition drawingPosition;
 
     public DrawingRoutine(DrawingPosition drawingPosition) {
@@ -35,4 +33,6 @@ public abstract class DrawingRoutine implements Drawable {
     public void setDrawingPosition(DrawingPosition drawingPosition) {
         this.drawingPosition = drawingPosition;
     }
+
+    public enum DrawingPosition {BEFORE_GAMEOBJECTS, AFTER_GAMEOBJECTS, LAST}
 }

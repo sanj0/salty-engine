@@ -27,8 +27,8 @@ import java.util.List;
 
 public class SpritePattern {
 
-    private File spritePattern;
-    private HashMap<Integer, Rectangle> pattern = new HashMap<>();
+    private final File spritePattern;
+    private final HashMap<Integer, Rectangle> pattern = new HashMap<>();
 
     private Rectangle[][] rectangles;
 

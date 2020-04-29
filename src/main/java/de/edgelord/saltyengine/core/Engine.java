@@ -34,17 +34,17 @@ public class Engine {
     /**
      * The milliseconds between each fixed tick.
      */
-    private long fixedTickMillis;
+    private final long fixedTickMillis;
 
     /**
      * The {@link Timer} for the fixed ticks.
      */
-    private Timer fixedTimer = new Timer();
+    private final Timer fixedTimer = new Timer();
 
     /**
      * The {@link Timer} that repaints the {@link Host}.
      */
-    private Timer repaintTimer = new Timer();
+    private final Timer repaintTimer = new Timer();
 
     /**
      * Only used internally to stop the timers.
@@ -56,7 +56,7 @@ public class Engine {
      * later execution by
      * {@link Game#executeLater(Runnable, long)}
      */
-    private List<ScheduledTask> scheduledTasks = new ArrayList<>();
+    private final List<ScheduledTask> scheduledTasks = new ArrayList<>();
 
     /**
      * Creates a new instance with the given fixed tick millis. This happens automatically when initializing the {@link Game}.

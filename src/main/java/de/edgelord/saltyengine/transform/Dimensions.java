@@ -27,6 +27,27 @@ public class Dimensions {
         this.height = height;
     }
 
+    public static Dimensions zero() {
+        return new Dimensions(0, 0);
+    }
+
+    public static Dimensions max() {
+        return new Dimensions(Float.MAX_VALUE, Float.MAX_VALUE);
+    }
+
+    public static Dimensions min() {
+        return new Dimensions(Float.MIN_VALUE, Float.MIN_VALUE);
+    }
+
+    public static Dimensions random(int min, int max) {
+        Random random = new Random();
+        return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
+    }
+
+    public static Dimensions one() {
+        return new Dimensions(1, 1);
+    }
+
     public float getWidth() {
         return width;
     }
@@ -95,27 +116,6 @@ public class Dimensions {
         } else {
             return false;
         }
-    }
-
-    public static Dimensions zero() {
-        return new Dimensions(0, 0);
-    }
-
-    public static Dimensions max() {
-        return new Dimensions(Float.MAX_VALUE, Float.MAX_VALUE);
-    }
-
-    public static Dimensions min() {
-        return new Dimensions(Float.MIN_VALUE, Float.MIN_VALUE);
-    }
-
-    public static Dimensions random(int min, int max) {
-        Random random = new Random();
-        return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
-    }
-
-    public static Dimensions one() {
-        return new Dimensions(1, 1);
     }
 
     @Override

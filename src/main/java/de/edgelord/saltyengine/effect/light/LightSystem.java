@@ -33,9 +33,9 @@ import java.util.List;
 public class LightSystem implements Drawable {
 
     private final Color lightMapColor;
-    protected SaltyImage lightMap;
     //private BufferedImage plainLightMap;
     private final List<Light> lights = new ArrayList<>();
+    protected SaltyImage lightMap;
 
     public LightSystem(Color lightMapColor) {
         this.lightMapColor = lightMapColor;

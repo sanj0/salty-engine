@@ -51,6 +51,10 @@ public class Coordinates {
         return x;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
     public void changeX(int delta) {
 
         setX(getX() + delta);
@@ -59,10 +63,6 @@ public class Coordinates {
     public void changeY(int delta) {
 
         setY(getY() + delta);
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     public int getY() {

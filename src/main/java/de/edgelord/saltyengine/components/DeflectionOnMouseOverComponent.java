@@ -33,9 +33,9 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     /**
      * The animation that is used.
      */
-    private LinearKeyframeAnimation keyframeAnimation = new LinearKeyframeAnimation();
+    private final LinearKeyframeAnimation keyframeAnimation = new LinearKeyframeAnimation();
 
-    private Vector2f returnPosition;
+    private final Vector2f returnPosition;
 
     private float totalDeflection = 0f;
 

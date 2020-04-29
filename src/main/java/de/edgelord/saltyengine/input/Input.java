@@ -51,8 +51,8 @@ public class Input {
     public static boolean mouseDrags = false;
     public static boolean mouseDown = false;
 
-    private static List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
-    private static List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
+    private static final List<KeyboardInputHandler> keyboardHandlers = new CopyOnWriteArrayList<>();
+    private static final List<MouseInputHandler> mouseHandlers = new CopyOnWriteArrayList<>();
 
     public static Directions getInput() {
 

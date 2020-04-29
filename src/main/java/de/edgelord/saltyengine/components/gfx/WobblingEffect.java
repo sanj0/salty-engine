@@ -24,6 +24,7 @@ import java.util.Random;
 @Deprecated
 public class WobblingEffect extends GFXComponent {
 
+    Random random = new Random();
     private int maxHeightDelta;
     private int maxWidthDelta;
     private int minHeightDelta;
@@ -32,21 +33,12 @@ public class WobblingEffect extends GFXComponent {
     private int heightDeltaPerTick = 2;
     private int pause = 250;
     private int ticks = 0;
-
     private boolean initRun = true;
     private int heightDelta = 0;
     private int widthDelta = 0;
     private boolean shrinkingWidth = false;
     private boolean shrinkingHeight = false;
-
     private Mode mode = Mode.linear;
-
-    public enum Mode {
-        random,
-        linear
-    }
-
-    Random random = new Random();
 
     public WobblingEffect(ComponentContainer parent, String name) {
         super(parent, name);
@@ -174,5 +166,10 @@ public class WobblingEffect extends GFXComponent {
 
     public void setPause(int pause) {
         this.pause = pause;
+    }
+
+    public enum Mode {
+        random,
+        linear
     }
 }

@@ -327,6 +327,15 @@ public class Transform {
     }
 
     /**
+     * Sets the width of the {@link #dimensions}.
+     *
+     * @param width the new width
+     */
+    public void setWidth(float width) {
+        dimensions.setWidth(width);
+    }
+
+    /**
      * Returns the width of this <code>Transform</code> rounded to an integer.
      *
      * @return the width of this <code>Transform</code> rounded to an integer
@@ -338,15 +347,6 @@ public class Transform {
     }
 
     /**
-     * Sets the width of the {@link #dimensions}.
-     *
-     * @param width the new width
-     */
-    public void setWidth(float width) {
-        dimensions.setWidth(width);
-    }
-
-    /**
      * Returns the height of this <code>Transform</code>.
      *
      * @return the height of this <code>Transform</code>
@@ -354,6 +354,15 @@ public class Transform {
      */
     public float getHeight() {
         return dimensions.getHeight();
+    }
+
+    /**
+     * Sets the height of the {@link #dimensions}.
+     *
+     * @param height the new height
+     */
+    public void setHeight(float height) {
+        dimensions.setHeight(height);
     }
 
     /**
@@ -368,15 +377,6 @@ public class Transform {
     }
 
     /**
-     * Sets the height of the {@link #dimensions}.
-     *
-     * @param height the new height
-     */
-    public void setHeight(float height) {
-        dimensions.setHeight(height);
-    }
-
-    /**
      * Returns the height of this <code>Transform</code>.
      *
      * @return the height of this <code>Transform</code>
@@ -384,15 +384,6 @@ public class Transform {
      */
     public float getX() {
         return position.getX();
-    }
-
-    /**
-     * Returns the maximum x value of this rectangle, which is {@code x + width}.
-     *
-     * @return the maximum x value of the rectangle described by this Transform
-     */
-    public float getMaxX() {
-        return getX() + getWidth();
     }
 
     /**
@@ -406,6 +397,15 @@ public class Transform {
     }
 
     /**
+     * Returns the maximum x value of this rectangle, which is {@code x + width}.
+     *
+     * @return the maximum x value of the rectangle described by this Transform
+     */
+    public float getMaxX() {
+        return getX() + getWidth();
+    }
+
+    /**
      * Returns the width of this <code>Transform</code>.
      *
      * @return the width of this <code>Transform</code>
@@ -416,15 +416,6 @@ public class Transform {
     }
 
     /**
-     * @return the maximum y value of the rectangle described by this Transform. That position is
-     * <p>
-     * {@code y + height}
-     */
-    public float getMaxY() {
-        return getY() + getHeight();
-    }
-
-    /**
      * Sets the y position of this <code>Transform</code>.
      *
      * @param y the new value of this <code>Transform</code>'s y position
@@ -432,6 +423,15 @@ public class Transform {
      */
     public void setY(float y) {
         position.setY(y);
+    }
+
+    /**
+     * @return the maximum y value of the rectangle described by this Transform. That position is
+     * <p>
+     * {@code y + height}
+     */
+    public float getMaxY() {
+        return getY() + getHeight();
     }
 
     /**

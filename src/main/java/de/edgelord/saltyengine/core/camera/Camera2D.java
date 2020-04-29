@@ -99,11 +99,6 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setPosition(Vector2f position) {
-        transform.setPosition(position);
-    }
-
-    @Override
     public Transform getTransform() {
         return transform;
     }
@@ -114,13 +109,13 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
-        this.lockedDirections = directions;
+    public Directions getLockedDirections() {
+        return lockedDirections;
     }
 
     @Override
-    public Directions getLockedDirections() {
-        return lockedDirections;
+    public void setLockedDirections(Directions directions) {
+        this.lockedDirections = directions;
     }
 
     @Override
@@ -129,8 +124,8 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setSize(Dimensions size) {
-        transform.setDimensions(size);
+    public void setPosition(Vector2f position) {
+        transform.setPosition(position);
     }
 
     @Override
@@ -139,8 +134,8 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setResolution(Dimensions resolution) {
-        this.resolution = resolution;
+    public void setSize(Dimensions size) {
+        transform.setDimensions(size);
     }
 
     @Override
@@ -149,8 +144,8 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setRotation(Rotation rotation) {
-        transform.setRotation(rotation);
+    public void setResolution(Dimensions resolution) {
+        this.resolution = resolution;
     }
 
     @Override
@@ -159,12 +154,17 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setScale(float scale) {
-        this.scale = scale;
+    public void setRotation(Rotation rotation) {
+        transform.setRotation(rotation);
     }
 
     @Override
     public float getScale() {
         return scale;
+    }
+
+    @Override
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 }

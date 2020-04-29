@@ -145,7 +145,7 @@ public abstract class KeyframeAnimation {
      * and value.
      *
      * @param timecode the timecode for the new <code>Keyframe</code>
-     * @param value the value of the new <code>Keyframe</code>
+     * @param value    the value of the new <code>Keyframe</code>
      */
     public void add(int timecode, float value) {
         keyframes.add(new Keyframe(timecode, value));

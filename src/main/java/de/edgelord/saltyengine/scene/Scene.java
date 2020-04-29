@@ -52,7 +52,7 @@ import java.util.List;
  * <p>
  * The current scene is stored in {@link SceneManager#getCurrentScene()}.
  * For more information, please take a look at the documentation of that class.
- *
+ * <p>
  * Any initializing should be done within {@link #initialize()}
  * instead of a constructor, which is called after setting a
  * new instance of a <code>Scene</code> object as the {@link SceneManager#setCurrentScene(Scene) current}.
@@ -79,9 +79,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      */
     private boolean gravityEnabled = false;
 
-    private List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
-    private List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
-    private List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
+    private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
+    private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
+    private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
 
@@ -316,12 +316,12 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         this.sceneCollider = sceneCollider;
     }
 
-    public void setUI(UISystem uiSystem) {
-        this.ui = uiSystem;
-    }
-
     public UISystem getUI() {
         return ui;
+    }
+
+    public void setUI(UISystem uiSystem) {
+        this.ui = uiSystem;
     }
 
     public int getGameObjectCount() {

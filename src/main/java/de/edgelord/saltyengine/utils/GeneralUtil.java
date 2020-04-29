@@ -34,7 +34,7 @@ public class GeneralUtil {
     /**
      * The <code>Random</code> instance used for all utils that need one.
      */
-    private static SecureRandom random = new SecureRandom();
+    private static final SecureRandom random = new SecureRandom();
 
     /**
      * Returns the given value inside the given range.

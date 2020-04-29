@@ -32,6 +32,27 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
+    public static Vector2f zero() {
+        return new Vector2f(0, 0);
+    }
+
+    public static Vector2f max() {
+        return new Vector2f(Float.MAX_VALUE, Float.MAX_VALUE);
+    }
+
+    public static Vector2f min() {
+        return new Vector2f(Float.MIN_VALUE, Float.MIN_VALUE);
+    }
+
+    public static Vector2f random(int min, int max) {
+        Random random = new Random();
+        return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
+    }
+
+    public static Vector2f one() {
+        return new Vector2f(1, 1);
+    }
+
     /**
      * Returns the distance between this and the given point.
      *
@@ -124,27 +145,6 @@ public class Vector2f {
         } else {
             return false;
         }
-    }
-
-    public static Vector2f zero() {
-        return new Vector2f(0, 0);
-    }
-
-    public static Vector2f max() {
-        return new Vector2f(Float.MAX_VALUE, Float.MAX_VALUE);
-    }
-
-    public static Vector2f min() {
-        return new Vector2f(Float.MIN_VALUE, Float.MIN_VALUE);
-    }
-
-    public static Vector2f random(int min, int max) {
-        Random random = new Random();
-        return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
-    }
-
-    public static Vector2f one() {
-        return new Vector2f(1, 1);
     }
 
     @Override

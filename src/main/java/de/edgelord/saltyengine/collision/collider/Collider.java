@@ -32,34 +32,29 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 public abstract class Collider {
 
     /**
-     * The priority of this collider.
-     */
-    private int priority;
-
-    /**
-     * The name of this collider.
-     */
-    private int type;
-
-    /**
      * The type of the default {@link HitboxCollider}.
      */
     public static final int HITBOX_COLLIDER = 0;
-
     /**
      * The type of the {@link ShapeCollider}.
      */
     public static final int SHAPE_COLLIDER = 1;
-
     /**
      * The type of the {@link CircleCollider}.
      */
     public static final int CIRCLE_COLLIDER = 2;
-
     /**
      * The type of the {@link GhostCollider}.
      */
     public static final int GHOST_COLLIDER = 3;
+    /**
+     * The priority of this collider.
+     */
+    private final int priority;
+    /**
+     * The name of this collider.
+     */
+    private final int type;
 
     /**
      * The constructor.

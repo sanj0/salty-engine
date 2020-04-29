@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class UISystem {
 
-    private List<UIElement> elements = new CopyOnWriteArrayList<>();
+    private final List<UIElement> elements = new CopyOnWriteArrayList<>();
     private UIElement currentlyFocused = null;
 
     public void drawUI(SaltyGraphics saltyGraphics) {

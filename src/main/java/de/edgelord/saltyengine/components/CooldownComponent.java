@@ -35,7 +35,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
     private boolean coolingDown = false;
     private int ticks = 0;
 
-    private BooleanSupplier shouldRun;
+    private final BooleanSupplier shouldRun;
 
     /**
      * The default constructor.

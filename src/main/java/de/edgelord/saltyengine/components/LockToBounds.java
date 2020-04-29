@@ -28,15 +28,13 @@ import de.edgelord.saltyengine.transform.Transform;
  * What to use is defined in {@link #mode}. The default is {@link #MODE_TRANSFORM}
  */
 public class LockToBounds extends Component<GameObject> {
+    public static final int MODE_HITBOX = 0;
+    public static final int MODE_TRANSFORM = 1;
     /**
      * The rectangular bounds to which the {@link #getParent()} is locked
      */
-    private Transform bounds;
-
-    private int mode = MODE_TRANSFORM;
-
-    public static final int MODE_HITBOX = 0;
-    public static final int MODE_TRANSFORM = 1;
+    private final Transform bounds;
+    private final int mode = MODE_TRANSFORM;
 
     public LockToBounds(GameObject parent, Transform bounds, String name) {
         super(parent, name, Components.GAME_COMPONENT);

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class WindowClosingHooks {
 
-    private static List<Runnable> hooks = new ArrayList<>();
+    private static final List<Runnable> hooks = new ArrayList<>();
 
     public static void runHooks() {
         hooks.forEach(Runnable::run);

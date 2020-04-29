@@ -26,7 +26,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 public class SimpleHitbox implements Hitbox {
 
     private final GameObject parent;
-    private Transform transform;
+    private final Transform transform;
     private float offsetX, offsetY;
 
     public SimpleHitbox(final GameObject parent, final float width, final float height, final float offsetX, final float offsetY) {

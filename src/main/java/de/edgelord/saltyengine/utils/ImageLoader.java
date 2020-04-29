@@ -24,12 +24,12 @@ import java.util.HashMap;
 
 public class ImageLoader {
 
-    private static HashMap<String, SaltyImage> images = new HashMap<>();
+    private static final HashMap<String, SaltyImage> images = new HashMap<>();
 
     /**
      * The default {@link BufferedImage} to be returned if the requested wasn't found.
      */
-    private static SaltyImage defaultImage = SaltySystem.createPreferredImage(10, 10);
+    private static final SaltyImage defaultImage = SaltySystem.createPreferredImage(10, 10);
 
     /**
      * This method will load a new Image with the given name into the map

@@ -31,7 +31,7 @@ public class AudioPlayer {
     /**
      * The list of loaded {@link Audio}.
      */
-    private LinkedList<Audio> audios = new LinkedList<>();
+    private final LinkedList<Audio> audios = new LinkedList<>();
 
     /**
      * The {@link AudioFactory} which is used for loading the audio.
@@ -40,7 +40,7 @@ public class AudioPlayer {
      * @see OuterResource
      * @see de.edgelord.saltyengine.factory.Factory
      */
-    private AudioFactory audioFactory;
+    private final AudioFactory audioFactory;
 
     /**
      * The master volume of all {@link Audio} obtained by this player.
@@ -202,6 +202,13 @@ public class AudioPlayer {
     }
 
     /**
+     * @return the {@link #masterVolume}
+     */
+    public float getMasterVolume() {
+        return masterVolume;
+    }
+
+    /**
      * Sets the master volume for this player. All {@link Audio}s will be affected, but they're relative volume will stay the same.
      * Example:
      * <p>
@@ -222,13 +229,6 @@ public class AudioPlayer {
                 multiplyAudioVolume(audio, masterVolume);
             }
         }
-    }
-
-    /**
-     * @return the {@link #masterVolume}
-     */
-    public float getMasterVolume() {
-        return masterVolume;
     }
 
     /**

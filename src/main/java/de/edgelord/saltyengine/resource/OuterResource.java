@@ -32,7 +32,7 @@ import java.io.IOException;
 
 public class OuterResource implements Resource {
 
-    private boolean hidden;
+    private final boolean hidden;
     private File sourceDirectory;
 
     public OuterResource(boolean hidden) {

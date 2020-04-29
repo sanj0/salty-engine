@@ -107,12 +107,12 @@ public class CircleCollider extends Collider implements TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
-        this.lockedDirections = directions;
+    public Directions getLockedDirections() {
+        return lockedDirections;
     }
 
     @Override
-    public Directions getLockedDirections() {
-        return lockedDirections;
+    public void setLockedDirections(Directions directions) {
+        this.lockedDirections = directions;
     }
 }

@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.resource.Resource;
 
 public class Factory {
 
-    private Resource resource;
+    private final Resource resource;
 
     public Factory(Resource resource) {
         this.resource = resource;

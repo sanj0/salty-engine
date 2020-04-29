@@ -42,29 +42,25 @@ import static java.awt.RenderingHints.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class Stage extends JPanel {
 
+    public static RenderingHints hqRenderingHints;
+    public static RenderingHints lqRenderingHints;
     private final Container container;
     private NativeStageMouseListener nativeMouseListener = null;
     private NativeStageMouseMotionListener nativeMouseMotionListener = null;
     private NativeStageMouseWheelListener nativeMouseWheelListener = null;
-
     private float currentScale = 1f;
     private int originWidth = 0;
     private int originHeight = 0;
     private Dimensions resolution;
-
     private float lastFps = 0f;
     private int ticks = 0;
-    private int fpsRefreshGate = 25;
-
+    private final int fpsRefreshGate = 25;
     /**
      * The current image position is the position
      * of the rendered image within this panel,
      * which is changed by the letterbox scaling.
      */
     private Vector2f currentImgPos = new Vector2f(0, 0);
-
-    public static RenderingHints hqRenderingHints;
-    public static RenderingHints lqRenderingHints;
 
     public Stage(final Container container, final Engine engine) {
         this(container, engine, 0, 0, container.getWidth(), container.getHeight());

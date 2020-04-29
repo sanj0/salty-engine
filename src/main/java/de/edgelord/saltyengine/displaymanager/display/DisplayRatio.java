@@ -27,8 +27,8 @@ import de.edgelord.saltyengine.transform.Dimensions;
 public class DisplayRatio {
 
     private float scale = 1f;
-    private Dimensions originalResolution;
-    private Dimensions currentDimensions;
+    private final Dimensions originalResolution;
+    private final Dimensions currentDimensions;
 
     public DisplayRatio(Dimensions originalResolution) {
         this.originalResolution = originalResolution;
@@ -43,12 +43,12 @@ public class DisplayRatio {
         this.scale = height / this.originalResolution.getHeight();
     }
 
-    public void setScale(float scale) {
-        this.scale = scale;
-    }
-
     public float getScale() {
         return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 
     public Dimensions getCurrentDimensions() {

@@ -35,12 +35,12 @@ public class RandomColorProfileParticleRenderContext extends ParticleRenderConte
     /**
      * The stored profiles for {@link Particle}s.
      */
-    private HashMap<Particle, Color> profiles = new HashMap<>();
+    private final HashMap<Particle, Color> profiles = new HashMap<>();
 
     /**
      * The colors to be used.
      */
-    private List<Color> colors = new ArrayList<>();
+    private final List<Color> colors = new ArrayList<>();
 
     /**
      * Constructs this context with the {@link Color}s from the given vararg added to {@link #colors}

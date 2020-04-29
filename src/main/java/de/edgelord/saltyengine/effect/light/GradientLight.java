@@ -35,7 +35,7 @@ public class GradientLight extends Light {
     private SaltyImage coloredLight;
     private EnumShape shape;
 
-    private float[] arcIfRoundRect;
+    private final float[] arcIfRoundRect;
 
     public GradientLight(Transform transform, Color color, EnumShape shape, float... arcIfRoundRect) {
         super(transform, color);

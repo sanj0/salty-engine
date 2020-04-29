@@ -27,16 +27,24 @@ public interface TransformedObject {
 
     void setTransform(Transform transform);
 
-    void setLockedDirections(Directions directions);
-
     Directions getLockedDirections();
+
+    void setLockedDirections(Directions directions);
 
     default Dimensions getDimensions() {
         return getTransform().getDimensions();
     }
 
+    default void setDimensions(Dimensions dimensions) {
+        getTransform().setDimensions(dimensions);
+    }
+
     default Vector2f getPosition() {
         return getTransform().getPosition();
+    }
+
+    default void setPosition(Vector2f position) {
+        getTransform().setPosition(position);
     }
 
     default Coordinates getCoordinates() {
@@ -63,36 +71,28 @@ public interface TransformedObject {
         return getDimensions().getWidth();
     }
 
-    default float getHeight() {
-        return getDimensions().getHeight();
-    }
-
-    default float getX() {
-        return getPosition().getX();
-    }
-
-    default float getY() {
-        return getPosition().getY();
-    }
-
-    default void setDimensions(Dimensions dimensions) {
-        getTransform().setDimensions(dimensions);
-    }
-
-    default void setPosition(Vector2f position) {
-        getTransform().setPosition(position);
-    }
-
     default void setWidth(float width) {
         getTransform().setWidth(width);
+    }
+
+    default float getHeight() {
+        return getDimensions().getHeight();
     }
 
     default void setHeight(float height) {
         getTransform().setHeight(height);
     }
 
+    default float getX() {
+        return getPosition().getX();
+    }
+
     default void setX(float x) {
         getTransform().setX(x);
+    }
+
+    default float getY() {
+        return getPosition().getY();
     }
 
     default void setY(float y) {

@@ -30,7 +30,7 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class SaltyShape implements Drawable, TransformedObject {
 
-    private EnumShape shapeType;
+    private final EnumShape shapeType;
     private Transform transform;
     private boolean filled = true;
 

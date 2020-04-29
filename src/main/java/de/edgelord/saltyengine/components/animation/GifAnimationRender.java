@@ -36,7 +36,7 @@ public class GifAnimationRender extends RenderComponent {
     /**
      * The gif image
      */
-    private Image gif;
+    private final Image gif;
 
     /**
      * The only constructor taking in all the necessary parameters.

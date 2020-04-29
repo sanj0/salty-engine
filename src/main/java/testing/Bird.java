@@ -40,7 +40,7 @@ public class Bird extends GameObject implements Serializable {
     private final SpritesheetAnimation spritesheetAnimation;
     private final Spritesheet spritesheet;
 
-    private RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitter", RoundRectangleParticle.class, .1f, 1);
+    private final RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitter", RoundRectangleParticle.class, .1f, 1);
 
     public Bird(final SaltyImage image, final int xPos, final int yPos) {
         super(xPos * 150, yPos * 101, 150, 101, "testing.bird");

@@ -30,7 +30,7 @@ public abstract class TextBox extends TextElement {
 
     private float cursor = 1f;
     private float speed = 0.075f;
-    private TextRenderComponent textRenderComponent;
+    private final TextRenderComponent textRenderComponent;
 
     public TextBox(String text, Vector2f position, float width, float height, float offsetX, float offsetY) {
         this(text, new Transform(position, new Dimensions(width, height)), offsetX, offsetY);

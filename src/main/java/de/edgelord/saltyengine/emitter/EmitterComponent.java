@@ -129,7 +129,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * A thread-safe {@link List} containing all the current {@link Particle}s
      */
-    private List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
+    private final List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
 
     /**
      * The {@link Class} object of the particle to be emitted.
@@ -354,10 +354,6 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.waveInterval = waveInterval;
     }
 
-    public void setRenderContext(ParticleRenderContext renderContext) {
-        this.renderContext = renderContext;
-    }
-
     public boolean isImpactMode() {
         return impactMode;
     }
@@ -432,5 +428,9 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     public ParticleRenderContext getRenderContext() {
         return renderContext;
+    }
+
+    public void setRenderContext(ParticleRenderContext renderContext) {
+        this.renderContext = renderContext;
     }
 }

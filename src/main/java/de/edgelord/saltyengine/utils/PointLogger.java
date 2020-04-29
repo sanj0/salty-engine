@@ -44,14 +44,14 @@ import java.util.Scanner;
  */
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
-    private static Vector2f lastPoint = Vector2f.zero();
-    private static List<Vector2f> savedPoints = new ArrayList<>();
-    private static DataWriter writer;
-    private static Species points = new Species("points");
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
     public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.BLUE, 0.5f);
     public static Color POINT_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.RED, 0.35f);
-    private static Scanner scanner = new Scanner(System.in);
+    private static Vector2f lastPoint = Vector2f.zero();
+    private static final List<Vector2f> savedPoints = new ArrayList<>();
+    private static DataWriter writer;
+    private static final Species points = new Species("points");
+    private static final Scanner scanner = new Scanner(System.in);
 
     private PointLogger(String fileName) throws IOException {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
@@ -85,6 +85,10 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         return logger;
     }
 
+    private static Transform visualizingTransform(Vector2f point) {
+        return new Transform(point.getX() - (POINTS_VISUALIZING_DIMENSIONS.getWidth() / 2f), point.getY() - (POINTS_VISUALIZING_DIMENSIONS.getHeight() / 2f), POINTS_VISUALIZING_DIMENSIONS.getWidth(), POINTS_VISUALIZING_DIMENSIONS.getHeight());
+    }
+
     @Override
     public void draw(SaltyGraphics saltyGraphics) {
 
@@ -97,10 +101,6 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         for (Vector2f vector2F : savedPoints) {
             saltyGraphics.drawOval(visualizingTransform(vector2F));
         }
-    }
-
-    private static Transform visualizingTransform(Vector2f point) {
-        return new Transform(point.getX() - (POINTS_VISUALIZING_DIMENSIONS.getWidth() / 2f), point.getY() - (POINTS_VISUALIZING_DIMENSIONS.getHeight() / 2f), POINTS_VISUALIZING_DIMENSIONS.getWidth(), POINTS_VISUALIZING_DIMENSIONS.getHeight());
     }
 
     @Override

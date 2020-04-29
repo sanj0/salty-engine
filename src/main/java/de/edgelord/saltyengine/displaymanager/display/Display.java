@@ -26,11 +26,11 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class Display extends JFrame {
 
-    private String windowTitle;
+    private final String windowTitle;
     private MouseInputHandler displayMouseHandler = null;
     private boolean fullscreen = false;
 
-    private GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    private final GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     public Display(DisplayRatio displayRatio, String windowTitle) {
 
@@ -56,6 +56,10 @@ public class Display extends JFrame {
         this.displayMouseHandler = displayMouseHandler;
     }
 
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
+
     public void setFullscreen(boolean fullscreen) {
         this.fullscreen = fullscreen;
 
@@ -64,10 +68,6 @@ public class Display extends JFrame {
         } else {
             device.setFullScreenWindow(null);
         }
-    }
-
-    public boolean isFullscreen() {
-        return fullscreen;
     }
 
     public String getWindowTitle() {

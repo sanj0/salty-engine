@@ -23,8 +23,6 @@ import java.awt.image.VolatileImage;
 
 public interface ImageProducer {
 
-    void produceImage(VolatileImage image);
-
     static ImageProducer fromBufferedImage(final BufferedImage source) {
         return image -> ImageUtils.copyTo(source, image);
     }
@@ -32,4 +30,6 @@ public interface ImageProducer {
     static ImageProducer fromVolatileImage(final VolatileImage source) {
         return fromBufferedImage(ImageUtils.toBufferedImage(source));
     }
+
+    void produceImage(VolatileImage image);
 }

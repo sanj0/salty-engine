@@ -77,6 +77,27 @@ public class Directions {
     }
 
     /**
+     * This method is used for mirroring BasicDirections, for example for lastInput BasicDirection.y,
+     * it would return BasicDirection.x.
+     *
+     * @param direction The BasicDirection to mirror
+     * @return The mirrored BasicDirection
+     */
+    public static BasicDirection mirrorBasicDirection(final BasicDirection direction) {
+
+        switch (direction) {
+
+            case x:
+                return BasicDirection.y;
+            case y:
+                return BasicDirection.x;
+        }
+
+        // If the switch statement above fails (impossible) return x
+        return BasicDirection.x;
+    }
+
+    /**
      * Mirrors this directions
      */
     public void mirror() {
@@ -102,44 +123,11 @@ public class Directions {
         }
     }
 
-    /**
-     * This method is used for mirroring BasicDirections, for example for lastInput BasicDirection.y,
-     * it would return BasicDirection.x.
-     *
-     * @param direction The BasicDirection to mirror
-     * @return The mirrored BasicDirection
-     */
-    public static BasicDirection mirrorBasicDirection(final BasicDirection direction) {
-
-        switch (direction) {
-
-            case x:
-                return BasicDirection.y;
-            case y:
-                return BasicDirection.x;
-        }
-
-        // If the switch statement above fails (impossible) return x
-        return BasicDirection.x;
-    }
-
     @Override
     public String toString() {
         return "Directions{" +
                 "directions=" + directions +
                 '}';
-    }
-
-    public enum BasicDirection {
-        x, y
-    }
-
-    public enum Direction {
-        RIGHT, /* 1 */
-        LEFT,  /* 2 */
-        UP,    /* 4 */
-        DOWN,   /* 8 */
-        EMPTY /* 16 */
     }
 
     public void addDirection(Direction direction) {
@@ -172,5 +160,17 @@ public class Directions {
                 return 16;
         }
         return 0;
+    }
+
+    public enum BasicDirection {
+        x, y
+    }
+
+    public enum Direction {
+        RIGHT, /* 1 */
+        LEFT,  /* 2 */
+        UP,    /* 4 */
+        DOWN,   /* 8 */
+        EMPTY /* 16 */
     }
 }

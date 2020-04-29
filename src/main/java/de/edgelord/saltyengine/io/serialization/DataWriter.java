@@ -24,7 +24,7 @@ import java.util.LinkedList;
 
 public class DataWriter {
 
-    private LinkedList<Species> speciesList = new LinkedList<>();
+    private final LinkedList<Species> speciesList = new LinkedList<>();
     private FileWriter fileWriter;
 
     public DataWriter(File file) throws IOException {

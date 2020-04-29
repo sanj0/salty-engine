@@ -26,7 +26,7 @@ import java.awt.*;
 
 public class DrawHitboxComponent extends Component<GameObject> {
 
-    private static Color color = new Color(1, 0, 0, 0.25f);
+    private static final Color color = new Color(1, 0, 0, 0.25f);
 
     public DrawHitboxComponent(GameObject parent, String name) {
         super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);

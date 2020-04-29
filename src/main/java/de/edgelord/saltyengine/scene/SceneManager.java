@@ -47,6 +47,16 @@ public class SceneManager {
     }
 
     /**
+     * Sets {@link #currentScene} and then
+     * {@link Scene#initialize() initializes} it.
+     *
+     * @param scene the new active <code>Scene</code>
+     */
+    public static void setCurrentScene(Scene scene) {
+        setCurrentScene(scene, true);
+    }
+
+    /**
      * Sets {@link #currentScene}.
      *
      * @param scene      the new value of {@link #currentScene}
@@ -60,16 +70,6 @@ public class SceneManager {
             scene.initialize();
         }
         Game.forEachGameListener(gameListener -> gameListener.onSceneStart(currentScene));
-    }
-
-    /**
-     * Sets {@link #currentScene} and then
-     * {@link Scene#initialize() initializes} it.
-     *
-     * @param scene the new active <code>Scene</code>
-     */
-    public static void setCurrentScene(Scene scene) {
-        setCurrentScene(scene, true);
     }
 
     /**

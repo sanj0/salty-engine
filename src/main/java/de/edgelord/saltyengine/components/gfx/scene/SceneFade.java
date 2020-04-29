@@ -44,7 +44,7 @@ public abstract class SceneFade extends SceneGFXComponent {
     /**
      * The <code>DrawingRoutine</code> that  is used to draw the fade.
      */
-    private DrawingRoutine drawingRoutine;
+    private final DrawingRoutine drawingRoutine;
 
     /**
      * The current alpha value of the fade.
@@ -54,28 +54,12 @@ public abstract class SceneFade extends SceneGFXComponent {
     /**
      * The <code>KeyframeAnimation</code> used to animated the fade.
      */
-    private KeyframeAnimation animation;
+    private final KeyframeAnimation animation;
 
     /**
      * The <code>Scene</code> that contains the fade.
      */
-    private Scene container;
-
-    /**
-     * The mode of the fade.
-     */
-    public enum Fade {
-
-        /**
-         * Fade in, meaning that the fade is fully visible at th beginning and fully invisible at the end.
-         */
-        IN,
-
-        /**
-         * Fade out, meaning that the fade is fully invisible at the beginning and fully visible at the end.
-         */
-        OUT
-    }
+    private final Scene container;
 
     /**
      * The constructor.
@@ -151,5 +135,21 @@ public abstract class SceneFade extends SceneGFXComponent {
         } else {
             currentAlpha += animation.nextDelta();
         }
+    }
+
+    /**
+     * The mode of the fade.
+     */
+    public enum Fade {
+
+        /**
+         * Fade in, meaning that the fade is fully visible at th beginning and fully invisible at the end.
+         */
+        IN,
+
+        /**
+         * Fade out, meaning that the fade is fully invisible at the beginning and fully visible at the end.
+         */
+        OUT
     }
 }

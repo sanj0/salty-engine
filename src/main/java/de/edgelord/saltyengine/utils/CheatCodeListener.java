@@ -37,7 +37,7 @@ public abstract class CheatCodeListener implements Closeable {
     /**
      * The {@link KeyboardInputHandler} that listens fr input.
      */
-    private KeyboardInputHandler inputHandler;
+    private final KeyboardInputHandler inputHandler;
 
     /**
      * The currently typed cheat code.

@@ -26,12 +26,12 @@ public class CollisionDetectionResult {
     /**
      * This is <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s collides and <code>false</code> when not.
      */
-    private boolean collision;
+    private final boolean collision;
 
     /**
      * The {@link de.edgelord.saltyengine.utils.Directions.Direction} in which the first of the two (the "root") collided with the second one.
      */
-    private Directions.Direction rootCollisionDirection;
+    private final Directions.Direction rootCollisionDirection;
 
     /**
      * The constructor.

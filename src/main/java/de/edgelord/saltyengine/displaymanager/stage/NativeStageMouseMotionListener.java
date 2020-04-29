@@ -27,7 +27,7 @@ import java.awt.event.MouseMotionListener;
 
 public class NativeStageMouseMotionListener extends MouseInputHandlerListener implements MouseMotionListener {
 
-    private Stage container;
+    private final Stage container;
 
     public NativeStageMouseMotionListener(MouseInputHandler mouseHandler, Stage stage) {
         super(mouseHandler);

@@ -25,7 +25,7 @@ import de.edgelord.saltyengine.utils.Directions;
  */
 public class GravityParticleModifier implements ParticleModifier {
 
-    private float speed;
+    private final float speed;
 
     public GravityParticleModifier(float speed) {
         this.speed = speed;

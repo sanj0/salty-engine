@@ -67,18 +67,15 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * The List of collisions that has been occurred in the last collision detection, used for {@link #onCollisionDetectionFinish(List)}.
      */
     private final List<CollisionEvent> collisions = new CopyOnWriteArrayList<>();
-
-    /**
-     * Used for internal purposes to make sure that the list of {@link #collisions} is cleared once per collision detection.
-     */
-    private boolean clearCollisions = true;
-
     /**
      * The default physics component, used for stopping the <code>GameObject</code> when a collision in a direction
      * occurs and to accelerate it using e.g. {@link #accelerate(float, Directions.Direction)} or {@link #accelerateTo(float, Directions.Direction)}.
      */
     private final SimplePhysicsComponent physicsComponent;
-
+    /**
+     * Used for internal purposes to make sure that the list of {@link #collisions} is cleared once per collision detection.
+     */
+    private boolean clearCollisions = true;
     /**
      * The collider of this <code>GameObject</code>, used to check collisions between this and other <code>GameObject</code>s.
      */
@@ -494,6 +491,10 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return hitbox;
     }
 
+    public void setHitbox(final Hitbox hitbox) {
+        this.hitbox = hitbox;
+    }
+
     /**
      * Returns the {@link #hitbox} as a {@link SimpleHitbox}, as it is by default.
      *
@@ -501,10 +502,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      */
     public SimpleHitbox getHitboxAsSimpleHitbox() {
         return (SimpleHitbox) getHitbox();
-    }
-
-    public void setHitbox(final Hitbox hitbox) {
-        this.hitbox = hitbox;
     }
 
     public SimplePhysicsComponent getPhysics() {

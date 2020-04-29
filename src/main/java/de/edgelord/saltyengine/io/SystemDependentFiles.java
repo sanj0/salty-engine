@@ -28,18 +28,6 @@ import java.io.File;
  */
 public class SystemDependentFiles {
 
-    public enum OS {
-        MAC_OS,
-        LINUX,
-        WINDOWS
-    }
-
-    private SystemDependentFiles() {
-    }
-
-    private static OS os = null;
-    private static String user = null;
-
     private static final String macOSSearchPhrase = "mac";
     private static final String linuxSearchPhrase = "linux";
     private static final String windowsSearchPhrase = "windows";
@@ -47,6 +35,11 @@ public class SystemDependentFiles {
     private static final String linuxUserDirPrefix = "/home/";
     private static final String windowsUserDir = System.getProperty("user.home");
     private static final String windowsSystemPath = "C:/";
+    private static OS os = null;
+    private static String user = null;
+
+    private SystemDependentFiles() {
+    }
 
     /**
      * This method returns the current user's home directory
@@ -163,5 +156,11 @@ public class SystemDependentFiles {
         if (user == null) {
             user = System.getProperty("user.name");
         }
+    }
+
+    public enum OS {
+        MAC_OS,
+        LINUX,
+        WINDOWS
     }
 }

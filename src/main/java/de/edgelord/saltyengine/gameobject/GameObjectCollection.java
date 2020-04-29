@@ -24,7 +24,7 @@ import java.util.List;
 @Deprecated
 public class GameObjectCollection {
 
-    private List<GameObject> gameObjects = new LinkedList<>();
+    private final List<GameObject> gameObjects = new LinkedList<>();
 
     public GameObjectCollection() {
 

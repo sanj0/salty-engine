@@ -27,10 +27,10 @@ import java.awt.image.ImageObserver;
 
 public class PaneledGameHost extends Host {
 
-    private Dimensions dimensions;
-    private Container container;
-    private Engine engine;
-    private Stage stage;
+    private final Dimensions dimensions;
+    private final Container container;
+    private final Engine engine;
+    private final Stage stage;
 
     public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
         dimensions = new Dimensions(width, height);

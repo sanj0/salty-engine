@@ -86,15 +86,6 @@ public class BasicRenderContext implements RenderContext {
     }
 
     /**
-     * Returns the {@link #color} with the correct {@link #alpha} value.
-     *
-     * @return the color used by this configuration with the correct alpha value
-     */
-    public Color getColorWithAlpha() {
-        return new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.round(alpha * 255f));
-    }
-
-    /**
      * Sets the {@link #color} used by this <code>RenderContext</code> and the {@link #paint} to the given {@link Color}.
      *
      * @param color the new {@link #color} and {@link #paint}
@@ -102,6 +93,15 @@ public class BasicRenderContext implements RenderContext {
     public void setColor(Color color) {
         this.color = color;
         this.paint = color;
+    }
+
+    /**
+     * Returns the {@link #color} with the correct {@link #alpha} value.
+     *
+     * @return the color used by this configuration with the correct alpha value
+     */
+    public Color getColorWithAlpha() {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.round(alpha * 255f));
     }
 
     public Paint getPaint() {

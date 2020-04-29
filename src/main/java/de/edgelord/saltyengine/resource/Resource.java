@@ -29,16 +29,6 @@ import java.net.URL;
 
 public interface Resource {
 
-    SaltyImage getImageResource(String relativePath);
-
-    Clip getAudioResource(String relativePath);
-
-    File getFileResource(String relativePath);
-
-    default URL pathToURL(String path) throws MalformedURLException {
-        return getFileResource(path).toURI().toURL();
-    }
-
     static Clip createClip(AudioInputStream inputStream) {
         Clip clip = null;
         try {
@@ -49,5 +39,15 @@ public interface Resource {
         }
 
         return clip;
+    }
+
+    SaltyImage getImageResource(String relativePath);
+
+    Clip getAudioResource(String relativePath);
+
+    File getFileResource(String relativePath);
+
+    default URL pathToURL(String path) throws MalformedURLException {
+        return getFileResource(path).toURI().toURL();
     }
 }

@@ -277,7 +277,7 @@ public class ColorUtil {
      * @param alpha the alpha value of the color
      * @return the given color with the given alpha value
      */
-    public static Color withAlpha(Color color,  int alpha) {
+    public static Color withAlpha(Color color, int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
 
@@ -301,7 +301,6 @@ public class ColorUtil {
      * @param color  Color to make darker.
      * @param amount Darkness fraction.
      * @return Darker color.
-     *
      * @deprecated
      */
     public static Color changeBrightness(Color color, float amount) {

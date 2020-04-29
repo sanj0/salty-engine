@@ -67,7 +67,7 @@ public class LinearTransformAnimations extends Component {
     /**
      * The keyframe animation used to animate the {@link de.edgelord.saltyengine.transform.Transform}.
      */
-    private LinearKeyframeAnimation animation = new LinearKeyframeAnimation();
+    private final LinearKeyframeAnimation animation = new LinearKeyframeAnimation();
 
     /**
      * Whether the animation should be looped or not. Default getters and setters exist.
@@ -77,7 +77,7 @@ public class LinearTransformAnimations extends Component {
     /**
      * What the animation should control
      */
-    private Control control;
+    private final Control control;
 
     /**
      * {@inheritDoc}
@@ -189,6 +189,22 @@ public class LinearTransformAnimations extends Component {
     }
 
     /**
+     * @return the value of {@link #loop}.
+     */
+    public boolean isLoop() {
+        return loop;
+    }
+
+    /**
+     * Sets the value of {@link #loop} to the given boolean.
+     *
+     * @param loop the new value for {@link #loop}.
+     */
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
+    /**
      * Describes which part of the {@link de.edgelord.saltyengine.transform.Transform} is to be animated.
      *
      * <code>WIDTH</code> meaning the width of it ({@link de.edgelord.saltyengine.transform.Transform#setWidth(float)})
@@ -203,21 +219,5 @@ public class LinearTransformAnimations extends Component {
         X_POS,
         Y_POS,
         ROTATION
-    }
-
-    /**
-     * @return the value of {@link #loop}.
-     */
-    public boolean isLoop() {
-        return loop;
-    }
-
-    /**
-     * Sets the value of {@link #loop} to the given boolean.
-     *
-     * @param loop the new value for {@link #loop}.
-     */
-    public void setLoop(boolean loop) {
-        this.loop = loop;
     }
 }

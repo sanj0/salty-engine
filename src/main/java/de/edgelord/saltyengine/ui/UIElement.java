@@ -39,17 +39,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class UIElement extends ComponentContainer implements Drawable, FixedTickRoutine, MouseInputHandler, KeyboardInputHandler {
 
-    private Font font = SaltySystem.defaultFont;
-
-    private Color backgroundColor = Color.DARK_GRAY;
-    private Color foregroundColor = Color.WHITE;
-
-    private boolean mouseHoversOver = false;
-
-    private List<Component> components = new CopyOnWriteArrayList<>();
-
-    private boolean suppressClipping = false;
-
     public static final String BUTTON = "de.edgelord.saltyengine.uiElements.button";
     public static final String LABEL = "de.edgelord.saltyengine.uiElements.label";
     public static final String TEXT_BOX = "de.edgelord.saltyengine.uiElements.textBox";
@@ -57,7 +46,12 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public static final String STATE_DISPLAY_ELEMENT = "de.edgelord.saltyengine.uiElements.stateDisplayElement";
     public static final String SETTINGS_ELEMENT = "de.edgelord.saltyengine.uiElements.settingsElement";
     public static final String SWING_ELEMENT = "de.edgelord.saltyengine.uiElements.swingElement";
-
+    private Font font = SaltySystem.defaultFont;
+    private Color backgroundColor = Color.DARK_GRAY;
+    private Color foregroundColor = Color.WHITE;
+    private boolean mouseHoversOver = false;
+    private final List<Component> components = new CopyOnWriteArrayList<>();
+    private boolean suppressClipping = false;
     private boolean focused = false;
 
     public UIElement(Vector2f position, float width, float height, String tag) {

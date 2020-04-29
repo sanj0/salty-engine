@@ -101,6 +101,10 @@ public class SaltyVolatileImage implements SaltyImage {
         return image;
     }
 
+    public void setImage(VolatileImage image) {
+        this.image = image;
+    }
+
     @Override
     public SaltyImage getSubImage(int x, int y, int width, int height) {
         return new SaltyVolatileImage(ImageUtils.getSubImage(image, x, y, width, height));
@@ -137,13 +141,13 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     @Override
-    public void setAccelerationPriority(float priority) {
-        image.setAccelerationPriority(priority);
+    public float getAccelerationPriority() {
+        return image.getAccelerationPriority();
     }
 
     @Override
-    public float getAccelerationPriority() {
-        return image.getAccelerationPriority();
+    public void setAccelerationPriority(float priority) {
+        image.setAccelerationPriority(priority);
     }
 
     @Override
@@ -181,9 +185,5 @@ public class SaltyVolatileImage implements SaltyImage {
 
     public boolean contentsLost() {
         return image.contentsLost();
-    }
-
-    public void setImage(VolatileImage image) {
-        this.image = image;
     }
 }

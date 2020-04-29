@@ -30,8 +30,8 @@ import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
  */
 public class ScheduledTask implements FixedTickRoutine {
 
-    private Runnable task;
-    private long delay;
+    private final Runnable task;
+    private final long delay;
     private long ticks = 0;
 
     public ScheduledTask(Runnable task, long delay) {

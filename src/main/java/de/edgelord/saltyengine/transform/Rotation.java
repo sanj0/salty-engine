@@ -58,6 +58,21 @@ public class Rotation {
         this(0, 0);
     }
 
+    public static float getNormalizedDegrees(float degrees) {
+
+        if (degrees < 0) {
+            while (degrees <= -360) {
+                degrees += 360;
+            }
+        } else {
+            while (degrees >= 360) {
+                degrees -= 360;
+            }
+        }
+
+        return degrees;
+    }
+
     public void rotateToPoint(Vector2f point, Transform parent) {
         Vector2f absCentre = getCentreAbsolute(parent);
         double arc = Math.atan2(point.getY() - (absCentre.getY()), point.getX() - (absCentre.getX()));
@@ -102,21 +117,6 @@ public class Rotation {
 
     public void setRotationDegrees(float rotationDegrees) {
         this.rotationDegrees = rotationDegrees;
-    }
-
-    public static float getNormalizedDegrees(float degrees) {
-
-        if (degrees < 0) {
-            while (degrees <= -360) {
-                degrees += 360;
-            }
-        } else {
-            while (degrees >= 360) {
-                degrees -= 360;
-            }
-        }
-
-        return degrees;
     }
 
     @Override

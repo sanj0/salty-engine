@@ -47,7 +47,7 @@ public class SceneOverlay extends SceneGFXComponent {
      */
     private float alpha;
 
-    private DrawingRoutine drawColorOverlay;
+    private final DrawingRoutine drawColorOverlay;
 
     public SceneOverlay(String name, Color overlayColor, float alpha) {
         super(name);

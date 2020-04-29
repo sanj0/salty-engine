@@ -95,7 +95,7 @@ public interface SaltyImage {
 
     ImageCapabilities getCapabilities(GraphicsConfiguration gc);
 
-    void setAccelerationPriority(float priority);
-
     float getAccelerationPriority();
+
+    void setAccelerationPriority(float priority);
 }

@@ -40,20 +40,17 @@ import de.edgelord.saltyengine.utils.Directions;
 public abstract class Particle implements TransformedObject, Drawable, FixedTickRoutine {
 
     /**
+     * The number of the wave that this particle is spawned in.
+     */
+    private final Integer waveNumber;
+    /**
      * The transform of this particle.
      */
     private Transform transform;
-
     /**
      * The <code>Directions</code> in which this particle can't move.
      */
     private Directions lockedDirections = new Directions();
-
-    /**
-     * The number of the wave that this particle is spawned in.
-     */
-    private final Integer waveNumber;
-
     /**
      * The speed of this particle.
      */
@@ -106,8 +103,8 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
-        this.lockedDirections = directions;
+    public void setTransform(Transform transform) {
+        this.transform = transform;
     }
 
     @Override
@@ -116,8 +113,8 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     }
 
     @Override
-    public void setTransform(Transform transform) {
-        this.transform = transform;
+    public void setLockedDirections(Directions directions) {
+        this.lockedDirections = directions;
     }
 
     public int getWaveNumber() {

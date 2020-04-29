@@ -23,11 +23,10 @@ import java.io.IOException;
 
 public class DataReader {
 
-    private String fileContent;
-    private String fileName;
-    private File file;
-
     public static String SDB_FILE_EXTENSION = ".sdb";
+    private final String fileContent;
+    private final String fileName;
+    private final File file;
 
     public DataReader(File file) throws IOException {
         this(new FileReader(file));
@@ -39,6 +38,22 @@ public class DataReader {
         this.file = fileReader.getFile();
 
         fileName = fileReader.getFile().getName().replace(SDB_FILE_EXTENSION, "");
+    }
+
+    public static String getAsSpeciesStart(String name) {
+        return "{" + name + "}";
+    }
+
+    public static String getAsSpeciesEnd(String name) {
+        return "{*" + name + "}";
+    }
+
+    public static String getAsTagStart(String name) {
+        return "(" + name + ")";
+    }
+
+    public static String getAsTagEnd(String name) {
+        return "(*" + name + ")";
     }
 
     public DataWriter getDataWriter() throws IOException {
@@ -64,22 +79,6 @@ public class DataReader {
      */
     public Species getMainSpecies() {
         return new Species(fileName, splitString(fileContent, getAsSpeciesStart(fileName), getAsSpeciesEnd(fileName)));
-    }
-
-    public static String getAsSpeciesStart(String name) {
-        return "{" + name + "}";
-    }
-
-    public static String getAsSpeciesEnd(String name) {
-        return "{*" + name + "}";
-    }
-
-    public static String getAsTagStart(String name) {
-        return "(" + name + ")";
-    }
-
-    public static String getAsTagEnd(String name) {
-        return "(*" + name + ")";
     }
 
     /**

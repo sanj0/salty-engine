@@ -52,7 +52,7 @@ public class ProgressBar extends UIElement {
     /**
      * The current dimensions of the bar.
      */
-    private Dimensions currentBar = Dimensions.zero();
+    private final Dimensions currentBar = Dimensions.zero();
 
     /**
      * The stroke used for outlining the bar.

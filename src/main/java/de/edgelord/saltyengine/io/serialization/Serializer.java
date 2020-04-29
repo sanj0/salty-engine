@@ -48,6 +48,7 @@ public class Serializer {
     private static boolean addChecksum = true;
 
     private static MessageDigest hashCreator;
+    private static final List<Serializable> consumer = new ArrayList<>();
 
     static {
         try {
@@ -56,8 +57,6 @@ public class Serializer {
             e.printStackTrace();
         }
     }
-
-    private static List<Serializable> consumer = new ArrayList<>();
 
     private static void serialize(DataWriter writer) throws IOException {
         consumer.forEach(serializable -> {

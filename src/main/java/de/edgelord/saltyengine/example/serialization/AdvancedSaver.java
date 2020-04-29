@@ -22,11 +22,10 @@ import de.edgelord.saltyengine.io.serialization.Species;
 
 public class AdvancedSaver implements Serializable {
 
-    private int counter = 0;
-
     private final String CAMERA_POSITION_TAG = "camPos";
     private final String COUNTER_TAG = "counter";
     private final String REDUNDANT_MESSAGE_TAG = "message";
+    private int counter = 0;
 
     @Override
     public void serialize(Species species) {

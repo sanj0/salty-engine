@@ -28,7 +28,7 @@ import java.awt.image.VolatileImage;
 
 public class SaltyBufferedImage implements SaltyImage {
 
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public SaltyBufferedImage(int width, int height) {
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -139,12 +139,12 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
-    public void setAccelerationPriority(float priority) {
-        image.setAccelerationPriority(priority);
+    public float getAccelerationPriority() {
+        return image.getAccelerationPriority();
     }
 
     @Override
-    public float getAccelerationPriority() {
-        return image.getAccelerationPriority();
+    public void setAccelerationPriority(float priority) {
+        image.setAccelerationPriority(priority);
     }
 }

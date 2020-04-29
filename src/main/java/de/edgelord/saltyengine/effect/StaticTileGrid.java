@@ -79,13 +79,13 @@ import java.util.Map;
  */
 public abstract class StaticTileGrid extends DrawingRoutine {
 
-    private HashMap<Coordinates, SaltyImage> tiles = new HashMap<>();
+    private final HashMap<Coordinates, SaltyImage> tiles = new HashMap<>();
 
-    private SaltyImage tileGrid;
+    private final SaltyImage tileGrid;
 
     private boolean resizeTiles = false;
     private Dimensions tileSize;
-    private Vector2f position;
+    private final Vector2f position;
 
     public StaticTileGrid(DrawingPosition drawingPosition, Vector2f position, Dimensions tileSize) {
         super(drawingPosition);
@@ -108,14 +108,6 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     public StaticTileGrid(float x, float y, float tileWidth, float tileHeight) {
         this(DrawingPosition.BEFORE_GAMEOBJECTS, new Vector2f(x, y), new Dimensions(tileWidth, tileHeight));
     }
-
-    @Override
-    public void draw(SaltyGraphics saltyGraphics) {
-
-        saltyGraphics.drawImage(tileGrid, position.getX(), position.getY());
-    }
-
-    public abstract void buildTileGrid(HashMap<Coordinates, SaltyImage> grid);
 
     /**
      * Reads a Tilemap file created with Salty Tilemap Creator
@@ -158,6 +150,14 @@ public abstract class StaticTileGrid extends DrawingRoutine {
             }
         };
     }
+
+    @Override
+    public void draw(SaltyGraphics saltyGraphics) {
+
+        saltyGraphics.drawImage(tileGrid, position.getX(), position.getY());
+    }
+
+    public abstract void buildTileGrid(HashMap<Coordinates, SaltyImage> grid);
 
     private SaltyImage createStaticGridPicture() {
 

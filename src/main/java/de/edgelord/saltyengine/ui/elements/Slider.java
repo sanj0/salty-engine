@@ -40,7 +40,7 @@ public class Slider extends UIElement {
 
     private SaltyImage indicatorImage;
 
-    private SaltyShape indicatorShape = Objects.requireNonNull(SaltyShape.createShape(EnumShape.RECTANGLE, new Transform(0, 0, 5, 25)));
+    private final SaltyShape indicatorShape = Objects.requireNonNull(SaltyShape.createShape(EnumShape.RECTANGLE, new Transform(0, 0, 5, 25)));
 
     public Slider(Vector2f position, float width, float height) {
         super(position, width, height, null);

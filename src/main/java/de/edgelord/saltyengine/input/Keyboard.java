@@ -57,8 +57,8 @@ public class Keyboard {
     private boolean period = false; /* = "."*/
     private boolean minus = false;
     private boolean plus = false;
-    private boolean less = false;
-    private boolean greater = false;
+    private final boolean less = false;
+    private final boolean greater = false;
 
     /*
     Numbers from 0 to 9
