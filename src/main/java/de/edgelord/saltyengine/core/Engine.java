@@ -46,7 +46,7 @@ public class Engine {
      */
     private final Timer repaintTimer = new Timer();
     /**
-     * The lost of task scheduled for
+     * The list of task scheduled for
      * later execution by
      * {@link Game#executeLater(Runnable, long)}
      */
@@ -104,7 +104,6 @@ public class Engine {
                     for (int i = 0; i < scheduledTasks.size(); i++) {
                         scheduledTasks.get(i).onFixedTick();
                     }
-                    System.out.println("scheduled tasks: " + scheduledTasks.size());
                 }
             }
         }, 0, fixedTickMillis);
