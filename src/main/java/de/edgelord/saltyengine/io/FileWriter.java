@@ -40,7 +40,6 @@ public class FileWriter extends FileIO {
      * @throws IOException when the file could not be written to
      */
     public void writeThrough(String text) throws IOException {
-        getFile().createNewFile();
         if (SaltySystem.writePrivilege) {
             getFile().createNewFile();
 
