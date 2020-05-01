@@ -27,11 +27,11 @@ import java.awt.*;
 
 public class JTextElement extends SwingUIElement {
 
-    public JTextElement(JTextComponent component, Vector2f position, float width, float height) {
+    public JTextElement(final JTextComponent component, final Vector2f position, final float width, final float height) {
         super(component, position, width, height);
     }
 
-    public JTextElement(JTextComponent component, Transform transform) {
+    public JTextElement(final JTextComponent component, final Transform transform) {
         super(component, transform);
     }
 
@@ -41,7 +41,7 @@ public class JTextElement extends SwingUIElement {
     }
 
     @Override
-    public void setFont(Font font) {
+    public void setFont(final Font font) {
         super.setFont(font);
     }
 
@@ -51,7 +51,7 @@ public class JTextElement extends SwingUIElement {
     }
 
     @Override
-    public void setBackgroundColor(Color backgroundColor) {
+    public void setBackgroundColor(final Color backgroundColor) {
         super.setBackgroundColor(backgroundColor);
     }
 
@@ -61,12 +61,12 @@ public class JTextElement extends SwingUIElement {
     }
 
     @Override
-    public void setForegroundColor(Color foregroundColor) {
+    public void setForegroundColor(final Color foregroundColor) {
         super.setForegroundColor(foregroundColor);
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         super.setTransform(transform);
     }
 
@@ -86,77 +86,77 @@ public class JTextElement extends SwingUIElement {
     }
 
     @Override
-    public void setRotation(Rotation rotation) {
+    public void setRotation(final Rotation rotation) {
 
     }
 
     @Override
-    public void setRotationDegrees(float rotationDegrees) {
+    public void setRotationDegrees(final float rotationDegrees) {
 
     }
 
     @Override
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(final Dimensions dimensions) {
 
     }
 
     @Override
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
 
     }
 
     @Override
-    public void setWidth(float width) {
+    public void setWidth(final float width) {
 
     }
 
     @Override
-    public void setHeight(float height) {
+    public void setHeight(final float height) {
 
     }
 
     @Override
-    public void setX(float x) {
+    public void setX(final float x) {
 
     }
 
     @Override
-    public void setY(float y) {
+    public void setY(final float y) {
 
     }
 
     @Override
-    public void positionByCentre(Vector2f centre) {
+    public void positionByCentre(final Vector2f centre) {
 
     }
 
     @Override
-    public void moveToFacedDirection(float delta) {
+    public void moveToFacedDirection(final float delta) {
 
     }
 
     @Override
-    public void moveInAngle(float degrees, float delta) {
+    public void moveInAngle(final float degrees, final float delta) {
 
     }
 
     @Override
-    public void basicMove(float delta, Directions.BasicDirection direction) {
+    public void basicMove(final float delta, final Directions.BasicDirection direction) {
 
     }
 
     @Override
-    public void move(float delta, Directions.Direction direction) {
+    public void move(final float delta, final Directions.Direction direction) {
 
     }
 
     @Override
-    public void moveY(float delta) {
+    public void moveY(final float delta) {
 
     }
 
     @Override
-    public void moveX(float delta) {
+    public void moveX(final float delta) {
 
     }
 

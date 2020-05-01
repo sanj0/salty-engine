@@ -37,11 +37,11 @@ public class SaltyVolatileImage implements SaltyImage {
      * @param width  the width of the image
      * @param height the height of the image
      */
-    public SaltyVolatileImage(float width, float height) {
+    public SaltyVolatileImage(final float width, final float height) {
         image = SaltySystem.createVolatileImage(Math.round(width), Math.round(height));
     }
 
-    public SaltyVolatileImage(Image image) {
+    public SaltyVolatileImage(final Image image) {
         this.image = ImageUtils.toVolatileImage(image);
     }
 
@@ -50,7 +50,7 @@ public class SaltyVolatileImage implements SaltyImage {
      *
      * @param source the source for this image
      */
-    public SaltyVolatileImage(BufferedImage source) {
+    public SaltyVolatileImage(final BufferedImage source) {
         image = SaltySystem.createVolatileImage(source.getWidth(), source.getHeight());
     }
 
@@ -59,7 +59,7 @@ public class SaltyVolatileImage implements SaltyImage {
      *
      * @param source the source for this image
      */
-    public SaltyVolatileImage(VolatileImage source) {
+    public SaltyVolatileImage(final VolatileImage source) {
         image = SaltySystem.createVolatileImage(source.getWidth(), source.getHeight());
     }
 
@@ -69,23 +69,23 @@ public class SaltyVolatileImage implements SaltyImage {
      *
      * @param path the relative path of image
      */
-    public SaltyVolatileImage(String path) {
+    public SaltyVolatileImage(final String path) {
         this(SaltySystem.defaultImageFactory.getPreferredImageResource(path));
     }
 
-    public SaltyVolatileImage(SaltyImage source) {
+    public SaltyVolatileImage(final SaltyImage source) {
         image = source.toVolatileImage();
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
+    public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         if (contentsLost()) {
             validate(SaltySystem.gfxConfig);
         }
         saltyGraphics.drawImage(getImage(), position, new Dimensions(width, height));
     }
 
-    public void draw(SaltyGraphics saltyGraphics, Vector2f position) {
+    public void draw(final SaltyGraphics saltyGraphics, final Vector2f position) {
         if (contentsLost()) {
             validate(SaltySystem.gfxConfig);
         }
@@ -93,7 +93,7 @@ public class SaltyVolatileImage implements SaltyImage {
         saltyGraphics.drawImage(getImage(), position.getX(), position.getY());
     }
 
-    public void draw(SaltyGraphics saltyGraphics, float x, float y) {
+    public void draw(final SaltyGraphics saltyGraphics, final float x, final float y) {
         draw(saltyGraphics, new Vector2f(x, y));
     }
 
@@ -101,12 +101,12 @@ public class SaltyVolatileImage implements SaltyImage {
         return image;
     }
 
-    public void setImage(VolatileImage image) {
+    public void setImage(final VolatileImage image) {
         this.image = image;
     }
 
     @Override
-    public SaltyImage getSubImage(int x, int y, int width, int height) {
+    public SaltyImage getSubImage(final int x, final int y, final int width, final int height) {
         return new SaltyVolatileImage(ImageUtils.getSubImage(image, x, y, width, height));
     }
 
@@ -121,12 +121,12 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     @Override
-    public Object getProperty(String name) {
+    public Object getProperty(final String name) {
         return image.getProperty(name, Game.getHost().getImageObserver());
     }
 
     @Override
-    public Image getScaledInstance(int width, int height, int hints) {
+    public Image getScaledInstance(final int width, final int height, final int hints) {
         return image.getScaledInstance(width, height, hints);
     }
 
@@ -136,7 +136,7 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     @Override
-    public ImageCapabilities getCapabilities(GraphicsConfiguration gc) {
+    public ImageCapabilities getCapabilities(final GraphicsConfiguration gc) {
         return image.getCapabilities(gc);
     }
 
@@ -146,7 +146,7 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     @Override
-    public void setAccelerationPriority(float priority) {
+    public void setAccelerationPriority(final float priority) {
         image.setAccelerationPriority(priority);
     }
 
@@ -179,7 +179,7 @@ public class SaltyVolatileImage implements SaltyImage {
         return image.getSnapshot();
     }
 
-    public int validate(GraphicsConfiguration gc) {
+    public int validate(final GraphicsConfiguration gc) {
         return image.validate(gc);
     }
 

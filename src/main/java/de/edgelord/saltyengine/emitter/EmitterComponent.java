@@ -133,7 +133,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param amount       the amount of emitted particles per wave
      * @param waveInterval the time to be passed between each wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
+    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount, final int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
 
         this.particle = particle;
@@ -155,7 +155,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param speed    the speed of the particles spawned by this emitter.
      * @param amount   the amount of emitted particles per wave
      */
-    public EmitterComponent(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
+    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount) {
         this(parent, name, particle, speed, amount, 1);
 
         impactMode = true;
@@ -190,7 +190,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     public abstract void moveParticle(Particle particle);
 
     @Override
-    public void onCollision(CollisionEvent event) {
+    public void onCollision(final CollisionEvent event) {
     }
 
     /**
@@ -201,7 +201,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
 
         // fixed ticks of the particle to remove them
         for (int i = 0; i < currentParticles.size(); i++) {
-            Particle particle = currentParticles.get(i);
+            final Particle particle = currentParticles.get(i);
             particle.onFixedTick();
 
         }
@@ -227,7 +227,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         }
 
         // apply the modifier stack
-        for (ParticleModifier modifier : modifierStack) {
+        for (final ParticleModifier modifier : modifierStack) {
             modifier.modifyParticles(currentParticles);
         }
     }
@@ -245,12 +245,12 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * @param saltyGraphics the graphics to render the particles, this is internally passed in.
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         if (GraphicsConfiguration.renderGFX) {
             saltyGraphics.resetObjectRotation(getParent());
             for (int i = 0; i < currentParticles.size(); i++) {
-                Particle particle = currentParticles.get(i);
+                final Particle particle = currentParticles.get(i);
                 renderContext.nextParticleRenderConfig(saltyGraphics, particle);
                 particle.draw(saltyGraphics);
             }
@@ -265,7 +265,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     public Particle createParticle() {
         try {
 
-            Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifetime, speed, this);
+            final Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifetime, speed, this);
 
             if (fixedParticleDimensions != null) {
                 particle.setDimensions(fixedParticleDimensions);
@@ -274,7 +274,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
             }
 
             return particle;
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
 
@@ -286,7 +286,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param particle the particle to be removed from the list.
      */
-    public void removeParticle(Particle particle) {
+    public void removeParticle(final Particle particle) {
         currentParticles.remove(particle);
     }
 
@@ -302,7 +302,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param particle the <code>Particle</code> to be added.
      */
-    private void addParticle(Particle particle) {
+    private void addParticle(final Particle particle) {
         currentParticles.add(particle);
     }
 
@@ -311,7 +311,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param modifier the modifier to be added to the stack.
      */
-    public void addModifier(ParticleModifier modifier) {
+    public void addModifier(final ParticleModifier modifier) {
         modifierStack.add(modifier);
     }
 
@@ -320,7 +320,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      *
      * @param modifier the modifier to be removed from the stack.
      */
-    public void removeModifier(ParticleModifier modifier) {
+    public void removeModifier(final ParticleModifier modifier) {
         modifierStack.remove(modifier);
     }
 
@@ -328,7 +328,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(final float amount) {
         this.amount = amount;
     }
 
@@ -336,7 +336,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return waveInterval;
     }
 
-    public void setWaveInterval(int waveInterval) {
+    public void setWaveInterval(final int waveInterval) {
         this.waveInterval = waveInterval;
     }
 
@@ -344,7 +344,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return impactMode;
     }
 
-    public void setImpactMode(boolean impactMode) {
+    public void setImpactMode(final boolean impactMode) {
         this.impactMode = impactMode;
     }
 
@@ -352,7 +352,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return lifetime;
     }
 
-    public void setLifetime(int lifetime) {
+    public void setLifetime(final int lifetime) {
         this.lifetime = lifetime;
     }
 
@@ -360,7 +360,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(final float speed) {
         this.speed = speed;
     }
 
@@ -368,7 +368,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return modifierStack;
     }
 
-    public void setModifierStack(List<ParticleModifier> modifierStack) {
+    public void setModifierStack(final List<ParticleModifier> modifierStack) {
         this.modifierStack = modifierStack;
     }
 
@@ -376,7 +376,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return particle;
     }
 
-    public void setParticle(Class<? extends Particle> particle) {
+    public void setParticle(final Class<? extends Particle> particle) {
         this.particle = particle;
     }
 
@@ -384,7 +384,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return fixedMinParticleDimensions;
     }
 
-    public void setFixedMinParticleDimensions(Dimensions fixedMinParticleDimensions) {
+    public void setFixedMinParticleDimensions(final Dimensions fixedMinParticleDimensions) {
         this.fixedMinParticleDimensions = fixedMinParticleDimensions;
     }
 
@@ -392,7 +392,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return fixedMaxParticleDimensions;
     }
 
-    public void setFixedMaxParticleDimensions(Dimensions fixedMaxParticleDimensions) {
+    public void setFixedMaxParticleDimensions(final Dimensions fixedMaxParticleDimensions) {
         this.fixedMaxParticleDimensions = fixedMaxParticleDimensions;
     }
 
@@ -400,7 +400,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return fixedParticleDimensions;
     }
 
-    public void setFixedParticleDimensions(Dimensions fixedParticleDimensions) {
+    public void setFixedParticleDimensions(final Dimensions fixedParticleDimensions) {
         this.fixedParticleDimensions = fixedParticleDimensions;
     }
 
@@ -408,7 +408,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return spawnPoint;
     }
 
-    public void setSpawnPoint(Vector2f spawnPoint) {
+    public void setSpawnPoint(final Vector2f spawnPoint) {
         this.spawnPoint = spawnPoint;
     }
 
@@ -416,7 +416,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         return renderContext;
     }
 
-    public void setRenderContext(ParticleRenderContext renderContext) {
+    public void setRenderContext(final ParticleRenderContext renderContext) {
         this.renderContext = renderContext;
     }
 }

@@ -22,7 +22,7 @@ public class FileIO {
 
     private File file;
 
-    public FileIO(File file) {
+    public FileIO(final File file) {
         this.file = file;
     }
 
@@ -40,7 +40,7 @@ public class FileIO {
      *
      * @param file the new value of {@link #file}
      */
-    public void setFile(File file) {
+    public void setFile(final File file) {
         this.file = file;
     }
 }

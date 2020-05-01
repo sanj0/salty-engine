@@ -30,7 +30,7 @@ import de.edgelord.saltyengine.gameobject.Components;
  */
 public abstract class GFXComponent extends Component {
 
-    public GFXComponent(ComponentContainer parent, String name) {
+    public GFXComponent(final ComponentContainer parent, final String name) {
         super(parent, name, Components.GFX_COMPONENT);
 
         disable();
@@ -42,7 +42,7 @@ public abstract class GFXComponent extends Component {
      * @param e the collision event
      */
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 

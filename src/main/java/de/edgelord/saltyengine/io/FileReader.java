@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 public class FileReader extends FileIO {
 
-    public FileReader(File file) {
+    public FileReader(final File file) {
         super(file);
     }
 

@@ -25,24 +25,24 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class OvalShape extends SaltyShape {
-    public OvalShape(Transform transform) {
+    public OvalShape(final Transform transform) {
         super(transform, EnumShape.OVAL);
     }
 
-    public OvalShape(Vector2f position, Dimensions dimensions) {
+    public OvalShape(final Vector2f position, final Dimensions dimensions) {
         super(position, dimensions, EnumShape.OVAL);
     }
 
-    public OvalShape(TransformedObject parent) {
+    public OvalShape(final TransformedObject parent) {
         super(parent, EnumShape.OVAL);
     }
 
-    public OvalShape(float x, float y, float width, float height) {
+    public OvalShape(final float x, final float y, final float width, final float height) {
         super(x, y, width, height, EnumShape.OVAL);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         if (isFilled()) {
             saltyGraphics.drawOval(this);
         } else {

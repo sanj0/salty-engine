@@ -31,9 +31,9 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the List of Strings
      */
-    public static List<String> convertToList(Species species, String tag, String separator) {
+    public static List<String> convertToList(final Species species, final String tag, final String separator) {
 
-        String[] arrayToAdd = species.getTagValue(tag).split(separator);
+        final String[] arrayToAdd = species.getTagValue(tag).split(separator);
 
         return new LinkedList<>(Arrays.asList(arrayToAdd));
     }
@@ -46,7 +46,7 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the array of Strings
      */
-    public static String[] convertToArray(Species species, String tag, String separator) {
+    public static String[] convertToArray(final Species species, final String tag, final String separator) {
         return (String[]) convertToList(species, tag, separator).toArray();
     }
 
@@ -59,11 +59,11 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Integers.
      * @return the List of ints
      */
-    public static List<Integer> convertToIntegerList(Species species, String tag, String separator) {
+    public static List<Integer> convertToIntegerList(final Species species, final String tag, final String separator) {
 
-        List<Integer> list = new LinkedList<>();
+        final List<Integer> list = new LinkedList<>();
 
-        for (String string : convertToList(species, tag, separator)) {
+        for (final String string : convertToList(species, tag, separator)) {
 
             list.add(Integer.parseInt(string));
         }
@@ -79,7 +79,7 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the array of ints
      */
-    public static Integer[] convertToIntegerArray(Species species, String tag, String separator) {
+    public static Integer[] convertToIntegerArray(final Species species, final String tag, final String separator) {
         return (Integer[]) convertToIntegerList(species, tag, separator).toArray();
     }
 
@@ -92,11 +92,11 @@ public class ValueToListConverter {
      * @param separator the separator which divides the doubles.
      * @return the List of doubles
      */
-    public static List<Double> convertToDoubleList(Species species, String tag, String separator) {
+    public static List<Double> convertToDoubleList(final Species species, final String tag, final String separator) {
 
-        List<Double> list = new LinkedList<>();
+        final List<Double> list = new LinkedList<>();
 
-        for (String string : convertToList(species, tag, separator)) {
+        for (final String string : convertToList(species, tag, separator)) {
             list.add(Double.parseDouble(string));
         }
 
@@ -111,7 +111,7 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the array of doubles
      */
-    public static Double[] convertToDoubleArray(Species species, String tag, String separator) {
+    public static Double[] convertToDoubleArray(final Species species, final String tag, final String separator) {
         return (Double[]) convertToDoubleList(species, tag, separator).toArray();
     }
 
@@ -124,11 +124,11 @@ public class ValueToListConverter {
      * @param separator the separator which divides the chars.
      * @return the List of chars
      */
-    public static List<Character> convertToCharList(Species species, String tag, String separator) {
+    public static List<Character> convertToCharList(final Species species, final String tag, final String separator) {
 
-        List<Character> list = new LinkedList<>();
+        final List<Character> list = new LinkedList<>();
 
-        for (String string : convertToList(species, tag, separator)) {
+        for (final String string : convertToList(species, tag, separator)) {
             list.add(string.toCharArray()[0]);
         }
 
@@ -143,7 +143,7 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the array of chars
      */
-    public static Character[] convertToCharArray(Species species, String tag, String separator) {
+    public static Character[] convertToCharArray(final Species species, final String tag, final String separator) {
         return (Character[]) convertToCharList(species, tag, separator).toArray();
     }
 
@@ -156,11 +156,11 @@ public class ValueToListConverter {
      * @param separator the separator which divides the doubles.
      * @return the List of doubles
      */
-    public static List<Float> convertToFloatList(Species species, String tag, String separator) {
+    public static List<Float> convertToFloatList(final Species species, final String tag, final String separator) {
 
-        List<Float> list = new LinkedList<>();
+        final List<Float> list = new LinkedList<>();
 
-        for (String string : convertToList(species, tag, separator)) {
+        for (final String string : convertToList(species, tag, separator)) {
             list.add(Float.valueOf(string));
         }
 
@@ -175,7 +175,7 @@ public class ValueToListConverter {
      * @param separator the separator which divides the Strings.
      * @return the array of floats
      */
-    public static Float[] convertToFloatArray(Species species, String tag, String separator) {
+    public static Float[] convertToFloatArray(final Species species, final String tag, final String separator) {
         return (Float[]) convertToFloatList(species, tag, separator).toArray();
     }
 }

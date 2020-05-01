@@ -54,13 +54,13 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     private boolean suppressClipping = false;
     private boolean focused = false;
 
-    public UIElement(Vector2f position, float width, float height, String tag) {
+    public UIElement(final Vector2f position, final float width, final float height, final String tag) {
         super(tag);
 
         setTransform(new Transform(position, new Dimensions(width, height)));
     }
 
-    public UIElement(Transform transform, String tag) {
+    public UIElement(final Transform transform, final String tag) {
         this(transform.getPosition(), transform.getWidth(), transform.getHeight(), tag);
     }
 
@@ -75,7 +75,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
      * @param saltyGraphics the graphics ot render to.
      */
     @Override
-    public final void draw(SaltyGraphics saltyGraphics) {
+    public final void draw(final SaltyGraphics saltyGraphics) {
         prepareGraphics(saltyGraphics);
         drawBackground(saltyGraphics);
         saltyGraphics.setColor(getForegroundColor());
@@ -97,70 +97,70 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     public abstract void drawForeground(SaltyGraphics saltyGraphics);
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
     }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
     }
 
-    public void mouseExited(Transform cursor) {
-    }
-
-    @Override
-    public void mouseEnteredScreen(MouseEvent e) {
-    }
-
-    public void mouseEntered(Transform cursor) {
+    public void mouseExited(final Transform cursor) {
     }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
     }
 
-    public void mouseHover(Transform cursor) {
+    public void mouseEntered(final Transform cursor) {
     }
 
     @Override
-    public void addComponent(Component component) {
+    public void mouseWheelMoved(final MouseEvent e) {
+    }
+
+    public void mouseHover(final Transform cursor) {
+    }
+
+    @Override
+    public void addComponent(final Component component) {
         components.add(component);
     }
 
     @Override
-    public void removeComponent(String identifier) {
+    public void removeComponent(final String identifier) {
         components.removeIf(component -> component.getName().equals(identifier));
     }
 
     @Override
-    public void removeComponent(Component component) {
+    public void removeComponent(final Component component) {
         components.remove(component);
     }
 
@@ -170,9 +170,9 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     }
 
     @Override
-    public Component getComponent(String identifier) {
+    public Component getComponent(final String identifier) {
 
-        for (Component component : components) {
+        for (final Component component : components) {
             if (component.getName().equals(identifier)) {
                 return component;
             }
@@ -181,7 +181,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return null;
     }
 
-    private void prepareGraphics(SaltyGraphics graphics) {
+    private void prepareGraphics(final SaltyGraphics graphics) {
         graphics.setColor(getBackgroundColor());
         graphics.setFont(getFont());
     }
@@ -197,7 +197,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return font;
     }
 
-    public void setFont(Font font) {
+    public void setFont(final Font font) {
         this.font = font;
     }
 
@@ -209,7 +209,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return suppressClipping;
     }
 
-    public void setSuppressClipping(boolean suppressClipping) {
+    public void setSuppressClipping(final boolean suppressClipping) {
         this.suppressClipping = suppressClipping;
     }
 
@@ -217,7 +217,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return mouseHoversOver;
     }
 
-    protected void setMouseHoversOver(boolean mouseHoversOver) {
+    protected void setMouseHoversOver(final boolean mouseHoversOver) {
         this.mouseHoversOver = mouseHoversOver;
     }
 
@@ -225,7 +225,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return backgroundColor;
     }
 
-    public void setBackgroundColor(Color backgroundColor) {
+    public void setBackgroundColor(final Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
@@ -233,7 +233,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         return foregroundColor;
     }
 
-    public void setForegroundColor(Color foregroundColor) {
+    public void setForegroundColor(final Color foregroundColor) {
         this.foregroundColor = foregroundColor;
     }
 
@@ -251,7 +251,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
      *
      * @param focused the new value of {@link #focused}
      */
-    protected void setFocused(boolean focused) {
+    protected void setFocused(final boolean focused) {
         this.focused = focused;
     }
 }

@@ -48,7 +48,7 @@ public class Grid {
      * @param tileSize the {@link #tileSize size of one tile}
      * @param origin   the {@link #origin origin of the grid}
      */
-    public Grid(Dimensions tileSize, Vector2f origin) {
+    public Grid(final Dimensions tileSize, final Vector2f origin) {
         this.tileSize = tileSize;
         this.origin = origin;
     }
@@ -61,7 +61,7 @@ public class Grid {
      * @param originX    the x position of the origin of the grid
      * @param originY    the y position of the origin of the grid
      */
-    public Grid(float tileWidth, float tileHeight, float originX, float originY) {
+    public Grid(final float tileWidth, final float tileHeight, final float originX, final float originY) {
         this(new Dimensions(tileWidth, tileHeight), new Vector2f(originX, originY));
     }
 
@@ -71,7 +71,7 @@ public class Grid {
      *
      * @param tileSize the {@link #tileSize size of one tile}
      */
-    public Grid(Dimensions tileSize) {
+    public Grid(final Dimensions tileSize) {
         this(tileSize, Vector2f.zero());
     }
 
@@ -82,7 +82,7 @@ public class Grid {
      * @param tileWidth  the width of one tile
      * @param tileHeight the height of one tile
      */
-    public Grid(float tileWidth, float tileHeight) {
+    public Grid(final float tileWidth, final float tileHeight) {
         this(new Dimensions(tileWidth, tileHeight));
     }
 
@@ -96,15 +96,15 @@ public class Grid {
      *                   <code>Transform</code> in tiles
      * @return a {@link Transform} that resembles the given parameters with the grid as the system of coordinates
      */
-    public Transform getTransform(Coordinates position, Dimensions dimensions) {
+    public Transform getTransform(final Coordinates position, final Dimensions dimensions) {
 
-        float gridWidth = tileSize.getWidth();
-        float gridHeight = tileSize.getHeight();
+        final float gridWidth = tileSize.getWidth();
+        final float gridHeight = tileSize.getHeight();
 
-        float x = (position.getX() * gridWidth) + origin.getX();
-        float y = (position.getY() * gridHeight) + origin.getY();
-        float width = dimensions.getWidth() * gridWidth;
-        float height = dimensions.getHeight() * gridHeight;
+        final float x = (position.getX() * gridWidth) + origin.getX();
+        final float y = (position.getY() * gridHeight) + origin.getY();
+        final float width = dimensions.getWidth() * gridWidth;
+        final float height = dimensions.getHeight() * gridHeight;
 
         return new Transform(x, y, width, height);
     }
@@ -120,7 +120,7 @@ public class Grid {
      * @return a {@link Transform} that resembles the given parameters with the grid as the system of coordinates
      * @see #getTransform(Coordinates, Dimensions)
      */
-    public Transform getTransform(int x, int y, int width, int height) {
+    public Transform getTransform(final int x, final int y, final int width, final int height) {
         return getTransform(new Coordinates(x, y), new Dimensions(width, height));
     }
 
@@ -134,7 +134,7 @@ public class Grid {
      * @param y the y position of the tile within this grid
      * @return the <code>Transform</code> of the tile with the given {@link Coordinates} within this grid
      */
-    public Transform getTile(int x, int y) {
+    public Transform getTile(final int x, final int y) {
         return getTransform(new Coordinates(x, y), Dimensions.one());
     }
 
@@ -152,7 +152,7 @@ public class Grid {
      *
      * @param tileSize the new {@link #tileSize}
      */
-    public void setTileSize(Dimensions tileSize) {
+    public void setTileSize(final Dimensions tileSize) {
         this.tileSize = tileSize;
     }
 
@@ -170,7 +170,7 @@ public class Grid {
      *
      * @param origin the new value of {@link #origin}
      */
-    public void setOrigin(Vector2f origin) {
+    public void setOrigin(final Vector2f origin) {
         this.origin = origin;
     }
 }

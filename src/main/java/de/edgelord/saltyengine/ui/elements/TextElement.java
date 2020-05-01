@@ -27,11 +27,11 @@ public abstract class TextElement extends UIElement {
 
     private String text;
 
-    public TextElement(String text, Vector2f position, float width, float height, String tag) {
+    public TextElement(final String text, final Vector2f position, final float width, final float height, final String tag) {
         this(text, new Transform(position, new Dimensions(width, height)), tag);
     }
 
-    public TextElement(String text, Transform transform, String tag) {
+    public TextElement(final String text, final Transform transform, final String tag) {
         super(transform.getPosition(), transform.getWidth(), transform.getHeight(), tag);
 
         this.text = text;
@@ -41,7 +41,7 @@ public abstract class TextElement extends UIElement {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(final String text) {
         this.text = text;
     }
 }

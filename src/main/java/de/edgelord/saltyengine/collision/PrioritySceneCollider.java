@@ -33,11 +33,11 @@ public class PrioritySceneCollider implements SceneCollider {
      * @return the result of the collision detection between the two given {@link GameObject}s.
      */
     @Override
-    public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
+    public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
 
-        Collider collider1 = object1.getCollider();
-        Collider collider2 = object2.getCollider();
-        Collider collider = collider1.getPriority() >= collider2.getPriority() ? collider1 : collider2;
+        final Collider collider1 = object1.getCollider();
+        final Collider collider2 = object2.getCollider();
+        final Collider collider = collider1.getPriority() >= collider2.getPriority() ? collider1 : collider2;
 
         return collider.checkCollision(object1, object2);
     }

@@ -32,7 +32,7 @@ public class RoundRectRender extends PrimitivesRenderComponent {
      * @param name   the id-name for this Component
      * @param arc    the diameter of the circle at the corner
      */
-    public RoundRectRender(ComponentContainer parent, String name, float arc) {
+    public RoundRectRender(final ComponentContainer parent, final String name, final float arc) {
         super(parent, name);
 
         this.arc = arc;
@@ -42,7 +42,7 @@ public class RoundRectRender extends PrimitivesRenderComponent {
         return arc;
     }
 
-    public void setArc(float arc) {
+    public void setArc(final float arc) {
         this.arc = arc;
     }
 

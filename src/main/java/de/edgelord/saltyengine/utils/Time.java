@@ -24,7 +24,7 @@ public class Time {
         return deltaNanos;
     }
 
-    public static void setDeltaNanos(long deltaNanos) {
+    public static void setDeltaNanos(final long deltaNanos) {
         Time.deltaNanos = deltaNanos;
     }
 

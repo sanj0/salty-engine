@@ -22,7 +22,7 @@ public class Factory {
 
     private final Resource resource;
 
-    public Factory(Resource resource) {
+    public Factory(final Resource resource) {
         this.resource = resource;
     }
 

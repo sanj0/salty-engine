@@ -30,14 +30,14 @@ public class GameObjectCollection {
 
     }
 
-    public void addGameObject(GameObject gameObject) {
+    public void addGameObject(final GameObject gameObject) {
 
         gameObjects.add(gameObject);
     }
 
-    public void addToScene(Scene scene) {
+    public void addToScene(final Scene scene) {
 
-        for (GameObject gameObject : gameObjects) {
+        for (final GameObject gameObject : gameObjects) {
             scene.addGameObject(gameObject);
         }
     }

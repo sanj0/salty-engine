@@ -28,11 +28,11 @@ public class DataReader {
     private final String fileName;
     private final File file;
 
-    public DataReader(File file) throws IOException {
+    public DataReader(final File file) throws IOException {
         this(new FileReader(file));
     }
 
-    public DataReader(FileReader fileReader) throws IOException {
+    public DataReader(final FileReader fileReader) throws IOException {
 
         this.fileContent = fileReader.readFile();
         this.file = fileReader.getFile();
@@ -40,19 +40,19 @@ public class DataReader {
         fileName = fileReader.getFile().getName().replace(SDB_FILE_EXTENSION, "");
     }
 
-    public static String getAsSpeciesStart(String name) {
+    public static String getAsSpeciesStart(final String name) {
         return "{" + name + "}";
     }
 
-    public static String getAsSpeciesEnd(String name) {
+    public static String getAsSpeciesEnd(final String name) {
         return "{*" + name + "}";
     }
 
-    public static String getAsTagStart(String name) {
+    public static String getAsTagStart(final String name) {
         return "(" + name + ")";
     }
 
-    public static String getAsTagEnd(String name) {
+    public static String getAsTagEnd(final String name) {
         return "(*" + name + ")";
     }
 
@@ -67,7 +67,7 @@ public class DataReader {
      * @return the Species with proper name and content
      * @see Species
      */
-    public Species getSpecies(String speciesName) {
+    public Species getSpecies(final String speciesName) {
         return new Species(speciesName, splitString(fileContent, getAsSpeciesStart(speciesName), getAsSpeciesEnd(speciesName)));
     }
 
@@ -87,11 +87,11 @@ public class DataReader {
      * @param tag the name of the tag whose value gets returned
      * @return the value of the specific tag
      */
-    public String getTagValue(String tag) {
+    public String getTagValue(final String tag) {
         return splitString(fileContent, "(" + tag + ")", "(*" + tag + ")");
     }
 
-    private String splitString(String base, String start, String end) {
+    private String splitString(final String base, final String start, final String end) {
         return base.substring(base.lastIndexOf(start) + start.length(), base.lastIndexOf(end));
     }
 

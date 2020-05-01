@@ -47,7 +47,7 @@ public class Transform {
      * @param position   the {@link #position}
      * @param dimensions the {@link #dimensions}
      */
-    public Transform(Vector2f position, Dimensions dimensions) {
+    public Transform(final Vector2f position, final Dimensions dimensions) {
         this.position = position;
         this.dimensions = dimensions;
         this.rotation = new Rotation(getWidth() / 2f, getHeight() / 2f);
@@ -62,7 +62,7 @@ public class Transform {
      * @param height the height
      * @see #Transform(Vector2f, Dimensions)
      */
-    public Transform(float x, float y, float width, float height) {
+    public Transform(final float x, final float y, final float width, final float height) {
         this(new Vector2f(x, y), new Dimensions(width, height));
     }
 
@@ -72,7 +72,7 @@ public class Transform {
      * @param rect the rectangle
      * @see #Transform(Vector2f, Dimensions)
      */
-    public Transform(Rectangle2D rect) {
+    public Transform(final Rectangle2D rect) {
         this(new Vector2f((float) rect.getX(), (float) rect.getY()), new Dimensions((float) rect.getWidth(), (float) rect.getHeight()));
     }
 
@@ -114,7 +114,7 @@ public class Transform {
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
-    public static Transform random(int posMin, int posMax, int dimMin, int dimMax) {
+    public static Transform random(final int posMin, final int posMax, final int dimMin, final int dimMax) {
         return new Transform(Vector2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
     }
 
@@ -127,7 +127,7 @@ public class Transform {
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
-    public static Transform random(int min, int max) {
+    public static Transform random(final int min, final int max) {
         return random(min, max, min, max);
     }
 
@@ -139,17 +139,17 @@ public class Transform {
      * @return whether this Transform intersects the given one
      * @see Rectangle2D#intersects(Rectangle2D)
      */
-    public boolean intersects(Transform other) {
+    public boolean intersects(final Transform other) {
 
-        int xOther = Math.round(other.getX());
-        int yOther = Math.round(other.getY());
-        int widthOther = Math.round(other.getWidth());
-        int heightOther = Math.round(other.getHeight());
+        final int xOther = Math.round(other.getX());
+        final int yOther = Math.round(other.getY());
+        final int widthOther = Math.round(other.getWidth());
+        final int heightOther = Math.round(other.getHeight());
 
-        int x = Math.round(getX());
-        int y = Math.round(getY());
-        int width = Math.round(getWidth());
-        int height = Math.round(getHeight());
+        final int x = Math.round(getX());
+        final int y = Math.round(getY());
+        final int width = Math.round(getWidth());
+        final int height = Math.round(getHeight());
 
         if (width <= 0 || height <= 0 || widthOther <= 0 || heightOther <= 0) {
             return false;
@@ -178,7 +178,7 @@ public class Transform {
      * @return whether this rectangle contains the given
      * @see Rectangle2D#contains(Rectangle2D)
      */
-    public boolean contains(Transform other) {
+    public boolean contains(final Transform other) {
         return getRect().contains(other.getRect());
     }
 
@@ -192,7 +192,7 @@ public class Transform {
      * @param other another <code>Transform</code>
      * @return the relation on the horizontal (x) axis between <code>this</code> and the given <code>Transform</code>
      */
-    public Directions.Direction getFreeRelationX(Transform other) {
+    public Directions.Direction getFreeRelationX(final Transform other) {
 
         if (this.getX() + this.getWidth() < other.getX()) {
             return Directions.Direction.LEFT;
@@ -213,7 +213,7 @@ public class Transform {
      * @param other another <code>Transform</code>
      * @return the relation on the vertical (y) axis between <code>this</code> and the given <code>Transform</code>
      */
-    public Directions.Direction getFreeRelationY(Transform other) {
+    public Directions.Direction getFreeRelationY(final Transform other) {
 
         if (this.getY() + this.getHeight() < other.getY()) {
             return Directions.Direction.UP;
@@ -235,15 +235,15 @@ public class Transform {
      */
     public Directions.Direction getRelation(final Transform other) {
 
-        float thisBottom = this.getY() + this.getHeight();
-        float otherBottom = other.getY() + other.getHeight();
-        float thisRight = this.getX() + this.getWidth();
-        float otherRight = other.getX() + other.getWidth();
+        final float thisBottom = this.getY() + this.getHeight();
+        final float otherBottom = other.getY() + other.getHeight();
+        final float thisRight = this.getX() + this.getWidth();
+        final float otherRight = other.getX() + other.getWidth();
 
-        float bottomCollision = otherBottom - this.getY();
-        float topCollision = thisBottom - other.getY();
-        float leftCollision = thisRight - other.getX();
-        float rightCollision = otherRight - this.getX();
+        final float bottomCollision = otherBottom - this.getY();
+        final float topCollision = thisBottom - other.getY();
+        final float leftCollision = thisRight - other.getX();
+        final float rightCollision = otherRight - this.getX();
 
         if (topCollision < bottomCollision && topCollision < leftCollision && topCollision < rightCollision) {
             return Directions.Direction.DOWN;
@@ -269,9 +269,9 @@ public class Transform {
      *
      * @param centre the next centre of this <code>Transform</code>
      */
-    public void positionByCentre(Vector2f centre) {
-        float centreShiftX = getWidth() / 2f;
-        float centreShiftY = getHeight() / 2;
+    public void positionByCentre(final Vector2f centre) {
+        final float centreShiftX = getWidth() / 2f;
+        final float centreShiftY = getHeight() / 2;
         position = new Vector2f(centre.getX() - centreShiftX, centre.getY() - centreShiftY);
     }
 
@@ -292,7 +292,7 @@ public class Transform {
      *
      * @param point the point to rotate to
      */
-    public void rotateToPoint(Vector2f point) {
+    public void rotateToPoint(final Vector2f point) {
         rotation.rotateToPoint(point, this);
     }
 
@@ -303,7 +303,7 @@ public class Transform {
      * @param y the y position od the point
      * @see #rotateToPoint(Vector2f)
      */
-    public void rotateToPoint(float x, float y) {
+    public void rotateToPoint(final float x, final float y) {
         rotation.rotateToPoint(x, y, this);
     }
 
@@ -331,7 +331,7 @@ public class Transform {
      *
      * @param width the new width
      */
-    public void setWidth(float width) {
+    public void setWidth(final float width) {
         dimensions.setWidth(width);
     }
 
@@ -361,7 +361,7 @@ public class Transform {
      *
      * @param height the new height
      */
-    public void setHeight(float height) {
+    public void setHeight(final float height) {
         dimensions.setHeight(height);
     }
 
@@ -392,7 +392,7 @@ public class Transform {
      * @param x the new value of this <code>Transform</code>'s x position
      * @see Vector2f#setX(float)
      */
-    public void setX(float x) {
+    public void setX(final float x) {
         position.setX(x);
     }
 
@@ -421,7 +421,7 @@ public class Transform {
      * @param y the new value of this <code>Transform</code>'s y position
      * @see Vector2f#setY(float)
      */
-    public void setY(float y) {
+    public void setY(final float y) {
         position.setY(y);
     }
 
@@ -469,7 +469,7 @@ public class Transform {
      *
      * @param rotationDegrees the nex rotation
      */
-    public void setRotationDegrees(float rotationDegrees) {
+    public void setRotationDegrees(final float rotationDegrees) {
         rotation.setRotationDegrees(rotationDegrees);
     }
 
@@ -490,7 +490,7 @@ public class Transform {
      * @param rotationCentre the nex relative rotation centre
      * @see Rotation#setCentre(Vector2f)
      */
-    public void setRotationCentre(Vector2f rotationCentre) {
+    public void setRotationCentre(final Vector2f rotationCentre) {
         rotation.setCentre(rotationCentre);
     }
 
@@ -518,7 +518,7 @@ public class Transform {
      *
      * @param position the new value of {@link #position}
      */
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
         this.position = position;
     }
 
@@ -536,7 +536,7 @@ public class Transform {
      *
      * @param dimensions the new value of {@link #dimensions}
      */
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(final Dimensions dimensions) {
         this.dimensions = dimensions;
     }
 
@@ -554,7 +554,7 @@ public class Transform {
      *
      * @param rotation the new value of {@link #rotation}
      */
-    public void setRotation(Rotation rotation) {
+    public void setRotation(final Rotation rotation) {
         this.rotation = rotation;
     }
 
@@ -568,9 +568,9 @@ public class Transform {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof Transform) {
-            Transform other = (Transform) obj;
+            final Transform other = (Transform) obj;
             return other.getDimensions().equals(dimensions)
                     && other.getPosition().equals(position)
                     && other.getRotation().equals(rotation);

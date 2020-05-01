@@ -41,7 +41,7 @@ public class CollisionEvent {
         return collisionDirection;
     }
 
-    public void setCollisionDirection(Directions.Direction collisionDirection) {
+    public void setCollisionDirection(final Directions.Direction collisionDirection) {
         this.collisionDirection = collisionDirection;
     }
 }

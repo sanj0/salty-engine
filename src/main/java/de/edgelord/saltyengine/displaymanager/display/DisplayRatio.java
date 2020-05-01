@@ -30,16 +30,16 @@ public class DisplayRatio {
     private final Dimensions currentDimensions;
     private float scale = 1f;
 
-    public DisplayRatio(Dimensions originalResolution) {
+    public DisplayRatio(final Dimensions originalResolution) {
         this.originalResolution = originalResolution;
         this.currentDimensions = new Dimensions(originalResolution.getWidth(), originalResolution.getHeight());
     }
 
-    public void setWidth(float width) {
+    public void setWidth(final float width) {
         this.scale = width / this.originalResolution.getWidth();
     }
 
-    public void setHeight(float height) {
+    public void setHeight(final float height) {
         this.scale = height / this.originalResolution.getHeight();
     }
 
@@ -47,7 +47,7 @@ public class DisplayRatio {
         return scale;
     }
 
-    public void setScale(float scale) {
+    public void setScale(final float scale) {
         this.scale = scale;
     }
 

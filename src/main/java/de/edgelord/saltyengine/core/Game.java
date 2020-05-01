@@ -95,7 +95,7 @@ public class Game {
      *
      * @param config the configuration of the game
      */
-    public static void init(GameConfig config) {
+    public static void init(final GameConfig config) {
         internalPreInitDisplayManager(config);
     }
 
@@ -106,7 +106,7 @@ public class Game {
      * @param gameName        the name of the game
      * @param fixedTickMillis the milliseconds for the periodical fixed update for e.g. physics
      */
-    public static void init(Host host, String gameName, long fixedTickMillis) {
+    public static void init(final Host host, final String gameName, final long fixedTickMillis) {
         internalPreInitForForeignHost(host, gameName, fixedTickMillis);
     }
 
@@ -138,11 +138,11 @@ public class Game {
      * @param delay the delay (in {@link SaltySystem#fixedTickMillis fixed ticks})
      *              after which to execute the given task
      */
-    public static void executeLater(Runnable task, long delay) {
+    public static void executeLater(final Runnable task, final long delay) {
         getEngine().getScheduledTasks().add(new ScheduledTask(task, delay));
     }
 
-    private static void internalPreInitForForeignHost(Host host, String gameName, long fixedTickMillis) {
+    private static void internalPreInitForForeignHost(final Host host, final String gameName, final long fixedTickMillis) {
         enableOpenGl();
 
         engine = new Engine(fixedTickMillis);
@@ -152,7 +152,7 @@ public class Game {
         initSaltySystem(gameName);
     }
 
-    private static void initSaltySystem(String gameName) {
+    private static void initSaltySystem(final String gameName) {
         Game.gameName = gameName;
         camera = new Camera2D(new Vector2f(0, 0), getGameDimensions(), getGameDimensions(), 1f);
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
@@ -162,13 +162,13 @@ public class Game {
         SaltySystem.defaultFontFactory = new FontFactory(SaltySystem.defaultResource);
         try {
             SaltySystem.defaultFont = SaltySystem.defaultFontFactory.getFont("res/fonts/OpenSans-Regular.ttf", 10f);
-        } catch (IOException | FontFormatException e) {
+        } catch (final IOException | FontFormatException e) {
             e.printStackTrace();
         }
         WindowClosingHooks.addShutdownHook(() -> Game.forEachGameListener(GameListener::onClose));
     }
 
-    private static void internalPreInitDisplayManager(GameConfig config) {
+    private static void internalPreInitDisplayManager(final GameConfig config) {
         enableOpenGl();
 
         engine = new Engine(config.getFixedTickMillis());
@@ -230,7 +230,7 @@ public class Game {
      *
      * @param fixedFPS the fps with which the game should run
      */
-    public static void start(long fixedFPS) {
+    public static void start(final long fixedFPS) {
 
         GameStarter.startGame(fixedFPS);
     }
@@ -240,7 +240,7 @@ public class Game {
      *
      * @param gameListener the new <code>GameListener</code>
      */
-    public static void addGameListener(GameListener gameListener) {
+    public static void addGameListener(final GameListener gameListener) {
         gameListeners.add(gameListener);
     }
 
@@ -249,11 +249,11 @@ public class Game {
      *
      * @param gameListener a {@link GameListener}
      */
-    public static void removeGameListener(GameListener gameListener) {
+    public static void removeGameListener(final GameListener gameListener) {
         gameListeners.remove(gameListener);
     }
 
-    public static void forEachGameListener(Consumer<? super GameListener> action) {
+    public static void forEachGameListener(final Consumer<? super GameListener> action) {
         gameListeners.forEach(action);
     }
 
@@ -279,7 +279,7 @@ public class Game {
         return engine;
     }
 
-    protected static void setEngine(Engine engine) {
+    protected static void setEngine(final Engine engine) {
         Game.engine = engine;
     }
 
@@ -287,7 +287,7 @@ public class Game {
         return paused;
     }
 
-    public static void setPaused(boolean paused) {
+    public static void setPaused(final boolean paused) {
         Game.paused = paused;
     }
 
@@ -295,7 +295,7 @@ public class Game {
         return defaultGFXController;
     }
 
-    public static void setDefaultGFXController(GFXController defaultGFXController) {
+    public static void setDefaultGFXController(final GFXController defaultGFXController) {
         Game.defaultGFXController = defaultGFXController;
     }
 
@@ -303,7 +303,7 @@ public class Game {
         return drawFPS;
     }
 
-    public static void setDrawFPS(boolean drawFPS) {
+    public static void setDrawFPS(final boolean drawFPS) {
         Game.drawFPS = drawFPS;
     }
 
@@ -311,7 +311,7 @@ public class Game {
         return camera;
     }
 
-    public static void setCamera(Camera2D camera) {
+    public static void setCamera(final Camera2D camera) {
         Game.camera = camera;
     }
 
@@ -320,11 +320,11 @@ public class Game {
      *
      * @param safeFile the name of the savefile
      */
-    public static void saveOnExit(String safeFile) {
+    public static void saveOnExit(final String safeFile) {
         WindowClosingHooks.addShutdownHook(() -> {
             try {
                 Serializer.doSerialization(safeFile);
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
         });
@@ -349,7 +349,7 @@ public class Game {
      *
      * @param safeFile the name of the savefile
      */
-    public static void serializeOnExit(String safeFile) {
+    public static void serializeOnExit(final String safeFile) {
         saveOnExit(safeFile);
     }
 }

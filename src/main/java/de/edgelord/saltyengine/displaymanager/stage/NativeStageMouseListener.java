@@ -25,7 +25,7 @@ import java.awt.event.MouseListener;
 
 public class NativeStageMouseListener extends MouseInputHandlerListener implements MouseListener {
 
-    public NativeStageMouseListener(MouseInputHandler mouseHandler) {
+    public NativeStageMouseListener(final MouseInputHandler mouseHandler) {
         super(mouseHandler);
     }
 

@@ -23,7 +23,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
 public abstract class RenderComponent extends Component {
 
-    public RenderComponent(ComponentContainer parent, String name, String tag) {
+    public RenderComponent(final ComponentContainer parent, final String name, final String tag) {
         super(parent, name, tag);
     }
 
@@ -36,7 +36,7 @@ public abstract class RenderComponent extends Component {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

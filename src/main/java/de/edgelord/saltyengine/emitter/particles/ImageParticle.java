@@ -50,7 +50,7 @@ public abstract class ImageParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public ImageParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+    public ImageParticle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         super(waveNumber, restLifetime, speed, parent);
 
         setDimensions(DEFAULT_DIMENSIONS);
@@ -63,7 +63,7 @@ public abstract class ImageParticle extends Particle {
     public abstract SaltyImage getImage();
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawImage(image, this);
     }
 }

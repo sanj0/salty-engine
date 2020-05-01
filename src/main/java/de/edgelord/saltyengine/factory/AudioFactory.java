@@ -22,11 +22,11 @@ import javax.sound.sampled.Clip;
 
 public class AudioFactory extends Factory {
 
-    public AudioFactory(Resource resource) {
+    public AudioFactory(final Resource resource) {
         super(resource);
     }
 
-    public Clip getClip(String relativePath) {
+    public Clip getClip(final String relativePath) {
 
         return getResource().getAudioResource(relativePath);
     }

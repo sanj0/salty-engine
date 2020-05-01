@@ -37,20 +37,20 @@ public class Rotation {
     private Vector2f centre;
     private float rotationDegrees;
 
-    public Rotation(Vector2f centre, float rotationDegrees) {
+    public Rotation(final Vector2f centre, final float rotationDegrees) {
         this.centre = centre;
         this.rotationDegrees = rotationDegrees;
     }
 
-    public Rotation(Vector2f centre) {
+    public Rotation(final Vector2f centre) {
         this(centre, 0f);
     }
 
-    public Rotation(float centreX, float centreY, float rotationDegrees) {
+    public Rotation(final float centreX, final float centreY, final float rotationDegrees) {
         this(new Vector2f(centreX, centreY), rotationDegrees);
     }
 
-    public Rotation(float centreX, float centreY) {
+    public Rotation(final float centreX, final float centreY) {
         this(centreX, centreY, 0f);
     }
 
@@ -73,20 +73,20 @@ public class Rotation {
         return degrees;
     }
 
-    public void rotateToPoint(Vector2f point, Transform parent) {
-        Vector2f absCentre = getCentreAbsolute(parent);
-        double arc = Math.atan2(point.getY() - (absCentre.getY()), point.getX() - (absCentre.getX()));
+    public void rotateToPoint(final Vector2f point, final Transform parent) {
+        final Vector2f absCentre = getCentreAbsolute(parent);
+        final double arc = Math.atan2(point.getY() - (absCentre.getY()), point.getX() - (absCentre.getX()));
         rotationDegrees = (float) toDegrees(arc);
     }
 
-    public void rotateToPoint(float x, float y, Transform parent) {
+    public void rotateToPoint(final float x, final float y, final Transform parent) {
         rotateToPoint(new Vector2f(x, y), parent);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof Rotation) {
-            Rotation other = (Rotation) obj;
+            final Rotation other = (Rotation) obj;
             return other.getCentre().equals(getCentre())
                     && getNormalizedDegrees(other.getRotationDegrees()) == getNormalizedDegrees(getRotationDegrees());
         } else {
@@ -94,7 +94,7 @@ public class Rotation {
         }
     }
 
-    public Vector2f getCentreAbsolute(Transform parent) {
+    public Vector2f getCentreAbsolute(final Transform parent) {
         return new Vector2f(centre.getX() + parent.getX(), centre.getY() + parent.getY());
     }
 
@@ -102,7 +102,7 @@ public class Rotation {
         return centre;
     }
 
-    public void setCentre(Vector2f centre) {
+    public void setCentre(final Vector2f centre) {
         this.centre = centre;
     }
 
@@ -115,7 +115,7 @@ public class Rotation {
         return rotationDegrees;
     }
 
-    public void setRotationDegrees(float rotationDegrees) {
+    public void setRotationDegrees(final float rotationDegrees) {
         this.rotationDegrees = rotationDegrees;
     }
 

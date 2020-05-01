@@ -40,25 +40,25 @@ public class CameraFollowComponent extends Component<GameObject> {
     private Transform whiteZone;
     private float speed = 0.75f;
 
-    public CameraFollowComponent(GameObject parent, String name) {
+    public CameraFollowComponent(final GameObject parent, final String name) {
         super(parent, name, Components.CAMERA_COMPONENT);
 
-        float defaultWhiteZoneWidth = getParent().getWidth() * 2;
-        float defaultWhiteZoneHeight = getParent().getHeight() * 2;
-        float defaultWhiteZoneX = Game.getHost().getHorizontalCentrePosition(defaultWhiteZoneWidth);
-        float defaultWhiteZoneY = Game.getHost().getVerticalCentrePosition(defaultWhiteZoneHeight);
+        final float defaultWhiteZoneWidth = getParent().getWidth() * 2;
+        final float defaultWhiteZoneHeight = getParent().getHeight() * 2;
+        final float defaultWhiteZoneX = Game.getHost().getHorizontalCentrePosition(defaultWhiteZoneWidth);
+        final float defaultWhiteZoneY = Game.getHost().getVerticalCentrePosition(defaultWhiteZoneHeight);
 
         whiteZone = new Transform(defaultWhiteZoneX, defaultWhiteZoneY, defaultWhiteZoneWidth, defaultWhiteZoneHeight);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
     }
 
     @Override
     public void onFixedTick() {
 
-        Transform renderedPlayerTransform = new Transform(getParent().getX() - Game.getCamera().getX() * Game.getCamera().getScale(),
+        final Transform renderedPlayerTransform = new Transform(getParent().getX() - Game.getCamera().getX() * Game.getCamera().getScale(),
                 getParent().getY() - Game.getCamera().getY() * Game.getCamera().getScale(),
                 getParent().getWidth(), getParent().getHeight());
 
@@ -69,7 +69,7 @@ public class CameraFollowComponent extends Component<GameObject> {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -77,23 +77,23 @@ public class CameraFollowComponent extends Component<GameObject> {
         return whiteZone;
     }
 
-    public void setWhiteZone(Transform whiteZone) {
+    public void setWhiteZone(final Transform whiteZone) {
         this.whiteZone = whiteZone;
     }
 
-    public void setWhiteZoneX(float x) {
+    public void setWhiteZoneX(final float x) {
         whiteZone.setX(x);
     }
 
-    public void setWhiteZoneY(float y) {
+    public void setWhiteZoneY(final float y) {
         whiteZone.setY(y);
     }
 
-    public void setWhiteZoneWidth(float width) {
+    public void setWhiteZoneWidth(final float width) {
         whiteZone.setWidth(width);
     }
 
-    public void setWhiteZoneHeight(float height) {
+    public void setWhiteZoneHeight(final float height) {
         whiteZone.setHeight(height);
     }
 
@@ -101,7 +101,7 @@ public class CameraFollowComponent extends Component<GameObject> {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(final float speed) {
         this.speed = speed;
     }
 }

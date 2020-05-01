@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.core;
 
 public class GameStarter {
 
-    protected static void startGame(long fps) {
+    protected static void startGame(final long fps) {
         Game.getHost().create();
 
         if (fps == -1) {

@@ -47,10 +47,10 @@ public class GifAnimationRender extends RenderComponent {
      * @param imageSource where to get the gif from.
      * @throws MalformedURLException when there is an error with loading the gif
      */
-    public GifAnimationRender(ComponentContainer parent, String name, String path, Resource imageSource) throws MalformedURLException {
+    public GifAnimationRender(final ComponentContainer parent, final String name, final String path, final Resource imageSource) throws MalformedURLException {
         super(parent, name, Components.GIF_RENDER);
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        final Toolkit toolkit = Toolkit.getDefaultToolkit();
         this.gif = toolkit.createImage(imageSource.pathToURL(path));
         toolkit.prepareImage(gif, -1, -1, Game.getHost().getImageObserver());
     }
@@ -61,7 +61,7 @@ public class GifAnimationRender extends RenderComponent {
      * @param saltyGraphics the {@link SaltyGraphics} to render to.
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.getGraphics2D().drawImage(gif, Math.round(getParent().getX()), Math.round(getParent().getY()), Math.round(getParent().getWidth()), Math.round(getParent().getHeight()), Game.getHost().getImageObserver());
     }
 }

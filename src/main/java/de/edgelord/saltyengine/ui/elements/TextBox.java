@@ -32,11 +32,11 @@ public abstract class TextBox extends TextElement {
     private float cursor = 1f;
     private float speed = 0.075f;
 
-    public TextBox(String text, Vector2f position, float width, float height, float offsetX, float offsetY) {
+    public TextBox(final String text, final Vector2f position, final float width, final float height, final float offsetX, final float offsetY) {
         this(text, new Transform(position, new Dimensions(width, height)), offsetX, offsetY);
     }
 
-    public TextBox(String text, Transform transform, float offsetX, float offsetY) {
+    public TextBox(final String text, final Transform transform, final float offsetX, final float offsetY) {
         super(text, transform, TEXT_BOX);
 
         textRenderComponent = new TextRenderComponent(this, "text-renderer", getWidth() - offsetX, new Vector2f(offsetX, offsetY));
@@ -52,26 +52,26 @@ public abstract class TextBox extends TextElement {
     }
 
     @Override
-    public void drawForeground(SaltyGraphics graphics) {
+    public void drawForeground(final SaltyGraphics graphics) {
     }
 
     public void start() {
         cursor = 1;
     }
 
-    public void start(String text) {
+    public void start(final String text) {
         setText(text);
         start();
     }
 
     @Override
-    public void setText(String text) {
+    public void setText(final String text) {
         super.setText(text);
         start();
     }
 
     @Override
-    public void setFont(Font font) {
+    public void setFont(final Font font) {
         super.setFont(font);
         textRenderComponent.setFont(font);
     }
@@ -80,7 +80,7 @@ public abstract class TextBox extends TextElement {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(final float speed) {
         this.speed = speed;
     }
 }

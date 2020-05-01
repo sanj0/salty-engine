@@ -61,7 +61,7 @@ public class Switch extends UIElement {
      * @param sizeFactor the factor of the size. The width is {@code sizeFactor * 25f}, the height {@code sizeFactor * 10f}
      * @param active     the initial state of this switch
      */
-    public Switch(Vector2f position, float sizeFactor, boolean active) {
+    public Switch(final Vector2f position, final float sizeFactor, final boolean active) {
         super(position, sizeFactor * 25f, sizeFactor * 10f, UIElement.SETTINGS_ELEMENT);
 
         this.active = active;
@@ -75,7 +75,7 @@ public class Switch extends UIElement {
      * @param saltyGraphics the graphics to draw to
      */
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.drawRoundRect(this, getHeight());
     }
@@ -86,7 +86,7 @@ public class Switch extends UIElement {
      * @param saltyGraphics the graphics to draw to
      */
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.drawOval(indicatorPosition, new Dimensions(getHeight(), getHeight()));
     }
@@ -98,7 +98,7 @@ public class Switch extends UIElement {
      * @param e the event
      */
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
 
         if (mouseHoversOver()) {
             active = !active;
@@ -127,7 +127,7 @@ public class Switch extends UIElement {
      *
      * @param activatedColor the new value of {@link #activatedColor}
      */
-    public void setActivatedColor(Color activatedColor) {
+    public void setActivatedColor(final Color activatedColor) {
         this.activatedColor = activatedColor;
     }
 
@@ -145,7 +145,7 @@ public class Switch extends UIElement {
      *
      * @param deactivatedColor the new value of {@link #deactivatedColor}
      */
-    public void setDeactivatedColor(Color deactivatedColor) {
+    public void setDeactivatedColor(final Color deactivatedColor) {
         this.deactivatedColor = deactivatedColor;
     }
 
@@ -163,7 +163,7 @@ public class Switch extends UIElement {
      *
      * @param active the new value of {@link #active}
      */
-    public void setActive(boolean active) {
+    public void setActive(final boolean active) {
         this.active = active;
         updateState();
         stateChanged();

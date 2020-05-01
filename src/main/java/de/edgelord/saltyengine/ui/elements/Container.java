@@ -29,29 +29,29 @@ public abstract class Container extends UIElement {
 
     private List<UIElement> childElements = new CopyOnWriteArrayList<>();
 
-    public Container(Vector2f position, float width, float height) {
+    public Container(final Vector2f position, final float width, final float height) {
         super(position, width, height, UIElement.CONTAINER);
     }
 
-    public Container(Transform transform) {
+    public Container(final Transform transform) {
         this(transform.getPosition(), transform.getWidth(), transform.getHeight());
     }
 
-    public Container(float x, float y, float width, float height) {
+    public Container(final float x, final float y, final float width, final float height) {
         this(new Vector2f(x, y), width, height);
     }
 
-    public void add(UIElement element) {
+    public void add(final UIElement element) {
         getChildElements().add(element);
     }
 
-    public void remove(UIElement element) {
+    public void remove(final UIElement element) {
         getChildElements().removeIf(uiElement -> uiElement == element);
         element.setSuppressClipping(false);
     }
 
     public void suppressAllClipping() {
-        for (UIElement element : getChildElements()) {
+        for (final UIElement element : getChildElements()) {
             element.setSuppressClipping(true);
         }
     }
@@ -60,7 +60,7 @@ public abstract class Container extends UIElement {
         return childElements;
     }
 
-    public void setChildElements(List<UIElement> childElements) {
+    public void setChildElements(final List<UIElement> childElements) {
         this.childElements = childElements;
     }
 }

@@ -26,24 +26,24 @@ import de.edgelord.saltyengine.transform.Vector2f;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class RectangleShape extends SaltyShape {
 
-    public RectangleShape(Transform transform) {
+    public RectangleShape(final Transform transform) {
         super(transform, EnumShape.RECTANGLE);
     }
 
-    public RectangleShape(Vector2f position, Dimensions dimensions) {
+    public RectangleShape(final Vector2f position, final Dimensions dimensions) {
         super(position, dimensions, EnumShape.RECTANGLE);
     }
 
-    public RectangleShape(TransformedObject parent) {
+    public RectangleShape(final TransformedObject parent) {
         super(parent, EnumShape.RECTANGLE);
     }
 
-    public RectangleShape(float x, float y, float width, float height) {
+    public RectangleShape(final float x, final float y, final float width, final float height) {
         super(x, y, width, height, EnumShape.RECTANGLE);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         if (isFilled()) {
             saltyGraphics.drawRect(this);
         } else {

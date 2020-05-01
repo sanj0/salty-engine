@@ -36,15 +36,15 @@ public class InnerResource implements Resource {
     private File tmpDir = null;
 
     @Override
-    public SaltyImage getImageResource(String relativePath) {
+    public SaltyImage getImageResource(final String relativePath) {
 
-        String arrangedPath = arrangePath(relativePath);
+        final String arrangedPath = arrangePath(relativePath);
 
-        try (InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
+        try (final InputStream inputStream = classLoader.getResourceAsStream(arrangedPath)) {
 
-            BufferedImage image = ImageIO.read(inputStream);
+            final BufferedImage image = ImageIO.read(inputStream);
             return SaltySystem.createPreferredImage(image);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
@@ -52,18 +52,18 @@ public class InnerResource implements Resource {
     }
 
     @Override
-    public Clip getAudioResource(String relativePath) {
+    public Clip getAudioResource(final String relativePath) {
 
         AudioInputStream audioInput = null;
 
-        String arrangedPath = arrangePath(relativePath);
+        final String arrangedPath = arrangePath(relativePath);
 
         try {
 
-            InputStream inputStream = classLoader.getResourceAsStream(arrangedPath);
-            InputStream bufferedIn = new BufferedInputStream(inputStream);
+            final InputStream inputStream = classLoader.getResourceAsStream(arrangedPath);
+            final InputStream bufferedIn = new BufferedInputStream(inputStream);
             audioInput = AudioSystem.getAudioInputStream(bufferedIn);
-        } catch (IOException | UnsupportedAudioFileException e) {
+        } catch (final IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
 
@@ -71,28 +71,28 @@ public class InnerResource implements Resource {
     }
 
     @Override
-    public File getFileResource(String relativePath) {
+    public File getFileResource(final String relativePath) {
         try {
             if (SaltySystem.writePrivilege) {
                 return makeTemporaryFile(relativePath);
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
         return null;
     }
 
-    private File makeTemporaryFile(String relativePath) throws IOException {
+    private File makeTemporaryFile(final String relativePath) throws IOException {
 
         checkTmpDir();
 
-        InputStream inputStream = this.classLoader.getResourceAsStream(this.arrangePath(relativePath));
-        File file = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/" + relativePath.replaceAll("/", "."));
+        final InputStream inputStream = this.classLoader.getResourceAsStream(this.arrangePath(relativePath));
+        final File file = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/" + relativePath.replaceAll("/", "."));
         file.createNewFile();
 
-        OutputStream outputStream = new FileOutputStream(file);
-        byte[] buffer = new byte[4096];
+        final OutputStream outputStream = new FileOutputStream(file);
+        final byte[] buffer = new byte[4096];
 
         int readBytes;
         while ((readBytes = Objects.requireNonNull(inputStream).read(buffer)) > 0) {
@@ -110,9 +110,9 @@ public class InnerResource implements Resource {
 
             if (tmpDir.exists()) {
                 if (tmpDir.isDirectory()) {
-                    String[] files = tmpDir.list();
-                    for (String file : files) {
-                        File currentFile = new File(tmpDir.getPath(), file);
+                    final String[] files = tmpDir.list();
+                    for (final String file : files) {
+                        final File currentFile = new File(tmpDir.getPath(), file);
                         currentFile.delete();
                     }
                 }
@@ -122,7 +122,7 @@ public class InnerResource implements Resource {
         }
     }
 
-    private String arrangePath(String path) {
+    private String arrangePath(final String path) {
         if (path.startsWith("/")) {
 
             return path.replaceFirst("/", "");

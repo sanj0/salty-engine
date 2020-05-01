@@ -153,14 +153,14 @@ public interface Camera {
      * @return a {@link AffineTransform} that directly represents the state of this camera
      */
     default AffineTransform getAffineTransform() {
-        double scale = getScale();
-        Vector2f position = getPosition();
-        double rotation = getRotation().getRotationDegrees();
-        Vector2f rotationAnchor = getRotation().getCentre();
-        double scaleTranslateAmountX = getResolution().getWidth() - getSize().getWidth();
-        double scaleTranslateAmountY = getResolution().getHeight() - getSize().getHeight();
+        final double scale = getScale();
+        final Vector2f position = getPosition();
+        final double rotation = getRotation().getRotationDegrees();
+        final Vector2f rotationAnchor = getRotation().getCentre();
+        final double scaleTranslateAmountX = getResolution().getWidth() - getSize().getWidth();
+        final double scaleTranslateAmountY = getResolution().getHeight() - getSize().getHeight();
 
-        AffineTransform transform = new AffineTransform();
+        final AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(rotation), rotationAnchor.getX(), rotationAnchor.getY());
         transform.translate(scaleTranslateAmountX, scaleTranslateAmountY);
         transform.scale(scale, scale);
@@ -191,15 +191,15 @@ public interface Camera {
      * @param absolutePosition an absolute position
      * @return the absolute position with considering the position of this camera for the given relative position
      */
-    default Vector2f getRelativePosition(Vector2f absolutePosition) {
-        AffineTransform transform = getAffineTransform();
+    default Vector2f getRelativePosition(final Vector2f absolutePosition) {
+        final AffineTransform transform = getAffineTransform();
         try {
             transform.invert();
-        } catch (NoninvertibleTransformException e) {
+        } catch (final NoninvertibleTransformException e) {
             e.printStackTrace();
         }
-        Point2D srcPoint = new Point2D.Float(absolutePosition.getX(), absolutePosition.getY());
-        Point2D dstPoint = new Point2D.Float();
+        final Point2D srcPoint = new Point2D.Float(absolutePosition.getX(), absolutePosition.getY());
+        final Point2D dstPoint = new Point2D.Float();
         transform.transform(srcPoint, dstPoint);
 
         return new Vector2f((float) dstPoint.getX(), (float) dstPoint.getY());

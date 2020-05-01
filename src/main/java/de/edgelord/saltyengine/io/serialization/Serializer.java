@@ -51,14 +51,14 @@ public class Serializer {
     static {
         try {
             hashCreator = MessageDigest.getInstance("sha1");
-        } catch (NoSuchAlgorithmException e) {
+        } catch (final NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }
 
-    private static void serialize(DataWriter writer) throws IOException {
+    private static void serialize(final DataWriter writer) throws IOException {
         consumer.forEach(serializable -> {
-            Species species = new Species(serializable.getDataSetName(), "");
+            final Species species = new Species(serializable.getDataSetName(), "");
 
             serializable.serialize(species);
 
@@ -68,33 +68,33 @@ public class Serializer {
         writer.syncFile();
 
         if (addChecksum) {
-            FileReader saveReader = new FileReader(writer.getFile());
-            FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
+            final FileReader saveReader = new FileReader(writer.getFile());
+            final FileWriter checksumWriter = new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + writer.getFile().getName()));
 
-            String checksum = new String(hashCreator.digest(prepareForChecksumCreation(saveReader.readFile())));
+            final String checksum = new String(hashCreator.digest(prepareForChecksumCreation(saveReader.readFile())));
             checksumWriter.writeThrough(removeSpacesAndNewLines(checksum));
         }
     }
 
-    private static boolean deserialize(DataReader reader) throws IOException {
+    private static boolean deserialize(final DataReader reader) throws IOException {
 
-        boolean isCorrupt;
+        final boolean isCorrupt;
         boolean alreadySaid = false;
 
-        File checksumFile = SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + reader.getFile().getName());
+        final File checksumFile = SaltySystem.defaultHiddenOuterResource.getFileResource("checksum." + reader.getFile().getName());
 
         if (!checksumFile.exists()) {
             System.err.println("Checksum-file does not exist.");
             alreadySaid = true;
         }
 
-        FileReader checksumReader = new FileReader(checksumFile);
-        FileReader saveReader = new FileReader(reader.getFile());
+        final FileReader checksumReader = new FileReader(checksumFile);
+        final FileReader saveReader = new FileReader(reader.getFile());
 
-        String checksum = checksumReader.readFile();
+        final String checksum = checksumReader.readFile();
 
-        byte[] saveFileBytes = prepareForChecksumCreation(saveReader.readFile());
-        String savefileSum = new String(hashCreator.digest(saveFileBytes));
+        final byte[] saveFileBytes = prepareForChecksumCreation(saveReader.readFile());
+        final String savefileSum = new String(hashCreator.digest(saveFileBytes));
 
         if (removeSpacesAndNewLines(checksum).equals(removeSpacesAndNewLines(savefileSum))) {
             isCorrupt = false;
@@ -108,11 +108,11 @@ public class Serializer {
             }
         }
 
-        for (Serializable serializable : consumer) {
-            Species species;
+        for (final Serializable serializable : consumer) {
+            final Species species;
             try {
                 species = reader.getSpecies(serializable.getDataSetName());
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 System.out.println("Never serialized something for " + serializable.getDataSetName() + " so cannot deserialize for it!");
                 continue;
             }
@@ -122,11 +122,11 @@ public class Serializer {
         return isCorrupt;
     }
 
-    private static byte[] prepareForChecksumCreation(String input) {
+    private static byte[] prepareForChecksumCreation(final String input) {
         return removeSpacesAndNewLines(input).getBytes();
     }
 
-    private static String removeSpacesAndNewLines(String input) {
+    private static String removeSpacesAndNewLines(final String input) {
         return input.replaceAll(" ", "").replaceAll("([\n\r])", "");
     }
 
@@ -138,7 +138,7 @@ public class Serializer {
      * @param name the name of the save file
      * @throws IOException when the I/O process with the file fails
      */
-    public static void doSerialization(String name) throws IOException {
+    public static void doSerialization(final String name) throws IOException {
         serialize(new DataWriter(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
@@ -161,12 +161,12 @@ public class Serializer {
      * If there wasn't a checksum file, it return true.
      * @throws IOException when the I/O process with the file fails
      */
-    public static boolean doDeserialization(String name) throws IOException {
+    public static boolean doDeserialization(final String name) throws IOException {
 
-        File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION);
+        final File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION);
 
         if (file.getTotalSpace() < 5) {
-            DataWriter writer = new DataWriter(file);
+            final DataWriter writer = new DataWriter(file);
             writer.syncFile();
         }
 
@@ -191,15 +191,15 @@ public class Serializer {
         return consumer.isEmpty();
     }
 
-    public static boolean contains(Serializable o) {
+    public static boolean contains(final Serializable o) {
         return consumer.contains(o);
     }
 
-    public static boolean add(Serializable serializable) {
+    public static boolean add(final Serializable serializable) {
         return consumer.add(serializable);
     }
 
-    public static boolean remove(Object o) {
+    public static boolean remove(final Object o) {
         return consumer.remove(o);
     }
 
@@ -207,11 +207,11 @@ public class Serializer {
         consumer.clear();
     }
 
-    public static void add(int index, Serializable element) {
+    public static void add(final int index, final Serializable element) {
         consumer.add(index, element);
     }
 
-    public static boolean removeIf(Predicate<? super Serializable> filter) {
+    public static boolean removeIf(final Predicate<? super Serializable> filter) {
         return consumer.removeIf(filter);
     }
 
@@ -219,7 +219,7 @@ public class Serializer {
         return saveFileName;
     }
 
-    public static void setSaveFileName(String saveFileName) {
+    public static void setSaveFileName(final String saveFileName) {
         Serializer.saveFileName = saveFileName;
     }
 
@@ -227,7 +227,7 @@ public class Serializer {
         return addChecksum;
     }
 
-    public static void setAddChecksum(boolean addChecksum) {
+    public static void setAddChecksum(final boolean addChecksum) {
         Serializer.addChecksum = addChecksum;
     }
 }

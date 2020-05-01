@@ -39,7 +39,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
     private Vector2f offset;
     private float lineLength;
 
-    public TextRenderComponent(ComponentContainer parent, String name, float lineLength, Vector2f offset) {
+    public TextRenderComponent(final ComponentContainer parent, final String name, final float lineLength, final Vector2f offset) {
         super(parent, name, Components.RENDER_COMPONENT);
 
         this.lineLength = lineLength;
@@ -47,19 +47,19 @@ public class TextRenderComponent extends Component<ComponentContainer> {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setFont(font);
-        FontMetrics fontMetrics = saltyGraphics.getFontMetrics();
+        final FontMetrics fontMetrics = saltyGraphics.getFontMetrics();
 
         if (recalculate) {
             lines.clear();
-            String[] words = text.split(wordSeparator);
+            final String[] words = text.split(wordSeparator);
             float currentX = 0;
             StringBuilder lineBuilder = new StringBuilder();
 
-            for (String word : words) {
-                float length = fontMetrics.stringWidth(word + wordSeparator);
+            for (final String word : words) {
+                final float length = fontMetrics.stringWidth(word + wordSeparator);
 
                 if (currentX + length <= lineLength) {
                     lineBuilder.append(word).append(wordSeparator);
@@ -78,7 +78,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         }
 
         float currentY = -leading;
-        for (String line : lines) {
+        for (final String line : lines) {
             saltyGraphics.drawText(line, getParent().getPosition().getX() + offset.getX(), currentY + getParent().getY() + offset.getY(), SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
 
             currentY += leading;
@@ -91,7 +91,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -99,7 +99,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         return font;
     }
 
-    public void setFont(Font font) {
+    public void setFont(final Font font) {
         this.font = font;
         leading = font.getSize() * 1.3f;
     }
@@ -108,7 +108,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(final String text) {
         this.text = text;
         recalculate = true;
     }
@@ -117,7 +117,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         return wordSeparator;
     }
 
-    public void setWordSeparator(String wordSeparator) {
+    public void setWordSeparator(final String wordSeparator) {
         this.wordSeparator = wordSeparator;
     }
 
@@ -125,7 +125,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         return offset;
     }
 
-    public void setOffset(Vector2f offset) {
+    public void setOffset(final Vector2f offset) {
         this.offset = offset;
     }
 
@@ -133,7 +133,7 @@ public class TextRenderComponent extends Component<ComponentContainer> {
         return lineLength;
     }
 
-    public void setLineLength(float lineLength) {
+    public void setLineLength(final float lineLength) {
         this.lineLength = lineLength;
     }
 }

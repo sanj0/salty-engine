@@ -24,7 +24,7 @@ import de.edgelord.saltyengine.core.GameConfig;
  */
 public class ExampleMain extends Game {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         init(GameConfig.config(1920, 1080, "Salty Engine Example Game", 5));
         Game.start();
     }

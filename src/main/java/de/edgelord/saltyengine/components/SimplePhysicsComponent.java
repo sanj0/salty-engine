@@ -163,19 +163,19 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     }
 
     @Override
-    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
+    public void onCollisionDetectionFinish(final List<CollisionEvent> collisions) {
 
-        Directions collisionDirections = new Directions();
+        final Directions collisionDirections = new Directions();
         boolean upCollision = false;
         boolean downCollision = false;
         boolean leftCollision = false;
         boolean rightCollision = false;
 
-        for (CollisionEvent collisionEvent : collisions) {
+        for (final CollisionEvent collisionEvent : collisions) {
 
             if (!tagsToIgnore.contains(collisionEvent.getOtherGameObject().getTag()) && !collisionEvent.getOtherGameObject().isTrigger()) {
 
-                Directions.Direction direction = collisionEvent.getCollisionDirection();
+                final Directions.Direction direction = collisionEvent.getCollisionDirection();
                 collisionDirections.addDirection(direction);
 
                 switch (direction) {
@@ -244,15 +244,15 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         return null;
     }
 
-    public boolean addTagToIgnore(String s) {
+    public boolean addTagToIgnore(final String s) {
         return tagsToIgnore.add(s);
     }
 
-    public boolean removeTagToIgnore(Object o) {
+    public boolean removeTagToIgnore(final Object o) {
         return tagsToIgnore.remove(o);
     }
 
-    public boolean removeAllTagsToIgnore(Collection<?> c) {
+    public boolean removeAllTagsToIgnore(final Collection<?> c) {
         return tagsToIgnore.removeAll(c);
     }
 
@@ -260,15 +260,15 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         tagsToIgnore.clear();
     }
 
-    public void addTagToIgnore(int index, String element) {
+    public void addTagToIgnore(final int index, final String element) {
         tagsToIgnore.add(index, element);
     }
 
-    public String removeTagToIgnore(int index) {
+    public String removeTagToIgnore(final int index) {
         return tagsToIgnore.remove(index);
     }
 
-    public void setGravityEnabled(boolean enabled) {
+    public void setGravityEnabled(final boolean enabled) {
         this.gravityForThisEnabled = enabled;
     }
 
@@ -286,7 +286,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
      *
      * @param threshold the new value of {@link #threshold}
      */
-    public void setThreshold(float threshold) {
+    public void setThreshold(final float threshold) {
         this.threshold = threshold;
     }
 }

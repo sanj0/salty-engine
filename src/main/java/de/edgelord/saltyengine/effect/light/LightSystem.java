@@ -37,10 +37,10 @@ public class LightSystem implements Drawable {
     private final List<Light> lights = new ArrayList<>();
     protected SaltyImage lightMap;
 
-    public LightSystem(Color lightMapColor) {
+    public LightSystem(final Color lightMapColor) {
         this.lightMapColor = lightMapColor;
 
-        Dimensions res = Game.getGameDimensions();
+        final Dimensions res = Game.getGameDimensions();
         lightMap = SaltySystem.createPreferredImage(res.getWidth(), res.getHeight());
         //plainLightMap = new BufferedImage((int) res.getWidth() + 500, (int) res.getHeight() + 500, BufferedImage.TYPE_INT_ARGB);
     }
@@ -52,11 +52,11 @@ public class LightSystem implements Drawable {
         this(Color.BLACK);
     }
 
-    public void addLight(Light light) {
+    public void addLight(final Light light) {
         lights.add(light);
     }
 
-    public void removeLight(Light light) {
+    public void removeLight(final Light light) {
         lights.remove(light);
     }
 
@@ -66,10 +66,10 @@ public class LightSystem implements Drawable {
 
     protected void updateLightMap() {
         //updatePlainLightMap();
-        Graphics2D graphics = drawBackgroundToImage(lightMap);
+        final Graphics2D graphics = drawBackgroundToImage(lightMap);
         graphics.setRenderingHints(GraphicsConfiguration.renderingHints);
 
-        Composite oldComp = graphics.getComposite();
+        final Composite oldComp = graphics.getComposite();
 
         lights.forEach(light -> {
             graphics.setComposite(oldComp);
@@ -85,8 +85,8 @@ public class LightSystem implements Drawable {
         //graphics2D.dispose();
     }
 
-    private Graphics2D drawBackgroundToImage(SaltyImage image) {
-        Graphics2D graphics2D = image.createGraphics();
+    private Graphics2D drawBackgroundToImage(final SaltyImage image) {
+        final Graphics2D graphics2D = image.createGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
         graphics2D.setColor(lightMapColor);
@@ -96,7 +96,7 @@ public class LightSystem implements Drawable {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         updateLightMap();
         //saltyGraphics.drawImage(plainLightMap, Game.getCamera().getRelativePosition(new Vector2f(-250, -250)));
         saltyGraphics.drawImage(lightMap, Vector2f.zero());

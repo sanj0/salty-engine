@@ -28,7 +28,7 @@ public class SwingUIElement extends UIElement {
 
     private JComponent component;
 
-    public SwingUIElement(JComponent component, Vector2f position, float width, float height) {
+    public SwingUIElement(final JComponent component, final Vector2f position, final float width, final float height) {
         super(position, width, height, UIElement.SWING_ELEMENT);
         this.component = component;
 
@@ -36,7 +36,7 @@ public class SwingUIElement extends UIElement {
         initComponent();
     }
 
-    public SwingUIElement(JComponent component, Transform transform) {
+    public SwingUIElement(final JComponent component, final Transform transform) {
         super(transform, UIElement.SWING_ELEMENT);
         this.component = component;
 
@@ -69,17 +69,17 @@ public class SwingUIElement extends UIElement {
      *
      * @param component the new value of {@link #component}
      */
-    public void setComponent(JComponent component) {
+    public void setComponent(final JComponent component) {
         this.component = component;
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
         component.paintAll(saltyGraphics.getGraphics2D());
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
 
     }
 }

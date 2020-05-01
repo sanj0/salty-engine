@@ -28,7 +28,7 @@ public class DebugLogGameObjectStat extends Component {
 
     private final FixedRate fixedRate = new FixedRate(getParent(), "de.edgelord.saltyengine.DebugLogGameObjectStat$1<tmp>", 100);
 
-    public DebugLogGameObjectStat(ComponentContainer parent, String name) {
+    public DebugLogGameObjectStat(final ComponentContainer parent, final String name) {
         super(parent, name, Components.CORE_COMPONENT);
 
         getParent().addComponent(fixedRate);
@@ -51,7 +51,7 @@ public class DebugLogGameObjectStat extends Component {
         System.out.println("Components (" + getParent().getComponents().size() + "):");
         System.out.println();
 
-        for (Component component : getParent().getComponents()) {
+        for (final Component component : getParent().getComponents()) {
             if (component.isEnabled()) {
                 System.out.println("Enabled Component:");
             } else {
@@ -75,18 +75,18 @@ public class DebugLogGameObjectStat extends Component {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setColor(Color.RED);
         saltyGraphics.drawOval(getParent().getX() - 20, getParent().getY() - 20, 20, 20);
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
-    public void setGate(int gate) {
+    public void setGate(final int gate) {
         fixedRate.setGate(gate);
     }
 }

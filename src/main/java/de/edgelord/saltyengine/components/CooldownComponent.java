@@ -44,7 +44,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
      * @param cooldownTime the time that the cooldown takes.
      * @param shouldRun    the test for if {@link #run()} should be called. This is only tested if the cooldown was performed
      */
-    public CooldownComponent(ComponentContainer parent, String name, int cooldownTime, BooleanSupplier shouldRun) {
+    public CooldownComponent(final ComponentContainer parent, final String name, final int cooldownTime, final BooleanSupplier shouldRun) {
         super(parent, name, Components.TIMING_COMPONENT);
 
         this.cooldownTime = cooldownTime;
@@ -52,7 +52,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
@@ -78,7 +78,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
 
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -89,7 +89,7 @@ public abstract class CooldownComponent extends Component implements Runnable {
         return cooldownTime;
     }
 
-    public void setCooldownTime(int cooldownTime) {
+    public void setCooldownTime(final int cooldownTime) {
         this.cooldownTime = cooldownTime;
     }
 }

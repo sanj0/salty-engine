@@ -49,7 +49,7 @@ public class GeneralUtil {
      * @param max   the greater end of the range
      * @return the given value clamped to the given range
      */
-    public static float clamp(float value, float min, float max) {
+    public static float clamp(final float value, final float min, final float max) {
         return Math.max(min, Math.min(max, value));
     }
 
@@ -60,8 +60,8 @@ public class GeneralUtil {
      * @param p2 the second point
      * @return the angle between the given two points as degrees
      */
-    public static float getAngle(Vector2f p1, Vector2f p2) {
-        double arc = Math.atan2(p2.getY() - (p1.getY()), p2.getX() - (p1.getX()));
+    public static float getAngle(final Vector2f p1, final Vector2f p2) {
+        final double arc = Math.atan2(p2.getY() - (p1.getY()), p2.getX() - (p1.getX()));
         return (float) toDegrees(arc) + 90f;
     }
 
@@ -72,8 +72,8 @@ public class GeneralUtil {
      * @param max the biggest number possible
      * @return a new random int between the given bounds
      */
-    public static int randomInt(float min, float max) {
-        int r = random.nextInt((Math.round(max) - Math.round(min)) + 1);
+    public static int randomInt(final float min, final float max) {
+        final int r = random.nextInt((Math.round(max) - Math.round(min)) + 1);
         return Math.round(r + min);
     }
 
@@ -84,7 +84,7 @@ public class GeneralUtil {
      * @param list the {@link List} from which to return as random object
      * @return a random object from the given list
      */
-    public static Object randomObjectFromList(List list) {
+    public static Object randomObjectFromList(final List list) {
         return list.get(random.nextInt(list.size()));
     }
 
@@ -97,7 +97,7 @@ public class GeneralUtil {
      * @param maxHeight the max height
      * @return a new random {@link Dimensions}.
      */
-    public static Dimensions randomDimensions(float minWidth, float maxWidth, float minHeight, float maxHeight) {
+    public static Dimensions randomDimensions(final float minWidth, final float maxWidth, final float minHeight, final float maxHeight) {
         return new Dimensions(randomInt(minWidth, maxWidth), randomInt(minHeight, maxHeight));
     }
 
@@ -110,7 +110,7 @@ public class GeneralUtil {
      * @param maxY the max y
      * @return a new random {@link Vector2f}.
      */
-    public static Vector2f randomCoordinates(float minX, float maxX, float minY, float maxY) {
+    public static Vector2f randomCoordinates(final float minX, final float maxX, final float minY, final float maxY) {
         return new Vector2f(randomInt(minX, maxX), randomInt(minY, maxY));
     }
 

@@ -89,7 +89,7 @@ public class SystemDependentFiles {
      * @param relativePath the path of the <code>File</code> relative to the user directory
      * @return the <code>File</code> from the user's directory that belongs to the given relative path.
      */
-    public static File getUserFile(String relativePath) {
+    public static File getUserFile(final String relativePath) {
         return new File(getUserDirPath() + relativePath);
     }
 
@@ -104,7 +104,7 @@ public class SystemDependentFiles {
      * @return the file from the directory below the user's directory that belongs to the given
      * relative path
      */
-    public static File getSystemFile(String relativePath) {
+    public static File getSystemFile(final String relativePath) {
 
         checkOS();
 

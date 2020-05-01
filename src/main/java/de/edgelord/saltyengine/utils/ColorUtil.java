@@ -168,14 +168,14 @@ public class ColorUtil {
     public static final List<Color> allColors = new LinkedList<>();
 
     static {
-        Field[] fields = ColorUtil.class.getFields();
+        final Field[] fields = ColorUtil.class.getFields();
 
-        for (Field field : fields) {
+        for (final Field field : fields) {
 
             if (field.getType() == Color.class) {
                 try {
                     allColors.add((Color) field.get(null));
-                } catch (IllegalAccessException e) {
+                } catch (final IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
@@ -200,30 +200,30 @@ public class ColorUtil {
      * @param ratio  the blend ratio
      * @return a blend between the two colors by the given ratio
      */
-    public static Color blend(Color color1, Color color2, float ratio) {
+    public static Color blend(final Color color1, final Color color2, float ratio) {
         if (ratio > 1f) {
             ratio = 1f;
         } else if (ratio < 0f) {
             ratio = 0f;
         }
 
-        int argb1 = color1.getRGB();
-        int argb2 = color2.getRGB();
+        final int argb1 = color1.getRGB();
+        final int argb2 = color2.getRGB();
 
-        int alpha1 = getAlpha(argb1);
-        int red1 = getRed(argb1);
-        int green1 = getGreen(argb1);
-        int blue1 = getBlue(argb1);
+        final int alpha1 = getAlpha(argb1);
+        final int red1 = getRed(argb1);
+        final int green1 = getGreen(argb1);
+        final int blue1 = getBlue(argb1);
 
-        int alpha2 = getAlpha(argb2);
-        int red2 = getRed(argb2);
-        int green2 = getGreen(argb2);
-        int blue2 = getBlue(argb2);
+        final int alpha2 = getAlpha(argb2);
+        final int red2 = getRed(argb2);
+        final int green2 = getGreen(argb2);
+        final int blue2 = getBlue(argb2);
 
-        int alpha = (int) (alpha1 + (alpha2 - alpha1) * ratio);
-        int red = (int) (red1 + (red2 - red1) * ratio);
-        int green = (int) (green1 + (green2 - green1) * ratio);
-        int blue = (int) (blue1 + (blue2 - blue1) * ratio);
+        final int alpha = (int) (alpha1 + (alpha2 - alpha1) * ratio);
+        final int red = (int) (red1 + (red2 - red1) * ratio);
+        final int green = (int) (green1 + (green2 - green1) * ratio);
+        final int blue = (int) (blue1 + (blue2 - blue1) * ratio);
 
         return new Color(alpha << 24 | red << 16 | green << 8 | blue);
     }
@@ -234,7 +234,7 @@ public class ColorUtil {
      * @param argb the argb value of the color
      * @return the alpha value from the given argb color
      */
-    public static int getAlpha(int argb) {
+    public static int getAlpha(final int argb) {
         return (argb >>> 24);
     }
 
@@ -244,7 +244,7 @@ public class ColorUtil {
      * @param argb the argb value of the color
      * @return the red value from the given argb color
      */
-    public static int getRed(int argb) {
+    public static int getRed(final int argb) {
         return ((argb & 0xff0000) >> 16);
     }
 
@@ -254,7 +254,7 @@ public class ColorUtil {
      * @param argb the argb value of the color
      * @return the green value from the given argb color
      */
-    public static int getGreen(int argb) {
+    public static int getGreen(final int argb) {
         return ((argb & 0xff00) >> 8);
     }
 
@@ -264,7 +264,7 @@ public class ColorUtil {
      * @param argb the argb value of the color
      * @return the blue value from the given argb color
      */
-    public static int getBlue(int argb) {
+    public static int getBlue(final int argb) {
         return (argb & 0xff);
     }
 
@@ -277,7 +277,7 @@ public class ColorUtil {
      * @param alpha the alpha value of the color
      * @return the given color with the given alpha value
      */
-    public static Color withAlpha(Color color, int alpha) {
+    public static Color withAlpha(final Color color, final int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
 
@@ -290,7 +290,7 @@ public class ColorUtil {
      * @param alpha the alpha value of the color
      * @return the given color with the given alpha value
      */
-    public static Color withAlpha(Color color, float alpha) {
+    public static Color withAlpha(final Color color, final float alpha) {
         return withAlpha(color, (int) (alpha * 255f));
     }
 
@@ -303,7 +303,7 @@ public class ColorUtil {
      * @return Darker color.
      * @deprecated
      */
-    public static Color changeBrightness(Color color, float amount) {
+    public static Color changeBrightness(final Color color, final float amount) {
         int red = (int) Math.round(color.getRed() * (1.0 - amount));
         int green = (int) Math.round(color.getGreen() * (1.0 - amount));
         int blue = (int) Math.round(color.getBlue() * (1.0 - amount));
@@ -326,7 +326,7 @@ public class ColorUtil {
      * @return a new {@link TexturePaint} using the given {@link BufferedImage} as a texture and the given {@link Transform}
      * as an anchor.
      */
-    public static TexturePaint createTexturePaint(BufferedImage texture, Transform anchor) {
+    public static TexturePaint createTexturePaint(final BufferedImage texture, final Transform anchor) {
         return new TexturePaint(texture, anchor.getRect());
     }
 
@@ -341,9 +341,9 @@ public class ColorUtil {
      * to the same color but with the given alpha value.
      * @see RadialGradientPaint
      */
-    public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color, int targetAlpha) {
+    public static RadialGradientPaint createRadialGradientPaint(final Transform bounds, final Color color, final int targetAlpha) {
 
-        float radius;
+        final float radius;
 
         if (bounds.getWidth() <= 0) {
             radius = 1;
@@ -351,9 +351,9 @@ public class ColorUtil {
             radius = bounds.getWidth();
         }
 
-        float[] fractions = {0f, 1f};
-        Color endColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), targetAlpha);
-        Color[] colors = {color, endColor};
+        final float[] fractions = {0f, 1f};
+        final Color endColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), targetAlpha);
+        final Color[] colors = {color, endColor};
 
         return new RadialGradientPaint(bounds.getCentre().getX(), bounds.getCentre().getY(), radius, fractions, colors, MultipleGradientPaint.CycleMethod.NO_CYCLE);
     }
@@ -366,7 +366,7 @@ public class ColorUtil {
      * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
      * to the same color but with an alpha of 0.
      */
-    public static RadialGradientPaint createRadialGradientPaint(Transform bounds, Color color) {
+    public static RadialGradientPaint createRadialGradientPaint(final Transform bounds, final Color color) {
         System.out.println(bounds);
         return createRadialGradientPaint(bounds, color, 0);
     }
@@ -377,7 +377,7 @@ public class ColorUtil {
      * @param argb a single argb component ranging from 0 to 255
      * @return the given integer in a range from 0 to 255 converted to a float ranging from 0f to 1f
      */
-    public static float intARGBToFloat(int argb) {
+    public static float intARGBToFloat(final int argb) {
         return (float) argb / 255;
     }
 }

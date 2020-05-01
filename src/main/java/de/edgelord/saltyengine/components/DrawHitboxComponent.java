@@ -28,7 +28,7 @@ public class DrawHitboxComponent extends Component<GameObject> {
 
     private static final Color color = new Color(1, 0, 0, 0.25f);
 
-    public DrawHitboxComponent(GameObject parent, String name) {
+    public DrawHitboxComponent(final GameObject parent, final String name) {
         super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);
     }
 
@@ -38,7 +38,7 @@ public class DrawHitboxComponent extends Component<GameObject> {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.resetObjectRotation(getParent());
         saltyGraphics.setColor(color);
@@ -46,7 +46,7 @@ public class DrawHitboxComponent extends Component<GameObject> {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

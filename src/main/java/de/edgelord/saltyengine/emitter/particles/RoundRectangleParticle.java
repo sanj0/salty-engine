@@ -40,14 +40,14 @@ public class RoundRectangleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public RoundRectangleParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+    public RoundRectangleParticle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         super(waveNumber, restLifetime, speed, parent);
 
         setDimensions(DEFAULT_DIMENSIONS);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawRoundRect(this, DIAMETER);
     }
 }

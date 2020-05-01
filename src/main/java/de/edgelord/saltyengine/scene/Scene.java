@@ -91,10 +91,10 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     public abstract void initialize();
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+            for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
                     drawingRoutine.draw(saltyGraphics);
                 }
@@ -102,9 +102,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
 
         synchronized (concurrentBlock) {
-            for (GameObject gameObject : gameObjects) {
-                AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
+            for (final GameObject gameObject : gameObjects) {
+                final AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
+                final Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
                 saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
 
                 gameObject.draw(saltyGraphics);
@@ -115,7 +115,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
 
         synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+            for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
                     drawingRoutine.draw(saltyGraphics);
                 }
@@ -140,7 +140,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
 
         synchronized (concurrentBlock) {
-            for (DrawingRoutine drawingRoutine : drawingRoutines) {
+            for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.LAST) {
                     drawingRoutine.draw(saltyGraphics);
                 }
@@ -156,7 +156,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
 
             for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
+                final GameObject gameObject = gameObjects.get(i);
 
                 if (gameObject.isClearCollisions()) {
                     gameObject.getCollisions().clear();
@@ -170,17 +170,17 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
 
                 for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
-                    GameObject gameObject2 = gameObjects.get(i2);
+                    final GameObject gameObject2 = gameObjects.get(i2);
                     if (gameObject2.isClearCollisions()) {
                         gameObject2.getCollisions().clear();
                         gameObject2.setClearCollisions(false);
                     }
 
-                    CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
+                    final CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
 
                     if (collisionDetectionResult.isCollision()) {
-                        CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
-                        CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
+                        final CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
+                        final CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
 
                         gameObject.getCollisions().add(collision);
                         gameObject.onCollision(collision);
@@ -212,7 +212,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
             gravityEnabled = false;
             for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
+                final GameObject gameObject = gameObjects.get(i);
 
                 gameObject.getPhysics().setGravityEnabled(false);
             }
@@ -223,27 +223,27 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
             gravityEnabled = true;
             for (int i = 0; i < gameObjects.size(); i++) {
-                GameObject gameObject = gameObjects.get(i);
+                final GameObject gameObject = gameObjects.get(i);
 
                 gameObject.getPhysics().setGravityEnabled(true);
             }
         }
     }
 
-    public void addFixedTask(FixedTask fixedTask) {
+    public void addFixedTask(final FixedTask fixedTask) {
 
         synchronized (concurrentBlock) {
             fixedTasks.add(fixedTask);
         }
     }
 
-    public void addDrawingRoutine(DrawingRoutine drawingRoutine) {
+    public void addDrawingRoutine(final DrawingRoutine drawingRoutine) {
         synchronized (concurrentBlock) {
             drawingRoutines.add(drawingRoutine);
         }
     }
 
-    public void addGameObject(GameObject gameObject) {
+    public void addGameObject(final GameObject gameObject) {
 
         synchronized (concurrentBlock) {
             gameObject.getPhysics().setGravityEnabled(gravityEnabled);
@@ -251,14 +251,14 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
     }
 
-    public void addGameObject(int index, GameObject gameObject) {
+    public void addGameObject(final int index, final GameObject gameObject) {
         synchronized (concurrentBlock) {
             gameObject.getPhysics().setGravityEnabled(gravityEnabled);
             gameObjects.add(index, gameObject);
         }
     }
 
-    public void removeGameObject(GameObject gameObject) {
+    public void removeGameObject(final GameObject gameObject) {
         synchronized (concurrentBlock) {
             gameObjects.remove(gameObject);
         }
@@ -270,7 +270,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
     }
 
-    public void removeFixedTask(FixedTask fixedTask) {
+    public void removeFixedTask(final FixedTask fixedTask) {
         synchronized (concurrentBlock) {
             fixedTasks.remove(fixedTask);
         }
@@ -282,7 +282,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
     }
 
-    public void removeDrawingRoutine(DrawingRoutine drawingRoutine) {
+    public void removeDrawingRoutine(final DrawingRoutine drawingRoutine) {
         synchronized (concurrentBlock) {
             drawingRoutines.remove(drawingRoutine);
         }
@@ -297,7 +297,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     public void doFixedTasks() {
 
         synchronized (concurrentBlock) {
-            for (FixedTask fixedTask : fixedTasks) {
+            for (final FixedTask fixedTask : fixedTasks) {
 
                 fixedTask.onFixedTick();
             }
@@ -308,7 +308,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         return sceneCollider;
     }
 
-    public void setSceneCollider(SceneCollider sceneCollider) {
+    public void setSceneCollider(final SceneCollider sceneCollider) {
         this.sceneCollider = sceneCollider;
     }
 
@@ -316,7 +316,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         return ui;
     }
 
-    public void setUI(UISystem uiSystem) {
+    public void setUI(final UISystem uiSystem) {
         this.ui = uiSystem;
     }
 
@@ -342,7 +342,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         return gravity;
     }
 
-    public void setGravity(float gravity) {
+    public void setGravity(final float gravity) {
         this.gravity = gravity;
     }
 
@@ -350,11 +350,11 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         return friction;
     }
 
-    public void setFriction(float friction) {
+    public void setFriction(final float friction) {
         this.friction = friction;
     }
 
-    public void setGravityEnabled(boolean gravityEnabled) {
+    public void setGravityEnabled(final boolean gravityEnabled) {
         if (gravityEnabled) {
             enableGravity();
         } else {
@@ -366,7 +366,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         return lightSystem;
     }
 
-    public void setLightSystem(LightSystem lightSystem) {
+    public void setLightSystem(final LightSystem lightSystem) {
         this.lightSystem = lightSystem;
     }
 

@@ -48,7 +48,7 @@ public class Screen extends GameObject {
     }
 
     @Override
-    public void onCollision(CollisionEvent event) {
+    public void onCollision(final CollisionEvent event) {
 
     }
 
@@ -69,7 +69,7 @@ public class Screen extends GameObject {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         // Draw the screen surrounding
         saltyGraphics.setStroke(new BasicStroke(20));

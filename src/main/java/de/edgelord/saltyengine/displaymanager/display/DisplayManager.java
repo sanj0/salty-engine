@@ -35,7 +35,7 @@ public class DisplayManager extends Host {
     private final Stage stage;
     private NativeDisplayKeyListener nativeKeyListener;
 
-    public DisplayManager(DisplayRatio displayRatio, final String gameName, final Engine engine) {
+    public DisplayManager(final DisplayRatio displayRatio, final String gameName, final Engine engine) {
 
         display = new Display(displayRatio, gameName);
         stage = new Stage(display.getContentPane(), engine);
@@ -71,12 +71,12 @@ public class DisplayManager extends Host {
     }
 
     @Override
-    public void setBackgroundColor(Color color) {
+    public void setBackgroundColor(final Color color) {
         stage.setBackground(color);
     }
 
     @Override
-    public boolean showConfirmDialog(String message) {
+    public boolean showConfirmDialog(final String message) {
         return JOptionPane.showConfirmDialog(display, message, "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
@@ -86,7 +86,7 @@ public class DisplayManager extends Host {
     }
 
     @Override
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(final Dimensions dimensions) {
         display.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
 
@@ -101,12 +101,12 @@ public class DisplayManager extends Host {
     }
 
     @Override
-    public void addComponent(JComponent component) throws UnsupportedOperationException {
+    public void addComponent(final JComponent component) throws UnsupportedOperationException {
         stage.add(component);
     }
 
     @Override
-    public void removeComponent(JComponent component) throws UnsupportedOperationException {
+    public void removeComponent(final JComponent component) throws UnsupportedOperationException {
         stage.remove(component);
     }
 
@@ -159,7 +159,7 @@ public class DisplayManager extends Host {
         return stage;
     }
 
-    public void setResizeable(boolean resizeable) {
+    public void setResizeable(final boolean resizeable) {
         display.setResizable(resizeable);
     }
 }

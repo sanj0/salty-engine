@@ -29,7 +29,7 @@ public class FixedRate extends Component {
 
     private boolean now = false;
 
-    public FixedRate(ComponentContainer parent, String name, int gate) {
+    public FixedRate(final ComponentContainer parent, final String name, final int gate) {
         super(parent, name, Components.TIMING_COMPONENT);
         this.gate = gate;
     }
@@ -51,12 +51,12 @@ public class FixedRate extends Component {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -64,7 +64,7 @@ public class FixedRate extends Component {
         return gate;
     }
 
-    public void setGate(int gate) {
+    public void setGate(final int gate) {
         this.gate = gate;
     }
 }

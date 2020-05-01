@@ -47,7 +47,7 @@ public class SceneOverlay extends SceneGFXComponent {
      */
     private float alpha;
 
-    public SceneOverlay(String name, Color overlayColor, float alpha) {
+    public SceneOverlay(final String name, final Color overlayColor, final float alpha) {
         super(name);
 
         this.overlayColor = overlayColor;
@@ -55,11 +55,11 @@ public class SceneOverlay extends SceneGFXComponent {
 
         drawColorOverlay = new DrawingRoutine(DrawingRoutine.DrawingPosition.LAST) {
             @Override
-            public void draw(SaltyGraphics saltyGraphics) {
+            public void draw(final SaltyGraphics saltyGraphics) {
 
-                int alphaInt = Math.round(255f * alpha);
+                final int alphaInt = Math.round(255f * alpha);
 
-                Color overlay = new Color(overlayColor.getRed(), overlayColor.getGreen(), overlayColor.getBlue(), alphaInt);
+                final Color overlay = new Color(overlayColor.getRed(), overlayColor.getGreen(), overlayColor.getBlue(), alphaInt);
 
                 saltyGraphics.setColor(overlay);
                 saltyGraphics.drawRect(-Game.getCamera().getX(), -Game.getCamera().getY(), Game.getGameWidth(), Game.getGameHeight());
@@ -67,7 +67,7 @@ public class SceneOverlay extends SceneGFXComponent {
         };
     }
 
-    public SceneOverlay(ComponentContainer parent, String name, Color overlayColor) {
+    public SceneOverlay(final ComponentContainer parent, final String name, final Color overlayColor) {
         this(name, overlayColor, 0.5f);
     }
 
@@ -91,7 +91,7 @@ public class SceneOverlay extends SceneGFXComponent {
      * @param saltyGraphics the graphics context to draw with
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
     }
 
     @Override
@@ -103,7 +103,7 @@ public class SceneOverlay extends SceneGFXComponent {
         return overlayColor;
     }
 
-    public void setOverlayColor(Color overlayColor) {
+    public void setOverlayColor(final Color overlayColor) {
         this.overlayColor = overlayColor;
     }
 
@@ -111,7 +111,7 @@ public class SceneOverlay extends SceneGFXComponent {
         return alpha;
     }
 
-    public void setAlpha(float alpha) {
+    public void setAlpha(final float alpha) {
         this.alpha = alpha;
     }
 }

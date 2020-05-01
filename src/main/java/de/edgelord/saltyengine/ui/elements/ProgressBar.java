@@ -65,31 +65,31 @@ public class ProgressBar extends UIElement {
      * @param width  the width.
      * @param height the height.
      */
-    public ProgressBar(float x, float y, float width, float height) {
+    public ProgressBar(final float x, final float y, final float width, final float height) {
         this(new Transform(x, y, width, height));
     }
 
     /**
      * {@inheritDoc}
      */
-    public ProgressBar(Vector2f position, float width, float height) {
+    public ProgressBar(final Vector2f position, final float width, final float height) {
         super(position, width, height, STATE_DISPLAY_ELEMENT);
     }
 
     /**
      * {@inheritDoc}
      */
-    public ProgressBar(Transform transform) {
+    public ProgressBar(final Transform transform) {
         super(transform, STATE_DISPLAY_ELEMENT);
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawRoundRect(getPosition(), currentBar, cornerArc);
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
         if (outlineStroke != null) {
             saltyGraphics.setStroke(outlineStroke);
         }
@@ -119,7 +119,7 @@ public class ProgressBar extends UIElement {
      *
      * @param maxValue the new value of {@link #maxValue}
      */
-    public void setMaxValue(float maxValue) {
+    public void setMaxValue(final float maxValue) {
         this.maxValue = maxValue;
         recalculateBar();
     }
@@ -138,7 +138,7 @@ public class ProgressBar extends UIElement {
      *
      * @param currentValue the new value of {@link #currentValue}
      */
-    public void setCurrentValue(float currentValue) {
+    public void setCurrentValue(final float currentValue) {
         this.currentValue = currentValue;
         recalculateBar();
     }
@@ -157,7 +157,7 @@ public class ProgressBar extends UIElement {
      *
      * @param cornerArc the new value of {@link #cornerArc}
      */
-    public void setCornerArc(float cornerArc) {
+    public void setCornerArc(final float cornerArc) {
         this.cornerArc = cornerArc;
     }
 
@@ -175,7 +175,7 @@ public class ProgressBar extends UIElement {
      *
      * @param outlineStroke the new value of {@link #outlineStroke}
      */
-    public void setOutlineStroke(Stroke outlineStroke) {
+    public void setOutlineStroke(final Stroke outlineStroke) {
         this.outlineStroke = outlineStroke;
     }
 }

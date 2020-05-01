@@ -34,14 +34,14 @@ public class OvalParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public OvalParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+    public OvalParticle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         super(waveNumber, restLifetime, speed, parent);
 
         this.setDimensions(DEFAULT_DIMENSIONS);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawOval(this);
     }
 }

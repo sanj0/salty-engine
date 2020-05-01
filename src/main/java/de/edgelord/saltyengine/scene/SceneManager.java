@@ -52,7 +52,7 @@ public class SceneManager {
      *
      * @param scene the new active <code>Scene</code>
      */
-    public static void setCurrentScene(Scene scene) {
+    public static void setCurrentScene(final Scene scene) {
         setCurrentScene(scene, true);
     }
 
@@ -63,7 +63,7 @@ public class SceneManager {
      * @param initialize whether the <code>Scene</code> should be
      *                   {@link Scene#initialize() initialized} by this method or not.
      */
-    public static void setCurrentScene(Scene scene, boolean initialize) {
+    public static void setCurrentScene(final Scene scene, final boolean initialize) {
         currentScene = scene;
 
         if (initialize) {
@@ -83,20 +83,20 @@ public class SceneManager {
      * @throws NoSuchMethodException when there is no constructor
      *                               the given args
      */
-    public static void reloadCurrentScene(Object... args) throws NoSuchMethodException {
+    public static void reloadCurrentScene(final Object... args) throws NoSuchMethodException {
 
         if (currentScene == null) {
             throw new IllegalStateException("cannot reload the current scene if it is null");
         }
 
-        Class[] argTypes = new Class[args.length];
+        final Class[] argTypes = new Class[args.length];
 
         for (int i = 0; i < args.length; i++) {
             argTypes[i] = args[i].getClass();
         }
         try {
             setCurrentScene(getCurrentScene().getClass().getConstructor(argTypes).newInstance(args));
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }

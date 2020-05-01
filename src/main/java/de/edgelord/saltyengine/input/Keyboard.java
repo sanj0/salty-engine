@@ -148,17 +148,17 @@ public class Keyboard {
     private boolean openSquareBracket = false;
     private boolean closeSquareBracket = false;
 
-    public void handleKeyPressed(KeyEvent keyPressedEvent) {
+    public void handleKeyPressed(final KeyEvent keyPressedEvent) {
 
         flagMatchingKeyAs(true, keyPressedEvent);
     }
 
-    public void handleKeyReleased(KeyEvent keyReleasedEvent) {
+    public void handleKeyReleased(final KeyEvent keyReleasedEvent) {
 
         flagMatchingKeyAs(false, keyReleasedEvent);
     }
 
-    private void flagMatchingKeyAs(boolean targetFlag, KeyEvent event) {
+    private void flagMatchingKeyAs(final boolean targetFlag, final KeyEvent event) {
 
         if (event.getKeyChar() == ' ') {
             space = targetFlag;

@@ -38,22 +38,22 @@ public abstract class Button extends UIElement {
 
     private boolean enabled = true;
 
-    public Button(String text, Vector2f position, int width, int height) {
+    public Button(final String text, final Vector2f position, final int width, final int height) {
         super(position, width, height, BUTTON);
 
         this.text = text;
     }
 
-    public Button(String text, Transform transform, String tag) {
+    public Button(final String text, final Transform transform, final String tag) {
         this(text, transform.getPosition(), transform.getWidthAsInt(), transform.getHeightAsInt());
     }
 
-    public Button(String text, float x, float y, int width, int height) {
+    public Button(final String text, final float x, final float y, final int width, final int height) {
         this(text, new Vector2f(x, y), width, height);
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setFont(getFont());
         saltyGraphics.setColor(getForegroundColor());
@@ -61,7 +61,7 @@ public abstract class Button extends UIElement {
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setColor(currentBackgroundColor);
 
@@ -71,7 +71,7 @@ public abstract class Button extends UIElement {
     public abstract void onClick(MouseEvent e);
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
 
         if (enabled) {
             if (mouseHoversOver()) {
@@ -83,7 +83,7 @@ public abstract class Button extends UIElement {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
 
         if (mouseHoversOver() && enabled) {
             currentBackgroundColor = clickColor;
@@ -91,7 +91,7 @@ public abstract class Button extends UIElement {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
 
         if (enabled) {
             currentBackgroundColor = getBackgroundColor();
@@ -106,12 +106,12 @@ public abstract class Button extends UIElement {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(final String text) {
         this.text = text;
     }
 
     @Override
-    public void setBackgroundColor(Color backgroundColor) {
+    public void setBackgroundColor(final Color backgroundColor) {
         super.setBackgroundColor(backgroundColor);
         this.currentBackgroundColor = backgroundColor;
         this.hoverColor = ColorUtil.changeBrightness(backgroundColor, -0.15f);
@@ -123,7 +123,7 @@ public abstract class Button extends UIElement {
         return arc;
     }
 
-    public void setArc(int arc) {
+    public void setArc(final int arc) {
         this.arc = arc;
     }
 
@@ -131,7 +131,7 @@ public abstract class Button extends UIElement {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         if (enabled) {
             enable();
         } else {

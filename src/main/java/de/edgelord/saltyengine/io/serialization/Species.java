@@ -25,12 +25,12 @@ public class Species {
     private final List<Species> subSpecies = new LinkedList<>();
     private String content;
 
-    public Species(String name, String content) {
+    public Species(final String name, final String content) {
         this.content = content;
         this.name = name;
     }
 
-    public Species(String name) {
+    public Species(final String name) {
         this.content = "";
         this.name = name;
     }
@@ -45,7 +45,7 @@ public class Species {
      * @param tag the name of the tag whose value should be returned
      * @return the value of the given tag
      */
-    public String getTagValue(String tag) {
+    public String getTagValue(final String tag) {
         return splitString(content, "(" + tag + ")", "(*" + tag + ")");
     }
 
@@ -55,11 +55,11 @@ public class Species {
      * @param species name of the Species wich should be returned and added to the list
      * @return the Species with the given name
      */
-    public Species getSubSpecies(String species) {
+    public Species getSubSpecies(final String species) {
         return new Species(species, splitString(content, "{" + species + "}", "{*" + species + "}"));
     }
 
-    private String splitString(String base, String start, String end) {
+    private String splitString(final String base, final String start, final String end) {
         return base.substring(base.lastIndexOf(start) + start.length(), base.lastIndexOf(end));
     }
 
@@ -71,11 +71,11 @@ public class Species {
      */
     public String getSyntax() {
 
-        StringBuilder syntax = new StringBuilder();
+        final StringBuilder syntax = new StringBuilder();
 
         syntax.append("{").append(name).append("}").append(content);
 
-        for (Species species : subSpecies) {
+        for (final Species species : subSpecies) {
             syntax.append(species.getSyntax());
         }
         syntax.append("{*").append(name).append("}");
@@ -90,7 +90,7 @@ public class Species {
      * @param tag   the name of the tag which should be added
      * @param value the value of the tag which should be added
      */
-    public void addTag(String tag, Object value) {
+    public void addTag(final String tag, final Object value) {
         content = "(" + tag + ")" + value.toString() + "(*" + tag + ")" + content;
     }
 
@@ -101,8 +101,8 @@ public class Species {
      * @param name name of the Species which should be returned and added to the list
      * @return the created Species with the given name
      */
-    public Species addSubSpecies(String name) {
-        Species speciesToReturn = new Species(name, "");
+    public Species addSubSpecies(final String name) {
+        final Species speciesToReturn = new Species(name, "");
 
         subSpecies.add(speciesToReturn);
         return speciesToReturn;

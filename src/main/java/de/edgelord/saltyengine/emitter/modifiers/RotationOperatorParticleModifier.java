@@ -30,12 +30,12 @@ public class RotationOperatorParticleModifier extends SpeedOperatorParticleModif
      * @param factor    the factory to be used as the second part of the math operations.
      * @param operation the math operation do apply to each {@link Particle}'s speed
      */
-    public RotationOperatorParticleModifier(float factor, Operation operation) {
+    public RotationOperatorParticleModifier(final float factor, final Operation operation) {
         super(factor, operation);
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
 
         switch (getOperation()) {
 

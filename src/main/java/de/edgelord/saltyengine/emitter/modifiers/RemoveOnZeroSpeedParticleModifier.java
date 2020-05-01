@@ -30,12 +30,12 @@ public class RemoveOnZeroSpeedParticleModifier implements ParticleModifier {
     public RemoveOnZeroSpeedParticleModifier() {
     }
 
-    public RemoveOnZeroSpeedParticleModifier(float gate) {
+    public RemoveOnZeroSpeedParticleModifier(final float gate) {
         this.gate = gate;
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
         if (particle.getSpeed() <= gate) {
             particle.setRestLifetime(0);
         }
@@ -45,7 +45,7 @@ public class RemoveOnZeroSpeedParticleModifier implements ParticleModifier {
         return gate;
     }
 
-    public void setGate(float gate) {
+    public void setGate(final float gate) {
         this.gate = gate;
     }
 }

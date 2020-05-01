@@ -36,46 +36,46 @@ public class GradientLight extends Light {
     private SaltyImage coloredLight;
     private EnumShape shape;
 
-    public GradientLight(Transform transform, Color color, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final Transform transform, final Color color, final EnumShape shape, final float... arcIfRoundRect) {
         super(transform, color);
         this.shape = shape;
         this.arcIfRoundRect = arcIfRoundRect;
         updateLightImage();
     }
 
-    public GradientLight(Transform transform, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final Transform transform, final EnumShape shape, final float... arcIfRoundRect) {
         this(transform, ColorUtil.TRANSPARENT_COLOR, shape, arcIfRoundRect);
     }
 
-    public GradientLight(Vector2f position, Dimensions dimensions, Color color, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final Vector2f position, final Dimensions dimensions, final Color color, final EnumShape shape, final float... arcIfRoundRect) {
         this(new Transform(position, dimensions), color, shape, arcIfRoundRect);
     }
 
-    public GradientLight(Vector2f position, Dimensions dimensions, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final Vector2f position, final Dimensions dimensions, final EnumShape shape, final float... arcIfRoundRect) {
         this(new Transform(position, dimensions), shape, arcIfRoundRect);
     }
 
-    public GradientLight(float x, float y, float width, float height, Color color, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final float x, final float y, final float width, final float height, final Color color, final EnumShape shape, final float... arcIfRoundRect) {
         this(new Transform(x, y, width, height), color, shape, arcIfRoundRect);
     }
 
-    public GradientLight(float x, float y, float width, float height, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final float x, final float y, final float width, final float height, final EnumShape shape, final float... arcIfRoundRect) {
         this(new Transform(x, y, width, height), shape, arcIfRoundRect);
     }
 
-    public GradientLight(Transform transform, Color color, float brightness, float intensity, EnumShape shape, float... arcIfRoundRect) {
+    public GradientLight(final Transform transform, final Color color, final float brightness, final float intensity, final EnumShape shape, final float... arcIfRoundRect) {
         this(transform, color, shape, arcIfRoundRect);
         setBrightness(brightness);
         setIntensity(intensity);
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
         graphics.drawImage(light.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
     @Override
-    public void drawColorMap(Graphics2D graphics) {
+    public void drawColorMap(final Graphics2D graphics) {
         graphics.drawImage(coloredLight.getImage(), Math.round(getX()), Math.round(getY()), null);
     }
 
@@ -89,72 +89,72 @@ public class GradientLight extends Light {
         return shape;
     }
 
-    public void setShape(EnumShape shape) {
+    public void setShape(final EnumShape shape) {
         this.shape = shape;
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         super.setTransform(transform);
         updateLightImage();
     }
 
     @Override
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(final Dimensions dimensions) {
         super.setDimensions(dimensions);
         updateLightImage();
     }
 
     @Override
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
         super.setPosition(position);
         updateLightImage();
     }
 
     @Override
-    public void setWidth(float width) {
+    public void setWidth(final float width) {
         super.setWidth(width);
         updateLightImage();
     }
 
     @Override
-    public void setHeight(float height) {
+    public void setHeight(final float height) {
         super.setHeight(height);
         updateLightImage();
     }
 
     @Override
-    public void setX(float x) {
+    public void setX(final float x) {
         super.setX(x);
         updateLightImage();
     }
 
     @Override
-    public void setY(float y) {
+    public void setY(final float y) {
         super.setY(y);
         updateLightImage();
     }
 
     @Override
-    public void setBrightness(float brightness) {
+    public void setBrightness(final float brightness) {
         super.setBrightness(brightness);
         updateLightImage();
     }
 
     @Override
-    public void setIntensity(float intensity) {
+    public void setIntensity(final float intensity) {
         super.setIntensity(intensity);
         updateLightImage();
     }
 
     @Override
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         super.setColor(color);
         updateLightImage();
     }
 
     @Override
-    public void setColorAlpha(int colorAlpha) {
+    public void setColorAlpha(final int colorAlpha) {
         super.setColorAlpha(colorAlpha);
         updateLightImage();
     }

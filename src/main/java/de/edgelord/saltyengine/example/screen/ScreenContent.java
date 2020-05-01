@@ -28,7 +28,7 @@ public class ScreenContent {
     private float yOrigin;
     private Vector2f origin;
 
-    public ScreenContent(float xOrigin, float yOrigin) {
+    public ScreenContent(final float xOrigin, final float yOrigin) {
 
         this.xOrigin = xOrigin;
         this.yOrigin = yOrigin;
@@ -36,17 +36,17 @@ public class ScreenContent {
         updateOrigin();
     }
 
-    public void draw(SaltyGraphics graphics) {
+    public void draw(final SaltyGraphics graphics) {
 
         graphics.drawImage(bgImage, origin);
     }
 
-    public void moveX(float delta) {
+    public void moveX(final float delta) {
         xOrigin += delta;
         updateOrigin();
     }
 
-    public void moveY(float delta) {
+    public void moveY(final float delta) {
         yOrigin += delta;
         updateOrigin();
     }

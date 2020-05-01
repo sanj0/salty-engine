@@ -52,10 +52,10 @@ public class ImageUtils {
      * @param height the height of the new image
      * @return a new image which contains the old image
      */
-    public static SaltyImage resize(SaltyImage image, float width, float height) {
-        SaltyImage destination = SaltySystem.createPreferredImage(width, height);
-        Graphics2D graphics2D = destination.createGraphics();
-        AffineTransform transform = AffineTransform.getScaleInstance((double) width / image.getWidth(), (double) height / image.getHeight());
+    public static SaltyImage resize(final SaltyImage image, final float width, final float height) {
+        final SaltyImage destination = SaltySystem.createPreferredImage(width, height);
+        final Graphics2D graphics2D = destination.createGraphics();
+        final AffineTransform transform = AffineTransform.getScaleInstance((double) width / image.getWidth(), (double) height / image.getHeight());
         graphics2D.drawImage(image.getImage(), transform, null);
 
         return destination;
@@ -71,7 +71,7 @@ public class ImageUtils {
      * @param height the height of the sub-image
      * @return the sub-image from the given base with the given position and dimensions
      */
-    public static VolatileImage getSubImage(VolatileImage base, int x, int y, int width, int height) {
+    public static VolatileImage getSubImage(final VolatileImage base, final int x, final int y, final int width, final int height) {
         return toVolatileImage(toBufferedImage(base).getSubimage(x, y, width, height));
     }
 
@@ -81,12 +81,12 @@ public class ImageUtils {
      * @param image the image source
      * @return the given image as a {@link VolatileImage}
      */
-    public static VolatileImage toVolatileImage(Image image) {
+    public static VolatileImage toVolatileImage(final Image image) {
 
         if (image instanceof VolatileImage) {
             return (VolatileImage) image;
         }
-        VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
+        final VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
         copyImageTo(image, volatileImage);
 
         return volatileImage;
@@ -98,12 +98,12 @@ public class ImageUtils {
      * @param image the image source
      * @return the given image as a {@link BufferedImage}
      */
-    public static BufferedImage toBufferedImage(Image image) {
+    public static BufferedImage toBufferedImage(final Image image) {
 
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;
         }
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()), BufferedImage.TYPE_INT_ARGB);
+        final BufferedImage bufferedImage = new BufferedImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()), BufferedImage.TYPE_INT_ARGB);
         copyImageTo(image, bufferedImage);
 
         return bufferedImage;
@@ -116,7 +116,7 @@ public class ImageUtils {
      * @param target the target image
      * @return the given {@link VolatileImage} target which now contains the given source image
      */
-    public static VolatileImage copyTo(BufferedImage source, VolatileImage target) {
+    public static VolatileImage copyTo(final BufferedImage source, final VolatileImage target) {
         copyImageTo(source, target);
         return target;
     }
@@ -128,13 +128,13 @@ public class ImageUtils {
      * @param target the target image
      * @return the given {@link BufferedImage} target which now contains the given source image
      */
-    public static BufferedImage copyTo(VolatileImage source, BufferedImage target) {
+    public static BufferedImage copyTo(final VolatileImage source, final BufferedImage target) {
         copyImageTo(source, target);
         return target;
     }
 
-    private static void copyImageTo(Image source, Image target) {
-        Graphics2D graphics2D = (Graphics2D) target.getGraphics();
+    private static void copyImageTo(final Image source, final Image target) {
+        final Graphics2D graphics2D = (Graphics2D) target.getGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, source.getWidth(null), source.getHeight(null));
         graphics2D.drawImage(source, 0, 0, target.getWidth(null), target.getHeight(null), null);
@@ -147,7 +147,7 @@ public class ImageUtils {
      * @param image the image
      * @return the dimensions of the given image
      */
-    public static Dimensions getImageDimensions(Image image) {
+    public static Dimensions getImageDimensions(final Image image) {
         return new Dimensions(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
     }
 
@@ -159,11 +159,11 @@ public class ImageUtils {
      * @param renderingHints the renderhints to use for drawing the image
      * @return a {@link SaltyImage} with the given size and the given {@link Drawable} performed on it
      */
-    public static SaltyImage createPrimitiveImage(Drawable drawable, Dimensions size, RenderingHints renderingHints) {
+    public static SaltyImage createPrimitiveImage(final Drawable drawable, final Dimensions size, final RenderingHints renderingHints) {
 
-        SaltyImage image = SaltySystem.createPreferredImage(size.getWidth(), size.getHeight());
+        final SaltyImage image = SaltySystem.createPreferredImage(size.getWidth(), size.getHeight());
 
-        Graphics2D graphics2D = image.createGraphics();
+        final Graphics2D graphics2D = image.createGraphics();
         graphics2D.setRenderingHints(renderingHints);
 
         drawable.draw(new SaltyGraphics(graphics2D));
@@ -189,27 +189,27 @@ public class ImageUtils {
      * @param startAlpha      the alpha value of the centre
      * @return a {@link SaltyImage} containing the given {@link SaltyShape} drawn as a gradient.
      */
-    public static SaltyImage createPrimitiveGradient(SaltyShape shape, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha) {
+    public static SaltyImage createPrimitiveGradient(final SaltyShape shape, final Drawable graphicsPrepare, final RenderingHints renderingHints, final float intensity, final double startAlpha) {
 
-        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getWidth());
-        Graphics2D graphics = image.createGraphics();
+        final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getWidth());
+        final Graphics2D graphics = image.createGraphics();
 
         if (graphicsPrepare != null) {
             graphicsPrepare.draw(new SaltyGraphics(graphics));
         }
         graphics.setRenderingHints(renderingHints);
-        int red = graphics.getColor().getRed();
-        int green = graphics.getColor().getGreen();
-        int blue = graphics.getColor().getBlue();
+        final int red = graphics.getColor().getRed();
+        final int green = graphics.getColor().getGreen();
+        final int blue = graphics.getColor().getBlue();
 
-        float radius = shape.getWidth() / 2f;
+        final float radius = shape.getWidth() / 2f;
 
         for (int i = 0; i < radius; i++) {
-            double luma = 1.0D - ((i + 0.001D) / radius);
-            int alpha = Math.min((int) (startAlpha * luma * intensity), 255);
+            final double luma = 1.0D - ((i + 0.001D) / radius);
+            final int alpha = Math.min((int) (startAlpha * luma * intensity), 255);
             graphics.setColor(new Color(red, green, blue, alpha));
-            int currentPos = Math.round(radius - i);
-            int currentSize = i * 2;
+            final int currentPos = Math.round(radius - i);
+            final int currentSize = i * 2;
             shape.setDimensions(new Dimensions(currentSize, currentSize));
             shape.setPosition(new Vector2f(currentPos, currentPos));
             shape.draw(new SaltyGraphics(graphics));
@@ -233,21 +233,21 @@ public class ImageUtils {
      * @param arcIfRoundRect  an arc if the given {@link EnumShape} is {@link EnumShape#ROUND_RECTANGLE}
      * @return a {@link SaltyImage} containing a {@link SaltyShape} drawn as a gradient.
      */
-    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, double startAlpha, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(final EnumShape shapeType, final Drawable graphicsPrepare, final RenderingHints renderingHints, final float intensity, final double startAlpha, final Dimensions size, final float... arcIfRoundRect) {
 
         return createPrimitiveGradient(Objects.requireNonNull(SaltyShape.createShape(shapeType, new Transform(0, 0, size.getWidth(), size.getHeight()), arcIfRoundRect)), graphicsPrepare, renderingHints, intensity, startAlpha);
     }
 
-    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, Drawable graphicsPrepare, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(final EnumShape shapeType, final Drawable graphicsPrepare, final RenderingHints renderingHints, final float intensity, final Dimensions size, final float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, graphicsPrepare, renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
-    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, RenderingHints renderingHints, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(final EnumShape shapeType, final RenderingHints renderingHints, final float intensity, final Dimensions size, final float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, saltyGraphics -> {
         }, renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
 
-    public static SaltyImage createPrimitiveGradient(EnumShape shapeType, float intensity, Dimensions size, float... arcIfRoundRect) {
+    public static SaltyImage createPrimitiveGradient(final EnumShape shapeType, final float intensity, final Dimensions size, final float... arcIfRoundRect) {
         return createPrimitiveGradient(shapeType, saltyGraphics -> {
         }, GraphicsConfiguration.renderingHints, intensity, 255D, size, arcIfRoundRect);
     }
@@ -261,10 +261,10 @@ public class ImageUtils {
      * @param renderingHints the quality to render the shape
      * @return a new image containing the given shape in the given color with the given quality
      */
-    public static SaltyImage createShapeImage(SaltyShape shape, Color color, RenderingHints renderingHints) {
-        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
+    public static SaltyImage createShapeImage(final SaltyShape shape, final Color color, final RenderingHints renderingHints) {
+        final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
 
-        Graphics2D graphics = image.createGraphics();
+        final Graphics2D graphics = image.createGraphics();
         graphics.setColor(color);
         graphics.setRenderingHints(renderingHints);
         shape.drawAtZero(graphics);
@@ -281,9 +281,9 @@ public class ImageUtils {
      * @param graphicsPrepare a {@link Drawable} to prepare e.g. the Color of the shape
      * @return a new {@link SaltyImage} with the given {@link SaltyShape} drawn onto.
      */
-    public static SaltyImage createShapeImage(SaltyShape shape, Drawable graphicsPrepare) {
-        SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
-        SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
+    public static SaltyImage createShapeImage(final SaltyShape shape, final Drawable graphicsPrepare) {
+        final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
+        final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
 
         graphicsPrepare.draw(graphics);
         shape.drawAtZero(graphics.getGraphics2D());
@@ -304,7 +304,7 @@ public class ImageUtils {
      * @param arcIfRoundRect the ard if the given shape is {@link EnumShape#ROUND_RECTANGLE}
      * @return a new image with the given size containing the given shape in the given color with the given quality
      */
-    public static SaltyImage createShapeImage(EnumShape shape, Dimensions size, Color color, RenderingHints renderingHints, float... arcIfRoundRect) {
+    public static SaltyImage createShapeImage(final EnumShape shape, final Dimensions size, final Color color, final RenderingHints renderingHints, final float... arcIfRoundRect) {
         return createShapeImage(SaltyShape.createShape(shape, new Transform(Vector2f.zero(), size), arcIfRoundRect), color, renderingHints);
     }
 
@@ -322,7 +322,7 @@ public class ImageUtils {
      * @param resource the {@link OuterResource} to get the file from
      * @throws IOException when the I/O process fails
      */
-    public static void saveImage(BufferedImage image, String format, String name, OuterResource resource) throws IOException {
+    public static void saveImage(final BufferedImage image, final String format, final String name, final OuterResource resource) throws IOException {
         if (SaltySystem.writePrivilege) {
             ImageIO.write(image, format, resource.getFileResource(name + "." + format));
         }

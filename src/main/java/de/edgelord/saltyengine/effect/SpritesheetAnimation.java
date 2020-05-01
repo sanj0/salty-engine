@@ -27,7 +27,7 @@ public class SpritesheetAnimation {
     private List<Frame> frames;
     private int currentFrame = 0;
 
-    public SpritesheetAnimation(List<Frame> frames) {
+    public SpritesheetAnimation(final List<Frame> frames) {
         this.frames = frames;
     }
 
@@ -35,7 +35,7 @@ public class SpritesheetAnimation {
         this.frames = new LinkedList<>();
     }
 
-    public void drawCurrentFrame(TransformedObject parentObject, SaltyGraphics saltyGraphics) {
+    public void drawCurrentFrame(final TransformedObject parentObject, final SaltyGraphics saltyGraphics) {
         frames.get(currentFrame).draw(saltyGraphics, parentObject.getPosition(), parentObject.getWidth(), parentObject.getHeight());
     }
 
@@ -54,7 +54,7 @@ public class SpritesheetAnimation {
         currentFrame++;
     }
 
-    public void addFrame(Frame frame) {
+    public void addFrame(final Frame frame) {
 
         this.getFrames().add(frame);
     }
@@ -63,7 +63,7 @@ public class SpritesheetAnimation {
         return frames;
     }
 
-    public void setFrames(List<Frame> frames) {
+    public void setFrames(final List<Frame> frames) {
         this.frames = frames;
     }
 
@@ -81,7 +81,7 @@ public class SpritesheetAnimation {
      *
      * @param currentFrame the new value of {@link #currentFrame}
      */
-    public void setCurrentFrame(int currentFrame) {
+    public void setCurrentFrame(final int currentFrame) {
         this.currentFrame = currentFrame;
     }
 }

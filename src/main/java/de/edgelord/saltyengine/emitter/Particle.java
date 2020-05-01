@@ -76,7 +76,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
      * @param speed        the speed of this particle.
      * @param parent       the emitter that spawned this particle.
      */
-    public Particle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+    public Particle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         this.waveNumber = waveNumber;
         this.restLifetime = restLifetime;
         this.parent = parent;
@@ -103,7 +103,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.transform = transform;
     }
 
@@ -113,7 +113,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
+    public void setLockedDirections(final Directions directions) {
         this.lockedDirections = directions;
     }
 
@@ -125,7 +125,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(final float speed) {
         this.speed = speed;
     }
 
@@ -133,7 +133,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
         return restLifetime;
     }
 
-    public void setRestLifetime(int restLifetime) {
+    public void setRestLifetime(final int restLifetime) {
         this.restLifetime = restLifetime;
     }
 
@@ -141,7 +141,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
         return parent;
     }
 
-    public void setParent(EmitterComponent parent) {
+    public void setParent(final EmitterComponent parent) {
         this.parent = parent;
     }
 }

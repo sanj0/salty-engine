@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class SerializationMain {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Game.init(GameConfig.config(0, 0, "Serialization Example", 5));
         // Add a new Saver to the list
         Serializer.add(new Saver());
@@ -41,7 +41,7 @@ public class SerializationMain {
         // The method could throw an IOException, so we have to put it into a try/catch structure.
         try {
             Serializer.doDeserialization();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
@@ -51,7 +51,7 @@ public class SerializationMain {
         // Serializer.doSerialization("unicorn");
         try {
             Serializer.doSerialization();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }

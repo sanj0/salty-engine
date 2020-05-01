@@ -28,43 +28,43 @@ public class RoundRectShape extends SaltyShape {
 
     private float arc = 15f;
 
-    public RoundRectShape(TransformedObject parent) {
+    public RoundRectShape(final TransformedObject parent) {
         super(parent, EnumShape.ROUND_RECTANGLE);
     }
 
-    public RoundRectShape(Transform transform) {
+    public RoundRectShape(final Transform transform) {
         super(transform, EnumShape.ROUND_RECTANGLE);
     }
 
-    public RoundRectShape(Vector2f position, Dimensions dimensions) {
+    public RoundRectShape(final Vector2f position, final Dimensions dimensions) {
         super(position, dimensions, EnumShape.ROUND_RECTANGLE);
     }
 
-    public RoundRectShape(TransformedObject parent, float arc) {
+    public RoundRectShape(final TransformedObject parent, final float arc) {
         super(parent, EnumShape.ROUND_RECTANGLE);
 
         this.arc = arc;
     }
 
-    public RoundRectShape(Transform transform, float arc) {
+    public RoundRectShape(final Transform transform, final float arc) {
         super(transform, EnumShape.ROUND_RECTANGLE);
 
         this.arc = arc;
     }
 
-    public RoundRectShape(Vector2f position, Dimensions dimensions, float arc) {
+    public RoundRectShape(final Vector2f position, final Dimensions dimensions, final float arc) {
         super(position, dimensions, EnumShape.ROUND_RECTANGLE);
 
         this.arc = arc;
     }
 
-    public RoundRectShape(float x, float y, float width, float height, float arc) {
+    public RoundRectShape(final float x, final float y, final float width, final float height, final float arc) {
         super(x, y, width, height, EnumShape.ROUND_RECTANGLE);
         this.arc = arc;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         if (isFilled()) {
             saltyGraphics.drawRoundRect(this, arc);
         } else {
@@ -76,7 +76,7 @@ public class RoundRectShape extends SaltyShape {
         return arc;
     }
 
-    public void setArc(float arc) {
+    public void setArc(final float arc) {
         this.arc = arc;
     }
 }

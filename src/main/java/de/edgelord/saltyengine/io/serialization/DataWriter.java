@@ -28,11 +28,11 @@ public class DataWriter {
     private final LinkedList<Species> speciesList = new LinkedList<>();
     private FileWriter fileWriter;
 
-    public DataWriter(File file) throws IOException {
+    public DataWriter(final File file) throws IOException {
         this(new FileWriter(file));
     }
 
-    public DataWriter(FileWriter fileWriter) throws IOException {
+    public DataWriter(final FileWriter fileWriter) throws IOException {
 
         if (SaltySystem.writePrivilege) {
             if (!fileWriter.getFile().exists()) {
@@ -49,7 +49,7 @@ public class DataWriter {
      *
      * @param species the Species which should be added to the list
      */
-    public void addSpecies(Species species) {
+    public void addSpecies(final Species species) {
         speciesList.add(species);
     }
 
@@ -61,8 +61,8 @@ public class DataWriter {
      * @throws IOException when the file could not be written to
      */
     public void syncFile() throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        for (Species species : speciesList) {
+        final StringBuilder contentBuilder = new StringBuilder();
+        for (final Species species : speciesList) {
             contentBuilder.append(species.getSyntax());
         }
 
@@ -73,7 +73,7 @@ public class DataWriter {
         return fileWriter;
     }
 
-    public void setFileWriter(FileWriter fileWriter) {
+    public void setFileWriter(final FileWriter fileWriter) {
         this.fileWriter = fileWriter;
     }
 

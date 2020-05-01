@@ -53,7 +53,7 @@ public class AnimationRender extends RenderComponent {
      * @param name   the id-name for this Component
      * @see de.edgelord.saltyengine.core.Component
      */
-    public AnimationRender(ComponentContainer parent, String name) {
+    public AnimationRender(final ComponentContainer parent, final String name) {
         super(parent, name, Components.RENDER_COMPONENT);
     }
 
@@ -65,7 +65,7 @@ public class AnimationRender extends RenderComponent {
      * @param spritesheetAnimation the spritesheetAnimation that should be rendered
      * @param ticksPerFrame        after how many fixed ticks the next frame of the spritesheetAnimation should be triggered
      */
-    public AnimationRender(ComponentContainer parent, String name, SpritesheetAnimation spritesheetAnimation, int ticksPerFrame) {
+    public AnimationRender(final ComponentContainer parent, final String name, final SpritesheetAnimation spritesheetAnimation, final int ticksPerFrame) {
         super(parent, name, Components.RENDER_COMPONENT);
         this.spritesheetAnimation = spritesheetAnimation;
         this.ticksPerFrame = ticksPerFrame;
@@ -80,7 +80,7 @@ public class AnimationRender extends RenderComponent {
      * @see de.edgelord.saltyengine.core.Component
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         if (spritesheetAnimation != null) {
             spritesheetAnimation.drawCurrentFrame(getParent(), saltyGraphics);
@@ -115,7 +115,7 @@ public class AnimationRender extends RenderComponent {
      *
      * @param spritesheetAnimation the new spritesheetAnimation
      */
-    public void setSpritesheetAnimation(SpritesheetAnimation spritesheetAnimation) {
+    public void setSpritesheetAnimation(final SpritesheetAnimation spritesheetAnimation) {
         this.spritesheetAnimation = spritesheetAnimation;
     }
 
@@ -131,7 +131,7 @@ public class AnimationRender extends RenderComponent {
      *
      * @param ticksPerFrame the new value
      */
-    public void setTicksPerFrame(int ticksPerFrame) {
+    public void setTicksPerFrame(final int ticksPerFrame) {
         this.ticksPerFrame = ticksPerFrame;
         ticks = 0;
     }

@@ -62,7 +62,7 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
      * @param factor           the factory by which each randomly generated speed is multiplied
      * @param newSpeedEachTick whether or not to generate a random speed for a {@link Particle} all over again.
      */
-    public RandomSpeedParticleModifier(int minSpeed, int maxSpeed, float factor, boolean newSpeedEachTick) {
+    public RandomSpeedParticleModifier(final int minSpeed, final int maxSpeed, final float factor, final boolean newSpeedEachTick) {
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
         this.factor = factor;
@@ -70,7 +70,7 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
 
         if (newSpeedEachTick) {
             particle.setSpeed(GeneralUtil.randomInt(minSpeed, maxSpeed) * factor);
@@ -85,7 +85,7 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
         return minSpeed;
     }
 
-    public void setMinSpeed(int minSpeed) {
+    public void setMinSpeed(final int minSpeed) {
         this.minSpeed = minSpeed;
     }
 
@@ -93,7 +93,7 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
+    public void setMaxSpeed(final int maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
@@ -101,7 +101,7 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
         return factor;
     }
 
-    public void setFactor(float factor) {
+    public void setFactor(final float factor) {
         this.factor = factor;
     }
 }

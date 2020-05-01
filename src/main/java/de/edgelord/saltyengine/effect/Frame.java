@@ -26,18 +26,18 @@ public class Frame implements Cosmetic {
     private SaltyImage image;
     //private AdvancedCosmetics advancedCosmetics = null;
 
-    public Frame(SaltyImage image) {
+    public Frame(final SaltyImage image) {
 
         this.image = image;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
+    public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         image.draw(saltyGraphics, position, width, height);
 
-        SaltyImage img = SaltySystem.createPreferredImage(500, 500);
+        final SaltyImage img = SaltySystem.createPreferredImage(500, 500);
 
-        SaltyGraphics graphics = new SaltyGraphics(img.createGraphics());
+        final SaltyGraphics graphics = new SaltyGraphics(img.createGraphics());
         image.draw(graphics, Vector2f.zero());
     }
 
@@ -45,7 +45,7 @@ public class Frame implements Cosmetic {
         return image;
     }
 
-    public void setImage(SaltyImage image) {
+    public void setImage(final SaltyImage image) {
         this.image = image;
     }
 }

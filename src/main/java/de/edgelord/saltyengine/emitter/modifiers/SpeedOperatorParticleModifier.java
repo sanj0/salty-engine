@@ -41,13 +41,13 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
      * @param factor    the factory to be used as the second part of the math operations.
      * @param operation the math operation do apply to each {@link Particle}'s speed
      */
-    public SpeedOperatorParticleModifier(float factor, Operation operation) {
+    public SpeedOperatorParticleModifier(final float factor, final Operation operation) {
         this.factor = factor;
         this.operation = operation;
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
         switch (operation) {
 
             case ADD:
@@ -69,7 +69,7 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
         return operation;
     }
 
-    public void setOperation(Operation operation) {
+    public void setOperation(final Operation operation) {
         this.operation = operation;
     }
 
@@ -77,7 +77,7 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
         return factor;
     }
 
-    public void setFactor(float factor) {
+    public void setFactor(final float factor) {
         this.factor = factor;
     }
 

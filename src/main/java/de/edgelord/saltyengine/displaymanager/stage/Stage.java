@@ -66,7 +66,7 @@ public class Stage extends JPanel {
         this(container, engine, 0, 0, container.getWidth(), container.getHeight());
     }
 
-    public Stage(final Container container, final Engine engine, int x, int y, int width, int height) {
+    public Stage(final Container container, final Engine engine, final int x, final int y, final int width, final int height) {
         this.container = container;
 
         init(x, y, width, height);
@@ -83,7 +83,7 @@ public class Stage extends JPanel {
         addMouseWheelListener(nativeMouseWheelListener);
     }
 
-    protected void init(int x, int y, int width, int height) {
+    protected void init(final int x, final int y, final int width, final int height) {
 
         setBounds(x, y, width, height);
         this.originWidth = width;
@@ -107,29 +107,29 @@ public class Stage extends JPanel {
         initNativeMouseListener();
     }
 
-    public void putToHQRenderHints(Key key, Object value) {
+    public void putToHQRenderHints(final Key key, final Object value) {
         hqRenderingHints.put(key, value);
     }
 
-    public void putToLQRenderHints(Key key, Object value) {
+    public void putToLQRenderHints(final Key key, final Object value) {
         lqRenderingHints.put(key, value);
     }
 
     @Override
-    protected void paintComponent(Graphics graphics) {
+    protected void paintComponent(final Graphics graphics) {
         super.paintComponent(graphics);
         ticks++;
         final Graphics2D graphics2D = (Graphics2D) graphics.create();
 
-        SaltyImage renderedImage = renderToImage();
+        final SaltyImage renderedImage = renderToImage();
 
-        float width = Game.getHost().getCurrentWidth();
-        float height = Game.getHost().getCurrentHeight();
+        final float width = Game.getHost().getCurrentWidth();
+        final float height = Game.getHost().getCurrentHeight();
         currentScale = Math.min(width / originWidth, height / originHeight);
-        int imageDisplayWidth = (int) (originWidth * currentScale);
-        int imageDisplayHeight = (int) (originHeight * currentScale);
-        int xPos = getWidth() / 2 - imageDisplayWidth / 2;
-        int yPos = Math.max(getHeight() / 2 - imageDisplayHeight / 2, 0);
+        final int imageDisplayWidth = (int) (originWidth * currentScale);
+        final int imageDisplayHeight = (int) (originHeight * currentScale);
+        final int xPos = getWidth() / 2 - imageDisplayWidth / 2;
+        final int yPos = Math.max(getHeight() / 2 - imageDisplayHeight / 2, 0);
 
         currentImgPos = new Vector2f(xPos, yPos);
 
@@ -138,13 +138,13 @@ public class Stage extends JPanel {
         graphics2D.dispose();
     }
 
-    private void renderToGraphics(Graphics2D graphics2D) {
+    private void renderToGraphics(final Graphics2D graphics2D) {
         graphics2D.setClip(0, 0, originWidth, originHeight);
         graphics2D.setRenderingHints(GraphicsConfiguration.renderingHints);
 
         //Game.getCamera().setViewToGraphics(graphics2D);
 
-        SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
+        final SaltyGraphics saltyGraphics = new SaltyGraphics(graphics2D);
 
         //engine.render(saltyGraphics);
         saltyGraphics.drawImage(Game.getCamera().render(SceneManager.getCurrentScene()), 0, 0);
@@ -157,7 +157,7 @@ public class Stage extends JPanel {
 
             saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
             saltyGraphics.setColor(Color.RED);
-            String fps = String.valueOf(Math.round(lastFps));
+            final String fps = String.valueOf(Math.round(lastFps));
             saltyGraphics.drawText("FPS: " + fps, 0, 0, SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
         }
     }
@@ -165,11 +165,11 @@ public class Stage extends JPanel {
     public SaltyImage renderToImage() {
         SaltyImage image = SaltySystem.createPreferredImage(originWidth, originHeight);
 
-        Graphics2D graphics2D = image.createGraphics();
+        final Graphics2D graphics2D = image.createGraphics();
         renderToGraphics(graphics2D);
         graphics2D.dispose();
 
-        for (GameListener gameListener : Game.getGameListeners()) {
+        for (final GameListener gameListener : Game.getGameListeners()) {
             image = gameListener.onRenderFinish(image);
         }
         return image;
@@ -181,7 +181,7 @@ public class Stage extends JPanel {
 
         try {
             ImageUtils.saveImage(ImageUtils.toBufferedImage(renderToImage().getImage()), ImageUtils.IMAGE_FORMAT_PNG, name, SaltySystem.defaultOuterResource);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 

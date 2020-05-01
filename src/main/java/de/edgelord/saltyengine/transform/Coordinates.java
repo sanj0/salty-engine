@@ -20,28 +20,28 @@ public class Coordinates {
 
     private int x, y;
 
-    public Coordinates(int x, int y) {
+    public Coordinates(final int x, final int y) {
         this.x = x;
         this.y = y;
     }
 
-    public boolean isAbove(Coordinates other) {
+    public boolean isAbove(final Coordinates other) {
         return this.getY() < other.getY();
     }
 
-    public boolean isBelow(Coordinates other) {
+    public boolean isBelow(final Coordinates other) {
         return this.getY() > other.getY();
     }
 
-    public boolean isLeft(Coordinates other) {
+    public boolean isLeft(final Coordinates other) {
         return this.getX() < other.getX();
     }
 
-    public boolean isRight(Coordinates other) {
+    public boolean isRight(final Coordinates other) {
         return this.getX() > other.getX();
     }
 
-    public void parseCoordinates(Vector2f vector2F) {
+    public void parseCoordinates(final Vector2f vector2F) {
 
         this.setX((int) vector2F.getX());
         this.setY((int) vector2F.getY());
@@ -51,16 +51,16 @@ public class Coordinates {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
-    public void changeX(int delta) {
+    public void changeX(final int delta) {
 
         setX(getX() + delta);
     }
 
-    public void changeY(int delta) {
+    public void changeY(final int delta) {
 
         setY(getY() + delta);
     }
@@ -69,11 +69,11 @@ public class Coordinates {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(final int y) {
         this.y = y;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
+    public void setCoordinates(final Coordinates coordinates) {
 
         setX(coordinates.getX());
         setY(coordinates.getY());
@@ -88,10 +88,10 @@ public class Coordinates {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Coordinates)) return false;
-        Coordinates that = (Coordinates) o;
+        final Coordinates that = (Coordinates) o;
         return x == that.x &&
                 y == that.y;
     }

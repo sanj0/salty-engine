@@ -22,7 +22,7 @@ public class Dimensions {
 
     private float width, height;
 
-    public Dimensions(float width, float height) {
+    public Dimensions(final float width, final float height) {
         this.width = width;
         this.height = height;
     }
@@ -39,8 +39,8 @@ public class Dimensions {
         return new Dimensions(Float.MIN_VALUE, Float.MIN_VALUE);
     }
 
-    public static Dimensions random(int min, int max) {
-        Random random = new Random();
+    public static Dimensions random(final int min, final int max) {
+        final Random random = new Random();
         return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
@@ -52,7 +52,7 @@ public class Dimensions {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(final float width) {
         this.width = width;
     }
 
@@ -60,58 +60,58 @@ public class Dimensions {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(final float height) {
         this.height = height;
     }
 
-    public Dimensions add(float width1, float height1) {
+    public Dimensions add(final float width1, final float height1) {
         width += width1;
         height += height1;
 
         return this;
     }
 
-    public Dimensions add(Dimensions dimensions1) {
+    public Dimensions add(final Dimensions dimensions1) {
         return add(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public Dimensions multiply(float width1, float height1) {
+    public Dimensions multiply(final float width1, final float height1) {
         width *= width1;
         height *= height1;
 
         return this;
     }
 
-    public Dimensions multiply(Dimensions dimensions1) {
+    public Dimensions multiply(final Dimensions dimensions1) {
         return multiply(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public Dimensions divide(float width1, float height1) {
+    public Dimensions divide(final float width1, final float height1) {
         width /= width1;
         height /= height1;
 
         return this;
     }
 
-    public Dimensions divide(Dimensions dimensions1) {
+    public Dimensions divide(final Dimensions dimensions1) {
         return divide(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
-    public Dimensions subtract(float width1, float height1) {
+    public Dimensions subtract(final float width1, final float height1) {
         width -= width1;
         height -= height1;
 
         return this;
     }
 
-    public Dimensions subtract(Dimensions dimensions1) {
+    public Dimensions subtract(final Dimensions dimensions1) {
         return subtract(dimensions1.getWidth(), dimensions1.getHeight());
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof Dimensions) {
-            Dimensions other = (Dimensions) obj;
+            final Dimensions other = (Dimensions) obj;
             return other.getWidth() == getWidth() && other.getHeight() == getHeight();
         } else {
             return false;

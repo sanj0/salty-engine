@@ -27,7 +27,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Label extends TextElement {
 
-    public Label(String text, Vector2f position, float width, float height) {
+    public Label(final String text, final Vector2f position, final float width, final float height) {
         super(text, position, width, height, LABEL);
     }
 }

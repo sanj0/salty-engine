@@ -40,11 +40,11 @@ public class WobblingEffect extends GFXComponent {
     private boolean shrinkingHeight = false;
     private Mode mode = Mode.linear;
 
-    public WobblingEffect(ComponentContainer parent, String name) {
+    public WobblingEffect(final ComponentContainer parent, final String name) {
         super(parent, name);
     }
 
-    public WobblingEffect(ComponentContainer parent, String name, int maxHeightDelta, int maxWidthDelta, int minHeightDelta, int minWidthDelta) {
+    public WobblingEffect(final ComponentContainer parent, final String name, final int maxHeightDelta, final int maxWidthDelta, final int minHeightDelta, final int minWidthDelta) {
         super(parent, name);
         this.maxHeightDelta = maxHeightDelta;
         this.maxWidthDelta = maxWidthDelta;
@@ -131,7 +131,7 @@ public class WobblingEffect extends GFXComponent {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         // This effect actually only uses the ON_FIXED_TICK, because it only needs to change some values
     }
@@ -140,7 +140,7 @@ public class WobblingEffect extends GFXComponent {
         return mode;
     }
 
-    public void setMode(Mode mode) {
+    public void setMode(final Mode mode) {
         this.mode = mode;
     }
 
@@ -148,7 +148,7 @@ public class WobblingEffect extends GFXComponent {
         return widthDeltaPerTick;
     }
 
-    public void setWidthDeltaPerTick(int widthDeltaPerTick) {
+    public void setWidthDeltaPerTick(final int widthDeltaPerTick) {
         this.widthDeltaPerTick = widthDeltaPerTick;
     }
 
@@ -156,7 +156,7 @@ public class WobblingEffect extends GFXComponent {
         return heightDeltaPerTick;
     }
 
-    public void setHeightDeltaPerTick(int heightDeltaPerTick) {
+    public void setHeightDeltaPerTick(final int heightDeltaPerTick) {
         this.heightDeltaPerTick = heightDeltaPerTick;
     }
 
@@ -164,7 +164,7 @@ public class WobblingEffect extends GFXComponent {
         return pause;
     }
 
-    public void setPause(int pause) {
+    public void setPause(final int pause) {
         this.pause = pause;
     }
 

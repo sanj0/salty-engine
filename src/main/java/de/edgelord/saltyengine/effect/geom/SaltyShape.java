@@ -36,24 +36,24 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
 
     private Directions lockedDirections = new Directions();
 
-    public SaltyShape(TransformedObject parent, EnumShape shapeType) {
+    public SaltyShape(final TransformedObject parent, final EnumShape shapeType) {
         this(parent.getTransform(), shapeType);
     }
 
-    public SaltyShape(Transform transform, EnumShape shapeType) {
+    public SaltyShape(final Transform transform, final EnumShape shapeType) {
         this.shapeType = shapeType;
         this.transform = transform;
     }
 
-    public SaltyShape(Vector2f position, Dimensions dimensions, EnumShape shapeType) {
+    public SaltyShape(final Vector2f position, final Dimensions dimensions, final EnumShape shapeType) {
         this(new Transform(position, dimensions), shapeType);
     }
 
-    public SaltyShape(float x, float y, float width, float height, EnumShape shapeType) {
+    public SaltyShape(final float x, final float y, final float width, final float height, final EnumShape shapeType) {
         this(new Transform(x, y, width, height), shapeType);
     }
 
-    public static SaltyShape createShape(EnumShape shapeType, Transform transform, float... arcIfRoundRect) {
+    public static SaltyShape createShape(final EnumShape shapeType, final Transform transform, final float... arcIfRoundRect) {
         switch (shapeType) {
 
             case RECTANGLE:
@@ -69,7 +69,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
             case LINE:
                 return new LineShape(transform);
             case TRIANGLE:
-                Vector2f centre = transform.getCentre();
+                final Vector2f centre = transform.getCentre();
                 return new TriangleShape(new Vector2f(transform.getX(), transform.getMaxY()), new Vector2f(centre.getX(), transform.getY()), new Vector2f(transform.getMaxX(), transform.getMaxY()));
         }
 
@@ -85,7 +85,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.transform = transform;
     }
 
@@ -95,12 +95,12 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions lockedDirections) {
+    public void setLockedDirections(final Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
     }
 
-    public void drawAtZero(Graphics2D graphics) {
-        Vector2f pos = getPosition();
+    public void drawAtZero(final Graphics2D graphics) {
+        final Vector2f pos = getPosition();
         setPosition(Vector2f.zero());
         draw(new SaltyGraphics(graphics));
         setPosition(pos);
@@ -114,7 +114,7 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
         return filled;
     }
 
-    public void setFilled(boolean filled) {
+    public void setFilled(final boolean filled) {
         this.filled = filled;
     }
 }

@@ -40,7 +40,7 @@ public class ImageLoader {
      * @param relativePath the relative path of the image to be loaded from
      * @param imageFactory the Factory from which to load the image
      */
-    public static void loadNewImage(String name, String relativePath, ImageFactory imageFactory) {
+    public static void loadNewImage(final String name, final String relativePath, final ImageFactory imageFactory) {
         if (images.containsKey(name)) {
             System.out.println("[INFO] The image " + name + " is already loaded!");
         } else {
@@ -55,7 +55,7 @@ public class ImageLoader {
      * @param name         the id-name of the image
      * @param relativePath the relative path of the image to be loaded from
      */
-    public static void loadNewImage(String name, String relativePath) {
+    public static void loadNewImage(final String name, final String relativePath) {
         loadNewImage(name, relativePath, SaltySystem.defaultImageFactory);
     }
 
@@ -68,7 +68,7 @@ public class ImageLoader {
      * @param imageFactory the Factory from which to load the image
      * @return the {@link SaltyImage} corresponding to the given name and/or path
      */
-    public static SaltyImage getOrLoadImage(String name, String relativePath, ImageFactory imageFactory) {
+    public static SaltyImage getOrLoadImage(final String name, final String relativePath, final ImageFactory imageFactory) {
 
         if (!imageAlreadyLoaded(name)) {
             loadNewImage(name, relativePath, imageFactory);
@@ -85,7 +85,7 @@ public class ImageLoader {
      * @param relativePath the relative path to image to load it from if it isn't already
      * @return the {@link SaltyImage} corresponding to the given name and/or path
      */
-    public static SaltyImage getOrLoadImage(String name, String relativePath) {
+    public static SaltyImage getOrLoadImage(final String name, final String relativePath) {
         return getOrLoadImage(name, relativePath, SaltySystem.defaultImageFactory);
     }
 
@@ -96,7 +96,7 @@ public class ImageLoader {
      * @param name the name of the image to be checked.
      * @return whether the image with the given name is already loaded or not
      */
-    public static boolean imageAlreadyLoaded(String name) {
+    public static boolean imageAlreadyLoaded(final String name) {
         return images.containsKey(name);
     }
 
@@ -107,7 +107,7 @@ public class ImageLoader {
      * @param image the image to be checked.
      * @return whether the image with the given name is already loaded or not
      */
-    public static boolean imageAlreadyLoaded(SaltyImage image) {
+    public static boolean imageAlreadyLoaded(final SaltyImage image) {
         return images.containsValue(image);
     }
 
@@ -118,7 +118,7 @@ public class ImageLoader {
      * @param name the name of the image to be returned
      * @return the image corresponding to the given name
      */
-    public static SaltyImage getImage(String name) {
+    public static SaltyImage getImage(final String name) {
         return images.getOrDefault(name, defaultImage);
     }
 
@@ -127,7 +127,7 @@ public class ImageLoader {
      *
      * @param name the id-name of the image to be removed.
      */
-    public static void removeImage(String name) {
+    public static void removeImage(final String name) {
         images.remove(name);
     }
 

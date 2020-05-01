@@ -29,14 +29,14 @@ public class SizeOperatorParticleModifier extends SpeedOperatorParticleModifier 
      */
     private Dimensions factorDimensions;
 
-    public SizeOperatorParticleModifier(Dimensions factorDimensions, Operation operation) {
+    public SizeOperatorParticleModifier(final Dimensions factorDimensions, final Operation operation) {
         super(0f, operation);
 
         this.factorDimensions = factorDimensions;
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
 
         switch (getOperation()) {
 
@@ -59,7 +59,7 @@ public class SizeOperatorParticleModifier extends SpeedOperatorParticleModifier 
         return factorDimensions;
     }
 
-    public void setFactorDimensions(Dimensions factorDimensions) {
+    public void setFactorDimensions(final Dimensions factorDimensions) {
         this.factorDimensions = factorDimensions;
     }
 }

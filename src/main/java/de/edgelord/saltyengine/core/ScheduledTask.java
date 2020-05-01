@@ -34,7 +34,7 @@ public class ScheduledTask implements FixedTickRoutine {
     private final long delay;
     private long ticks = 0;
 
-    public ScheduledTask(Runnable task, long delay) {
+    public ScheduledTask(final Runnable task, final long delay) {
         this.task = task;
         this.delay = delay;
     }

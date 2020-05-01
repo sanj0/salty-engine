@@ -20,7 +20,7 @@ import java.awt.*;
 
 public class PaneledGame extends Game {
 
-    public PaneledGame(Container container, int x, int y, int width, int height, long fixedTicksMillis, String gameName) {
+    public PaneledGame(final Container container, final int x, final int y, final int width, final int height, final long fixedTicksMillis, final String gameName) {
         init(new PaneledGameHost(container, x, y, width, height, fixedTicksMillis), gameName, fixedTicksMillis);
     }
 }

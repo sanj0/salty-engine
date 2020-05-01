@@ -32,7 +32,7 @@ public class PaneledGameHost extends Host {
     private final Engine engine;
     private final Stage stage;
 
-    public PaneledGameHost(Container container, int x, int y, int width, int height, long fixedTickMillis) {
+    public PaneledGameHost(final Container container, final int x, final int y, final int width, final int height, final long fixedTickMillis) {
         dimensions = new Dimensions(width, height);
 
         engine = new Engine(fixedTickMillis);
@@ -45,12 +45,12 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public float getHorizontalCentrePosition(float width) {
+    public float getHorizontalCentrePosition(final float width) {
         return (dimensions.getWidth()) - (width / 2);
     }
 
     @Override
-    public float getVerticalCentrePosition(float height) {
+    public float getVerticalCentrePosition(final float height) {
         return (dimensions.getHeight()) - (height / 2);
     }
 
@@ -70,12 +70,12 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public void setBackgroundColor(Color color) {
+    public void setBackgroundColor(final Color color) {
         stage.setBackground(color);
     }
 
     @Override
-    public boolean showConfirmDialog(String message) {
+    public boolean showConfirmDialog(final String message) {
         return JOptionPane.showConfirmDialog(null, message, "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
@@ -85,7 +85,7 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public void setDimensions(Dimensions dimensions) {
+    public void setDimensions(final Dimensions dimensions) {
         container.setSize(Math.round(dimensions.getWidth()), Math.round(dimensions.getHeight()));
     }
 
@@ -100,12 +100,12 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public void addComponent(JComponent component) throws UnsupportedOperationException {
+    public void addComponent(final JComponent component) throws UnsupportedOperationException {
         stage.add(component);
     }
 
     @Override
-    public void removeComponent(JComponent component) throws UnsupportedOperationException {
+    public void removeComponent(final JComponent component) throws UnsupportedOperationException {
         stage.remove(component);
     }
 

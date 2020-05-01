@@ -57,7 +57,7 @@ public abstract class KeyframeAnimation {
      *
      * @param keyframes the initial list of <code>Keyframe</code>s
      */
-    public KeyframeAnimation(List<Keyframe> keyframes) {
+    public KeyframeAnimation(final List<Keyframe> keyframes) {
         this.keyframes = keyframes;
 
         add(0, 0);
@@ -77,7 +77,7 @@ public abstract class KeyframeAnimation {
      *
      * @param frames the {@link Keyframe frames} to initialize the animation with
      */
-    public KeyframeAnimation(Keyframe... frames) {
+    public KeyframeAnimation(final Keyframe... frames) {
         this(Arrays.asList(frames));
     }
 
@@ -134,7 +134,7 @@ public abstract class KeyframeAnimation {
      *
      * @param keyframe the new <code>Keyframe</code>
      */
-    public void add(Keyframe keyframe) {
+    public void add(final Keyframe keyframe) {
         keyframes.add(keyframe);
         unCalculatedChanges = true;
     }
@@ -147,20 +147,20 @@ public abstract class KeyframeAnimation {
      * @param timecode the timecode for the new <code>Keyframe</code>
      * @param value    the value of the new <code>Keyframe</code>
      */
-    public void add(int timecode, float value) {
+    public void add(final int timecode, final float value) {
         keyframes.add(new Keyframe(timecode, value));
         unCalculatedChanges = true;
     }
 
-    public void remove(Keyframe keyframe) {
+    public void remove(final Keyframe keyframe) {
         keyframes.remove(keyframe);
     }
 
-    public void removeByTimecode(int timing) {
+    public void removeByTimecode(final int timing) {
         keyframes.removeIf(keyframe -> keyframe.getTimecode() == timing);
     }
 
-    public void removeByKey(float key) {
+    public void removeByKey(final float key) {
         keyframes.removeIf(keyframe -> keyframe.getValue() == key);
     }
 
@@ -172,7 +172,7 @@ public abstract class KeyframeAnimation {
         return animation;
     }
 
-    protected void setAnimation(Map<Integer, Float> animation) {
+    protected void setAnimation(final Map<Integer, Float> animation) {
         this.animation = animation;
     }
 
@@ -190,7 +190,7 @@ public abstract class KeyframeAnimation {
      *
      * @param keyframes the new value of {@link #keyframes}
      */
-    public void setKeyframes(List<Keyframe> keyframes) {
+    public void setKeyframes(final List<Keyframe> keyframes) {
         this.keyframes = keyframes;
     }
 
@@ -208,7 +208,7 @@ public abstract class KeyframeAnimation {
      *
      * @param currentFrame the new value of {@link #currentFrame}
      */
-    public void setCurrentFrame(int currentFrame) {
+    public void setCurrentFrame(final int currentFrame) {
         this.currentFrame = currentFrame;
     }
 }

@@ -30,22 +30,22 @@ public class Spritesheet implements Flushable {
     private int spriteWidth, spriteHeight;
 
 
-    public Spritesheet(SaltyImage image, float spriteWidth, float spriteHeight) {
+    public Spritesheet(final SaltyImage image, final float spriteWidth, final float spriteHeight) {
         this.spriteWidth = Math.round(spriteWidth);
         this.spriteHeight = Math.round(spriteHeight);
 
         this.image = image;
     }
 
-    public SpritesheetAnimation getAnimation(Coordinates... coordinates) {
+    public SpritesheetAnimation getAnimation(final Coordinates... coordinates) {
         return new SpritesheetAnimation(getFrames(coordinates));
     }
 
-    public List<Frame> getFrames(Coordinates... coordinates) {
+    public List<Frame> getFrames(final Coordinates... coordinates) {
 
-        List<Frame> frames = new LinkedList<>();
+        final List<Frame> frames = new LinkedList<>();
 
-        for (Coordinates currentCoordinates : coordinates) {
+        for (final Coordinates currentCoordinates : coordinates) {
             frames.add(getFrame(currentCoordinates.getX(), currentCoordinates.getY()));
         }
 
@@ -60,7 +60,7 @@ public class Spritesheet implements Flushable {
         return spriteWidth;
     }
 
-    public void setSpriteWidth(int spriteWidth) {
+    public void setSpriteWidth(final int spriteWidth) {
         this.spriteWidth = spriteWidth;
     }
 
@@ -68,15 +68,15 @@ public class Spritesheet implements Flushable {
         return spriteHeight;
     }
 
-    public void setSpriteHeight(int spriteHeight) {
+    public void setSpriteHeight(final int spriteHeight) {
         this.spriteHeight = spriteHeight;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Spritesheet that = (Spritesheet) o;
+        final Spritesheet that = (Spritesheet) o;
         return spriteWidth == that.spriteWidth &&
                 spriteHeight == that.spriteHeight &&
                 Objects.equals(image, that.image);

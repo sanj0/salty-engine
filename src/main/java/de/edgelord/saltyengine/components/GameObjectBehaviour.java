@@ -24,12 +24,12 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 
 public class GameObjectBehaviour extends Component<GameObject> {
 
-    public GameObjectBehaviour(GameObject parent, String name) {
+    public GameObjectBehaviour(final GameObject parent, final String name) {
         super(parent, name, Components.MONO_BEHAVIOUR);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
@@ -39,7 +39,7 @@ public class GameObjectBehaviour extends Component<GameObject> {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

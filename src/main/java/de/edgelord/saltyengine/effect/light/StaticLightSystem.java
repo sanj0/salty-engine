@@ -29,7 +29,7 @@ public class StaticLightSystem extends LightSystem {
 
     private boolean scheduleUpdate = true;
 
-    public StaticLightSystem(Color lightMapColor) {
+    public StaticLightSystem(final Color lightMapColor) {
         super(lightMapColor);
     }
 
@@ -38,7 +38,7 @@ public class StaticLightSystem extends LightSystem {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         if (scheduleUpdate) {
             updateLightMap();
             scheduleUpdate = false;

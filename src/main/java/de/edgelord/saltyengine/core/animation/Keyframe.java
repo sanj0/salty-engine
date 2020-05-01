@@ -38,7 +38,7 @@ public class Keyframe {
      * @param timecode the timecode
      * @param value    the value
      */
-    public Keyframe(int timecode, float value) {
+    public Keyframe(final int timecode, final float value) {
         this.timecode = timecode;
         this.value = value;
     }
@@ -57,7 +57,7 @@ public class Keyframe {
      *
      * @param timecode the new value of {@link #timecode}
      */
-    public void setTimecode(int timecode) {
+    public void setTimecode(final int timecode) {
         this.timecode = timecode;
     }
 
@@ -75,7 +75,7 @@ public class Keyframe {
      *
      * @param value the new value of {@link #value}
      */
-    public void setValue(float value) {
+    public void setValue(final float value) {
         this.value = value;
     }
 }

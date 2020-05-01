@@ -46,14 +46,14 @@ public class RandomRadialEmitter extends EmitterComponent {
     /**
      * {@inheritDoc}
      */
-    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
+    public RandomRadialEmitter(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount, final int waveInterval) {
         super(parent, name, particle, speed, amount, waveInterval);
     }
 
     /**
      * {@inheritDoc}
      */
-    public RandomRadialEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
+    public RandomRadialEmitter(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount) {
         super(parent, name, particle, speed, amount);
     }
 
@@ -65,7 +65,7 @@ public class RandomRadialEmitter extends EmitterComponent {
     @Override
     public Particle spawnParticle() {
 
-        Particle particle = createParticle();
+        final Particle particle = createParticle();
 
         particle.positionByCentre(getSpawnPoint());
         particle.setRotationDegrees(GeneralUtil.randomInt(minAngle, maxAngle));
@@ -75,7 +75,7 @@ public class RandomRadialEmitter extends EmitterComponent {
     }
 
     @Override
-    public void moveParticle(Particle particle) {
+    public void moveParticle(final Particle particle) {
         particle.moveToFacedDirection(particle.getSpeed());
     }
 
@@ -83,7 +83,7 @@ public class RandomRadialEmitter extends EmitterComponent {
         return lockedDirections;
     }
 
-    public void setLockedDirections(Directions lockedDirections) {
+    public void setLockedDirections(final Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
     }
 
@@ -91,7 +91,7 @@ public class RandomRadialEmitter extends EmitterComponent {
         return minAngle;
     }
 
-    public void setMinAngle(float minAngle) {
+    public void setMinAngle(final float minAngle) {
         this.minAngle = minAngle;
     }
 
@@ -99,7 +99,7 @@ public class RandomRadialEmitter extends EmitterComponent {
         return maxAngle;
     }
 
-    public void setMaxAngle(float maxAngle) {
+    public void setMaxAngle(final float maxAngle) {
         this.maxAngle = maxAngle;
     }
 }

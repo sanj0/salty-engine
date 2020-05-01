@@ -21,16 +21,16 @@ import de.edgelord.saltyengine.resource.Resource;
 
 public class ImageFactory extends Factory {
 
-    public ImageFactory(Resource resource) {
+    public ImageFactory(final Resource resource) {
         super(resource);
     }
 
     @Deprecated
-    public SaltyImage getImageResource(String relativePath) {
+    public SaltyImage getImageResource(final String relativePath) {
         return getResource().getImageResource(relativePath);
     }
 
-    public SaltyImage getPreferredImageResource(String relativePath) {
+    public SaltyImage getPreferredImageResource(final String relativePath) {
         return getResource().getImageResource(relativePath);
     }
 }

@@ -30,16 +30,16 @@ public class UISystem {
     private final List<UIElement> elements = new CopyOnWriteArrayList<>();
     private UIElement currentlyFocused = null;
 
-    public void drawUI(SaltyGraphics saltyGraphics) {
-        for (UIElement element : elements) {
+    public void drawUI(final SaltyGraphics saltyGraphics) {
+        for (final UIElement element : elements) {
             element.draw(saltyGraphics);
             element.doComponentDrawing(saltyGraphics);
         }
     }
 
     public void onFixedTick() {
-        Transform cursor = Input.getAbsoluteCursor();
-        for (UIElement element : elements) {
+        final Transform cursor = Input.getAbsoluteCursor();
+        for (final UIElement element : elements) {
 
             if (element.getTransform().contains(cursor)) {
 
@@ -61,50 +61,50 @@ public class UISystem {
         }
     }
 
-    public void addElement(UIElement element) {
+    public void addElement(final UIElement element) {
         this.elements.add(element);
     }
 
-    public void removeElement(UIElement element) {
+    public void removeElement(final UIElement element) {
 
         elements.remove(element);
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.keyPressed(e);
         }
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.keyReleased(e);
         }
     }
 
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.keyTyped(e);
         }
     }
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseClicked(e);
         }
     }
 
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
 
         if (currentlyFocused != null) {
             currentlyFocused.setFocused(false);
         }
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
 
             if (element.getTransform().contains(Input.getAbsoluteCursor())) {
                 element.setFocused(true);
@@ -114,43 +114,43 @@ public class UISystem {
         }
     }
 
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseReleased(e);
         }
     }
 
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseDragged(e);
         }
     }
 
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseExitedScreen(e);
         }
     }
 
-    public void mouseEnteredScreen(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseEnteredScreen(e);
         }
     }
 
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseWheelMoved(final MouseEvent e) {
 
-        for (UIElement element : elements) {
+        for (final UIElement element : elements) {
             element.mouseWheelMoved(e);
         }
     }
 
-    public void mouseMoved(MouseEvent e) {
-        for (UIElement element : elements) {
+    public void mouseMoved(final MouseEvent e) {
+        for (final UIElement element : elements) {
             element.mouseMoved(e);
         }
     }

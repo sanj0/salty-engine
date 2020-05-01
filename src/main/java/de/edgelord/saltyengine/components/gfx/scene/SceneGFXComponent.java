@@ -29,7 +29,7 @@ public abstract class SceneGFXComponent extends GFXComponent {
      *
      * @param name the id-name
      */
-    public SceneGFXComponent(String name) {
+    public SceneGFXComponent(final String name) {
         super(Game.getDefaultGFXController(), name);
         Game.getDefaultGFXController().addGFX(this);
     }

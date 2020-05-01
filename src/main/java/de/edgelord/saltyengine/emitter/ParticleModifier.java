@@ -36,7 +36,7 @@ public interface ParticleModifier {
      *
      * @param particles the particles to modify.
      */
-    default void modifyParticles(List<Particle> particles) {
+    default void modifyParticles(final List<Particle> particles) {
 
         for (int i = 0; i < particles.size(); i++) {
             modifyParticle(particles.get(i));

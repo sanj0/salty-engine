@@ -44,10 +44,10 @@ public class HitboxCollider extends Collider {
      * @return the result of the collision detection between the two given <code>GameObject</code>s
      */
     @Override
-    public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
+    public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
 
-        Hitbox hitbox1 = object1.getHitbox();
-        Hitbox hitbox2 = object2.getHitbox();
+        final Hitbox hitbox1 = object1.getHitbox();
+        final Hitbox hitbox2 = object2.getHitbox();
 
         return new CollisionDetectionResult(hitbox1.collides(object2), hitbox1.getTransform().getRelation(hitbox2.getTransform()));
     }

@@ -56,7 +56,7 @@ public class AudioPlayer {
      * @see de.edgelord.saltyengine.factory.Factory
      * @see AudioFactory
      */
-    public AudioPlayer(AudioFactory audioFactory) {
+    public AudioPlayer(final AudioFactory audioFactory) {
         this.audioFactory = audioFactory;
     }
 
@@ -71,7 +71,7 @@ public class AudioPlayer {
      * @see InnerResource
      * @see OuterResource
      */
-    public void loadNewAudio(String name, String relativePath) {
+    public void loadNewAudio(final String name, final String relativePath) {
 
         if (SaltySystem.audioEnabled) {
             audios.add(new Audio(name, audioFactory.getClip(relativePath)));
@@ -87,7 +87,7 @@ public class AudioPlayer {
      * @param name the id-name of the <code>Audio</code> which should be played
      * @see Audio#play()
      */
-    public void play(String name) {
+    public void play(final String name) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).play();
         }
@@ -101,7 +101,7 @@ public class AudioPlayer {
      * @param name the id-name of the <code>Audio</code> which should be looped
      * @see Audio#loop()
      */
-    public void loop(String name) {
+    public void loop(final String name) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).loop();
         }
@@ -115,7 +115,7 @@ public class AudioPlayer {
      * @param name the id-name of the <code>Audio</code> which should be stopped
      * @see Audio#stop()
      */
-    public void stop(String name) {
+    public void stop(final String name) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).stop();
         }
@@ -129,7 +129,7 @@ public class AudioPlayer {
      * @param name the id-name of the <code>Audio</code> which should be paused
      * @see Audio#pause()
      */
-    public void pause(String name) {
+    public void pause(final String name) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).pause();
         }
@@ -141,9 +141,9 @@ public class AudioPlayer {
      * @param name the name of the Audio to return
      * @return the audio with the given name
      */
-    public Audio getAudio(String name) {
+    public Audio getAudio(final String name) {
 
-        for (Audio audio : this.audios) {
+        for (final Audio audio : this.audios) {
             if (audio.getName().equals(name)) {
                 return audio;
             }
@@ -159,7 +159,7 @@ public class AudioPlayer {
      * @param volume the target volume
      * @see Audio#setVolume(float)
      */
-    public void setClipVolume(String name, float volume) {
+    public void setClipVolume(final String name, final float volume) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).setVolume(volume);
         }
@@ -172,7 +172,7 @@ public class AudioPlayer {
      * @return the volume of the audio
      * @see Audio#getVolume()
      */
-    public float getClipVolume(String name) {
+    public float getClipVolume(final String name) {
         return getAudio(name).getVolume();
     }
 
@@ -184,7 +184,7 @@ public class AudioPlayer {
      * @param pan  the target pan
      * @see Audio#setPan(float)
      */
-    public void setClipPan(String name, float pan) {
+    public void setClipPan(final String name, final float pan) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).setPan(pan);
         }
@@ -197,7 +197,7 @@ public class AudioPlayer {
      * @return the pan of the audio
      * @see Audio#getPan() ()
      */
-    public float getClipPan(String name) {
+    public float getClipPan(final String name) {
         return getAudio(name).getPan();
     }
 
@@ -220,12 +220,12 @@ public class AudioPlayer {
      *
      * @param masterVolume the new master volume
      */
-    public void setMasterVolume(float masterVolume) {
+    public void setMasterVolume(final float masterVolume) {
 
         if (SaltySystem.audioEnabled) {
             this.masterVolume = masterVolume;
 
-            for (Audio audio : audios) {
+            for (final Audio audio : audios) {
                 multiplyAudioVolume(audio, masterVolume);
             }
         }
@@ -238,8 +238,8 @@ public class AudioPlayer {
      * @param audio  the {@link Audio} whose volume is to be multiplied
      * @param factor the factor by which the volume is to be multiplied.
      */
-    private void multiplyAudioVolume(Audio audio, float factor) {
-        float newVolume = audio.getVolume() * factor;
+    private void multiplyAudioVolume(final Audio audio, final float factor) {
+        final float newVolume = audio.getVolume() * factor;
 
         if (newVolume < 0f) {
             audio.setVolume(0f);

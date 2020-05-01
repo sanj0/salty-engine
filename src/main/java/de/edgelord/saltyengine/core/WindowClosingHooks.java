@@ -32,7 +32,7 @@ public class WindowClosingHooks {
      *
      * @param runnable what to run when the JVM is shutting down
      */
-    public static void addShutdownHook(Runnable runnable) {
+    public static void addShutdownHook(final Runnable runnable) {
         Runtime.getRuntime().addShutdownHook(new Thread(runnable));
     }
 
@@ -44,15 +44,15 @@ public class WindowClosingHooks {
         return hooks.isEmpty();
     }
 
-    public static boolean contains(Object o) {
+    public static boolean contains(final Object o) {
         return hooks.contains(o);
     }
 
-    public static boolean add(Runnable runnable) {
+    public static boolean add(final Runnable runnable) {
         return hooks.add(runnable);
     }
 
-    public static boolean remove(Object o) {
+    public static boolean remove(final Object o) {
         return hooks.remove(o);
     }
 
@@ -60,15 +60,15 @@ public class WindowClosingHooks {
         hooks.clear();
     }
 
-    public static Runnable get(int index) {
+    public static Runnable get(final int index) {
         return hooks.get(index);
     }
 
-    public static void add(int index, Runnable element) {
+    public static void add(final int index, final Runnable element) {
         hooks.add(index, element);
     }
 
-    public static Runnable remove(int index) {
+    public static Runnable remove(final int index) {
         return hooks.remove(index);
     }
 }

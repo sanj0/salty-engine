@@ -29,7 +29,7 @@ public class LinearKeyframeAnimation extends KeyframeAnimation {
      *
      * @param keyframes the initial list of <code>Keyframe</code>s
      */
-    public LinearKeyframeAnimation(List<Keyframe> keyframes) {
+    public LinearKeyframeAnimation(final List<Keyframe> keyframes) {
         super(keyframes);
     }
 
@@ -48,7 +48,7 @@ public class LinearKeyframeAnimation extends KeyframeAnimation {
      *
      * @param frames the {@link Keyframe frames} to initialize the animation with
      */
-    public LinearKeyframeAnimation(Keyframe... frames) {
+    public LinearKeyframeAnimation(final Keyframe... frames) {
         super(frames);
     }
 
@@ -57,11 +57,11 @@ public class LinearKeyframeAnimation extends KeyframeAnimation {
         prepareAnimation();
 
         int index = 0;
-        List<Keyframe> keyframes = getKeyframes();
+        final List<Keyframe> keyframes = getKeyframes();
         while (index < getKeyframes().size() - 1) {
             int i = 0;
-            int duration = keyframes.get(index + 1).getTimecode() - keyframes.get(index).getTimecode();
-            float step = (keyframes.get(index + 1).getValue() - keyframes.get(index).getValue()) / duration;
+            final int duration = keyframes.get(index + 1).getTimecode() - keyframes.get(index).getTimecode();
+            final float step = (keyframes.get(index + 1).getValue() - keyframes.get(index).getValue()) / duration;
 
             while (i < duration) {
                 getAnimation().put(i + keyframes.get(index).getTimecode(), step);

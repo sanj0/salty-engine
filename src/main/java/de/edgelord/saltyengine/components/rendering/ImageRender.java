@@ -41,14 +41,14 @@ public class ImageRender extends RenderComponent {
      * @param image  the image to be drawn by this component
      * @see de.edgelord.saltyengine.core.Component
      */
-    public ImageRender(ComponentContainer parent, String name, SaltyImage image) {
+    public ImageRender(final ComponentContainer parent, final String name, final SaltyImage image) {
         super(parent, name, Components.RENDER_COMPONENT);
 
         this.image = image;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         // Draw the image
         saltyGraphics.drawImage(image, getParent());
@@ -68,7 +68,7 @@ public class ImageRender extends RenderComponent {
      *
      * @param image the new value of {@link #image}
      */
-    public void setImage(SaltyImage image) {
+    public void setImage(final SaltyImage image) {
         this.image = image;
     }
 }

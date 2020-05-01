@@ -54,7 +54,7 @@ public class Input {
 
     public static Directions getInput() {
 
-        Directions input = new Directions();
+        final Directions input = new Directions();
 
         if (inputUp) {
             input.addDirection(Directions.Direction.UP);
@@ -127,7 +127,7 @@ public class Input {
         return mouseDown;
     }
 
-    public static void addKeyboardInputHandler(KeyboardInputHandler handler) {
+    public static void addKeyboardInputHandler(final KeyboardInputHandler handler) {
         keyboardHandlers.add(handler);
     }
 
@@ -135,7 +135,7 @@ public class Input {
         return keyboardHandlers;
     }
 
-    public static void addMouseInputHandler(MouseInputHandler handler) {
+    public static void addMouseInputHandler(final MouseInputHandler handler) {
         mouseHandlers.add(handler);
     }
 

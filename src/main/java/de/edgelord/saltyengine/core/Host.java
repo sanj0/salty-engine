@@ -110,7 +110,7 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      * @param toggle true if the key "F" should toggle fullscreen mode, false if not
      * @see #toggleFullscreen()
      */
-    public void fToToggleFullscreen(boolean toggle) {
+    public void fToToggleFullscreen(final boolean toggle) {
         this.fullscreenToggleF = toggle;
     }
 

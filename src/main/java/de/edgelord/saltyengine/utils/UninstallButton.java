@@ -25,7 +25,7 @@ import java.awt.event.MouseEvent;
 
 public class UninstallButton extends Button {
 
-    public UninstallButton(Vector2f position) {
+    public UninstallButton(final Vector2f position) {
         super("Uninstall", position, 100, 35);
 
         setBackgroundColor(ColorUtil.CRIMSON_RED);
@@ -39,7 +39,7 @@ public class UninstallButton extends Button {
     }
 
     @Override
-    public void onClick(MouseEvent e) {
+    public void onClick(final MouseEvent e) {
         if (Game.getHost().showConfirmDialog("This will delete all local game files (including save files of game states!)" +
                 " but not the game itself and exist the game. Proceed?")) {
             SaltySystem.writePrivilege = false;

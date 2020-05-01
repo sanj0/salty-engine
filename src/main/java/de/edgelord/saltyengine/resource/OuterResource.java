@@ -35,7 +35,7 @@ public class OuterResource implements Resource {
     private final boolean hidden;
     private File sourceDirectory;
 
-    public OuterResource(boolean hidden) {
+    public OuterResource(final boolean hidden) {
 
         this.hidden = hidden;
 
@@ -50,11 +50,11 @@ public class OuterResource implements Resource {
         deleteRecursively(sourceDirectory);
     }
 
-    private void deleteRecursively(File file) {
-        File[] files = file.listFiles();
+    private void deleteRecursively(final File file) {
+        final File[] files = file.listFiles();
 
         if (files != null) {
-            for (File f : files) {
+            for (final File f : files) {
                 deleteRecursively(f);
             }
         }
@@ -62,11 +62,11 @@ public class OuterResource implements Resource {
     }
 
     @Override
-    public SaltyImage getImageResource(String relativePath) {
+    public SaltyImage getImageResource(final String relativePath) {
 
         try {
             return SaltySystem.createPreferredImage(getImage(relativePath));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
@@ -74,11 +74,11 @@ public class OuterResource implements Resource {
     }
 
     @Override
-    public Clip getAudioResource(String relativePath) {
+    public Clip getAudioResource(final String relativePath) {
         AudioInputStream audioInputStream = null;
         try {
             audioInputStream = AudioSystem.getAudioInputStream(getFile(relativePath));
-        } catch (UnsupportedAudioFileException | IOException e) {
+        } catch (final UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
 
@@ -86,7 +86,7 @@ public class OuterResource implements Resource {
     }
 
     @Override
-    public File getFileResource(String relativePath) {
+    public File getFileResource(final String relativePath) {
         return getFile(relativePath);
     }
 
@@ -99,7 +99,7 @@ public class OuterResource implements Resource {
         }
     }
 
-    private File getFile(String relativePath) {
+    private File getFile(final String relativePath) {
         if (relativePath.startsWith("/")) {
             return new File(sourceDirectory.getAbsolutePath() + relativePath);
         } else {
@@ -107,7 +107,7 @@ public class OuterResource implements Resource {
         }
     }
 
-    public BufferedImage getImage(String relativePath) throws IOException {
+    public BufferedImage getImage(final String relativePath) throws IOException {
 
         if (relativePath.startsWith("/")) {
 

@@ -27,12 +27,12 @@ public class GravityParticleModifier implements ParticleModifier {
 
     private final float speed;
 
-    public GravityParticleModifier(float speed) {
+    public GravityParticleModifier(final float speed) {
         this.speed = speed;
     }
 
     @Override
-    public void modifyParticle(Particle particle) {
+    public void modifyParticle(final Particle particle) {
         particle.basicMove(speed, Directions.BasicDirection.y);
     }
 }

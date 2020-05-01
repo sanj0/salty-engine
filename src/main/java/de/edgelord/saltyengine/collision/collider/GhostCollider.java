@@ -37,7 +37,7 @@ public class GhostCollider extends Collider {
     }
 
     @Override
-    public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
+    public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
         return new CollisionDetectionResult(false, Directions.Direction.EMPTY);
     }
 }

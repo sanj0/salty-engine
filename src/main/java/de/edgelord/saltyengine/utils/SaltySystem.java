@@ -65,10 +65,10 @@ public class SaltySystem {
 
     public static Font defaultFont;
 
-    public static VolatileImage createVolatileImage(int width, int height) {
+    public static VolatileImage createVolatileImage(final int width, final int height) {
 
-        VolatileImage image = gfxConfig.createCompatibleVolatileImage(width, height, Transparency.TRANSLUCENT);
-        Graphics2D graphics2D = image.createGraphics();
+        final VolatileImage image = gfxConfig.createCompatibleVolatileImage(width, height, Transparency.TRANSLUCENT);
+        final Graphics2D graphics2D = image.createGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
         graphics2D.dispose();
@@ -83,16 +83,16 @@ public class SaltySystem {
         updateFontGlobally(defaultFont);
     }
 
-    public static void updateFontGlobally(Font font) {
-        for (UIElement uiElement : SceneManager.getCurrentScene().getUI().getElements()) {
+    public static void updateFontGlobally(final Font font) {
+        for (final UIElement uiElement : SceneManager.getCurrentScene().getUI().getElements()) {
             uiElement.setFont(font);
         }
     }
 
-    public static SaltyImage createPreferredImage(float width, float height) {
+    public static SaltyImage createPreferredImage(final float width, final float height) {
 
-        int imageWidth = Math.round(width);
-        int imageHeight = Math.round(height);
+        final int imageWidth = Math.round(width);
+        final int imageHeight = Math.round(height);
 
         switch (preferredImageType) {
             case BUFFERED:
@@ -104,7 +104,7 @@ public class SaltySystem {
         return null;
     }
 
-    public static SaltyImage createPreferredImage(String path) {
+    public static SaltyImage createPreferredImage(final String path) {
         switch (preferredImageType) {
             case BUFFERED:
                 return new SaltyBufferedImage(path);
@@ -115,7 +115,7 @@ public class SaltySystem {
         return null;
     }
 
-    public static SaltyImage toPreferredImage(SaltyImage source) {
+    public static SaltyImage toPreferredImage(final SaltyImage source) {
         switch (preferredImageType) {
             case BUFFERED:
                 return new SaltyBufferedImage(source);
@@ -126,7 +126,7 @@ public class SaltySystem {
         return null;
     }
 
-    public static SaltyImage createPreferredImage(Image source) {
+    public static SaltyImage createPreferredImage(final Image source) {
         switch (preferredImageType) {
             case BUFFERED:
                 return new SaltyBufferedImage(source);

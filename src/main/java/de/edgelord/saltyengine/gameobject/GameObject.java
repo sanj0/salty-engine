@@ -136,7 +136,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param transform the <code>Transform</code> of the <code>GameObject</code>
      * @param tag       the tag
      */
-    public GameObject(Transform transform, String tag) {
+    public GameObject(final Transform transform, final String tag) {
         this(transform.getX(), transform.getY(), transform.getWidth(), transform.getHeight(), tag);
     }
 
@@ -148,7 +148,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param tag         the tag
      */
     @Deprecated
-    public GameObject(Coordinates coordinates, Dimensions dimensions, String tag) {
+    public GameObject(final Coordinates coordinates, final Dimensions dimensions, final String tag) {
         this(coordinates.getX(), coordinates.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
@@ -159,7 +159,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param dimensions the dimensions
      * @param tag        the tag
      */
-    public GameObject(Vector2f position, Dimensions dimensions, String tag) {
+    public GameObject(final Vector2f position, final Dimensions dimensions, final String tag) {
         this(position.getX(), position.getY(), dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
@@ -171,7 +171,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param height   the height
      * @param tag      the tag
      */
-    public GameObject(Vector2f position, float width, float height, String tag) {
+    public GameObject(final Vector2f position, final float width, final float height, final String tag) {
         this(position.getX(), position.getY(), width, height, tag);
     }
 
@@ -183,7 +183,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param dimensions the dimensions
      * @param tag        the tag
      */
-    public GameObject(float xPos, float yPos, Dimensions dimensions, String tag) {
+    public GameObject(final float xPos, final float yPos, final Dimensions dimensions, final String tag) {
         this(xPos, yPos, dimensions.getWidth(), dimensions.getHeight(), tag);
     }
 
@@ -244,7 +244,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      *
      * @param collisions the list of occurred collisions.
      */
-    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
+    public void onCollisionDetectionFinish(final List<CollisionEvent> collisions) {
 
     }
 
@@ -300,7 +300,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param component the component to add
      */
     @Override
-    public void addComponent(Component component) {
+    public void addComponent(final Component component) {
         components.add(component);
     }
 
@@ -310,7 +310,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param component the {@link Component} to be removed
      */
     @Override
-    public void removeComponent(Component component) {
+    public void removeComponent(final Component component) {
         components.remove(component);
     }
 
@@ -331,9 +331,9 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @return the first {@link Component} with the given name
      */
     @Override
-    public Component getComponent(String name) {
+    public Component getComponent(final String name) {
 
-        for (Component component : getComponents()) {
+        for (final Component component : getComponents()) {
             if (component.getName().equals(name)) {
                 return component;
             }
@@ -351,7 +351,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param acceleration the acceleration to be set to the specific default force
      * @param direction    the direction in which to accelerate the GameObject
      */
-    public void accelerate(float acceleration, Directions.Direction direction) {
+    public void accelerate(final float acceleration, final Directions.Direction direction) {
 
         if (getLockedDirections().hasDirection(direction)) {
             return;
@@ -385,7 +385,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param directions   the <code>Directions</code> in which to accelerate.
      * @see #accelerateTo(float, Directions.Direction)
      */
-    public void accelerate(float acceleration, Directions directions) {
+    public void accelerate(final float acceleration, final Directions directions) {
 
         if (directions.hasDirection(Directions.Direction.UP)) {
             accelerate(acceleration, Directions.Direction.UP);
@@ -412,7 +412,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param velocity  the velocity to be set to the specific force
      * @param direction the direction of the default force to be manipulated
      */
-    public void accelerateTo(float velocity, Directions.Direction direction) {
+    public void accelerateTo(final float velocity, final Directions.Direction direction) {
 
         if (getLockedDirections().hasDirection(direction)) {
             return;
@@ -445,7 +445,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param directions the <code>Directions</code> in which to accelerate to the given velocity
      * @see #accelerateTo(float, Directions.Direction)
      */
-    public void accelerateTo(float velocity, Directions directions) {
+    public void accelerateTo(final float velocity, final Directions directions) {
 
         if (directions.hasDirection(Directions.Direction.UP)) {
             accelerateTo(velocity, Directions.Direction.UP);
@@ -512,7 +512,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return collider;
     }
 
-    public void setCollider(Collider collider) {
+    public void setCollider(final Collider collider) {
         this.collider = collider;
     }
 
@@ -532,7 +532,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return initialized;
     }
 
-    public void setInitialized(boolean initialized) {
+    public void setInitialized(final boolean initialized) {
         this.initialized = initialized;
     }
 
@@ -540,7 +540,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return isTrigger;
     }
 
-    public void setTrigger(boolean trigger) {
+    public void setTrigger(final boolean trigger) {
         isTrigger = trigger;
     }
 
@@ -548,7 +548,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return cursorAlreadyTouching;
     }
 
-    public void setCursorAlreadyTouching(boolean cursorAlreadyTouching) {
+    public void setCursorAlreadyTouching(final boolean cursorAlreadyTouching) {
         this.cursorAlreadyTouching = cursorAlreadyTouching;
     }
 
@@ -560,7 +560,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         return clearCollisions;
     }
 
-    public void setClearCollisions(boolean clearCollisions) {
+    public void setClearCollisions(final boolean clearCollisions) {
         this.clearCollisions = clearCollisions;
     }
 }

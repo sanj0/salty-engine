@@ -28,14 +28,14 @@ public class AdvancedSaver implements Serializable {
     private int counter = 0;
 
     @Override
-    public void serialize(Species species) {
+    public void serialize(final Species species) {
         species.addTag(COUNTER_TAG, ++counter);
         species.addTag(REDUNDANT_MESSAGE_TAG, "This is a redundant message to show that you don't have to encode spaces with these weird combinations of stars and underscores any more!");
         species.addTag(CAMERA_POSITION_TAG, Game.getCamera().getX() + "," + Game.getCamera().getY());
     }
 
     @Override
-    public void deserialize(Species species) {
+    public void deserialize(final Species species) {
         counter = Integer.parseInt(species.getTagValue(COUNTER_TAG));
 
         System.out.println("This example started " + counter + " times before on this computer!");

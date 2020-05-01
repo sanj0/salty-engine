@@ -59,7 +59,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      * @param interval the amount of ticks between the deflections
      * @param loop     whether to loop the animation or only playing it whenever the cursor enters the parent
      */
-    public DeflectionOnMouseOverComponent(ComponentContainer parent, String name, float distance, int interval, boolean loop) {
+    public DeflectionOnMouseOverComponent(final ComponentContainer parent, final String name, final float distance, final int interval, final boolean loop) {
         super(parent, name, Components.GFX_COMPONENT);
 
         this.loop = loop;
@@ -68,8 +68,8 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         keyframeAnimation.add(interval * 2, 0);
         keyframeAnimation.calculateAnimation();
 
-        Dimensions currentDimensions = getParent().getDimensions();
-        Vector2f currentCentre = getParent().getTransform().getCentre();
+        final Dimensions currentDimensions = getParent().getDimensions();
+        final Vector2f currentCentre = getParent().getTransform().getCentre();
         returnPosition = new Vector2f(currentCentre.getX(), currentCentre.getY());
     }
 
@@ -93,7 +93,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
@@ -126,7 +126,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     private void nextFrame() {
-        float delta = keyframeAnimation.nextDelta();
+        final float delta = keyframeAnimation.nextDelta();
         totalDeflection += delta;
 
         getParent().setWidth(getParent().getWidth() + delta);
@@ -141,7 +141,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      */
     public void updatePosition() {
 
-        Vector2f centre = getParent().getTransform().getCentre();
+        final Vector2f centre = getParent().getTransform().getCentre();
         returnPosition.setX(centre.getX());
         returnPosition.setY(centre.getY());
     }
@@ -156,7 +156,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -164,7 +164,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         return loop;
     }
 
-    public void setLoop(boolean loop) {
+    public void setLoop(final boolean loop) {
         this.loop = loop;
     }
 

@@ -35,7 +35,7 @@ public class NativeDisplayKeyListener implements KeyListener {
     private boolean inputLeft = false;
     private boolean inputRight = false;
 
-    public NativeDisplayKeyListener(KeyboardInputHandler keyboardHandler) {
+    public NativeDisplayKeyListener(final KeyboardInputHandler keyboardHandler) {
         this.keyboardHandler = keyboardHandler;
     }
 
@@ -142,7 +142,7 @@ public class NativeDisplayKeyListener implements KeyListener {
         return keyboardHandler;
     }
 
-    public void setKeyboardHandler(KeyboardInputHandler keyboardHandler) {
+    public void setKeyboardHandler(final KeyboardInputHandler keyboardHandler) {
         this.keyboardHandler = keyboardHandler;
     }
 

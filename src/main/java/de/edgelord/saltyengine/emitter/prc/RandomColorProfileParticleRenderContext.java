@@ -59,41 +59,41 @@ public class RandomColorProfileParticleRenderContext extends ParticleRenderConte
      *
      * @param colors colors to be used, each separated with a comma
      */
-    public RandomColorProfileParticleRenderContext(Color... colors) {
+    public RandomColorProfileParticleRenderContext(final Color... colors) {
         super(Color.BLACK, Color.BLACK, new BasicStroke());
 
         this.colors.addAll(Arrays.asList(colors));
     }
 
     @Override
-    public void nextParticleRenderConfig(SaltyGraphics graphics, Particle subject) {
+    public void nextParticleRenderConfig(final SaltyGraphics graphics, final Particle subject) {
 
         if (profiles.containsKey(subject)) {
             graphics.setColor(profiles.get(subject));
         } else {
-            Color color = (Color) GeneralUtil.randomObjectFromList(colors);
+            final Color color = (Color) GeneralUtil.randomObjectFromList(colors);
             profiles.put(subject, color);
             graphics.setColor(color);
         }
     }
 
-    public boolean addColor(Color color) {
+    public boolean addColor(final Color color) {
         return colors.add(color);
     }
 
-    public boolean removeColor(Color color) {
+    public boolean removeColor(final Color color) {
         return colors.remove(color);
     }
 
-    public boolean addAllColors(Collection<? extends Color> colors) {
+    public boolean addAllColors(final Collection<? extends Color> colors) {
         return this.colors.addAll(colors);
     }
 
-    public boolean addAllColors(int index, Collection<? extends Color> colors) {
+    public boolean addAllColors(final int index, final Collection<? extends Color> colors) {
         return this.colors.addAll(index, colors);
     }
 
-    public boolean removeAllColors(Collection<?> colors) {
+    public boolean removeAllColors(final Collection<?> colors) {
         return this.colors.removeAll(colors);
     }
 

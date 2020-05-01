@@ -35,7 +35,7 @@ public class TriangleShape extends SaltyShape {
     private Vector2f point2;
     private Vector2f point3;
 
-    public TriangleShape(Vector2f point1, Vector2f point2, Vector2f point3) {
+    public TriangleShape(final Vector2f point1, final Vector2f point2, final Vector2f point3) {
         super(Transform.zero(), EnumShape.TRIANGLE);
 
         this.point1 = point1;
@@ -75,7 +75,7 @@ public class TriangleShape extends SaltyShape {
         return point1;
     }
 
-    public void setPoint1(Vector2f point1) {
+    public void setPoint1(final Vector2f point1) {
         this.point1 = point1;
         this.setTransform(getTriangleTransform());
     }
@@ -84,7 +84,7 @@ public class TriangleShape extends SaltyShape {
         return point2;
     }
 
-    public void setPoint2(Vector2f point2) {
+    public void setPoint2(final Vector2f point2) {
         this.point2 = point2;
         this.setTransform(getTriangleTransform());
     }
@@ -93,13 +93,13 @@ public class TriangleShape extends SaltyShape {
         return point3;
     }
 
-    public void setPoint3(Vector2f point3) {
+    public void setPoint3(final Vector2f point3) {
         this.point3 = point3;
         this.setTransform(getTriangleTransform());
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         if (isFilled()) {
             saltyGraphics.drawTriangle(point1, point2, point3);

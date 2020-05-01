@@ -53,7 +53,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     private static Vector2f lastPoint = Vector2f.zero();
     private static DataWriter writer;
 
-    private PointLogger(String fileName) throws IOException {
+    private PointLogger(final String fileName) throws IOException {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
 
         writer = new DataWriter(SaltySystem.defaultOuterResource.getFileResource(fileName));
@@ -67,9 +67,9 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
      * @return the created <code>PointLogger</code>.
      * @throws IOException if something does wrong when creating the {@link DataWriter}.
      */
-    public static PointLogger init(String fileName) throws IOException {
+    public static PointLogger init(final String fileName) throws IOException {
 
-        PointLogger logger = new PointLogger(fileName + DataReader.SDB_FILE_EXTENSION);
+        final PointLogger logger = new PointLogger(fileName + DataReader.SDB_FILE_EXTENSION);
         SceneManager.getCurrentScene().addDrawingRoutine(logger);
         Input.addMouseInputHandler(logger);
         WindowClosingHooks.addShutdownHook(() -> {
@@ -77,7 +77,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
             try {
                 writer.syncFile();
                 System.out.println("Points have been written to " + writer.getFile().getAbsolutePath());
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
         });
@@ -85,12 +85,12 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         return logger;
     }
 
-    private static Transform visualizingTransform(Vector2f point) {
+    private static Transform visualizingTransform(final Vector2f point) {
         return new Transform(point.getX() - (POINTS_VISUALIZING_DIMENSIONS.getWidth() / 2f), point.getY() - (POINTS_VISUALIZING_DIMENSIONS.getHeight() / 2f), POINTS_VISUALIZING_DIMENSIONS.getWidth(), POINTS_VISUALIZING_DIMENSIONS.getHeight());
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         if (lastPoint.getX() != 0 || lastPoint.getY() != 0) {
             saltyGraphics.setColor(POINT_VISUALIZING_COLOR);
@@ -98,37 +98,37 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         }
 
         saltyGraphics.setColor(SAVED_POINTS_VISUALIZING_COLOR);
-        for (Vector2f vector2F : savedPoints) {
+        for (final Vector2f vector2F : savedPoints) {
             saltyGraphics.drawOval(visualizingTransform(vector2F));
         }
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
 
         if (e.isAltDown() || e.isShiftDown()) {
             System.out.println("Enter a name for point " + getPointIndicator(lastPoint) + " and press [ENTER]");
-            String name = scanner.nextLine();
+            final String name = scanner.nextLine();
             points.addTag(name, lastPoint.getX() + ", " + lastPoint.getY());
             savedPoints.add(lastPoint);
             System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
@@ -139,21 +139,21 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEnteredScreen(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseWheelMoved(final MouseEvent e) {
 
     }
 
-    private String getPointIndicator(Vector2f point) {
+    private String getPointIndicator(final Vector2f point) {
         return "(" + (int) point.getX() + " | " + (int) point.getY() + ")";
     }
 }

@@ -22,7 +22,7 @@ public abstract class DrawingRoutine implements Drawable {
 
     private DrawingPosition drawingPosition;
 
-    public DrawingRoutine(DrawingPosition drawingPosition) {
+    public DrawingRoutine(final DrawingPosition drawingPosition) {
         this.drawingPosition = drawingPosition;
     }
 
@@ -30,7 +30,7 @@ public abstract class DrawingRoutine implements Drawable {
         return drawingPosition;
     }
 
-    public void setDrawingPosition(DrawingPosition drawingPosition) {
+    public void setDrawingPosition(final DrawingPosition drawingPosition) {
         this.drawingPosition = drawingPosition;
     }
 

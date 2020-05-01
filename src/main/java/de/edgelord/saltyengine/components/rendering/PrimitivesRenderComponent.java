@@ -64,7 +64,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
      * @see Component
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawImage(primitiveImage, getParent().getPosition());
     }
 
@@ -122,7 +122,7 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
         return primitiveDraw;
     }
 
-    protected void setPrimitiveDraw(Drawable primitiveDraw) {
+    protected void setPrimitiveDraw(final Drawable primitiveDraw) {
         this.primitiveDraw = primitiveDraw;
     }
 }

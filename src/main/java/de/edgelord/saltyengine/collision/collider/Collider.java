@@ -62,7 +62,7 @@ public abstract class Collider {
      * @param priority the priority of this collider
      * @param type     the name
      */
-    public Collider(int priority, int type) {
+    public Collider(final int priority, final int type) {
         this.priority = priority;
         this.type = type;
     }
@@ -74,7 +74,7 @@ public abstract class Collider {
      * @param collider2 the second collider
      * @return the one <code>Collider</code> from the given two that isn't <code>this</code>.
      */
-    public Collider getOtherCollider(Collider collider1, Collider collider2) {
+    public Collider getOtherCollider(final Collider collider1, final Collider collider2) {
         return collider1 != this ? collider1 : collider2;
     }
 

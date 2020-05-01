@@ -36,27 +36,27 @@ import de.edgelord.saltyengine.transform.Vector2f;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class EmptyGameObject extends GameObject {
 
-    public EmptyGameObject(float xPos, float yPos, float width, float height, String tag) {
+    public EmptyGameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(xPos, yPos, width, height, tag);
     }
 
-    public EmptyGameObject(Transform transform, String tag) {
+    public EmptyGameObject(final Transform transform, final String tag) {
         super(transform, tag);
     }
 
-    public EmptyGameObject(Coordinates coordinates, Dimensions dimensions, String tag) {
+    public EmptyGameObject(final Coordinates coordinates, final Dimensions dimensions, final String tag) {
         super(coordinates, dimensions, tag);
     }
 
-    public EmptyGameObject(Vector2f position, Dimensions dimensions, String tag) {
+    public EmptyGameObject(final Vector2f position, final Dimensions dimensions, final String tag) {
         super(position, dimensions, tag);
     }
 
-    public EmptyGameObject(Vector2f position, float width, float height, String tag) {
+    public EmptyGameObject(final Vector2f position, final float width, final float height, final String tag) {
         super(position, width, height, tag);
     }
 
-    public EmptyGameObject(float xPos, float yPos, Dimensions dimensions, String tag) {
+    public EmptyGameObject(final float xPos, final float yPos, final Dimensions dimensions, final String tag) {
         super(xPos, yPos, dimensions, tag);
     }
 
@@ -66,7 +66,7 @@ public class EmptyGameObject extends GameObject {
     }
 
     @Override
-    public void onCollision(CollisionEvent event) {
+    public void onCollision(final CollisionEvent event) {
     }
 
     @Override
@@ -74,6 +74,6 @@ public class EmptyGameObject extends GameObject {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
     }
 }

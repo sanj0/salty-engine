@@ -69,7 +69,7 @@ public class BasicRenderContext implements RenderContext {
      * @param paint  the {@link Paint} to render with
      * @param stroke the {@link Stroke} to render with
      */
-    public BasicRenderContext(Color color, Paint paint, Stroke stroke) {
+    public BasicRenderContext(final Color color, final Paint paint, final Stroke stroke) {
         this.color = color;
         this.paint = paint;
         this.stroke = stroke;
@@ -90,7 +90,7 @@ public class BasicRenderContext implements RenderContext {
      *
      * @param color the new {@link #color} and {@link #paint}
      */
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         this.color = color;
         this.paint = color;
     }
@@ -108,7 +108,7 @@ public class BasicRenderContext implements RenderContext {
         return paint;
     }
 
-    public void setPaint(Paint paint) {
+    public void setPaint(final Paint paint) {
         this.paint = paint;
     }
 
@@ -116,7 +116,7 @@ public class BasicRenderContext implements RenderContext {
         return stroke;
     }
 
-    public void setStroke(Stroke stroke) {
+    public void setStroke(final Stroke stroke) {
         this.stroke = stroke;
     }
 
@@ -124,7 +124,7 @@ public class BasicRenderContext implements RenderContext {
         return font;
     }
 
-    public void setFont(Font font) {
+    public void setFont(final Font font) {
         this.font = font;
     }
 
@@ -132,7 +132,7 @@ public class BasicRenderContext implements RenderContext {
         return alpha;
     }
 
-    public void setAlpha(float alpha) {
+    public void setAlpha(final float alpha) {
         this.alpha = alpha;
     }
 
@@ -141,7 +141,7 @@ public class BasicRenderContext implements RenderContext {
      *
      * @param graphics the graphics to configure.
      */
-    public void applyConfiguration(SaltyGraphics graphics) {
+    public void applyConfiguration(final SaltyGraphics graphics) {
 
         graphics.setColor(getColorWithAlpha());
         graphics.setPaint(paint);

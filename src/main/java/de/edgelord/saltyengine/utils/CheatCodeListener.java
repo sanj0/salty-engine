@@ -51,17 +51,17 @@ public abstract class CheatCodeListener implements Closeable {
 
         inputHandler = new KeyboardInputHandler() {
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(final KeyEvent e) {
 
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(final KeyEvent e) {
 
             }
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(final KeyEvent e) {
 
                 if (e.getKeyCode() == ATTENTION_KEY) {
                     currentCheatCode = "";

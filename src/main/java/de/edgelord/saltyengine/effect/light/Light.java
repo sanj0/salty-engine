@@ -60,39 +60,39 @@ public abstract class Light implements TransformedObject {
      */
     private Directions lockedDirections = new Directions();
 
-    public Light(Transform transform, Color color) {
+    public Light(final Transform transform, final Color color) {
         this.transform = transform;
         this.color = color;
     }
 
-    public Light(Transform transform) {
+    public Light(final Transform transform) {
         this.transform = transform;
         this.color = ColorUtil.TRANSPARENT_COLOR;
     }
 
-    public Light(Vector2f position, Dimensions dimensions, Color color) {
+    public Light(final Vector2f position, final Dimensions dimensions, final Color color) {
         this(new Transform(position, dimensions), color);
     }
 
-    public Light(Vector2f position, Dimensions dimensions) {
+    public Light(final Vector2f position, final Dimensions dimensions) {
         this(new Transform(position, dimensions));
     }
 
-    public Light(float x, float y, float width, float height, Color color) {
+    public Light(final float x, final float y, final float width, final float height, final Color color) {
         this(new Transform(x, y, width, height), color);
     }
 
-    public Light(float x, float y, float width, float height) {
+    public Light(final float x, final float y, final float width, final float height) {
         this(new Transform(x, y, width, height));
     }
 
-    public Light(Transform transform, Color color, float brightness, float intensity) {
+    public Light(final Transform transform, final Color color, final float brightness, final float intensity) {
         this(transform, color);
         this.brightness = brightness;
         this.intensity = intensity;
     }
 
-    public void prepareGraphics(SaltyGraphics graphics) {
+    public void prepareGraphics(final SaltyGraphics graphics) {
         graphics.setColor(color);
     }
 
@@ -122,7 +122,7 @@ public abstract class Light implements TransformedObject {
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.transform = transform;
     }
 
@@ -132,7 +132,7 @@ public abstract class Light implements TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions lockedDirections) {
+    public void setLockedDirections(final Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
     }
 
@@ -140,7 +140,7 @@ public abstract class Light implements TransformedObject {
         return brightness;
     }
 
-    public void setBrightness(float brightness) {
+    public void setBrightness(final float brightness) {
 
         if (brightness < 0f || brightness > 1f) {
             throw new IllegalArgumentException("Brightness of a light has to be in between 0f and 1f!");
@@ -153,7 +153,7 @@ public abstract class Light implements TransformedObject {
         return intensity;
     }
 
-    public void setIntensity(float intensity) {
+    public void setIntensity(final float intensity) {
         this.intensity = intensity;
     }
 
@@ -161,7 +161,7 @@ public abstract class Light implements TransformedObject {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(final Color color) {
         this.color = color;
     }
 
@@ -169,7 +169,7 @@ public abstract class Light implements TransformedObject {
         return colorAlpha;
     }
 
-    public void setColorAlpha(int colorAlpha) {
+    public void setColorAlpha(final int colorAlpha) {
         this.colorAlpha = colorAlpha;
     }
 }

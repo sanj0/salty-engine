@@ -59,14 +59,14 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
 
     public static RectangleCreator init() {
 
-        RectangleCreator rectangleCreator = new RectangleCreator();
+        final RectangleCreator rectangleCreator = new RectangleCreator();
 
         SceneManager.getCurrentScene().addDrawingRoutine(rectangleCreator);
         Input.addMouseInputHandler(rectangleCreator);
 
         try {
             writer = new DataWriter(SaltySystem.defaultOuterResource.getFileResource("rects.sdb"));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
@@ -75,7 +75,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
             try {
                 writer.syncFile();
                 System.out.println("Rects have been written to " + writer.getFile().getAbsolutePath());
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
         });
@@ -84,11 +84,11 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setColor(SAVED_TRANSFORMS_COLOR);
 
-        for (Transform transform : savedTransforms) {
+        for (final Transform transform : savedTransforms) {
             saltyGraphics.drawRect(transform);
         }
 
@@ -109,11 +109,11 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
 
         if (originMove) {
             origin.positionByCentre(Input.getCursorPosition());
@@ -137,9 +137,9 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
 
-        Transform cursor = Input.getCursor();
+        final Transform cursor = Input.getCursor();
 
         if (origin.contains(cursor)) {
             originMove = true;
@@ -153,7 +153,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
 
         originMove = false;
         upRightMove = false;
@@ -162,11 +162,11 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
 
         if (currentTransform == null || Input.getKeyboardInput().isSpace()) {
-            float x = Input.getCursorPosition().getX();
-            float y = Input.getCursorPosition().getY();
+            final float x = Input.getCursorPosition().getX();
+            final float y = Input.getCursorPosition().getY();
 
             origin.setX(x);
             origin.setY(y);
@@ -187,17 +187,17 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEnteredScreen(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
 
     }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseWheelMoved(final MouseEvent e) {
 
     }
 }

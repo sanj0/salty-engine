@@ -28,7 +28,7 @@ import java.awt.*;
  */
 public class GlobalLight extends Light {
 
-    public GlobalLight(Color color) {
+    public GlobalLight(final Color color) {
         super(Game.getGameTransform(), color);
     }
 
@@ -36,24 +36,24 @@ public class GlobalLight extends Light {
         super(Game.getGameTransform());
     }
 
-    public GlobalLight(Color color, float brightness) {
+    public GlobalLight(final Color color, final float brightness) {
         super(Game.getGameTransform(), color, brightness, 0f);
     }
 
     @Override
-    public void draw(Graphics2D graphics) {
+    public void draw(final Graphics2D graphics) {
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, Math.round(Game.getGameWidth()), Math.round(Game.getGameHeight()));
     }
 
     @Override
-    public void drawColorMap(Graphics2D graphics) {
+    public void drawColorMap(final Graphics2D graphics) {
         graphics.setColor(ColorUtil.withAlpha(getColor(), getColorAlpha()));
         graphics.fillRect(0, 0, Math.round(Game.getGameWidth()), Math.round(Game.getGameHeight()));
     }
 
     @Override
-    public void setIntensity(float intensity) {
+    public void setIntensity(final float intensity) {
         super.setIntensity(intensity);
         System.out.printf("[WARNING]: %s", "setting the intensity of a GlobalLight has no effect!");
     }

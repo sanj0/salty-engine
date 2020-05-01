@@ -28,24 +28,24 @@ import de.edgelord.saltyengine.transform.Vector2f;
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class LineShape extends SaltyShape {
-    public LineShape(TransformedObject parent) {
+    public LineShape(final TransformedObject parent) {
         super(parent, EnumShape.LINE);
     }
 
-    public LineShape(Transform transform) {
+    public LineShape(final Transform transform) {
         super(transform, EnumShape.LINE);
     }
 
-    public LineShape(Vector2f position, Dimensions dimensions) {
+    public LineShape(final Vector2f position, final Dimensions dimensions) {
         super(position, dimensions, EnumShape.LINE);
     }
 
-    public LineShape(float x, float y, float width, float height) {
+    public LineShape(final float x, final float y, final float width, final float height) {
         super(x, y, width, height, EnumShape.LINE);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawLine(getX(), getY(), getTransform().getMaxX(), getTransform().getMaxY());
     }
 }

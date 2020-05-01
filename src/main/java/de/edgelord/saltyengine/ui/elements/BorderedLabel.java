@@ -27,21 +27,21 @@ import de.edgelord.saltyengine.transform.Vector2f;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class BorderedLabel extends Label {
 
-    public BorderedLabel(String text, Vector2f position, float width, float height) {
+    public BorderedLabel(final String text, final Vector2f position, final float width, final float height) {
         super(text, position, width, height);
     }
 
-    public BorderedLabel(String text, float x, float y, float width, float height) {
+    public BorderedLabel(final String text, final float x, final float y, final float width, final float height) {
         this(text, new Vector2f(x, y), width, height);
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
-        Vector2f centre = getTransform().getCentre();
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
+        final Vector2f centre = getTransform().getCentre();
         saltyGraphics.drawText(getText(), centre.getX(), centre.getY(), SaltyGraphics.TextAnchor.CENTRE);
     }
 }

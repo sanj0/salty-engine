@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.effect.BasicRenderContext;
 import java.awt.*;
 
 public abstract class ParticleRenderContext extends BasicRenderContext {
-    public ParticleRenderContext(Color color, Paint paint, Stroke stroke) {
+    public ParticleRenderContext(final Color color, final Paint paint, final Stroke stroke) {
         super(color, paint, stroke);
     }
 

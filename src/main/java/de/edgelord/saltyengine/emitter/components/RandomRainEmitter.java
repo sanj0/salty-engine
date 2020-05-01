@@ -57,19 +57,19 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * {@inheritDoc}
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount, int waveInterval) {
+    public RandomRainEmitter(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount, final int waveInterval) {
         super(parent, name, particle, speed, amount, waveInterval);
     }
 
     /**
      * {@inheritDoc}
      */
-    public RandomRainEmitter(ComponentContainer parent, String name, Class<? extends Particle> particle, float speed, float amount) {
+    public RandomRainEmitter(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount) {
         super(parent, name, particle, speed, amount);
     }
 
     @Override
-    public void moveParticle(Particle particle) {
+    public void moveParticle(final Particle particle) {
         particle.basicMove(particle.getSpeed(), Directions.BasicDirection.y);
     }
 
@@ -80,13 +80,13 @@ public class RandomRainEmitter extends EmitterComponent {
 
     @Override
     public Particle spawnParticle() {
-        Particle newParticle = createParticle();
+        final Particle newParticle = createParticle();
         newParticle.setPosition(newRandomSpawnPoint(newParticle));
 
         return newParticle;
     }
 
-    private Vector2f newRandomSpawnPoint(Particle p) {
+    private Vector2f newRandomSpawnPoint(final Particle p) {
         return new Vector2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
     }
 
@@ -94,7 +94,7 @@ public class RandomRainEmitter extends EmitterComponent {
         return leftOffset;
     }
 
-    public void setLeftOffset(float leftOffset) {
+    public void setLeftOffset(final float leftOffset) {
         this.leftOffset = leftOffset;
     }
 
@@ -102,7 +102,7 @@ public class RandomRainEmitter extends EmitterComponent {
         return rightOffset;
     }
 
-    public void setRightOffset(float rightOffset) {
+    public void setRightOffset(final float rightOffset) {
         this.rightOffset = rightOffset;
     }
 
@@ -110,7 +110,7 @@ public class RandomRainEmitter extends EmitterComponent {
         return offsetY;
     }
 
-    public void setOffsetY(float offsetY) {
+    public void setOffsetY(final float offsetY) {
         this.offsetY = offsetY;
     }
 }

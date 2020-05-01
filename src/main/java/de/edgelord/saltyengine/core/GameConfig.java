@@ -23,14 +23,14 @@ public class GameConfig {
     private final long fixedTickMillis;
     private final String gameName;
 
-    public GameConfig(float resWidth, float resHeight, String gameName, long fixedTickMillis) {
+    public GameConfig(final float resWidth, final float resHeight, final String gameName, final long fixedTickMillis) {
         this.resWidth = resWidth;
         this.resHeight = resHeight;
         this.fixedTickMillis = fixedTickMillis;
         this.gameName = gameName;
     }
 
-    public static GameConfig config(float resWidth, float resHeight, String gameName, long fixedTickMillis) {
+    public static GameConfig config(final float resWidth, final float resHeight, final String gameName, final long fixedTickMillis) {
         return new GameConfig(resWidth, resHeight, gameName, fixedTickMillis);
     }
 

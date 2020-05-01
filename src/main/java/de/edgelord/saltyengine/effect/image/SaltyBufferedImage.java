@@ -30,46 +30,46 @@ public class SaltyBufferedImage implements SaltyImage {
 
     private final BufferedImage image;
 
-    public SaltyBufferedImage(int width, int height) {
+    public SaltyBufferedImage(final int width, final int height) {
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public SaltyBufferedImage(int width, int height, int imageType) {
+    public SaltyBufferedImage(final int width, final int height, final int imageType) {
         this.image = new BufferedImage(width, height, imageType);
     }
 
-    public SaltyBufferedImage(Image image) {
+    public SaltyBufferedImage(final Image image) {
         this.image = ImageUtils.toBufferedImage(image);
     }
 
-    public SaltyBufferedImage(BufferedImage image) {
+    public SaltyBufferedImage(final BufferedImage image) {
         this.image = image;
     }
 
-    public SaltyBufferedImage(VolatileImage source) {
+    public SaltyBufferedImage(final VolatileImage source) {
         this.image = ImageUtils.toBufferedImage(source);
     }
 
-    public SaltyBufferedImage(String path) {
+    public SaltyBufferedImage(final String path) {
         this.image = SaltySystem.defaultImageFactory.getImageResource(path).toBufferedImage();
     }
 
-    public SaltyBufferedImage(SaltyImage source) {
+    public SaltyBufferedImage(final SaltyImage source) {
         this.image = source.toBufferedImage();
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height) {
+    public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         saltyGraphics.drawImage(image, position, new Dimensions(width, height));
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, Vector2f position) {
+    public void draw(final SaltyGraphics saltyGraphics, final Vector2f position) {
         saltyGraphics.drawImage(image, position);
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics, float x, float y) {
+    public void draw(final SaltyGraphics saltyGraphics, final float x, final float y) {
         saltyGraphics.drawImage(image, x, y);
     }
 
@@ -79,7 +79,7 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
-    public SaltyImage getSubImage(int x, int y, int width, int height) {
+    public SaltyImage getSubImage(final int x, final int y, final int width, final int height) {
         return new SaltyBufferedImage(image.getSubimage(x, y, width, height));
     }
 
@@ -119,12 +119,12 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
-    public Object getProperty(String name) {
+    public Object getProperty(final String name) {
         return image.getProperty(name);
     }
 
     @Override
-    public Image getScaledInstance(int width, int height, int hints) {
+    public Image getScaledInstance(final int width, final int height, final int hints) {
         return image.getScaledInstance(width, height, hints);
     }
 
@@ -134,7 +134,7 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
-    public ImageCapabilities getCapabilities(GraphicsConfiguration gc) {
+    public ImageCapabilities getCapabilities(final GraphicsConfiguration gc) {
         return image.getCapabilities(gc);
     }
 
@@ -144,7 +144,7 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
-    public void setAccelerationPriority(float priority) {
+    public void setAccelerationPriority(final float priority) {
         image.setAccelerationPriority(priority);
     }
 }

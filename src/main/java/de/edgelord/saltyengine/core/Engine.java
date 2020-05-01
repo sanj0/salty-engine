@@ -51,17 +51,18 @@ public class Engine {
      * {@link Game#executeLater(Runnable, long)}
      */
     private final List<ScheduledTask> scheduledTasks = new ArrayList<>();
+
     /**
      * Only used internally to stop the timers.
      */
-    private boolean isCloseRequested = false;
+    private boolean isCloseRequested;
 
     /**
      * Creates a new instance with the given fixed tick millis. This happens automatically when initializing the {@link Game}.
      *
      * @param fixedTickMillis the milliseconds between each fixed tick
      */
-    public Engine(long fixedTickMillis) {
+    public Engine(final long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
     }
 
@@ -78,7 +79,7 @@ public class Engine {
      *
      * @param FPS the fps of the game.
      */
-    public void start(long FPS) {
+    public void start(final long FPS) {
         startFixedTicks();
         startRepainting(FPS);
 
@@ -92,7 +93,6 @@ public class Engine {
      * Starts the fixed ticks with {@link #fixedTickMillis}. This happens automatically.
      */
     public void startFixedTicks() {
-
         SaltySystem.fixedTickMillis = fixedTickMillis;
 
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
@@ -116,7 +116,7 @@ public class Engine {
      *
      * @param FPS the fps to use for the game to be repainted
      */
-    private void startRepainting(long FPS) {
+    private void startRepainting(final long FPS) {
         repaintTimer.scheduleAtFixedRate(new TimerTask() {
 
             long nanosBeforeLastTime = 0;

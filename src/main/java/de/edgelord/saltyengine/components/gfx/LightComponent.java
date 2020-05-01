@@ -59,7 +59,7 @@ public class LightComponent extends GFXComponent {
      * @param relationToParent the relation of the light ot the parent
      * @param light            the light
      */
-    public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent, Light light) {
+    public LightComponent(final ComponentContainer parent, final String name, final TransformRelationMode relationToParent, final Light light) {
         super(parent, name);
 
         this.light = light;
@@ -73,7 +73,7 @@ public class LightComponent extends GFXComponent {
      * @param name   the id-name
      * @param light  the light
      */
-    public LightComponent(ComponentContainer parent, String name, Light light) {
+    public LightComponent(final ComponentContainer parent, final String name, final Light light) {
         this(parent, name, TransformRelationMode.CENTRE, light);
     }
 
@@ -84,7 +84,7 @@ public class LightComponent extends GFXComponent {
      * @param name             the id-name
      * @param relationToParent the light
      */
-    public LightComponent(ComponentContainer parent, String name, TransformRelationMode relationToParent) {
+    public LightComponent(final ComponentContainer parent, final String name, final TransformRelationMode relationToParent) {
         this(parent, name, relationToParent, new PointLight(parent.getTransform()));
     }
 
@@ -95,7 +95,7 @@ public class LightComponent extends GFXComponent {
      * @param parent the parent
      * @param name   the id-name
      */
-    public LightComponent(ComponentContainer parent, String name) {
+    public LightComponent(final ComponentContainer parent, final String name) {
         this(parent, name, TransformRelationMode.CENTRE, new PointLight((Transform) parent.getTransform().clone()));
     }
 
@@ -105,7 +105,7 @@ public class LightComponent extends GFXComponent {
      * @param saltyGraphics the graphics to draw to
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
     }
 
     /**
@@ -117,7 +117,7 @@ public class LightComponent extends GFXComponent {
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         if (enabled) {
             addToLightSystem();
         }
@@ -128,7 +128,7 @@ public class LightComponent extends GFXComponent {
      * Adds the {@link #light} to the {@link Scene#getLightSystem() LightSystem} of the {@link SceneManager#getCurrentScene() current Scene}.
      */
     private void addToLightSystem() {
-        LightSystem currentLightSystem = SceneManager.getCurrentScene().getLightSystem();
+        final LightSystem currentLightSystem = SceneManager.getCurrentScene().getLightSystem();
 
         if (currentLightSystem == null) {
             throw new NullPointerException("Can't add a LightComponent when the current scene has no LightSystem! Set one by using Scene#setLightSystem!");
@@ -151,7 +151,7 @@ public class LightComponent extends GFXComponent {
      *
      * @param relationToParent the new value of {@link #relationToParent}
      */
-    public void setRelationToParent(TransformRelationMode relationToParent) {
+    public void setRelationToParent(final TransformRelationMode relationToParent) {
         this.relationToParent = relationToParent;
     }
 
@@ -169,7 +169,7 @@ public class LightComponent extends GFXComponent {
      *
      * @param light the new value of {@link #light}
      */
-    public void setLight(Light light) {
+    public void setLight(final Light light) {
         this.light = light;
     }
 }

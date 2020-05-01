@@ -32,21 +32,21 @@ public class SpritePattern {
 
     private Rectangle[][] rectangles;
 
-    public SpritePattern(File file) {
+    public SpritePattern(final File file) {
 
         spritePattern = file;
     }
 
     public void loadPattern() throws Exception {
 
-        DataReader dataReader = new DataReader(spritePattern);
+        final DataReader dataReader = new DataReader(spritePattern);
         List<Integer> currentRectangleData;
 
-        int sprites;
+        final int sprites;
         int currentIndex = 0;
 
-        Species spritePattern = dataReader.getMainSpecies();
-        Species pattern = spritePattern.getSubSpecies("pattern");
+        final Species spritePattern = dataReader.getMainSpecies();
+        final Species pattern = spritePattern.getSubSpecies("pattern");
 
         sprites = Integer.parseInt(spritePattern.getTagValue("sprites"));
 
@@ -61,7 +61,7 @@ public class SpritePattern {
 
     }
 
-    public Rectangle getRectangle(int id) {
+    public Rectangle getRectangle(final int id) {
 
         return pattern.get(id);
     }

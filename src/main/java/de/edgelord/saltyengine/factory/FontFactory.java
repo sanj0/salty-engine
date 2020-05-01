@@ -28,7 +28,7 @@ import java.io.IOException;
  */
 public class FontFactory extends Factory {
 
-    public FontFactory(Resource resource) {
+    public FontFactory(final Resource resource) {
         super(resource);
     }
 
@@ -42,8 +42,8 @@ public class FontFactory extends Factory {
      * @throws IOException         when the file is not readable or does not exist
      * @throws FontFormatException when the font format is not TTF
      */
-    public Font getFont(String relativePath, float size) throws IOException, FontFormatException {
-        File fontFile = getResource().getFileResource(relativePath);
+    public Font getFont(final String relativePath, final float size) throws IOException, FontFormatException {
+        final File fontFile = getResource().getFileResource(relativePath);
         System.out.println(fontFile.getAbsolutePath());
         return Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(size);
     }
@@ -57,7 +57,7 @@ public class FontFactory extends Factory {
      * @throws FontFormatException when the font format is not TTF
      * @see #getFont(String, float)
      */
-    public void loadFontToDefault(String relativePath, float size) throws IOException, FontFormatException {
+    public void loadFontToDefault(final String relativePath, final float size) throws IOException, FontFormatException {
         SaltySystem.defaultFont = getFont(relativePath, size);
     }
 }

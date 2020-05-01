@@ -23,12 +23,12 @@ public class Vector2f {
     private float x;
     private float y;
 
-    public Vector2f(float x, float y) {
+    public Vector2f(final float x, final float y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector2f(Vector2f position) {
+    public Vector2f(final Vector2f position) {
         this(position.getX(), position.getY());
     }
 
@@ -44,8 +44,8 @@ public class Vector2f {
         return new Vector2f(Float.MIN_VALUE, Float.MIN_VALUE);
     }
 
-    public static Vector2f random(int min, int max) {
-        Random random = new Random();
+    public static Vector2f random(final int min, final int max) {
+        final Random random = new Random();
         return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
     }
 
@@ -59,9 +59,9 @@ public class Vector2f {
      * @param point a point
      * @return teh distance between this and the given point
      */
-    public float distance(Vector2f point) {
-        double ac = Math.abs(point.y - y);
-        double cb = Math.abs(point.x - x);
+    public float distance(final Vector2f point) {
+        final double ac = Math.abs(point.y - y);
+        final double cb = Math.abs(point.x - x);
 
         return (float) Math.hypot(ac, cb);
     }
@@ -70,7 +70,7 @@ public class Vector2f {
         return x;
     }
 
-    public void setX(float x) {
+    public void setX(final float x) {
         this.x = x;
     }
 
@@ -78,51 +78,51 @@ public class Vector2f {
         return y;
     }
 
-    public void setY(float y) {
+    public void setY(final float y) {
         this.y = y;
     }
 
-    public Vector2f add(float x1, float y1) {
+    public Vector2f add(final float x1, final float y1) {
         x += x1;
         y += y1;
 
         return this;
     }
 
-    public Vector2f add(Vector2f pos1) {
+    public Vector2f add(final Vector2f pos1) {
         return add(pos1.getX(), pos1.getY());
     }
 
-    public Vector2f multiply(float x1, float y1) {
+    public Vector2f multiply(final float x1, final float y1) {
         x *= x1;
         y *= y1;
 
         return this;
     }
 
-    public Vector2f multiply(Vector2f pos1) {
+    public Vector2f multiply(final Vector2f pos1) {
         return multiply(pos1.getX(), pos1.getY());
     }
 
-    public Vector2f divide(float x1, float y1) {
+    public Vector2f divide(final float x1, final float y1) {
         x /= x1;
         y /= y1;
 
         return this;
     }
 
-    public Vector2f divide(Vector2f pos1) {
+    public Vector2f divide(final Vector2f pos1) {
         return divide(pos1.getX(), pos1.getY());
     }
 
-    public Vector2f subtract(float x1, float y1) {
+    public Vector2f subtract(final float x1, final float y1) {
         x -= x1;
         y -= y1;
 
         return this;
     }
 
-    public Vector2f subtract(Vector2f pos1) {
+    public Vector2f subtract(final Vector2f pos1) {
         return subtract(pos1.getX(), pos1.getY());
     }
 
@@ -131,16 +131,16 @@ public class Vector2f {
         return new Coordinates((int) getX(), (int) getY());
     }
 
-    public void parseCoordinates2f(Coordinates coordinates) {
+    public void parseCoordinates2f(final Coordinates coordinates) {
 
         setX((float) coordinates.getX());
         setY((float) coordinates.getY());
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof Vector2f) {
-            Vector2f other = (Vector2f) obj;
+            final Vector2f other = (Vector2f) obj;
             return other.getX() == getX() && other.getY() == getY();
         } else {
             return false;

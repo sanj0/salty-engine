@@ -39,7 +39,7 @@ import java.awt.event.WindowEvent;
 public class NativeDisplayListener extends DisplayListener {
 
     @Override
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(final WindowEvent e) {
         WindowClosingHooks.runHooks();
         Game.getEngine().close();
         System.exit(0);

@@ -26,34 +26,34 @@ import java.awt.event.MouseEvent;
 public abstract class MouseInputAdapter implements MouseInputHandler {
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
     }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
     }
 
     @Override
-    public void mouseEnteredScreen(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
     }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseWheelMoved(final MouseEvent e) {
     }
 }

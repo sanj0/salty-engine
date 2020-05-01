@@ -67,7 +67,7 @@ public abstract class SceneFade extends SceneGFXComponent {
      * @param mode      the mode of the fade
      * @param container the container of the fade
      */
-    public SceneFade(String name, Color color, int duration, Fade mode, Scene container) {
+    public SceneFade(final String name, final Color color, final int duration, final Fade mode, final Scene container) {
         super(name);
 
         this.container = container;
@@ -92,7 +92,7 @@ public abstract class SceneFade extends SceneGFXComponent {
 
         drawingRoutine = new DrawingRoutine(DrawingRoutine.DrawingPosition.LAST) {
             @Override
-            public void draw(SaltyGraphics saltyGraphics) {
+            public void draw(final SaltyGraphics saltyGraphics) {
 
                 if (isEnabled()) {
                     saltyGraphics.setColor(ColorUtil.withAlpha(color, currentAlpha));
@@ -115,7 +115,7 @@ public abstract class SceneFade extends SceneGFXComponent {
      * @param saltyGraphics the graphics to draw to
      */
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 

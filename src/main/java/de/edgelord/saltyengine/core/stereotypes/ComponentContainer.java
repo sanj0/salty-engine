@@ -33,7 +33,7 @@ public abstract class ComponentContainer implements TransformedObject {
     private Transform transform;
     private Directions lockedDirections = new Directions();
 
-    public ComponentContainer(String tag) {
+    public ComponentContainer(final String tag) {
         this.tag = tag;
     }
 
@@ -43,7 +43,7 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.transform = transform;
     }
 
@@ -53,7 +53,7 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions lockedDirections) {
+    public void setLockedDirections(final Directions lockedDirections) {
         this.lockedDirections = lockedDirections;
     }
 
@@ -112,7 +112,7 @@ public abstract class ComponentContainer implements TransformedObject {
      *
      * @param graphics the graphics context to draw the components
      */
-    public void doComponentDrawing(SaltyGraphics graphics) {
+    public void doComponentDrawing(final SaltyGraphics graphics) {
         getComponents().forEach(component -> {
             if (component.isEnabled()) {
                 component.draw(graphics);
@@ -161,7 +161,7 @@ public abstract class ComponentContainer implements TransformedObject {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(final String tag) {
         this.tag = tag;
     }
 }

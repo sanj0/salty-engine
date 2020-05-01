@@ -26,7 +26,7 @@ import java.awt.*;
 
 public class DrawPositionComponent extends Component {
 
-    public DrawPositionComponent(ComponentContainer parent, String name) {
+    public DrawPositionComponent(final ComponentContainer parent, final String name) {
         super(parent, name, Components.TECHNICAL_DRAW_COMPONENT);
     }
 
@@ -36,7 +36,7 @@ public class DrawPositionComponent extends Component {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 15));
         saltyGraphics.setColor(Color.BLACK);
@@ -46,7 +46,7 @@ public class DrawPositionComponent extends Component {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

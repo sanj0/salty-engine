@@ -81,7 +81,7 @@ public class LinearTransformAnimations extends Component {
      *
      * @param control what this component should animate
      */
-    public LinearTransformAnimations(ComponentContainer parent, String name, Control control) {
+    public LinearTransformAnimations(final ComponentContainer parent, final String name, final Control control) {
         super(parent, name, Components.ANIMATION_COMPONENT);
 
         this.control = control;
@@ -133,7 +133,7 @@ public class LinearTransformAnimations extends Component {
             }
         }
 
-        float delta = animation.nextDelta();
+        final float delta = animation.nextDelta();
 
         switch (control) {
 
@@ -157,12 +157,12 @@ public class LinearTransformAnimations extends Component {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 
@@ -171,7 +171,7 @@ public class LinearTransformAnimations extends Component {
      *
      * @param keyframe the keyframe to be added
      */
-    public void addKeyframe(Keyframe keyframe) {
+    public void addKeyframe(final Keyframe keyframe) {
         animation.add(keyframe);
     }
 
@@ -181,7 +181,7 @@ public class LinearTransformAnimations extends Component {
      * @param timing the timing of the new keyframe
      * @param value  the value of the keyframe
      */
-    public void addKeyframe(int timing, float value) {
+    public void addKeyframe(final int timing, final float value) {
         animation.add(timing, value);
     }
 
@@ -197,7 +197,7 @@ public class LinearTransformAnimations extends Component {
      *
      * @param loop the new value for {@link #loop}.
      */
-    public void setLoop(boolean loop) {
+    public void setLoop(final boolean loop) {
         this.loop = loop;
     }
 

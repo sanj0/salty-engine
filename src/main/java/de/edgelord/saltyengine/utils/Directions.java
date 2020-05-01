@@ -53,9 +53,9 @@ public class Directions {
      * @param directions the directions to mirror
      * @return the mirrored directions
      */
-    public static Directions mirrorDirections(Directions directions) {
+    public static Directions mirrorDirections(final Directions directions) {
 
-        Directions mirroredDirections = new Directions();
+        final Directions mirroredDirections = new Directions();
 
         if (directions.hasDirection(Direction.UP)) {
             mirroredDirections.addDirection(Direction.DOWN);
@@ -130,22 +130,22 @@ public class Directions {
                 '}';
     }
 
-    public void addDirection(Direction direction) {
-        int dir = getDirNumber(direction);
+    public void addDirection(final Direction direction) {
+        final int dir = getDirNumber(direction);
         this.directions |= dir;
     }
 
-    public void removeDirection(Direction direction) {
-        int dir = getDirNumber(direction);
+    public void removeDirection(final Direction direction) {
+        final int dir = getDirNumber(direction);
         this.directions &= ~dir;
     }
 
-    public boolean hasDirection(Direction direction) {
-        int dir = getDirNumber(direction);
+    public boolean hasDirection(final Direction direction) {
+        final int dir = getDirNumber(direction);
         return (this.directions & dir) == dir;
     }
 
-    private int getDirNumber(Direction direction) {
+    private int getDirNumber(final Direction direction) {
         switch (direction) {
 
             case RIGHT:

@@ -31,20 +31,20 @@ public class DumbPanel extends Container {
 
     private float arc = 15;
 
-    public DumbPanel(Vector2f position, float width, float height) {
+    public DumbPanel(final Vector2f position, final float width, final float height) {
         super(position, width, height);
     }
 
-    public DumbPanel(Transform transform) {
+    public DumbPanel(final Transform transform) {
         this(transform.getPosition(), transform.getWidth(), transform.getHeight());
     }
 
-    public DumbPanel(float x, float y, float width, float height) {
+    public DumbPanel(final float x, final float y, final float width, final float height) {
         this(new Vector2f(x, y), width, height);
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
 
         // Suppress the clipping of all child elements
         suppressAllClipping();
@@ -64,7 +64,7 @@ public class DumbPanel extends Container {
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
 
     }
 
@@ -74,57 +74,57 @@ public class DumbPanel extends Container {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         getChildElements().forEach(uiElement -> mousePressed(e));
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseReleased(e));
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseClicked(e));
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseMoved(e));
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
         getChildElements().forEach(uiElement -> uiElement.keyPressed(e));
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
         getChildElements().forEach(uiElement -> uiElement.keyReleased(e));
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
         getChildElements().forEach(uiElement -> uiElement.keyTyped(e));
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseDragged(e));
     }
 
     @Override
-    public void mouseExitedScreen(MouseEvent e) {
+    public void mouseExitedScreen(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseExitedScreen(e));
     }
 
     @Override
-    public void mouseEnteredScreen(MouseEvent e) {
+    public void mouseEnteredScreen(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseEnteredScreen(e));
     }
 
     @Override
-    public void mouseWheelMoved(MouseEvent e) {
+    public void mouseWheelMoved(final MouseEvent e) {
         getChildElements().forEach(uiElement -> uiElement.mouseWheelMoved(e));
     }
 
@@ -132,7 +132,7 @@ public class DumbPanel extends Container {
         return arc;
     }
 
-    public void setArc(float arc) {
+    public void setArc(final float arc) {
         this.arc = arc;
     }
 }

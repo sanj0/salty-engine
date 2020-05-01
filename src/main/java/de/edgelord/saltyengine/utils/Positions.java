@@ -37,7 +37,7 @@ public class Positions {
      * @param decimalPos the position as a decimal number
      * @return the true position in user-space
      */
-    public static float xForDecimal(float decimalPos) {
+    public static float xForDecimal(final float decimalPos) {
         return Game.getGameWidth() * decimalPos;
     }
 
@@ -49,7 +49,7 @@ public class Positions {
      * @param decimalPos the position as a decimal number
      * @return the true position in user-space
      */
-    public static float yForDecimal(float decimalPos) {
+    public static float yForDecimal(final float decimalPos) {
         return Game.getGameHeight() * decimalPos;
     }
 
@@ -63,7 +63,7 @@ public class Positions {
      * @see #xForDecimal(float)
      * @see #yForDecimal(float)
      */
-    public static Vector2f forDecimal(float xDecimal, float yDecimal) {
+    public static Vector2f forDecimal(final float xDecimal, final float yDecimal) {
         return new Vector2f(xForDecimal(xDecimal), yForDecimal(yDecimal));
     }
 
@@ -74,7 +74,7 @@ public class Positions {
      * @return the true x position in user-space
      * @see #xForDecimal(float)
      */
-    public static float xForPercentage(float xPercentage) {
+    public static float xForPercentage(final float xPercentage) {
         return xForDecimal(xPercentage / 100f);
     }
 
@@ -85,7 +85,7 @@ public class Positions {
      * @return the true y position in user-space
      * @see #xForDecimal(float)
      */
-    public static float yForPercentage(float yPercentage) {
+    public static float yForPercentage(final float yPercentage) {
         return xForDecimal(yPercentage / 100f);
     }
 
@@ -99,7 +99,7 @@ public class Positions {
      * @see #xForPercentage(float)
      * @see #yForPercentage(float)
      */
-    public static Vector2f forPercentage(float xPercentage, float yPercentage) {
+    public static Vector2f forPercentage(final float xPercentage, final float yPercentage) {
         return new Vector2f(xForPercentage(xPercentage), yForPercentage(yPercentage));
     }
 }

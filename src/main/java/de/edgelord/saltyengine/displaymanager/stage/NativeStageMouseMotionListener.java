@@ -29,7 +29,7 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
 
     private final Stage container;
 
-    public NativeStageMouseMotionListener(MouseInputHandler mouseHandler, Stage stage) {
+    public NativeStageMouseMotionListener(final MouseInputHandler mouseHandler, final Stage stage) {
         super(mouseHandler);
 
         this.container = stage;
@@ -79,10 +79,10 @@ public class NativeStageMouseMotionListener extends MouseInputHandlerListener im
         }
     }
 
-    private void processMousePosition(MouseEvent e) {
-        Vector2f cursorPos = new Vector2f(e.getX(), e.getY());
-        Vector2f imagePos = container.getImagePosition();
-        float currentScale = container.getCurrentScale();
+    private void processMousePosition(final MouseEvent e) {
+        final Vector2f cursorPos = new Vector2f(e.getX(), e.getY());
+        final Vector2f imagePos = container.getImagePosition();
+        final float currentScale = container.getCurrentScale();
         cursorPos.subtract(imagePos.getX(), imagePos.getY());
         cursorPos.divide(currentScale, currentScale);
 

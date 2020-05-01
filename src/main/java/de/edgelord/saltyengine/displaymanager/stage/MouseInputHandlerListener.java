@@ -22,7 +22,7 @@ public class MouseInputHandlerListener {
 
     private MouseInputHandler mouseHandler;
 
-    public MouseInputHandlerListener(MouseInputHandler mouseHandler) {
+    public MouseInputHandlerListener(final MouseInputHandler mouseHandler) {
         this.mouseHandler = mouseHandler;
     }
 
@@ -30,7 +30,7 @@ public class MouseInputHandlerListener {
         return mouseHandler;
     }
 
-    public void setMouseHandler(MouseInputHandler mouseHandler) {
+    public void setMouseHandler(final MouseInputHandler mouseHandler) {
         this.mouseHandler = mouseHandler;
     }
 }

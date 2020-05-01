@@ -47,14 +47,14 @@ public class Camera2D implements Camera, TransformedObject {
 
     private Directions lockedDirections = new Directions();
 
-    public Camera2D(Vector2f position, Dimensions size, Dimensions resolution, float scale) {
+    public Camera2D(final Vector2f position, final Dimensions size, final Dimensions resolution, final float scale) {
         transform = new Transform(position, size);
         this.resolution = resolution;
         this.scale = scale;
     }
 
     @Override
-    public SaltyImage render(Drawable subject) {
+    public SaltyImage render(final Drawable subject) {
         // create a new image with the resolution as the size to be scaled to the size later
         SaltyImage image = SaltySystem.createPreferredImage(getResolution().getWidth(), getResolution().getHeight());
 
@@ -62,7 +62,7 @@ public class Camera2D implements Camera, TransformedObject {
             throw new RuntimeException("couldn't receive preferred image from SaltySystem");
         }
 
-        SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
+        final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
         graphics.setTransform(getAffineTransform());
         subject.draw(graphics);
         image = ImageUtils.resize(image, getSize().getWidth(), getSize().getHeight());
@@ -79,7 +79,7 @@ public class Camera2D implements Camera, TransformedObject {
      *                  in this direction instead of the camera to move.
      * @param delta     the length of the movement in pixels.
      */
-    public void move(Directions.Direction direction, float delta) {
+    public void move(final Directions.Direction direction, final float delta) {
         switch (direction) {
 
             case RIGHT:
@@ -103,7 +103,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.transform = transform;
     }
 
@@ -113,7 +113,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
+    public void setLockedDirections(final Directions directions) {
         this.lockedDirections = directions;
     }
 
@@ -123,7 +123,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setPosition(Vector2f position) {
+    public void setPosition(final Vector2f position) {
         transform.setPosition(position);
     }
 
@@ -133,7 +133,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setSize(Dimensions size) {
+    public void setSize(final Dimensions size) {
         transform.setDimensions(size);
     }
 
@@ -143,7 +143,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setResolution(Dimensions resolution) {
+    public void setResolution(final Dimensions resolution) {
         this.resolution = resolution;
     }
 
@@ -153,7 +153,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setRotation(Rotation rotation) {
+    public void setRotation(final Rotation rotation) {
         transform.setRotation(rotation);
     }
 
@@ -163,7 +163,7 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     @Override
-    public void setScale(float scale) {
+    public void setScale(final float scale) {
         this.scale = scale;
     }
 }

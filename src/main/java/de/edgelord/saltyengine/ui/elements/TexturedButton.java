@@ -29,21 +29,21 @@ public abstract class TexturedButton extends Button {
     private boolean drawText = true;
     private SaltyImage texture;
 
-    public TexturedButton(String text, Vector2f position, int width, int height, SaltyImage texture) {
+    public TexturedButton(final String text, final Vector2f position, final int width, final int height, final SaltyImage texture) {
         super(text, position, width, height);
 
         this.texture = texture;
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
         if (drawText) {
             super.drawForeground(saltyGraphics);
         }
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawImage(texture, getX(), getY(), getWidth(), getHeight());
     }
 
@@ -53,7 +53,7 @@ public abstract class TexturedButton extends Button {
         return drawText;
     }
 
-    public void setDrawText(boolean drawText) {
+    public void setDrawText(final boolean drawText) {
         this.drawText = drawText;
     }
 
@@ -61,7 +61,7 @@ public abstract class TexturedButton extends Button {
         return texture;
     }
 
-    public void setTexture(SaltyImage texture) {
+    public void setTexture(final SaltyImage texture) {
         this.texture = texture;
     }
 }

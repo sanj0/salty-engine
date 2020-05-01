@@ -36,14 +36,14 @@ public class LockToBounds extends Component<GameObject> {
     private final Transform bounds;
     private final int mode = MODE_TRANSFORM;
 
-    public LockToBounds(GameObject parent, Transform bounds, String name) {
+    public LockToBounds(final GameObject parent, final Transform bounds, final String name) {
         super(parent, name, Components.GAME_COMPONENT);
 
         this.bounds = bounds;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
     }
 
     @Override
@@ -66,7 +66,7 @@ public class LockToBounds extends Component<GameObject> {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

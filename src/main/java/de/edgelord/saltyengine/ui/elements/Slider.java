@@ -40,17 +40,17 @@ public class Slider extends UIElement {
     private float indicatorPositionX = 0f;
     private SaltyImage indicatorImage;
 
-    public Slider(Vector2f position, float width, float height) {
+    public Slider(final Vector2f position, final float width, final float height) {
         super(position, width, height, null);
 
         createIndicator(getForegroundColor());
     }
 
-    public Slider(float x, float y, float width, float height) {
+    public Slider(final float x, final float y, final float width, final float height) {
         this(new Vector2f(x, y), width, height);
     }
 
-    public Slider(Vector2f position, float width, float height, SaltyImage indicatorImage) {
+    public Slider(final Vector2f position, final float width, final float height, final SaltyImage indicatorImage) {
         super(position, width, height, UIElement.SETTINGS_ELEMENT);
 
         this.indicatorImage = indicatorImage;
@@ -69,28 +69,28 @@ public class Slider extends UIElement {
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
         saltyGraphics.outlineRect(this);
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawImage(indicatorImage, getX() + indicatorPositionX, (getY() + getHeight() / 2f) - indicatorImage.getHeight() / 2f);
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(final MouseEvent e) {
         processInput();
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
         processInput();
     }
 
     private void processInput() {
         if (mouseHoversOver()) {
-            float cursorX = Input.getAbsoluteCursorPosition().getX();
+            final float cursorX = Input.getAbsoluteCursorPosition().getX();
 
             if (cursorX <= getTransform().getMaxX() && cursorX >= getX()) {
                 indicatorPositionX = cursorX - getX();
@@ -99,11 +99,11 @@ public class Slider extends UIElement {
         }
     }
 
-    public void setIndicatorColor(Color color) {
+    public void setIndicatorColor(final Color color) {
         createIndicator(color);
     }
 
-    private void createIndicator(Color color) {
+    private void createIndicator(final Color color) {
         indicatorImage = ImageUtils.createShapeImage(indicatorShape, color, GraphicsConfiguration.renderingHints);
     }
 }

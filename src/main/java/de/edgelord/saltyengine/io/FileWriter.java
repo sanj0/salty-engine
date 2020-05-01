@@ -28,7 +28,7 @@ import java.io.IOException;
  */
 public class FileWriter extends FileIO {
 
-    public FileWriter(File file) {
+    public FileWriter(final File file) {
         super(file);
     }
 
@@ -39,11 +39,11 @@ public class FileWriter extends FileIO {
      * @param text the text which the content of the file should be overridden with
      * @throws IOException when the file could not be written to
      */
-    public void writeThrough(String text) throws IOException {
+    public void writeThrough(final String text) throws IOException {
         if (SaltySystem.writePrivilege) {
             getFile().createNewFile();
 
-            BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
+            final BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
 
             bw.write(text);
             bw.close();

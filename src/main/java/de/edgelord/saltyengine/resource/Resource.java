@@ -29,12 +29,12 @@ import java.net.URL;
 
 public interface Resource {
 
-    static Clip createClip(AudioInputStream inputStream) {
+    static Clip createClip(final AudioInputStream inputStream) {
         Clip clip = null;
         try {
             clip = AudioSystem.getClip();
             clip.open(inputStream);
-        } catch (LineUnavailableException | IOException e) {
+        } catch (final LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
 
@@ -47,7 +47,7 @@ public interface Resource {
 
     File getFileResource(String relativePath);
 
-    default URL pathToURL(String path) throws MalformedURLException {
+    default URL pathToURL(final String path) throws MalformedURLException {
         return getFileResource(path).toURI().toURL();
     }
 }

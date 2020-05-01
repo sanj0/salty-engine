@@ -67,7 +67,7 @@ public class LanguageManager {
      * @param resource the resource to locate the file
      * @throws IOException when the I/O process fails
      */
-    public static void init(String fileName, Resource resource) throws IOException {
+    public static void init(final String fileName, final Resource resource) throws IOException {
         textReader = new DataReader(resource.getFileResource(fileName + DataReader.SDB_FILE_EXTENSION));
     }
 
@@ -78,7 +78,7 @@ public class LanguageManager {
      * @param textId the id of the text
      * @return the text with the given id and the language with the name {@link #language}
      */
-    public static String getText(String textId) {
+    public static String getText(final String textId) {
         if (textReader == null) {
             System.err.println("Cannot read text while LanguageManager wasn't initialized. Call LanguageManager.init(String, Resource) before!");
             return "";
@@ -91,7 +91,7 @@ public class LanguageManager {
         return language;
     }
 
-    public static void setLanguage(String language) {
+    public static void setLanguage(final String language) {
         LanguageManager.language = language;
     }
 }

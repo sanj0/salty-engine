@@ -28,7 +28,7 @@ import java.awt.*;
  */
 public class PlainColorParticleRenderContext extends ParticleRenderContext {
 
-    public PlainColorParticleRenderContext(Color color) {
+    public PlainColorParticleRenderContext(final Color color) {
         super(color, color, new BasicStroke(5));
     }
 
@@ -38,7 +38,7 @@ public class PlainColorParticleRenderContext extends ParticleRenderContext {
      * @param graphics the graphics to set up.
      */
     @Override
-    public void nextParticleRenderConfig(SaltyGraphics graphics, Particle subject) {
+    public void nextParticleRenderConfig(final SaltyGraphics graphics, final Particle subject) {
         applyConfiguration(graphics);
     }
 }

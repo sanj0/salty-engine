@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RectangleRender extends PrimitivesRenderComponent {
 
-    public RectangleRender(ComponentContainer parent, String name) {
+    public RectangleRender(final ComponentContainer parent, final String name) {
         super(parent, name);
     }
 

@@ -35,7 +35,7 @@ public interface TransformedObject {
         return getTransform().getDimensions();
     }
 
-    default void setDimensions(Dimensions dimensions) {
+    default void setDimensions(final Dimensions dimensions) {
         getTransform().setDimensions(dimensions);
     }
 
@@ -43,7 +43,7 @@ public interface TransformedObject {
         return getTransform().getPosition();
     }
 
-    default void setPosition(Vector2f position) {
+    default void setPosition(final Vector2f position) {
         getTransform().setPosition(position);
     }
 
@@ -55,7 +55,7 @@ public interface TransformedObject {
         return getTransform().getRotation();
     }
 
-    default void setRotation(Rotation rotation) {
+    default void setRotation(final Rotation rotation) {
         getTransform().setRotation(rotation);
     }
 
@@ -63,7 +63,7 @@ public interface TransformedObject {
         return getRotation().getRotationDegrees();
     }
 
-    default void setRotationDegrees(float rotationDegrees) {
+    default void setRotationDegrees(final float rotationDegrees) {
         getTransform().setRotationDegrees(rotationDegrees);
     }
 
@@ -71,7 +71,7 @@ public interface TransformedObject {
         return getDimensions().getWidth();
     }
 
-    default void setWidth(float width) {
+    default void setWidth(final float width) {
         getTransform().setWidth(width);
     }
 
@@ -79,7 +79,7 @@ public interface TransformedObject {
         return getDimensions().getHeight();
     }
 
-    default void setHeight(float height) {
+    default void setHeight(final float height) {
         getTransform().setHeight(height);
     }
 
@@ -87,7 +87,7 @@ public interface TransformedObject {
         return getPosition().getX();
     }
 
-    default void setX(float x) {
+    default void setX(final float x) {
         getTransform().setX(x);
     }
 
@@ -95,11 +95,11 @@ public interface TransformedObject {
         return getPosition().getY();
     }
 
-    default void setY(float y) {
+    default void setY(final float y) {
         getTransform().setY(y);
     }
 
-    default void positionByCentre(Vector2f centre) {
+    default void positionByCentre(final Vector2f centre) {
         getTransform().positionByCentre(centre);
     }
 
@@ -108,12 +108,12 @@ public interface TransformedObject {
      *
      * @param delta the distance for the movement
      */
-    default void moveToFacedDirection(float delta) {
+    default void moveToFacedDirection(final float delta) {
         moveInAngle(getRotationDegrees(), delta);
     }
 
-    default void moveInAngle(float degrees, float delta) {
-        double radians = Math.toRadians(degrees);
+    default void moveInAngle(final float degrees, final float delta) {
+        final double radians = Math.toRadians(degrees);
 
         basicMove(delta * (float) Math.cos(radians), Directions.BasicDirection.x);
         basicMove(delta * (float) Math.sin(radians), Directions.BasicDirection.y);

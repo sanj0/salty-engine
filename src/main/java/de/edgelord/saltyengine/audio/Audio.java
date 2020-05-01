@@ -156,7 +156,7 @@ public class Audio {
     public void setVolume(float volume) {
 
         volume = GeneralUtil.clamp(volume, 0f, 2f);
-        FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
+        final FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(20f * (float) Math.log10(volume));
         this.volume = volume;
     }
@@ -173,7 +173,7 @@ public class Audio {
     public void setPan(float pan) {
 
         pan = GeneralUtil.clamp(pan, -1f, 1f);
-        FloatControl panControl = (FloatControl) getClip().getControl(FloatControl.Type.PAN);
+        final FloatControl panControl = (FloatControl) getClip().getControl(FloatControl.Type.PAN);
         panControl.setValue(pan);
         this.pan = pan;
     }

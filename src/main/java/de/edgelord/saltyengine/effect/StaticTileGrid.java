@@ -86,7 +86,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     private boolean resizeTiles = false;
     private Dimensions tileSize;
 
-    public StaticTileGrid(DrawingPosition drawingPosition, Vector2f position, Dimensions tileSize) {
+    public StaticTileGrid(final DrawingPosition drawingPosition, final Vector2f position, final Dimensions tileSize) {
         super(drawingPosition);
 
         this.position = position;
@@ -96,15 +96,15 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         tileGrid = createStaticGridPicture();
     }
 
-    public StaticTileGrid(DrawingPosition drawingPosition, float x, float y, float width, float height) {
+    public StaticTileGrid(final DrawingPosition drawingPosition, final float x, final float y, final float width, final float height) {
         this(drawingPosition, new Vector2f(x, y), new Dimensions(width, height));
     }
 
-    public StaticTileGrid(Vector2f position, Dimensions tileSize) {
+    public StaticTileGrid(final Vector2f position, final Dimensions tileSize) {
         this(DrawingPosition.BEFORE_GAMEOBJECTS, position, tileSize);
     }
 
-    public StaticTileGrid(float x, float y, float tileWidth, float tileHeight) {
+    public StaticTileGrid(final float x, final float y, final float tileWidth, final float tileHeight) {
         this(DrawingPosition.BEFORE_GAMEOBJECTS, new Vector2f(x, y), new Dimensions(tileWidth, tileHeight));
     }
 
@@ -117,31 +117,31 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @return a new {@link StaticTileGrid}
      * @throws IOException when the file can't be read
      */
-    public static StaticTileGrid readSTM(File stm, Vector2f position, DrawingPosition drawingPosition) throws IOException {
+    public static StaticTileGrid readSTM(final File stm, final Vector2f position, final DrawingPosition drawingPosition) throws IOException {
 
-        DataReader dataReader = new DataReader(stm);
-        Species metaInf = dataReader.getSpecies("meta-inf");
-        Species images = dataReader.getSpecies("images");
-        Species tiles = dataReader.getSpecies("tiles");
+        final DataReader dataReader = new DataReader(stm);
+        final Species metaInf = dataReader.getSpecies("meta-inf");
+        final Species images = dataReader.getSpecies("images");
+        final Species tiles = dataReader.getSpecies("tiles");
 
         return new StaticTileGrid(drawingPosition, position, new Dimensions(Float.parseFloat(metaInf.getTagValue("tile-height")), Float.parseFloat(metaInf.getTagValue("tile-width")))) {
             @Override
-            public void buildTileGrid(HashMap<Coordinates, SaltyImage> grid) {
+            public void buildTileGrid(final HashMap<Coordinates, SaltyImage> grid) {
 
-                Map<String, SaltyImage> imageMap = new HashMap<>();
-                int imagesCount = Integer.parseInt(images.getTagValue("entry-count"));
-                int tilesCount = Integer.parseInt(tiles.getTagValue("entry-count"));
+                final Map<String, SaltyImage> imageMap = new HashMap<>();
+                final int imagesCount = Integer.parseInt(images.getTagValue("entry-count"));
+                final int tilesCount = Integer.parseInt(tiles.getTagValue("entry-count"));
 
                 for (int i = 0; i < imagesCount; i++) {
-                    String value = images.getTagValue("image" + i);
-                    String[] values = value.split(",");
+                    final String value = images.getTagValue("image" + i);
+                    final String[] values = value.split(",");
                     imageMap.put(values[0], SaltySystem.defaultImageFactory.getImageResource(values[1]));
                 }
 
                 for (int i = 0; i < tilesCount; i++) {
-                    String value = tiles.getTagValue("tile" + i);
-                    String[] values = value.split(",");
-                    String[] coordinates = values[1].split("#");
+                    final String value = tiles.getTagValue("tile" + i);
+                    final String[] values = value.split(",");
+                    final String[] coordinates = values[1].split("#");
                     grid.put(new Coordinates(Integer.valueOf(coordinates[0]), Integer.valueOf(coordinates[1])), imageMap.get(values[0]));
                 }
 
@@ -151,7 +151,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
         saltyGraphics.drawImage(tileGrid, position.getX(), position.getY());
     }
@@ -162,22 +162,22 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
         int maxX = 0;
         int maxY = 0;
-        SaltyImage image;
+        final SaltyImage image;
         Iterator iterator;
-        SaltyGraphics graphics;
+        final SaltyGraphics graphics;
 
         iterator = tiles.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) iterator.next();
+            final Map.Entry pair = (Map.Entry) iterator.next();
 
-            Coordinates coordinates = (Coordinates) pair.getKey();
+            final Coordinates coordinates = (Coordinates) pair.getKey();
 
             maxX = Math.max(maxX, coordinates.getX());
             maxY = Math.max(maxY, coordinates.getY());
         }
 
-        int width = Math.round(++maxX * tileSize.getWidth());
-        int height = Math.round(++maxY * tileSize.getHeight());
+        final int width = Math.round(++maxX * tileSize.getWidth());
+        final int height = Math.round(++maxY * tileSize.getHeight());
 
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException("You have to fill the StaticTileGrid with at least one tile within buildTileGrid(HashMap)");
@@ -188,11 +188,11 @@ public abstract class StaticTileGrid extends DrawingRoutine {
 
         iterator = tiles.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) iterator.next();
+            final Map.Entry pair = (Map.Entry) iterator.next();
 
-            SaltyImage tileImage = (SaltyImage) pair.getValue();
-            Coordinates coordinates = (Coordinates) pair.getKey();
-            Vector2f tilePos = getTilePosition(coordinates, false);
+            final SaltyImage tileImage = (SaltyImage) pair.getValue();
+            final Coordinates coordinates = (Coordinates) pair.getKey();
+            final Vector2f tilePos = getTilePosition(coordinates, false);
 
             graphics.drawImage(tileImage, tilePos.getX(), tilePos.getY(), tileSize.getWidth(), tileSize.getHeight());
         }
@@ -212,7 +212,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param width        the width of the rectangle
      * @param height       the height of the rectangle
      */
-    public void fillArea(HashMap<Coordinates, SaltyImage> grid, SaltyImage tile, Coordinates startingTile, int width, int height) {
+    public void fillArea(final HashMap<Coordinates, SaltyImage> grid, final SaltyImage tile, final Coordinates startingTile, final int width, final int height) {
 
         int currentX = startingTile.getX();
         int currentY = startingTile.getY();
@@ -238,12 +238,12 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param scene        the scene the GameObject is to be added to
      * @return the created and already added {@link EmptyGameObject}
      */
-    public GameObject addHitbox(Coordinates tilePosition, Dimensions size, Scene scene) {
-        Vector2f tilePos = getTilePosition(tilePosition, true);
-        float width = size.getWidth() * tileSize.getWidth();
-        float height = size.getHeight() * tileSize.getHeight();
+    public GameObject addHitbox(final Coordinates tilePosition, final Dimensions size, final Scene scene) {
+        final Vector2f tilePos = getTilePosition(tilePosition, true);
+        final float width = size.getWidth() * tileSize.getWidth();
+        final float height = size.getHeight() * tileSize.getHeight();
 
-        GameObject hitbox = new EmptyGameObject(tilePos.getX(), tilePos.getY(), width, height, "tileHitbox-" + tilePos.getX() + "," + tilePos.getY() + ";" + width + "," + height);
+        final GameObject hitbox = new EmptyGameObject(tilePos.getX(), tilePos.getY(), width, height, "tileHitbox-" + tilePos.getX() + "," + tilePos.getY() + ";" + width + "," + height);
 
         scene.addGameObject(hitbox);
 
@@ -260,11 +260,11 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @param scene  the Scene the hitbox is to be added to
      * @return the added {@link EmptyGameObject}
      */
-    public GameObject addHitbox(int tileX, int tileY, int width, int height, Scene scene) {
+    public GameObject addHitbox(final int tileX, final int tileY, final int width, final int height, final Scene scene) {
         return addHitbox(new Coordinates(tileX, tileY), new Dimensions(width, height), scene);
     }
 
-    public Vector2f getTilePosition(Coordinates tile, boolean absolute) {
+    public Vector2f getTilePosition(final Coordinates tile, final boolean absolute) {
 
         if (absolute) {
             return new Vector2f(position.getX() + (tile.getX() * tileSize.getWidth()), position.getY() + (tile.getY() * tileSize.getHeight()));
@@ -277,7 +277,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         return resizeTiles;
     }
 
-    public void setResizeTiles(boolean resizeTiles) {
+    public void setResizeTiles(final boolean resizeTiles) {
         this.resizeTiles = resizeTiles;
     }
 
@@ -285,7 +285,7 @@ public abstract class StaticTileGrid extends DrawingRoutine {
         return tileSize;
     }
 
-    public void setTileSize(Dimensions tileSize) {
+    public void setTileSize(final Dimensions tileSize) {
         this.tileSize = tileSize;
     }
 }

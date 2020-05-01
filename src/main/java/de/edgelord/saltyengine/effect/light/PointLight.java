@@ -27,39 +27,39 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class PointLight extends GradientLight {
 
-    public PointLight(Transform transform) {
+    public PointLight(final Transform transform) {
         super(transform, EnumShape.OVAL);
     }
 
-    public PointLight(float x, float y, float radius) {
+    public PointLight(final float x, final float y, final float radius) {
         this(new Transform(x, y, radius, radius));
     }
 
-    public PointLight(Vector2f position, float radius) {
+    public PointLight(final Vector2f position, final float radius) {
         this(new Transform(position, new Dimensions(radius, radius)));
     }
 
-    public PointLight(Transform transform, Color color) {
+    public PointLight(final Transform transform, final Color color) {
         super(transform, color, EnumShape.OVAL);
     }
 
-    public PointLight(Vector2f position, Dimensions dimensions, Color color) {
+    public PointLight(final Vector2f position, final Dimensions dimensions, final Color color) {
         super(position, dimensions, color, EnumShape.OVAL);
     }
 
-    public PointLight(Vector2f position, Dimensions dimensions) {
+    public PointLight(final Vector2f position, final Dimensions dimensions) {
         super(position, dimensions, EnumShape.OVAL);
     }
 
-    public PointLight(float x, float y, float width, float height, Color color) {
+    public PointLight(final float x, final float y, final float width, final float height, final Color color) {
         super(x, y, width, height, color, EnumShape.OVAL);
     }
 
-    public PointLight(float x, float y, float width, float height) {
+    public PointLight(final float x, final float y, final float width, final float height) {
         super(x, y, width, height, EnumShape.OVAL);
     }
 
-    public PointLight(Transform transform, Color color, float brightness, float intensity) {
+    public PointLight(final Transform transform, final Color color, final float brightness, final float intensity) {
         super(transform, color, brightness, intensity, EnumShape.OVAL);
     }
 }

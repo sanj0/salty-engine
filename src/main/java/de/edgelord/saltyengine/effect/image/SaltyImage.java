@@ -39,7 +39,7 @@ public interface SaltyImage {
      *
      * @param drawable the {@code Drawable} to draw to this image
      */
-    default void drawTo(Drawable drawable) {
+    default void drawTo(final Drawable drawable) {
         drawable.draw(getGraphics());
     }
 
@@ -48,7 +48,7 @@ public interface SaltyImage {
      * {@link de.edgelord.saltyengine.utils.ColorUtil#TRANSPARENT_COLOR transparent color}.
      */
     default void erase() {
-        SaltyGraphics graphics = getGraphics();
+        final SaltyGraphics graphics = getGraphics();
 
         graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics.clear(0, 0, getWidth(), getHeight());
@@ -65,7 +65,7 @@ public interface SaltyImage {
 
     SaltyImage getSubImage(int x, int y, int width, int height);
 
-    default SaltyImage subImage(int x, int y, int width, int height) {
+    default SaltyImage subImage(final int x, final int y, final int width, final int height) {
         return getSubImage(x, y, width, height);
     }
 

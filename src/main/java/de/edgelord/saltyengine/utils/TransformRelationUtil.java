@@ -29,18 +29,18 @@ import java.util.List;
  */
 public class TransformRelationUtil {
 
-    public static void positionRelativeTo(TransformRelationMode mode, Transform superTransform, List<Transform> transforms) {
+    public static void positionRelativeTo(final TransformRelationMode mode, final Transform superTransform, final List<Transform> transforms) {
         positionRelativeTo(mode, superTransform, (Transform[]) transforms.toArray());
     }
 
-    public static void positionRelativeTo(TransformRelationMode mode, GameObject superTransform, List<GameObject> transforms) {
+    public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final List<GameObject> transforms) {
 
         positionRelativeTo(mode, superTransform, (GameObject[]) transforms.toArray());
     }
 
-    public static void positionRelativeTo(TransformRelationMode mode, GameObject superTransform, GameObject... transforms) {
+    public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final GameObject... transforms) {
 
-        Transform[] transformsFromGameObjects = new Transform[transforms.length];
+        final Transform[] transformsFromGameObjects = new Transform[transforms.length];
 
         for (int i = 0; i < transforms.length; i++) {
             transformsFromGameObjects[i] = transforms[i].getTransform();
@@ -49,85 +49,85 @@ public class TransformRelationUtil {
         positionRelativeTo(mode, superTransform.getTransform(), transformsFromGameObjects);
     }
 
-    public static void positionRelativeTo(TransformRelationMode mode, Transform superTransform, Transform... transforms) {
+    public static void positionRelativeTo(final TransformRelationMode mode, final Transform superTransform, final Transform... transforms) {
 
         switch (mode) {
 
             case CENTRE:
-                Vector2f centre = superTransform.getCentre();
+                final Vector2f centre = superTransform.getCentre();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.positionByCentre(centre);
                 }
 
                 break;
             case CENTRE_X:
-                float centreX = superTransform.getCentre().getX();
+                final float centreX = superTransform.getCentre().getX();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.positionByCentre(new Vector2f(centreX, transform.getCentre().getY()));
                 }
 
                 break;
             case CENTRE_Y:
 
-                float centreY = superTransform.getCentre().getY();
+                final float centreY = superTransform.getCentre().getY();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.positionByCentre(new Vector2f(transform.getCentre().getX(), centreY));
                 }
 
                 break;
             case LEFT_EDGE:
 
-                float leftEdge = superTransform.getX();
+                final float leftEdge = superTransform.getX();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setX(leftEdge);
                 }
 
                 break;
             case RIGHT_EDGE:
 
-                float rightEdge = superTransform.getMaxX();
+                final float rightEdge = superTransform.getMaxX();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setX(rightEdge - transform.getWidth());
                 }
 
                 break;
             case TOP_EDGE:
 
-                float topEdge = superTransform.getY();
+                final float topEdge = superTransform.getY();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setY(topEdge);
                 }
 
                 break;
             case BOTTOM_EDGE:
 
-                float bottomEdge = superTransform.getMaxY();
+                final float bottomEdge = superTransform.getMaxY();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setY(bottomEdge - transform.getHeight());
                 }
 
                 break;
             case TOP_LEFT_CORNER:
 
-                Vector2f topLeftCorner = superTransform.getPosition();
+                final Vector2f topLeftCorner = superTransform.getPosition();
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setPosition(topLeftCorner);
                 }
 
                 break;
             case TOP_RIGHT_CORNER:
 
-                Vector2f topRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getY());
+                final Vector2f topRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getY());
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setX(topRightCorner.getX() - transform.getWidth());
                     transform.setY(topRightCorner.getY());
                 }
@@ -135,9 +135,9 @@ public class TransformRelationUtil {
                 break;
             case BOTTOM_LEFT_CORNER:
 
-                Vector2f bottomLeftCorner = new Vector2f(superTransform.getX(), superTransform.getMaxY());
+                final Vector2f bottomLeftCorner = new Vector2f(superTransform.getX(), superTransform.getMaxY());
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setX(bottomLeftCorner.getX());
                     transform.setY(bottomLeftCorner.getY() - transform.getHeight());
                 }
@@ -145,9 +145,9 @@ public class TransformRelationUtil {
                 break;
             case BOTTOM_RIGHT_CORNER:
 
-                Vector2f bottomRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getMaxY());
+                final Vector2f bottomRightCorner = new Vector2f(superTransform.getMaxX(), superTransform.getMaxY());
 
-                for (Transform transform : transforms) {
+                for (final Transform transform : transforms) {
                     transform.setX(bottomRightCorner.getX() - transform.getWidth());
                     transform.setY(bottomRightCorner.getY() - transform.getHeight());
                 }

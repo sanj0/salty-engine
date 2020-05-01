@@ -47,31 +47,31 @@ public interface CentrePositionProvider {
     float getVerticalCentrePosition(float height);
 
 
-    default Vector2f getCentrePosition(float width, float height) {
+    default Vector2f getCentrePosition(final float width, final float height) {
         return new Vector2f(getHorizontalCentrePosition(width), getVerticalCentrePosition(height));
     }
 
-    default float getHorizontalCentrePosition(GameObject gameObject) {
+    default float getHorizontalCentrePosition(final GameObject gameObject) {
         return getHorizontalCentrePosition(gameObject.getWidth());
     }
 
-    default float getHorizontalCentrePosition(Dimensions dimensions) {
+    default float getHorizontalCentrePosition(final Dimensions dimensions) {
         return getHorizontalCentrePosition(dimensions.getWidth());
     }
 
-    default float getVerticalCentrePosition(GameObject gameObject) {
+    default float getVerticalCentrePosition(final GameObject gameObject) {
         return getVerticalCentrePosition(gameObject.getHeight());
     }
 
-    default float getVerticalCentrePosition(Dimensions dimensions) {
+    default float getVerticalCentrePosition(final Dimensions dimensions) {
         return getVerticalCentrePosition(dimensions.getHeight());
     }
 
-    default Vector2f getCentrePosition(GameObject gameObject) {
+    default Vector2f getCentrePosition(final GameObject gameObject) {
         return getCentrePosition(gameObject.getWidth(), gameObject.getHeight());
     }
 
-    default Vector2f getCentrePosition(Dimensions dimensions) {
+    default Vector2f getCentrePosition(final Dimensions dimensions) {
         return getCentrePosition(dimensions.getWidth(), dimensions.getHeight());
     }
 }

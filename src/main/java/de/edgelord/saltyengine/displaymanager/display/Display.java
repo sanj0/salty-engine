@@ -31,7 +31,7 @@ public class Display extends JFrame {
     private MouseInputHandler displayMouseHandler = null;
     private boolean fullscreen = false;
 
-    public Display(DisplayRatio displayRatio, String windowTitle) {
+    public Display(final DisplayRatio displayRatio, final String windowTitle) {
 
         getContentPane().setPreferredSize(new Dimension((int) displayRatio.getCurrentDimensions().getWidth(), (int) displayRatio.getCurrentDimensions().getHeight()));
         pack();
@@ -51,7 +51,7 @@ public class Display extends JFrame {
         return displayMouseHandler;
     }
 
-    public void setDisplayMouseHandler(MouseInputHandler displayMouseHandler) {
+    public void setDisplayMouseHandler(final MouseInputHandler displayMouseHandler) {
         this.displayMouseHandler = displayMouseHandler;
     }
 
@@ -59,7 +59,7 @@ public class Display extends JFrame {
         return fullscreen;
     }
 
-    public void setFullscreen(boolean fullscreen) {
+    public void setFullscreen(final boolean fullscreen) {
         this.fullscreen = fullscreen;
 
         if (fullscreen) {

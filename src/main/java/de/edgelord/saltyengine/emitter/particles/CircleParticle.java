@@ -35,7 +35,7 @@ public class CircleParticle extends Particle {
     /**
      * {@inheritDoc}
      */
-    public CircleParticle(Integer waveNumber, Integer restLifetime, Float speed, EmitterComponent parent) {
+    public CircleParticle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         super(waveNumber, restLifetime, speed, parent);
 
         setWidth(DEFAULT_DIAMETER);
@@ -43,7 +43,7 @@ public class CircleParticle extends Particle {
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
         saltyGraphics.drawOval(this);
     }
 }

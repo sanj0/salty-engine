@@ -40,8 +40,8 @@ public interface RenderContext {
      * @param graphics2D the backend graphics for the {@link SaltyGraphics} to render to
      * @return a new {@link SaltyGraphics} from the given {@link Graphics2D} with this <code>RenderContext</code> applied to.
      */
-    default SaltyGraphics createGraphics(Graphics2D graphics2D) {
-        SaltyGraphics graphics = new SaltyGraphics(graphics2D);
+    default SaltyGraphics createGraphics(final Graphics2D graphics2D) {
+        final SaltyGraphics graphics = new SaltyGraphics(graphics2D);
         applyConfiguration(graphics);
 
         return graphics;

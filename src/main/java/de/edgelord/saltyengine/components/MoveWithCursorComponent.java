@@ -31,14 +31,14 @@ public class MoveWithCursorComponent extends Component {
 
     private final TransformRelationMode relation;
 
-    public MoveWithCursorComponent(ComponentContainer parent, String name, TransformRelationMode relation) {
+    public MoveWithCursorComponent(final ComponentContainer parent, final String name, final TransformRelationMode relation) {
         super(parent, name, Components.GAME_COMPONENT);
 
         this.relation = relation;
     }
 
     @Override
-    public void draw(SaltyGraphics saltyGraphics) {
+    public void draw(final SaltyGraphics saltyGraphics) {
 
     }
 
@@ -49,7 +49,7 @@ public class MoveWithCursorComponent extends Component {
     }
 
     @Override
-    public void onCollision(CollisionEvent e) {
+    public void onCollision(final CollisionEvent e) {
 
     }
 }

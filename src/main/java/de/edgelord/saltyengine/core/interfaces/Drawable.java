@@ -26,36 +26,60 @@ import java.awt.*;
  */
 public interface Drawable {
 
-    static Drawable colorPrepare(Color color) {
-        return saltyGraphics -> saltyGraphics.setColor(color);
-    }
-
-    static Drawable paintPrepare(Paint paint) {
-        return saltyGraphics -> saltyGraphics.setPaint(paint);
-    }
-
-    static Drawable strokePrepare(Stroke stroke) {
-        return saltyGraphics -> saltyGraphics.setStroke(stroke);
-    }
-
-    static Drawable colorAndPaintPrepare(Color color, Paint paint) {
-        return saltyGraphics -> {
-            saltyGraphics.setColor(color);
-            saltyGraphics.setPaint(paint);
-        };
-    }
-
-    static Drawable colorAndStrokePrepare(Color color, Stroke stroke) {
-        return saltyGraphics -> {
-            saltyGraphics.setColor(color);
-            saltyGraphics.setStroke(stroke);
-        };
-    }
-
     /**
      * Draws this object using the given {@link SaltyGraphics}.
      *
      * @param saltyGraphics the graphics to draw to
      */
     void draw(SaltyGraphics saltyGraphics);
+
+    /**
+     * Returns a <code>Drawable</code> that
+     * sets the color of the graphics to
+     * the given.
+     *
+     * @param color the color to set the graphics to
+     * @return a <code>Drawable</code> that sets the color of the graphics to the given.
+     */
+    static Drawable colorPrepare(final Color color) {
+        return saltyGraphics -> saltyGraphics.setColor(color);
+    }
+
+    /**
+     * Returns a <code>Drawable</code> that
+     * sets the paint of the graphics to
+     * the given.
+     *
+     * @param paint the paint to set the graphics to
+     * @return a <code>Drawable</code> that sets the paint of the graphics to the given.
+     */
+    static Drawable paintPrepare(final Paint paint) {
+        return saltyGraphics -> saltyGraphics.setPaint(paint);
+    }
+
+    /**
+     * Returns a <code>Drawable</code> that
+     * sets the stroke of the graphics to
+     * the given.
+     *
+     * @param stroke the stroke to set the graphics to
+     * @return a <code>Drawable</code> that sets the stroke of the graphics to the given.
+     */
+    static Drawable strokePrepare(final Stroke stroke) {
+        return saltyGraphics -> saltyGraphics.setStroke(stroke);
+    }
+
+    static Drawable colorAndPaintPrepare(final Color color, final Paint paint) {
+        return saltyGraphics -> {
+            saltyGraphics.setColor(color);
+            saltyGraphics.setPaint(paint);
+        };
+    }
+
+    static Drawable colorAndStrokePrepare(final Color color, final Stroke stroke) {
+        return saltyGraphics -> {
+            saltyGraphics.setColor(color);
+            saltyGraphics.setStroke(stroke);
+        };
+    }
 }

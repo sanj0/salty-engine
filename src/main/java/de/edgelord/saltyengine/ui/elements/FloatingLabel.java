@@ -30,27 +30,27 @@ import java.awt.*;
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class FloatingLabel extends Label {
 
-    public FloatingLabel(String text, Vector2f position) {
+    public FloatingLabel(final String text, final Vector2f position) {
         super(text, position, 0, 0);
     }
 
-    public FloatingLabel(String text, float x, float y) {
+    public FloatingLabel(final String text, final float x, final float y) {
         this(text, new Vector2f(x, y));
     }
 
     @Override
-    public void drawForeground(SaltyGraphics saltyGraphics) {
+    public void drawForeground(final SaltyGraphics saltyGraphics) {
 
         recalculateSize(saltyGraphics.getFontMetrics());
         saltyGraphics.drawText(getText(), getX(), getY(), SaltyGraphics.TextAnchor.TOP_LEFT_CORNER);
     }
 
     @Override
-    public void drawBackground(SaltyGraphics saltyGraphics) {
+    public void drawBackground(final SaltyGraphics saltyGraphics) {
 
     }
 
-    public void recalculateSize(FontMetrics metrics) {
+    public void recalculateSize(final FontMetrics metrics) {
         setWidth(metrics.stringWidth(getText()));
         setHeight(metrics.getMaxAscent() + metrics.getMaxDescent());
     }

@@ -34,7 +34,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
 
     private boolean enabled = true;
 
-    public Component(T parent, String name, String tag) {
+    public Component(final T parent, final String name, final String tag) {
         this.parent = parent;
         this.name = name;
         this.tag = tag;
@@ -69,7 +69,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
      * You won't need that method often for a component
      */
     @Override
-    public void onCollisionDetectionFinish(List<CollisionEvent> collisions) {
+    public void onCollisionDetectionFinish(final List<CollisionEvent> collisions) {
 
     }
 
@@ -84,7 +84,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
         return parent;
     }
 
-    public void setParent(T parent) {
+    public void setParent(final T parent) {
         this.parent = parent;
     }
 
@@ -92,7 +92,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(final String tag) {
         this.tag = tag;
     }
 
@@ -100,7 +100,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -108,7 +108,7 @@ public abstract class Component<T extends ComponentContainer> implements Drawabl
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(final boolean enabled) {
         this.enabled = enabled;
     }
 

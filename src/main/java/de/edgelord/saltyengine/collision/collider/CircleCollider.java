@@ -47,34 +47,34 @@ public class CircleCollider extends Collider implements TransformedObject {
      *               Only the {@link Transform#getWidth() width} and {@link Transform#getPosition() position}
      *               is taken into account to form a circle instead of an oval.
      */
-    public CircleCollider(Transform hitbox) {
+    public CircleCollider(final Transform hitbox) {
         super(1, CIRCLE_COLLIDER);
         this.hitbox = hitbox;
     }
 
-    public CircleCollider(Vector2f position, Dimensions dimensions) {
+    public CircleCollider(final Vector2f position, final Dimensions dimensions) {
         this(new Transform(position, dimensions));
     }
 
     @Override
-    public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
-        Collider otherCollider = getOtherCollider(object1.getCollider(), object2.getCollider());
-        GameObject otherGameObject = object1.getCollider() == otherCollider ? object1 : object2;
+    public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
+        final Collider otherCollider = getOtherCollider(object1.getCollider(), object2.getCollider());
+        final GameObject otherGameObject = object1.getCollider() == otherCollider ? object1 : object2;
 
         switch (otherCollider.getType()) {
             case HITBOX_COLLIDER:
-                Vector2f centre = hitbox.getCentre();
-                Transform otherHitbox = otherGameObject.getHitbox().getTransform();
-                float closestX = GeneralUtil.clamp(centre.getX(), otherHitbox.getX(), otherHitbox.getX() + otherHitbox.getWidth());
-                float closestY = GeneralUtil.clamp(centre.getY(), otherHitbox.getY(), otherHitbox.getY() + otherHitbox.getHeight());
+                final Vector2f centre = hitbox.getCentre();
+                final Transform otherHitbox = otherGameObject.getHitbox().getTransform();
+                final float closestX = GeneralUtil.clamp(centre.getX(), otherHitbox.getX(), otherHitbox.getX() + otherHitbox.getWidth());
+                final float closestY = GeneralUtil.clamp(centre.getY(), otherHitbox.getY(), otherHitbox.getY() + otherHitbox.getHeight());
 
                 return new CollisionDetectionResult(new Vector2f(closestX, closestY).distance(centre) < getWidth() / 2f, hitbox.getRelation(otherHitbox));
 
             case CIRCLE_COLLIDER:
-                CircleCollider otherCircleCollider = (CircleCollider) otherCollider;
-                Vector2f centre1 = getHitbox().getCentre();
-                Vector2f centre2 = otherCircleCollider.getHitbox().getCentre();
-                boolean collision = centre1.distance(centre2) <= hitbox.getWidth() / 2f + otherCircleCollider.hitbox.getWidth() / 2f;
+                final CircleCollider otherCircleCollider = (CircleCollider) otherCollider;
+                final Vector2f centre1 = getHitbox().getCentre();
+                final Vector2f centre2 = otherCircleCollider.getHitbox().getCentre();
+                final boolean collision = centre1.distance(centre2) <= hitbox.getWidth() / 2f + otherCircleCollider.hitbox.getWidth() / 2f;
 
                 return new CollisionDetectionResult(collision, hitbox.getRelation(otherCircleCollider.hitbox));
         }
@@ -96,7 +96,7 @@ public class CircleCollider extends Collider implements TransformedObject {
      *
      * @param hitbox the new value of {@link #hitbox}
      */
-    public void setHitbox(Transform hitbox) {
+    public void setHitbox(final Transform hitbox) {
         this.hitbox = hitbox;
     }
 
@@ -106,7 +106,7 @@ public class CircleCollider extends Collider implements TransformedObject {
     }
 
     @Override
-    public void setTransform(Transform transform) {
+    public void setTransform(final Transform transform) {
         this.hitbox = transform;
     }
 
@@ -116,7 +116,7 @@ public class CircleCollider extends Collider implements TransformedObject {
     }
 
     @Override
-    public void setLockedDirections(Directions directions) {
+    public void setLockedDirections(final Directions directions) {
         this.lockedDirections = directions;
     }
 }

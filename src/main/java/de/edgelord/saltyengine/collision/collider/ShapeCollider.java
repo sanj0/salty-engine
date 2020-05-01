@@ -40,19 +40,19 @@ public class ShapeCollider extends Collider {
      *
      * @param shape the shape
      */
-    public ShapeCollider(Shape shape) {
+    public ShapeCollider(final Shape shape) {
         super(2, SHAPE_COLLIDER);
 
         this.shape = shape;
     }
 
     @Override
-    public CollisionDetectionResult checkCollision(GameObject object1, GameObject object2) {
+    public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
 
-        Collider otherCollider = getOtherCollider(object1.getCollider(), object2.getCollider());
-        GameObject otherGameObject = object1.getCollider() == otherCollider ? object1 : object2;
+        final Collider otherCollider = getOtherCollider(object1.getCollider(), object2.getCollider());
+        final GameObject otherGameObject = object1.getCollider() == otherCollider ? object1 : object2;
 
-        Area collisionArea = new Area(shape);
+        final Area collisionArea = new Area(shape);
 
         switch (otherCollider.getType()) {
             case HITBOX_COLLIDER:
@@ -60,13 +60,13 @@ public class ShapeCollider extends Collider {
                 return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(otherGameObject.getHitbox().getTransform()));
 
             case CIRCLE_COLLIDER:
-                CircleCollider collider = (CircleCollider) otherCollider;
-                Transform hitbox = collider.getHitbox();
+                final CircleCollider collider = (CircleCollider) otherCollider;
+                final Transform hitbox = collider.getHitbox();
                 collisionArea.intersect(new Area(new Ellipse2D.Float(hitbox.getX(), hitbox.getY(), hitbox.getWidth(), hitbox.getHeight())));
                 return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(otherGameObject.getHitbox().getTransform()));
 
             case SHAPE_COLLIDER:
-                ShapeCollider shapeCollider = (ShapeCollider) otherCollider;
+                final ShapeCollider shapeCollider = (ShapeCollider) otherCollider;
                 collisionArea.intersect(new Area(shapeCollider.shape));
                 return new CollisionDetectionResult(!collisionArea.isEmpty(), new Transform(shape.getBounds()).getRelation(new Transform(shapeCollider.shape.getBounds())));
         }
@@ -78,7 +78,7 @@ public class ShapeCollider extends Collider {
         return shape;
     }
 
-    public void setShape(Shape shape) {
+    public void setShape(final Shape shape) {
         this.shape = shape;
     }
 }
