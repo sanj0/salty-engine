@@ -28,6 +28,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Objects;
 
 public class InnerResource implements Resource {
 
@@ -71,9 +72,10 @@ public class InnerResource implements Resource {
 
     @Override
     public File getFileResource(String relativePath) {
-
         try {
-            return makeTemporaryFile(relativePath);
+            if (SaltySystem.writePrivilege) {
+                return makeTemporaryFile(relativePath);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -93,7 +95,7 @@ public class InnerResource implements Resource {
         byte[] buffer = new byte[4096];
 
         int readBytes;
-        while ((readBytes = inputStream.read(buffer)) > 0) {
+        while ((readBytes = Objects.requireNonNull(inputStream).read(buffer)) > 0) {
             outputStream.write(buffer, 0, readBytes);
         }
 

@@ -61,7 +61,6 @@ public class DisplayManager extends Host {
 
     @Override
     public void repaint() {
-
         stage.repaint();
         //setDimensions(display.getDisplayRatio().getCurrentDimensions());
     }
