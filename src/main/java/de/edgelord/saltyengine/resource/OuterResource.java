@@ -46,6 +46,21 @@ public class OuterResource implements Resource {
         }
     }
 
+    public void delete() {
+        deleteRecursively(sourceDirectory);
+    }
+
+    private void deleteRecursively(File file) {
+        File[] files = file.listFiles();
+
+        if (files != null) {
+            for (File f : files) {
+                deleteRecursively(f);
+            }
+        }
+        file.delete();
+    }
+
     @Override
     public SaltyImage getImageResource(String relativePath) {
 
@@ -85,7 +100,6 @@ public class OuterResource implements Resource {
     }
 
     private File getFile(String relativePath) {
-
         if (relativePath.startsWith("/")) {
             return new File(sourceDirectory.getAbsolutePath() + relativePath);
         } else {

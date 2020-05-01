@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.io.serialization;
 
 import de.edgelord.saltyengine.io.FileWriter;
+import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +34,10 @@ public class DataWriter {
 
     public DataWriter(FileWriter fileWriter) throws IOException {
 
-        if (!fileWriter.getFile().exists()) {
-            fileWriter.getFile().createNewFile();
+        if (SaltySystem.writePrivilege) {
+            if (!fileWriter.getFile().exists()) {
+                fileWriter.getFile().createNewFile();
+            }
         }
 
         this.fileWriter = fileWriter;

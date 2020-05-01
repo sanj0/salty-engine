@@ -75,6 +75,11 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
+    public boolean showConfirmDialog(String message) {
+        return JOptionPane.showConfirmDialog(null, message, "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    @Override
     public ImageObserver getImageObserver() {
         return stage;
     }

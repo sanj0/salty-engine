@@ -899,7 +899,7 @@ public class SaltyGraphics {
      *
      * @param text     the text to be drawn
      * @param position the position of the baseLine of the first letter
-     * @param anchor the <code>Anchor</code> relative to which the text should be placed
+     * @param anchor   the <code>Anchor</code> relative to which the text should be placed
      * @see #drawText(Object, float, float, TextAnchor)
      */
     public void drawText(Object text, Vector2f position, TextAnchor anchor) {
@@ -1002,16 +1002,6 @@ public class SaltyGraphics {
     }
 
     /**
-     * Applies the configuration of the given {@link RenderContext} to this graphics. <br>
-     * <code>graphics.setRenderContext(renderContext)</code> <br>has an equal result to calling <br><code>renderContext.applyConfiguration(graphics)</code>.
-     *
-     * @param renderContext the {@link RenderContext} whose configuration is to be applied to this graphics.
-     */
-    public void setRenderContext(RenderContext renderContext) {
-        renderContext.applyConfiguration(this);
-    }
-
-    /**
      * Returns the current color of the Graphics.
      * With this Color, all of the primitives (e.g. Rectangles, Ovals) are filled and outlined
      *
@@ -1052,6 +1042,16 @@ public class SaltyGraphics {
         graphics2D.setFont(font);
     }
 
+    /**
+     * Returns the current <code>FontRenderContext</code> of the graphics
+     *
+     * @return the current <code>FontRenderContext</code> of the graphics
+     * @see Graphics2D#getFontMetrics()
+     */
+    public FontMetrics getFontMetrics() {
+        return graphics2D.getFontMetrics();
+    }
+
 
     ///**
     // * Rotates the graphics by the given degrees plus the game's camera rotation.
@@ -1077,16 +1077,6 @@ public class SaltyGraphics {
     */
 
     /**
-     * Returns the current <code>FontRenderContext</code> of the graphics
-     *
-     * @return the current <code>FontRenderContext</code> of the graphics
-     * @see Graphics2D#getFontMetrics()
-     */
-    public FontMetrics getFontMetrics() {
-        return graphics2D.getFontMetrics();
-    }
-
-    /**
      * Returns the current Stroke of the Graphics.
      * The Stroke defines how to draw lines (e.g. outlines)
      *
@@ -1097,10 +1087,6 @@ public class SaltyGraphics {
         return graphics2D.getStroke();
     }
 
-    /*
-    Bindings for getting the configuration of the drawing context
-     */
-
     /**
      * Sets the stroke of the Graphics
      *
@@ -1110,6 +1096,10 @@ public class SaltyGraphics {
     public void setStroke(Stroke stroke) {
         graphics2D.setStroke(stroke);
     }
+
+    /*
+    Bindings for getting the configuration of the drawing context
+     */
 
     /**
      * Returns the current Paint of the Graphics.
@@ -1200,6 +1190,16 @@ public class SaltyGraphics {
         renderContext.setFont(getFont());
 
         return renderContext;
+    }
+
+    /**
+     * Applies the configuration of the given {@link RenderContext} to this graphics. <br>
+     * <code>graphics.setRenderContext(renderContext)</code> <br>has an equal result to calling <br><code>renderContext.applyConfiguration(graphics)</code>.
+     *
+     * @param renderContext the {@link RenderContext} whose configuration is to be applied to this graphics.
+     */
+    public void setRenderContext(RenderContext renderContext) {
+        renderContext.applyConfiguration(this);
     }
 
     public enum TextAnchor {

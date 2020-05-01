@@ -20,19 +20,32 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.elements.Button;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class UninstallButton extends Button {
 
-    public UninstallButton(String text, Vector2f position, int width, int height) {
-        super(text, position, width, height);
+    public UninstallButton(Vector2f position) {
+        super("Uninstall", position, 100, 35);
+
+        setBackgroundColor(ColorUtil.CRIMSON_RED);
+        setForegroundColor(ColorUtil.BLACK);
+        setFont(getFont().deriveFont(Font.BOLD, 15f));
+        setArc(7);
+    }
+
+    public UninstallButton() {
+        this(new Vector2f(10, 10));
     }
 
     @Override
     public void onClick(MouseEvent e) {
-        SaltySystem.writePrivilege = false;
-        SaltySystem.defaultHiddenOuterResource.getFileResource(".").delete();
-        SaltySystem.defaultOuterResource.getFileResource(".").delete();
-        Game.quit();
+        if (Game.getHost().showConfirmDialog("This will delete all local game files (including save files of game states!)" +
+                " but not the game itself and exist the game. Proceed?")) {
+            SaltySystem.writePrivilege = false;
+            SaltySystem.defaultHiddenOuterResource.delete();
+            SaltySystem.defaultOuterResource.delete();
+            Game.quit();
+        }
     }
 }

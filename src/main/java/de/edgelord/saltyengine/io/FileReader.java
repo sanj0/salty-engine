@@ -40,7 +40,7 @@ public class FileReader extends FileIO {
      */
     public String readFile() throws IOException {
 
-        getFile().createNewFile();
-        return Files.lines(getFile().toPath(), StandardCharsets.UTF_8).collect(Collectors.joining(System.lineSeparator()));
+        return getFile().exists() ? Files.lines(getFile().toPath(), StandardCharsets.UTF_8).collect(Collectors.joining(System.lineSeparator()))
+                : "";
     }
 }

@@ -76,6 +76,11 @@ public class DisplayManager extends Host {
     }
 
     @Override
+    public boolean showConfirmDialog(String message) {
+        return JOptionPane.showConfirmDialog(display, message, "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    @Override
     public ImageObserver getImageObserver() {
         return stage;
     }

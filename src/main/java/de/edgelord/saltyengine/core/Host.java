@@ -50,6 +50,8 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
      */
     public abstract void setBackgroundColor(Color color);
 
+    public abstract boolean showConfirmDialog(String message);
+
     /**
      * Returns an {@link ImageObserver} the can be used to e.g. render animated gifs.
      *
