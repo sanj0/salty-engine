@@ -54,9 +54,10 @@ public class DataWriter {
      * Writes the content of all Species from the list and their
      * subspecies to the file. With that, all existing content of the file
      * will be overwritten.
+     *
+     * @throws IOException when the file could not be written to
      */
     public void syncFile() throws IOException {
-
         StringBuilder contentBuilder = new StringBuilder();
         for (Species species : speciesList) {
             contentBuilder.append(species.getSyntax());

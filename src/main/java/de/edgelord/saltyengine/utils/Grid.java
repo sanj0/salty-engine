@@ -125,7 +125,7 @@ public class Grid {
     }
 
     /**
-     * Returns a {@link Transform} with the following values: <p>
+     * Returns a {@link Transform} with the following values:
      * <p>
      * - the {@link Vector2f position} of the tile with the given coordinates within this grid
      * - the {@link Dimensions dimensinos} of on tile, which is {@link #tileSize}

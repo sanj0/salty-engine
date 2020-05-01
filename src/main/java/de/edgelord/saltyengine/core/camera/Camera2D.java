@@ -37,7 +37,6 @@ import de.edgelord.saltyengine.utils.SaltySystem;
  * <code>rotation</code> <br>
  * <code>scaling ("zooming")</code> <br>
  * <code>resolution and size adjusting</code>
- * <p>
  */
 public class Camera2D implements Camera, TransformedObject {
 

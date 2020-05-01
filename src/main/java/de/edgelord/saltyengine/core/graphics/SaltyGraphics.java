@@ -24,6 +24,7 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -855,9 +856,10 @@ public class SaltyGraphics {
      * When the given <code>Object</code> is already a <code>String</code>,
      * <code>toString()</code> simply returns that exact <code>String</code>.
      *
-     * @param text the String to be drawn
-     * @param x    the x position of the baseLine of the first character
-     * @param y    the y position of the baseLine of the first character
+     * @param text   the String to be drawn
+     * @param x      the x position of the baseLine of the first character
+     * @param y      the y position of the baseLine of the first character
+     * @param anchor the <code>Anchor</code> relative to which the text should be placed
      * @see Graphics2D#drawString(String, float, float)
      */
     public void drawText(Object text, float x, float y, TextAnchor anchor) {
@@ -897,6 +899,7 @@ public class SaltyGraphics {
      *
      * @param text     the text to be drawn
      * @param position the position of the baseLine of the first letter
+     * @param anchor the <code>Anchor</code> relative to which the text should be placed
      * @see #drawText(Object, float, float, TextAnchor)
      */
     public void drawText(Object text, Vector2f position, TextAnchor anchor) {
@@ -1191,9 +1194,9 @@ public class SaltyGraphics {
      *
      * @return a new {@link BasicRenderContext} that represents the current basic configuration of this graphics
      */
-    public BasicRenderContext exportRenderContext() {
+    public BasicRenderContext getRenderContext() {
         BasicRenderContext renderContext = new BasicRenderContext(getColor(), getPaint(), getStroke());
-        renderContext.setAlpha(getColor().getAlpha());
+        renderContext.setAlpha(ColorUtil.intARGBToFloat(getColor().getAlpha()));
         renderContext.setFont(getFont());
 
         return renderContext;

@@ -28,7 +28,7 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
 /**
  * An implementation of {@link Collider} that uses
  * a circle as the "hitbox".
- * Using CircleColliders only would make the collision detection very fast. <p>
+ * Using CircleColliders only would make the collision detection very fast.
  * <p>
  * Note that for the circle, the width of {@link de.edgelord.saltyengine.hitbox.Hitbox}
  * is being used and that the height is therefore ignored, but as the centre
@@ -42,6 +42,10 @@ public class CircleCollider extends Collider implements TransformedObject {
 
     /**
      * The constructor.
+     *
+     * @param hitbox the hitbox the circle of this <code>Collider</code> should represent.
+     *               Only the {@link Transform#getWidth() width} and {@link Transform#getPosition() position}
+     *               is taken into account to form a circle instead of an oval.
      */
     public CircleCollider(Transform hitbox) {
         super(1, CIRCLE_COLLIDER);

@@ -35,9 +35,9 @@ public class FileWriter extends FileIO {
      * If the file doesn't exist, it will be created.
      *
      * @param text the text which the content of the file should be overridden with
+     * @throws IOException when the file could not be written to
      */
     public void writeThrough(String text) throws IOException {
-
         getFile().createNewFile();
 
         BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));

@@ -377,7 +377,7 @@ public class ColorUtil {
      * @param argb a single argb component ranging from 0 to 255
      * @return the given integer in a range from 0 to 255 converted to a float ranging from 0f to 1f
      */
-    public float intARGBToFloat(int argb) {
+    public static float intARGBToFloat(int argb) {
         return (float) argb / 255;
     }
 }
