@@ -323,6 +323,8 @@ public class ImageUtils {
      * @throws IOException when the I/O process fails
      */
     public static void saveImage(BufferedImage image, String format, String name, OuterResource resource) throws IOException {
-        ImageIO.write(image, format, resource.getFileResource(name + "." + format));
+        if (SaltySystem.writePrivilege) {
+            ImageIO.write(image, format, resource.getFileResource(name + "." + format));
+        }
     }
 }

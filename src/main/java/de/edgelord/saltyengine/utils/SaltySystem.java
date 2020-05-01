@@ -42,6 +42,8 @@ public class SaltySystem {
 
     public static boolean audioEnabled = true;
 
+    public static boolean writePrivilege = true;
+
     /**
      * The type of image that should be used by e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
      * the {@link ImageUtils} and the {@link de.edgelord.saltyengine.components.rendering.PrimitivesRenderComponent}.

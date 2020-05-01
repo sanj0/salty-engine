@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.io;
 
+import de.edgelord.saltyengine.utils.SaltySystem;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -39,10 +41,13 @@ public class FileWriter extends FileIO {
      */
     public void writeThrough(String text) throws IOException {
         getFile().createNewFile();
+        if (SaltySystem.writePrivilege) {
+            getFile().createNewFile();
 
-        BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
+            BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
 
-        bw.write(text);
-        bw.close();
+            bw.write(text);
+            bw.close();
+        }
     }
 }
