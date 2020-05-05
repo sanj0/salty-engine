@@ -1,11 +1,12 @@
-![Java CI with Maven](https://github.com/edgelord314/salty-engine/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)<br>
-![license-badge](https://img.shields.io/hexpm/l/plug.svg) <br> 
+![Java CI with Maven](https://github.com/edgelord314/salty-engine/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+![license-badge](https://img.shields.io/hexpm/l/plug.svg) <p> 
 
-[Why using Salty Engine](#why-using-salty-engine) <br> 
-[Build Instructions](#build-instructions) <br> 
-[How to use Salty Engine](#how-to-use-salty-engine) <br> 
-[Games made with Salty Engine](#games-made-with-salty-engine) <br> 
-[Collaborate](#collaborate) <br> [Help](#help)
+- [Why using Salty Engine](#why-using-salty-engine)
+- [Build Instructions](#build-instructions)
+- [How to use Salty Engine](#how-to-use-salty-engine)
+- [Games made with Salty Engine](#games-made-with-salty-engine)
+- [Collaborate](#collaborate)
+- [Help](#help)
 
 # Salty Engine
 
