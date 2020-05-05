@@ -19,10 +19,10 @@ package testing;
 import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.CheatCodeListener;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

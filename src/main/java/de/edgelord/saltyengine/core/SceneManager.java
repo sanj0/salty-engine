@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.scene;
+package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.scene.EmptyScene;
+import de.edgelord.saltyengine.scene.Scene;
 
 import java.lang.reflect.InvocationTargetException;
 

@@ -18,7 +18,7 @@ package testing.collisiondetection;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
-import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.core.SceneManager;
 
 public class CollisionDetectionTestMain extends Game {
 

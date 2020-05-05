@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -23,7 +24,6 @@ import de.edgelord.saltyengine.effect.light.Light;
 import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.effect.light.PointLight;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.utils.TransformRelationUtil;

@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
-import de.edgelord.saltyengine.scene.SceneManager;
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.ui.elements.BorderedLabel;
 
 public class ScreenExampleMain extends Game {

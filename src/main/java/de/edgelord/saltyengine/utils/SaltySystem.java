@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.effect.image.SaltyBufferedImage;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.effect.image.SaltyVolatileImage;
@@ -23,7 +24,6 @@ import de.edgelord.saltyengine.factory.FontFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;

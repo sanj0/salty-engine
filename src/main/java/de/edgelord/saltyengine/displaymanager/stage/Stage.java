@@ -16,15 +16,12 @@
 
 package de.edgelord.saltyengine.displaymanager.stage;
 
-import de.edgelord.saltyengine.core.Engine;
-import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.GameListener;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
+import de.edgelord.saltyengine.core.*;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.input.MouseInputHandler;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ImageUtils;

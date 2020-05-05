@@ -16,9 +16,9 @@
 
 package de.edgelord.saltyengine.displaymanager.stage;
 
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
-import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;

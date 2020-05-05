@@ -18,11 +18,11 @@ package de.edgelord.saltyengine.components.gfx.scene;
 
 import de.edgelord.saltyengine.components.gfx.GFXComponent;
 import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.scene.Scene;
-import de.edgelord.saltyengine.scene.SceneManager;
 
 import java.awt.*;
 

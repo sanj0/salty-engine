@@ -46,7 +46,7 @@ public interface GameListener {
     /**
      * Calls when a new {@link Scene} is set
      * as the current one using
-     * {@link de.edgelord.saltyengine.scene.SceneManager#setCurrentScene(Scene)}.
+     * {@link SceneManager#setCurrentScene(Scene)}.
      *
      * @param scene the new active <code>Scene</code>
      */

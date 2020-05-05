@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.core;
 
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.SaltySystem;
 import de.edgelord.saltyengine.utils.Time;
 

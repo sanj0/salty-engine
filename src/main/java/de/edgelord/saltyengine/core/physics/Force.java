@@ -16,8 +16,8 @@
 
 package de.edgelord.saltyengine.core.physics;
 
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.scene.SceneManager;
 import de.edgelord.saltyengine.utils.Directions;
 
 public class Force {
