@@ -194,7 +194,7 @@ public class Game {
     }
 
     public static Dimensions getGameDimensions() {
-        return gameDimensions;
+        return new Dimensions(gameDimensions);
     }
 
     /**
