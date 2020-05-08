@@ -27,13 +27,6 @@ import java.awt.*;
 public interface Drawable {
 
     /**
-     * Draws this object using the given {@link SaltyGraphics}.
-     *
-     * @param saltyGraphics the graphics to draw to
-     */
-    void draw(SaltyGraphics saltyGraphics);
-
-    /**
      * Returns a <code>Drawable</code> that
      * sets the color of the graphics to
      * the given.
@@ -82,4 +75,11 @@ public interface Drawable {
             saltyGraphics.setStroke(stroke);
         };
     }
+
+    /**
+     * Draws this object using the given {@link SaltyGraphics}.
+     *
+     * @param saltyGraphics the graphics to draw to
+     */
+    void draw(SaltyGraphics saltyGraphics);
 }
