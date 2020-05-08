@@ -94,7 +94,7 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     public void draw(final SaltyGraphics saltyGraphics, final float x, final float y) {
-        draw(saltyGraphics, new Vector2f(x, y));
+        draw(saltyGraphics.copy(), new Vector2f(x, y));
     }
 
     public VolatileImage getImage() {

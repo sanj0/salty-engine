@@ -38,7 +38,7 @@ public class Frame implements Cosmetic {
         final SaltyImage img = SaltySystem.createPreferredImage(500, 500);
 
         final SaltyGraphics graphics = new SaltyGraphics(img.createGraphics());
-        image.draw(graphics, Vector2f.zero());
+        image.draw(graphics.copy(), Vector2f.zero());
     }
 
     public SaltyImage getImage() {

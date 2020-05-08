@@ -75,7 +75,7 @@ public class LightSystem implements Drawable {
             graphics.setComposite(oldComp);
             light.drawColorMap(graphics);
             graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT, light.getBrightness()));
-            light.draw(graphics);
+            light.draw((Graphics2D) graphics.create());
         });
         graphics.dispose();
     }

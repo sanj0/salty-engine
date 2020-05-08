@@ -252,7 +252,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
             for (int i = 0; i < currentParticles.size(); i++) {
                 final Particle particle = currentParticles.get(i);
                 renderContext.nextParticleRenderConfig(saltyGraphics, particle);
-                particle.draw(saltyGraphics);
+                particle.draw(saltyGraphics.copy());
             }
         }
     }

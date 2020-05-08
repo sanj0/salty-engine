@@ -115,7 +115,7 @@ public abstract class ComponentContainer implements TransformedObject {
     public void doComponentDrawing(final SaltyGraphics graphics) {
         getComponents().forEach(component -> {
             if (component.isEnabled()) {
-                component.draw(graphics);
+                component.draw(graphics.copy());
             }
         });
     }

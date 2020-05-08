@@ -285,7 +285,7 @@ public class ImageUtils {
         final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
         final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
 
-        graphicsPrepare.draw(graphics);
+        graphicsPrepare.draw(graphics.copy());
         shape.drawAtZero(graphics.getGraphics2D());
 
         graphics.getGraphics2D().dispose();

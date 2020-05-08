@@ -42,6 +42,17 @@ public class SaltyGraphics {
         setFont(SaltySystem.defaultFont);
     }
 
+    /**
+     * Creates an exact yet independent copy
+     * of this graphics. Used whenever a <code>SaltyGraphics</code>
+     * is passed into a method due to clipping.
+     *
+     * @return an exact yet independent copy of this graphics
+     */
+    public SaltyGraphics copy() {
+        return new SaltyGraphics((Graphics2D) graphics2D.create());
+    }
+
     /*
     Rendering bindings
      */

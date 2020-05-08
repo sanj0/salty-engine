@@ -57,7 +57,7 @@ public class DumbPanel extends Container {
         saltyGraphics.drawRoundRect(this, arc);
 
         // Draw the child elements
-        getChildElements().forEach(uiElement -> uiElement.draw(saltyGraphics));
+        getChildElements().forEach(uiElement -> uiElement.draw(saltyGraphics.copy()));
 
         // Reset Clipping area
         saltyGraphics.resetClip();

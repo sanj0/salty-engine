@@ -64,7 +64,7 @@ public class Camera2D implements Camera, TransformedObject {
 
         final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
         graphics.setTransform(getAffineTransform());
-        subject.draw(graphics);
+        subject.draw(graphics.copy());
         image = ImageUtils.resize(image, getSize().getWidth(), getSize().getHeight());
 
         return image;

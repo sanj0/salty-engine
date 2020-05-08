@@ -40,7 +40,7 @@ public interface SaltyImage {
      * @param drawable the {@code Drawable} to draw to this image
      */
     default void drawTo(final Drawable drawable) {
-        drawable.draw(getGraphics());
+        drawable.draw(getGraphics().copy());
     }
 
     /**

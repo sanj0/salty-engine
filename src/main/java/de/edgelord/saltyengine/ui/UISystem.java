@@ -32,7 +32,7 @@ public class UISystem {
 
     public void drawUI(final SaltyGraphics saltyGraphics) {
         for (final UIElement element : elements) {
-            element.draw(saltyGraphics);
+            element.draw(saltyGraphics.copy());
             element.doComponentDrawing(saltyGraphics);
         }
     }
