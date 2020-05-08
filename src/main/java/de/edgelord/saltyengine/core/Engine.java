@@ -38,12 +38,12 @@ public class Engine {
     /**
      * The {@link Timer} for the fixed ticks.
      */
-    private final Timer fixedTimer = new Timer();
+    private final Timer fixedTimer = new Timer("fixed-tasks");
 
     /**
      * The {@link Timer} that repaints the {@link Host}.
      */
-    private final Timer repaintTimer = new Timer();
+    private final Timer repaintTimer = new Timer("render-thread");
     /**
      * The list of task scheduled for
      * later execution by
