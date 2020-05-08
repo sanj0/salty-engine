@@ -68,7 +68,7 @@ public class Tester extends Game {
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
         Game.executeLater(() -> {
-            System.out.println("hello there");
+            System.out.println("hello there! 5000 fixed ticks since the start!");
         }, 5000);
     }
 
@@ -76,16 +76,16 @@ public class Tester extends Game {
      * Adds a {@link CheatCodeListener} that listens for "exit".
      */
     private static void addCheatCodeListener() {
-        CheatCodeListener cheater = new CheatCodeListener() {
+        final CheatCodeListener cheater = new CheatCodeListener() {
             @Override
-            public boolean handleCheatCode(String cheatcode) {
+            public boolean handleCheatCode(final String cheatcode) {
                 if (cheatcode.equals("exit")) {
                     System.exit(0);
                     return true;
                 }
 
                 if (cheatcode.equals("gravity")) {
-                    for (GameObject gameObject : SceneManager.getCurrentScene().getGameObjects()) {
+                    for (final GameObject gameObject : SceneManager.getCurrentScene().getGameObjects()) {
                         gameObject.getPhysics().setGravityEnabled(true);
                     }
                     return true;

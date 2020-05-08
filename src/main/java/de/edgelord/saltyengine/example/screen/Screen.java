@@ -17,7 +17,6 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
@@ -39,7 +38,7 @@ public class Screen extends GameObject {
         screen = new Transform(getX() + 10, getY() + 10, getWidth() - 20, getHeight() - 20);
         screenContent = new ScreenContent(getX(), getY());
 
-        SceneManager.getCurrentScene().disableGravity();
+        //TODO: SceneManager.getCurrentScene().disableGravity();
     }
 
     @Override
@@ -81,7 +80,7 @@ public class Screen extends GameObject {
         saltyGraphics.setClip(screen);
 
         // Draw the screen content
-        screenContent.draw(saltyGraphics);
+        screenContent.draw(new SaltyGraphics(saltyGraphics.getGraphics2D()));
 
         // Reset the clip
         saltyGraphics.resetClip();

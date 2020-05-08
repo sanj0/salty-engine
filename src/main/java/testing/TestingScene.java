@@ -55,7 +55,7 @@ public class TestingScene extends Scene {
 
         try {
             LanguageManager.init("res/lyrics", SaltySystem.defaultResource);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
 
@@ -64,18 +64,18 @@ public class TestingScene extends Scene {
         initUITest();
         addUI();
 
-        disableGravity();
+        //TODO: disableGravity();
 
         getUI().addElement(new UninstallButton());
 
-        SceneFade fadeIn = new SceneFade("fade-in", Color.BLACK, 3500, SceneFade.Fade.IN, this) {
+        final SceneFade fadeIn = new SceneFade("fade-in", Color.BLACK, 3500, SceneFade.Fade.IN, this) {
             @Override
             public void onFadeFinish() {
                 System.out.println("Fading finished!");
             }
         };
 
-        SceneFade fade = new SceneFade("fade-out", ColorUtil.BLACK, 2000, SceneFade.Fade.OUT, this) {
+        final SceneFade fade = new SceneFade("fade-out", ColorUtil.BLACK, 2000, SceneFade.Fade.OUT, this) {
             @Override
             public void onFadeFinish() {
                 fadeIn.startGFX();
@@ -110,8 +110,8 @@ public class TestingScene extends Scene {
 
         getUI().addElement(label);
 
-        Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3 * 25), 125), 3, true);
-        Slider mySlider = new Slider(Game.getHost().getHorizontalCentrePosition(500), 200, 500, 30);
+        final Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3 * 25), 125), 3, true);
+        final Slider mySlider = new Slider(Game.getHost().getHorizontalCentrePosition(500), 200, 500, 30);
 
         getUI().addElement(mySwitch);
         getUI().addElement(mySlider);

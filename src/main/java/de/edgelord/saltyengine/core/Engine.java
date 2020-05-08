@@ -44,6 +44,7 @@ public class Engine {
      * The {@link Timer} that repaints the {@link Host}.
      */
     private final Timer repaintTimer = new Timer("render-thread");
+
     /**
      * The list of task scheduled for
      * later execution by
@@ -63,12 +64,14 @@ public class Engine {
      */
     public Engine(final long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
+        System.out.printf("initialised the engine with %d fixed tick millis\n", fixedTickMillis);
     }
 
     /**
      * Starts the rendering and the fixed ticks. This happens automatically when the {@link Game} starts.
      */
     public void start() {
+        System.out.println("starting the engine without fps cap...");
         startFixedTicks();
         startRendering();
     }
@@ -79,6 +82,7 @@ public class Engine {
      * @param FPS the fps of the game.
      */
     public void start(final long FPS) {
+        System.out.printf("starting the engine with fps cap at %d...\n", FPS);
         startFixedTicks();
         startRepainting(FPS);
 
@@ -94,6 +98,7 @@ public class Engine {
     public void startFixedTicks() {
         SaltySystem.fixedTickMillis = fixedTickMillis;
 
+        System.out.println("engine starting the fixed tick thread...");
         fixedTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -131,6 +136,7 @@ public class Engine {
     }
 
     private void startRepainting() {
+        System.out.println("engine starting the render thread...");
         repaintTimer.schedule(new TimerTask() {
             long nanosBeforeLastTime = 0;
 

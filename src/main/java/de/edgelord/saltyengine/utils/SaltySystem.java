@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.utils;
 
+import de.edgelord.saltyengine.components.rendering.PrimitiveRenderComponent;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.effect.image.SaltyBufferedImage;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -31,8 +32,8 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.19-local";
-    public static String version = "0.14.18";
+    public static String versionTag = "0.14.20-local";
+    public static String version = "0.14.20";
     public static VersionMode versionMode = VersionMode.LOCAL;
 
     public static long fixedTickMillis = 1;
@@ -46,7 +47,7 @@ public class SaltySystem {
 
     /**
      * The type of image that should be used by e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
-     * the {@link ImageUtils} and the {@link de.edgelord.saltyengine.components.rendering.PrimitivesRenderComponent}.
+     * the {@link ImageUtils} and the {@link PrimitiveRenderComponent}.
      */
     public static ImageType preferredImageType = ImageType.BUFFERED;
 

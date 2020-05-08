@@ -16,14 +16,12 @@
 
 package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.SceneManager;
-import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
@@ -33,19 +31,16 @@ import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.ui.UISystem;
-import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class represents what is currently drawn and calculated.
  * This includes:
- * {@link GameObject}s within {@link #gameObjects},
+ * {@link Layer}s within {@link #layers},
  * {@link FixedTask}s within {@link #fixedTasks},
  * {@link DrawingRoutine}s within {@link #drawingRoutines}
  * and the {@link UISystem} {@link #ui}
@@ -64,9 +59,22 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
      */
     public static final Object concurrentBlock = "3141592653589793";
-    private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
+    /**
+     * The name of the default layer.
+     * {@link GameObject}s added to a <code>Scene</code>
+     * via {@link #addGameObject(GameObject)} are added
+     * to teh corresponding layer.
+     * <p>
+     * The default layer is added to the <code>Scene</code>
+     * in its constructor and has an
+     * of <code>0</code>.
+     */
+    public static final String DEFAULT_LAYER = "default-layer";
+    private final Map<String, Layer> layers = new ConcurrentHashMap<>();
+    private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
+    private List<Layer> layerList = new ArrayList<>();
     /**
      * The gravity used by all {@link GameObject}s in this Scene.
      */
@@ -78,11 +86,15 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     /**
      * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
      */
-    private boolean gravityEnabled = false;
+    private final boolean gravityEnabled = false;
     private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
-
     private SceneCollider sceneCollider = new PrioritySceneCollider();
+
+    public Scene() {
+        layers.put(DEFAULT_LAYER, new Layer(this, DEFAULT_LAYER, 0));
+        updateLayerList();
+    }
 
     /**
      * Initializes the <code>Scene</code> and all its initial
@@ -91,34 +103,33 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     @Override
     public abstract void initialize();
 
+    /**
+     * Sorts the
+     */
+    public void sortLayers() {
+    }
+
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
 
         synchronized (concurrentBlock) {
             for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
-                    drawingRoutine.draw(saltyGraphics);
+                    drawingRoutine.draw(saltyGraphics.copy());
                 }
             }
         }
 
         synchronized (concurrentBlock) {
-            for (final GameObject gameObject : gameObjects) {
-                final AffineTransform before = saltyGraphics.getGraphics2D().getTransform();
-                final Vector2f rotationCentre = gameObject.getTransform().getRotationCentreAbsolute();
-                saltyGraphics.setRotation(gameObject.getRotationDegrees(), rotationCentre);
-
-                gameObject.draw(saltyGraphics);
-                gameObject.doComponentDrawing(saltyGraphics);
-
-                saltyGraphics.setTransform(before);
+            for (final Layer layer : layerList) {
+                layer.draw(saltyGraphics.copy());
             }
         }
 
         synchronized (concurrentBlock) {
             for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.AFTER_GAMEOBJECTS) {
-                    drawingRoutine.draw(saltyGraphics);
+                    drawingRoutine.draw(saltyGraphics.copy());
                 }
             }
         }
@@ -135,7 +146,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         Game.forEachGameListener(gameListener -> gameListener.onPostLightRenderFinish(saltyGraphics));
 
         if (ui != null) {
-            ui.drawUI(saltyGraphics);
+            ui.drawUI(saltyGraphics.copy());
         }
 
         Game.getDefaultGFXController().doGFXDrawing(saltyGraphics);
@@ -143,7 +154,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
             for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.LAST) {
-                    drawingRoutine.draw(saltyGraphics);
+                    drawingRoutine.draw(saltyGraphics.copy());
                 }
             }
         }
@@ -155,50 +166,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         doFixedTasks();
 
         synchronized (concurrentBlock) {
-
-            for (int i = 0; i < gameObjects.size(); i++) {
-                final GameObject gameObject = gameObjects.get(i);
-
-                if (gameObject.isClearCollisions()) {
-                    gameObject.getCollisions().clear();
-                    gameObject.setClearCollisions(false);
-                }
-
-                if (!gameObject.isInitialized()) {
-                    gameObject.initialize();
-                    gameObject.setInitialized(true);
-                }
-
-
-                for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
-                    final GameObject gameObject2 = gameObjects.get(i2);
-                    if (gameObject2.isClearCollisions()) {
-                        gameObject2.getCollisions().clear();
-                        gameObject2.setClearCollisions(false);
-                    }
-
-                    final CollisionDetectionResult collisionDetectionResult = getSceneCollider().checkCollision(gameObject, gameObject2);
-
-                    if (collisionDetectionResult.isCollision()) {
-                        final CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
-                        final CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
-
-                        gameObject.getCollisions().add(collision);
-                        gameObject.onCollision(collision);
-                        gameObject.getComponents().forEach(component -> component.onCollision(collision));
-
-                        gameObject2.onCollision(collision2);
-                        gameObject2.getCollisions().add(collision2);
-                        gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
-                        Game.forEachGameListener(gameListener -> gameListener.onCollision(gameObject, collision));
-                    }
-                }
-
-                gameObject.getComponents().forEach(component -> component.onCollisionDetectionFinish(gameObject.getCollisions()));
-                gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
-                gameObject.doComponentOnFixedTick();
-                gameObject.doFixedTick();
-                gameObject.setClearCollisions(true);
+            for (int i = 0; i < layerList.size(); i++) {
+                final Layer layer = layerList.get(i);
+                layer.onFixedTick();
             }
         }
 
@@ -209,30 +179,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
     }
 
-    public void disableGravity() {
-        synchronized (concurrentBlock) {
-            gravityEnabled = false;
-            for (int i = 0; i < gameObjects.size(); i++) {
-                final GameObject gameObject = gameObjects.get(i);
-
-                gameObject.getPhysics().setGravityEnabled(false);
-            }
-        }
-    }
-
-    public void enableGravity() {
-        synchronized (concurrentBlock) {
-            gravityEnabled = true;
-            for (int i = 0; i < gameObjects.size(); i++) {
-                final GameObject gameObject = gameObjects.get(i);
-
-                gameObject.getPhysics().setGravityEnabled(true);
-            }
-        }
-    }
-
     public void addFixedTask(final FixedTask fixedTask) {
-
         synchronized (concurrentBlock) {
             fixedTasks.add(fixedTask);
         }
@@ -244,30 +191,58 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         }
     }
 
+    public void addGameObject(final GameObject gameObject, final String layer, final int index) {
+        synchronized (concurrentBlock) {
+            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
+            layers.get(layer).add(index, gameObject);
+        }
+    }
+
+    public void addGameObject(final GameObject gameObject, final String layer) {
+        synchronized (concurrentBlock) {
+            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
+            layers.get(layer).add(gameObject);
+        }
+    }
+
     public void addGameObject(final GameObject gameObject) {
+        addGameObject(gameObject, DEFAULT_LAYER);
+    }
 
+    public boolean removeGameObject(final GameObject gameObject, final String layer) {
         synchronized (concurrentBlock) {
-            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
-            gameObjects.add(gameObject);
+            return layers.get(layer).remove(gameObject);
         }
     }
 
-    public void addGameObject(final int index, final GameObject gameObject) {
-        synchronized (concurrentBlock) {
-            gameObject.getPhysics().setGravityEnabled(gravityEnabled);
-            gameObjects.add(index, gameObject);
-        }
-    }
+    /**
+     * Removes the first occurrence of the given
+     * <code>GameObject</code> in any of the {@link #layers}.
+     *
+     * @param gameObject the <code>GameObject</code> to remove from one of the {@link #layers}
+     * @return <code>true</code> if the given <code>GameObject</code> was in any
+     * of the {@link #layers}
+     */
+    public boolean removeGameObject(final GameObject gameObject) {
+        final Set<String> layerNames = layers.keySet();
 
-    public void removeGameObject(final GameObject gameObject) {
         synchronized (concurrentBlock) {
-            gameObjects.remove(gameObject);
+            for (final String layerName : layerNames) {
+                if (removeGameObject(gameObject, layerName)) {
+                    return true;
+                }
+            }
         }
+
+        return false;
     }
 
     public void clearGameObjects() {
+        final List<Layer> layerList = getLayerList();
         synchronized (concurrentBlock) {
-            gameObjects.clear();
+            for (int i = 0; i < layers.size(); i++) {
+                layerList.get(i).clear();
+            }
         }
     }
 
@@ -296,13 +271,79 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     public void doFixedTasks() {
-
         synchronized (concurrentBlock) {
             for (final FixedTask fixedTask : fixedTasks) {
 
                 fixedTask.onFixedTick();
             }
         }
+    }
+
+    /**
+     * Iterates through the {@link #layers} and
+     * adds all {@link GameObject}s from every {@link Layer}
+     * to a <code>List</code> and returns that list.
+     *
+     * @return a constructed list of all <code>GameObjects</code> from all {@link #layers}
+     */
+    public List<GameObject> getGameObjects() {
+        final List<GameObject> gameObjects = new ArrayList<>();
+        final List<Layer> layerList = getLayerList();
+        synchronized (concurrentBlock) {
+            for (int i = 0; i < layerList.size(); i++) {
+                gameObjects.addAll(layerList.get(i).getGameObjects());
+            }
+        }
+
+        return gameObjects;
+    }
+
+    private void updateLayerList() {
+        synchronized (concurrentBlock) {
+            layerList = new ArrayList<>(layers.values());
+            layerList.sort(layerSorter);
+        }
+    }
+
+    public void addLayer(final Layer layer) {
+        layers.put(layer.getTag(), layer);
+        updateLayerList();
+    }
+
+    public void addLayer(final String name, final int index) {
+        layers.put(name, new Layer(this, name, index));
+        updateLayerList();
+    }
+
+    /**
+     * Adds a copy of the given {@link Layer} to
+     * this <code>Scene</code>.
+     *
+     * @param layer the <code>Layer</code> to copy from
+     * @param name  the name of the new <code>Layer</code>
+     * @param index the  of the new <code>Layer</code>
+     * @see Layer#Layer(Layer, Scene, String, int)
+     */
+    public void copyAddLayer(final Layer layer, final String name, final int index) {
+        layers.put(name, new Layer(layer, this, name, index));
+        updateLayerList();
+    }
+
+    public Layer getLayer(final String name) {
+        return layers.get(name);
+    }
+
+    public void removeLayer(final String name) {
+        layers.remove(name);
+        updateLayerList();
+    }
+
+    public void removeLayer(final Layer layer) {
+        layers.remove(layer.getTag(), layer);
+    }
+
+    public List<Layer> getLayerList() {
+        return layerList;
     }
 
     public SceneCollider getSceneCollider() {
@@ -322,9 +363,15 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     public int getGameObjectCount() {
+        int count = 0;
+        final List<Layer> layerList = getLayerList();
         synchronized (concurrentBlock) {
-            return gameObjects.size();
+            for (int i = 0; i < layers.size(); i++) {
+                count += layerList.get(i).size();
+            }
         }
+
+        return count;
     }
 
     public int getDrawingRoutineCount() {
@@ -355,24 +402,12 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         this.friction = friction;
     }
 
-    public void setGravityEnabled(final boolean gravityEnabled) {
-        if (gravityEnabled) {
-            enableGravity();
-        } else {
-            disableGravity();
-        }
-    }
-
     public LightSystem getLightSystem() {
         return lightSystem;
     }
 
     public void setLightSystem(final LightSystem lightSystem) {
         this.lightSystem = lightSystem;
-    }
-
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
     }
 
     public List<FixedTask> getFixedTasks() {
