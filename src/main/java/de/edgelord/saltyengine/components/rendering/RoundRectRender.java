@@ -19,8 +19,10 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
+import java.awt.*;
+
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
-public class RoundRectRender extends PrimitivesRenderComponent {
+public class RoundRectRender extends PrimitiveRenderComponent {
 
     private float arc;
 
@@ -32,8 +34,8 @@ public class RoundRectRender extends PrimitivesRenderComponent {
      * @param name   the id-name for this Component
      * @param arc    the diameter of the circle at the corner
      */
-    public RoundRectRender(final ComponentContainer parent, final String name, final float arc) {
-        super(parent, name);
+    public RoundRectRender(final ComponentContainer parent, final String name, final Color color, final float arc) {
+        super(parent, name, color);
 
         this.arc = arc;
     }

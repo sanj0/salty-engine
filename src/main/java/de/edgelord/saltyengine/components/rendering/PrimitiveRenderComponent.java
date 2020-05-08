@@ -28,15 +28,15 @@ import de.edgelord.saltyengine.utils.ImageUtils;
 
 import java.awt.*;
 
-public abstract class PrimitivesRenderComponent extends RenderComponent {
+public abstract class PrimitiveRenderComponent extends RenderComponent {
 
     // The color with which the Component should render
-    private Color color = Color.black;
+    private Color color;
 
-    // Whether the Component should only DRAW (e.g. graphics.drawRectangle()) or FILL it (e.g. graphics.fillRectangle())
+    // Whether the Component should only draw (e.g. graphics.drawRectangle()) or fill it (e.g. graphics.fillRectangle())
     private boolean fill = true;
 
-    // The stroke (like a pen) with which the component should DRAW the primitives
+    // The stroke (like a pen) with which the component should draw the primitives
     private float lineWidth = 3f;
 
     private SaltyImage primitiveImage;
@@ -51,8 +51,9 @@ public abstract class PrimitivesRenderComponent extends RenderComponent {
      * @param name   the id-name for this Component
      * @see Component
      */
-    public PrimitivesRenderComponent(final ComponentContainer parent, final String name) {
+    public PrimitiveRenderComponent(final ComponentContainer parent, final String name, final Color color) {
         super(parent, name, Components.PRIMITIVES_RENDER_COMPONENT);
+        this.color = color;
         updateImage();
     }
 

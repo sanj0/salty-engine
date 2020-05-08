@@ -19,11 +19,13 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
-@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
-public class RectangleRender extends PrimitivesRenderComponent {
+import java.awt.*;
 
-    public RectangleRender(final ComponentContainer parent, final String name) {
-        super(parent, name);
+@DefaultPlacement(method = DefaultPlacement.Method.PARENT)
+public class RectangleRender extends PrimitiveRenderComponent {
+
+    public RectangleRender(final ComponentContainer parent, final String name, final Color color) {
+        super(parent, name, color);
     }
 
     @Override

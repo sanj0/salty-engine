@@ -19,6 +19,8 @@ package de.edgelord.saltyengine.components.rendering;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 
+import java.awt.*;
+
 /**
  * This component is used for simplifying the process of rendering an oval.
  * <p>
@@ -26,10 +28,10 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
  * <code>GameObject.addComponent(new OvalRender(this, "some_id_name"));</code>
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
-public class OvalRender extends PrimitivesRenderComponent {
+public class OvalRender extends PrimitiveRenderComponent {
 
-    public OvalRender(final ComponentContainer parent, final String name) {
-        super(parent, name);
+    public OvalRender(final ComponentContainer parent, final String name, final Color color) {
+        super(parent, name, color);
     }
 
     @Override
