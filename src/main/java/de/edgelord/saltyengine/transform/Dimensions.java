@@ -27,6 +27,17 @@ public class Dimensions {
         this.height = height;
     }
 
+    /**
+     * Constructs a new objects with the
+     * {@link #width} and {@link #height}
+     * of the given object.
+     *
+     * @param dimensions the dimensions for this new object
+     */
+    public Dimensions(final Dimensions dimensions) {
+        this(dimensions.width, dimensions.height);
+    }
+
     public static Dimensions zero() {
         return new Dimensions(0, 0);
     }
