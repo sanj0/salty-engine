@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for annotations.
+ * The package for annotations, originally meant
+ * for a Unity-like UI, but discontinued.
  */
 package de.edgelord.saltyengine.core.annotations;
