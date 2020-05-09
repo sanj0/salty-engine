@@ -70,7 +70,6 @@ public class Species {
      * @return the complete syntax of the Species plus all its subspecies
      */
     public String getSyntax() {
-
         final StringBuilder syntax = new StringBuilder();
 
         syntax.append("{").append(name).append("}").append(content);
