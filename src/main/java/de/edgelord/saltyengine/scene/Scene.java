@@ -74,6 +74,10 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
+    /**
+     * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
+     */
+    private final boolean gravityEnabled = false;
     private List<Layer> layerList = new ArrayList<>();
     /**
      * The gravity used by all {@link GameObject}s in this Scene.
@@ -83,10 +87,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * The friction used by all {@link GameObject}s in this Scene.
      */
     private float friction = Force.DEFAULT_FRICTION;
-    /**
-     * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
-     */
-    private final boolean gravityEnabled = false;
     private LightSystem lightSystem = null;
     private UISystem ui = new UISystem();
     private SceneCollider sceneCollider = new PrioritySceneCollider();
