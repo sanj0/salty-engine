@@ -55,10 +55,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAble {
 
-    /**
-     * The first 16 figures of the number {@link Math#PI pi} to block concurrency.
-     */
-    public static final Object concurrentBlock = "3141592653589793";
+    public static final Object concurrentBlock = new Object();
     /**
      * The name of the default layer.
      * {@link GameObject}s added to a <code>Scene</code>
