@@ -138,7 +138,7 @@ public class ColorUtil {
     public static final Color GHOST_WHITE = new Color(248, 248, 255);
     public static final Color SNOW_WHITE = new Color(255, 250, 250);
     public static final Color WHITE_SMOKE = new Color(245, 245, 245);
-    public static final Color VONTAGE_WHITE = new Color(217, 215, 200);
+    public static final Color VINTAGE_WHITE = new Color(217, 215, 200);
     public static final Color WHITE = new Color(255, 255, 255);
 
     // Other Colors:

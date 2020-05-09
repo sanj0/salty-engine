@@ -239,7 +239,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This is called every time the collision detectio of this <code>GameObject</code> is done. <br>
+     * This is called every time the collision detection of this <code>GameObject</code> is done. <br>
      * It is especially useful for e.g. processing if this <code>GameObject</code> hits any other <code>GameObject</code> with a specific tag.
      *
      * @param collisions the list of occurred collisions.

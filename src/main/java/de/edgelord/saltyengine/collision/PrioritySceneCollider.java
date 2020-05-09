@@ -20,7 +20,7 @@ import de.edgelord.saltyengine.collision.collider.Collider;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**
- * This implementation of {@link SceneCollider} takes the resut from the {@link Collider} with the highest {@code priority}.
+ * This implementation of {@link SceneCollider} takes the result from the {@link Collider} with the highest {@code priority}.
  */
 public class PrioritySceneCollider implements SceneCollider {
 

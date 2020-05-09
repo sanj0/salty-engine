@@ -22,7 +22,7 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * A recatngular particle whose default {@link de.edgelord.saltyengine.transform.Dimensions} is {@link #DEFAULT_DIMENSIONS}.
+ * A rectangular particle whose default {@link de.edgelord.saltyengine.transform.Dimensions} is {@link #DEFAULT_DIMENSIONS}.
  */
 public class RectangleParticle extends Particle {
 

@@ -84,7 +84,7 @@ public class Species {
     }
 
     /**
-     * Adds a tag with the given name and vaue to the Species
+     * Adds a tag with the given name and value to the Species
      * (name) value (*name)
      *
      * @param tag   the name of the tag which should be added
@@ -96,7 +96,7 @@ public class Species {
 
     /**
      * Creates the Species with the given name within the Species and adds it to the list,
-     * which will be written to the file if requested and retuns it.
+     * which will be written to the file if requested and returns it.
      *
      * @param name name of the Species which should be returned and added to the list
      * @return the created Species with the given name

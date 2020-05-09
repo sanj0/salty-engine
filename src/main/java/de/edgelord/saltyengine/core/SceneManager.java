@@ -78,7 +78,7 @@ public class SceneManager {
      * with the given args and sets it as teh current <code>Scene</code>,
      * effectively reloading it.
      *
-     * @param args the arguments for the constrcutort to instantiate
+     * @param args the arguments for the constructor to instantiate
      *             a new <code>Scene</code> of the type of the
      *             {@link #currentScene current one}
      * @throws NoSuchMethodException when there is no constructor

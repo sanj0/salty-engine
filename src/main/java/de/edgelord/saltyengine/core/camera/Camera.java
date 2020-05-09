@@ -96,7 +96,7 @@ public interface Camera {
     /**
      * Sets the resolution of this camera.
      * <p>
-     * The resolution decsribes with how many
+     * The resolution describes with how many
      * pixel the camera can render. <br>
      * This does not affect the size
      * of the image produced with {@link #render(Drawable)}.

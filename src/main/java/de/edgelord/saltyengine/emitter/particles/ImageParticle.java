@@ -26,7 +26,7 @@ import de.edgelord.saltyengine.utils.ImageLoader;
 
 /**
  * An abstract <code>Particle</code> which renders {@link #image} obtained from {@link #getImage()}.
- * It is highly recommended to implment that method like this:
+ * It is highly recommended to implement that method like this:
  * <pre>
  *     {@code
  *     public BufferedImage getImage() {

@@ -63,7 +63,7 @@ public class SaltyGraphics {
 
     /**
      * The base method to draw a {@link Vector2f point} with a given diameter.
-     * This method draws a circle using {@link #drawOval(float, float, float, float)} aeround the given x and y
+     * This method draws a circle using {@link #drawOval(float, float, float, float)} around the given x and y
      * coordinates with the given diameter
      *
      * @param x        the x position of the centre of the circle that represents the point

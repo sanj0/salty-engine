@@ -288,7 +288,7 @@ public class Transform {
     }
 
     /**
-     * Rotats this <code>Transform</code> to directly face the given {@link Vector2f point}.
+     * Rotates this <code>Transform</code> to directly face the given {@link Vector2f point}.
      *
      * @param point the point to rotate to
      */

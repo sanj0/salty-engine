@@ -24,7 +24,6 @@ import java.io.File;
  * <p>
  * Tested and working on: <code>macOS</code>
  * <p>
- * TODO: Windows stuff
  */
 public class SystemDependentFiles {
 
@@ -50,7 +49,6 @@ public class SystemDependentFiles {
      * @return the home directory of the current user as a <code>File</code>.
      */
     public static File getUserDir() {
-
         return new File(getUserDirPath());
     }
 
@@ -134,7 +132,6 @@ public class SystemDependentFiles {
     }
 
     private static void checkOS() {
-
         if (os == null) {
 
             if (System.getProperty("os.name").toLowerCase().contains(macOSSearchPhrase)) {
@@ -144,7 +141,7 @@ public class SystemDependentFiles {
             } else if (System.getProperty("os.name").toLowerCase().contains(windowsSearchPhrase)) {
                 os = OS.WINDOWS;
             } else {
-                // If the os is none of the three, it is most likely somehting like openSuse or anything like that
+                // If the os is none of the three, it is most likely something like openSuse or anything like that
                 // for which linux is probably the most similar
                 os = OS.LINUX;
             }
@@ -152,7 +149,6 @@ public class SystemDependentFiles {
     }
 
     private static void checkUser() {
-
         if (user == null) {
             user = System.getProperty("user.name");
         }
