@@ -60,7 +60,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * The name of the default layer.
      * {@link GameObject}s added to a <code>Scene</code>
      * via {@link #addGameObject(GameObject)} are added
-     * to teh corresponding layer.
+     * to the corresponding layer.
      * <p>
      * The default layer is added to the <code>Scene</code>
      * in its constructor and has an
@@ -235,7 +235,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     public void clearGameObjects() {
-        final List<Layer> layerList = getLayerList();
         synchronized (concurrentBlock) {
             for (int i = 0; i < layers.size(); i++) {
                 layerList.get(i).clear();
@@ -285,7 +284,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      */
     public List<GameObject> getGameObjects() {
         final List<GameObject> gameObjects = new ArrayList<>();
-        final List<Layer> layerList = getLayerList();
         synchronized (concurrentBlock) {
             for (int i = 0; i < layerList.size(); i++) {
                 gameObjects.addAll(layerList.get(i).getGameObjects());
@@ -361,7 +359,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     public int getGameObjectCount() {
         int count = 0;
-        final List<Layer> layerList = getLayerList();
         synchronized (concurrentBlock) {
             for (int i = 0; i < layers.size(); i++) {
                 count += layerList.get(i).size();

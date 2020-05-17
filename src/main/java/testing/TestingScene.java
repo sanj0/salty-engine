@@ -185,7 +185,7 @@ public class TestingScene extends Scene {
         Serializer.add(bottomBird);
         try {
             Serializer.doDeserialization();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }
