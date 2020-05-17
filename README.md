@@ -61,7 +61,7 @@ Or: to get a usable JAR of this library, you can either download an existing rel
 
 0. Requirements:
     - [git](https://git-scm.com) has to be installed properly
-    - Java version 1.10 has to be installed, no newer version works! (When you have more java versions installed, make sure that the environment var JAVA_HOME points to 1.10)
+    - a JDK, 1.8 or later
 1. Clone (download) the git repository. To do so, open up the terminal or cmd, go to any directory and type in
 
    ```bash
