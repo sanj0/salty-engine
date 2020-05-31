@@ -21,7 +21,6 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.Directions;
 
@@ -179,8 +178,9 @@ public class Layer extends GameObject {
     public void draw(final SaltyGraphics saltyGraphics) {
 
         //TODO: use added() method from physics branche instead of this tmp
-        final Vector2f tmpVector = new Vector2f(getPosition());
-        saltyGraphics.setClip(new Transform(tmpVector.add(Game.getCamera().getPosition()), getDimensions()));
+        //TODO: clipping!
+        //final Vector2f tmpVector = new Vector2f(getPosition());
+        //saltyGraphics.setClip(new Transform(tmpVector.add(Game.getCamera().getPosition()), getDimensions()));
         saltyGraphics.setTransform(affineTransform);
 
         for (int i = 0; i < gameObjects.size(); i++) {
