@@ -25,13 +25,13 @@ import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
 /**
- * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and let them fall down.
- * Both {@link #leftOffset} and {@link #rightOffset} can be used to limit the possible spawning point of new {@link Particle}s.
+ * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from the bottom side of its parent and lets them fall down.
+ * Both {@link #leftOffset} and {@link #rightOffset} can be used to limit the possible spawning points of new {@link Particle}s.
  * The particles are spawned at the max y value of the parent's transform, meaning at its lowest point. To manipulate that,
  * use {@link #offsetY}
  * <p>
  * The spawned {@link Particle}s are falling down with {@link #getSpeed()} pixels per fixed tick and there are constantly spawning new ones.
- * You can the spawning rate using {@link #setWaveInterval(int)}.
+ * You can change the spawning rate using {@link #setWaveInterval(int)}.
  * <p>
  * This implementation of {@link EmitterComponent} ignores the suggested spawn point. You can control the actual used spawn point with both offsets.
  */
@@ -90,26 +90,56 @@ public class RandomRainEmitter extends EmitterComponent {
         return new Vector2f(GeneralUtil.randomInt(getParent().getX() + leftOffset, getParent().getTransform().getMaxX() - p.getWidth() - rightOffset), getParent().getTransform().getMaxY() + offsetY);
     }
 
+    /**
+     * Gets {@link #leftOffset}.
+     *
+     * @return the value of {@link #leftOffset}
+     */
     public float getLeftOffset() {
         return leftOffset;
     }
 
+    /**
+     * Sets {@link #leftOffset}.
+     *
+     * @param leftOffset the new value of {@link #leftOffset}
+     */
     public void setLeftOffset(final float leftOffset) {
         this.leftOffset = leftOffset;
     }
 
+    /**
+     * Gets {@link #rightOffset}.
+     *
+     * @return the value of {@link #rightOffset}
+     */
     public float getRightOffset() {
         return rightOffset;
     }
 
+    /**
+     * Sets {@link #rightOffset}.
+     *
+     * @param rightOffset the new value of {@link #rightOffset}
+     */
     public void setRightOffset(final float rightOffset) {
         this.rightOffset = rightOffset;
     }
 
+    /**
+     * Gets {@link #offsetY}.
+     *
+     * @return the value of {@link #offsetY}
+     */
     public float getOffsetY() {
         return offsetY;
     }
 
+    /**
+     * Sets {@link #offsetY}.
+     *
+     * @param offsetY the new value of {@link #offsetY}
+     */
     public void setOffsetY(final float offsetY) {
         this.offsetY = offsetY;
     }

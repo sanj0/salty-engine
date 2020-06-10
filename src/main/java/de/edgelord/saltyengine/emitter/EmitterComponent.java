@@ -36,7 +36,7 @@ import java.util.List;
 
 /**
  * A {@link Component} that emits {@link Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject} parent.
- * It emits instances of {@link #particle}, whose dimensions can be manipulated with {@link #fixedParticleDimensions} or
+ * It emits instances of {@link #particleClass}, whose dimensions can be manipulated with {@link #fixedParticleDimensions} or
  * {@link #fixedMinParticleDimensions} and {@link #fixedMaxParticleDimensions}.
  * The speed of every {@link Particle} that is created by this emitter is the current value of {@link #speed}.
  *
@@ -120,23 +120,23 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * The {@link Class} object of the particle to be emitted.
      */
-    private Class<? extends Particle> particle;
+    private Class<? extends Particle> particleClass;
 
     /**
      * The constructor initializing an emitter that emits a wave of the given amount of particles every given duration
      * of ticks.
      *
-     * @param parent       the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
-     * @param name         the id-name of the component
-     * @param particle     the particle to be emitted. obtained via {@link Object#getClass()}
-     * @param speed        the speed of the particles spawned by this emitter.
-     * @param amount       the amount of emitted particles per wave
-     * @param waveInterval the time to be passed between each wave
+     * @param parent        the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
+     * @param name          the id-name of the component
+     * @param particleClass the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param speed         the speed of the particles spawned by this emitter.
+     * @param amount        the amount of emitted particles per wave
+     * @param waveInterval  the time to be passed between each wave
      */
-    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount, final int waveInterval) {
+    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particleClass, final float speed, final float amount, final int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
 
-        this.particle = particle;
+        this.particleClass = particleClass;
         this.amount = amount;
         this.waveInterval = waveInterval;
         this.speed = speed;
@@ -149,14 +149,14 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      * only emit a single wave of particles every time {@link #impact()} is called.
      * {@link #waveInterval} is overloaded with <code>1</code>.
      *
-     * @param parent   the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
-     * @param name     the id-name of the component
-     * @param particle the particle to be emitted. obtained via {@link Object#getClass()}
-     * @param speed    the speed of the particles spawned by this emitter.
-     * @param amount   the amount of emitted particles per wave
+     * @param parent        the {@link de.edgelord.saltyengine.gameobject.GameObject} that owns this {@link Component}
+     * @param name          the id-name of the component
+     * @param particleClass the particle to be emitted. obtained via {@link Object#getClass()}
+     * @param speed         the speed of the particles spawned by this emitter.
+     * @param amount        the amount of emitted particles per wave
      */
-    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particle, final float speed, final float amount) {
-        this(parent, name, particle, speed, amount, 1);
+    public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particleClass, final float speed, final float amount) {
+        this(parent, name, particleClass, speed, amount, 1);
 
         impactMode = true;
     }
@@ -258,14 +258,13 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Returns a new instance of {@link #particle} with the {@link #currentWave} and {@link #speed}.
+     * Returns a new instance of {@link #particleClass} with the {@link #currentWave} and {@link #speed}.
      *
      * @return a new particle
      */
     public Particle createParticle() {
         try {
-
-            final Particle particle = this.particle.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifetime, speed, this);
+            final Particle particle = this.particleClass.getConstructor(Integer.class, Integer.class, Float.class, EmitterComponent.class).newInstance(currentWave, lifetime, speed, this);
 
             if (fixedParticleDimensions != null) {
                 particle.setDimensions(fixedParticleDimensions);
@@ -372,12 +371,12 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
         this.modifierStack = modifierStack;
     }
 
-    public Class<? extends Particle> getParticle() {
-        return particle;
+    public Class<? extends Particle> getParticleClass() {
+        return particleClass;
     }
 
-    public void setParticle(final Class<? extends Particle> particle) {
-        this.particle = particle;
+    public void setParticleClass(final Class<? extends Particle> particleClass) {
+        this.particleClass = particleClass;
     }
 
     public Dimensions getFixedMinParticleDimensions() {

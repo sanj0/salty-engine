@@ -31,11 +31,11 @@ public class SaltyBufferedImage implements SaltyImage {
     private final BufferedImage image;
 
     public SaltyBufferedImage(final int width, final int height) {
-        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        this.image = SaltySystem.GC.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
     }
 
     public SaltyBufferedImage(final int width, final int height, final int imageType) {
-        this.image = new BufferedImage(width, height, imageType);
+        this.image = SaltySystem.GC.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
     }
 
     public SaltyBufferedImage(final Image image) {
@@ -56,6 +56,10 @@ public class SaltyBufferedImage implements SaltyImage {
 
     public SaltyBufferedImage(final SaltyImage source) {
         this.image = source.toBufferedImage();
+    }
+
+    private void accelerate() {
+        setAccelerationPriority(1);
     }
 
     @Override
@@ -110,7 +114,7 @@ public class SaltyBufferedImage implements SaltyImage {
 
     @Override
     public ImageCapabilities getCapabilities() {
-        return image.getCapabilities(SaltySystem.gfxConfig);
+        return image.getCapabilities(SaltySystem.GC);
     }
 
     @Override

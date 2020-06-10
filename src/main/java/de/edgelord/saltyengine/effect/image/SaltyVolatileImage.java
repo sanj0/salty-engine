@@ -80,14 +80,14 @@ public class SaltyVolatileImage implements SaltyImage {
     @Override
     public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         if (contentsLost()) {
-            validate(SaltySystem.gfxConfig);
+            validate(SaltySystem.GC);
         }
         saltyGraphics.drawImage(getImage(), position, new Dimensions(width, height));
     }
 
     public void draw(final SaltyGraphics saltyGraphics, final Vector2f position) {
         if (contentsLost()) {
-            validate(SaltySystem.gfxConfig);
+            validate(SaltySystem.GC);
         }
 
         saltyGraphics.drawImage(getImage(), position.getX(), position.getY());

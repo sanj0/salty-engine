@@ -16,8 +16,10 @@
 
 package de.edgelord.saltyengine.displaymanager.stage;
 
+import de.edgelord.saltyengine.core.Game;
+import de.edgelord.saltyengine.core.GameListener;
 import de.edgelord.saltyengine.core.GraphicsConfiguration;
-import de.edgelord.saltyengine.core.*;
+import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.effect.image.SaltyImage;
@@ -59,18 +61,16 @@ public class Stage extends JPanel {
      */
     private Vector2f currentImgPos = new Vector2f(0, 0);
 
-    public Stage(final Container container, final Engine engine) {
-        this(container, engine, 0, 0, container.getWidth(), container.getHeight());
+    public Stage(final Container container) {
+        this(container, 0, 0, container.getWidth(), container.getHeight());
     }
 
-    public Stage(final Container container, final Engine engine, final int x, final int y, final int width, final int height) {
+    public Stage(final Container container, final int x, final int y, final int width, final int height) {
         this.container = container;
-
         init(x, y, width, height);
     }
 
     protected void initNativeMouseListener() {
-
         nativeMouseListener = new NativeStageMouseListener(null);
         nativeMouseMotionListener = new NativeStageMouseMotionListener(null, this);
         nativeMouseWheelListener = new NativeStageMouseWheelListener(null);
@@ -81,7 +81,6 @@ public class Stage extends JPanel {
     }
 
     protected void init(final int x, final int y, final int width, final int height) {
-
         setBounds(x, y, width, height);
         this.originWidth = width;
         this.originHeight = height;

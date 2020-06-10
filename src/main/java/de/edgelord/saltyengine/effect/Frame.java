@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+@Deprecated
 public class Frame implements Cosmetic {
 
     private SaltyImage image;
@@ -35,6 +36,7 @@ public class Frame implements Cosmetic {
     public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         image.draw(saltyGraphics, position, width, height);
 
+        // where does this come from and what does it do?!
         final SaltyImage img = SaltySystem.createPreferredImage(500, 500);
 
         final SaltyGraphics graphics = new SaltyGraphics(img.createGraphics());

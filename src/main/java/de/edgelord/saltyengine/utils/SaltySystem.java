@@ -32,15 +32,12 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static String versionTag = "0.14.20-local";
-    public static String version = "0.14.20";
-    public static VersionMode versionMode = VersionMode.LOCAL;
-
-    public static long fixedTickMillis = 1;
-
-    public static GraphicsConfiguration gfxConfig =
+    public static final String versionTag = "0.14.20-local";
+    public static final String version = "0.14.20";
+    public static final VersionMode versionMode = VersionMode.LOCAL;
+    public static final GraphicsConfiguration GC =
             GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
+    public static long fixedTickMillis = 1;
     public static boolean audioEnabled = true;
 
     public static boolean writePrivilege = true;
@@ -67,8 +64,7 @@ public class SaltySystem {
     public static Font defaultFont;
 
     public static VolatileImage createVolatileImage(final int width, final int height) {
-
-        final VolatileImage image = gfxConfig.createCompatibleVolatileImage(width, height, Transparency.TRANSLUCENT);
+        final VolatileImage image = GC.createCompatibleVolatileImage(width, height, Transparency.TRANSLUCENT);
         final Graphics2D graphics2D = image.createGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, image.getWidth(), image.getHeight());
@@ -91,7 +87,6 @@ public class SaltySystem {
     }
 
     public static SaltyImage createPreferredImage(final float width, final float height) {
-
         final int imageWidth = Math.round(width);
         final int imageHeight = Math.round(height);
 

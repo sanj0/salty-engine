@@ -28,14 +28,15 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LightSystem implements Drawable {
 
-    private final Color lightMapColor;
     //private BufferedImage plainLightMap;
-    private final List<Light> lights = new ArrayList<>();
+    private final List<Light> lights = Collections.synchronizedList(new ArrayList<>());
     protected SaltyImage lightMap;
+    private Color lightMapColor;
 
     public LightSystem(final Color lightMapColor) {
         this.lightMapColor = lightMapColor;
@@ -109,5 +110,23 @@ public class LightSystem implements Drawable {
      */
     public List<Light> getLights() {
         return lights;
+    }
+
+    /**
+     * Gets {@link #lightMapColor}.
+     *
+     * @return the value of {@link #lightMapColor}
+     */
+    public Color getLightMapColor() {
+        return lightMapColor;
+    }
+
+    /**
+     * Sets {@link #lightMapColor}.
+     *
+     * @param lightMapColor the new value of {@link #lightMapColor}
+     */
+    public void setLightMapColor(final Color lightMapColor) {
+        this.lightMapColor = lightMapColor;
     }
 }

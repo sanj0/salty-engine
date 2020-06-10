@@ -38,7 +38,7 @@ public class DisplayManager extends Host {
     public DisplayManager(final DisplayRatio displayRatio, final String gameName, final Engine engine) {
 
         display = new Display(displayRatio, gameName);
-        stage = new Stage(display.getContentPane(), engine);
+        stage = new Stage(display.getContentPane());
 
         Game.gameName = gameName;
     }

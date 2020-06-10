@@ -64,7 +64,6 @@ public class RandomRadialEmitter extends EmitterComponent {
 
     @Override
     public Particle spawnParticle() {
-
         final Particle particle = createParticle();
 
         particle.positionByCentre(getSpawnPoint());

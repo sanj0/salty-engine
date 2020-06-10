@@ -40,7 +40,7 @@ public class PaneledGameHost extends Host {
         SaltySystem.fixedTickMillis = fixedTickMillis;
         Game.setEngine(engine);
 
-        stage = new Stage(container, engine, x, y, width, height);
+        stage = new Stage(container, x, y, width, height);
         this.container = container;
     }
 

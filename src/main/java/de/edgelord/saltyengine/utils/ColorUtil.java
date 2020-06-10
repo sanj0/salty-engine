@@ -235,7 +235,7 @@ public class ColorUtil {
      * @return the alpha value from the given argb color
      */
     public static int getAlpha(final int argb) {
-        return (argb >>> 24);
+        return (argb >> 24);
     }
 
     /**

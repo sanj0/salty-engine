@@ -17,7 +17,6 @@
 package de.edgelord.saltyengine.emitter;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
-import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
@@ -85,11 +84,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     }
 
     @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
-
-    @Override
     public void onFixedTick() {
-
         if (ticks >= restLifetime) {
             parent.removeParticle(this);
         } else {

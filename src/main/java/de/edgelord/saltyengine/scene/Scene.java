@@ -108,7 +108,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
-
         synchronized (concurrentBlock) {
             for (final DrawingRoutine drawingRoutine : drawingRoutines) {
                 if (drawingRoutine.getDrawingPosition() == DrawingRoutine.DrawingPosition.BEFORE_GAMEOBJECTS) {
