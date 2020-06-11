@@ -862,14 +862,33 @@ public class SaltyGraphics {
      */
 
     /**
+     * Renders a multiline text. <br>
+     * The lines are separated by {@code \n}.
+     * The text is left-aligned, as every new line
+     * will start at the same x position.
+     *
+     * @param text the text to render
+     * @param x    the x position of the baseline of the first character
+     * @param y    the y position of the baseline of the first character
+     */
+    public void drawMultilineText(final Object text, final float x, final float y) {
+        final int lineHeight = getFontMetrics().getHeight();
+        final String[] lines = text.toString().split("\n");
+        final int xRounded = Math.round(x);
+        int yRounded = Math.round(y);
+        for (String line : lines)
+            graphics2D.drawString(line, xRounded, yRounded += lineHeight);
+    }
+
+    /**
      * The base method to draw a String using the current <code>Font</code> of the graphics.
      * It converts the given {@link Object} to a {@link String} using its {@link Object#toString()}.
      * When the given <code>Object</code> is already a <code>String</code>,
      * <code>toString()</code> simply returns that exact <code>String</code>.
      *
      * @param text   the String to be drawn
-     * @param x      the x position of the baseLine of the first character
-     * @param y      the y position of the baseLine of the first character
+     * @param x      the x position of the text relative to the given anchor
+     * @param y      the y position of the text relative to the given anchor
      * @param anchor the <code>Anchor</code> relative to which the text should be placed
      * @see Graphics2D#drawString(String, float, float)
      */
@@ -902,6 +921,7 @@ public class SaltyGraphics {
                 yPos = y + fontMetrics.getAscent() - ((fontMetrics.getAscent() + fontMetrics.getDescent()) / 2f);
                 break;
         }
+
         graphics2D.drawString(string, xPos, yPos);
     }
 
