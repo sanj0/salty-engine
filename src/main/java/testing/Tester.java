@@ -20,10 +20,13 @@ import de.edgelord.saltyengine.audio.AudioPlayer;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 import de.edgelord.saltyengine.core.SceneManager;
+import de.edgelord.saltyengine.effect.StaticBackgroundTextbox;
 import de.edgelord.saltyengine.factory.AudioFactory;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.resource.InnerResource;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.CheatCodeListener;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
@@ -68,8 +71,14 @@ public class Tester extends Game {
         // Game.getDefaultGFXController().addGFX(fadeIn);
         // Game.getDefaultGFXController().startAll();
         Game.executeLater(() -> {
-            System.out.println("hello there! 5000 fixed ticks since the start!");
-        }, 5000);
+            System.out.println("hello there! 7500 fixed ticks since the start!");
+            SceneManager.setCurrentScene(new StaticBackgroundTextbox("This is a textbox with a static background!\nThis is a newline\f...and this is on a new page!",
+                    new Transform(Game.getHost().getHorizontalCentrePosition(500), 750, 500, 100), SceneManager.getCurrentScene())
+                    .withBackgroundColor(ColorUtil.WHITE_SMOKE)
+                    .withFont(SaltySystem.defaultFont.deriveFont(20f))
+                    .withTextColor(ColorUtil.BLACK)
+                    .withTextOffsetY(15));
+        }, 7500);
     }
 
     /**
