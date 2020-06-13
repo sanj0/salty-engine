@@ -53,11 +53,69 @@ public class Vector2f {
         return new Vector2f(1, 1);
     }
 
+    public static Vector2f negativeOne() {
+        return new Vector2f(-1, -1);
+    }
+
+    public float dotProduct(final Vector2f v1) {
+        return x * v1.x + y * v1.y;
+    }
+
+    public Vector2f withMagnitude(final float newMagnitude) {
+        final double magnitude = magnitude();
+        final double ratio = newMagnitude / magnitude;
+        final float x = (float) (this.x * ratio);
+        final float y = (float) (this.y * ratio);
+
+        return new Vector2f(x, y);
+    }
+
+    /**
+     * Sets a new magnitude to this <code>vector</code>
+     * by changing its <code>x</code> and <code>y</code>
+     * coordinates.
+     *
+     * @param newMagnitude the new magnitude for this <code>vector</code>
+     * @return <code>this</code> vector
+     */
+    public Vector2f setMagnitude(final float newMagnitude) {
+        final Vector2f newVector = withMagnitude(newMagnitude);
+
+        setX(newVector.x);
+        setY(newVector.y);
+
+        return this;
+    }
+
+    public Vector2f normalized() {
+        return normalize(magnitude());
+    }
+
+    public Vector2f normalize() {
+        final Vector2f newVector = normalize(magnitude());
+
+        setX(newVector.x);
+        setY(newVector.y);
+
+        return this;
+    }
+
+    private Vector2f normalize(final double magnitude) {
+        final float x = (float) (this.x / magnitude);
+        final float y = (float) (this.y / magnitude);
+
+        return new Vector2f(x, y);
+    }
+
+    public double magnitude() {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    }
+
     /**
      * Returns the distance between this and the given point.
      *
      * @param point a point
-     * @return teh distance between this and the given point
+     * @return the distance between this and the given point
      */
     public float distance(final Vector2f point) {
         final double ac = Math.abs(point.y - y);
@@ -82,6 +140,12 @@ public class Vector2f {
         this.y = y;
     }
 
+    public Vector2f added(final Vector2f vec1) {
+        final Vector2f vec = new Vector2f(this);
+
+        return vec.add(vec1);
+    }
+
     public Vector2f add(final float x1, final float y1) {
         x += x1;
         y += y1;
@@ -91,6 +155,12 @@ public class Vector2f {
 
     public Vector2f add(final Vector2f pos1) {
         return add(pos1.getX(), pos1.getY());
+    }
+
+    public Vector2f multiplied(final Vector2f vec1) {
+        final Vector2f vec = new Vector2f(this);
+
+        return vec.multiply(vec1);
     }
 
     public Vector2f multiply(final float x1, final float y1) {
@@ -104,6 +174,12 @@ public class Vector2f {
         return multiply(pos1.getX(), pos1.getY());
     }
 
+    public Vector2f divided(final Vector2f vec1) {
+        final Vector2f vec = new Vector2f(this);
+
+        return vec.divide(vec1);
+    }
+
     public Vector2f divide(final float x1, final float y1) {
         x /= x1;
         y /= y1;
@@ -113,6 +189,12 @@ public class Vector2f {
 
     public Vector2f divide(final Vector2f pos1) {
         return divide(pos1.getX(), pos1.getY());
+    }
+
+    public Vector2f subtracted(final Vector2f vec1) {
+        final Vector2f vec = new Vector2f(this);
+
+        return vec.subtract(vec1);
     }
 
     public Vector2f subtract(final float x1, final float y1) {
