@@ -81,10 +81,11 @@ public class GeneralUtil {
      * Returns a random object from the given list by requesting the next int from {@link #random} with
      * {@link List#size()} as the bound and returning the object with this index.
      *
+     * @param <T>  the type of object
      * @param list the {@link List} from which to return as random object
      * @return a random object from the given list
      */
-    public static Object randomObjectFromList(final List list) {
+    public static <T> T randomObjectFromList(final List<T> list) {
         return list.get(random.nextInt(list.size()));
     }
 
