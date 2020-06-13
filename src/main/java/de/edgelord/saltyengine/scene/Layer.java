@@ -126,7 +126,6 @@ public class Layer extends GameObject {
 
     @Override
     public void onFixedTick() {
-
         for (int i = 0; i < gameObjects.size(); i++) {
             final GameObject gameObject = gameObjects.get(i);
 
@@ -181,7 +180,7 @@ public class Layer extends GameObject {
         //TODO: clipping!
         //final Vector2f tmpVector = new Vector2f(getPosition());
         //saltyGraphics.setClip(new Transform(tmpVector.add(Game.getCamera().getPosition()), getDimensions()));
-        saltyGraphics.setTransform(affineTransform);
+        //saltyGraphics.setTransform(affineTransform);
 
         for (int i = 0; i < gameObjects.size(); i++) {
             final GameObject gameObject = gameObjects.get(i);
