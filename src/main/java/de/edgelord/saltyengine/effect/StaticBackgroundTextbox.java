@@ -41,9 +41,6 @@ import java.util.List;
  * Newlines in the text are marked by {@code \n} while
  * new "pages" of the box are to be marked by {@code \f}.
  * <p>
- * This textbox does not have character by character text
- * animation "fade-in" and doesn't allow for Options.
- * <p>
  * While this Scene is active, any input handlers
  * in {@link Input} are disabled.
  */
@@ -59,10 +56,16 @@ public class StaticBackgroundTextbox extends Scene {
     private Color backgroundColor;
     private Color textColor;
     private Font font;
+    private float textSpeed = 0.05f;
     private int cornerArc = 15;
     private int textOffsetX = 25;
     private int textOffsetY = 25;
+    private boolean initializeScene = false;
+    private boolean centreTextX = false;
+    private int centredX = -1;
+    private String currentDisplayText = "";
     private int pageIndex = 0;
+    private float cursor = 0;
     private KeyboardInputHandler keyboardHandler;
     private MouseInputHandler mouseHandler;
 
@@ -104,6 +107,11 @@ public class StaticBackgroundTextbox extends Scene {
         return this;
     }
 
+    public StaticBackgroundTextbox withTextSpeed(final float textSpeed) {
+        this.textSpeed = textSpeed;
+        return this;
+    }
+
     public StaticBackgroundTextbox withTextOffsetX(final int textOffsetX) {
         this.textOffsetX = textOffsetX;
         return this;
@@ -116,6 +124,16 @@ public class StaticBackgroundTextbox extends Scene {
 
     public StaticBackgroundTextbox withCornerArc(final int cornerArc) {
         this.cornerArc = cornerArc;
+        return this;
+    }
+
+    public StaticBackgroundTextbox centredTextX() {
+        this.centreTextX = true;
+        return this;
+    }
+
+    public StaticBackgroundTextbox initializeScene() {
+        this.initializeScene = true;
         return this;
     }
 
@@ -135,14 +153,33 @@ public class StaticBackgroundTextbox extends Scene {
                 saltyGraphics.drawRoundRect(transform, cornerArc);
                 saltyGraphics.setColor(textColor);
                 saltyGraphics.setFont(font);
-                saltyGraphics.drawMultilineText(pages[pageIndex], transform.getX() + textOffsetX, transform.getY() + textOffsetY);
+
+                float x = transform.getX() + textOffsetX;
+                if (centreTextX) {
+                    if (centredX == -1) {
+                        // get longest line of page
+                        String[] lines = pages[pageIndex].split("\n");
+                        String longestLine = "";
+                        for (String l : lines) {
+                            if (l.length() > longestLine.length()) {
+                                longestLine = l;
+                            }
+                        }
+                        centredX = Math.round(transform.getX() + (transform.getWidth() / 2f - (saltyGraphics.getFontMetrics().stringWidth(longestLine) / 2f)));
+                    }
+
+                    x = centredX;
+                }
+                saltyGraphics.drawMultilineText(currentDisplayText, x, transform.getY() + textOffsetY);
             }
         });
 
         keyboardHandler = new KeyboardInputAdapter() {
             @Override
             public void keyPressed(final KeyEvent e) {
-                proceed();
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    proceed();
+                }
             }
         };
 
@@ -157,18 +194,39 @@ public class StaticBackgroundTextbox extends Scene {
         Input.addMouseInputHandler(mouseHandler);
     }
 
+    @Override
+    public void onFixedTick() {
+        super.onFixedTick();
+
+        if (cursor < pages[pageIndex].length()) {
+            cursor += textSpeed;
+        }
+        currentDisplayText = pages[pageIndex].substring(0, Math.min(Math.round(cursor), pages[pageIndex].length()));
+    }
+
     private void proceed() {
         // check if the last page was reached
         if (pageIndex >= pages.length - 1) {
-            // last page was reached
-            Input.getKeyboardHandlers().remove(keyboardHandler);
-            Input.getMouseHandlers().remove(mouseHandler);
-            Input.getKeyboardHandlers().addAll(keyHandlers);
-            Input.getMouseHandlers().addAll(mouseHandlers);
-            SceneManager.setCurrentScene(sceneToReturnTo, false);
+            // last page was already reached
+            if (Math.round(cursor) < pages[pageIndex].length()) {
+                cursor = pages[pageIndex].length();
+            } else {
+                Input.getKeyboardHandlers().remove(keyboardHandler);
+                Input.getMouseHandlers().remove(mouseHandler);
+                Input.getKeyboardHandlers().addAll(keyHandlers);
+                Input.getMouseHandlers().addAll(mouseHandlers);
+                SceneManager.setCurrentScene(sceneToReturnTo, initializeScene);
+            }
         } else {
-            // last page was not reached yet
-            pageIndex++;
+            // last page was not already reached yet
+            if (Math.round(cursor) < pages[pageIndex].length()) {
+                cursor = pages[pageIndex].length();
+            } else {
+                pageIndex++;
+                currentDisplayText = "";
+                cursor = 0;
+                centredX = -1;
+            }
         }
     }
 }
