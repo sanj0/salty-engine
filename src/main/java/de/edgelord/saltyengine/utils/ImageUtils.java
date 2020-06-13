@@ -34,6 +34,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class ImageUtils {
@@ -73,6 +75,37 @@ public class ImageUtils {
      */
     public static VolatileImage getSubImage(final VolatileImage base, final int x, final int y, final int width, final int height) {
         return toVolatileImage(toBufferedImage(base).getSubimage(x, y, width, height));
+    }
+
+    /**
+     * Generates an image with the given
+     * width and height and fills it with
+     * rectangles of the given size and a
+     * random color from teh given vararg each.
+     *
+     * @param width       teh width of the returned image
+     * @param height      the height of teh returned image
+     * @param pixelWidth  the width of the rectangles on the image
+     * @param pixelHeight the height of the rectangles on the image
+     * @param colors      an array of colors from which to randomly choose one per rectangle
+     * @return a texture filled with randomly colored rectangles
+     */
+    public static SaltyImage randomPixelTexture(final float width, final float height, final float pixelWidth, final float pixelHeight, Color... colors) {
+        final SaltyImage texture = SaltySystem.createPreferredImage(width, height);
+        final SaltyGraphics graphics = texture.getGraphics();
+        final List<Color> colorList = Arrays.asList(colors);
+        final int pixelCountWidth = (int) Math.ceil(width / pixelWidth);
+        final int pixelCountHeight = (int) Math.ceil(height / pixelHeight);
+
+        for (int i = 0; i < pixelCountHeight; i++) {
+            for (int k = 0; k < pixelCountWidth; k++) {
+                graphics.setColor(GeneralUtil.randomObjectFromList(colorList));
+                graphics.drawRect(k * pixelWidth, i * pixelWidth, pixelWidth, pixelHeight);
+            }
+        }
+
+        graphics.getGraphics2D().dispose();
+        return texture;
     }
 
     /**
