@@ -53,7 +53,7 @@ public class Spritesheet implements Flushable {
     }
 
     public Frame getFrame(int x, int y) {
-        return new Frame(image.getSubImage(--x * getSpriteWidth(), --y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
+        return new Frame(image.getSubImage(x * getSpriteWidth(), y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
     }
 
     public int getSpriteWidth() {
