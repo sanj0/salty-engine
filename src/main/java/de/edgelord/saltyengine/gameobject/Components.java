@@ -33,7 +33,7 @@ public abstract class Components {
     public static final String COLLIDER_COMPONENT = "de.edgelord.saltyengine.components.collider";
     public static final String CAMERA_COMPONENT = "de.edgelord.saltyengine.components.camera";
     public static final String GAME_COMPONENT = "de.edgelord.saltyengine.components.game";
-    public static final String MONO_BEHAVIOUR = "de.edgelord.saltyengine.components.monoBehaviour";
+    public static final String GAMEOBJECT_BEHAVIOUR = "de.edgelord.saltyengine.components.gameobjectBehaviour";
     public static final String GIF_RENDER = "de.edgelord.saltyengine.components.gifRender";
     public static final String EMITTER_COMPONENT = "de.edgelord.saltyengine.components.emitter";
 }
