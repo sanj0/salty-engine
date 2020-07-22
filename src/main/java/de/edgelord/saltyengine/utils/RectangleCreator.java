@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
+import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.io.serialization.DataWriter;
 import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Transform;
@@ -53,6 +54,20 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     private boolean downLeftMove = false;
     private boolean downRightMove = false;
 
+    /**
+     * A format string for the simple
+     * representation of the logged rects <p>
+     * <pre>
+     * %x - x
+     * %y - y
+     * %w - width
+     * %h - height
+     * </pre>
+     */
+    public static String format = "new Transform(%x, %y, %w, %h)";
+
+    private static StringBuilder simpleRepresentation = new StringBuilder();
+
     RectangleCreator() {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
     }
@@ -74,6 +89,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
             writer.addSpecies(rects);
             try {
                 writer.syncFile();
+                new FileWriter(SaltySystem.defaultOuterResource.getFileResource("rects_formatted.txt")).writeThrough(simpleRepresentation.toString());
                 System.out.println("Rects have been written to " + writer.getFile().getAbsolutePath());
             } catch (final IOException e) {
                 e.printStackTrace();
@@ -182,6 +198,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
         } else if (e.isShiftDown() || e.isAltDown()) {
             savedTransforms.add(currentTransform);
             rects.addTag("rect" + savedTransforms.size(), currentTransform.getX() + "f, " + currentTransform.getY() + "f, " + currentTransform.getWidth() + "f, " + currentTransform.getHeight() + "f");
+            simpleRepresentation.append(format()).append("\n");
             currentTransform = null;
         }
     }
@@ -199,5 +216,12 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     @Override
     public void mouseWheelMoved(final MouseEvent e) {
 
+    }
+
+    private String format() {
+        return format.replaceAll("%x", currentTransform.getX() + "f")
+                .replaceAll("%y", currentTransform.getY() + "f")
+                .replaceAll("%w", currentTransform.getWidth() + "f")
+                .replaceAll("%h", currentTransform.getHeight() + "f");
     }
 }
