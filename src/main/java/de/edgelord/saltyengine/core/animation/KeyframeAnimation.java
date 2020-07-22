@@ -59,7 +59,6 @@ public abstract class KeyframeAnimation {
      */
     public KeyframeAnimation(final List<Keyframe> keyframes) {
         this.keyframes = keyframes;
-
         add(0, 0);
     }
 
@@ -87,7 +86,6 @@ public abstract class KeyframeAnimation {
      * @return the next delta-step of the linear keyframe animation
      */
     public float nextDelta() {
-
         if (unCalculatedChanges) {
             System.out.println("Warning: There are un-calculated changes in a KeyframeAnimation!");
         }

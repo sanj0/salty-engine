@@ -25,7 +25,7 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 public class GameObjectBehaviour extends Component<GameObject> {
 
     public GameObjectBehaviour(final GameObject parent, final String name) {
-        super(parent, name, Components.MONO_BEHAVIOUR);
+        super(parent, name, Components.GAMEOBJECT_BEHAVIOUR);
     }
 
     @Override

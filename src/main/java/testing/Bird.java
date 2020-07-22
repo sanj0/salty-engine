@@ -48,10 +48,9 @@ public class Bird extends GameObject implements Serializable {
         spritesheetAnimation = new SpritesheetAnimation();
         spritesheet = new Spritesheet(image, getWidth(), getHeight());
 
-        spritesheetAnimation.setFrames(spritesheet.getFrames(new Coordinates(1, 1), new Coordinates(2, 2), new Coordinates(3, 2), new Coordinates(4, 1)));
+        spritesheetAnimation.setFrames(spritesheet.getFrames(new Coordinates(0, 0), new Coordinates(1, 1), new Coordinates(2, 1), new Coordinates(3, 0)));
 
         addComponent(new AnimationRender(this, "de.edgelord.saltyengine.testing.bird.animationRender", spritesheetAnimation, 90));
-
         getHitboxAsSimpleHitbox().setOffsetX(25);
         getHitboxAsSimpleHitbox().setOffsetY(12);
         getHitboxAsSimpleHitbox().setWidth(85);

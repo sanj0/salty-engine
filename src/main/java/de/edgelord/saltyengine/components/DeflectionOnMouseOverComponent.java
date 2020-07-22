@@ -22,7 +22,6 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
-import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
@@ -68,7 +67,6 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         keyframeAnimation.add(interval * 2, 0);
         keyframeAnimation.calculateAnimation();
 
-        final Dimensions currentDimensions = getParent().getDimensions();
         final Vector2f currentCentre = getParent().getTransform().getCentre();
         returnPosition = new Vector2f(currentCentre.getX(), currentCentre.getY());
     }

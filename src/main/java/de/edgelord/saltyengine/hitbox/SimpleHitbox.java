@@ -30,22 +30,18 @@ public class SimpleHitbox implements Hitbox {
     private float offsetX, offsetY;
 
     public SimpleHitbox(final GameObject parent, final float width, final float height, final float offsetX, final float offsetY) {
-
         this.parent = parent;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-
         this.transform = new Transform(new Vector2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
     }
 
     public void recalculate() {
-
         transform.setPosition(new Vector2f(parent.getPosition().getX() + offsetX, parent.getPosition().getY() + offsetY));
     }
 
     @Override
     public boolean collides(final GameObject other) {
-
         if (other.getHitbox() != null) {
             return transform.intersects(other.getHitbox().getTransform());
         } else {
