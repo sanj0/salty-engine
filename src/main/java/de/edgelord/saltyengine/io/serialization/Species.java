@@ -40,9 +40,12 @@ public class Species {
     }
 
     /**
-     * Returns the value of the given tag within the Species and all its subspecies
+     * Returns the value of the given tag within
+     * the Species and all its subspecies
      *
-     * @param tag the name of the tag whose value should be returned
+     * @param tag the name of the tag whose value
+     *            should be returned
+     *
      * @return the value of the given tag
      */
     public String getTagValue(final String tag) {
@@ -50,9 +53,13 @@ public class Species {
     }
 
     /**
-     * Returns the Species with the given name within the Species
+     * Returns the Species with the given name
+     * within the Species
      *
-     * @param species name of the Species wich should be returned and added to the list
+     * @param species name of the Species wich
+     *                should be returned and added
+     *                to the list
+     *
      * @return the Species with the given name
      */
     public Species getSubSpecies(final String species) {
@@ -64,10 +71,12 @@ public class Species {
     }
 
     /**
-     * Return the content of the Species and all its subspecies plus their head
-     * {name} content {*name}
+     * Return the content of the Species and all
+     * its subspecies plus their head {name}
+     * content {*name}
      *
-     * @return the complete syntax of the Species plus all its subspecies
+     * @return the complete syntax of the Species
+     * plus all its subspecies
      */
     public String getSyntax() {
         final StringBuilder syntax = new StringBuilder();
@@ -83,22 +92,30 @@ public class Species {
     }
 
     /**
-     * Adds a tag with the given name and value to the Species
-     * (name) value (*name)
+     * Adds a tag with the given name and value to
+     * the Species (name) value (*name)
      *
-     * @param tag   the name of the tag which should be added
-     * @param value the value of the tag which should be added
+     * @param tag   the name of the tag which
+     *              should be added
+     * @param value the value of the tag which
+     *              should be added
      */
     public void addTag(final String tag, final Object value) {
         content = "(" + tag + ")" + value.toString() + "(*" + tag + ")" + content;
     }
 
     /**
-     * Creates the Species with the given name within the Species and adds it to the list,
-     * which will be written to the file if requested and returns it.
+     * Creates the Species with the given name
+     * within the Species and adds it to the list,
+     * which will be written to the file if
+     * requested and returns it.
      *
-     * @param name name of the Species which should be returned and added to the list
-     * @return the created Species with the given name
+     * @param name name of the Species which
+     *             should be returned and added to
+     *             the list
+     *
+     * @return the created Species with the given
+     * name
      */
     public Species addSubSpecies(final String name) {
         final Species speciesToReturn = new Species(name, "");

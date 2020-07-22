@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 /**
- * The place for {@link de.edgelord.saltyengine.components.gfx.GFXComponent}s, both for single {@link de.edgelord.saltyengine.gameobject.GameObject}s
+ * The place for {@link de.edgelord.saltyengine.components.gfx.GFXComponent}s,
+ * both for single {@link de.edgelord.saltyengine.gameobject.GameObject}s
  * and the whole {@link de.edgelord.saltyengine.scene.Scene}.
  */
 package de.edgelord.saltyengine.components.gfx;

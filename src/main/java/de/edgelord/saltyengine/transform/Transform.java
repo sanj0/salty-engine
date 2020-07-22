@@ -22,7 +22,9 @@ import de.edgelord.saltyengine.utils.Directions;
 import java.awt.geom.Rectangle2D;
 
 /**
- * This class resembles a rectangle with a {@link #position}, {@link #dimensions} and a {@link #rotation}.
+ * This class resembles a rectangle with a {@link
+ * #position}, {@link #dimensions} and a {@link
+ * #rotation}.
  */
 public class Transform {
 
@@ -32,7 +34,8 @@ public class Transform {
     private Vector2f position;
 
     /**
-     * The {@link Dimensions} of this <code>Transform</code>.
+     * The {@link Dimensions} of this
+     * <code>Transform</code>.
      */
     private Dimensions dimensions;
 
@@ -60,6 +63,7 @@ public class Transform {
      * @param y      the y position
      * @param width  the width
      * @param height the height
+     *
      * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(final float x, final float y, final float width, final float height) {
@@ -67,9 +71,11 @@ public class Transform {
     }
 
     /**
-     * Constructs a new instance by adapting the values of the given {@link Rectangle2D}.
+     * Constructs a new instance by adapting the
+     * values of the given {@link Rectangle2D}.
      *
      * @param rect the rectangle
+     *
      * @see #Transform(Vector2f, Dimensions)
      */
     public Transform(final Rectangle2D rect) {
@@ -77,27 +83,36 @@ public class Transform {
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Vector2f#zero()} and {@link Dimensions#zero()}.
+     * Returns a new <code>Transform</code> with
+     * {@link Vector2f#zero()} and {@link
+     * Dimensions#zero()}.
      *
-     * @return a new <code>Transform</code> where everything is <code>0f</code>
+     * @return a new <code>Transform</code> where
+     * everything is <code>0f</code>
      */
     public static Transform zero() {
         return new Transform(Vector2f.zero(), Dimensions.zero());
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Vector2f#max()} and {@link Dimensions#max()}.
+     * Returns a new <code>Transform</code> with
+     * {@link Vector2f#max()} and {@link
+     * Dimensions#max()}.
      *
-     * @return a new <code>Transform</code> with max values for position and dimensions
+     * @return a new <code>Transform</code> with
+     * max values for position and dimensions
      */
     public static Transform max() {
         return new Transform(Vector2f.max(), Dimensions.max());
     }
 
     /**
-     * Returns a new <code>Transform</code> with {@link Vector2f#min()} and {@link Dimensions#min()}.
+     * Returns a new <code>Transform</code> with
+     * {@link Vector2f#min()} and {@link
+     * Dimensions#min()}.
      *
-     * @return a new <code>Transform</code> with min values for position and dimensions
+     * @return a new <code>Transform</code> with
+     * min values for position and dimensions
      */
     public static Transform min() {
         return new Transform(Vector2f.min(), Dimensions.min());
@@ -106,10 +121,15 @@ public class Transform {
     /**
      * Returns a new random <code>Transform</code>.
      *
-     * @param posMin the min value for the position
-     * @param posMax the max value for the position
-     * @param dimMin the min value for the dimensions
-     * @param dimMax the max value for the dimensions
+     * @param posMin the min value for the
+     *               position
+     * @param posMax the max value for the
+     *               position
+     * @param dimMin the min value for the
+     *               dimensions
+     * @param dimMax the max value for the
+     *               dimensions
+     *
      * @return a new random <code>Transform</code>
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
@@ -123,6 +143,7 @@ public class Transform {
      *
      * @param min the min value
      * @param max the max value
+     *
      * @return a new random <code>Transform</code>
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
@@ -132,11 +153,14 @@ public class Transform {
     }
 
     /**
-     * Returns whether the rectangle described by this <code>Transform</code> intersects the one
-     * of the given.
+     * Returns whether the rectangle described by
+     * this <code>Transform</code> intersects the
+     * one of the given.
      *
      * @param other the other Transform
-     * @return whether this Transform intersects the given one
+     *
+     * @return whether this Transform intersects
+     * the given one
      * @see Rectangle2D#intersects(Rectangle2D)
      */
     public boolean intersects(final Transform other) {
@@ -162,20 +186,27 @@ public class Transform {
     }
 
     /**
-     * Returns whether this transform is on screen or not, considering the position of the {@link Game#getCamera()}
+     * Returns whether this transform is on screen
+     * or not, considering the position of the
+     * {@link Game#getCamera()}
      *
-     * @return whether the rectangle described by this transform is inside the view of the {@link Game#getCamera() camera} or not
+     * @return whether the rectangle described by
+     * this transform is inside the view of the
+     * {@link Game#getCamera() camera} or not
      */
     public boolean isVisible() {
         return intersects(new Transform(Game.getCamera().getPosition(), Game.getGameDimensions()));
     }
 
     /**
-     * Returns true if the rectangle described by the given Transform is
-     * completely within this <code>Transform</code>.
+     * Returns true if the rectangle described by
+     * the given Transform is completely within
+     * this <code>Transform</code>.
      *
      * @param other the other <code>Transform</code>
-     * @return whether this rectangle contains the given
+     *
+     * @return whether this rectangle contains the
+     * given
      * @see Rectangle2D#contains(Rectangle2D)
      */
     public boolean contains(final Transform other) {
@@ -183,14 +214,19 @@ public class Transform {
     }
 
     /**
-     * Returns the relation between two non-intersecting <code>Transform</code>s;
+     * Returns the relation between two
+     * non-intersecting <code>Transform</code>s;
      * <code>this</code> and the given. <br>
-     * This method only considers the horizontal axis,
-     * so it'll return either {@link de.edgelord.saltyengine.utils.Directions.Direction#RIGHT}
+     * This method only considers the horizontal
+     * axis, so it'll return either {@link
+     * de.edgelord.saltyengine.utils.Directions.Direction#RIGHT}
      * or {@link de.edgelord.saltyengine.utils.Directions.Direction#LEFT}
      *
      * @param other another <code>Transform</code>
-     * @return the relation on the horizontal (x) axis between <code>this</code> and the given <code>Transform</code>
+     *
+     * @return the relation on the horizontal (x)
+     * axis between <code>this</code> and the
+     * given <code>Transform</code>
      */
     public Directions.Direction getFreeRelationX(final Transform other) {
 
@@ -204,14 +240,19 @@ public class Transform {
     }
 
     /**
-     * Returns the relation between two non-intersecting <code>Transform</code>s;
+     * Returns the relation between two
+     * non-intersecting <code>Transform</code>s;
      * <code>this</code> and the given. <br>
-     * This method only considers the vertical axis,
-     * so it'll return either {@link de.edgelord.saltyengine.utils.Directions.Direction#UP}
+     * This method only considers the vertical
+     * axis, so it'll return either {@link
+     * de.edgelord.saltyengine.utils.Directions.Direction#UP}
      * or {@link de.edgelord.saltyengine.utils.Directions.Direction#DOWN}
      *
      * @param other another <code>Transform</code>
-     * @return the relation on the vertical (y) axis between <code>this</code> and the given <code>Transform</code>
+     *
+     * @return the relation on the vertical (y)
+     * axis between <code>this</code> and the
+     * given <code>Transform</code>
      */
     public Directions.Direction getFreeRelationY(final Transform other) {
 
@@ -225,13 +266,19 @@ public class Transform {
     }
 
     /**
-     * This method returns the relation between this and the given {@link Transform} as a Direction.
-     * That'll only work properly if the two Transforms intersect.
+     * This method returns the relation between
+     * this and the given {@link Transform} as a
+     * Direction. That'll only work properly if
+     * the two Transforms intersect.
      *
-     * @param other the <code>Transform</code> from which the relation to
-     *              <code>this</code> will be returned
-     * @return the relation between the two {@link Transform}s as a Direction from
-     * the perspective of this <code>Transform</code>
+     * @param other the <code>Transform</code>
+     *              from which the relation to
+     *              <code>this</code> will be
+     *              returned
+     *
+     * @return the relation between the two {@link
+     * Transform}s as a Direction from the
+     * perspective of this <code>Transform</code>
      */
     public Directions.Direction getRelation(final Transform other) {
 
@@ -265,9 +312,11 @@ public class Transform {
     }
 
     /**
-     * Positions this <code>Transform</code> centre at the given {@link Vector2f}.
+     * Positions this <code>Transform</code>
+     * centre at the given {@link Vector2f}.
      *
-     * @param centre the next centre of this <code>Transform</code>
+     * @param centre the next centre of this
+     *               <code>Transform</code>
      */
     public void positionByCentre(final Vector2f centre) {
         final float centreShiftX = getWidth() / 2f;
@@ -276,10 +325,13 @@ public class Transform {
     }
 
     /**
-     * Returns the centre of the rectangle described by this <code>Transform</code>.
+     * Returns the centre of the rectangle
+     * described by this <code>Transform</code>.
      * <p>
-     * <code>centre(x) = getX() + getWidth() / 2f</code>
-     * <code>centre(y) = getY() + getHeight() / 2f</code>
+     * <code>centre(x) = getX() + getWidth() /
+     * 2f</code>
+     * <code>centre(y) = getY() + getHeight() /
+     * 2f</code>
      *
      * @return the centre of this <code>Transform</code>
      */
@@ -288,7 +340,9 @@ public class Transform {
     }
 
     /**
-     * Rotates this <code>Transform</code> to directly face the given {@link Vector2f point}.
+     * Rotates this <code>Transform</code> to
+     * directly face the given {@link Vector2f
+     * point}.
      *
      * @param point the point to rotate to
      */
@@ -297,10 +351,13 @@ public class Transform {
     }
 
     /**
-     * Calls {@link #rotateToPoint(Vector2f)} to make this <code>Transform</code> face the given point.
+     * Calls {@link #rotateToPoint(Vector2f)} to
+     * make this <code>Transform</code> face the
+     * given point.
      *
      * @param x the x position of the point
      * @param y the y position od the point
+     *
      * @see #rotateToPoint(Vector2f)
      */
     public void rotateToPoint(final float x, final float y) {
@@ -308,9 +365,13 @@ public class Transform {
     }
 
     /**
-     * Returns a {@link Rectangle2D} with the exact position and dimensions of this <code>Transform</code>.
+     * Returns a {@link Rectangle2D} with the
+     * exact position and dimensions of this
+     * <code>Transform</code>.
      *
-     * @return a {@link Rectangle2D} that resembles this <code>Transform</code> without rotation
+     * @return a {@link Rectangle2D} that
+     * resembles this <code>Transform</code>
+     * without rotation
      */
     public Rectangle2D getRect() {
         return new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
@@ -336,9 +397,11 @@ public class Transform {
     }
 
     /**
-     * Returns the width of this <code>Transform</code> rounded to an integer.
+     * Returns the width of this <code>Transform</code>
+     * rounded to an integer.
      *
-     * @return the width of this <code>Transform</code> rounded to an integer
+     * @return the width of this <code>Transform</code>
+     * rounded to an integer
      * @see Dimensions#getWidth()
      * @see Math#round(float)
      */
@@ -357,7 +420,8 @@ public class Transform {
     }
 
     /**
-     * Sets the height of the {@link #dimensions}.
+     * Sets the height of the {@link
+     * #dimensions}.
      *
      * @param height the new height
      */
@@ -366,9 +430,11 @@ public class Transform {
     }
 
     /**
-     * Returns the height of this <code>Transform</code> rounded to an integer.
+     * Returns the height of this <code>Transform</code>
+     * rounded to an integer.
      *
-     * @return the height of this <code>Transform</code> rounded to an integer
+     * @return the height of this <code>Transform</code>
+     * rounded to an integer
      * @see Dimensions#getHeight()
      * @see Math#round(float)
      */
@@ -389,7 +455,9 @@ public class Transform {
     /**
      * Sets the x position of this <code>Transform</code>.
      *
-     * @param x the new value of this <code>Transform</code>'s x position
+     * @param x the new value of this <code>Transform</code>'s
+     *          x position
+     *
      * @see Vector2f#setX(float)
      */
     public void setX(final float x) {
@@ -397,9 +465,11 @@ public class Transform {
     }
 
     /**
-     * Returns the maximum x value of this rectangle, which is {@code x + width}.
+     * Returns the maximum x value of this
+     * rectangle, which is {@code x + width}.
      *
-     * @return the maximum x value of the rectangle described by this Transform
+     * @return the maximum x value of the
+     * rectangle described by this Transform
      */
     public float getMaxX() {
         return getX() + getWidth();
@@ -418,7 +488,9 @@ public class Transform {
     /**
      * Sets the y position of this <code>Transform</code>.
      *
-     * @param y the new value of this <code>Transform</code>'s y position
+     * @param y the new value of this <code>Transform</code>'s
+     *          y position
+     *
      * @see Vector2f#setY(float)
      */
     public void setY(final float y) {
@@ -426,7 +498,9 @@ public class Transform {
     }
 
     /**
-     * @return the maximum y value of the rectangle described by this Transform. That position is
+     * @return the maximum y value of the
+     * rectangle described by this Transform. That
+     * position is
      * <p>
      * {@code y + height}
      */
@@ -435,9 +509,11 @@ public class Transform {
     }
 
     /**
-     * Returns the {@link #position} as {@link Coordinates}.
+     * Returns the {@link #position} as {@link
+     * Coordinates}.
      *
-     * @return {@link #position} as {@link Coordinates}
+     * @return {@link #position} as {@link
+     * Coordinates}
      * @see Vector2f#convertToCoordinates()
      */
     public Coordinates getCoordinates() {
@@ -445,9 +521,12 @@ public class Transform {
     }
 
     /**
-     * Returns the absolute position of the centre of rotation of this <code>Transform</code>'s {@link #rotation}.
+     * Returns the absolute position of the centre
+     * of rotation of this <code>Transform</code>'s
+     * {@link #rotation}.
      *
-     * @return the absolute position of the rotation of this <code>Transform</code>
+     * @return the absolute position of the
+     * rotation of this <code>Transform</code>
      * @see Rotation#getCentreAbsolute(Transform)
      */
     public Vector2f getRotationCentreAbsolute() {
@@ -455,7 +534,8 @@ public class Transform {
     }
 
     /**
-     * Returns the degrees by which this <code>Transform</code> is rotated.
+     * Returns the degrees by which this
+     * <code>Transform</code> is rotated.
      *
      * @return the rotation of this <code>Transform</code>
      * @see Rotation#getRotationDegrees()
@@ -465,7 +545,8 @@ public class Transform {
     }
 
     /**
-     * Sets the degrees by which this <code>Transform</code> is rotated.
+     * Sets the degrees by which this
+     * <code>Transform</code> is rotated.
      *
      * @param rotationDegrees the nex rotation
      */
@@ -474,7 +555,8 @@ public class Transform {
     }
 
     /**
-     * Returns the centre of {@link #rotation} relative to the {@link #position}.
+     * Returns the centre of {@link #rotation}
+     * relative to the {@link #position}.
      *
      * @return the relative rotation centre
      * @see Rotation#getCentre()
@@ -485,9 +567,12 @@ public class Transform {
     }
 
     /**
-     * Sets the centre of {@link #rotation} relative to the {@link #position}.
+     * Sets the centre of {@link #rotation}
+     * relative to the {@link #position}.
      *
-     * @param rotationCentre the nex relative rotation centre
+     * @param rotationCentre the nex relative
+     *                       rotation centre
+     *
      * @see Rotation#setCentre(Vector2f)
      */
     public void setRotationCentre(final Vector2f rotationCentre) {
@@ -495,7 +580,8 @@ public class Transform {
     }
 
     /**
-     * Sets the centre of {@link #rotation} to the centre.
+     * Sets the centre of {@link #rotation} to the
+     * centre.
      *
      * @see #setRotationCentre(Vector2f)
      * @see #getCentre()
@@ -516,7 +602,8 @@ public class Transform {
     /**
      * Sets {@link #position}.
      *
-     * @param position the new value of {@link #position}
+     * @param position the new value of {@link
+     *                 #position}
      */
     public void setPosition(final Vector2f position) {
         this.position = position;
@@ -534,7 +621,8 @@ public class Transform {
     /**
      * Sets {@link #dimensions}.
      *
-     * @param dimensions the new value of {@link #dimensions}
+     * @param dimensions the new value of {@link
+     *                   #dimensions}
      */
     public void setDimensions(final Dimensions dimensions) {
         this.dimensions = dimensions;
@@ -552,7 +640,8 @@ public class Transform {
     /**
      * Sets {@link #rotation}.
      *
-     * @param rotation the new value of {@link #rotation}
+     * @param rotation the new value of {@link
+     *                 #rotation}
      */
     public void setRotation(final Rotation rotation) {
         this.rotation = rotation;

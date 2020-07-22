@@ -42,18 +42,6 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     private static final Species rects = new Species("points");
     public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.RED, .25f);
     public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.BLUE, .25f);
-    private static DataWriter writer;
-    private final List<Transform> savedTransforms = new CopyOnWriteArrayList<>();
-    private final Transform origin = new Transform(0, 0, 30, 30);
-    private final Transform upRight = new Transform(0, 0, 30, 30);
-    private final Transform downLeft = new Transform(0, 0, 30, 30);
-    private final Transform downRight = new Transform(0, 0, 30, 30);
-    private Transform currentTransform = null;
-    private boolean originMove = false;
-    private boolean upRightMove = false;
-    private boolean downLeftMove = false;
-    private boolean downRightMove = false;
-
     /**
      * A format string for the simple
      * representation of the logged rects <p>
@@ -65,8 +53,18 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
      * </pre>
      */
     public static String format = "new Transform(%x, %y, %w, %h)";
-
-    private static StringBuilder simpleRepresentation = new StringBuilder();
+    private static DataWriter writer;
+    private static final StringBuilder simpleRepresentation = new StringBuilder();
+    private final List<Transform> savedTransforms = new CopyOnWriteArrayList<>();
+    private final Transform origin = new Transform(0, 0, 30, 30);
+    private final Transform upRight = new Transform(0, 0, 30, 30);
+    private final Transform downLeft = new Transform(0, 0, 30, 30);
+    private final Transform downRight = new Transform(0, 0, 30, 30);
+    private Transform currentTransform = null;
+    private boolean originMove = false;
+    private boolean upRightMove = false;
+    private boolean downLeftMove = false;
+    private boolean downRightMove = false;
 
     RectangleCreator() {
         super(DrawingPosition.AFTER_GAMEOBJECTS);

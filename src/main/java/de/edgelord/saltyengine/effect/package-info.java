@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for simple graphical stuff, such as the spritesheet-based {@link de.edgelord.saltyengine.effect.SpritesheetAnimation}.
+ * The package for simple graphical stuff, such as
+ * the spritesheet-based {@link de.edgelord.saltyengine.effect.SpritesheetAnimation}.
  */
 package de.edgelord.saltyengine.effect;

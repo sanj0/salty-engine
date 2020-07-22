@@ -23,8 +23,9 @@ import de.edgelord.saltyengine.effect.image.SaltyImage;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * A {@link de.edgelord.saltyengine.core.Component} that draws an
- * {@link #image} using its parent's position and size.
+ * A {@link de.edgelord.saltyengine.core.Component}
+ * that draws an {@link #image} using its parent's
+ * position and size.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class ImageRender extends RenderComponent {
@@ -33,12 +34,20 @@ public class ImageRender extends RenderComponent {
     private SaltyImage image;
 
     /**
-     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific Components out of a list
+     * The default super constructor for
+     * gameObjectComponent, which takes in the
+     * parent GameObject and the name, used as an
+     * id, for fishing specific Components out of
+     * a list
      *
-     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
-     * @param name   the id-name for this Component
-     * @param image  the image to be drawn by this component
+     * @param parent the parent of the Component,
+     *               so where to take the e.g. the
+     *               Coordinate info from
+     * @param name   the id-name for this
+     *               Component
+     * @param image  the image to be drawn by this
+     *               component
+     *
      * @see de.edgelord.saltyengine.core.Component
      */
     public ImageRender(final ComponentContainer parent, final String name, final SaltyImage image) {
@@ -66,7 +75,8 @@ public class ImageRender extends RenderComponent {
     /**
      * Sets {@link #image}.
      *
-     * @param image the new value of {@link #image}
+     * @param image the new value of {@link
+     *              #image}
      */
     public void setImage(final SaltyImage image) {
         this.image = image;

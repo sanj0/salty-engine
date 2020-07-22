@@ -69,10 +69,13 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     }
 
     /**
-     * A final implementation that calls both {@link #drawBackground(SaltyGraphics)} and {@link #drawForeground(SaltyGraphics)}
-     * with the graphics being prepared correctly.
+     * A final implementation that calls both
+     * {@link #drawBackground(SaltyGraphics)} and
+     * {@link #drawForeground(SaltyGraphics)} with
+     * the graphics being prepared correctly.
      *
-     * @param saltyGraphics the graphics ot render to.
+     * @param saltyGraphics the graphics ot render
+     *                      to.
      */
     @Override
     public final void draw(final SaltyGraphics saltyGraphics) {
@@ -85,14 +88,16 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     /**
      * Draws the background of the ui element.
      *
-     * @param saltyGraphics the graphics to draw to.
+     * @param saltyGraphics the graphics to draw
+     *                      to.
      */
     public abstract void drawBackground(SaltyGraphics saltyGraphics);
 
     /**
      * Draws the foreground of this ui element.
      *
-     * @param saltyGraphics the graphics to draw to.
+     * @param saltyGraphics the graphics to draw
+     *                      to.
      */
     public abstract void drawForeground(SaltyGraphics saltyGraphics);
 
@@ -187,8 +192,9 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     }
 
     /**
-     * This method is called whenever this <code>UIElement</code> is removed from
-     * a {@link UISystem}
+     * This method is called whenever this
+     * <code>UIElement</code> is removed from a
+     * {@link UISystem}
      */
     public void onRemove() {
     }
@@ -249,7 +255,8 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     /**
      * Sets {@link #focused}.
      *
-     * @param focused the new value of {@link #focused}
+     * @param focused the new value of {@link
+     *                #focused}
      */
     protected void setFocused(final boolean focused) {
         this.focused = focused;

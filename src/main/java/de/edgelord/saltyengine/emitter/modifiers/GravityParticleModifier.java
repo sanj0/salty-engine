@@ -21,7 +21,9 @@ import de.edgelord.saltyengine.emitter.ParticleModifier;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
- * A modifier that adds gravity to the particles by moving them down by {@link #speed} amounts of pixels.
+ * A modifier that adds gravity to the particles
+ * by moving them down by {@link #speed} amounts
+ * of pixels.
  */
 public class GravityParticleModifier implements ParticleModifier {
 

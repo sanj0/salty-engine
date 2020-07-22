@@ -22,17 +22,24 @@ import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**
- * A class that defines when a {@link GameObject} collides with another.
- * The default ({@link GameObject#getCollider() collider}) is a {@link HitboxCollider}.
+ * A class that defines when a {@link GameObject}
+ * collides with another. The default ({@link
+ * GameObject#getCollider() collider}) is a {@link
+ * HitboxCollider}.
  * <p>
- * This class is used by the {@link SceneCollider} of the {@link de.edgelord.saltyengine.scene.Scene}.
- * With the default one being {@link PrioritySceneCollider}, when checking the collision between two <code>GameObject</code>s,
- * the <code>Collider</code> with the higher {@link #priority} is taken.
+ * This class is used by the {@link SceneCollider}
+ * of the {@link de.edgelord.saltyengine.scene.Scene}.
+ * With the default one being {@link
+ * PrioritySceneCollider}, when checking the
+ * collision between two <code>GameObject</code>s,
+ * the <code>Collider</code> with the higher
+ * {@link #priority} is taken.
  */
 public abstract class Collider {
 
     /**
-     * The type of the default {@link HitboxCollider}.
+     * The type of the default {@link
+     * HitboxCollider}.
      */
     public static final int HITBOX_COLLIDER = 0;
     /**
@@ -59,7 +66,8 @@ public abstract class Collider {
     /**
      * The constructor.
      *
-     * @param priority the priority of this collider
+     * @param priority the priority of this
+     *                 collider
      * @param type     the name
      */
     public Collider(final int priority, final int type) {
@@ -68,23 +76,29 @@ public abstract class Collider {
     }
 
     /**
-     * Returns the {@link Collider} of the given two, that isn't <code>this</code>.
+     * Returns the {@link Collider} of the given
+     * two, that isn't <code>this</code>.
      *
      * @param collider1 the first collider
      * @param collider2 the second collider
-     * @return the one <code>Collider</code> from the given two that isn't <code>this</code>.
+     *
+     * @return the one <code>Collider</code> from
+     * the given two that isn't <code>this</code>.
      */
     public Collider getOtherCollider(final Collider collider1, final Collider collider2) {
         return collider1 != this ? collider1 : collider2;
     }
 
     /**
-     * Checks whether the two given {@link GameObject}s collide or not.
-     * Returns the result as {@link CollisionDetectionResult}.
+     * Checks whether the two given {@link
+     * GameObject}s collide or not. Returns the
+     * result as {@link CollisionDetectionResult}.
      *
      * @param object1 the first <code>GameObject</code>
      * @param object2 the second {@link GameObject}
-     * @return the result of the collision detection
+     *
+     * @return the result of the collision
+     * detection
      */
     public abstract CollisionDetectionResult checkCollision(GameObject object1, GameObject object2);
 

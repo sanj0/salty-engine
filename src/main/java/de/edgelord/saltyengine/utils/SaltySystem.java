@@ -43,8 +43,10 @@ public class SaltySystem {
     public static boolean writePrivilege = true;
 
     /**
-     * The type of image that should be used by e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
-     * the {@link ImageUtils} and the {@link PrimitiveRenderComponent}.
+     * The type of image that should be used by
+     * e.g. the {@link de.edgelord.saltyengine.displaymanager.stage.Stage},
+     * the {@link ImageUtils} and the {@link
+     * PrimitiveRenderComponent}.
      */
     public static ImageType preferredImageType = ImageType.BUFFERED;
 
@@ -55,8 +57,9 @@ public class SaltySystem {
     public static FontFactory defaultFontFactory;
 
     /**
-     * Determines whether to check for events on the cursor entering
-     * and leaving a {@link de.edgelord.saltyengine.gameobject.GameObject}
+     * Determines whether to check for events on
+     * the cursor entering and leaving a {@link
+     * de.edgelord.saltyengine.gameobject.GameObject}
      * which can be very performance-expensive.
      */
     public static boolean gameObjectMouseEventsAgent = true;
@@ -73,8 +76,10 @@ public class SaltySystem {
     }
 
     /**
-     * Sets the {@link Font} {@link #defaultFont} to all {@link UIElement}s in the
-     * current {@link de.edgelord.saltyengine.scene.Scene}s {@link de.edgelord.saltyengine.ui.UISystem}
+     * Sets the {@link Font} {@link #defaultFont}
+     * to all {@link UIElement}s in the current
+     * {@link de.edgelord.saltyengine.scene.Scene}s
+     * {@link de.edgelord.saltyengine.ui.UISystem}
      */
     public static void updateDefaultFontGlobally() {
         updateFontGlobally(defaultFont);
@@ -142,20 +147,28 @@ public class SaltySystem {
     }
 
     /**
-     * An enum to specify whether a {@link de.edgelord.saltyengine.effect.image.SaltyBufferedImage buffered image} or a
-     * {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage volatile image} should be used.
+     * An enum to specify whether a {@link
+     * de.edgelord.saltyengine.effect.image.SaltyBufferedImage
+     * buffered image} or a {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage
+     * volatile image} should be used.
      */
     public enum ImageType {
 
         /**
-         * A {@link de.edgelord.saltyengine.effect.image.SaltyBufferedImage buffered image} should be used. <br>
-         * While buffered images can potentially be a lot slower, they are stable and do not unload.
+         * A {@link de.edgelord.saltyengine.effect.image.SaltyBufferedImage
+         * buffered image} should be used. <br>
+         * While buffered images can potentially
+         * be a lot slower, they are stable and do
+         * not unload.
          */
         BUFFERED,
 
         /**
-         * A {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage volatile image} should be used <br>
-         * While volatile images can potentially be a lot faster, they are volatile and therefore can be unloaded at any time.
+         * A {@link de.edgelord.saltyengine.effect.image.SaltyVolatileImage
+         * volatile image} should be used <br>
+         * While volatile images can potentially
+         * be a lot faster, they are volatile and
+         * therefore can be unloaded at any time.
          */
         VOLATILE
     }

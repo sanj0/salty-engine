@@ -39,13 +39,22 @@ public class GifAnimationRender extends RenderComponent {
     private final Image gif;
 
     /**
-     * The only constructor taking in all the necessary parameters.
+     * The only constructor taking in all the
+     * necessary parameters.
      *
-     * @param parent      the parent (or rather container) of this component.
-     * @param name        the id-name of this component
+     * @param parent      the parent (or rather
+     *                    container) of this
+     *                    component.
+     * @param name        the id-name of this
+     *                    component
      * @param path        the path of the gif
-     * @param imageSource where to get the gif from.
-     * @throws MalformedURLException when there is an error with loading the gif
+     * @param imageSource where to get the gif
+     *                    from.
+     *
+     * @throws MalformedURLException when there is
+     *                               an error with
+     *                               loading the
+     *                               gif
      */
     public GifAnimationRender(final ComponentContainer parent, final String name, final String path, final Resource imageSource) throws MalformedURLException {
         super(parent, name, Components.GIF_RENDER);
@@ -56,9 +65,12 @@ public class GifAnimationRender extends RenderComponent {
     }
 
     /**
-     * Draws the animated gif with the file-specified frame rate at its parent's {@link de.edgelord.saltyengine.transform.Transform}.
+     * Draws the animated gif with the
+     * file-specified frame rate at its parent's
+     * {@link de.edgelord.saltyengine.transform.Transform}.
      *
-     * @param saltyGraphics the {@link SaltyGraphics} to render to.
+     * @param saltyGraphics the {@link SaltyGraphics}
+     *                      to render to.
      */
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {

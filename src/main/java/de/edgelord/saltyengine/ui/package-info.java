@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for everything related to an ui for a game.
+ * The package for everything related to an ui for
+ * a game.
  */
 package de.edgelord.saltyengine.ui;

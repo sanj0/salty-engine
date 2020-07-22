@@ -22,8 +22,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 /**
- * This class represents an audio resource.
- * It contains a {@link #clip} which is the actual audio, as well as a {@link #name}.
+ * This class represents an audio resource. It
+ * contains a {@link #clip} which is the actual
+ * audio, as well as a {@link #name}.
  *
  * @see AudioPlayer
  * @see Clip
@@ -46,17 +47,20 @@ public class Audio {
     private float volume = 1f;
 
     /**
-     * The pan value of te clip, ranging from
-     * -1f (completely left) to
-     * 1f (completely right)
+     * The pan value of te clip, ranging from -1f
+     * (completely left) to 1f (completely right)
      */
     private float pan = 0f;
 
     /**
-     * The only constructor taking in all necessary parameters.
-     * As a user of this library, you normally never use this, use {@link AudioPlayer#loadNewAudio(String, String)} instead.
+     * The only constructor taking in all
+     * necessary parameters. As a user of this
+     * library, you normally never use this, use
+     * {@link AudioPlayer#loadNewAudio(String,
+     * String)} instead.
      *
-     * @param name the {@link #name} of this audio
+     * @param name the {@link #name} of this
+     *             audio
      * @param clip the {@link #clip}
      */
     public Audio(final String name, final Clip clip) {
@@ -97,7 +101,8 @@ public class Audio {
     }
 
     /**
-     * Sets the position within the clip right to the beginning and plays it one time.
+     * Sets the position within the clip right to
+     * the beginning and plays it one time.
      *
      * @see Clip#start()
      * @see AudioPlayer
@@ -108,7 +113,9 @@ public class Audio {
     }
 
     /**
-     * Once called, this method will loop the clip from where ever it is at the moment and won't stop until
+     * Once called, this method will loop the clip
+     * from where ever it is at the moment and
+     * won't stop until
      * <code>stop()</code> is called.
      *
      * @see #stop()
@@ -149,7 +156,9 @@ public class Audio {
     }
 
     /**
-     * Sets the volume of the clip, 1f is the normal volume, 0f is completely quiet and 2f is twice as loud.
+     * Sets the volume of the clip, 1f is the
+     * normal volume, 0f is completely quiet and
+     * 2f is twice as loud.
      *
      * @param volume the new volume of this audio
      */

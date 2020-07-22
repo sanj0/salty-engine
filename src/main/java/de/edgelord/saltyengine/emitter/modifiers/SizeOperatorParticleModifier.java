@@ -20,12 +20,15 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * Does arithmetical operations with {@link #factorDimensions} and the dimensions of each {@link Particle}.
+ * Does arithmetical operations with {@link
+ * #factorDimensions} and the dimensions of each
+ * {@link Particle}.
  */
 public class SizeOperatorParticleModifier extends SpeedOperatorParticleModifier {
 
     /**
-     * The {@link Dimensions} that are used for the operations.
+     * The {@link Dimensions} that are used for
+     * the operations.
      */
     private Dimensions factorDimensions;
 

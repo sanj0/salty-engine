@@ -30,20 +30,25 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Static fields and methods for serializing and deserializing
- * data easily within the engine.
+ * Static fields and methods for serializing and
+ * deserializing data easily within the engine.
  */
 public class Serializer {
 
     private static final List<Serializable> consumer = new ArrayList<>();
     /**
-     * The name of the file this process should be saving the data to when the display is closing (only works when using
-     * {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager} as the {@link de.edgelord.saltyengine.core.Host}, which is default).
-     * This is to be relative and without any file extensions.
+     * The name of the file this process should be
+     * saving the data to when the display is
+     * closing (only works when using {@link
+     * de.edgelord.saltyengine.displaymanager.display.DisplayManager}
+     * as the {@link de.edgelord.saltyengine.core.Host},
+     * which is default). This is to be relative
+     * and without any file extensions.
      */
     private static String saveFileName = "save0";
     /**
-     * Whether to add a checksum to the file or not
+     * Whether to add a checksum to the file or
+     * not
      */
     private static boolean addChecksum = true;
     private static MessageDigest hashCreator;
@@ -131,35 +136,50 @@ public class Serializer {
     }
 
     /**
-     * Serializes all {@link Serializable}s within {@link #consumer} in a file with the given name relative to a hidden
-     * {@link OuterResource}.
-     * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
+     * Serializes all {@link Serializable}s within
+     * {@link #consumer} in a file with the given
+     * name relative to a hidden {@link
+     * OuterResource}. The extension of the file
+     * will be automatically added as {@link
+     * DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
-     * @throws IOException when the I/O process with the file fails
+     *
+     * @throws IOException when the I/O process
+     *                     with the file fails
      */
     public static void doSerialization(final String name) throws IOException {
         serialize(new DataWriter(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
     }
 
     /**
-     * Calls {@link #doSerialization(String)} with {@link #saveFileName} as the file name.
+     * Calls {@link #doSerialization(String)} with
+     * {@link #saveFileName} as the file name.
      *
-     * @throws IOException when the I/O process with the file fails
+     * @throws IOException when the I/O process
+     *                     with the file fails
      */
     public static void doSerialization() throws IOException {
         doSerialization(saveFileName);
     }
 
     /**
-     * Deserialize all {@link Serializable}s within {@link #consumer} from a file with the given name relative to a
-     * hidden {@link OuterResource}.
-     * The extension of the file will be automatically added as {@link DataReader#SDB_FILE_EXTENSION}.
+     * Deserialize all {@link Serializable}s
+     * within {@link #consumer} from a file with
+     * the given name relative to a hidden {@link
+     * OuterResource}. The extension of the file
+     * will be automatically added as {@link
+     * DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
-     * @return whether the savefile is corrupt or not. True means that the savefile was changed after the last writing from Salty Engine.
-     * If there wasn't a checksum file, it return true.
-     * @throws IOException when the I/O process with the file fails
+     *
+     * @return whether the savefile is corrupt or
+     * not. True means that the savefile was
+     * changed after the last writing from Salty
+     * Engine. If there wasn't a checksum file, it
+     * return true.
+     * @throws IOException when the I/O process
+     *                     with the file fails
      */
     public static boolean doDeserialization(final String name) throws IOException {
 
@@ -174,10 +194,15 @@ public class Serializer {
     }
 
     /**
-     * Calls {@link #doDeserialization(String)} with {@link #saveFileName} as the file name.
+     * Calls {@link #doDeserialization(String)}
+     * with {@link #saveFileName} as the file
+     * name.
      *
-     * @return whether the savefile is corrupt or not. If there wasn't a checksum file, it return false.
-     * @throws IOException when the I/O process with the file fails
+     * @return whether the savefile is corrupt or
+     * not. If there wasn't a checksum file, it
+     * return false.
+     * @throws IOException when the I/O process
+     *                     with the file fails
      */
     public static boolean doDeserialization() throws IOException {
         return doDeserialization(saveFileName);

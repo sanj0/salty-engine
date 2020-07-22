@@ -44,21 +44,25 @@ public class DataWriter {
     }
 
     /**
-     * Adds the given Species to the list of Species which will be written
-     * to the file when requested
+     * Adds the given Species to the list of
+     * Species which will be written to the file
+     * when requested
      *
-     * @param species the Species which should be added to the list
+     * @param species the Species which should be
+     *                added to the list
      */
     public void addSpecies(final Species species) {
         speciesList.add(species);
     }
 
     /**
-     * Writes the content of all Species from the list and their
-     * subspecies to the file. With that, all existing content of the file
-     * will be overwritten.
+     * Writes the content of all Species from the
+     * list and their subspecies to the file. With
+     * that, all existing content of the file will
+     * be overwritten.
      *
-     * @throws IOException when the file could not be written to
+     * @throws IOException when the file could not
+     *                     be written to
      */
     public void syncFile() throws IOException {
         final StringBuilder contentBuilder = new StringBuilder();

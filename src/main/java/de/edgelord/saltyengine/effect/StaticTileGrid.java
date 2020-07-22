@@ -36,9 +36,12 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * This is a grid of tiles, which is static, that means it cannot be changed after it was build once.
- * It is a collection of {@link Coordinates} referring each to a BufferedImage.
- * You build the grid using {@link #buildTileGrid(HashMap)}, a example usage:
+ * This is a grid of tiles, which is static, that
+ * means it cannot be changed after it was build
+ * once. It is a collection of {@link Coordinates}
+ * referring each to a BufferedImage. You build
+ * the grid using {@link #buildTileGrid(HashMap)},
+ * a example usage:
  *
  * <pre>
  *     {@code
@@ -65,16 +68,21 @@ import java.util.Map;
  * <p>
  * That example would build a grid like that:
  * <p>
- * | grass | grass | grass | <br>
- * | dirt  | dirt  | dirt  | <br>
- * | dirt  | dirt  | dirt  | <br>
+ * | grass | grass | grass | <br> | dirt  | dirt
+ * | dirt  | <br> | dirt  | dirt  | dirt  | <br>
  * <p>
- * All images will be drawn with {@link #tileSize}. <br>
- * This class extends {@link DrawingRoutine}, which means that you can add it to a {@link de.edgelord.saltyengine.scene.Scene} using
- * {@link de.edgelord.saltyengine.scene.Scene#addDrawingRoutine(DrawingRoutine)}, and you can also set the {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition}
- * in the constructor. If not, the default will be {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition#BEFORE_GAMEOBJECTS}.
+ * All images will be drawn with {@link
+ * #tileSize}. <br> This class extends {@link
+ * DrawingRoutine}, which means that you can add
+ * it to a {@link de.edgelord.saltyengine.scene.Scene}
+ * using {@link de.edgelord.saltyengine.scene.Scene#addDrawingRoutine(DrawingRoutine)},
+ * and you can also set the {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition}
+ * in the constructor. If not, the default will be
+ * {@link de.edgelord.saltyengine.gameobject.DrawingRoutine.DrawingPosition#BEFORE_GAMEOBJECTS}.
  * <p>
- * The first tile (0, 0) will be drawn at the position passed into the constructor, every other tiles will be drawn relative to that one,
+ * The first tile (0, 0) will be drawn at the
+ * position passed into the constructor, every
+ * other tiles will be drawn relative to that one,
  * like shown in the example above.
  */
 public abstract class StaticTileGrid extends DrawingRoutine {
@@ -109,13 +117,20 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Reads a Tilemap file created with Salty Tilemap Creator
+     * Reads a Tilemap file created with Salty
+     * Tilemap Creator
      *
      * @param stm             the file
-     * @param position        the position of the tilemap in user-space
-     * @param drawingPosition either to draw it before or after the {@link GameObject}s etc.
+     * @param position        the position of the
+     *                        tilemap in user-space
+     * @param drawingPosition either to draw it
+     *                        before or after the
+     *                        {@link GameObject}s
+     *                        etc.
+     *
      * @return a new {@link StaticTileGrid}
-     * @throws IOException when the file can't be read
+     * @throws IOException when the file can't be
+     *                     read
      */
     public static StaticTileGrid readSTM(final File stm, final Vector2f position, final DrawingPosition drawingPosition) throws IOException {
 
@@ -202,15 +217,25 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Fills a specific rectangular "area" within the given HashMap with the given {@link SaltyImage}
-     * The "area" starts at the given {@link Coordinates} and ends after the given width and the given height was reached.
-     * You can use this within {@link #buildTileGrid(HashMap)}
+     * Fills a specific rectangular "area" within
+     * the given HashMap with the given {@link
+     * SaltyImage} The "area" starts at the given
+     * {@link Coordinates} and ends after the
+     * given width and the given height was
+     * reached. You can use this within {@link
+     * #buildTileGrid(HashMap)}
      *
      * @param grid         the HasMpa to fill
-     * @param tile         the image with which the area is to be filled
-     * @param startingTile the tile which is the upper left corner of the rectangle
-     * @param width        the width of the rectangle
-     * @param height       the height of the rectangle
+     * @param tile         the image with which
+     *                     the area is to be
+     *                     filled
+     * @param startingTile the tile which is the
+     *                     upper left corner of
+     *                     the rectangle
+     * @param width        the width of the
+     *                     rectangle
+     * @param height       the height of the
+     *                     rectangle
      */
     public void fillArea(final HashMap<Coordinates, SaltyImage> grid, final SaltyImage tile, final Coordinates startingTile, final int width, final int height) {
 
@@ -230,13 +255,22 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Adds an {@link EmptyGameObject} starting at the left upper corner of the tile with the given coordinates
-     * and with the given size in tiles to the given scene.
+     * Adds an {@link EmptyGameObject} starting at
+     * the left upper corner of the tile with the
+     * given coordinates and with the given size
+     * in tiles to the given scene.
      *
-     * @param tilePosition the tile which is the starting point for the hitbox
-     * @param size         the size (measured in tile - not in pixels) for the hitbox
-     * @param scene        the scene the GameObject is to be added to
-     * @return the created and already added {@link EmptyGameObject}
+     * @param tilePosition the tile which is the
+     *                     starting point for the
+     *                     hitbox
+     * @param size         the size (measured in
+     *                     tile - not in pixels)
+     *                     for the hitbox
+     * @param scene        the scene the GameObject
+     *                     is to be added to
+     *
+     * @return the created and already added
+     * {@link EmptyGameObject}
      */
     public GameObject addHitbox(final Coordinates tilePosition, final Dimensions size, final Scene scene) {
         final Vector2f tilePos = getTilePosition(tilePosition, true);
@@ -251,13 +285,21 @@ public abstract class StaticTileGrid extends DrawingRoutine {
     }
 
     /**
-     * Calls {@link #addHitbox(Coordinates, Dimensions, Scene)} by parsing the given params to the needed ones
+     * Calls {@link #addHitbox(Coordinates,
+     * Dimensions, Scene)} by parsing the given
+     * params to the needed ones
      *
-     * @param tileX  the x position of the starting tile
-     * @param tileY  the y position of the starting tile
-     * @param width  the width (measured in tiles)
-     * @param height the height (measured in tiles)
-     * @param scene  the Scene the hitbox is to be added to
+     * @param tileX  the x position of the
+     *               starting tile
+     * @param tileY  the y position of the
+     *               starting tile
+     * @param width  the width (measured in
+     *               tiles)
+     * @param height the height (measured in
+     *               tiles)
+     * @param scene  the Scene the hitbox is to be
+     *               added to
+     *
      * @return the added {@link EmptyGameObject}
      */
     public GameObject addHitbox(final int tileX, final int tileY, final int width, final int height, final Scene scene) {

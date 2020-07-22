@@ -24,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * This class helps reading fonts from the resources from a TRUETYPE_FONT-file (*.ttf)
+ * This class helps reading fonts from the
+ * resources from a TRUETYPE_FONT-file (*.ttf)
  */
 public class FontFactory extends Factory {
 
@@ -33,14 +34,24 @@ public class FontFactory extends Factory {
     }
 
     /**
-     * Returns a new {@link Font} read from the *.ttf file with the given
-     * relative path and derives it with the given size.
+     * Returns a new {@link Font} read from the
+     * *.ttf file with the given relative path and
+     * derives it with the given size.
      *
-     * @param relativePath the relative path to *.ttf file
-     * @param size         the size of the returned font
-     * @return the {@link Font} read from the given file, derived with the given size
-     * @throws IOException         when the file is not readable or does not exist
-     * @throws FontFormatException when the font format is not TTF
+     * @param relativePath the relative path to
+     *                     *.ttf file
+     * @param size         the size of the returned
+     *                     font
+     *
+     * @return the {@link Font} read from the
+     * given file, derived with the given size
+     * @throws IOException         when the file
+     *                             is not readable
+     *                             or does not
+     *                             exist
+     * @throws FontFormatException when the font
+     *                             format is not
+     *                             TTF
      */
     public Font getFont(final String relativePath, final float size) throws IOException, FontFormatException {
         final File fontFile = getResource().getFileResource(relativePath);
@@ -49,12 +60,21 @@ public class FontFactory extends Factory {
     }
 
     /**
-     * Loads a new {@link Font} from the given *.ttf file and stores it in {@link SaltySystem#defaultFont}
+     * Loads a new {@link Font} from the given
+     * *.ttf file and stores it in {@link
+     * SaltySystem#defaultFont}
      *
-     * @param relativePath the relative path to the ttf file
+     * @param relativePath the relative path to
+     *                     the ttf file
      * @param size         the size of the defaultFont
-     * @throws IOException         when the file is not readable or does not exist
-     * @throws FontFormatException when the font format is not TTF
+     *
+     * @throws IOException         when the file
+     *                             is not readable
+     *                             or does not
+     *                             exist
+     * @throws FontFormatException when the font
+     *                             format is not
+     *                             TTF
      * @see #getFont(String, float)
      */
     public void loadFontToDefault(final String relativePath, final float size) throws IOException, FontFormatException {

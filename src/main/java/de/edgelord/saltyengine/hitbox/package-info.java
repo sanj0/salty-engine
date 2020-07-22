@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The {@link de.edgelord.saltyengine.hitbox.Hitbox} interface and all available implementations.
+ * The {@link de.edgelord.saltyengine.hitbox.Hitbox}
+ * interface and all available implementations.
  */
 package de.edgelord.saltyengine.hitbox;

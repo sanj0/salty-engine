@@ -52,7 +52,7 @@ public class Spritesheet implements Flushable {
         return frames;
     }
 
-    public Frame getFrame(int x, int y) {
+    public Frame getFrame(final int x, final int y) {
         return new Frame(image.getSubImage(x * getSpriteWidth(), y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
     }
 
@@ -75,7 +75,8 @@ public class Spritesheet implements Flushable {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
         final Spritesheet that = (Spritesheet) o;
         return spriteWidth == that.spriteWidth &&
                 spriteHeight == that.spriteHeight &&

@@ -26,9 +26,13 @@ import java.util.List;
 import java.util.*;
 
 /**
- * Adds for every {@link Particle} whose rendering process is prepared by this context a new profile to {@link #profiles}
- * with a new random {@link Color} from {@link #colors} and uses it for each next request for this particle.
- * -- every <code>Particle</code> has a random <code>Color</code> from {@link #colors}
+ * Adds for every {@link Particle} whose rendering
+ * process is prepared by this context a new
+ * profile to {@link #profiles} with a new random
+ * {@link Color} from {@link #colors} and uses it
+ * for each next request for this particle. --
+ * every <code>Particle</code> has a random
+ * <code>Color</code> from {@link #colors}
  */
 public class RandomColorProfileParticleRenderContext extends ParticleRenderContext {
 
@@ -43,7 +47,9 @@ public class RandomColorProfileParticleRenderContext extends ParticleRenderConte
     private final List<Color> colors = new ArrayList<>();
 
     /**
-     * Constructs this context with the {@link Color}s from the given vararg added to {@link #colors}
+     * Constructs this context with the {@link
+     * Color}s from the given vararg added to
+     * {@link #colors}
      * <p>
      * Examples:
      *
@@ -57,7 +63,8 @@ public class RandomColorProfileParticleRenderContext extends ParticleRenderConte
      *     }
      * </pre>
      *
-     * @param colors colors to be used, each separated with a comma
+     * @param colors colors to be used, each
+     *               separated with a comma
      */
     public RandomColorProfileParticleRenderContext(final Color... colors) {
         super(Color.BLACK, Color.BLACK, new BasicStroke());
@@ -71,7 +78,7 @@ public class RandomColorProfileParticleRenderContext extends ParticleRenderConte
         if (profiles.containsKey(subject)) {
             graphics.setColor(profiles.get(subject));
         } else {
-            final Color color = (Color) GeneralUtil.randomObjectFromList(colors);
+            final Color color = GeneralUtil.randomObjectFromList(colors);
             profiles.put(subject, color);
             graphics.setColor(color);
         }

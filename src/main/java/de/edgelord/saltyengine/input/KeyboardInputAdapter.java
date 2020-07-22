@@ -19,9 +19,10 @@ package de.edgelord.saltyengine.input;
 import java.awt.event.KeyEvent;
 
 /**
- * An abstract adapter class for receiving keyboard events.
- * The methods in this class are empty. This class exists as
- * convenience for creating {@link KeyboardInputHandler} objects.
+ * An abstract adapter class for receiving
+ * keyboard events. The methods in this class are
+ * empty. This class exists as convenience for
+ * creating {@link KeyboardInputHandler} objects.
  */
 public abstract class KeyboardInputAdapter implements KeyboardInputHandler {
 

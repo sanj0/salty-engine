@@ -28,9 +28,11 @@ public class WindowClosingHooks {
     }
 
     /**
-     * Adds a true shutdown hook which is executed when the JVM shuts down.
+     * Adds a true shutdown hook which is executed
+     * when the JVM shuts down.
      *
-     * @param runnable what to run when the JVM is shutting down
+     * @param runnable what to run when the JVM is
+     *                 shutting down
      */
     public static void addShutdownHook(final Runnable runnable) {
         Runtime.getRuntime().addShutdownHook(new Thread(runnable));

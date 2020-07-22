@@ -19,20 +19,26 @@ package de.edgelord.saltyengine.emitter;
 import java.util.List;
 
 /**
- * An interface that can modify individual {@link Particle}s in any way, like e.g. its speed or size or even manipulate it directly by moving it.
- * An {@link EmitterComponent} has a list of them stored in and used from {@link EmitterComponent#getModifierStack()}.
+ * An interface that can modify individual {@link
+ * Particle}s in any way, like e.g. its speed or
+ * size or even manipulate it directly by moving
+ * it. An {@link EmitterComponent} has a list of
+ * them stored in and used from {@link
+ * EmitterComponent#getModifierStack()}.
  */
 public interface ParticleModifier {
 
     /**
      * Modifies a single {@link Particle}.
      *
-     * @param particle the <code>Particle</code> to be modified.
+     * @param particle the <code>Particle</code>
+     *                 to be modified.
      */
     void modifyParticle(Particle particle);
 
     /**
-     * Calls {@link #modifyParticle(Particle)} for every {@link Particle} in the given list.
+     * Calls {@link #modifyParticle(Particle)} for
+     * every {@link Particle} in the given list.
      *
      * @param particles the particles to modify.
      */

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 /**
- * Everything related to {@link de.edgelord.saltyengine.resource.Resource}, an interface to load resources from within the jar
- * ({@link de.edgelord.saltyengine.resource.InnerResource}) and from the filesystem ({@link de.edgelord.saltyengine.resource.OuterResource}).
+ * Everything related to {@link de.edgelord.saltyengine.resource.Resource},
+ * an interface to load resources from within the
+ * jar ({@link de.edgelord.saltyengine.resource.InnerResource})
+ * and from the filesystem ({@link de.edgelord.saltyengine.resource.OuterResource}).
  */
 package de.edgelord.saltyengine.resource;

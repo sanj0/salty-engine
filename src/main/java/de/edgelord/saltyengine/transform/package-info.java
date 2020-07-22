@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for the {@link de.edgelord.saltyengine.transform.Transform} and all its components.
+ * The package for the {@link de.edgelord.saltyengine.transform.Transform}
+ * and all its components.
  */
 package de.edgelord.saltyengine.transform;

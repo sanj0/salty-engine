@@ -22,7 +22,9 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * An oval particle whose default {@link de.edgelord.saltyengine.transform.Dimensions} is {@link #DEFAULT_DIMENSIONS}.
+ * An oval particle whose default {@link
+ * de.edgelord.saltyengine.transform.Dimensions}
+ * is {@link #DEFAULT_DIMENSIONS}.
  */
 public class OvalParticle extends Particle {
 

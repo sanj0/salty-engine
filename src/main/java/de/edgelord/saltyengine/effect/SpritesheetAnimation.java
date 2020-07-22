@@ -79,7 +79,8 @@ public class SpritesheetAnimation {
     /**
      * Sets {@link #currentFrame}.
      *
-     * @param currentFrame the new value of {@link #currentFrame}
+     * @param currentFrame the new value of {@link
+     *                     #currentFrame}
      */
     public void setCurrentFrame(final int currentFrame) {
         this.currentFrame = currentFrame;

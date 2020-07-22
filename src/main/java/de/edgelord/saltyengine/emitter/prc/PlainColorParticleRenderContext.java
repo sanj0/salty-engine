@@ -23,8 +23,9 @@ import de.edgelord.saltyengine.emitter.ParticleRenderContext;
 import java.awt.*;
 
 /**
- * A {@link ParticleRenderContext} that renders the {@link Particle}s with one color.
- * That color is to be set in the constructor.
+ * A {@link ParticleRenderContext} that renders
+ * the {@link Particle}s with one color. That
+ * color is to be set in the constructor.
  */
 public class PlainColorParticleRenderContext extends ParticleRenderContext {
 

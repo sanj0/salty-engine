@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 /**
- * The core-package for physics-related stuff except for the {@link de.edgelord.saltyengine.components.SimplePhysicsComponent} itself.
+ * The core-package for physics-related stuff
+ * except for the {@link de.edgelord.saltyengine.components.SimplePhysicsComponent}
+ * itself.
  */
 package de.edgelord.saltyengine.core.physics;

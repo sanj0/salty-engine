@@ -20,7 +20,8 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameConfig;
 
 /**
- * This is an example for the main class of a game.
+ * This is an example for the main class of a
+ * game.
  */
 public class ExampleMain extends Game {
 

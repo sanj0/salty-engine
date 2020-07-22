@@ -90,7 +90,8 @@ public class Coordinates {
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (!(o instanceof Coordinates)) return false;
+        if (!(o instanceof Coordinates))
+            return false;
         final Coordinates that = (Coordinates) o;
         return x == that.x &&
                 y == that.y;

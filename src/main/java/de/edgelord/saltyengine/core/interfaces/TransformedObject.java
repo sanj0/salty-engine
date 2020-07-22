@@ -104,7 +104,9 @@ public interface TransformedObject {
     }
 
     /**
-     * Moves the object by the give amount in the direction it is facing according to the {@link #getRotation()}
+     * Moves the object by the give amount in the
+     * direction it is facing according to the
+     * {@link #getRotation()}
      *
      * @param delta the distance for the movement
      */
@@ -122,7 +124,8 @@ public interface TransformedObject {
     /**
      * **EXPERIMENTAL**
      *
-     * @return the cartesian coordinates for the current rotation
+     * @return the cartesian coordinates for the
+     * current rotation
      */
     default Vector2f getCartesianCoordinates2f() {
         return new Vector2f((float) Math.cos(getRotationDegrees()), (float) Math.sin(getRotationDegrees()));

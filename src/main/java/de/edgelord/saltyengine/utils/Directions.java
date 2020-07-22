@@ -21,10 +21,13 @@ public class Directions {
     private int directions;
 
     /**
-     * This method is used for mirroring Directions, for example for input Direction.RIGHT,
-     * it would return Direction.LEFT.
+     * This method is used for mirroring
+     * Directions, for example for input
+     * Direction.RIGHT, it would return
+     * Direction.LEFT.
      *
      * @param direction the Direction to mirror
+     *
      * @return the mirrored Direction
      */
     public static Direction mirrorDirection(final Direction direction) {
@@ -47,10 +50,14 @@ public class Directions {
     }
 
     /**
-     * This method mirrors all the {@link Direction}s that the given {@link Directions} has and returns a new
-     * instance of <code>Directions</code> that contains all of them.
+     * This method mirrors all the {@link
+     * Direction}s that the given {@link
+     * Directions} has and returns a new instance
+     * of <code>Directions</code> that contains
+     * all of them.
      *
      * @param directions the directions to mirror
+     *
      * @return the mirrored directions
      */
     public static Directions mirrorDirections(final Directions directions) {
@@ -77,10 +84,14 @@ public class Directions {
     }
 
     /**
-     * This method is used for mirroring BasicDirections, for example for lastInput BasicDirection.y,
-     * it would return BasicDirection.x.
+     * This method is used for mirroring
+     * BasicDirections, for example for lastInput
+     * BasicDirection.y, it would return
+     * BasicDirection.x.
      *
-     * @param direction The BasicDirection to mirror
+     * @param direction The BasicDirection to
+     *                  mirror
+     *
      * @return The mirrored BasicDirection
      */
     public static BasicDirection mirrorBasicDirection(final BasicDirection direction) {

@@ -23,26 +23,41 @@ import de.edgelord.saltyengine.transform.Vector2f;
 public interface CentrePositionProvider {
 
     /**
-     * This method returns the centre position for the given width on the x axis of the coordinates system.
-     * A simple implementation would e.g. be:
+     * This method returns the centre position for
+     * the given width on the x axis of the
+     * coordinates system. A simple implementation
+     * would e.g. be:
      *
-     * <code>return (float) (this.width / 2) - (width / 2)</code>
-     * assuming <code>this.width</code> is the width of the coordinates system.
+     * <code>return (float) (this.width / 2) -
+     * (width / 2)</code> assuming <code>this.width</code>
+     * is the width of the coordinates system.
      *
-     * @param width the width for which to return the centre position on the x axis
-     * @return the centre position on the x axis for the given width
+     * @param width the width for which to return
+     *              the centre position on the x
+     *              axis
+     *
+     * @return the centre position on the x axis
+     * for the given width
      */
     float getHorizontalCentrePosition(float width);
 
     /**
-     * This method returns the centre position for the given height on the y axis of the coordinates system.
-     * A simple implementation would e.g. be:
+     * This method returns the centre position for
+     * the given height on the y axis of the
+     * coordinates system. A simple implementation
+     * would e.g. be:
      *
-     * <code>return (float) (this.height / 2) - (height / 2)</code>
-     * assuming <code>this.height</code> is the height of the coordinates system.
+     * <code>return (float) (this.height / 2) -
+     * (height / 2)</code>
+     * assuming <code>this.height</code> is the
+     * height of the coordinates system.
      *
-     * @param height the width for which to return the centre position on the y axis
-     * @return the centre position on the x axis for the given height
+     * @param height the width for which to return
+     *               the centre position on the y
+     *               axis
+     *
+     * @return the centre position on the x axis
+     * for the given height
      */
     float getVerticalCentrePosition(float height);
 

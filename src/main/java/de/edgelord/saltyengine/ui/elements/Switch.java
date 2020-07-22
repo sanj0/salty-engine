@@ -26,40 +26,58 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
- * A simple <code>UIElement</code> that works like a switch. <br>
- * It has - like a switch - two states, held by {@link #active}. <br>
- * When this <code>UIElement</code> is clicked on, its states changes to the opposite of the state before. <br>
- * The by default empty method {@link #stateChanged()} is called every time the state changes. <br>
- * The {@link #getBackgroundColor() background color} of this element changes according to its state to either {@link #activatedColor} or {@link #deactivatedColor}.
+ * A simple <code>UIElement</code> that works like
+ * a switch. <br> It has - like a switch - two
+ * states, held by {@link #active}. <br> When
+ * this
+ * <code>UIElement</code> is clicked on, its
+ * states changes to the opposite of the state
+ * before. <br> The by default empty method {@link
+ * #stateChanged()} is called every time the state
+ * changes. <br> The {@link #getBackgroundColor()
+ * background color} of this element changes
+ * according to its state to either {@link
+ * #activatedColor} or {@link #deactivatedColor}.
  */
 public class Switch extends UIElement {
 
     /**
-     * The color for the background for when the switch is {@link #active}.
+     * The color for the background for when the
+     * switch is {@link #active}.
      */
     private Color activatedColor = ColorUtil.ACTIVE_GREEN;
 
     /**
-     * The color for the background for when the switch is not {@link #active}.
+     * The color for the background for when the
+     * switch is not {@link #active}.
      */
     private Color deactivatedColor = ColorUtil.FIREBRICK_RED;
 
     /**
-     * A boolean that holds the current state of the switch.
+     * A boolean that holds the current state of
+     * the switch.
      */
     private boolean active;
 
     /**
-     * The current position of the indicator within the switch.
+     * The current position of the indicator
+     * within the switch.
      */
     private Vector2f indicatorPosition;
 
     /**
      * The constructor.
      *
-     * @param position   the position of the switch within the {@link de.edgelord.saltyengine.scene.Scene}
-     * @param sizeFactor the factor of the size. The width is {@code sizeFactor * 25f}, the height {@code sizeFactor * 10f}
-     * @param active     the initial state of this switch
+     * @param position   the position of the
+     *                   switch within the {@link
+     *                   de.edgelord.saltyengine.scene.Scene}
+     * @param sizeFactor the factor of the size.
+     *                   The width is {@code
+     *                   sizeFactor * 25f}, the
+     *                   height {@code sizeFactor
+     *                   * 10f}
+     * @param active     the initial state of this
+     *                   switch
      */
     public Switch(final Vector2f position, final float sizeFactor, final boolean active) {
         super(position, sizeFactor * 25f, sizeFactor * 10f, UIElement.SETTINGS_ELEMENT);
@@ -70,9 +88,11 @@ public class Switch extends UIElement {
     }
 
     /**
-     * Draws a rounded rectangle with the current background color.
+     * Draws a rounded rectangle with the current
+     * background color.
      *
-     * @param saltyGraphics the graphics to draw to
+     * @param saltyGraphics the graphics to draw
+     *                      to
      */
     @Override
     public void drawBackground(final SaltyGraphics saltyGraphics) {
@@ -81,9 +101,11 @@ public class Switch extends UIElement {
     }
 
     /**
-     * Draws the indicator (a circle) at {@link #indicatorPosition}.
+     * Draws the indicator (a circle) at {@link
+     * #indicatorPosition}.
      *
-     * @param saltyGraphics the graphics to draw to
+     * @param saltyGraphics the graphics to draw
+     *                      to
      */
     @Override
     public void drawForeground(final SaltyGraphics saltyGraphics) {
@@ -92,8 +114,11 @@ public class Switch extends UIElement {
     }
 
     /**
-     * Checks if the cursor touches this <code>UIElement</code> and if it does, toggles {@link #active}
-     * and calls both {@link #updateState()} and {@link #stateChanged()}.
+     * Checks if the cursor touches this
+     * <code>UIElement</code> and if it does,
+     * toggles {@link #active} and calls both
+     * {@link #updateState()} and {@link
+     * #stateChanged()}.
      *
      * @param e the event
      */
@@ -108,7 +133,9 @@ public class Switch extends UIElement {
     }
 
     /**
-     * A by default empty method that is called whenever the {@link #active state} of this switch changes.
+     * A by default empty method that is called
+     * whenever the {@link #active state} of this
+     * switch changes.
      */
     public void stateChanged() {
     }
@@ -125,7 +152,8 @@ public class Switch extends UIElement {
     /**
      * Sets {@link #activatedColor}.
      *
-     * @param activatedColor the new value of {@link #activatedColor}
+     * @param activatedColor the new value of
+     *                       {@link #activatedColor}
      */
     public void setActivatedColor(final Color activatedColor) {
         this.activatedColor = activatedColor;
@@ -143,7 +171,8 @@ public class Switch extends UIElement {
     /**
      * Sets {@link #deactivatedColor}.
      *
-     * @param deactivatedColor the new value of {@link #deactivatedColor}
+     * @param deactivatedColor the new value of
+     *                         {@link #deactivatedColor}
      */
     public void setDeactivatedColor(final Color deactivatedColor) {
         this.deactivatedColor = deactivatedColor;
@@ -161,7 +190,8 @@ public class Switch extends UIElement {
     /**
      * Sets {@link #active}.
      *
-     * @param active the new value of {@link #active}
+     * @param active the new value of {@link
+     *               #active}
      */
     public void setActive(final boolean active) {
         this.active = active;
@@ -170,7 +200,9 @@ public class Switch extends UIElement {
     }
 
     /**
-     * Updates the background color and {@link #indicatorPosition} according to  {@link #active}.
+     * Updates the background color and {@link
+     * #indicatorPosition} according to  {@link
+     * #active}.
      */
     private void updateState() {
         if (active) {

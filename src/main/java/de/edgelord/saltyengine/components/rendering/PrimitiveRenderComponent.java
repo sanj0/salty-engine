@@ -44,11 +44,18 @@ public abstract class PrimitiveRenderComponent extends RenderComponent {
     private Drawable primitiveDraw;
 
     /**
-     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific Components out of a list
+     * The default super constructor for
+     * gameObjectComponent, which takes in the
+     * parent GameObject and the name, used as an
+     * id, for fishing specific Components out of
+     * a list
      *
-     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
-     * @param name   the id-name for this Component
+     * @param parent the parent of the Component,
+     *               so where to take the e.g. the
+     *               Coordinate info from
+     * @param name   the id-name for this
+     *               Component
+     *
      * @see Component
      */
     public PrimitiveRenderComponent(final ComponentContainer parent, final String name, final Color color) {
@@ -58,10 +65,15 @@ public abstract class PrimitiveRenderComponent extends RenderComponent {
     }
 
     /**
-     * Any classes extending PrimitivesRenderComponent has to override this method
-     * for drawing e.g. a primitives like a Rectangle in RectangleRender
+     * Any classes extending PrimitivesRenderComponent
+     * has to override this method for drawing
+     * e.g. a primitives like a Rectangle in
+     * RectangleRender
      *
-     * @param saltyGraphics the SaltyGraphics to which the component should DRAW
+     * @param saltyGraphics the SaltyGraphics to
+     *                      which the component
+     *                      should DRAW
+     *
      * @see Component
      */
     @Override
@@ -70,10 +82,15 @@ public abstract class PrimitiveRenderComponent extends RenderComponent {
     }
 
     /**
-     * Sets the color and stroke of the given Graphics2D to the ones set UP in this class
-     * So the user can always control how the component should render the primitives.
+     * Sets the color and stroke of the given
+     * Graphics2D to the ones set UP in this class
+     * So the user can always control how the
+     * component should render the primitives.
      *
-     * @param saltyGraphics the SaltyGraphics which should be prepared
+     * @param saltyGraphics the SaltyGraphics
+     *                      which should be
+     *                      prepared
+     *
      * @see Graphics2D
      */
     protected void setUpGraphics(final SaltyGraphics saltyGraphics) {

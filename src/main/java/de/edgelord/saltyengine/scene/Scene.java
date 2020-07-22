@@ -38,33 +38,38 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * This class represents what is currently drawn and calculated.
- * This includes:
- * {@link Layer}s within {@link #layers},
- * {@link FixedTask}s within {@link #fixedTasks},
- * {@link DrawingRoutine}s within {@link #drawingRoutines}
- * and the {@link UISystem} {@link #ui}
- * as well as a {@link LightSystem} stored in {@link #lightSystem}
+ * This class represents what is currently drawn
+ * and calculated. This includes: {@link Layer}s
+ * within {@link #layers}, {@link FixedTask}s
+ * within {@link #fixedTasks}, {@link
+ * DrawingRoutine}s within {@link #drawingRoutines}
+ * and the {@link UISystem} {@link #ui} as well as
+ * a {@link LightSystem} stored in {@link
+ * #lightSystem}
  * <p>
- * The current scene is stored in {@link SceneManager#getCurrentScene()}.
- * For more information, please take a look at the documentation of that class.
+ * The current scene is stored in {@link
+ * SceneManager#getCurrentScene()}. For more
+ * information, please take a look at the
+ * documentation of that class.
  * <p>
- * Any initializing should be done within {@link #initialize()}
- * instead of a constructor, which is called after setting a
- * new instance of a <code>Scene</code> object as the {@link SceneManager#setCurrentScene(Scene) current}.
+ * Any initializing should be done within {@link
+ * #initialize()} instead of a constructor, which
+ * is called after setting a new instance of a
+ * <code>Scene</code> object as the {@link
+ * SceneManager#setCurrentScene(Scene) current}.
  */
 public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAble {
 
     public static final Object concurrentBlock = new Object();
     /**
-     * The name of the default layer.
-     * {@link GameObject}s added to a <code>Scene</code>
-     * via {@link #addGameObject(GameObject)} are added
-     * to the corresponding layer.
+     * The name of the default layer. {@link
+     * GameObject}s added to a <code>Scene</code>
+     * via {@link #addGameObject(GameObject)} are
+     * added to the corresponding layer.
      * <p>
-     * The default layer is added to the <code>Scene</code>
-     * in its constructor and has an
-     * of <code>0</code>.
+     * The default layer is added to the
+     * <code>Scene</code> in its constructor and
+     * has an of <code>0</code>.
      */
     public static final String DEFAULT_LAYER = "default-layer";
     private final Map<String, Layer> layers = new ConcurrentHashMap<>();
@@ -72,16 +77,21 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**
-     * If this is <code>true</code>, all {@link GameObject}s int his Scene will constantly move down with a force of {@link #gravity}.
+     * If this is <code>true</code>, all {@link
+     * GameObject}s int his Scene will constantly
+     * move down with a force of {@link
+     * #gravity}.
      */
     private final boolean gravityEnabled = false;
     private List<Layer> layerList = new ArrayList<>();
     /**
-     * The gravity used by all {@link GameObject}s in this Scene.
+     * The gravity used by all {@link GameObject}s
+     * in this Scene.
      */
     private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
     /**
-     * The friction used by all {@link GameObject}s in this Scene.
+     * The friction used by all {@link
+     * GameObject}s in this Scene.
      */
     private float friction = Force.DEFAULT_FRICTION;
     private LightSystem lightSystem = null;
@@ -94,8 +104,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     /**
-     * Initializes the <code>Scene</code> and all its initial
-     * components. Is invokes by {@link SceneManager#setCurrentScene(Scene)}
+     * Initializes the <code>Scene</code> and all
+     * its initial components. Is invokes by
+     * {@link SceneManager#setCurrentScene(Scene)}
      */
     @Override
     public abstract void initialize();
@@ -213,10 +224,15 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     /**
      * Removes the first occurrence of the given
-     * <code>GameObject</code> in any of the {@link #layers}.
+     * <code>GameObject</code> in any of the
+     * {@link #layers}.
      *
-     * @param gameObject the <code>GameObject</code> to remove from one of the {@link #layers}
-     * @return <code>true</code> if the given <code>GameObject</code> was in any
+     * @param gameObject the <code>GameObject</code>
+     *                   to remove from one of the
+     *                   {@link #layers}
+     *
+     * @return <code>true</code> if the given
+     * <code>GameObject</code> was in any
      * of the {@link #layers}
      */
     public boolean removeGameObject(final GameObject gameObject) {
@@ -276,10 +292,13 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     /**
      * Iterates through the {@link #layers} and
-     * adds all {@link GameObject}s from every {@link Layer}
-     * to a <code>List</code> and returns that list.
+     * adds all {@link GameObject}s from every
+     * {@link Layer} to a <code>List</code> and
+     * returns that list.
      *
-     * @return a constructed list of all <code>GameObjects</code> from all {@link #layers}
+     * @return a constructed list of all
+     * <code>GameObjects</code> from all {@link
+     * #layers}
      */
     public List<GameObject> getGameObjects() {
         final List<GameObject> gameObjects = new ArrayList<>();
@@ -313,9 +332,11 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * Adds a copy of the given {@link Layer} to
      * this <code>Scene</code>.
      *
-     * @param layer the <code>Layer</code> to copy from
+     * @param layer the <code>Layer</code> to copy
+     *              from
      * @param name  the name of the new <code>Layer</code>
      * @param index the  of the new <code>Layer</code>
+     *
      * @see Layer#Layer(Layer, Scene, String, int)
      */
     public void copyAddLayer(final Layer layer, final String name, final int index) {

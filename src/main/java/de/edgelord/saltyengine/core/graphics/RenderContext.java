@@ -21,24 +21,38 @@ import de.edgelord.saltyengine.effect.BasicRenderContext;
 import java.awt.*;
 
 /**
- * An interface to define a specific state of the configuration of a {@link SaltyGraphics}.
- * A solid implementation is e.g. {@link BasicRenderContext}.
+ * An interface to define a specific state of the
+ * configuration of a {@link SaltyGraphics}. A
+ * solid implementation is e.g. {@link
+ * BasicRenderContext}.
  */
 public interface RenderContext {
 
     /**
-     * Applies the configuration described by this <code>RenderContext</code> to the given {@link SaltyGraphics}.
+     * Applies the configuration described by
+     * this
+     * <code>RenderContext</code> to the given
+     * {@link SaltyGraphics}.
      *
-     * @param graphics the graphics to apply the config to
+     * @param graphics the graphics to apply the
+     *                 config to
      */
     void applyConfiguration(SaltyGraphics graphics);
 
     /**
-     * Creates a new {@link SaltyGraphics} with the given {@link Graphics2D} and applies the configuration described by this
-     * <code>RenderContext</code> to it using {@link #applyConfiguration(SaltyGraphics)}.
+     * Creates a new {@link SaltyGraphics} with
+     * the given {@link Graphics2D} and applies
+     * the configuration described by this
+     * <code>RenderContext</code> to it using
+     * {@link #applyConfiguration(SaltyGraphics)}.
      *
-     * @param graphics2D the backend graphics for the {@link SaltyGraphics} to render to
-     * @return a new {@link SaltyGraphics} from the given {@link Graphics2D} with this <code>RenderContext</code> applied to.
+     * @param graphics2D the backend graphics for
+     *                   the {@link SaltyGraphics}
+     *                   to render to
+     *
+     * @return a new {@link SaltyGraphics} from
+     * the given {@link Graphics2D} with this
+     * <code>RenderContext</code> applied to.
      */
     default SaltyGraphics createGraphics(final Graphics2D graphics2D) {
         final SaltyGraphics graphics = new SaltyGraphics(graphics2D);

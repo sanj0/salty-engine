@@ -67,7 +67,8 @@ public class SwingUIElement extends UIElement {
     /**
      * Sets {@link #component}.
      *
-     * @param component the new value of {@link #component}
+     * @param component the new value of {@link
+     *                  #component}
      */
     public void setComponent(final JComponent component) {
         this.component = component;

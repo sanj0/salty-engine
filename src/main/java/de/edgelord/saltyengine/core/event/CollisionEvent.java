@@ -20,7 +20,9 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
- * This class is used for handling collisions between GameObjects. It has all necessary parameters for physics etc.
+ * This class is used for handling collisions
+ * between GameObjects. It has all necessary
+ * parameters for physics etc.
  */
 public class CollisionEvent {
 

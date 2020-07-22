@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The example-package for a simple screen with content that is only displayed inside.
+ * The example-package for a simple screen with
+ * content that is only displayed inside.
  */
 package de.edgelord.saltyengine.example.screen;

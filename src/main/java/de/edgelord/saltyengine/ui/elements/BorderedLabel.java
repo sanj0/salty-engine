@@ -21,8 +21,10 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * This is the standard implementation of a {@link Label}, with the given text only
- * be drawn at the centre of the bounds and no line breaks, meaning this label is one-line.
+ * This is the standard implementation of a {@link
+ * Label}, with the given text only be drawn at
+ * the centre of the bounds and no line breaks,
+ * meaning this label is one-line.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class BorderedLabel extends Label {

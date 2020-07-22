@@ -33,13 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A textbox that displays text (e.g. dialog)
- * in front of a static background.
- * The background is a screenshot of the game
- * at the exact moment the constructor is invoked.
+ * A textbox that displays text (e.g. dialog) in
+ * front of a static background. The background is
+ * a screenshot of the game at the exact moment
+ * the constructor is invoked.
  * <p>
- * Newlines in the text are marked by {@code \n} while
- * new "pages" of the box are to be marked by {@code \f}.
+ * Newlines in the text are marked by {@code \n}
+ * while new "pages" of the box are to be marked
+ * by {@code \f}.
  * <p>
  * While this Scene is active, any input handlers
  * in {@link Input} are disabled.
@@ -70,13 +71,19 @@ public class StaticBackgroundTextbox extends Scene {
     private MouseInputHandler mouseHandler;
 
     /**
-     * The constrcutor with all necessary parameters.
-     * All other parameters can be added with the method
-     * prefixed by {@code with}.
+     * The constrcutor with all necessary
+     * parameters. All other parameters can be
+     * added with the method prefixed by {@code
+     * with}.
      *
      * @param text            the text
-     * @param transform       the transform of the box around (below) the text
-     * @param sceneToReturnTo the Scene that is being returned to after the last page of the textbox
+     * @param transform       the transform of the
+     *                        box around (below)
+     *                        the text
+     * @param sceneToReturnTo the Scene that is
+     *                        being returned to
+     *                        after the last page
+     *                        of the textbox
      */
     public StaticBackgroundTextbox(final String text, final Transform transform, final Scene sceneToReturnTo) {
         this.text = text;
@@ -158,9 +165,9 @@ public class StaticBackgroundTextbox extends Scene {
                 if (centreTextX) {
                     if (centredX == -1) {
                         // get longest line of page
-                        String[] lines = pages[pageIndex].split("\n");
+                        final String[] lines = pages[pageIndex].split("\n");
                         String longestLine = "";
-                        for (String l : lines) {
+                        for (final String l : lines) {
                             if (l.length() > longestLine.length()) {
                                 longestLine = l;
                             }

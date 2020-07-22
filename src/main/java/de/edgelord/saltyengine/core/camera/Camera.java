@@ -31,24 +31,30 @@ import java.awt.geom.Point2D;
 /**
  * An interface for a simple 2D camera.
  * <p>
- * A camera, in this sense, takes input and generate an according {@link de.edgelord.saltyengine.effect.image.SaltyImage image}.
+ * A camera, in this sense, takes input and
+ * generate an according {@link de.edgelord.saltyengine.effect.image.SaltyImage
+ * image}.
  */
 public interface Camera {
 
     /**
-     * Renders the given Drawable onto a {@link SaltyImage} and returns it.
+     * Renders the given Drawable onto a {@link
+     * SaltyImage} and returns it.
      * <p>
-     * The image returned by this method will always have the
-     * exact {@link Dimensions} of {@link #getSize()}.
+     * The image returned by this method will
+     * always have the exact {@link Dimensions} of
+     * {@link #getSize()}.
      *
      * @param subject the Drawable to render
-     * @return a visual representation of the given Drawable as this camera sees it
+     *
+     * @return a visual representation of the
+     * given Drawable as this camera sees it
      */
     SaltyImage render(Drawable subject);
 
     /**
-     * Returns the position of this camera as set and
-     * described by {@link #setPosition(Vector2f)}.
+     * Returns the position of this camera as set
+     * and described by {@link #setPosition(Vector2f)}.
      *
      * @return the current position of this camera
      */
@@ -58,17 +64,18 @@ public interface Camera {
      * Sets the position of this camera.
      * <p>
      * The position of this camera is relative to
-     * the normal user space and directly influences
-     * the output of this camera produced with
-     * {@link #render(Drawable)}.
+     * the normal user space and directly
+     * influences the output of this camera
+     * produced with {@link #render(Drawable)}.
      *
-     * @param position the new position of this camera
+     * @param position the new position of this
+     *                 camera
      */
     void setPosition(Vector2f position);
 
     /**
-     * Returns the size of this camera
-     * as set and described in {@link #setSize(Dimensions)}.
+     * Returns the size of this camera as set and
+     * described in {@link #setSize(Dimensions)}.
      *
      * @return the current size of this camera
      */
@@ -78,18 +85,20 @@ public interface Camera {
      * Sets the size of this camera.
      * <p>
      * The size of the camera directly determines
-     * the size of its output produced with
-     * {@link #render(Drawable)}.
+     * the size of its output produced with {@link
+     * #render(Drawable)}.
      *
      * @param size the new size of this camera
      */
     void setSize(Dimensions size);
 
     /**
-     * Returns the current resolution of this camera
-     * as set and described in {@link #setResolution(Dimensions)}.
+     * Returns the current resolution of this
+     * camera as set and described in {@link
+     * #setResolution(Dimensions)}.
      *
-     * @return the current resolution of this camera
+     * @return the current resolution of this
+     * camera
      */
     Dimensions getResolution();
 
@@ -97,17 +106,18 @@ public interface Camera {
      * Sets the resolution of this camera.
      * <p>
      * The resolution describes with how many
-     * pixel the camera can render. <br>
-     * This does not affect the size
-     * of the image produced with {@link #render(Drawable)}.
+     * pixel the camera can render. <br> This does
+     * not affect the size of the image produced
+     * with {@link #render(Drawable)}.
      *
-     * @param resolution the new resolution of this camera
+     * @param resolution the new resolution of
+     *                   this camera
      */
     void setResolution(Dimensions resolution);
 
     /**
-     * Returns the rotation of this camera
-     * as set and described in {@link #setResolution(Dimensions)}.
+     * Returns the rotation of this camera as set
+     * and described in {@link #setResolution(Dimensions)}.
      *
      * @return the current rotation of this camera
      */
@@ -116,15 +126,17 @@ public interface Camera {
     /**
      * Sets the rotation of this camera.
      * <p>
-     * This does not affect the size of the output produced
-     * with {@link #render(Drawable)}.
+     * This does not affect the size of the output
+     * produced with {@link #render(Drawable)}.
      *
-     * @param rotation the new rotation of this camera
+     * @param rotation the new rotation of this
+     *                 camera
      */
     void setRotation(Rotation rotation);
 
     /**
-     * Returns the scale as set and described in {@link #setScale(float)}.
+     * Returns the scale as set and described in
+     * {@link #setScale(float)}.
      *
      * @return the current scale of this camera
      */
@@ -133,24 +145,30 @@ public interface Camera {
     /**
      * Sets the current scale of the camera.
      * <p>
-     * A scale of <code>1f</code> is default and does not change the image,
-     * a scale of <code>0f</code> would make the camera see nothing and a scale
-     * of <code>2f</code> would make everything twice as big.
+     * A scale of <code>1f</code> is default and
+     * does not change the image, a scale of
+     * <code>0f</code> would make the camera see
+     * nothing and a scale of <code>2f</code>
+     * would make everything twice as big.
      * <p>
-     * This scale does not affect the size of the image produced by {@link #render(Drawable)}.
+     * This scale does not affect the size of the
+     * image produced by {@link #render(Drawable)}.
      *
      * @param scale the new scale
      */
     void setScale(float scale);
 
     /**
-     * Returns an instance of {@link AffineTransform} that directly
-     * represents the values of this camera in <br>
-     * {@link #getScale() scale} <br>
-     * {@link #getPosition() position} <br>
-     * {@link #getRotation() rotation} <br>
+     * Returns an instance of {@link
+     * AffineTransform} that directly represents
+     * the values of this camera in <br> {@link
+     * #getScale() scale} <br> {@link
+     * #getPosition() position} <br> {@link
+     * #getRotation() rotation} <br>
      *
-     * @return a {@link AffineTransform} that directly represents the state of this camera
+     * @return a {@link AffineTransform} that
+     * directly represents the state of this
+     * camera
      */
     default AffineTransform getAffineTransform() {
         final double scale = getScale();
@@ -170,7 +188,8 @@ public interface Camera {
     }
 
     /**
-     * Returns the position of the given Vector relative to the position of the camera.
+     * Returns the position of the given Vector
+     * relative to the position of the camera.
      * Example:
      *
      * <pre>
@@ -189,7 +208,10 @@ public interface Camera {
      * </pre>
      *
      * @param absolutePosition an absolute position
-     * @return the absolute position with considering the position of this camera for the given relative position
+     *
+     * @return the absolute position with
+     * considering the position of this camera for
+     * the given relative position
      */
     default Vector2f getRelativePosition(final Vector2f absolutePosition) {
         final AffineTransform transform = getAffineTransform();
@@ -206,10 +228,13 @@ public interface Camera {
     }
 
     /**
-     * Returns the cursor as a {@link Transform} manipulated in a way that it fits the camera position.
-     * You can obtain this value easier by using {@link Input#getCursor()}
+     * Returns the cursor as a {@link Transform}
+     * manipulated in a way that it fits the
+     * camera position. You can obtain this value
+     * easier by using {@link Input#getCursor()}
      *
-     * @return the cursor with the position of this camera considered.
+     * @return the cursor with the position of
+     * this camera considered.
      * @see #getRelativePosition(Vector2f)
      */
     default Transform getRelativeCursor() {
@@ -217,10 +242,14 @@ public interface Camera {
     }
 
     /**
-     * Returns the cursor position relative to the camera position.
-     * You can obtain this value easier by using {@link Input#getCursorPosition()} ()}.
+     * Returns the cursor position relative to the
+     * camera position. You can obtain this value
+     * easier by using {@link Input#getCursorPosition()}
+     * ()}.
      *
-     * @return the cursor position manipulated in a way that it fits the position of this camera.
+     * @return the cursor position manipulated in
+     * a way that it fits the position of this
+     * camera.
      */
     default Vector2f getRelativeCursorPosition() {
         return Input.getCursorPosition();

@@ -33,11 +33,12 @@ public interface SaltyImage {
     }
 
     /**
-     * Draws the given {@link Drawable} to the image
-     * using {@link Drawable#draw(SaltyGraphics)} like so:
-     * {@code drawable.draw(getGraphics())}.
+     * Draws the given {@link Drawable} to the
+     * image using {@link Drawable#draw(SaltyGraphics)}
+     * like so: {@code drawable.draw(getGraphics())}.
      *
-     * @param drawable the {@code Drawable} to draw to this image
+     * @param drawable the {@code Drawable} to
+     *                 draw to this image
      */
     default void drawTo(final Drawable drawable) {
         drawable.draw(getGraphics().copy());
@@ -45,7 +46,8 @@ public interface SaltyImage {
 
     /**
      * Clears the content of this image with a
-     * {@link de.edgelord.saltyengine.utils.ColorUtil#TRANSPARENT_COLOR transparent color}.
+     * {@link de.edgelord.saltyengine.utils.ColorUtil#TRANSPARENT_COLOR
+     * transparent color}.
      */
     default void erase() {
         final SaltyGraphics graphics = getGraphics();

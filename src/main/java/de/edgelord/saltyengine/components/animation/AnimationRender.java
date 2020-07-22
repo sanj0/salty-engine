@@ -24,33 +24,47 @@ import de.edgelord.saltyengine.effect.SpritesheetAnimation;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * A {@link de.edgelord.saltyengine.core.Component} that renders an {@link SpritesheetAnimation}.
- * After each {@link #ticksPerFrame} amount of fixed ticks, the next frame of the spritesheetAnimation will be drawn.
+ * A {@link de.edgelord.saltyengine.core.Component}
+ * that renders an {@link SpritesheetAnimation}.
+ * After each {@link #ticksPerFrame} amount of
+ * fixed ticks, the next frame of the
+ * spritesheetAnimation will be drawn.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class AnimationRender extends RenderComponent {
 
     /**
-     * The SpritesheetAnimation which should be drawn
+     * The SpritesheetAnimation which should be
+     * drawn
      */
     private SpritesheetAnimation spritesheetAnimation = null;
 
     /**
-     * The number of fixed ticks after which the next frame should be drawn
+     * The number of fixed ticks after which the
+     * next frame should be drawn
      */
     private int ticksPerFrame = 75;
 
     /**
-     * The current number of fixed ticks; when it reaches #ticksPerFrame it will be reset to 0 again
+     * The current number of fixed ticks; when it
+     * reaches #ticksPerFrame it will be reset to
+     * 0 again
      */
     private int ticks = 0;
 
     /**
-     * The default super constructor for gameObjectComponent, which takes in the parent GameObject and the
-     * name, used as an id, for fishing specific components out of a list
+     * The default super constructor for
+     * gameObjectComponent, which takes in the
+     * parent GameObject and the name, used as an
+     * id, for fishing specific components out of
+     * a list
      *
-     * @param parent the parent of the Component, so where to take the e.g. the Coordinate info from
-     * @param name   the id-name for this Component
+     * @param parent the parent of the Component,
+     *               so where to take the e.g. the
+     *               Coordinate info from
+     * @param name   the id-name for this
+     *               Component
+     *
      * @see de.edgelord.saltyengine.core.Component
      */
     public AnimationRender(final ComponentContainer parent, final String name) {
@@ -58,12 +72,21 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * A constructor with all necessary parameters
+     * A constructor with all necessary
+     * parameters
      *
-     * @param parent               the parent of the Component
-     * @param name                 the id-name of this Component
-     * @param spritesheetAnimation the spritesheetAnimation that should be rendered
-     * @param ticksPerFrame        after how many fixed ticks the next frame of the spritesheetAnimation should be triggered
+     * @param parent               the parent of
+     *                             the Component
+     * @param name                 the id-name of
+     *                             this Component
+     * @param spritesheetAnimation the spritesheetAnimation
+     *                             that should be
+     *                             rendered
+     * @param ticksPerFrame        after how many
+     *                             fixed ticks the
+     *                             next frame of
+     *                             the spritesheetAnimation
+     *                             should be triggered
      */
     public AnimationRender(final ComponentContainer parent, final String name, final SpritesheetAnimation spritesheetAnimation, final int ticksPerFrame) {
         super(parent, name, Components.RENDER_COMPONENT);
@@ -72,9 +95,13 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * Draws the current frame of the spritesheetAnimation
+     * Draws the current frame of the
+     * spritesheetAnimation
      *
-     * @param saltyGraphics the SaltyGraphics to which the component should draw
+     * @param saltyGraphics the SaltyGraphics to
+     *                      which the component
+     *                      should draw
+     *
      * @see #onFixedTick()
      * @see #spritesheetAnimation
      * @see de.edgelord.saltyengine.core.Component
@@ -88,8 +115,11 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * On every fixed tick, {@link #ticks} is incremented; when it reaches {@link #ticksPerFrame},
-     * the next frame of {@link #spritesheetAnimation} is triggered and ticks will be reset to 0
+     * On every fixed tick, {@link #ticks} is
+     * incremented; when it reaches {@link
+     * #ticksPerFrame}, the next frame of {@link
+     * #spritesheetAnimation} is triggered and
+     * ticks will be reset to 0
      */
     @Override
     public void onFixedTick() {
@@ -104,14 +134,16 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * @return the spritesheetAnimation that this component renders.
+     * @return the spritesheetAnimation that this
+     * component renders.
      */
     public SpritesheetAnimation getSpritesheetAnimation() {
         return spritesheetAnimation;
     }
 
     /**
-     * Sets the spritesheetAnimation to be rendered.
+     * Sets the spritesheetAnimation to be
+     * rendered.
      *
      * @param spritesheetAnimation the new spritesheetAnimation
      */
@@ -120,14 +152,16 @@ public class AnimationRender extends RenderComponent {
     }
 
     /**
-     * @return the fixed ticks per frame of the spritesheetAnimation.
+     * @return the fixed ticks per frame of the
+     * spritesheetAnimation.
      */
     public int getTicksPerFrame() {
         return ticksPerFrame;
     }
 
     /**
-     * Sets how many fixed ticks should last until the next frame of the spritesheetAnimation.
+     * Sets how many fixed ticks should last until
+     * the next frame of the spritesheetAnimation.
      *
      * @param ticksPerFrame the new value
      */

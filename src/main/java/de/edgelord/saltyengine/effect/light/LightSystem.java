@@ -47,7 +47,8 @@ public class LightSystem implements Drawable {
     }
 
     /**
-     * A overload constructor setting {@link #lightMapColor} to plain black
+     * A overload constructor setting {@link
+     * #lightMapColor} to plain black
      */
     public LightSystem() {
         this(Color.BLACK);
@@ -124,7 +125,8 @@ public class LightSystem implements Drawable {
     /**
      * Sets {@link #lightMapColor}.
      *
-     * @param lightMapColor the new value of {@link #lightMapColor}
+     * @param lightMapColor the new value of
+     *                      {@link #lightMapColor}
      */
     public void setLightMapColor(final Color lightMapColor) {
         this.lightMapColor = lightMapColor;

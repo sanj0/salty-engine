@@ -25,8 +25,10 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.ImageLoader;
 
 /**
- * An abstract <code>Particle</code> which renders {@link #image} obtained from {@link #getImage()}.
- * It is highly recommended to implement that method like this:
+ * An abstract <code>Particle</code> which renders
+ * {@link #image} obtained from {@link
+ * #getImage()}. It is highly recommended to
+ * implement that method like this:
  * <pre>
  *     {@code
  *     public BufferedImage getImage() {
@@ -36,10 +38,12 @@ import de.edgelord.saltyengine.utils.ImageLoader;
  *     }
  * </pre>
  * <p>
- * The default {@link Dimensions} is {@link #DEFAULT_DIMENSIONS}.
+ * The default {@link Dimensions} is {@link
+ * #DEFAULT_DIMENSIONS}.
  *
  * @see ImageLoader
- * @see ImageLoader#getOrLoadImage(String, String, ImageFactory)
+ * @see ImageLoader#getOrLoadImage(String, String,
+ * ImageFactory)
  */
 public abstract class ImageParticle extends Particle {
 
@@ -58,7 +62,8 @@ public abstract class ImageParticle extends Particle {
     }
 
     /**
-     * @return the image to be rendered by this particle
+     * @return the image to be rendered by this
+     * particle
      */
     public abstract SaltyImage getImage();
 

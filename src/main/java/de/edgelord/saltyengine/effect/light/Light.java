@@ -31,12 +31,16 @@ import java.awt.*;
 public abstract class Light implements TransformedObject {
 
     /**
-     * The brightness of the alpha-blend of this light, between 1f and 1f, with 0f being completely dark and 1f being max bright
+     * The brightness of the alpha-blend of this
+     * light, between 1f and 1f, with 0f being
+     * completely dark and 1f being max bright
      */
     private float brightness = .35f;
 
     /**
-     * The intensity of this light, influences e.g. the gradient of a {@link GradientLight}
+     * The intensity of this light, influences
+     * e.g. the gradient of a {@link
+     * GradientLight}
      */
     private float intensity = .1f;
 
@@ -46,7 +50,9 @@ public abstract class Light implements TransformedObject {
     private Color color;
 
     /**
-     * The start alpha value of the gradient with color being drawn over the light. 0 is min, 255 is max.
+     * The start alpha value of the gradient with
+     * color being drawn over the light. 0 is min,
+     * 255 is max.
      */
     private int colorAlpha = 75;
 
@@ -56,7 +62,8 @@ public abstract class Light implements TransformedObject {
     private Transform transform;
 
     /**
-     * The directions in which this light can't be moved.
+     * The directions in which this light can't be
+     * moved.
      */
     private Directions lockedDirections = new Directions();
 
@@ -97,22 +104,25 @@ public abstract class Light implements TransformedObject {
     }
 
     /**
-     * Draws the visuals of this light without color
-     * onto the given {@link Graphics2D graphics}
-     * of the {@link LightSystem}.
+     * Draws the visuals of this light without
+     * color onto the given {@link Graphics2D
+     * graphics} of the {@link LightSystem}.
      *
-     * @param graphics the graphic to render the light to
+     * @param graphics the graphic to render the
+     *                 light to
      */
     public abstract void draw(Graphics2D graphics);
 
     /**
-     * Draws the colored part of the visuals of the light
-     * to the given {@link Graphics2D graphics} of the
-     * {@link LightSystem}. <p>
-     * Together with {@link #draw(Graphics2D)}, this
-     * completes the visuals of this <code>Light</code>
+     * Draws the colored part of the visuals of
+     * the light to the given {@link Graphics2D
+     * graphics} of the {@link LightSystem}. <p>
+     * Together with {@link #draw(Graphics2D)},
+     * this completes the visuals of this
+     * <code>Light</code>
      *
-     * @param graphics the graphics to render the color visual to
+     * @param graphics the graphics to render the
+     *                 color visual to
      */
     public abstract void drawColorMap(Graphics2D graphics);
 

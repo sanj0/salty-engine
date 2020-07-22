@@ -19,15 +19,16 @@ package de.edgelord.saltyengine.core.animation;
 import java.util.List;
 
 /**
- * A {@link KeyframeAnimation} implementation which uses
- * linear transitions between values.
+ * A {@link KeyframeAnimation} implementation
+ * which uses linear transitions between values.
  */
 public class LinearKeyframeAnimation extends KeyframeAnimation {
 
     /**
      * A constructor.
      *
-     * @param keyframes the initial list of <code>Keyframe</code>s
+     * @param keyframes the initial list of
+     *                  <code>Keyframe</code>s
      */
     public LinearKeyframeAnimation(final List<Keyframe> keyframes) {
         super(keyframes);
@@ -43,10 +44,12 @@ public class LinearKeyframeAnimation extends KeyframeAnimation {
 
     /**
      * A constructor that initializes the
-     * keyframes list with the given vararg
-     * of {@link Keyframe}s.
+     * keyframes list with the given vararg of
+     * {@link Keyframe}s.
      *
-     * @param frames the {@link Keyframe frames} to initialize the animation with
+     * @param frames the {@link Keyframe frames}
+     *               to initialize the animation
+     *               with
      */
     public LinearKeyframeAnimation(final Keyframe... frames) {
         super(frames);

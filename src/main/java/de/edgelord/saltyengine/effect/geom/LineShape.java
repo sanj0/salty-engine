@@ -24,7 +24,8 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * Represents a line from the top left corner of the transform to its bottom right corner
+ * Represents a line from the top left corner of
+ * the transform to its bottom right corner
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class LineShape extends SaltyShape {

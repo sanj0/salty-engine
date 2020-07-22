@@ -21,11 +21,12 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
- * A collider that always returns
- * {@code new CollisionDetectionResult(false, Directions.Direction.EMPTY)},
- * hence making its user "ghostly" by means that it won't ever detect
- * a collision.
- * The priority of the collider is {@link Integer#MAX_VALUE}
+ * A collider that always returns {@code new
+ * CollisionDetectionResult(false, Directions.Direction.EMPTY)},
+ * hence making its parent "ghostly" by means that
+ * it won't ever be involved a collision. The
+ * priority of the collider is {@link
+ * Integer#MAX_VALUE}
  */
 public class GhostCollider extends Collider {
 

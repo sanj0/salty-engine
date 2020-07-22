@@ -23,51 +23,64 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 import java.awt.*;
 
 /**
- * A basic implementation of {@link RenderContext} with: <br>
- * - a{@link Color} <br>
- * - a {@link Paint} <br>
- * - a {@link Stroke} <br>
- * - a {@link #alpha} <br>
- * - and a {@link Font}
+ * A basic implementation of {@link RenderContext}
+ * with: <br> - a{@link Color} <br> - a {@link
+ * Paint} <br> - a {@link Stroke} <br> - a {@link
+ * #alpha} <br> - and a {@link Font}
  */
 public class BasicRenderContext implements RenderContext {
 
     /**
-     * The Color with which to render. <br>
-     * It may be set using {@link #setColor(Color)} and may be obtained using {@link #getColor()}
+     * The Color with which to render. <br> It may
+     * be set using {@link #setColor(Color)} and
+     * may be obtained using {@link #getColor()}
      */
     private Color color;
 
     /**
-     * The Paint with which to render. <br>
-     * It may be set using {@link #setPaint(Paint)} and may be obtained using {@link #getPaint()}
+     * The Paint with which to render. <br> It may
+     * be set using {@link #setPaint(Paint)} and
+     * may be obtained using {@link #getPaint()}
      */
     private Paint paint;
 
     /**
-     * The Stroke to use for rendering. <br>
-     * It may be set using {@link #setStroke(Stroke)} and may be obtained using {@link #getStroke()}
+     * The Stroke to use for rendering. <br> It
+     * may be set using {@link #setStroke(Stroke)}
+     * and may be obtained using {@link
+     * #getStroke()}
      */
     private Stroke stroke;
 
     /**
-     * The alpha value of the color, separated for easier control. The value may range from 0f to 1f. <br>
-     * It may be set using {@link #setAlpha(float)} and may be obtained using {@link #getAlpha()}
+     * The alpha value of the color, separated for
+     * easier control. The value may range from 0f
+     * to 1f. <br> It may be set using {@link
+     * #setAlpha(float)} and may be obtained using
+     * {@link #getAlpha()}
      */
     private float alpha = 1f;
 
     /**
-     * The font to use. This is already pre-defined, as it may never vary over the whole rendering process. As well, this is excluded from the {@link #applyConfiguration(SaltyGraphics)} implementation. <br>
-     * It may be set using {@link #setFont(Font)} and may be obtained using {@link #getFont()}
+     * The font to use. This is already
+     * pre-defined, as it may never vary over the
+     * whole rendering process. As well, this is
+     * excluded from the {@link #applyConfiguration(SaltyGraphics)}
+     * implementation. <br> It may be set using
+     * {@link #setFont(Font)} and may be obtained
+     * using {@link #getFont()}
      */
     private Font font = SaltySystem.defaultFont;
 
     /**
      * The constructor.
      *
-     * @param color  the {@link Color} to render with
-     * @param paint  the {@link Paint} to render with
-     * @param stroke the {@link Stroke} to render with
+     * @param color  the {@link Color} to render
+     *               with
+     * @param paint  the {@link Paint} to render
+     *               with
+     * @param stroke the {@link Stroke} to render
+     *               with
      */
     public BasicRenderContext(final Color color, final Paint paint, final Stroke stroke) {
         this.color = color;
@@ -76,19 +89,27 @@ public class BasicRenderContext implements RenderContext {
     }
 
     /**
-     * Returns the {@link #color} used by this {@link RenderContext} with its own alpha value instead of the {@link #alpha} value hold by this.
-     * To get the {@link Color} with the correct alpha value, use {@link #getColorWithAlpha()}.
+     * Returns the {@link #color} used by this
+     * {@link RenderContext} with its own alpha
+     * value instead of the {@link #alpha} value
+     * hold by this. To get the {@link Color} with
+     * the correct alpha value, use {@link
+     * #getColorWithAlpha()}.
      *
-     * @return the plain color used by this <code>RenderContext</code>.
+     * @return the plain color used by this
+     * <code>RenderContext</code>.
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * Sets the {@link #color} used by this <code>RenderContext</code> and the {@link #paint} to the given {@link Color}.
+     * Sets the {@link #color} used by this
+     * <code>RenderContext</code> and the {@link
+     * #paint} to the given {@link Color}.
      *
-     * @param color the new {@link #color} and {@link #paint}
+     * @param color the new {@link #color} and
+     *              {@link #paint}
      */
     public void setColor(final Color color) {
         this.color = color;
@@ -96,9 +117,11 @@ public class BasicRenderContext implements RenderContext {
     }
 
     /**
-     * Returns the {@link #color} with the correct {@link #alpha} value.
+     * Returns the {@link #color} with the correct
+     * {@link #alpha} value.
      *
-     * @return the color used by this configuration with the correct alpha value
+     * @return the color used by this configuration
+     * with the correct alpha value
      */
     public Color getColorWithAlpha() {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.round(alpha * 255f));
@@ -137,7 +160,9 @@ public class BasicRenderContext implements RenderContext {
     }
 
     /**
-     * Applies the graphics configurations described by this context to the given graphics and returns previous one.
+     * Applies the graphics configurations
+     * described by this context to the given
+     * graphics and returns previous one.
      *
      * @param graphics the graphics to configure.
      */

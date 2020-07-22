@@ -43,69 +43,101 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * A <code>GameObject</code> can be added to a {@link de.edgelord.saltyengine.scene.Scene} using {@link de.edgelord.saltyengine.scene.Scene#addGameObject(GameObject)}.
- * It will then have collision detection with all the other <code>GameObject</code>s in the <code>Scene</code>, it will
- * be drawn using {@link #draw(SaltyGraphics)}, initialized using {@link #initialize()} and updated every fixed tick using {@link #onFixedTick()}.
+ * A <code>GameObject</code> can be added to a
+ * {@link de.edgelord.saltyengine.scene.Scene}
+ * using {@link de.edgelord.saltyengine.scene.Scene#addGameObject(GameObject)}.
+ * It will then have collision detection with all
+ * the other <code>GameObject</code>s in the
+ * <code>Scene</code>, it will be drawn using
+ * {@link #draw(SaltyGraphics)}, initialized using
+ * {@link #initialize()} and updated every fixed
+ * tick using {@link #onFixedTick()}.
  * <p>
- * For more information, please visit the project's wiki on https://www.github.com/edgelord314/salty-engine/wiki
+ * For more information, please visit the
+ * project's wiki on https://www.github.com/edgelord314/salty-engine/wiki
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class GameObject extends ComponentContainer implements Drawable, FixedTickRoutine, CollideAble, InitializeAble {
 
     /**
-     * The name of the default {@link SimplePhysicsComponent} {@link #physicsComponent}.
+     * The name of the default {@link
+     * SimplePhysicsComponent} {@link
+     * #physicsComponent}.
      */
     public static final String DEFAULT_PHYSICS_NAME = "de.edgelord.saltyengine.coreComponents.physics";
 
     /**
-     * The list of {@link Component}s that this <code>GameObject</code> currently has.
-     * Due to concurrency, it is a <code>CopyOnWriteArrayList</code>.
+     * The list of {@link Component}s that this
+     * <code>GameObject</code> currently has. Due
+     * to concurrency, it is a <code>CopyOnWriteArrayList</code>.
      */
     private final List<Component> components = new CopyOnWriteArrayList<>();
 
     /**
-     * The List of collisions that has been occurred in the last collision detection, used for {@link #onCollisionDetectionFinish(List)}.
+     * The List of collisions that has been
+     * occurred in the last collision detection,
+     * used for {@link #onCollisionDetectionFinish(List)}.
      */
     private final List<CollisionEvent> collisions = new CopyOnWriteArrayList<>();
     /**
-     * The default physics component, used for stopping the <code>GameObject</code> when a collision in a direction
-     * occurs and to accelerate it using e.g. {@link #accelerate(float, Directions.Direction)} or {@link #accelerateTo(float, Directions.Direction)}.
+     * The default physics component, used for
+     * stopping the <code>GameObject</code> when a
+     * collision in a direction occurs and to
+     * accelerate it using e.g. {@link
+     * #accelerate(float, Directions.Direction)}
+     * or {@link #accelerateTo(float,
+     * Directions.Direction)}.
      */
     private final SimplePhysicsComponent physicsComponent;
     /**
-     * Used for internal purposes to make sure that the list of {@link #collisions} is cleared once per collision detection.
+     * Used for internal purposes to make sure
+     * that the list of {@link #collisions} is
+     * cleared once per collision detection.
      */
     private boolean clearCollisions = true;
     /**
-     * The collider of this <code>GameObject</code>, used to check collisions between this and other <code>GameObject</code>s.
+     * The collider of this <code>GameObject</code>,
+     * used to check collisions between this and
+     * other <code>GameObject</code>s.
      */
     private Collider collider;
 
     /**
-     * Used for internal purposes to call {@link #onCursorEnters()} and {@link #onCursorExits()}.
+     * Used for internal purposes to call {@link
+     * #onCursorEnters()} and {@link
+     * #onCursorExits()}.
      */
     private boolean cursorAlreadyTouching = false;
 
     /**
-     * If this is true, the physics of any other GameObject in the {@link de.edgelord.saltyengine.scene.Scene} will
-     * ignore this one on collision, but the collision is still detected.
+     * If this is true, the physics of any other
+     * GameObject in the {@link de.edgelord.saltyengine.scene.Scene}
+     * will ignore this one on collision, but the
+     * collision is still detected.
      */
     private boolean isTrigger = false;
 
     /**
-     * The <code>Hitbox</code> of a <code>GameObject</code> may be used by {@link Collider}s, like for example the default {@link HitboxCollider}.
+     * The <code>Hitbox</code> of a <code>GameObject</code>
+     * may be used by {@link Collider}s, like for
+     * example the default {@link HitboxCollider}.
      */
     private Hitbox hitbox;
 
     /**
-     * The mass of this <code>GameObject</code>. <br>
-     * It effects how this <code>GameObject</code> is accelerate and slowed down, but currently not the behaviour when it collides.
+     * The mass of this <code>GameObject</code>.
+     * <br> It effects how this <code>GameObject</code>
+     * is accelerate and slowed down, but
+     * currently not the behaviour when it
+     * collides.
      */
     private float mass = 1f;
 
     /**
-     * When this is <code>false</code>, {@link #initialize()} will be called on the next fixed tick. <br>
-     * Can be set to <code>false</code> any time again.
+     * When this is <code>false</code>, {@link
+     * #initialize()} will be called on the next
+     * fixed tick. <br> Can be set to
+     * <code>false</code> any time again.
      */
     private boolean initialized = false;
 
@@ -133,7 +165,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     /**
      * A constructor.
      *
-     * @param transform the <code>Transform</code> of the <code>GameObject</code>
+     * @param transform the <code>Transform</code>
+     *                  of the <code>GameObject</code>
      * @param tag       the tag
      */
     public GameObject(final Transform transform, final String tag) {
@@ -189,25 +222,37 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     /**
      * Initializes this <code>GameObject</code>.
-     * The advantage over doing so in the constructor is that, in many cases, the constructor will be called while
-     * the previous {@link de.edgelord.saltyengine.scene.Scene} is still active, so e.g. a {@link de.edgelord.saltyengine.components.gfx.LightComponent}
-     * would add it's {@link de.edgelord.saltyengine.effect.light.Light} to the wrong <code>Scene</code>.
-     * This method is called every fixed tick when {@link #initialized} is false.
+     * The advantage over doing so in the
+     * constructor is that, in many cases, the
+     * constructor will be called while the
+     * previous {@link de.edgelord.saltyengine.scene.Scene}
+     * is still active, so e.g. a {@link
+     * de.edgelord.saltyengine.components.gfx.LightComponent}
+     * would add it's {@link de.edgelord.saltyengine.effect.light.Light}
+     * to the wrong <code>Scene</code>. This
+     * method is called every fixed tick when
+     * {@link #initialized} is false.
      */
     @Override
     public abstract void initialize();
 
     /**
-     * This method is called every fixed tick for every <code>GameObject</code> that touches this one.
+     * This method is called every fixed tick for
+     * every <code>GameObject</code> that touches
+     * this one.
      *
-     * @param event the <code>CollisionEvent</code> with any necessary information to handle a collision
+     * @param event the <code>CollisionEvent</code>
+     *              with any necessary information
+     *              to handle a collision
      */
     @Override
     public abstract void onCollision(CollisionEvent event);
 
     /**
-     * This method is called every fixed tick. <br>
-     * Please take a look at the projects wiki at https://www.github.com/edgelord314/salty-engine/wiki for more information.
+     * This method is called every fixed tick.
+     * <br> Please take a look at the projects
+     * wiki at https://www.github.com/edgelord314/salty-engine/wiki
+     * for more information.
      *
      * @see de.edgelord.saltyengine.scene.Scene
      */
@@ -215,41 +260,63 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     public abstract void onFixedTick();
 
     /**
-     * This method is called every time the {@link de.edgelord.saltyengine.scene.Scene} is repainted. <br>
-     * With this method, you can draw anything using the given {@link SaltyGraphics}.
+     * This method is called every time the {@link
+     * de.edgelord.saltyengine.scene.Scene} is
+     * repainted. <br> With this method, you can
+     * draw anything using the given {@link
+     * SaltyGraphics}.
      *
-     * @param saltyGraphics the graphics to draw to
+     * @param saltyGraphics the graphics to draw
+     *                      to
+     *
      * @see SaltyGraphics
      */
     @Override
     public abstract void draw(SaltyGraphics saltyGraphics);
 
     /**
-     * This is called every time the cursor enters the {@link #getTransform()} of this <code>GameObject</code>.
-     * As this takes quite a bit of performance, you can disable/enable this feature using {@link de.edgelord.saltyengine.utils.SaltySystem#gameObjectMouseEventsAgent}.
+     * This is called every time the cursor enters
+     * the {@link #getTransform()} of this
+     * <code>GameObject</code>. As this takes
+     * quite a bit of performance, you can
+     * disable/enable this feature using {@link
+     * de.edgelord.saltyengine.utils.SaltySystem#gameObjectMouseEventsAgent}.
      */
     public void onCursorEnters() {
     }
 
     /**
-     * This is called every time the cursor exits the {@link #getTransform()} of this <code>GameObject</code>.
-     * As this takes quite a bit of performance, you can disable/enable this feature using {@link de.edgelord.saltyengine.utils.SaltySystem#gameObjectMouseEventsAgent}.
+     * This is called every time the cursor exits
+     * the {@link #getTransform()} of this
+     * <code>GameObject</code>. As this takes
+     * quite a bit of performance, you can
+     * disable/enable this feature using {@link
+     * de.edgelord.saltyengine.utils.SaltySystem#gameObjectMouseEventsAgent}.
      */
     public void onCursorExits() {
     }
 
     /**
-     * This is called every time the collision detection of this <code>GameObject</code> is done. <br>
-     * It is especially useful for e.g. processing if this <code>GameObject</code> hits any other <code>GameObject</code> with a specific tag.
+     * This is called every time the collision
+     * detection of this <code>GameObject</code>
+     * is done. <br> It is especially useful for
+     * e.g. processing if this <code>GameObject</code>
+     * hits any other <code>GameObject</code> with
+     * a specific tag.
      *
-     * @param collisions the list of occurred collisions.
+     * @param collisions the list of occurred
+     *                   collisions.
      */
     public void onCollisionDetectionFinish(final List<CollisionEvent> collisions) {
 
     }
 
     /**
-     * This method is used internally to call {@link #onFixedTick()} and do some stuff with the physics as well as {@link Hitbox#recalculate() updating} the {@link #hitbox}.
+     * This method is used internally to call
+     * {@link #onFixedTick()} and do some stuff
+     * with the physics as well as {@link
+     * Hitbox#recalculate() updating} the {@link
+     * #hitbox}.
      */
     public void doFixedTick() {
         // Remove acceleration from default forces
@@ -269,7 +336,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This is used internally to handle the event of the cursor entering this <code>GameObject</code>.
+     * This is used internally to handle the event
+     * of the cursor entering this <code>GameObject</code>.
      */
     public final void doCursorEnters() {
         doComponentCursorEntersParent();
@@ -277,7 +345,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This is used internally to handle the event of the cursor exiting this <code>GameObject</code>.
+     * This is used internally to handle the event
+     * of the cursor exiting this <code>GameObject</code>.
      */
     public final void doCursorExits() {
         doComponentCursorExitsParent();
@@ -307,7 +376,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     /**
      * Removes the given {@link Component}.
      *
-     * @param component the {@link Component} to be removed
+     * @param component the {@link Component} to
+     *                  be removed
      */
     @Override
     public void removeComponent(final Component component) {
@@ -315,7 +385,8 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Removes the first {@link Component} with the given name.
+     * Removes the first {@link Component} with
+     * the given name.
      *
      * @param name the name
      */
@@ -325,10 +396,13 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Returns the first {@link Component} with the given name.
+     * Returns the first {@link Component} with
+     * the given name.
      *
      * @param name the name
-     * @return the first {@link Component} with the given name
+     *
+     * @return the first {@link Component} with
+     * the given name
      */
     @Override
     public Component getComponent(final String name) {
@@ -343,13 +417,23 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method sets the {@link Force#getAcceleration() acceleration} of the default force in the
-     * given direction to the given acceleration. On the next fixed tick, this acceleration is reset to 0f.
-     * This is the recommended way fro player control in a few cases because the momentum of this GameObject will
-     * slowly fade out and so the controls aren't precise. However, this might be useful for some physics-related games.
+     * This method sets the {@link Force#getAcceleration()
+     * acceleration} of the default force in the
+     * given direction to the given acceleration.
+     * On the next fixed tick, this acceleration
+     * is reset to 0f. This is the recommended way
+     * fro player control in a few cases because
+     * the momentum of this GameObject will slowly
+     * fade out and so the controls aren't
+     * precise. However, this might be useful for
+     * some physics-related games.
      *
-     * @param acceleration the acceleration to be set to the specific default force
-     * @param direction    the direction in which to accelerate the GameObject
+     * @param acceleration the acceleration to be
+     *                     set to the specific
+     *                     default force
+     * @param direction    the direction in which
+     *                     to accelerate the
+     *                     GameObject
      */
     public void accelerate(final float acceleration, final Directions.Direction direction) {
 
@@ -378,11 +462,18 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Calls {@link #accelerate(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * Calls {@link #accelerate(float,
+     * Directions.Direction)} for every {@link
+     * de.edgelord.saltyengine.utils.Directions.Direction}
      * that the given {@link Directions} has.
      *
-     * @param acceleration the target acceleration for all directions that the given <code>Directions</code> has.
-     * @param directions   the <code>Directions</code> in which to accelerate.
+     * @param acceleration the target acceleration
+     *                     for all directions that
+     *                     the given <code>Directions</code>
+     *                     has.
+     * @param directions   the <code>Directions</code>
+     *                     in which to accelerate.
+     *
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerate(final float acceleration, final Directions directions) {
@@ -405,12 +496,20 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * This method sets the {@link Force#getVelocity() velocity} of the default velocity force with the
-     * given direction to the given value. This velocity only rests for one tick.
-     * This is the recommended way for player control in most cases because it's more precise than working with acceleration.
+     * This method sets the {@link Force#getVelocity()
+     * velocity} of the default velocity force
+     * with the given direction to the given
+     * value. This velocity only rests for one
+     * tick. This is the recommended way for
+     * player control in most cases because it's
+     * more precise than working with
+     * acceleration.
      *
-     * @param velocity  the velocity to be set to the specific force
-     * @param direction the direction of the default force to be manipulated
+     * @param velocity  the velocity to be set to
+     *                  the specific force
+     * @param direction the direction of the
+     *                  default force to be
+     *                  manipulated
      */
     public void accelerateTo(final float velocity, final Directions.Direction direction) {
 
@@ -438,11 +537,19 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Calls {@link #accelerateTo(float, Directions.Direction)} for every {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     * Calls {@link #accelerateTo(float,
+     * Directions.Direction)} for every {@link
+     * de.edgelord.saltyengine.utils.Directions.Direction}
      * that the given {@link Directions} has.
      *
-     * @param velocity   the target velocity for all directions that the given <code>Directions</code> has
-     * @param directions the <code>Directions</code> in which to accelerate to the given velocity
+     * @param velocity   the target velocity for
+     *                   all directions that the
+     *                   given <code>Directions</code>
+     *                   has
+     * @param directions the <code>Directions</code>
+     *                   in which to accelerate to
+     *                   the given velocity
+     *
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerateTo(final float velocity, final Directions directions) {
@@ -465,9 +572,14 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Returns whether the cursor touches the {@link #getTransform() transform} of this <code>GameObject</code> or not.
+     * Returns whether the cursor touches the
+     * {@link #getTransform() transform} of this
+     * <code>GameObject</code> or not.
      *
-     * @return <code>true</code> if the cursor touches the {@link #getTransform() transform} of this <code>GameObject</code> and <code>false</code> if not.
+     * @return <code>true</code> if the cursor
+     * touches the {@link #getTransform()
+     * transform} of this <code>GameObject</code>
+     * and <code>false</code> if not.
      */
     public boolean isCursorOver() {
         return getTransform().contains(Input.getCursor());
@@ -476,14 +588,16 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     /**
      * Returns the result of {@link #isCursorOver()}.
      *
-     * @return the return value of {@link #isCursorOver()}.
+     * @return the return value of {@link
+     * #isCursorOver()}.
      */
     public boolean mouseTouches() {
         return isCursorOver();
     }
 
     /**
-     * Returns the {@link #hitbox} of this <code>GameObject</code>.
+     * Returns the {@link #hitbox} of this
+     * <code>GameObject</code>.
      *
      * @return the {@link #hitbox}
      */
@@ -496,9 +610,12 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     }
 
     /**
-     * Returns the {@link #hitbox} as a {@link SimpleHitbox}, as it is by default.
+     * Returns the {@link #hitbox} as a {@link
+     * SimpleHitbox}, as it is by default.
      *
-     * @return the return value of {@link #getHitbox()} casted to {@link SimpleHitbox}
+     * @return the return value of {@link
+     * #getHitbox()} casted to {@link
+     * SimpleHitbox}
      */
     public SimpleHitbox getHitboxAsSimpleHitbox() {
         return (SimpleHitbox) getHitbox();

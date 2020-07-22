@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The basic core classes for animation generating based on keyframes.
+ * The basic core classes for animation generating
+ * based on keyframes.
  */
 package de.edgelord.saltyengine.core.animation;

@@ -22,8 +22,10 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * A rectangular <code>Particle</code> with rounded corners. The default {@link Dimensions} is {@link #DEFAULT_DIMENSIONS}
- * and the diameter is {@link #DIAMETER}.
+ * A rectangular <code>Particle</code> with
+ * rounded corners. The default {@link Dimensions}
+ * is {@link #DEFAULT_DIMENSIONS} and the diameter
+ * is {@link #DIAMETER}.
  */
 public class RoundRectangleParticle extends Particle {
 

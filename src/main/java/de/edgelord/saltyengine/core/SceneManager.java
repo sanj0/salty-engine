@@ -22,19 +22,21 @@ import de.edgelord.saltyengine.scene.Scene;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * This class provides static stuff for
- * managing the {@link #currentScene current active Scene}.
+ * This class provides static stuff for managing
+ * the {@link #currentScene current active
+ * Scene}.
  * <p>
- * Apart from the obvious getting/setting,
- * to reload the current {@link Scene},
- * use {@link #reloadCurrentScene(Object...)}.
- * Constructor args can be passed into that method via vararg.
+ * Apart from the obvious getting/setting, to
+ * reload the current {@link Scene}, use {@link
+ * #reloadCurrentScene(Object...)}. Constructor
+ * args can be passed into that method via
+ * vararg.
  */
 public class SceneManager {
 
     /**
-     * The <code>Scene</code> that is currently being rendered and
-     * processed.
+     * The <code>Scene</code> that is currently
+     * being rendered and processed.
      */
     private static Scene currentScene = new EmptyScene();
 
@@ -48,8 +50,8 @@ public class SceneManager {
     }
 
     /**
-     * Sets {@link #currentScene} and then
-     * {@link Scene#initialize() initializes} it.
+     * Sets {@link #currentScene} and then {@link
+     * Scene#initialize() initializes} it.
      *
      * @param scene the new active <code>Scene</code>
      */
@@ -60,9 +62,12 @@ public class SceneManager {
     /**
      * Sets {@link #currentScene}.
      *
-     * @param scene      the new value of {@link #currentScene}
-     * @param initialize whether the <code>Scene</code> should be
-     *                   {@link Scene#initialize() initialized} by this method or not.
+     * @param scene      the new value of {@link
+     *                   #currentScene}
+     * @param initialize whether the <code>Scene</code>
+     *                   should be {@link Scene#initialize()
+     *                   initialized} by this
+     *                   method or not.
      */
     public static void setCurrentScene(final Scene scene, final boolean initialize) {
         currentScene = scene;
@@ -74,15 +79,22 @@ public class SceneManager {
     }
 
     /**
-     * Creates a new instance of the the {@link #currentScene current scene}
-     * with the given args and sets it as teh current <code>Scene</code>,
-     * effectively reloading it.
+     * Creates a new instance of the the {@link
+     * #currentScene current scene} with the given
+     * args and sets it as teh current
+     * <code>Scene</code>, effectively reloading
+     * it.
      *
-     * @param args the arguments for the constructor to instantiate
-     *             a new <code>Scene</code> of the type of the
-     *             {@link #currentScene current one}
-     * @throws NoSuchMethodException when there is no constructor
-     *                               the given args
+     * @param args the arguments for the
+     *             constructor to instantiate a
+     *             new <code>Scene</code> of the
+     *             type of the {@link #currentScene
+     *             current one}
+     *
+     * @throws NoSuchMethodException when there is
+     *                               no constructor
+     *                               the given
+     *                               args
      */
     public static void reloadCurrentScene(final Object... args) throws NoSuchMethodException {
 

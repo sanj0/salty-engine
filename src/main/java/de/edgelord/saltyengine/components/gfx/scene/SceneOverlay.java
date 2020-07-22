@@ -27,23 +27,32 @@ import de.edgelord.saltyengine.scene.Scene;
 import java.awt.*;
 
 /**
- * This {@link GFXComponent} for the whole {@link Scene} lays the {@link Color} {@link #overlayColor} with the alpha value
- * {@link #alpha} onto the scene by assigning a {@link DrawingRoutine} to the
- * current scene with the {@link DrawingRoutine#getDrawingPosition()}
- * {@link DrawingRoutine.DrawingPosition#LAST} to ensure that the drawn color is above all
- * {@link de.edgelord.saltyengine.gameobject.GameObject}s.
- * When no longer needed, you should call {@link #endGFX()} to make sure that the DrawingRoutine is no longer in the scene.
+ * This {@link GFXComponent} for the whole {@link
+ * Scene} lays the {@link Color} {@link
+ * #overlayColor} with the alpha value {@link
+ * #alpha} onto the scene by assigning a {@link
+ * DrawingRoutine} to the current scene with the
+ * {@link DrawingRoutine#getDrawingPosition()}
+ * {@link DrawingRoutine.DrawingPosition#LAST} to
+ * ensure that the drawn color is above all {@link
+ * de.edgelord.saltyengine.gameobject.GameObject}s.
+ * When no longer needed, you should call {@link
+ * #endGFX()} to make sure that the DrawingRoutine
+ * is no longer in the scene.
  */
 public class SceneOverlay extends SceneGFXComponent {
 
     private final DrawingRoutine drawColorOverlay;
     /**
-     * The {@link Color} which will be rendered onto the screen
+     * The {@link Color} which will be rendered
+     * onto the screen
      */
     private Color overlayColor;
     /**
-     * The alpha value with which the {@link #overlayColor} will be rendered.
-     * This value goes from 0f (fully transparent) to 1f (no transparency)
+     * The alpha value with which the {@link
+     * #overlayColor} will be rendered. This value
+     * goes from 0f (fully transparent) to 1f (no
+     * transparency)
      */
     private float alpha;
 
@@ -86,9 +95,12 @@ public class SceneOverlay extends SceneGFXComponent {
     }
 
     /**
-     * All of the drawing happens inside the {@link DrawingRoutine} {@link #drawColorOverlay}.
+     * All of the drawing happens inside the
+     * {@link DrawingRoutine} {@link
+     * #drawColorOverlay}.
      *
-     * @param saltyGraphics the graphics context to draw with
+     * @param saltyGraphics the graphics context
+     *                      to draw with
      */
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {

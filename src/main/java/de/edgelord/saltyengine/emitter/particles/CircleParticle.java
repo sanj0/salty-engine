@@ -22,13 +22,15 @@ import de.edgelord.saltyengine.emitter.EmitterComponent;
 import de.edgelord.saltyengine.emitter.Particle;
 
 /**
- * A round {@link Particle} whose default diameter is {@link #DEFAULT_DIAMETER}.
+ * A round {@link Particle} whose default diameter
+ * is {@link #DEFAULT_DIAMETER}.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class CircleParticle extends Particle {
 
     /**
-     * The default diameter for a new <code>CircleParticle</code>.
+     * The default diameter for a new
+     * <code>CircleParticle</code>.
      */
     public static float DEFAULT_DIAMETER = 10f;
 

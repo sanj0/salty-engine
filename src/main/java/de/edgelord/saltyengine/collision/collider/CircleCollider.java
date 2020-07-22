@@ -27,12 +27,15 @@ import de.edgelord.saltyengine.utils.GeneralUtil;
 
 /**
  * An implementation of {@link Collider} that uses
- * a circle as the "hitbox".
- * Using CircleColliders only would make the collision detection very fast.
+ * a circle as the "hitbox". Using CircleColliders
+ * only would make the collision detection very
+ * fast.
  * <p>
- * Note that for the circle, the width of {@link de.edgelord.saltyengine.hitbox.Hitbox}
- * is being used and that the height is therefore ignored, but as the centre
- * of the circle is needed, the user should always ensure that width and height
+ * Note that for the circle, the width of {@link
+ * de.edgelord.saltyengine.hitbox.Hitbox} is being
+ * used and that the height is therefore ignored,
+ * but as the centre of the circle is needed, the
+ * user should always ensure that width and height
  * are equal.
  */
 public class CircleCollider extends Collider implements TransformedObject {
@@ -43,9 +46,15 @@ public class CircleCollider extends Collider implements TransformedObject {
     /**
      * The constructor.
      *
-     * @param hitbox the hitbox the circle of this <code>Collider</code> should represent.
-     *               Only the {@link Transform#getWidth() width} and {@link Transform#getPosition() position}
-     *               is taken into account to form a circle instead of an oval.
+     * @param hitbox the hitbox the circle of
+     *               this
+     *               <code>Collider</code> should
+     *               represent. Only the {@link
+     *               Transform#getWidth() width}
+     *               and {@link Transform#getPosition()
+     *               position} is taken into
+     *               account to form a circle
+     *               instead of an oval.
      */
     public CircleCollider(final Transform hitbox) {
         super(1, CIRCLE_COLLIDER);
@@ -94,7 +103,8 @@ public class CircleCollider extends Collider implements TransformedObject {
     /**
      * Sets {@link #hitbox}.
      *
-     * @param hitbox the new value of {@link #hitbox}
+     * @param hitbox the new value of {@link
+     *               #hitbox}
      */
     public void setHitbox(final Transform hitbox) {
         this.hitbox = hitbox;

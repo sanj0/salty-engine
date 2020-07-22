@@ -23,8 +23,8 @@ import java.awt.*;
 
 /**
  * An implementation of {@link Light} that emits
- * light to every pixel of the game.
- * The intensity controls nothing in this implementation.
+ * light to every pixel of the game. The intensity
+ * controls nothing in this implementation.
  */
 public class GlobalLight extends Light {
 

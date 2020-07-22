@@ -18,7 +18,8 @@ package de.edgelord.saltyengine.scene;
 
 /**
  * An empty implementation of a {@link Scene}.
- * This should not be used as a template for an actual game scene!
+ * This should not be used as a template for an
+ * actual game scene!
  */
 public class EmptyScene extends Scene {
     public void initialize() {

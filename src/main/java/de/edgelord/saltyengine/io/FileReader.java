@@ -23,8 +23,8 @@ import java.nio.file.Files;
 import java.util.stream.Collectors;
 
 /**
- * A non-static utility class to read text from
- * a given {@link #getFile() file}.
+ * A non-static utility class to read text from a
+ * given {@link #getFile() file}.
  */
 public class FileReader extends FileIO {
 
@@ -33,7 +33,8 @@ public class FileReader extends FileIO {
     }
 
     /**
-     * Returns the whole content of the file given in the constructor
+     * Returns the whole content of the file given
+     * in the constructor
      *
      * @return the content of the file
      * @throws java.io.IOException on an I/O error

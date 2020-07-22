@@ -23,11 +23,12 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.Scene;
 
 /**
- * The <code>GameListener</code> is an interface to
- * process a variety of events that the game is throwing.
+ * The <code>GameListener</code> is an interface
+ * to process a variety of events that the game is
+ * throwing.
  * <p>
- * A <code>GameListener</code> can be added to the game
- * via the {@link Game} class.
+ * A <code>GameListener</code> can be added to the
+ * game via the {@link Game} class.
  */
 public interface GameListener {
 
@@ -37,56 +38,66 @@ public interface GameListener {
     void onClose();
 
     /**
-     * Calls when the game starts.
-     * This event is fired by the {@link GameStarter}
-     * after a {@link Game#start()} method is called.
+     * Calls when the game starts. This event is
+     * fired by the {@link GameStarter} after a
+     * {@link Game#start()} method is called.
      */
     void onStart();
 
     /**
-     * Calls when a new {@link Scene} is set
-     * as the current one using
-     * {@link SceneManager#setCurrentScene(Scene)}.
+     * Calls when a new {@link Scene} is set as
+     * the current one using {@link SceneManager#setCurrentScene(Scene)}.
      *
      * @param scene the new active <code>Scene</code>
      */
     void onSceneStart(Scene scene);
 
     /**
-     * Calls when a {@link GameObject} collides with another <code>GameObject</code>.
+     * Calls when a {@link GameObject} collides
+     * with another <code>GameObject</code>.
      *
      * @param subject the first collision partner
-     * @param e       the event of the collision, including the other collision partner
+     * @param e       the event of the collision,
+     *                including the other
+     *                collision partner
      */
     void onCollision(GameObject subject, CollisionEvent e);
 
     /**
      * Calls when the game has finished rendering,
-     * which in this case means that all {@link GameObject}s and
-     * {@link de.edgelord.saltyengine.gameobject.DrawingRoutine}s are
-     * rendered, but the {@link de.edgelord.saltyengine.effect.light.LightSystem}
-     * is still to be rendered. <p>
-     * This method is called in the render process directly before the {@link de.edgelord.saltyengine.effect.light.LightSystem}
+     * which in this case means that all {@link
+     * GameObject}s and {@link de.edgelord.saltyengine.gameobject.DrawingRoutine}s
+     * are rendered, but the {@link de.edgelord.saltyengine.effect.light.LightSystem}
+     * is still to be rendered. <p> This method is
+     * called in the render process directly
+     * before the {@link de.edgelord.saltyengine.effect.light.LightSystem}
      * is being drawn.
      *
-     * @param saltyGraphics the <code>Graphics</code> that the game is being rendered with
+     * @param saltyGraphics the <code>Graphics</code>
+     *                      that the game is being
+     *                      rendered with
      */
     void onGameRenderFinish(SaltyGraphics saltyGraphics);
 
     /**
      * Calls when the Game has finished rendering,
      * with the {@link de.edgelord.saltyengine.effect.light.LightSystem}
-     * included, but the UI still to be rendered after this event.
+     * included, but the UI still to be rendered
+     * after this event.
      *
-     * @param saltyGraphics the graphics the game is being rendered with
+     * @param saltyGraphics the graphics the game
+     *                      is being rendered
+     *                      with
      */
     void onPostLightRenderFinish(SaltyGraphics saltyGraphics);
 
     /**
-     * Calls when the game has completely finished rendering,
-     * which includes the {@link de.edgelord.saltyengine.effect.light.LightSystem}
+     * Calls when the game has completely finished
+     * rendering, which includes the {@link
+     * de.edgelord.saltyengine.effect.light.LightSystem}
      * and {@link de.edgelord.saltyengine.ui.UISystem}.
-     * A default implementation would just return the image like so:
+     * A default implementation would just return
+     * the image like so:
      * <pre>{@code
      * public SaltyImage onRenderFinish(SaltyImage image) {
      *     return image;
@@ -94,7 +105,9 @@ public interface GameListener {
      * }</pre>
      *
      * @param image the final image
-     * @return the image that is actually being drawn to the screen
+     *
+     * @return the image that is actually being
+     * drawn to the screen
      */
     SaltyImage onRenderFinish(SaltyImage image);
 }

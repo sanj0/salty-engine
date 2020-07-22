@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 /**
- * The package for {@link de.edgelord.saltyengine.core.Component}s relating to animation. This package is fully documented right now.
+ * The package for {@link de.edgelord.saltyengine.core.Component}s
+ * relating to animation. This package is fully
+ * documented right now.
  */
 package de.edgelord.saltyengine.components.animation;

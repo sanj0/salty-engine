@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The core-package related to graphics, mainly {@link de.edgelord.saltyengine.core.graphics.SaltyGraphics}.
+ * The core-package related to graphics, mainly
+ * {@link de.edgelord.saltyengine.core.graphics.SaltyGraphics}.
  */
 package de.edgelord.saltyengine.core.graphics;

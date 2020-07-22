@@ -61,10 +61,13 @@ public class DataReader {
     }
 
     /**
-     * Returns a Species with the given name and content by finding it in the File.
+     * Returns a Species with the given name and
+     * content by finding it in the File.
      *
      * @param speciesName the Species name
-     * @return the Species with proper name and content
+     *
+     * @return the Species with proper name and
+     * content
      * @see Species
      */
     public Species getSpecies(final String speciesName) {
@@ -72,9 +75,12 @@ public class DataReader {
     }
 
     /**
-     * Returns the "Main"species by finding the species whose name is the name of the file without the .sdb extension
+     * Returns the "Main"species by finding the
+     * species whose name is the name of the file
+     * without the .sdb extension
      *
-     * @return the "Main"species with its proper content
+     * @return the "Main"species with its proper
+     * content
      * @see Species
      */
     public Species getMainSpecies() {
@@ -82,9 +88,12 @@ public class DataReader {
     }
 
     /**
-     * Returns the value of a specific tag within the whole file.
+     * Returns the value of a specific tag within
+     * the whole file.
      *
-     * @param tag the name of the tag whose value gets returned
+     * @param tag the name of the tag whose value
+     *            gets returned
+     *
      * @return the value of the specific tag
      */
     public String getTagValue(final String tag) {

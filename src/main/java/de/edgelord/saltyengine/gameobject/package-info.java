@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for everything related to {@link de.edgelord.saltyengine.gameobject.GameObject}s.
+ * The package for everything related to {@link
+ * de.edgelord.saltyengine.gameobject.GameObject}s.
  */
 package de.edgelord.saltyengine.gameobject;

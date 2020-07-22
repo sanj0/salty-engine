@@ -22,8 +22,10 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import java.awt.*;
 
 /**
- * This {@link LightSystem} is much more efficient because it is not updated over and over again but only when requested
- * via {@link #scheduleUpdate()}
+ * This {@link LightSystem} is much more efficient
+ * because it is not updated over and over again
+ * but only when requested via {@link
+ * #scheduleUpdate()}
  */
 public class StaticLightSystem extends LightSystem {
 

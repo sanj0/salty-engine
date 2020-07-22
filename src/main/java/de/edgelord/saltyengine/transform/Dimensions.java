@@ -28,11 +28,12 @@ public class Dimensions {
     }
 
     /**
-     * Constructs a new objects with the
-     * {@link #width} and {@link #height}
-     * of the given object.
+     * Constructs a new objects with the {@link
+     * #width} and {@link #height} of the given
+     * object.
      *
-     * @param dimensions the dimensions for this new object
+     * @param dimensions the dimensions for this
+     *                   new object
      */
     public Dimensions(final Dimensions dimensions) {
         this(dimensions.width, dimensions.height);
@@ -138,7 +139,9 @@ public class Dimensions {
     }
 
     /**
-     * Returns a new <code>Dimensions</code> with the same {@link #width} and {@link #height} as this one.
+     * Returns a new <code>Dimensions</code> with
+     * the same {@link #width} and {@link #height}
+     * as this one.
      *
      * @return a "copy" of this <code>Dimensions</code>
      */

@@ -29,7 +29,8 @@ import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 /**
- * The engine-default implementation of {@link Camera}.
+ * The engine-default implementation of {@link
+ * Camera}.
  * <p>
  * It provides vision adjustment through:
  * <p>
@@ -71,13 +72,19 @@ public class Camera2D implements Camera, TransformedObject {
     }
 
     /**
-     * Moves the camera by the given amount
-     * in the given direction in userspace.
+     * Moves the camera by the given amount in the
+     * given direction in userspace.
      *
-     * @param direction the {@link de.edgelord.saltyengine.utils.Directions.Direction} of the movement.
-     *                  Actually, there is no camera movement simulated and all of the rendered entities will move
-     *                  in this direction instead of the camera to move.
-     * @param delta     the length of the movement in pixels.
+     * @param direction the {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     *                  of the movement. Actually,
+     *                  there is no camera
+     *                  movement simulated and all
+     *                  of the rendered entities
+     *                  will move in this direction
+     *                  instead of the camera to
+     *                  move.
+     * @param delta     the length of the movement
+     *                  in pixels.
      */
     public void move(final Directions.Direction direction, final float delta) {
         switch (direction) {

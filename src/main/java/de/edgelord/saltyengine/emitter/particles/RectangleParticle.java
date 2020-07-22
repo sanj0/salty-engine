@@ -22,12 +22,16 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * A rectangular particle whose default {@link de.edgelord.saltyengine.transform.Dimensions} is {@link #DEFAULT_DIMENSIONS}.
+ * A rectangular particle whose default {@link
+ * de.edgelord.saltyengine.transform.Dimensions}
+ * is {@link #DEFAULT_DIMENSIONS}.
  */
 public class RectangleParticle extends Particle {
 
     /**
-     * The default <code>Dimensions</code> for new <code>RectangleParticle</code>s.
+     * The default <code>Dimensions</code> for
+     * new
+     * <code>RectangleParticle</code>s.
      */
     public static Dimensions DEFAULT_DIMENSIONS = new Dimensions(10f, 10f);
 

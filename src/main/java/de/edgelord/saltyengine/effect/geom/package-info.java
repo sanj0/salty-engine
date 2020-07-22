@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for simple geometrical shapes and the base-class, {@link de.edgelord.saltyengine.effect.geom.SaltyShape}.
+ * The package for simple geometrical shapes and
+ * the base-class, {@link de.edgelord.saltyengine.effect.geom.SaltyShape}.
  */
 package de.edgelord.saltyengine.effect.geom;

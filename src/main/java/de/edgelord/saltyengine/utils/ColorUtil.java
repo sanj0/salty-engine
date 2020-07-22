@@ -183,22 +183,25 @@ public class ColorUtil {
     }
 
     /**
-     * Returns a random entry from {@link #allColors}
-     * using {@link GeneralUtil#randomObjectFromList(List)}.
+     * Returns a random entry from {@link
+     * #allColors} using {@link GeneralUtil#randomObjectFromList(List)}.
      *
      * @return a random color
      */
     public static Color randomColor() {
-        return (Color) GeneralUtil.randomObjectFromList(allColors);
+        return GeneralUtil.randomObjectFromList(allColors);
     }
 
     /**
-     * Blends the two given colors by the given ratio.
+     * Blends the two given colors by the given
+     * ratio.
      *
      * @param color1 the first color
      * @param color2 the second color
      * @param ratio  the blend ratio
-     * @return a blend between the two colors by the given ratio
+     *
+     * @return a blend between the two colors by
+     * the given ratio
      */
     public static Color blend(final Color color1, final Color color2, float ratio) {
         if (ratio > 1f) {
@@ -229,77 +232,97 @@ public class ColorUtil {
     }
 
     /**
-     * Returns the alpha value from the given argb value.
+     * Returns the alpha value from the given argb
+     * value.
      *
      * @param argb the argb value of the color
-     * @return the alpha value from the given argb color
+     *
+     * @return the alpha value from the given argb
+     * color
      */
     public static int getAlpha(final int argb) {
         return (argb >> 24);
     }
 
     /**
-     * Returns the red value from the given argb value.
+     * Returns the red value from the given argb
+     * value.
      *
      * @param argb the argb value of the color
-     * @return the red value from the given argb color
+     *
+     * @return the red value from the given argb
+     * color
      */
     public static int getRed(final int argb) {
         return ((argb & 0xff0000) >> 16);
     }
 
     /**
-     * Returns the green value from the given argb value.
+     * Returns the green value from the given argb
+     * value.
      *
      * @param argb the argb value of the color
-     * @return the green value from the given argb color
+     *
+     * @return the green value from the given argb
+     * color
      */
     public static int getGreen(final int argb) {
         return ((argb & 0xff00) >> 8);
     }
 
     /**
-     * Returns the blue value from the given argb value.
+     * Returns the blue value from the given argb
+     * value.
      *
      * @param argb the argb value of the color
-     * @return the blue value from the given argb color
+     *
+     * @return the blue value from the given argb
+     * color
      */
     public static int getBlue(final int argb) {
         return (argb & 0xff);
     }
 
     /**
-     * Returns the given color with the given alpha value.
-     * The value goes from 0 to 255, 0 meaning complete transparency,
-     * 255 meaning full visibility.
+     * Returns the given color with the given
+     * alpha value. The value goes from 0 to 255,
+     * 0 meaning complete transparency, 255
+     * meaning full visibility.
      *
      * @param color the {@link Color} to return
      * @param alpha the alpha value of the color
-     * @return the given color with the given alpha value
+     *
+     * @return the given color with the given
+     * alpha value
      */
     public static Color withAlpha(final Color color, final int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
 
     /**
-     * Returns the given color with the given alpha value.
-     * The value goes from 0f to 1f, 0f meaning complete transparency,
-     * 1f meaning full visibility.
+     * Returns the given color with the given
+     * alpha value. The value goes from 0f to 1f,
+     * 0f meaning complete transparency, 1f
+     * meaning full visibility.
      *
      * @param color the {@link Color} to return
      * @param alpha the alpha value of the color
-     * @return the given color with the given alpha value
+     *
+     * @return the given color with the given
+     * alpha value
      */
     public static Color withAlpha(final Color color, final float alpha) {
         return withAlpha(color, (int) (alpha * 255f));
     }
 
     /**
-     * Change the brightness of the given Color.
-     * 1 is black, -1 the brightest Color without changing it's effect
+     * Change the brightness of the given Color. 1
+     * is black, -1 the brightest Color without
+     * changing it's effect
      *
      * @param color  Color to make darker.
      * @param amount Darkness fraction.
+     *
      * @return Darker color.
      * @deprecated
      */
@@ -316,29 +339,43 @@ public class ColorUtil {
     }
 
     /**
-     * Creates and returns a new {@link TexturePaint}.
-     * The given {@link BufferedImage} is the texture and should be small,
-     * the given {@link Transform} is the texture anchor. For a detailed description, please read the documentation
-     * of the {@link TexturePaint class}.
+     * Creates and returns a new {@link
+     * TexturePaint}. The given {@link
+     * BufferedImage} is the texture and should be
+     * small, the given {@link Transform} is the
+     * texture anchor. For a detailed description,
+     * please read the documentation of the {@link
+     * TexturePaint class}.
      *
-     * @param texture the texture to use. Should be small
+     * @param texture the texture to use. Should
+     *                be small
      * @param anchor  the anchor of the texture
-     * @return a new {@link TexturePaint} using the given {@link BufferedImage} as a texture and the given {@link Transform}
-     * as an anchor.
+     *
+     * @return a new {@link TexturePaint} using
+     * the given {@link BufferedImage} as a
+     * texture and the given {@link Transform} as
+     * an anchor.
      */
     public static TexturePaint createTexturePaint(final BufferedImage texture, final Transform anchor) {
         return new TexturePaint(texture, anchor.getRect());
     }
 
     /**
-     * Creates a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
-     * to the same color but with the given alpha value.
+     * Creates a new {@link RadialGradientPaint}
+     * around the given {@link Transform} shifting
+     * from the given {@link Color} to the same
+     * color but with the given alpha value.
      *
-     * @param bounds      the bounds of the gradient
+     * @param bounds      the bounds of the
+     *                    gradient
      * @param color       the color of the gradient
-     * @param targetAlpha the alpha to shift the color to
-     * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
-     * to the same color but with the given alpha value.
+     * @param targetAlpha the alpha to shift the
+     *                    color to
+     *
+     * @return a new {@link RadialGradientPaint}
+     * around the given {@link Transform} shifting
+     * from the given {@link Color} to the same
+     * color but with the given alpha value.
      * @see RadialGradientPaint
      */
     public static RadialGradientPaint createRadialGradientPaint(final Transform bounds, final Color color, final int targetAlpha) {
@@ -359,12 +396,17 @@ public class ColorUtil {
     }
 
     /**
-     * Calls {@link #createRadialGradientPaint(Transform, Color, int)} with the target alpha being 0.
+     * Calls {@link #createRadialGradientPaint(Transform,
+     * Color, int)} with the target alpha being
+     * 0.
      *
      * @param bounds the bounds of the gradient
      * @param color  the color of the gradient
-     * @return a new {@link RadialGradientPaint} around the given {@link Transform} shifting from the given {@link Color}
-     * to the same color but with an alpha of 0.
+     *
+     * @return a new {@link RadialGradientPaint}
+     * around the given {@link Transform} shifting
+     * from the given {@link Color} to the same
+     * color but with an alpha of 0.
      */
     public static RadialGradientPaint createRadialGradientPaint(final Transform bounds, final Color color) {
         System.out.println(bounds);
@@ -372,10 +414,16 @@ public class ColorUtil {
     }
 
     /**
-     * Returns the given alpha, red, green or blue value ranging from 0 to 255 as a float value ranging from 0f to 1f.
+     * Returns the given alpha, red, green or blue
+     * value ranging from 0 to 255 as a float
+     * value ranging from 0f to 1f.
      *
-     * @param argb a single argb component ranging from 0 to 255
-     * @return the given integer in a range from 0 to 255 converted to a float ranging from 0f to 1f
+     * @param argb a single argb component ranging
+     *             from 0 to 255
+     *
+     * @return the given integer in a range from 0
+     * to 255 converted to a float ranging from 0f
+     * to 1f
      */
     public static float intARGBToFloat(final int argb) {
         return (float) argb / 255;

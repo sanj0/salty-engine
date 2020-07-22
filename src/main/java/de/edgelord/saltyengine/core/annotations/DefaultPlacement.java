@@ -25,19 +25,25 @@ public @interface DefaultPlacement {
      */
     enum Method {
         /**
-         * When the placement of the object is done via its top left corner.
+         * When the placement of the object is
+         * done via its top left corner.
          */
         TOP_LEFT_CORNER,
         /**
-         * When the placement of the object is done via its centre.
+         * When the placement of the object is
+         * done via its centre.
          */
         CENTRE,
         /**
-         * The method of placement when the object has the same position (and dimensions) as its parent (e.g. components).
+         * The method of placement when the object
+         * has the same position (and dimensions)
+         * as its parent (e.g. components).
          */
         PARENT,
         /**
-         * The method of placement when the object is placed relative to its parent using the {@link de.edgelord.saltyengine.utils.TransformRelationUtil}.
+         * The method of placement when the object
+         * is placed relative to its parent using
+         * the {@link de.edgelord.saltyengine.utils.TransformRelationUtil}.
          */
         TRANSFORM_RELATION
     }

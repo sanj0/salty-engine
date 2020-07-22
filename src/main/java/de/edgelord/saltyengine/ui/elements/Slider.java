@@ -60,7 +60,8 @@ public class Slider extends UIElement {
     }
 
     /**
-     * Returns the value of this <code>Slider</code> between 0f and 1f.
+     * Returns the value of this <code>Slider</code>
+     * between 0f and 1f.
      *
      * @return the 0f-1f value of this <code>Slider</code>
      */

@@ -17,7 +17,8 @@
 package de.edgelord.saltyengine.gameobject;
 
 /**
- * A list of String constants of tags for Components
+ * A list of String constants of tags for
+ * Components
  */
 public abstract class Components {
 

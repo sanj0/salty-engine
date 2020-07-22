@@ -32,46 +32,49 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * A <code>Layer</code> is a sub-unit
- * of a {@link Scene}.
+ * A <code>Layer</code> is a sub-unit of a {@link
+ * Scene}.
  * <p>
  * <code>Scene</code>s store their
  * {@link de.edgelord.saltyengine.gameobject.GameObject}s
  * in <code>Layer</code>s to enable sorting and
- * encapsulated operations on a "physical"
- * layer of <code>GameObject</code>s.
+ * encapsulated operations on a "physical" layer
+ * of <code>GameObject</code>s.
  * <p>
- * To the outside, a <code>Layer</code> acts
- * like a <code>GameObject</code>.
- * As such, it has a transform which can be used
- * to {@link java.awt.Graphics2D#clip(Shape) clip}
- * a <code>Layer</code>.
+ * To the outside, a <code>Layer</code> acts like
+ * a <code>GameObject</code>. As such, it has a
+ * transform which can be used to {@link
+ * java.awt.Graphics2D#clip(Shape) clip} a
+ * <code>Layer</code>.
  */
 public class Layer extends GameObject {
 
     /**
-     * The list of {@link GameObject}s
-     * that this <code>Layer</code> contains.
+     * The list of {@link GameObject}s that this
+     * <code>Layer</code> contains.
      */
     private final List<GameObject> gameObjects = Collections.synchronizedList(new ArrayList<>());
 
     /**
-     * The <code>Scene</code> that contains
-     * this <code>Layer</code>
+     * The <code>Scene</code> that contains this
+     * <code>Layer</code>
      */
     private final Scene container;
 
     /**
-     * The index (imaginary z position)
-     * of this <code>Layer</code> within a
-     * {@link Scene}.
-     * In a <code>Scene</code> with two <code>Layer</code>s
-     * <code>l1</code> with an index of 0 and <code>l2</code>
-     * with an index of <code>1</code>, <code>l2</code>
-     * would be drawn after <code>l1</code>, meaning that
-     * <code>l2</code> will be drawn on top of <code>l1</code>.
-     * Therefore, the higher the index, the later a <code>Layer</code>
-     * is being rendered.
+     * The index (imaginary z position) of this
+     * <code>Layer</code> within a {@link Scene}.
+     * In a <code>Scene</code> with two
+     * <code>Layer</code>s
+     * <code>l1</code> with an index of 0 and
+     * <code>l2</code>
+     * with an index of <code>1</code>,
+     * <code>l2</code> would be drawn after
+     * <code>l1</code>, meaning that
+     * <code>l2</code> will be drawn on top of
+     * <code>l1</code>.
+     * Therefore, the higher the index, the later
+     * a <code>Layer</code> is being rendered.
      */
     private int index;
 
@@ -85,11 +88,16 @@ public class Layer extends GameObject {
 
     /**
      * Constructs a new <code>Layer</code> with
-     * the {@link Game#getGameTransform() transform of the game}
+     * the {@link Game#getGameTransform()
+     * transform of the game}
      *
-     * @param container the <code>Scene</code> that contains this <code>Layer</code>
-     * @param tag       the id-name of this <code>Layer</code>
-     * @param index     the {@link #index} of this layers
+     * @param container the <code>Scene</code>
+     *                  that contains this
+     *                  <code>Layer</code>
+     * @param tag       the id-name of this
+     *                  <code>Layer</code>
+     * @param index     the {@link #index} of this
+     *                  layers
      */
     public Layer(final Scene container, final String tag, final int index) {
         super(Game.getGameTransform(), tag);
@@ -100,14 +108,22 @@ public class Layer extends GameObject {
 
     /**
      * Constructs a new <code>Layer</code> with
-     * all {@link GameObject}s of the given <code>Layer</code>
-     * and the {@link de.edgelord.saltyengine.transform.Transform} of
-     * it.
+     * all {@link GameObject}s of the given
+     * <code>Layer</code> and the {@link
+     * de.edgelord.saltyengine.transform.Transform}
+     * of it.
      *
-     * @param layer     the <code>Layer</code> from which to add all <code>GameObject</code>s to this one
-     * @param container the <code>Scene</code> that contains this <code>Layer</code>
-     * @param tag       the id-name of this <code>Layer</code>
-     * @param index     the {@link #index} of this layers
+     * @param layer     the <code>Layer</code>
+     *                  from which to add all
+     *                  <code>GameObject</code>s
+     *                  to this one
+     * @param container the <code>Scene</code>
+     *                  that contains this
+     *                  <code>Layer</code>
+     * @param tag       the id-name of this
+     *                  <code>Layer</code>
+     * @param index     the {@link #index} of this
+     *                  layers
      */
     public Layer(final Layer layer, final Scene container, final String tag, final int index) {
         this(container, tag, index);
@@ -227,7 +243,8 @@ public class Layer extends GameObject {
     /**
      * Sets {@link #index}.
      *
-     * @param index the new value of {@link #index}
+     * @param index the new value of {@link
+     *              #index}
      */
     public void setIndex(final int index) {
         this.index = index;
@@ -245,7 +262,8 @@ public class Layer extends GameObject {
     /**
      * Sets {@link #affineTransform}.
      *
-     * @param transform the new value of {@link #affineTransform}
+     * @param transform the new value of {@link
+     *                  #affineTransform}
      */
     public void setAffineTransform(final AffineTransform transform) {
         this.affineTransform = transform;

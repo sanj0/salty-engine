@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * The place for everything related to light and lighting.
+ * The place for everything related to light and
+ * lighting.
  */
 package de.edgelord.saltyengine.effect.light;

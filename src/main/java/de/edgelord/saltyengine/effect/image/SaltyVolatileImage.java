@@ -32,7 +32,8 @@ public class SaltyVolatileImage implements SaltyImage {
     private VolatileImage image;
 
     /**
-     * Creates a new instance with the given width and height.
+     * Creates a new instance with the given width
+     * and height.
      *
      * @param width  the width of the image
      * @param height the height of the image
@@ -64,8 +65,10 @@ public class SaltyVolatileImage implements SaltyImage {
     }
 
     /**
-     * Creates a new instance with the image located at the given path relative to the project root.
-     * The image is obtained using {@link SaltySystem#defaultImageFactory}.
+     * Creates a new instance with the image
+     * located at the given path relative to the
+     * project root. The image is obtained using
+     * {@link SaltySystem#defaultImageFactory}.
      *
      * @param path the relative path of image
      */

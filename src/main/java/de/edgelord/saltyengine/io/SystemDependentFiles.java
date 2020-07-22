@@ -19,8 +19,9 @@ package de.edgelord.saltyengine.io;
 import java.io.File;
 
 /**
- * This class contains a couple of methods for getting Files or paths
- * depending on the current user and the Operating System.
+ * This class contains a couple of methods for
+ * getting Files or paths depending on the current
+ * user and the Operating System.
  * <p>
  * Tested and working on: <code>macOS</code>
  * <p>
@@ -41,24 +42,31 @@ public class SystemDependentFiles {
     }
 
     /**
-     * This method returns the current user's home directory
-     * as a File object depending on the Operating System. For example,
-     * on linux, with "joe" as the current user, this method would return a
-     * <code>File</code> with the absolute path <code>/home/joe/</code>.
+     * This method returns the current user's home
+     * directory as a File object depending on the
+     * Operating System. For example, on linux,
+     * with "joe" as the current user, this method
+     * would return a
+     * <code>File</code> with the absolute path
+     * <code>/home/joe/</code>.
      *
-     * @return the home directory of the current user as a <code>File</code>.
+     * @return the home directory of the current
+     * user as a <code>File</code>.
      */
     public static File getUserDir() {
         return new File(getUserDirPath());
     }
 
     /**
-     * This method returns the path to the absolute path of the
-     * home directory of the current user depending on the Operating System.
-     * For example, on macOS, with the current user being "joe", this method
-     * would return <code>"/Users/joe/"</code>.
+     * This method returns the path to the
+     * absolute path of the home directory of the
+     * current user depending on the Operating
+     * System. For example, on macOS, with the
+     * current user being "joe", this method would
+     * return <code>"/Users/joe/"</code>.
      *
-     * @return the absolute path of the home directory of the current user.
+     * @return the absolute path of the home
+     * directory of the current user.
      */
     public static String getUserDirPath() {
 
@@ -78,29 +86,45 @@ public class SystemDependentFiles {
     }
 
     /**
-     * This method returns the <code>File</code> that belongs to the given relative path
-     * from the current user's home directory.
-     * For example, if the current user is "joe", the OS is linux and the
-     * relative path is "lorem/ipsum.foo", this would return a <code>File</code>
-     * with the absolute path "/home/joe/lorem/ipsum.foo".
+     * This method returns the <code>File</code>
+     * that belongs to the given relative path
+     * from the current user's home directory. For
+     * example, if the current user is "joe", the
+     * OS is linux and the relative path is
+     * "lorem/ipsum.foo", this would return a
+     * <code>File</code> with the absolute path
+     * "/home/joe/lorem/ipsum.foo".
      *
-     * @param relativePath the path of the <code>File</code> relative to the user directory
-     * @return the <code>File</code> from the user's directory that belongs to the given relative path.
+     * @param relativePath the path of the <code>File</code>
+     *                     relative to the user
+     *                     directory
+     *
+     * @return the <code>File</code> from the
+     * user's directory that belongs to the given
+     * relative path.
      */
     public static File getUserFile(final String relativePath) {
         return new File(getUserDirPath() + relativePath);
     }
 
     /**
-     * This method return the <code>File</code> from the directory below the user's directory
-     * that belongs to the given relative path.
-     * For example: If the OS is linux or macOS and the relative path is "usr/share", this method
-     * would return a file with the absolute path <code>"/usr/share"</code> (notice the "/" in front
-     * which wouldn't be correct on a windows system).
+     * This method return the <code>File</code>
+     * from the directory below the user's
+     * directory that belongs to the given
+     * relative path. For example: If the OS is
+     * linux or macOS and the relative path is
+     * "usr/share", this method would return a
+     * file with the absolute path <code>"/usr/share"</code>
+     * (notice the "/" in front which wouldn't be
+     * correct on a windows system).
      *
-     * @param relativePath the path relative to the directory below the user's directory.
-     * @return the file from the directory below the user's directory that belongs to the given
-     * relative path
+     * @param relativePath the path relative to
+     *                     the directory below the
+     *                     user's directory.
+     *
+     * @return the file from the directory below
+     * the user's directory that belongs to the
+     * given relative path
      */
     public static File getSystemFile(final String relativePath) {
 
@@ -119,11 +143,13 @@ public class SystemDependentFiles {
     }
 
     /**
-     * Checks for the os and then returns its type.
-     * On a Windows computer for example, this method would check the os
-     * and would most likely return <code>OS.windows</code>.
+     * Checks for the os and then returns its
+     * type. On a Windows computer for example,
+     * this method would check the os and would
+     * most likely return <code>OS.windows</code>.
      *
-     * @return the operating system of the computer that is running this
+     * @return the operating system of the
+     * computer that is running this
      */
     public static OS getOS() {
         checkOS();

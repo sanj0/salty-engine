@@ -23,13 +23,17 @@ import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
 /**
- * An emitter that spawns its {@link Particle}s at the centre of its parent and gives them a random rotation between 0 and 360 degrees.
- * {@link #lockedDirections} are the directions in which the particles can't move.
+ * An emitter that spawns its {@link Particle}s at
+ * the centre of its parent and gives them a
+ * random rotation between 0 and 360 degrees.
+ * {@link #lockedDirections} are the directions in
+ * which the particles can't move.
  */
 public class RandomRadialEmitter extends EmitterComponent {
 
     /**
-     * The directions in which the particles aren't allowed to move.
+     * The directions in which the particles
+     * aren't allowed to move.
      */
     private Directions lockedDirections = new Directions();
 

@@ -20,17 +20,25 @@ import de.edgelord.saltyengine.collision.collider.Collider;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
 /**
- * This implementation of {@link SceneCollider} takes the result from the {@link Collider} with the highest {@code priority}.
+ * This implementation of {@link SceneCollider}
+ * takes the result from the {@link Collider} with
+ * the highest {@code priority}.
  */
 public class PrioritySceneCollider implements SceneCollider {
 
     /**
-     * Returns the return value of {@link Collider#checkCollision(GameObject, GameObject)} from the <code>Collider</code>
-     * with the highest priority (which most likely means the highest accuracy).
+     * Returns the return value of {@link
+     * Collider#checkCollision(GameObject,
+     * GameObject)} from the <code>Collider</code>
+     * with the highest priority (which most
+     * likely means the highest accuracy).
      *
      * @param object1 the first <code>GameObject</code>
      * @param object2 the second <code>GameObject</code>
-     * @return the result of the collision detection between the two given {@link GameObject}s.
+     *
+     * @return the result of the collision
+     * detection between the two given {@link
+     * GameObject}s.
      */
     @Override
     public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {

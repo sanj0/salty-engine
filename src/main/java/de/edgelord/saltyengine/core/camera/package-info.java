@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 /**
- * The package that contains camera-related stuff, mainly the {@link de.edgelord.saltyengine.core.camera.Camera} class itself.
+ * The package that contains camera-related stuff,
+ * mainly the {@link de.edgelord.saltyengine.core.camera.Camera}
+ * class itself.
  */
 package de.edgelord.saltyengine.core.camera;
