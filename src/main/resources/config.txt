@@ -1,4 +1,4 @@
-game-width =  1200
-game-height = 900
-game-name = testing
-fixed-tick-millis = 1
+game-width: 1200
+game-height: 900
+game-name: testing
+fixed-tick-millis: 1

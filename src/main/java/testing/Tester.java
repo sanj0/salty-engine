@@ -30,46 +30,28 @@ import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Tester extends Game {
 
     private static AudioPlayer audioPlayer;
 
-    private static void initGame() {
-
-        init(GameConfig.config(1200f, 900f, "testing", 1L));
+    private static void initGame() throws IOException {
+        init(GameConfig.load("config.txt", SaltySystem.defaultResource));
 
         System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 
         Tester.audioPlayer = new AudioPlayer(new AudioFactory(new InnerResource()));
-
-        //Tester.audioPlayer.loadNewAudio("joy_sticky", "res/audio/music/Joy Sticky.wav");
-        //Tester.audioPlayer.loadNewAudio("bird_flap", "res/audio/sound/flap.wav");
-
-        //Tester.audioPlayer.loop("joy_sticky");
-
-        //audioPlayer.setClipVolume("joy_sticky", 0.75f);
-
         getHost().setBackgroundColor(Color.lightGray);
-
         addCheatCodeListener();
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws IOException {
         initGame();
         start(60);
         serializeOnExit();
 
         SceneManager.setCurrentScene(new TestingScene());
-        // PointLogger.init("points");
-        //RectangleCreator.init();
-
-        //SceneFade fadeIn = new SceneFade("fadeIn", SceneFade.Mode.FADE_IN, Color.BLACK);
-
-        //fadeIn.setDuration(3500);
-        //fadeIn.fadeInit();
-        // Game.getDefaultGFXController().addGFX(fadeIn);
-        // Game.getDefaultGFXController().startAll();
         Game.executeLater(() -> {
             System.out.println("hello there! 7500 fixed ticks since the start!");
             SceneManager.setCurrentScene(new StaticBackgroundTextbox("This is a textbox with a static background!\nThis is a newline\f...and this is on a new page!",
@@ -85,7 +67,7 @@ public class Tester extends Game {
      * Adds a {@link CheatCodeListener} that listens for "exit".
      */
     private static void addCheatCodeListener() {
-        final CheatCodeListener cheater = new CheatCodeListener() {
+        new CheatCodeListener() {
             @Override
             public boolean handleCheatCode(final String cheatcode) {
                 if (cheatcode.equals("exit")) {
