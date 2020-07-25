@@ -169,7 +169,6 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     @Override
     public void onFixedTick() {
-
         doFixedTasks();
 
         synchronized (concurrentBlock) {

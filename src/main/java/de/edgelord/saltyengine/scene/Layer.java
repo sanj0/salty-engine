@@ -134,10 +134,12 @@ public class Layer extends GameObject {
 
     @Override
     public final void initialize() {
+        // is never called
     }
 
     @Override
     public void onCollision(final CollisionEvent event) {
+        // is never called
     }
 
     @Override
