@@ -62,7 +62,7 @@ public class GameConfig {
      * @throws IOException when something goes
      *                     wrong
      */
-    public static GameConfig load(String path, Resource resource) throws IOException {
+    public static GameConfig load(final String path, final Resource resource) throws IOException {
         return load(resource.getFileResource(path));
     }
 
