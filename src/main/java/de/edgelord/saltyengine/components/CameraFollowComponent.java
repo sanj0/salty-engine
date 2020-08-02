@@ -19,7 +19,6 @@ package de.edgelord.saltyengine.components;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
 

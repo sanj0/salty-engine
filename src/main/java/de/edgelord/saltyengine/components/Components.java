@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.gameobject;
+package de.edgelord.saltyengine.components;
 
 /**
  * A list of String constants of tags for Components
@@ -36,4 +36,5 @@ public abstract class Components {
     public static final String GAMEOBJECT_BEHAVIOUR = "de.edgelord.saltyengine.components.gameobjectBehaviour";
     public static final String GIF_RENDER = "de.edgelord.saltyengine.components.gifRender";
     public static final String EMITTER_COMPONENT = "de.edgelord.saltyengine.components.emitter";
+    public static final String UTILITY_COMPONENT = "de.edgelord.saltyengine.components.utility";
 }

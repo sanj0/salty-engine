@@ -17,9 +17,9 @@
 package de.edgelord.saltyengine.components.gfx;
 
 import de.edgelord.saltyengine.components.Component;
+import de.edgelord.saltyengine.components.Components;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.gameobject.Components;
 
 /**
  * This abstract {@link Component} describes a graphical effect for a {@link

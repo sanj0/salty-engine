@@ -17,10 +17,10 @@
 package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.components.Component;
+import de.edgelord.saltyengine.components.Components;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;

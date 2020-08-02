@@ -17,12 +17,12 @@
 package de.edgelord.saltyengine.components.animation;
 
 import de.edgelord.saltyengine.components.Component;
+import de.edgelord.saltyengine.components.Components;
 import de.edgelord.saltyengine.core.animation.Keyframe;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.gameobject.Components;
 
 /**
  * Animates the {@link de.edgelord.saltyengine.transform.Transform} of its
