@@ -16,7 +16,9 @@
 
 package de.edgelord.saltyengine.transform;
 
-import java.util.Random;
+import de.edgelord.saltyengine.utils.GeneralUtil;
+
+import java.util.Objects;
 
 public class Dimensions {
 
@@ -50,8 +52,7 @@ public class Dimensions {
     }
 
     public static Dimensions random(final int min, final int max) {
-        final Random random = new Random();
-        return new Dimensions(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
+        return new Dimensions(GeneralUtil.randomInt(min, max), GeneralUtil.randomInt(min, max));
     }
 
     public static Dimensions one() {
@@ -126,6 +127,11 @@ public class Dimensions {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(width, height);
     }
 
     @Override

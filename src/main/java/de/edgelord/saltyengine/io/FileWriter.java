@@ -45,10 +45,9 @@ public class FileWriter extends FileIO {
         if (SaltySystem.writePrivilege) {
             getFile().createNewFile();
 
-            final BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()));
-
-            bw.write(text);
-            bw.close();
+            try (final BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(getFile()))) {
+                bw.write(text);
+            }
         }
     }
 }

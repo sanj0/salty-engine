@@ -53,6 +53,6 @@ public class FloatingLabel extends Label {
 
     public void recalculateSize(final FontMetrics metrics) {
         setWidth(metrics.stringWidth(getText()));
-        setHeight(metrics.getMaxAscent() + metrics.getMaxDescent());
+        setHeight((float) metrics.getMaxAscent() + metrics.getMaxDescent());
     }
 }

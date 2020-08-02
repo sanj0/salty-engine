@@ -20,7 +20,6 @@ import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.KeyboardInputHandler;
 
 import java.awt.event.KeyEvent;
-import java.io.Closeable;
 
 /**
  * This class adds a {@link KeyboardInputHandler} to {@link
@@ -29,13 +28,13 @@ import java.io.Closeable;
  * type event. Whenever {@link #ATTENTION_KEY} is typed, the {@link
  * #currentCheatCode} is cleared.
  */
-public abstract class CheatCodeListener implements Closeable {
+public abstract class CheatCodeListener {
 
     /**
      * The Keycode which clears the current cheat code so that the player can
-     * enter one. By default, this is {@link java.awt.event.KeyEvent#VK_ENTER}.
+     * enter one.
      */
-    public static int ATTENTION_KEY = KeyEvent.VK_ENTER;
+    public static final int ATTENTION_KEY = KeyEvent.VK_ENTER;
 
     /**
      * The {@link KeyboardInputHandler} that listens fr input.
@@ -56,12 +55,12 @@ public abstract class CheatCodeListener implements Closeable {
         inputHandler = new KeyboardInputHandler() {
             @Override
             public void keyPressed(final KeyEvent e) {
-
+                // nothing to do
             }
 
             @Override
             public void keyReleased(final KeyEvent e) {
-
+                // nothing to do
             }
 
             @Override
@@ -84,8 +83,7 @@ public abstract class CheatCodeListener implements Closeable {
     /**
      * Removes {@link #inputHandler} from {@link Input#getKeyboardHandlers()}.
      */
-    @Override
-    public void close() {
+    public void remove() {
         Input.getKeyboardHandlers().remove(inputHandler);
     }
 

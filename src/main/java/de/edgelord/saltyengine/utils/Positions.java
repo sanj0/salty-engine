@@ -32,6 +32,9 @@ import de.edgelord.saltyengine.transform.Vector2f;
  */
 public class Positions {
 
+    private Positions() {
+    }
+
     /**
      * Returns the x position in user-space for the given decimal. 0f would be
      * the position 0 in user-space as well and 1f would be the right edge of

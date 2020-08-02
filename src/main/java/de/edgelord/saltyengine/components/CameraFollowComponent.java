@@ -56,6 +56,7 @@ public class CameraFollowComponent extends Component<GameObject> {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+        // nothing to draw
     }
 
     @Override
@@ -73,7 +74,7 @@ public class CameraFollowComponent extends Component<GameObject> {
 
     @Override
     public void onCollision(final CollisionEvent e) {
-
+        // nothing to do
     }
 
     public Transform getWhiteZone() {

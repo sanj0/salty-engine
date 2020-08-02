@@ -59,7 +59,7 @@ public class Camera2D implements Camera, TransformedObject {
         SaltyImage image = SaltySystem.createPreferredImage(getResolution().getWidth(), getResolution().getHeight());
 
         if (image == null) {
-            throw new RuntimeException("couldn't receive preferred image from SaltySystem");
+            throw new NullPointerException("couldn't receive preferred image from SaltySystem");
         }
 
         final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
@@ -82,7 +82,6 @@ public class Camera2D implements Camera, TransformedObject {
      */
     public void move(final Directions.Direction direction, final float delta) {
         switch (direction) {
-
             case RIGHT:
                 setX(getX() + delta);
                 break;
@@ -94,6 +93,8 @@ public class Camera2D implements Camera, TransformedObject {
                 break;
             case DOWN:
                 setY(getY() + delta);
+                break;
+            default:
                 break;
         }
     }

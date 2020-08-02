@@ -110,7 +110,7 @@ public class TestingScene extends Scene {
 
         getUI().addElement(label);
 
-        final Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3 * 25), 125), 3, true);
+        final Switch mySwitch = new Switch(new Vector2f(Game.getHost().getHorizontalCentrePosition(3f * 25f), 125), 3, true);
         final Slider mySlider = new Slider(Game.getHost().getHorizontalCentrePosition(500), 200, 500, 30);
 
         getUI().addElement(mySwitch);

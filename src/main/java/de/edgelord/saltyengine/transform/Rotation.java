@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.transform;
 
+import java.util.Objects;
+
 import static java.lang.Math.toDegrees;
 
 /**
@@ -91,6 +93,11 @@ public class Rotation {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(centre, rotationDegrees);
     }
 
     public Vector2f getCentreAbsolute(final Transform parent) {

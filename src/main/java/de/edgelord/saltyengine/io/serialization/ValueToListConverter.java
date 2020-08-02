@@ -22,6 +22,9 @@ import java.util.List;
 
 public class ValueToListConverter {
 
+    private ValueToListConverter() {
+    }
+
     /**
      * Converts the value of the given tag in the given Species to a List of
      * Strings separated by the given String and returns it.
@@ -50,7 +53,7 @@ public class ValueToListConverter {
      * @return the array of Strings
      */
     public static String[] convertToArray(final Species species, final String tag, final String separator) {
-        return (String[]) convertToList(species, tag, separator).toArray();
+        return convertToList(species, tag, separator).toArray(new String[0]);
     }
 
     /**
@@ -86,7 +89,7 @@ public class ValueToListConverter {
      * @return the array of ints
      */
     public static Integer[] convertToIntegerArray(final Species species, final String tag, final String separator) {
-        return (Integer[]) convertToIntegerList(species, tag, separator).toArray();
+        return convertToIntegerList(species, tag, separator).toArray(new Integer[0]);
     }
 
     /**
@@ -121,7 +124,7 @@ public class ValueToListConverter {
      * @return the array of doubles
      */
     public static Double[] convertToDoubleArray(final Species species, final String tag, final String separator) {
-        return (Double[]) convertToDoubleList(species, tag, separator).toArray();
+        return convertToDoubleList(species, tag, separator).toArray(new Double[0]);
     }
 
     /**
@@ -156,7 +159,7 @@ public class ValueToListConverter {
      * @return the array of chars
      */
     public static Character[] convertToCharArray(final Species species, final String tag, final String separator) {
-        return (Character[]) convertToCharList(species, tag, separator).toArray();
+        return convertToCharList(species, tag, separator).toArray(new Character[0]);
     }
 
     /**
@@ -191,6 +194,6 @@ public class ValueToListConverter {
      * @return the array of floats
      */
     public static Float[] convertToFloatArray(final Species species, final String tag, final String separator) {
-        return (Float[]) convertToFloatList(species, tag, separator).toArray();
+        return convertToFloatList(species, tag, separator).toArray(new Float[0]);
     }
 }

@@ -203,6 +203,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
         this.font = font;
     }
 
+    @Override
     public Coordinates getCoordinates() {
         return getPosition().convertToCoordinates();
     }

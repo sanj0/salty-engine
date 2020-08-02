@@ -35,9 +35,8 @@ import de.edgelord.saltyengine.transform.Vector2f;
 
 public class BirdPlayer extends GameObject implements Serializable {
 
-    private final float speed = 2500f;
+    private static final float speed = 2500f;
     private SpritesheetAnimation spritesheetAnimation;
-    private Spritesheet spritesheet;
     private final LinearTransformAnimations keyFrameAnimationX = new LinearTransformAnimations(this, "mySuperAnimationX", LinearTransformAnimations.Control.X_POS);
     private final LinearTransformAnimations keyFrameAnimationRotation = new LinearTransformAnimations(this, "mySuperAnimationRotation", LinearTransformAnimations.Control.ROTATION);
     private final LinearTransformAnimations keyFrameAnimationWidth = new LinearTransformAnimations(this, "mySuperAnimationWidth", LinearTransformAnimations.Control.WIDTH);
@@ -67,7 +66,7 @@ public class BirdPlayer extends GameObject implements Serializable {
     private void initAnimations(final SaltyImage spriteSheetImage) {
 
         spritesheetAnimation = new SpritesheetAnimation();
-        spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
+        final Spritesheet spritesheet = new Spritesheet(spriteSheetImage, 150, 101);
 
         spritesheetAnimation.setFrames(spritesheet.getFrames(new Coordinates(0, 0), new Coordinates(1, 1), new Coordinates(2, 1), new Coordinates(3, 0)));
 
@@ -107,6 +106,7 @@ public class BirdPlayer extends GameObject implements Serializable {
 
     @Override
     public void onCollision(final CollisionEvent e) {
+        // nothing to do
     }
 
     @Override
@@ -126,34 +126,11 @@ public class BirdPlayer extends GameObject implements Serializable {
         getTransform().setRotationCentreToCentre();
 
         accelerateTo(speed, Input.getInput());
-
-        if (Input.inputUp) {
-            if (soundTiming.now()) {
-                //Tester.getAudioPlayer().play("bird_flap");
-            }
-        }
-
-        if (Input.inputDown) {
-            if (soundTiming.now()) {
-                //Tester.getAudioPlayer().play("bird_flap");
-            }
-        }
-
-        if (Input.inputRight) {
-            if (soundTiming.now()) {
-                //Tester.getAudioPlayer().play("bird_flap");
-            }
-        }
-
-        if (Input.inputLeft) {
-            if (soundTiming.now()) {
-                //Tester.getAudioPlayer().play("bird_flap");
-            }
-        }
     }
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+        // drawing is done by a component
     }
 
     @Override

@@ -29,13 +29,16 @@ import java.util.List;
  */
 public class TransformRelationUtil {
 
+    private TransformRelationUtil() {
+    }
+
     public static void positionRelativeTo(final TransformRelationMode mode, final Transform superTransform, final List<Transform> transforms) {
-        positionRelativeTo(mode, superTransform, (Transform[]) transforms.toArray());
+        positionRelativeTo(mode, superTransform, transforms.toArray(new Transform[0]));
     }
 
     public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final List<GameObject> transforms) {
 
-        positionRelativeTo(mode, superTransform, (GameObject[]) transforms.toArray());
+        positionRelativeTo(mode, superTransform, transforms.toArray(new GameObject[0]));
     }
 
     public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final GameObject... transforms) {

@@ -43,7 +43,7 @@ public class Bird extends GameObject implements Serializable {
     private final RandomRadialEmitter emitter = new RandomRadialEmitter(this, "emitter", RoundRectangleParticle.class, .1f, 1);
 
     public Bird(final SaltyImage image, final int xPos, final int yPos) {
-        super(xPos * 150, yPos * 101, 150, 101, "testing.bird");
+        super(xPos * 150f, yPos * 101f, 150, 101, "testing.bird");
 
         spritesheetAnimation = new SpritesheetAnimation();
         spritesheet = new Spritesheet(image, getWidth(), getHeight());
@@ -66,14 +66,12 @@ public class Bird extends GameObject implements Serializable {
     public void initialize() {
 
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
-        // getDefaultAccelerator().accelerate("testing.Bird.testingForce", 0.01f, 100);
-
         System.out.println("Info: Initialised a new Bird");
     }
 
     @Override
     public void onCollision(final CollisionEvent e) {
-
+        // nothing to do
     }
 
     @Override
@@ -121,6 +119,7 @@ public class Bird extends GameObject implements Serializable {
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
+        // drawing is done by a component
     }
 
     @Override

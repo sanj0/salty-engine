@@ -78,9 +78,10 @@ public class CircleCollider extends Collider implements TransformedObject {
                 final boolean collision = centre1.distance(centre2) <= hitbox.getWidth() / 2f + otherCircleCollider.hitbox.getWidth() / 2f;
 
                 return new CollisionDetectionResult(collision, hitbox.getRelation(otherCircleCollider.hitbox));
-        }
 
-        return new CollisionDetectionResult(false, Directions.Direction.EMPTY);
+            default:
+                return new CollisionDetectionResult(false, Directions.Direction.EMPTY);
+        }
     }
 
     /**
@@ -103,7 +104,7 @@ public class CircleCollider extends Collider implements TransformedObject {
 
     @Override
     public Transform getTransform() {
-        return hitbox;
+        return getHitbox();
     }
 
     @Override

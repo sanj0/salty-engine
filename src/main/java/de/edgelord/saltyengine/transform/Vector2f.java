@@ -16,7 +16,9 @@
 
 package de.edgelord.saltyengine.transform;
 
-import java.util.Random;
+import de.edgelord.saltyengine.utils.GeneralUtil;
+
+import java.util.Objects;
 
 public class Vector2f {
 
@@ -45,8 +47,7 @@ public class Vector2f {
     }
 
     public static Vector2f random(final int min, final int max) {
-        final Random random = new Random();
-        return new Vector2f(random.nextInt(max - min) + min, random.nextInt(max - min) + min);
+        return new Vector2f(GeneralUtil.randomInt(min, max), GeneralUtil.randomInt(min, max));
     }
 
     public static Vector2f one() {
@@ -229,6 +230,11 @@ public class Vector2f {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override

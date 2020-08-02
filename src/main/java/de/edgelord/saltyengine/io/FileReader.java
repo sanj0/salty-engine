@@ -39,7 +39,6 @@ public class FileReader extends FileIO {
      * @throws java.io.IOException on an I/O error
      */
     public String readFile() throws IOException {
-
         return getFile().exists() ? Files.lines(getFile().toPath(), StandardCharsets.UTF_8).collect(Collectors.joining(System.lineSeparator()))
                 : "";
     }

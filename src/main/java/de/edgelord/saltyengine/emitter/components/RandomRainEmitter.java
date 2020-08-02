@@ -80,7 +80,7 @@ public class RandomRainEmitter extends EmitterComponent {
 
     @Override
     public void initializeEmitter() {
-
+        // nothing to do
     }
 
     @Override

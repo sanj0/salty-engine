@@ -149,7 +149,6 @@ public interface TransformedObject {
         }
 
         switch (direction) {
-
             case RIGHT:
                 basicMove(delta, Directions.BasicDirection.x);
                 break;
@@ -161,6 +160,8 @@ public interface TransformedObject {
                 break;
             case DOWN:
                 basicMove(delta, Directions.BasicDirection.y);
+                break;
+            default:
                 break;
         }
     }

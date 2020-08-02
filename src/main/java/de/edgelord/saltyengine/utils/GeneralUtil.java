@@ -31,6 +31,9 @@ import static java.lang.Math.toDegrees;
  */
 public class GeneralUtil {
 
+    private GeneralUtil() {
+    }
+
     /**
      * The <code>Random</code> instance used for all utils that need one.
      */

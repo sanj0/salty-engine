@@ -60,7 +60,7 @@ public class RandomRadialEmitter extends EmitterComponent {
 
     @Override
     public void initializeEmitter() {
-
+        // nothing to do
     }
 
     @Override

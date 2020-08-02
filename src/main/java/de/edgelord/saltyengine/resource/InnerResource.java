@@ -91,16 +91,16 @@ public class InnerResource implements Resource {
         final File file = SystemDependentFiles.getUserFile("." + Game.gameName + "/tmp/" + relativePath.replaceAll("/", "."));
         file.createNewFile();
 
-        final OutputStream outputStream = new FileOutputStream(file);
-        final byte[] buffer = new byte[4096];
+        try (final OutputStream outputStream = new FileOutputStream(file)) {
+            final byte[] buffer = new byte[4096];
 
-        int readBytes;
-        while ((readBytes = Objects.requireNonNull(inputStream).read(buffer)) > 0) {
-            outputStream.write(buffer, 0, readBytes);
+            int readBytes;
+            while ((readBytes = Objects.requireNonNull(inputStream).read(buffer)) > 0) {
+                outputStream.write(buffer, 0, readBytes);
+            }
+        } finally {
+            inputStream.close();
         }
-
-        inputStream.close();
-        outputStream.close();
         return file;
     }
 

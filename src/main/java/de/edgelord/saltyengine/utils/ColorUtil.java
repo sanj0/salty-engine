@@ -165,13 +165,12 @@ public class ColorUtil {
     public static final Color PLAIN_YELLOW = new Color(255, 255, 0);
     public static final Color YELLOW = new Color(210, 210, 50);
 
-    public static final List<Color> allColors = new LinkedList<>();
+    protected static final List<Color> allColors = new LinkedList<>();
 
     static {
         final Field[] fields = ColorUtil.class.getFields();
 
         for (final Field field : fields) {
-
             if (field.getType() == Color.class) {
                 try {
                     allColors.add((Color) field.get(null));
@@ -180,6 +179,9 @@ public class ColorUtil {
                 }
             }
         }
+    }
+
+    private ColorUtil() {
     }
 
     /**
@@ -307,6 +309,7 @@ public class ColorUtil {
      * @param amount Darkness fraction.
      *
      * @return Darker color.
+     * @Deprecated
      * @deprecated
      */
     public static Color changeBrightness(final Color color, final float amount) {

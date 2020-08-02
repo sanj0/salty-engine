@@ -20,6 +20,7 @@ import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Objects;
 
 /**
  * This class resembles a rectangle with a {@link #position}, {@link
@@ -623,6 +624,11 @@ public class Transform {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, dimensions, rotation);
     }
 
     @Override
