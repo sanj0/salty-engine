@@ -309,9 +309,9 @@ public class ColorUtil {
      * @param amount Darkness fraction.
      *
      * @return Darker color.
-     * @Deprecated
      * @deprecated
      */
+    @Deprecated
     public static Color changeBrightness(final Color color, final float amount) {
         int red = (int) Math.round(color.getRed() * (1.0 - amount));
         int green = (int) Math.round(color.getGreen() * (1.0 - amount));
