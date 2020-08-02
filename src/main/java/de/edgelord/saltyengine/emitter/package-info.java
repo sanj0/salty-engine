@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 /**
- * The package for everything related to {@link
- * de.edgelord.saltyengine.emitter.EmitterComponent}s.
+ * The package for everything related to {@link de.edgelord.saltyengine.emitter.EmitterComponent}s.
  */
 package de.edgelord.saltyengine.emitter;

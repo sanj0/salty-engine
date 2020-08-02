@@ -25,16 +25,13 @@ import de.edgelord.saltyengine.ui.UIElement;
 import java.awt.*;
 
 /**
- * A simple {@link UIElement} that outlines a
- * rectangle with {@link #getBackgroundColor()}
- * and then draws the same rectangle filled above,
- * with a length calculated by {@link #maxValue}
- * and {@link #currentValue}. <p> The outline is
- * seen as the foreground and therefore uses the
- * {@link #getForegroundColor() foreground color}
- * while the bar itself is seen as the background
- * and therefore uses the {@link #getBackgroundColor()
- * background color}.
+ * A simple {@link UIElement} that outlines a rectangle with {@link
+ * #getBackgroundColor()} and then draws the same rectangle filled above, with a
+ * length calculated by {@link #maxValue} and {@link #currentValue}. <p> The
+ * outline is seen as the foreground and therefore uses the {@link
+ * #getForegroundColor() foreground color} while the bar itself is seen as the
+ * background and therefore uses the {@link #getBackgroundColor() background
+ * color}.
  */
 public class ProgressBar extends UIElement {
 
@@ -43,8 +40,7 @@ public class ProgressBar extends UIElement {
      */
     private final Dimensions currentBar = Dimensions.zero();
     /**
-     * The maximum value, when this is reached,
-     * the progress bar will be full.
+     * The maximum value, when this is reached, the progress bar will be full.
      */
     private float maxValue = 100;
     /**
@@ -52,8 +48,7 @@ public class ProgressBar extends UIElement {
      */
     private float currentValue = 0;
     /**
-     * The diameter of the rounding at each corner
-     * of the two rectangles.
+     * The diameter of the rounding at each corner of the two rectangles.
      * <p>
      * This is zero by default.
      */
@@ -61,15 +56,13 @@ public class ProgressBar extends UIElement {
     /**
      * The stroke used for outlining the bar.
      * <p>
-     * This is <code>null</code> by default to use
-     * the one from the {@link SaltyGraphics}
-     * passed into {@link #draw(SaltyGraphics)}
+     * This is <code>null</code> by default to use the one from the {@link
+     * SaltyGraphics} passed into {@link #draw(SaltyGraphics)}
      */
     private Stroke outlineStroke = null;
 
     /**
-     * A constructor that takes everything in as
-     * floats.
+     * A constructor that takes everything in as floats.
      *
      * @param x      the position on the x axis.
      * @param y      the position on the y axis.
@@ -126,11 +119,10 @@ public class ProgressBar extends UIElement {
     }
 
     /**
-     * Sets {@link #maxValue} and {@link
-     * #recalculateBar() recalculates} the bar.
+     * Sets {@link #maxValue} and {@link #recalculateBar() recalculates} the
+     * bar.
      *
-     * @param maxValue the new value of {@link
-     *                 #maxValue}
+     * @param maxValue the new value of {@link #maxValue}
      */
     public void setMaxValue(final float maxValue) {
         this.maxValue = maxValue;
@@ -147,11 +139,10 @@ public class ProgressBar extends UIElement {
     }
 
     /**
-     * Sets {@link #currentValue} and {@link
-     * #recalculateBar() recalculates} the bar.
+     * Sets {@link #currentValue} and {@link #recalculateBar() recalculates} the
+     * bar.
      *
-     * @param currentValue the new value of {@link
-     *                     #currentValue}
+     * @param currentValue the new value of {@link #currentValue}
      */
     public void setCurrentValue(final float currentValue) {
         this.currentValue = currentValue;
@@ -170,8 +161,7 @@ public class ProgressBar extends UIElement {
     /**
      * Sets {@link #cornerArc}.
      *
-     * @param cornerArc the new value of {@link
-     *                  #cornerArc}
+     * @param cornerArc the new value of {@link #cornerArc}
      */
     public void setCornerArc(final float cornerArc) {
         this.cornerArc = cornerArc;
@@ -189,8 +179,7 @@ public class ProgressBar extends UIElement {
     /**
      * Sets {@link #outlineStroke}.
      *
-     * @param outlineStroke the new value of
-     *                      {@link #outlineStroke}
+     * @param outlineStroke the new value of {@link #outlineStroke}
      */
     public void setOutlineStroke(final Stroke outlineStroke) {
         this.outlineStroke = outlineStroke;

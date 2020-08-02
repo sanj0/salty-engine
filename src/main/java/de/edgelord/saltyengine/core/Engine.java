@@ -25,11 +25,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * The {@link Game#getEngine() engine} handles the
- * repainting of the {@link Host} and the fixed
- * ticks. The user of this library normally
- * doesn't need to get in contact with this
- * class.
+ * The {@link Game#getEngine() engine} handles the repainting of the {@link
+ * Host} and the fixed ticks. The user of this library normally doesn't need to
+ * get in contact with this class.
  */
 public class Engine {
 
@@ -44,15 +42,13 @@ public class Engine {
     private final Timer fixedTimer = new Timer("fixed-tasks");
 
     /**
-     * The {@link Timer} that repaints the {@link
-     * Host}.
+     * The {@link Timer} that repaints the {@link Host}.
      */
     private final Timer repaintTimer = new Timer("render-thread");
 
     /**
-     * The list of task scheduled for later
-     * execution by {@link Game#executeLater(Runnable,
-     * long)}
+     * The list of task scheduled for later execution by {@link
+     * Game#executeLater(Runnable, long)}
      */
     private final List<ScheduledTask> scheduledTasks = new ArrayList<>();
 
@@ -62,13 +58,10 @@ public class Engine {
     private boolean isCloseRequested;
 
     /**
-     * Creates a new instance with the given fixed
-     * tick millis. This happens automatically
-     * when initializing the {@link Game}.
+     * Creates a new instance with the given fixed tick millis. This happens
+     * automatically when initializing the {@link Game}.
      *
-     * @param fixedTickMillis the milliseconds
-     *                        between each fixed
-     *                        tick
+     * @param fixedTickMillis the milliseconds between each fixed tick
      */
     public Engine(final long fixedTickMillis) {
         this.fixedTickMillis = fixedTickMillis;
@@ -76,9 +69,8 @@ public class Engine {
     }
 
     /**
-     * Starts the rendering and the fixed ticks.
-     * This happens automatically when the {@link
-     * Game} starts.
+     * Starts the rendering and the fixed ticks. This happens automatically when
+     * the {@link Game} starts.
      */
     public void start() {
         System.out.println("starting the engine without fps cap...");
@@ -87,9 +79,8 @@ public class Engine {
     }
 
     /**
-     * Starts the rendering with the given fixed
-     * FPS and the fixed ticks. This happens
-     * automatically.
+     * Starts the rendering with the given fixed FPS and the fixed ticks. This
+     * happens automatically.
      *
      * @param FPS the fps of the game.
      */
@@ -105,8 +96,7 @@ public class Engine {
     }
 
     /**
-     * Starts the fixed ticks with {@link
-     * #fixedTickMillis}. This happens
+     * Starts the fixed ticks with {@link #fixedTickMillis}. This happens
      * automatically.
      */
     public void startFixedTicks() {
@@ -128,16 +118,12 @@ public class Engine {
     }
 
     /**
-     * Repaints the {@link Host} {@link
-     * Game#getHost()} with the given FPS. It
+     * Repaints the {@link Host} {@link Game#getHost()} with the given FPS. It
      * makes the <code>Host</code> repaint each
      * <code>1000 / FPS</code>. This is limited
-     * to
-     * 1000 FPS, for higher FPS please use {@link
-     * #startRepainting()}
+     * to 1000 FPS, for higher FPS please use {@link #startRepainting()}
      *
-     * @param FPS the fps to use for the game to
-     *            be repainted
+     * @param FPS the fps to use for the game to be repainted
      */
     private void startRepainting(final long FPS) {
         repaintTimer.scheduleAtFixedRate(new TimerTask() {

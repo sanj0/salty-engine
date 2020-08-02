@@ -18,11 +18,11 @@ package de.edgelord.saltyengine.displaymanager.stage;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.GameListener;
-import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -55,9 +55,8 @@ public class Stage extends JPanel {
     private float lastFps = 0f;
     private int ticks = 0;
     /**
-     * The current image position is the position
-     * of the rendered image within this panel,
-     * which is changed by the letterbox scaling.
+     * The current image position is the position of the rendered image within
+     * this panel, which is changed by the letterbox scaling.
      */
     private Vector2f currentImgPos = new Vector2f(0, 0);
 

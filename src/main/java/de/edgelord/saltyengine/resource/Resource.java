@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.resource;
 
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

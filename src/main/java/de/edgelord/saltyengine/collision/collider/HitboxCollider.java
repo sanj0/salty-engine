@@ -22,8 +22,8 @@ import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**
- * The default implementation of {@link Collider},
- * which any {@link GameObject} has by default.
+ * The default implementation of {@link Collider}, which any {@link GameObject}
+ * has by default.
  * <br> This <code>Collider</code> has a
  * <code>priority</code> of <code>0</code>.
  */
@@ -37,18 +37,15 @@ public class HitboxCollider extends Collider {
     }
 
     /**
-     * This implementation gets the {@link
-     * GameObject#getHitbox() hitbox} of the two
-     * given <code>GameObject</code>s and then
-     * calls {@link Hitbox#collides(GameObject)}
-     * from the first hitbox and for the collision
+     * This implementation gets the {@link GameObject#getHitbox() hitbox} of the
+     * two given <code>GameObject</code>s and then calls {@link
+     * Hitbox#collides(GameObject)} from the first hitbox and for the collision
      * direction, it calls {@link de.edgelord.saltyengine.transform.Transform#getRelation(Transform)}.
      *
      * @param object1 the first <code>GameObject</code>
      * @param object2 the second {@link GameObject}
      *
-     * @return the result of the collision
-     * detection between the two given
+     * @return the result of the collision detection between the two given
      * <code>GameObject</code>s
      */
     @Override

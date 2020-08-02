@@ -26,15 +26,13 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 /**
- * This implementation determines the {@link
- * CollisionDetectionResult} with a {@link #shape
- * Shape}.
+ * This implementation determines the {@link CollisionDetectionResult} with a
+ * {@link #shape Shape}.
  */
 public class ShapeCollider extends Collider {
 
     /**
-     * The {@link Shape} used for collision
-     * detection.
+     * The {@link Shape} used for collision detection.
      */
     private Shape shape;
 

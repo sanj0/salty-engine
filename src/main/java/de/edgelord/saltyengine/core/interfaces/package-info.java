@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 /**
- * All of the required core-interfaces for Salty
- * Engine
+ * All of the required core-interfaces for Salty Engine
  */
 package de.edgelord.saltyengine.core.interfaces;

@@ -19,13 +19,11 @@ package de.edgelord.saltyengine.displaymanager.display;
 import de.edgelord.saltyengine.transform.Dimensions;
 
 /**
- * This class represents the dimensions of the
- * {@link Display}. {@link #originalResolution} is
- * the original resolution of the game. {@link
- * #scale} is the current scale of the {@link
- * Display}. {@link #currentDimensions} is the
- * current dimensions of the {@link Display},
- * calculated using the two factors above.
+ * This class represents the dimensions of the {@link Display}. {@link
+ * #originalResolution} is the original resolution of the game. {@link #scale}
+ * is the current scale of the {@link Display}. {@link #currentDimensions} is
+ * the current dimensions of the {@link Display}, calculated using the two
+ * factors above.
  */
 public class DisplayRatio {
 

@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for the {@link de.edgelord.saltyengine.core.Component}
- * related to rendering, such as all of the {@link
- * de.edgelord.saltyengine.components.rendering.PrimitiveRenderComponent}s
+ * The package for the {@link de.edgelord.saltyengine.components.Component}
+ * related to rendering, such as all of the {@link de.edgelord.saltyengine.components.rendering.PrimitiveRenderComponent}s
  */
 package de.edgelord.saltyengine.components.rendering;

@@ -21,49 +21,45 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import java.awt.*;
 
 /**
- * A <code>Drawable</code> is an object than can
- * be drawn using a {@link SaltyGraphics
- * SaltyGraphics object}.
+ * A <code>Drawable</code> is an object than can be drawn using a {@link
+ * SaltyGraphics SaltyGraphics object}.
  */
 public interface Drawable {
 
     /**
-     * Returns a <code>Drawable</code> that sets
-     * the color of the graphics to the given.
+     * Returns a <code>Drawable</code> that sets the color of the graphics to
+     * the given.
      *
-     * @param color the color to set the graphics
-     *              to
+     * @param color the color to set the graphics to
      *
-     * @return a <code>Drawable</code> that sets
-     * the color of the graphics to the given.
+     * @return a <code>Drawable</code> that sets the color of the graphics to
+     * the given.
      */
     static Drawable colorPrepare(final Color color) {
         return saltyGraphics -> saltyGraphics.setColor(color);
     }
 
     /**
-     * Returns a <code>Drawable</code> that sets
-     * the paint of the graphics to the given.
+     * Returns a <code>Drawable</code> that sets the paint of the graphics to
+     * the given.
      *
-     * @param paint the paint to set the graphics
-     *              to
+     * @param paint the paint to set the graphics to
      *
-     * @return a <code>Drawable</code> that sets
-     * the paint of the graphics to the given.
+     * @return a <code>Drawable</code> that sets the paint of the graphics to
+     * the given.
      */
     static Drawable paintPrepare(final Paint paint) {
         return saltyGraphics -> saltyGraphics.setPaint(paint);
     }
 
     /**
-     * Returns a <code>Drawable</code> that sets
-     * the stroke of the graphics to the given.
+     * Returns a <code>Drawable</code> that sets the stroke of the graphics to
+     * the given.
      *
-     * @param stroke the stroke to set the
-     *               graphics to
+     * @param stroke the stroke to set the graphics to
      *
-     * @return a <code>Drawable</code> that sets
-     * the stroke of the graphics to the given.
+     * @return a <code>Drawable</code> that sets the stroke of the graphics to
+     * the given.
      */
     static Drawable strokePrepare(final Stroke stroke) {
         return saltyGraphics -> saltyGraphics.setStroke(stroke);
@@ -84,11 +80,9 @@ public interface Drawable {
     }
 
     /**
-     * Draws this object using the given {@link
-     * SaltyGraphics}.
+     * Draws this object using the given {@link SaltyGraphics}.
      *
-     * @param saltyGraphics the graphics to draw
-     *                      to
+     * @param saltyGraphics the graphics to draw to
      */
     void draw(SaltyGraphics saltyGraphics);
 }

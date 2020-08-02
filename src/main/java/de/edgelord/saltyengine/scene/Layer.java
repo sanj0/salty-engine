@@ -16,13 +16,11 @@
 
 package de.edgelord.saltyengine.scene;
 
-import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Vector2f;
-import de.edgelord.saltyengine.utils.Directions;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -32,18 +30,15 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * A <code>Layer</code> is a sub-unit of a {@link
- * Scene}.
+ * A <code>Layer</code> is a sub-unit of a {@link Scene}.
  * <p>
  * <code>Scene</code>s store their
- * {@link de.edgelord.saltyengine.gameobject.GameObject}s
- * in <code>Layer</code>s to enable sorting and
- * encapsulated operations on a "physical" layer
- * of <code>GameObject</code>s.
+ * {@link de.edgelord.saltyengine.gameobject.GameObject}s in <code>Layer</code>s
+ * to enable sorting and encapsulated operations on a "physical" layer of
+ * <code>GameObject</code>s.
  * <p>
- * To the outside, a <code>Layer</code> acts like
- * a <code>GameObject</code>. As such, it has a
- * transform which can be used to {@link
+ * To the outside, a <code>Layer</code> acts like a <code>GameObject</code>. As
+ * such, it has a transform which can be used to {@link
  * java.awt.Graphics2D#clip(Shape) clip} a
  * <code>Layer</code>.
  */
@@ -73,31 +68,28 @@ public class Layer extends GameObject {
      * <code>l1</code>, meaning that
      * <code>l2</code> will be drawn on top of
      * <code>l1</code>.
-     * Therefore, the higher the index, the later
-     * a <code>Layer</code> is being rendered.
+     * Therefore, the higher the index, the later a <code>Layer</code> is being
+     * rendered.
      */
     private int index;
 
     /**
-     * A transform that describes how the graphics
-     * is transformed before this <code>Layer</code>
-     * is being rendered. E.g. This transform
-     * transforms this <code>Layer</code>
+     * A transform that describes how the graphics is transformed before this
+     * <code>Layer</code> is being rendered. E.g. This transform transforms
+     * this
+     * <code>Layer</code>
      */
     private AffineTransform affineTransform = new AffineTransform();
 
     /**
-     * Constructs a new <code>Layer</code> with
-     * the {@link Game#getGameTransform()
-     * transform of the game}
+     * Constructs a new <code>Layer</code> with the {@link
+     * Game#getGameTransform() transform of the game}
      *
-     * @param container the <code>Scene</code>
-     *                  that contains this
+     * @param container the <code>Scene</code> that contains this
      *                  <code>Layer</code>
      * @param tag       the id-name of this
      *                  <code>Layer</code>
-     * @param index     the {@link #index} of this
-     *                  layers
+     * @param index     the {@link #index} of this layers
      */
     public Layer(final Scene container, final String tag, final int index) {
         super(Game.getGameTransform(), tag);
@@ -107,23 +99,19 @@ public class Layer extends GameObject {
     }
 
     /**
-     * Constructs a new <code>Layer</code> with
-     * all {@link GameObject}s of the given
+     * Constructs a new <code>Layer</code> with all {@link GameObject}s of the
+     * given
      * <code>Layer</code> and the {@link
-     * de.edgelord.saltyengine.transform.Transform}
-     * of it.
+     * de.edgelord.saltyengine.transform.Transform} of it.
      *
-     * @param layer     the <code>Layer</code>
-     *                  from which to add all
+     * @param layer     the <code>Layer</code> from which to add all
      *                  <code>GameObject</code>s
      *                  to this one
-     * @param container the <code>Scene</code>
-     *                  that contains this
+     * @param container the <code>Scene</code> that contains this
      *                  <code>Layer</code>
      * @param tag       the id-name of this
      *                  <code>Layer</code>
-     * @param index     the {@link #index} of this
-     *                  layers
+     * @param index     the {@link #index} of this layers
      */
     public Layer(final Layer layer, final Scene container, final String tag, final int index) {
         this(container, tag, index);
@@ -147,46 +135,10 @@ public class Layer extends GameObject {
         for (int i = 0; i < gameObjects.size(); i++) {
             final GameObject gameObject = gameObjects.get(i);
 
-            if (gameObject.isClearCollisions()) {
-                gameObject.getCollisions().clear();
-                gameObject.setClearCollisions(false);
-            }
-
             if (!gameObject.isInitialized()) {
                 gameObject.initialize();
                 gameObject.setInitialized(true);
             }
-
-
-            for (int i2 = i + 1; i2 < gameObjects.size(); i2++) {
-                final GameObject gameObject2 = gameObjects.get(i2);
-                if (gameObject2.isClearCollisions()) {
-                    gameObject2.getCollisions().clear();
-                    gameObject2.setClearCollisions(false);
-                }
-
-                final CollisionDetectionResult collisionDetectionResult = container.getSceneCollider().checkCollision(gameObject, gameObject2);
-
-                if (collisionDetectionResult.isCollision()) {
-                    final CollisionEvent collision = new CollisionEvent(gameObject2, collisionDetectionResult.getRootCollisionDirection());
-                    final CollisionEvent collision2 = new CollisionEvent(gameObject, Directions.mirrorDirection(collisionDetectionResult.getRootCollisionDirection()));
-
-                    gameObject.getCollisions().add(collision);
-                    gameObject.onCollision(collision);
-                    gameObject.getComponents().forEach(component -> component.onCollision(collision));
-
-                    gameObject2.onCollision(collision2);
-                    gameObject2.getCollisions().add(collision2);
-                    gameObject2.getComponents().forEach(component -> component.onCollision(collision2));
-                    Game.forEachGameListener(gameListener -> gameListener.onCollision(gameObject, collision));
-                }
-            }
-
-            gameObject.getComponents().forEach(component -> component.onCollisionDetectionFinish(gameObject.getCollisions()));
-            gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
-            gameObject.doComponentOnFixedTick();
-            gameObject.doFixedTick();
-            gameObject.setClearCollisions(true);
         }
         doComponentOnFixedTick();
     }
@@ -245,8 +197,7 @@ public class Layer extends GameObject {
     /**
      * Sets {@link #index}.
      *
-     * @param index the new value of {@link
-     *              #index}
+     * @param index the new value of {@link #index}
      */
     public void setIndex(final int index) {
         this.index = index;
@@ -264,8 +215,7 @@ public class Layer extends GameObject {
     /**
      * Sets {@link #affineTransform}.
      *
-     * @param transform the new value of {@link
-     *                  #affineTransform}
+     * @param transform the new value of {@link #affineTransform}
      */
     public void setAffineTransform(final AffineTransform transform) {
         this.affineTransform = transform;

@@ -19,22 +19,19 @@ package de.edgelord.saltyengine.emitter.modifiers;
 import de.edgelord.saltyengine.emitter.Particle;
 
 /**
- * A {@link de.edgelord.saltyengine.emitter.ParticleModifier}
- * that extends {@link SpeedOperatorParticleModifier}
- * so that it modifies the {@link Particle}'s
- * rotation instead of its speed.
+ * A {@link de.edgelord.saltyengine.emitter.ParticleModifier} that extends
+ * {@link SpeedOperatorParticleModifier} so that it modifies the {@link
+ * Particle}'s rotation instead of its speed.
  */
 public class RotationOperatorParticleModifier extends SpeedOperatorParticleModifier {
 
     /**
      * The constructor.
      *
-     * @param factor    the factory to be used as
-     *                  the second part of the
-     *                  math operations.
-     * @param operation the math operation do
-     *                  apply to each {@link
-     *                  Particle}'s speed
+     * @param factor    the factory to be used as the second part of the math
+     *                  operations.
+     * @param operation the math operation do apply to each {@link Particle}'s
+     *                  speed
      */
     public RotationOperatorParticleModifier(final float factor, final Operation operation) {
         super(factor, operation);

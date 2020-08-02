@@ -20,11 +20,10 @@ import de.edgelord.saltyengine.emitter.Particle;
 import de.edgelord.saltyengine.emitter.ParticleModifier;
 
 /**
- * A {@link de.edgelord.saltyengine.emitter.ParticleModifier}
- * that removes a {@link de.edgelord.saltyengine.emitter.Particle}
- * when its speed is {@link #gate} or smaller.
- * With the default constructor, the default value
- * for {@link #gate} is <code>0.01f</code>.
+ * A {@link de.edgelord.saltyengine.emitter.ParticleModifier} that removes a
+ * {@link de.edgelord.saltyengine.emitter.Particle} when its speed is {@link
+ * #gate} or smaller. With the default constructor, the default value for {@link
+ * #gate} is <code>0.01f</code>.
  */
 public class RemoveOnZeroSpeedParticleModifier implements ParticleModifier {
 

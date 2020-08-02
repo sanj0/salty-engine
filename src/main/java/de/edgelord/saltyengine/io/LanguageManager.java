@@ -22,13 +22,10 @@ import de.edgelord.saltyengine.resource.Resource;
 import java.io.IOException;
 
 /**
- * This class is a set of static methods to let
- * your game support multiple languages. The text
- * is saved in a stdf file. A simple example for
- * the text "It's dangerous to go alone!", saved
- * with the name "old_man_0" and "Take this with
- * you!", save with the name "old_man_1" (excuse
- * my bad french!)
+ * This class is a set of static methods to let your game support multiple
+ * languages. The text is saved in a stdf file. A simple example for the text
+ * "It's dangerous to go alone!", saved with the name "old_man_0" and "Take this
+ * with you!", save with the name "old_man_1" (excuse my bad french!)
  * <pre>
  *     {@code
  *
@@ -48,58 +45,46 @@ import java.io.IOException;
  *     }
  * </pre>
  * <p>
- * You can use any languages, you just have to
- * make sure that {@link #language} is one the
- * ones you used.
+ * You can use any languages, you just have to make sure that {@link #language}
+ * is one the ones you used.
  */
 public class LanguageManager {
 
     /**
-     * The language to use. This can be any, but
-     * it has to be used in the text file as well
+     * The language to use. This can be any, but it has to be used in the text
+     * file as well
      */
     private static String language = "english";
 
     private static DataReader textReader = null;
 
     /**
-     * Initializes the mechanisms to read language
-     * specific text out of a file with the given
-     * name relative to the given resource. The
-     * given name should point to a stdf file.
-     * See
+     * Initializes the mechanisms to read language specific text out of a file
+     * with the given name relative to the given resource. The given name should
+     * point to a stdf file. See
      * <a href="https://www.github.com/edgelord314/stdf">the
-     * repository</a> or the example above for
-     * more information.
+     * repository</a> or the example above for more information.
      *
-     * @param fileName the name of the text-resource
-     *                 file, without any extensions
-     *                 even though the extension
-     *                 of the file must be {@link
-     *                 DataReader#SDB_FILE_EXTENSION},
-     *                 which is ".sdb"
-     * @param resource the resource to locate the
-     *                 file
+     * @param fileName the name of the text-resource file, without any
+     *                 extensions even though the extension of the file must be
+     *                 {@link DataReader#SDB_FILE_EXTENSION}, which is ".sdb"
+     * @param resource the resource to locate the file
      *
-     * @throws IOException when the I/O process
-     *                     fails
+     * @throws IOException when the I/O process fails
      */
     public static void init(final String fileName, final Resource resource) throws IOException {
         textReader = new DataReader(resource.getFileResource(fileName + DataReader.SDB_FILE_EXTENSION));
     }
 
     /**
-     * Reads the text with the given name in the
-     * language with the name {@link #language}
-     * from the file specified by the {@link
-     * #init(String, Resource)} call. For an
-     * example please look above to the class
-     * description.
+     * Reads the text with the given name in the language with the name {@link
+     * #language} from the file specified by the {@link #init(String, Resource)}
+     * call. For an example please look above to the class description.
      *
      * @param textId the id of the text
      *
-     * @return the text with the given id and the
-     * language with the name {@link #language}
+     * @return the text with the given id and the language with the name {@link
+     * #language}
      */
     public static String getText(final String textId) {
         if (textReader == null) {

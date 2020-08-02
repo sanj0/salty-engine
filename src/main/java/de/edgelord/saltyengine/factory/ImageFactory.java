@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.factory;
 
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.resource.Resource;
 
 public class ImageFactory extends Factory {

@@ -23,8 +23,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * A non-static utility class for writing text to
- * a given {@link #getFile() file}.
+ * A non-static utility class for writing text to a given {@link #getFile()
+ * file}.
  */
 public class FileWriter extends FileIO {
 
@@ -33,16 +33,13 @@ public class FileWriter extends FileIO {
     }
 
     /**
-     * Overrides the existing content of the file
-     * with the given text. If the file doesn't
-     * exist, it will be created.
+     * Overrides the existing content of the file with the given text. If the
+     * file doesn't exist, it will be created.
      *
-     * @param text the text which the content of
-     *             the file should be overridden
+     * @param text the text which the content of the file should be overridden
      *             with
      *
-     * @throws IOException when the file could not
-     *                     be written to
+     * @throws IOException when the file could not be written to
      */
     public void writeThrough(final String text) throws IOException {
         if (SaltySystem.writePrivilege) {

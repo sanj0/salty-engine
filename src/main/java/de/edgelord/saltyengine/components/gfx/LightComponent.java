@@ -16,31 +16,29 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
-import de.edgelord.saltyengine.effect.light.Light;
-import de.edgelord.saltyengine.effect.light.LightSystem;
-import de.edgelord.saltyengine.effect.light.PointLight;
+import de.edgelord.saltyengine.graphics.light.Light;
+import de.edgelord.saltyengine.graphics.light.LightSystem;
+import de.edgelord.saltyengine.graphics.light.PointLight;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
 /**
- * This {@link de.edgelord.saltyengine.core.Component}
- * makes a {@link Light} follow its parent using
- * the rule described in {@link #relationToParent}
- * and {@link TransformRelationUtil}. The light
- * and the mode can be set in one of the
- * constructors, if not, the defaults are: {@code
- * TransformRelationMode.CENTRE} and {@code new
+ * This {@link Component} makes a {@link Light} follow its parent using the rule
+ * described in {@link #relationToParent} and {@link TransformRelationUtil}. The
+ * light and the mode can be set in one of the constructors, if not, the
+ * defaults are: {@code TransformRelationMode.CENTRE} and {@code new
  * PointLight(parent.getTransform())} <p>
  *
  * <b>Important:</b> this class extends {@link
- * GFXComponent}, so you will need to enable it
- * first in order to see the light!
+ * GFXComponent}, so you will need to enable it first in order to see the
+ * light!
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TRANSFORM_RELATION)
 public class LightComponent extends GFXComponent {
@@ -60,8 +58,7 @@ public class LightComponent extends GFXComponent {
      *
      * @param parent           the parent
      * @param name             the id-name
-     * @param relationToParent the relation of the
-     *                         light ot the parent
+     * @param relationToParent the relation of the light ot the parent
      * @param light            the light
      */
     public LightComponent(final ComponentContainer parent, final String name, final TransformRelationMode relationToParent, final Light light) {
@@ -72,8 +69,7 @@ public class LightComponent extends GFXComponent {
     }
 
     /**
-     * A constructor. Overloads {@link
-     * #relationToParent} with {@link
+     * A constructor. Overloads {@link #relationToParent} with {@link
      * TransformRelationMode#CENTRE}.
      *
      * @param parent the parent
@@ -85,8 +81,8 @@ public class LightComponent extends GFXComponent {
     }
 
     /**
-     * A constructor. Overloads {@link #light}
-     * with {@code new PointLight(parent.getTransform())}.
+     * A constructor. Overloads {@link #light} with {@code new
+     * PointLight(parent.getTransform())}.
      *
      * @param parent           the parent
      * @param name             the id-name
@@ -97,10 +93,9 @@ public class LightComponent extends GFXComponent {
     }
 
     /**
-     * A constructor. Overloads {@link #light}
-     * with {@code new PointLight(parent.getTransform())}
-     * and {@link #relationToParent} with {@link
-     * TransformRelationMode#CENTRE}.
+     * A constructor. Overloads {@link #light} with {@code new
+     * PointLight(parent.getTransform())} and {@link #relationToParent} with
+     * {@link TransformRelationMode#CENTRE}.
      *
      * @param parent the parent
      * @param name   the id-name
@@ -112,16 +107,14 @@ public class LightComponent extends GFXComponent {
     /**
      * Empty implementation.
      *
-     * @param saltyGraphics the graphics to draw
-     *                      to
+     * @param saltyGraphics the graphics to draw to
      */
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
     }
 
     /**
-     * Repositions the {@link #light} using {@link
-     * TransformRelationUtil#positionRelativeTo(TransformRelationMode,
+     * Repositions the {@link #light} using {@link TransformRelationUtil#positionRelativeTo(TransformRelationMode,
      * Transform, Transform...)}.
      */
     @Override
@@ -138,10 +131,8 @@ public class LightComponent extends GFXComponent {
     }
 
     /**
-     * Adds the {@link #light} to the {@link
-     * Scene#getLightSystem() LightSystem} of the
-     * {@link SceneManager#getCurrentScene()
-     * current Scene}.
+     * Adds the {@link #light} to the {@link Scene#getLightSystem() LightSystem}
+     * of the {@link SceneManager#getCurrentScene() current Scene}.
      */
     private void addToLightSystem() {
         final LightSystem currentLightSystem = SceneManager.getCurrentScene().getLightSystem();
@@ -165,8 +156,7 @@ public class LightComponent extends GFXComponent {
     /**
      * Sets {@link #relationToParent}.
      *
-     * @param relationToParent the new value of
-     *                         {@link #relationToParent}
+     * @param relationToParent the new value of {@link #relationToParent}
      */
     public void setRelationToParent(final TransformRelationMode relationToParent) {
         this.relationToParent = relationToParent;
@@ -184,8 +174,7 @@ public class LightComponent extends GFXComponent {
     /**
      * Sets {@link #light}.
      *
-     * @param light the new value of {@link
-     *              #light}
+     * @param light the new value of {@link #light}
      */
     public void setLight(final Light light) {
         this.light = light;

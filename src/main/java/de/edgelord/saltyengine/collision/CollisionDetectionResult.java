@@ -19,22 +19,20 @@ package de.edgelord.saltyengine.collision;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
- * This class stores the result of a collision
- * detection between two {@link de.edgelord.saltyengine.gameobject.GameObject}s.
+ * This class stores the result of a collision detection between two {@link
+ * de.edgelord.saltyengine.gameobject.GameObject}s.
  */
 public class CollisionDetectionResult {
 
     /**
-     * This is <code>true</code> when the two
-     * {@link de.edgelord.saltyengine.gameobject.GameObject}s
+     * This is <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s
      * collides and <code>false</code> when not.
      */
     private final boolean collision;
 
     /**
-     * The {@link de.edgelord.saltyengine.utils.Directions.Direction}
-     * in which the first of the two (the "root")
-     * collided with the second one.
+     * The {@link de.edgelord.saltyengine.utils.Directions.Direction} in which
+     * the first of the two (the "root") collided with the second one.
      */
     private final Directions.Direction rootCollisionDirection;
 
@@ -42,19 +40,13 @@ public class CollisionDetectionResult {
      * The constructor.
      *
      * @param collision              <code>true</code>
-     *                               when the two
-     *                               {@link de.edgelord.saltyengine.gameobject.GameObject}s
+     *                               when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s
      *                               collides and
      *                               <code>false</code>
      *                               when not
-     * @param rootCollisionDirection the {@link
-     *                               de.edgelord.saltyengine.utils.Directions.Direction}
-     *                               in which the
-     *                               first of the
-     *                               two (the "root")
-     *                               collided with
-     *                               the second
-     *                               one
+     * @param rootCollisionDirection the {@link de.edgelord.saltyengine.utils.Directions.Direction}
+     *                               in which the first of the two (the "root")
+     *                               collided with the second one
      */
     public CollisionDetectionResult(final boolean collision, final Directions.Direction rootCollisionDirection) {
         this.collision = collision;

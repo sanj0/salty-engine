@@ -19,10 +19,9 @@ package de.edgelord.saltyengine.input;
 import java.awt.event.KeyEvent;
 
 /**
- * Represents a virtual keyboard with all common
- * keys. The states of the keys represented as
- * booleans are updated on every <code>KeyEvent</code>
- * that occurred in the {@link de.edgelord.saltyengine.displaymanager.display.Display}.
+ * Represents a virtual keyboard with all common keys. The states of the keys
+ * represented as booleans are updated on every <code>KeyEvent</code> that
+ * occurred in the {@link de.edgelord.saltyengine.displaymanager.display.Display}.
  */
 public class Keyboard {
 

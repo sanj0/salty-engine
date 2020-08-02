@@ -20,11 +20,9 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * This class is an abstract label-like
- * implementation of the class {@link TextElement}
- * In general, these elements are text container
- * with no writing feature nor a caret showing
- * up.
+ * This class is an abstract label-like implementation of the class {@link
+ * TextElement} In general, these elements are text container with no writing
+ * feature nor a caret showing up.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Label extends TextElement {

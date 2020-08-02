@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.displaymanager.stage.Stage;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

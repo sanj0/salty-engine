@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.core.stereotypes;
 
-import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -60,57 +60,46 @@ public abstract class ComponentContainer implements TransformedObject {
     /**
      * Adds the given {@link Component}
      *
-     * @param component the {@link Component} to
-     *                  add
+     * @param component the {@link Component} to add
      */
     public abstract void addComponent(Component component);
 
     /**
-     * Removes a {@link Component} by searching
-     * for the one with the given name and remove
-     * that one
+     * Removes a {@link Component} by searching for the one with the given name
+     * and remove that one
      *
-     * @param identifier the identifier of the
-     *                   component to be removed
+     * @param identifier the identifier of the component to be removed
      */
     public abstract void removeComponent(String identifier);
 
     /**
-     * Removes the given {@link Component}. <br>
-     * The implementation should be different from
-     * {@link #getComponent(String)} due to better
-     * performance possible when directly removing
-     * a Component
+     * Removes the given {@link Component}. <br> The implementation should be
+     * different from {@link #getComponent(String)} due to better performance
+     * possible when directly removing a Component
      *
-     * @param component the {@link Component} to
-     *                  be removed
+     * @param component the {@link Component} to be removed
      */
     public abstract void removeComponent(Component component);
 
     /**
-     * Returns the {@link List} of {@link
-     * Component}s
+     * Returns the {@link List} of {@link Component}s
      *
-     * @return the {@link List} of {@link
-     * Component}s
+     * @return the {@link List} of {@link Component}s
      */
     public abstract List<Component> getComponents();
 
     /**
-     * Returns the {@link Component} with the
-     * given identifier
+     * Returns the {@link Component} with the given identifier
      *
-     * @param identifier the identifier of the
-     *                   {@link Component} to be
-     *                   returned
+     * @param identifier the identifier of the {@link Component} to be returned
      *
      * @return the requested {@link Component}
      */
     public abstract Component getComponent(String identifier);
 
     /**
-     * Calls the method {@link Component#onFixedTick()}
-     * for every {@link Component}.
+     * Calls the method {@link Component#onFixedTick()} for every {@link
+     * Component}.
      */
     public void doComponentOnFixedTick() {
         getComponents().forEach(component -> {
@@ -121,12 +110,10 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     /**
-     * Calls the method {@link Component#draw(SaltyGraphics)}
-     * for every component with the given {@link
-     * SaltyGraphics}
+     * Calls the method {@link Component#draw(SaltyGraphics)} for every
+     * component with the given {@link SaltyGraphics}
      *
-     * @param graphics the graphics context to
-     *                 draw the components
+     * @param graphics the graphics context to draw the components
      */
     public void doComponentDrawing(final SaltyGraphics graphics) {
         getComponents().forEach(component -> {
@@ -153,8 +140,7 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     /**
-     * Places this object in the centre of the
-     * {@link de.edgelord.saltyengine.core.Host}
+     * Places this object in the centre of the {@link de.edgelord.saltyengine.core.Host}
      * {@link Game#getHost()}
      */
     public void centrePosition() {
@@ -162,8 +148,7 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     /**
-     * Centres this object horizontally in the
-     * {@link de.edgelord.saltyengine.core.Host}
+     * Centres this object horizontally in the {@link de.edgelord.saltyengine.core.Host}
      * {@link Game#getHost()}
      */
     public void centreHorizontalPosition() {
@@ -171,8 +156,7 @@ public abstract class ComponentContainer implements TransformedObject {
     }
 
     /**
-     * Centres this object vertically in the
-     * {@link de.edgelord.saltyengine.core.Host}
+     * Centres this object vertically in the {@link de.edgelord.saltyengine.core.Host}
      * {@link Game#getHost()}
      */
     public void centreVerticalPosition() {

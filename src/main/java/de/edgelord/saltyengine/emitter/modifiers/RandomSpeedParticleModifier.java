@@ -24,47 +24,39 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * An implementation of {@link ParticleModifier}
- * that applies a random speed to each {@link
- * Particle}. The random speed is between {@link
- * #minSpeed} and {@link #maxSpeed} and gets, due
- * to integer precision, multiplied by {@link
+ * An implementation of {@link ParticleModifier} that applies a random speed to
+ * each {@link Particle}. The random speed is between {@link #minSpeed} and
+ * {@link #maxSpeed} and gets, due to integer precision, multiplied by {@link
  * #factor}.
  * <p>
- * If {@link #newSpeedEachTick} is true, all
- * Particle will get a new random speed, if it is
+ * If {@link #newSpeedEachTick} is true, all Particle will get a new random
+ * speed, if it is
  * <code>false</code>, each particle will only
- * get
- * a random speed once.
+ * get a random speed once.
  */
 public class RandomSpeedParticleModifier implements ParticleModifier {
 
     /**
-     * If this is <code>true</code>, each {@link
-     * Particle} gets a new random speed every
-     * fixed tick, if it is
+     * If this is <code>true</code>, each {@link Particle} gets a new random
+     * speed every fixed tick, if it is
      * <code>false</code>, every {@link Particle}
      * will only get a random speed once.
      */
     private final boolean newSpeedEachTick;
     /**
-     * The internally used list to store particles
-     * that were already served.
+     * The internally used list to store particles that were already served.
      */
     private final List<Particle> alreadySet = new LinkedList<>();
     /**
-     * The minimum speed that is randomly
-     * generated.
+     * The minimum speed that is randomly generated.
      */
     private int minSpeed;
     /**
-     * The maximum speed that is randomly
-     * generated.
+     * The maximum speed that is randomly generated.
      */
     private int maxSpeed;
     /**
-     * The factory by which the randomly generated
-     * speed is multiplied.
+     * The factory by which the randomly generated speed is multiplied.
      */
     private float factor;
 
@@ -73,15 +65,10 @@ public class RandomSpeedParticleModifier implements ParticleModifier {
      *
      * @param minSpeed         the minimum speed
      * @param maxSpeed         the maximum speed
-     * @param factor           the factory by
-     *                         which each randomly
-     *                         generated speed is
-     *                         multiplied
-     * @param newSpeedEachTick whether or not to
-     *                         generate a random
-     *                         speed for a {@link
-     *                         Particle} all over
-     *                         again.
+     * @param factor           the factory by which each randomly generated
+     *                         speed is multiplied
+     * @param newSpeedEachTick whether or not to generate a random speed for a
+     *                         {@link Particle} all over again.
      */
     public RandomSpeedParticleModifier(final int minSpeed, final int maxSpeed, final float factor, final boolean newSpeedEachTick) {
         this.minSpeed = minSpeed;

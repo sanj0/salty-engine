@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -36,71 +35,57 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     public static final String DEFAULT_GRAVITY = "de.edgelord.saltyengine.core.physics.default_gravityForce";
     public static final float DEFAULT_GRAVITY_ACCELERATION = 2000f;
     /**
-     * This is the String constant for the default
-     * upwards force. It is not recommended to use
-     * these because they're getting manipulated
-     * internally.
+     * This is the String constant for the default upwards force. It is not
+     * recommended to use these because they're getting manipulated internally.
      */
     public static final String DEFAULT_UPWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsForce";
     /**
-     * This is the String constant for the default
-     * downwards force. It is not recommended to
-     * use these because they're getting
-     * manipulated internally.
+     * This is the String constant for the default downwards force. It is not
+     * recommended to use these because they're getting manipulated internally.
      */
     public static final String DEFAULT_DOWNWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsForce";
     /**
-     * This is the String constant for the default
-     * rightwards force. It is not recommended to
-     * use these because they're getting
-     * manipulated internally.
+     * This is the String constant for the default rightwards force. It is not
+     * recommended to use these because they're getting manipulated internally.
      */
     public static final String DEFAULT_RIGHTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsForce";
     /**
-     * This is the String constant for the default
-     * leftwards force. It is not recommended to
-     * use these because they're getting
-     * manipulated internally.
+     * This is the String constant for the default leftwards force. It is not
+     * recommended to use these because they're getting manipulated internally.
      */
     public static final String DEFAULT_LEFTWARDS_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsForce";
     /**
-     * This is the String constant for the default
-     * upwards velocity force. It is not
-     * recommended to use these because they're
-     * getting manipulated internally.
+     * This is the String constant for the default upwards velocity force. It is
+     * not recommended to use these because they're getting manipulated
+     * internally.
      */
     public static final String DEFAULT_UPWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultUpwardsVelocityForce";
     /**
-     * This is the String constant for the default
-     * downwards velocity force. It is not
-     * recommended to use these because they're
-     * getting manipulated internally.
+     * This is the String constant for the default downwards velocity force. It
+     * is not recommended to use these because they're getting manipulated
+     * internally.
      */
     public static final String DEFAULT_DOWNWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultDownwardsVelocityForce";
     /**
-     * This is the String constant for the default
-     * rightwards velocity force. It is not
-     * recommended to use these because they're
-     * getting manipulated internally.
+     * This is the String constant for the default rightwards velocity force. It
+     * is not recommended to use these because they're getting manipulated
+     * internally.
      */
     public static final String DEFAULT_RIGHTWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultRightwardsVelocityForce";
     /**
-     * This is the String constant for the default
-     * leftwards velocity force. It is not
-     * recommended to use these because they're
-     * getting manipulated internally.
+     * This is the String constant for the default leftwards velocity force. It
+     * is not recommended to use these because they're getting manipulated
+     * internally.
      */
     public static final String DEFAULT_LEFTWARDS_VELOCITY_FORCE = "de.edgelord.saltyengine.core.physics.defaultLeftwardsVelocityForce";
     private final List<Force> forces = new LinkedList<>();
     private final List<String> tagsToIgnore = new ArrayList<>();
     private boolean gravityForThisEnabled = true;
     /**
-     * The minimal value of the {@link
-     * Force#deltaDistance(int)} before its {@link
-     * Force#getAcceleration()} is set ot 0f. The
-     * default value (which works fine for the
-     * default gravity, friction and mass of the
-     * {@link GameObject}s) is <code>0.5f</code>
+     * The minimal value of the {@link Force#deltaDistance(int)} before its
+     * {@link Force#getAcceleration()} is set ot 0f. The default value (which
+     * works fine for the default gravity, friction and mass of the {@link
+     * GameObject}s) is <code>0.5f</code>
      */
     private float threshold = 0.5f;
 
@@ -304,8 +289,7 @@ public class SimplePhysicsComponent extends Component<GameObject> {
     /**
      * Sets {@link #threshold}.
      *
-     * @param threshold the new value of {@link
-     *                  #threshold}
+     * @param threshold the new value of {@link #threshold}
      */
     public void setThreshold(final float threshold) {
         this.threshold = threshold;

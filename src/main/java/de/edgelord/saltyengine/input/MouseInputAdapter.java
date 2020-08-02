@@ -19,10 +19,9 @@ package de.edgelord.saltyengine.input;
 import java.awt.event.MouseEvent;
 
 /**
- * An abstract adapter class for receiving
- * keyboard events. The methods in this class are
- * empty. This class exists as convenience for
- * creating {@link MouseInputHandler} objects.
+ * An abstract adapter class for receiving keyboard events. The methods in this
+ * class are empty. This class exists as convenience for creating {@link
+ * MouseInputHandler} objects.
  */
 public abstract class MouseInputAdapter implements MouseInputHandler {
 

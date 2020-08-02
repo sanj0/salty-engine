@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 /**
- * The base-package for {@link de.edgelord.saltyengine.core.Component}s.
- * There are several sub-packages included, as
- * well as some {@link de.edgelord.saltyengine.core.Component}s.
+ * The base-package for {@link de.edgelord.saltyengine.components.Component}s.
+ * There are several sub-packages included, as well as some {@link
+ * de.edgelord.saltyengine.components.Component}s.
  */
 package de.edgelord.saltyengine.components;

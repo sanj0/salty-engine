@@ -17,12 +17,12 @@
 package de.edgelord.saltyengine.utils;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
-import de.edgelord.saltyengine.effect.geom.EnumShape;
-import de.edgelord.saltyengine.effect.geom.SaltyShape;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
+import de.edgelord.saltyengine.graphics.geom.EnumShape;
+import de.edgelord.saltyengine.graphics.geom.SaltyShape;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -45,17 +45,14 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_GIF = "gif";
 
     /**
-     * Creates a new {@link SaltyImage} with the
-     * given width and height and draws the given
-     * image onto it, filling the new image
-     * entirely.
+     * Creates a new {@link SaltyImage} with the given width and height and
+     * draws the given image onto it, filling the new image entirely.
      *
      * @param image  the image to resize
      * @param width  the width of the new image
      * @param height the height of the new image
      *
-     * @return a new image which contains the old
-     * image
+     * @return a new image which contains the old image
      */
     public static SaltyImage resize(final SaltyImage image, final float width, final float height) {
         final SaltyImage destination = SaltySystem.createPreferredImage(width, height);
@@ -67,44 +64,34 @@ public class ImageUtils {
     }
 
     /**
-     * Returns a sub-image of the given {@link
-     * VolatileImage}.
+     * Returns a sub-image of the given {@link VolatileImage}.
      *
      * @param base   the base image
-     * @param x      the x position of the
-     *               sub-image
-     * @param y      the y position of the
-     *               sub-image
+     * @param x      the x position of the sub-image
+     * @param y      the y position of the sub-image
      * @param width  the width of the sub-image
      * @param height the height of the sub-image
      *
-     * @return the sub-image from the given base
-     * with the given position and dimensions
+     * @return the sub-image from the given base with the given position and
+     * dimensions
      */
     public static VolatileImage getSubImage(final VolatileImage base, final int x, final int y, final int width, final int height) {
         return toVolatileImage(toBufferedImage(base).getSubimage(x, y, width, height));
     }
 
     /**
-     * Generates an image with the given width and
-     * height and fills it with rectangles of the
-     * given size and a random color from teh
-     * given vararg each.
+     * Generates an image with the given width and height and fills it with
+     * rectangles of the given size and a random color from teh given vararg
+     * each.
      *
-     * @param width       teh width of the returned
-     *                    image
-     * @param height      the height of teh
-     *                    returned image
-     * @param pixelWidth  the width of the rectangles
-     *                    on the image
-     * @param pixelHeight the height of the
-     *                    rectangles on the image
-     * @param colors      an array of colors from
-     *                    which to randomly choose
-     *                    one per rectangle
+     * @param width       teh width of the returned image
+     * @param height      the height of teh returned image
+     * @param pixelWidth  the width of the rectangles on the image
+     * @param pixelHeight the height of the rectangles on the image
+     * @param colors      an array of colors from which to randomly choose one
+     *                    per rectangle
      *
-     * @return a texture filled with randomly
-     * colored rectangles
+     * @return a texture filled with randomly colored rectangles
      */
     public static SaltyImage randomPixelTexture(final float width, final float height, final float pixelWidth, final float pixelHeight, final Color... colors) {
         final SaltyImage texture = SaltySystem.createPreferredImage(width, height);
@@ -125,14 +112,12 @@ public class ImageUtils {
     }
 
     /**
-     * Converts the given {@link Image} to a
-     * compatible, potentially hardware-accelerated
-     * {@link VolatileImage}.
+     * Converts the given {@link Image} to a compatible, potentially
+     * hardware-accelerated {@link VolatileImage}.
      *
      * @param image the image source
      *
-     * @return the given image as a {@link
-     * VolatileImage}
+     * @return the given image as a {@link VolatileImage}
      */
     public static VolatileImage toVolatileImage(final Image image) {
         final VolatileImage volatileImage = SaltySystem.createVolatileImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()));
@@ -142,13 +127,11 @@ public class ImageUtils {
     }
 
     /**
-     * Convert the given {@link Image} to a {@link
-     * BufferedImage}.
+     * Convert the given {@link Image} to a {@link BufferedImage}.
      *
      * @param image the image source
      *
-     * @return the given image as a {@link
-     * BufferedImage}
+     * @return the given image as a {@link BufferedImage}
      */
     public static BufferedImage toBufferedImage(final Image image) {
 
@@ -162,16 +145,14 @@ public class ImageUtils {
     }
 
     /**
-     * Copies the given {@link BufferedImage}
-     * source into the given {@link VolatileImage}
-     * target.
+     * Copies the given {@link BufferedImage} source into the given {@link
+     * VolatileImage} target.
      *
      * @param source the source image
      * @param target the target image
      *
-     * @return the given {@link VolatileImage}
-     * target which now contains the given source
-     * image
+     * @return the given {@link VolatileImage} target which now contains the
+     * given source image
      */
     public static VolatileImage copyTo(final BufferedImage source, final VolatileImage target) {
         copyImageTo(source, target);
@@ -179,16 +160,14 @@ public class ImageUtils {
     }
 
     /**
-     * Copies the given {@link VolatileImage}
-     * source into the given {@link BufferedImage}
-     * target.
+     * Copies the given {@link VolatileImage} source into the given {@link
+     * BufferedImage} target.
      *
      * @param source the source image
      * @param target the target image
      *
-     * @return the given {@link BufferedImage}
-     * target which now contains the given source
-     * image
+     * @return the given {@link BufferedImage} target which now contains the
+     * given source image
      */
     public static BufferedImage copyTo(final VolatileImage source, final BufferedImage target) {
         copyImageTo(source, target);
@@ -204,8 +183,7 @@ public class ImageUtils {
     }
 
     /**
-     * Returns the {@link Dimensions} of the given
-     * image.
+     * Returns the {@link Dimensions} of the given image.
      *
      * @param image the image
      *
@@ -216,21 +194,15 @@ public class ImageUtils {
     }
 
     /**
-     * Creates a new {@link SaltyImage} with the
-     * given size and draws the given {@link
-     * Drawable} onto it.
+     * Creates a new {@link SaltyImage} with the given size and draws the given
+     * {@link Drawable} onto it.
      *
-     * @param drawable       what to draw onto the
-     *                       image
-     * @param size           the size of the
-     *                       image
-     * @param renderingHints the renderhints to
-     *                       use for drawing the
-     *                       image
+     * @param drawable       what to draw onto the image
+     * @param size           the size of the image
+     * @param renderingHints the renderhints to use for drawing the image
      *
-     * @return a {@link SaltyImage} with the given
-     * size and the given {@link Drawable}
-     * performed on it
+     * @return a {@link SaltyImage} with the given size and the given {@link
+     * Drawable} performed on it
      */
     public static SaltyImage createPrimitiveImage(final Drawable drawable, final Dimensions size, final RenderingHints renderingHints) {
 
@@ -246,47 +218,31 @@ public class ImageUtils {
     }
 
     /**
-     * Creates a {@link SaltyImage} with the size
-     * of the given {@link SaltyShape} and draws
-     * it gradient-like into.
+     * Creates a {@link SaltyImage} with the size of the given {@link
+     * SaltyShape} and draws it gradient-like into.
      * <p>
-     * The given {@link Drawable} is called once
-     * before the rendering to e.g. call {@link
-     * SaltyGraphics#setColor(Color)} or {@link
-     * SaltyGraphics#setPaint(Paint)} on the used
-     * {@link Graphics2D} of the image. The given
-     * {@link RenderingHints} are also set to the
-     * graphics, normally you want to use {@link
-     * GraphicsConfiguration#renderingHints} for
+     * The given {@link Drawable} is called once before the rendering to e.g.
+     * call {@link SaltyGraphics#setColor(Color)} or {@link
+     * SaltyGraphics#setPaint(Paint)} on the used {@link Graphics2D} of the
+     * image. The given {@link RenderingHints} are also set to the graphics,
+     * normally you want to use {@link GraphicsConfiguration#renderingHints} for
      * that.
      * <p>
-     * The gradient will be radial and it'll have
-     * the given alpha in the centre. The given
-     * intensity effects how the gradient looks.
+     * The gradient will be radial and it'll have the given alpha in the centre.
+     * The given intensity effects how the gradient looks.
      *
-     * @param shape           the {@link SaltyShape}
-     *                        to draw as a gradient
-     * @param graphicsPrepare a {@link Drawable}
-     *                        to prepare e.g. the
-     *                        color. It can be
-     *                        null.
-     * @param renderingHints  hints to define the
-     *                        quality. Most likely,
-     *                        you want to use
-     *                        {@link GraphicsConfiguration#renderingHints}
-     *                        to have the same
-     *                        quality as the rest
-     *                        of the game
-     * @param intensity       the intensity of the
-     *                        gradient. That
-     *                        effects hot it
+     * @param shape           the {@link SaltyShape} to draw as a gradient
+     * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It
+     *                        can be null.
+     * @param renderingHints  hints to define the quality. Most likely, you want
+     *                        to use {@link GraphicsConfiguration#renderingHints}
+     *                        to have the same quality as the rest of the game
+     * @param intensity       the intensity of the gradient. That effects hot it
      *                        looks.
-     * @param startAlpha      the alpha value of
-     *                        the centre
+     * @param startAlpha      the alpha value of the centre
      *
-     * @return a {@link SaltyImage} containing the
-     * given {@link SaltyShape} drawn as a
-     * gradient.
+     * @return a {@link SaltyImage} containing the given {@link SaltyShape}
+     * drawn as a gradient.
      */
     public static SaltyImage createPrimitiveGradient(final SaltyShape shape, final Drawable graphicsPrepare, final RenderingHints renderingHints, final float intensity, final double startAlpha) {
 
@@ -318,42 +274,27 @@ public class ImageUtils {
     }
 
     /**
-     * Creates an image of a gradient using {@link
-     * #createPrimitiveGradient(SaltyShape,
-     * Drawable, RenderingHints, float, double)}.
-     * For that, a shape is being created using
-     * {@link SaltyShape#createShape(EnumShape,
-     * Transform, float...)} with the given {@link
-     * EnumShape} and the given {@link Dimensions}
-     * with a position at 0|0.
+     * Creates an image of a gradient using {@link #createPrimitiveGradient(SaltyShape,
+     * Drawable, RenderingHints, float, double)}. For that, a shape is being
+     * created using {@link SaltyShape#createShape(EnumShape, Transform,
+     * float...)} with the given {@link EnumShape} and the given {@link
+     * Dimensions} with a position at 0|0.
      *
-     * @param shapeType       the type of the
-     *                        shape
-     * @param graphicsPrepare a {@link Drawable}
-     *                        to prepare e.g. the
-     *                        color. It can be
-     *                        null
-     * @param renderingHints  hints to define the
-     *                        quality. You normally
-     *                        want to use {@link
-     *                        GraphicsConfiguration#renderingHints}
-     *                        for the same quality
-     *                        as the rest of the
-     *                        game
-     * @param intensity       the intensity of the
-     *                        gradient. This
-     *                        defines how it
+     * @param shapeType       the type of the shape
+     * @param graphicsPrepare a {@link Drawable} to prepare e.g. the color. It
+     *                        can be null
+     * @param renderingHints  hints to define the quality. You normally want to
+     *                        use {@link GraphicsConfiguration#renderingHints}
+     *                        for the same quality as the rest of the game
+     * @param intensity       the intensity of the gradient. This defines how it
      *                        looks.
-     * @param startAlpha      the alpha value at
-     *                        the centre
-     * @param size            the size of the
-     *                        shape and the image
-     * @param arcIfRoundRect  an arc if the given
-     *                        {@link EnumShape} is
-     *                        {@link EnumShape#ROUND_RECTANGLE}
+     * @param startAlpha      the alpha value at the centre
+     * @param size            the size of the shape and the image
+     * @param arcIfRoundRect  an arc if the given {@link EnumShape} is {@link
+     *                        EnumShape#ROUND_RECTANGLE}
      *
-     * @return a {@link SaltyImage} containing a
-     * {@link SaltyShape} drawn as a gradient.
+     * @return a {@link SaltyImage} containing a {@link SaltyShape} drawn as a
+     * gradient.
      */
     public static SaltyImage createPrimitiveGradient(final EnumShape shapeType, final Drawable graphicsPrepare, final RenderingHints renderingHints, final float intensity, final double startAlpha, final Dimensions size, final float... arcIfRoundRect) {
 
@@ -375,22 +316,16 @@ public class ImageUtils {
     }
 
     /**
-     * Creates and returns an image with the given
-     * in it drawn with the given Color. The image
-     * is as big as the shape, but the shape is
-     * being drawn exactly in the middle, using
-     * {@link SaltyShape#drawAtZero(Graphics2D)}.
+     * Creates and returns an image with the given in it drawn with the given
+     * Color. The image is as big as the shape, but the shape is being drawn
+     * exactly in the middle, using {@link SaltyShape#drawAtZero(Graphics2D)}.
      *
-     * @param shape          the shape to draw to
-     *                       the image
-     * @param color          the color with which
-     *                       to draw the shape
-     * @param renderingHints the quality to render
-     *                       the shape
+     * @param shape          the shape to draw to the image
+     * @param color          the color with which to draw the shape
+     * @param renderingHints the quality to render the shape
      *
-     * @return a new image containing the given
-     * shape in the given color with the given
-     * quality
+     * @return a new image containing the given shape in the given color with
+     * the given quality
      */
     public static SaltyImage createShapeImage(final SaltyShape shape, final Color color, final RenderingHints renderingHints) {
         final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
@@ -405,22 +340,18 @@ public class ImageUtils {
     }
 
     /**
-     * Creates a new {@link SaltyImage} with the
-     * size of the given {@link SaltyShape} and
-     * draws the shape onto it, with having called
-     * the draw method of the given {@link
-     * Drawable} before to e.g. set the color or
+     * Creates a new {@link SaltyImage} with the size of the given {@link
+     * SaltyShape} and draws the shape onto it, with having called the draw
+     * method of the given {@link Drawable} before to e.g. set the color or
      * paint.
      *
-     * @param shape           the {@link SaltyShape}
-     *                        to be rendered to
-     *                        the image.
-     * @param graphicsPrepare a {@link Drawable}
-     *                        to prepare e.g. the
-     *                        Color of the shape
+     * @param shape           the {@link SaltyShape} to be rendered to the
+     *                        image.
+     * @param graphicsPrepare a {@link Drawable} to prepare e.g. the Color of
+     *                        the shape
      *
-     * @return a new {@link SaltyImage} with the
-     * given {@link SaltyShape} drawn onto.
+     * @return a new {@link SaltyImage} with the given {@link SaltyShape} drawn
+     * onto.
      */
     public static SaltyImage createShapeImage(final SaltyShape shape, final Drawable graphicsPrepare) {
         final SaltyImage image = SaltySystem.createPreferredImage(shape.getWidth(), shape.getHeight());
@@ -435,50 +366,38 @@ public class ImageUtils {
     }
 
     /**
-     * Creates and returns an image using {@link
-     * #createShapeImage(SaltyShape, Color,
-     * RenderingHints)}. The {@link SaltyShape} is
-     * made using {@link SaltyShape#createShape(EnumShape,
-     * Transform, float...)}.
+     * Creates and returns an image using {@link #createShapeImage(SaltyShape,
+     * Color, RenderingHints)}. The {@link SaltyShape} is made using {@link
+     * SaltyShape#createShape(EnumShape, Transform, float...)}.
      *
-     * @param shape          the shape to be drawn
-     *                       to the image
-     * @param size           the size of the shape
-     *                       and image
-     * @param color          the color of the
-     *                       shape
-     * @param renderingHints the quality of the
-     *                       render
-     * @param arcIfRoundRect the ard if the given
-     *                       shape is {@link
+     * @param shape          the shape to be drawn to the image
+     * @param size           the size of the shape and image
+     * @param color          the color of the shape
+     * @param renderingHints the quality of the render
+     * @param arcIfRoundRect the ard if the given shape is {@link
      *                       EnumShape#ROUND_RECTANGLE}
      *
-     * @return a new image with the given size
-     * containing the given shape in the given
-     * color with the given quality
+     * @return a new image with the given size containing the given shape in the
+     * given color with the given quality
      */
     public static SaltyImage createShapeImage(final EnumShape shape, final Dimensions size, final Color color, final RenderingHints renderingHints, final float... arcIfRoundRect) {
         return createShapeImage(SaltyShape.createShape(shape, new Transform(Vector2f.zero(), size), arcIfRoundRect), color, renderingHints);
     }
 
     /**
-     * Saves the given image to a file with the
-     * given name relative to the given {@link
-     * OuterResource}. It saves it with the given
-     * format, use one of those three:
+     * Saves the given image to a file with the given name relative to the given
+     * {@link OuterResource}. It saves it with the given format, use one of
+     * those three:
      * <p>
-     * {@link #IMAGE_FORMAT_PNG} {@link
-     * #IMAGE_FORMAT_JPG} {@link #IMAGE_FORMAT_GIF}
+     * {@link #IMAGE_FORMAT_PNG} {@link #IMAGE_FORMAT_JPG} {@link
+     * #IMAGE_FORMAT_GIF}
      *
-     * @param image    the {@link BufferedImage}
-     *                 to safe
+     * @param image    the {@link BufferedImage} to safe
      * @param format   the format of the file
      * @param name     the name of the file
-     * @param resource the {@link OuterResource}
-     *                 to get the file from
+     * @param resource the {@link OuterResource} to get the file from
      *
-     * @throws IOException when the I/O process
-     *                     fails
+     * @throws IOException when the I/O process fails
      */
     public static void saveImage(final BufferedImage image, final String format, final String name, final OuterResource resource) throws IOException {
         if (SaltySystem.writePrivilege) {

@@ -24,10 +24,8 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import java.util.List;
 
 /**
- * An implementation of the modes from {@link
- * TransformRelationMode} to position one or more
- * {@link Transform}(s) relative to a
- * "super"-Transform
+ * An implementation of the modes from {@link TransformRelationMode} to position
+ * one or more {@link Transform}(s) relative to a "super"-Transform
  */
 public class TransformRelationUtil {
 

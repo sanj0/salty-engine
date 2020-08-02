@@ -23,26 +23,22 @@ import java.awt.event.KeyEvent;
 import java.io.Closeable;
 
 /**
- * This class adds a {@link KeyboardInputHandler}
- * to {@link Input#getKeyboardHandlers()} that
- * adds every typed key to {@link #currentCheatCode}
- * and calls {@link #handleCheatCode(String)} on
- * every key type event. Whenever {@link
- * #ATTENTION_KEY} is typed, the {@link
+ * This class adds a {@link KeyboardInputHandler} to {@link
+ * Input#getKeyboardHandlers()} that adds every typed key to {@link
+ * #currentCheatCode} and calls {@link #handleCheatCode(String)} on every key
+ * type event. Whenever {@link #ATTENTION_KEY} is typed, the {@link
  * #currentCheatCode} is cleared.
  */
 public abstract class CheatCodeListener implements Closeable {
 
     /**
-     * The Keycode which clears the current cheat
-     * code so that the player can enter one. By
-     * default, this is {@link java.awt.event.KeyEvent#VK_ENTER}.
+     * The Keycode which clears the current cheat code so that the player can
+     * enter one. By default, this is {@link java.awt.event.KeyEvent#VK_ENTER}.
      */
     public static int ATTENTION_KEY = KeyEvent.VK_ENTER;
 
     /**
-     * The {@link KeyboardInputHandler} that
-     * listens fr input.
+     * The {@link KeyboardInputHandler} that listens fr input.
      */
     private final KeyboardInputHandler inputHandler;
 
@@ -52,9 +48,8 @@ public abstract class CheatCodeListener implements Closeable {
     private String currentCheatCode = "";
 
     /**
-     * The constructor. It creates the {@link
-     * #inputHandler} and adds it to the {@link
-     * Input#getKeyboardHandlers()}.
+     * The constructor. It creates the {@link #inputHandler} and adds it to the
+     * {@link Input#getKeyboardHandlers()}.
      */
     public CheatCodeListener() {
 
@@ -87,8 +82,7 @@ public abstract class CheatCodeListener implements Closeable {
     }
 
     /**
-     * Removes {@link #inputHandler} from {@link
-     * Input#getKeyboardHandlers()}.
+     * Removes {@link #inputHandler} from {@link Input#getKeyboardHandlers()}.
      */
     @Override
     public void close() {
@@ -96,26 +90,23 @@ public abstract class CheatCodeListener implements Closeable {
     }
 
     /**
-     * Reopens the listener by adding {@link
-     * #inputHandler} to the {@link Input#getKeyboardHandlers()}.
+     * Reopens the listener by adding {@link #inputHandler} to the {@link
+     * Input#getKeyboardHandlers()}.
      */
     public void reopen() {
         Input.addKeyboardInputHandler(inputHandler);
     }
 
     /**
-     * Handles a typed cheat code. This method is
-     * called every time the player types a key.
-     * This method returns <code>true</code> if
-     * the cheat code was valid and <code>false</code>
-     * if not. If the method returns
+     * Handles a typed cheat code. This method is called every time the player
+     * types a key. This method returns <code>true</code> if the cheat code was
+     * valid and <code>false</code> if not. If the method returns
      * <code>true</code>, the {@link
      * #currentCheatCode} is cleared.
      *
      * @param cheatcode the current cheat code
      *
-     * @return whether the cheat code was valid or
-     * not.
+     * @return whether the cheat code was valid or not.
      */
     public abstract boolean handleCheatCode(String cheatcode);
 }

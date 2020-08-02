@@ -16,14 +16,14 @@
 
 package de.edgelord.saltyengine.emitter;
 
-import de.edgelord.saltyengine.core.Component;
-import de.edgelord.saltyengine.core.GraphicsConfiguration;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.emitter.prc.PlainColorParticleRenderContext;
 import de.edgelord.saltyengine.gameobject.Components;
+import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
@@ -35,72 +35,59 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A {@link Component} that emits {@link
- * Particle}s from its {@link de.edgelord.saltyengine.gameobject.GameObject}
- * parent. It emits instances of {@link
- * #particleClass}, whose dimensions can be
- * manipulated with {@link #fixedParticleDimensions}
- * or {@link #fixedMinParticleDimensions} and
- * {@link #fixedMaxParticleDimensions}. The speed
- * of every {@link Particle} that is created by
- * this emitter is the current value of {@link
- * #speed}.
+ * A {@link Component} that emits {@link Particle}s from its {@link
+ * de.edgelord.saltyengine.gameobject.GameObject} parent. It emits instances of
+ * {@link #particleClass}, whose dimensions can be manipulated with {@link
+ * #fixedParticleDimensions} or {@link #fixedMinParticleDimensions} and {@link
+ * #fixedMaxParticleDimensions}. The speed of every {@link Particle} that is
+ * created by this emitter is the current value of {@link #speed}.
  *
  * <p>
- * You can also spawn a new wave on demand by
- * calling {@link #impact()}.
+ * You can also spawn a new wave on demand by calling {@link #impact()}.
  *
  * <p>
  * If {@link #impactMode} is set to
  * <code>true</code>, the emitter will only emit
- * a
- * single wave every time {@link #impact()} is
- * called. This is e.g. useful for an explosion.
+ * a single wave every time {@link #impact()} is called. This is e.g. useful for
+ * an explosion.
  *
  * <p>
- * The {@link #modifierStack} is a list of {@link
- * ParticleModifier}s that all modify the
- * particles over time with e.g. speed or size.
+ * The {@link #modifierStack} is a list of {@link ParticleModifier}s that all
+ * modify the particles over time with e.g. speed or size.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public abstract class EmitterComponent extends Component<ComponentContainer> {
 
     /**
-     * A thread-safe {@link List} containing all
-     * the current {@link Particle}s
+     * A thread-safe {@link List} containing all the current {@link Particle}s
      */
     private final List<Particle> currentParticles = Collections.synchronizedList(new ArrayList<>());
     /**
-     * The point on which emitters may spawn the
-     * {@link Particle}s.
+     * The point on which emitters may spawn the {@link Particle}s.
      */
     private Vector2f spawnPoint;
     /**
-     * If this is set to <code>true</code>, the
-     * emitter will only emit a single wave every
-     * time {@link #impact()}is called.
+     * If this is set to <code>true</code>, the emitter will only emit a single
+     * wave every time {@link #impact()}is called.
      */
     private boolean impactMode = false;
     /**
-     * The amount of particles to spawn in one
-     * wave
+     * The amount of particles to spawn in one wave
      */
     private float amount;
     /**
-     * The amount of ticks after which a new wave
-     * of Particles should be emitted
+     * The amount of ticks after which a new wave of Particles should be
+     * emitted
      */
     private int waveInterval;
     /**
-     * Determines after how many fixed ticks the
-     * particles of one wave should disappear
-     * again.
+     * Determines after how many fixed ticks the particles of one wave should
+     * disappear again.
      */
     private int lifetime = 1000;
     /**
-     * The number of the current wave. This value
-     * is incremented after spawning each wave, so
-     * the first spawned wave has the number 0.
+     * The number of the current wave. This value is incremented after spawning
+     * each wave, so the first spawned wave has the number 0.
      */
     private int currentWave = 0;
     /**
@@ -112,75 +99,59 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
      */
     private List<ParticleModifier> modifierStack = new ArrayList<>();
     /**
-     * A fixed min dimensions for new {@link
-     * Particle}s, being set after the
+     * A fixed min dimensions for new {@link Particle}s, being set after the
      * initialization of each particle.
      * <p>
-     * Special cases: If {@link #fixedParticleDimensions}
-     * is not <code>null</code>, {@link
-     * #fixedParticleDimensions} will be set as
-     * the particle's dimensions If either this or
-     * {@link #fixedMaxParticleDimensions} are
+     * Special cases: If {@link #fixedParticleDimensions} is not
+     * <code>null</code>, {@link #fixedParticleDimensions} will be set as the
+     * particle's dimensions If either this or {@link #fixedMaxParticleDimensions}
+     * are
      * <code>null</code>, the particles dimensions
      * stays untouched.
      */
     private Dimensions fixedMinParticleDimensions = null;
     /**
-     * A fixed max dimensions for new {@link
-     * Particle}s, being set after the
+     * A fixed max dimensions for new {@link Particle}s, being set after the
      * initialization of each particle.
      * <p>
-     * Special cases: If {@link #fixedParticleDimensions}
-     * is not <code>null</code>, {@link
-     * #fixedParticleDimensions} will be set as
-     * the particle's dimensions If either this or
-     * {@link #fixedMinParticleDimensions} are
+     * Special cases: If {@link #fixedParticleDimensions} is not
+     * <code>null</code>, {@link #fixedParticleDimensions} will be set as the
+     * particle's dimensions If either this or {@link #fixedMinParticleDimensions}
+     * are
      * <code>null</code>, the particles dimensions
      * stays untouched.
      */
     private Dimensions fixedMaxParticleDimensions = null;
     /**
-     * If this is not <code>null</code>, every
-     * {@link Particle} that is emitted by this
-     * {@link EmitterComponent} will have that
-     * exact size.
+     * If this is not <code>null</code>, every {@link Particle} that is emitted
+     * by this {@link EmitterComponent} will have that exact size.
      */
     private Dimensions fixedParticleDimensions = null;
     private int ticks = 0;
     private boolean impactOnNextTick = false;
     /**
-     * The {@link ParticleRenderContext} that is
-     * used to render the particles. By default,
-     * it is a {@link PlainColorParticleRenderContext}
-     * with a {@link ColorUtil#BLACK} color.
+     * The {@link ParticleRenderContext} that is used to render the particles.
+     * By default, it is a {@link PlainColorParticleRenderContext} with a {@link
+     * ColorUtil#BLACK} color.
      */
     private ParticleRenderContext renderContext = new PlainColorParticleRenderContext(ColorUtil.BLACK);
     /**
-     * The {@link Class} object of the particle to
-     * be emitted.
+     * The {@link Class} object of the particle to be emitted.
      */
     private Class<? extends Particle> particleClass;
 
     /**
-     * The constructor initializing an emitter
-     * that emits a wave of the given amount of
-     * particles every given duration of ticks.
+     * The constructor initializing an emitter that emits a wave of the given
+     * amount of particles every given duration of ticks.
      *
      * @param parent        the {@link de.edgelord.saltyengine.gameobject.GameObject}
-     *                      that owns this {@link
-     *                      Component}
-     * @param name          the id-name of the
-     *                      component
-     * @param particleClass the particle to be
-     *                      emitted. obtained via
-     *                      {@link Object#getClass()}
-     * @param speed         the speed of the
-     *                      particles spawned by
-     *                      this emitter.
-     * @param amount        the amount of emitted
-     *                      particles per wave
-     * @param waveInterval  the time to be passed
-     *                      between each wave
+     *                      that owns this {@link Component}
+     * @param name          the id-name of the component
+     * @param particleClass the particle to be emitted. obtained via {@link
+     *                      Object#getClass()}
+     * @param speed         the speed of the particles spawned by this emitter.
+     * @param amount        the amount of emitted particles per wave
+     * @param waveInterval  the time to be passed between each wave
      */
     public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particleClass, final float speed, final float amount, final int waveInterval) {
         super(parent, name, Components.EMITTER_COMPONENT);
@@ -194,27 +165,19 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * The constructor initializing an emitter
-     * with {@link #impactMode} set to
+     * The constructor initializing an emitter with {@link #impactMode} set to
      * <code>true</code>, meaning that it will
-     * only emit a single wave of particles every
-     * time {@link #impact()} is called. {@link
-     * #waveInterval} is overloaded with
+     * only emit a single wave of particles every time {@link #impact()} is
+     * called. {@link #waveInterval} is overloaded with
      * <code>1</code>.
      *
      * @param parent        the {@link de.edgelord.saltyengine.gameobject.GameObject}
-     *                      that owns this {@link
-     *                      Component}
-     * @param name          the id-name of the
-     *                      component
-     * @param particleClass the particle to be
-     *                      emitted. obtained via
-     *                      {@link Object#getClass()}
-     * @param speed         the speed of the
-     *                      particles spawned by
-     *                      this emitter.
-     * @param amount        the amount of emitted
-     *                      particles per wave
+     *                      that owns this {@link Component}
+     * @param name          the id-name of the component
+     * @param particleClass the particle to be emitted. obtained via {@link
+     *                      Object#getClass()}
+     * @param speed         the speed of the particles spawned by this emitter.
+     * @param amount        the amount of emitted particles per wave
      */
     public EmitterComponent(final ComponentContainer parent, final String name, final Class<? extends Particle> particleClass, final float speed, final float amount) {
         this(parent, name, particleClass, speed, amount, 1);
@@ -228,33 +191,27 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Use to initialize the emitter after the
-     * constructor. This method is called within
-     * {@link #initialize()}.
+     * Use to initialize the emitter after the constructor. This method is
+     * called within {@link #initialize()}.
      */
     public abstract void initializeEmitter();
 
     /**
-     * Spawns a single new particle with the
-     * following steps:
+     * Spawns a single new particle with the following steps:
      * <p>
-     * 1. Create a {@link Particle} using {@link
-     * #createParticle()} 2. Set a emitter-specific
-     * position using {@link Particle#setPosition(Vector2f)}
-     * 3. return it
+     * 1. Create a {@link Particle} using {@link #createParticle()} 2. Set a
+     * emitter-specific position using {@link Particle#setPosition(Vector2f)} 3.
+     * return it
      *
-     * @return the spawned particle to be added to
-     * the list
+     * @return the spawned particle to be added to the list
      */
     public abstract Particle spawnParticle();
 
     /**
-     * Moves each particle separately. This is
-     * called every fixed tick for every particle
-     * within {@link #currentParticles}.
+     * Moves each particle separately. This is called every fixed tick for every
+     * particle within {@link #currentParticles}.
      *
-     * @param particle the <code>Particle</code>
-     *                 to be moved
+     * @param particle the <code>Particle</code> to be moved
      */
     public abstract void moveParticle(Particle particle);
 
@@ -263,11 +220,9 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Calls {@link #spawnParticle()} every {@link
-     * #waveInterval} fixed ticks for {@link
-     * #amount} times and calls {@link
-     * #moveParticle(Particle)} every fixed tick
-     * for every entry in {@link #currentParticles}.
+     * Calls {@link #spawnParticle()} every {@link #waveInterval} fixed ticks
+     * for {@link #amount} times and calls {@link #moveParticle(Particle)} every
+     * fixed tick for every entry in {@link #currentParticles}.
      */
     @Override
     public final void onFixedTick() {
@@ -313,12 +268,10 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Draws all {@link Particle}s within {@link
-     * #currentParticles} by calling {@link
-     * Particle#draw(SaltyGraphics)}.
+     * Draws all {@link Particle}s within {@link #currentParticles} by calling
+     * {@link Particle#draw(SaltyGraphics)}.
      *
-     * @param saltyGraphics the graphics to render
-     *                      the particles, this is
+     * @param saltyGraphics the graphics to render the particles, this is
      *                      internally passed in.
      */
     @Override
@@ -335,8 +288,7 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     }
 
     /**
-     * Returns a new instance of {@link
-     * #particleClass} with the {@link
+     * Returns a new instance of {@link #particleClass} with the {@link
      * #currentWave} and {@link #speed}.
      *
      * @return a new particle
@@ -362,49 +314,43 @@ public abstract class EmitterComponent extends Component<ComponentContainer> {
     /**
      * Removes the given particle from the list.
      *
-     * @param particle the particle to be removed
-     *                 from the list.
+     * @param particle the particle to be removed from the list.
      */
     public void removeParticle(final Particle particle) {
         currentParticles.remove(particle);
     }
 
     /**
-     * This method will cause exactly one wave of
-     * {@link Particle}s to be emitted.
+     * This method will cause exactly one wave of {@link Particle}s to be
+     * emitted.
      */
     public void impact() {
         impactOnNextTick = true;
     }
 
     /**
-     * The only way to add a {@link Particle} to
-     * the {@link #currentParticles}.
+     * The only way to add a {@link Particle} to the {@link #currentParticles}.
      *
-     * @param particle the <code>Particle</code>
-     *                 to be added.
+     * @param particle the <code>Particle</code> to be added.
      */
     private void addParticle(final Particle particle) {
         currentParticles.add(particle);
     }
 
     /**
-     * Adds the given {@link ParticleModifier} to
-     * the {@link #modifierStack}.
+     * Adds the given {@link ParticleModifier} to the {@link #modifierStack}.
      *
-     * @param modifier the modifier to be added to
-     *                 the stack.
+     * @param modifier the modifier to be added to the stack.
      */
     public void addModifier(final ParticleModifier modifier) {
         modifierStack.add(modifier);
     }
 
     /**
-     * Removes the given {@link ParticleModifier}
-     * from the {@link #modifierStack}.
+     * Removes the given {@link ParticleModifier} from the {@link
+     * #modifierStack}.
      *
-     * @param modifier the modifier to be removed
-     *                 from the stack.
+     * @param modifier the modifier to be removed from the stack.
      */
     public void removeModifier(final ParticleModifier modifier) {
         modifierStack.remove(modifier);

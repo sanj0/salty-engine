@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.ui;
 
-import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
@@ -69,13 +69,11 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     }
 
     /**
-     * A final implementation that calls both
-     * {@link #drawBackground(SaltyGraphics)} and
-     * {@link #drawForeground(SaltyGraphics)} with
-     * the graphics being prepared correctly.
+     * A final implementation that calls both {@link #drawBackground(SaltyGraphics)}
+     * and {@link #drawForeground(SaltyGraphics)} with the graphics being
+     * prepared correctly.
      *
-     * @param saltyGraphics the graphics ot render
-     *                      to.
+     * @param saltyGraphics the graphics ot render to.
      */
     @Override
     public final void draw(final SaltyGraphics saltyGraphics) {
@@ -88,16 +86,14 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     /**
      * Draws the background of the ui element.
      *
-     * @param saltyGraphics the graphics to draw
-     *                      to.
+     * @param saltyGraphics the graphics to draw to.
      */
     public abstract void drawBackground(SaltyGraphics saltyGraphics);
 
     /**
      * Draws the foreground of this ui element.
      *
-     * @param saltyGraphics the graphics to draw
-     *                      to.
+     * @param saltyGraphics the graphics to draw to.
      */
     public abstract void drawForeground(SaltyGraphics saltyGraphics);
 
@@ -255,8 +251,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
     /**
      * Sets {@link #focused}.
      *
-     * @param focused the new value of {@link
-     *                #focused}
+     * @param focused the new value of {@link #focused}
      */
     protected void setFocused(final boolean focused) {
         this.focused = focused;

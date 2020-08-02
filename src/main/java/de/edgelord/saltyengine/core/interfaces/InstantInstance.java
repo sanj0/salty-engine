@@ -17,8 +17,8 @@
 package de.edgelord.saltyengine.core.interfaces;
 
 /**
- * An interface to create an instant instance of
- * {@link T}. It provides instant instances with
+ * An interface to create an instant instance of {@link T}. It provides instant
+ * instances with
  * <code>zero</code>, <code>max</code>,
  * <code>min</code> and <code>random</code>
  * overload.
@@ -26,51 +26,39 @@ package de.edgelord.saltyengine.core.interfaces;
 public interface InstantInstance<T> {
 
     /**
-     * Returns a new instance of {@link T} with a
-     * zero overload, so all necessary parameters
-     * to instantiate are overloaded with zero but
-     * not <code>null</code>.
+     * Returns a new instance of {@link T} with a zero overload, so all
+     * necessary parameters to instantiate are overloaded with zero but not
+     * <code>null</code>.
      *
-     * @return a new instance of {@link T} with a
-     * zero-overload
+     * @return a new instance of {@link T} with a zero-overload
      */
     T zero();
 
     /**
-     * Returns a new instance of {@link T} with a
-     * max overload, so all necessary parameters
-     * to instantiate are overloaded with the max
-     * value.
+     * Returns a new instance of {@link T} with a max overload, so all necessary
+     * parameters to instantiate are overloaded with the max value.
      *
-     * @return a new instance of {@link T} with a
-     * max-overload
+     * @return a new instance of {@link T} with a max-overload
      */
     T max();
 
     /**
-     * Returns a new instance of {@link T} with a
-     * min overload, so all necessary parameters
-     * to instantiate are overloaded with the
-     * minimum value.
+     * Returns a new instance of {@link T} with a min overload, so all necessary
+     * parameters to instantiate are overloaded with the minimum value.
      *
-     * @return a new instance of {@link T} with a
-     * min-overload
+     * @return a new instance of {@link T} with a min-overload
      */
     T min();
 
     /**
-     * Returns a new instance of {@link T} with a
-     * random overload between the given bounds,
-     * so all necessary parameters to instantiate
-     * are overloaded with random values.
+     * Returns a new instance of {@link T} with a random overload between the
+     * given bounds, so all necessary parameters to instantiate are overloaded
+     * with random values.
      *
-     * @param max the maximum of the random
-     *            number
-     * @param min the minimum if the random
-     *            number
+     * @param max the maximum of the random number
+     * @param min the minimum if the random number
      *
-     * @return a new instance of {@link T} with a
-     * random-overload
+     * @return a new instance of {@link T} with a random-overload
      */
     T random(int min, int max);
 }

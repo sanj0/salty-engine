@@ -23,11 +23,10 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import java.awt.*;
 
 /**
- * This implementation of {@link Label} allows
- * pixel-precise positioning of a one-line text
- * because the size of it fits the text. Also, the
- * placing is natural and not from the baseLine of
- * the text but from its upper left corner.
+ * This implementation of {@link Label} allows pixel-precise positioning of a
+ * one-line text because the size of it fits the text. Also, the placing is
+ * natural and not from the baseLine of the text but from its upper left
+ * corner.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class FloatingLabel extends Label {

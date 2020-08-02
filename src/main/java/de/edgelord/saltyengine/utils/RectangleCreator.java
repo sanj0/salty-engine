@@ -40,11 +40,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class RectangleCreator extends DrawingRoutine implements MouseInputHandler {
 
     private static final Species rects = new Species("points");
+    private static final StringBuilder simpleRepresentation = new StringBuilder();
     public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.RED, .25f);
     public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.BLUE, .25f);
     /**
-     * A format string for the simple
-     * representation of the logged rects <p>
+     * A format string for the simple representation of the logged rects <p>
      * <pre>
      * %x - x
      * %y - y
@@ -54,7 +54,6 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
      */
     public static String format = "new Transform(%x, %y, %w, %h)";
     private static DataWriter writer;
-    private static final StringBuilder simpleRepresentation = new StringBuilder();
     private final List<Transform> savedTransforms = new CopyOnWriteArrayList<>();
     private final Transform origin = new Transform(0, 0, 30, 30);
     private final Transform upRight = new Transform(0, 0, 30, 30);

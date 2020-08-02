@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
@@ -25,11 +24,10 @@ import de.edgelord.saltyengine.gameobject.Components;
 import java.util.function.BooleanSupplier;
 
 /**
- * Activates a cooldown for what happens in {@link
- * #run()}. Whenever the cooldown is done after
- * {@link #cooldownTime} ticks, {@link #shouldRun}
- * is tested and if it returns true, {@link
- * #run()} is called and the cooldown restarts.
+ * Activates a cooldown for what happens in {@link #run()}. Whenever the
+ * cooldown is done after {@link #cooldownTime} ticks, {@link #shouldRun} is
+ * tested and if it returns true, {@link #run()} is called and the cooldown
+ * restarts.
  */
 public abstract class CooldownComponent extends Component implements Runnable {
 
@@ -41,17 +39,11 @@ public abstract class CooldownComponent extends Component implements Runnable {
     /**
      * The default constructor.
      *
-     * @param parent       the parent of this
-     *                     component
-     * @param name         the id-name of this
-     *                     component
-     * @param cooldownTime the time that the
-     *                     cooldown takes.
-     * @param shouldRun    the test for if {@link
-     *                     #run()} should be
-     *                     called. This is only
-     *                     tested if the cooldown
-     *                     was performed
+     * @param parent       the parent of this component
+     * @param name         the id-name of this component
+     * @param cooldownTime the time that the cooldown takes.
+     * @param shouldRun    the test for if {@link #run()} should be called. This
+     *                     is only tested if the cooldown was performed
      */
     public CooldownComponent(final ComponentContainer parent, final String name, final int cooldownTime, final BooleanSupplier shouldRun) {
         super(parent, name, Components.TIMING_COMPONENT);

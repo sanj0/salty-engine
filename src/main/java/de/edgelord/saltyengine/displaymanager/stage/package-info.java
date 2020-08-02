@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 /**
- * The {@link de.edgelord.saltyengine.displaymanager.stage.Stage}
- * and all required classes for it to render your
- * game as the default rendering-stage.
+ * The {@link de.edgelord.saltyengine.displaymanager.stage.Stage} and all
+ * required classes for it to render your game as the default rendering-stage.
  */
 package de.edgelord.saltyengine.displaymanager.stage;

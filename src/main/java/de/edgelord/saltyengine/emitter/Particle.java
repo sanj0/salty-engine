@@ -24,33 +24,27 @@ import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
- * A {@link Particle} is a physics-independent
- * drawable object that has a transform.
+ * A {@link Particle} is a physics-independent drawable object that has a
+ * transform.
  * <code>Particle</code>s can be emitted by
- * {@link
- * EmitterComponent}s. As with the only
- * constructor there is no {@link Transform}
- * argument, the transform is {@link
- * Transform#zero()} by default to avoid a {@link
- * NullPointerException}.
+ * {@link EmitterComponent}s. As with the only constructor there is no {@link
+ * Transform} argument, the transform is {@link Transform#zero()} by default to
+ * avoid a {@link NullPointerException}.
  *
  * <p>
- * All instances of {@link EmitterComponent} are
- * recommended to using this particles {@link
- * #speed}.
+ * All instances of {@link EmitterComponent} are recommended to using this
+ * particles {@link #speed}.
  *
  * <p>
- * Usually, the particle itself has a default
- * size, but the {@link EmitterComponent} can be
- * configured to set a specific size for its
- * emitted particles.
+ * Usually, the particle itself has a default size, but the {@link
+ * EmitterComponent} can be configured to set a specific size for its emitted
+ * particles.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public abstract class Particle implements TransformedObject, Drawable, FixedTickRoutine {
 
     /**
-     * The number of the wave that this particle
-     * is spawned in.
+     * The number of the wave that this particle is spawned in.
      */
     private final Integer waveNumber;
     /**
@@ -58,8 +52,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
      */
     private Transform transform;
     /**
-     * The <code>Directions</code> in which this
-     * particle can't move.
+     * The <code>Directions</code> in which this particle can't move.
      */
     private Directions lockedDirections = new Directions();
     /**
@@ -68,8 +61,7 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     private float speed;
 
     /**
-     * The rest of this particle's lifetime
-     * measured in fixed ticks.
+     * The rest of this particle's lifetime measured in fixed ticks.
      */
     private int restLifetime;
 
@@ -83,15 +75,11 @@ public abstract class Particle implements TransformedObject, Drawable, FixedTick
     /**
      * The constructor.
      *
-     * @param waveNumber   the number of the wave
-     *                     that this particle is
-     *                     spawned in.
-     * @param restLifetime the rest of this
-     *                     particles lifetime.
-     * @param speed        the speed of this
-     *                     particle.
-     * @param parent       the emitter that
-     *                     spawned this particle.
+     * @param waveNumber   the number of the wave that this particle is spawned
+     *                     in.
+     * @param restLifetime the rest of this particles lifetime.
+     * @param speed        the speed of this particle.
+     * @param parent       the emitter that spawned this particle.
      */
     public Particle(final Integer waveNumber, final Integer restLifetime, final Float speed, final EmitterComponent parent) {
         this.waveNumber = waveNumber;

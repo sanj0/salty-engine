@@ -37,13 +37,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * A simple static util class that allows the
- * programmer to log points from the scene into a
- * file to make placement easier. You click once
- * to temporally save a point and click while
- * shift or alt is down to safe the point. When
- * the game is quit, all saved points are written
- * into a file.
+ * A simple static util class that allows the programmer to log points from the
+ * scene into a file to make placement easier. You click once to temporally save
+ * a point and click while shift or alt is down to safe the point. When the game
+ * is quit, all saved points are written into a file.
  */
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
@@ -63,19 +60,16 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
     }
 
     /**
-     * Creates a new instance of this class, adds
-     * it to the current {@link de.edgelord.saltyengine.scene.Scene}
-     * as a {@link DrawingRoutine}, assigns it as
-     * an input handler to {@link Input} and
-     * returns it.
+     * Creates a new instance of this class, adds it to the current {@link
+     * de.edgelord.saltyengine.scene.Scene} as a {@link DrawingRoutine}, assigns
+     * it as an input handler to {@link Input} and returns it.
      *
-     * @param fileName the name of the save file,
-     *                 relative to {@link SaltySystem#defaultOuterResource}.
+     * @param fileName the name of the save file, relative to {@link
+     *                 SaltySystem#defaultOuterResource}.
      *
      * @return the created <code>PointLogger</code>.
-     * @throws IOException if something does wrong
-     *                     when creating the
-     *                     {@link DataWriter}.
+     * @throws IOException if something does wrong when creating the {@link
+     *                     DataWriter}.
      */
     public static PointLogger init(final String fileName) throws IOException {
 

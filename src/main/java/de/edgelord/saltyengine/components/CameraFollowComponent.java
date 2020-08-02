@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -25,23 +24,19 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**
- * This implementation of {@link Component} makes
- * the {@link de.edgelord.saltyengine.core.camera.Camera}
- * of the game follow its parent.
+ * This implementation of {@link Component} makes the {@link
+ * de.edgelord.saltyengine.graphics.camera.Camera} of the game follow its
+ * parent.
  * <p>
- * The {@link Transform} {@link #whiteZone}
- * describes the area in which the {@link
- * #getParent() parent} of this Component can be
- * located without the camera to move. When ever
- * the parent is outside this rectangle on a fixed
- * tick, the camera moves towards it by the
- * specific amount of pixels stored in {@link
- * #speed}.
+ * The {@link Transform} {@link #whiteZone} describes the area in which the
+ * {@link #getParent() parent} of this Component can be located without the
+ * camera to move. When ever the parent is outside this rectangle on a fixed
+ * tick, the camera moves towards it by the specific amount of pixels stored in
+ * {@link #speed}.
  * <p>
- * By default, {@link #whiteZone} is twice as wide
- * and high as the {@link #getParent()} of this
- * Components and in the centre of the screen. It
- * can be changed/edited at any time.
+ * By default, {@link #whiteZone} is twice as wide and high as the {@link
+ * #getParent()} of this Components and in the centre of the screen. It can be
+ * changed/edited at any time.
  */
 public class CameraFollowComponent extends Component<GameObject> {
 

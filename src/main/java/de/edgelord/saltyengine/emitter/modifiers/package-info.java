@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 /**
- * The package for implementations of {@link
- * de.edgelord.saltyengine.emitter.ParticleModifier}.
+ * The package for implementations of {@link de.edgelord.saltyengine.emitter.ParticleModifier}.
  */
 package de.edgelord.saltyengine.emitter.modifiers;

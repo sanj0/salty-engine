@@ -25,26 +25,19 @@ import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.GeneralUtil;
 
 /**
- * A basic {@link EmitterComponent} that randomly
- * emits {@link Particle}s from the bottom side of
- * its parent and lets them fall down. Both {@link
- * #leftOffset} and {@link #rightOffset} can be
- * used to limit the possible spawning points of
- * new {@link Particle}s. The particles are
- * spawned at the max y value of the parent's
- * transform, meaning at its lowest point. To
+ * A basic {@link EmitterComponent} that randomly emits {@link Particle}s from
+ * the bottom side of its parent and lets them fall down. Both {@link
+ * #leftOffset} and {@link #rightOffset} can be used to limit the possible
+ * spawning points of new {@link Particle}s. The particles are spawned at the
+ * max y value of the parent's transform, meaning at its lowest point. To
  * manipulate that, use {@link #offsetY}
  * <p>
- * The spawned {@link Particle}s are falling down
- * with {@link #getSpeed()} pixels per fixed tick
- * and there are constantly spawning new ones. You
- * can change the spawning rate using {@link
- * #setWaveInterval(int)}.
+ * The spawned {@link Particle}s are falling down with {@link #getSpeed()}
+ * pixels per fixed tick and there are constantly spawning new ones. You can
+ * change the spawning rate using {@link #setWaveInterval(int)}.
  * <p>
- * This implementation of {@link EmitterComponent}
- * ignores the suggested spawn point. You can
- * control the actual used spawn point with both
- * offsets.
+ * This implementation of {@link EmitterComponent} ignores the suggested spawn
+ * point. You can control the actual used spawn point with both offsets.
  */
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
 public class RandomRainEmitter extends EmitterComponent {
@@ -60,10 +53,9 @@ public class RandomRainEmitter extends EmitterComponent {
     private float rightOffset = 0f;
 
     /**
-     * The offset on the y axis for the spawning
-     * point of new particles. A positive value
-     * means moving the spawning point down,
-     * negative meaning to move it up.
+     * The offset on the y axis for the spawning point of new particles. A
+     * positive value means moving the spawning point down, negative meaning to
+     * move it up.
      */
     private float offsetY = 0f;
 
@@ -115,8 +107,7 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * Sets {@link #leftOffset}.
      *
-     * @param leftOffset the new value of {@link
-     *                   #leftOffset}
+     * @param leftOffset the new value of {@link #leftOffset}
      */
     public void setLeftOffset(final float leftOffset) {
         this.leftOffset = leftOffset;
@@ -134,8 +125,7 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * Sets {@link #rightOffset}.
      *
-     * @param rightOffset the new value of {@link
-     *                    #rightOffset}
+     * @param rightOffset the new value of {@link #rightOffset}
      */
     public void setRightOffset(final float rightOffset) {
         this.rightOffset = rightOffset;
@@ -153,8 +143,7 @@ public class RandomRainEmitter extends EmitterComponent {
     /**
      * Sets {@link #offsetY}.
      *
-     * @param offsetY the new value of {@link
-     *                #offsetY}
+     * @param offsetY the new value of {@link #offsetY}
      */
     public void setOffsetY(final float offsetY) {
         this.offsetY = offsetY;

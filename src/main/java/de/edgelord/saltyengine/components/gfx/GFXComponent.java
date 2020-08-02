@@ -16,18 +16,16 @@
 
 package de.edgelord.saltyengine.components.gfx;
 
-import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * This abstract {@link Component} describes a
- * graphical effect for a {@link ComponentContainer}.
- * These {@link Component}s are disabled by
- * default and need to be enabled using the {@link
- * #startGFX()} method for the graphical effect to
- * start.
+ * This abstract {@link Component} describes a graphical effect for a {@link
+ * ComponentContainer}. These {@link Component}s are disabled by default and
+ * need to be enabled using the {@link #startGFX()} method for the graphical
+ * effect to start.
  */
 public abstract class GFXComponent extends Component {
 
@@ -38,8 +36,8 @@ public abstract class GFXComponent extends Component {
     }
 
     /**
-     * Won't need that method often within a
-     * GFXComponent, so an empty implementation.
+     * Won't need that method often within a GFXComponent, so an empty
+     * implementation.
      *
      * @param e the collision event
      */
@@ -49,16 +47,14 @@ public abstract class GFXComponent extends Component {
     }
 
     /**
-     * "Starts" the GFX by calling {@link
-     * #enable()}.
+     * "Starts" the GFX by calling {@link #enable()}.
      */
     public void startGFX() {
         enable();
     }
 
     /**
-     * "Ends" the GFX by calling {@link
-     * #disable()}.
+     * "Ends" the GFX by calling {@link #disable()}.
      */
     public void endGFX() {
         disable();

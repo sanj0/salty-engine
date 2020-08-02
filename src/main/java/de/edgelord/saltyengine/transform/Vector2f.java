@@ -71,12 +71,11 @@ public class Vector2f {
     }
 
     /**
-     * Sets a new magnitude to this <code>vector</code>
-     * by changing its <code>x</code> and
+     * Sets a new magnitude to this <code>vector</code> by changing its
+     * <code>x</code> and
      * <code>y</code> coordinates.
      *
-     * @param newMagnitude the new magnitude for
-     *                     this <code>vector</code>
+     * @param newMagnitude the new magnitude for this <code>vector</code>
      *
      * @return <code>this</code> vector
      */
@@ -114,13 +113,11 @@ public class Vector2f {
     }
 
     /**
-     * Returns the distance between this and the
-     * given point.
+     * Returns the distance between this and the given point.
      *
      * @param point a point
      *
-     * @return the distance between this and the
-     * given point
+     * @return the distance between this and the given point
      */
     public float distance(final Vector2f point) {
         final double ac = Math.abs(point.y - y);
@@ -243,9 +240,8 @@ public class Vector2f {
     }
 
     /**
-     * Returns a new <code>Vector2f</code> with
-     * the same {@link #x} and {@link #y} as this
-     * one.
+     * Returns a new <code>Vector2f</code> with the same {@link #x} and {@link
+     * #y} as this one.
      *
      * @return a "copy" of this <code>Vector2f</code>
      */

@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.components.animation;
 
-import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.animation.Keyframe;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -25,9 +25,8 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.gameobject.Components;
 
 /**
- * Animates the {@link de.edgelord.saltyengine.transform.Transform}
- * of its {@link #getParent()} using a {@link
- * LinearKeyframeAnimation}. That includes
+ * Animates the {@link de.edgelord.saltyengine.transform.Transform} of its
+ * {@link #getParent()} using a {@link LinearKeyframeAnimation}. That includes
  * rotation, width, height, x and y position.
  * <p>
  * Usage:
@@ -55,15 +54,14 @@ import de.edgelord.saltyengine.gameobject.Components;
  *     }
  * </pre>
  * <p>
- * NOTE: Take care of the hitbox of the {@link
- * #getParent()}, these animations won't change
- * it, you have to do that manually if necessary!
+ * NOTE: Take care of the hitbox of the {@link #getParent()}, these animations
+ * won't change it, you have to do that manually if necessary!
  */
 public class LinearTransformAnimations extends Component {
 
     /**
-     * The keyframe animation used to animate the
-     * {@link de.edgelord.saltyengine.transform.Transform}.
+     * The keyframe animation used to animate the {@link
+     * de.edgelord.saltyengine.transform.Transform}.
      */
     private final LinearKeyframeAnimation animation = new LinearKeyframeAnimation();
     /**
@@ -71,24 +69,21 @@ public class LinearTransformAnimations extends Component {
      */
     private final Control control;
     /**
-     * If this is true, the {@link #animation}
-     * will be recalculated using {@link
-     * LinearKeyframeAnimation#calculateAnimation()}
-     * at the next fixed tick, and this boolean
-     * will be reset to false again.
+     * If this is true, the {@link #animation} will be recalculated using {@link
+     * LinearKeyframeAnimation#calculateAnimation()} at the next fixed tick, and
+     * this boolean will be reset to false again.
      */
     private boolean recalculateOnNextStep = true;
     /**
-     * Whether the animation should be looped or
-     * not. Default getters and setters exist.
+     * Whether the animation should be looped or not. Default getters and
+     * setters exist.
      */
     private boolean loop = false;
 
     /**
      * {@inheritDoc}
      *
-     * @param control what this component should
-     *                animate
+     * @param control what this component should animate
      */
     public LinearTransformAnimations(final ComponentContainer parent, final String name, final Control control) {
         super(parent, name, Components.ANIMATION_COMPONENT);
@@ -98,35 +93,30 @@ public class LinearTransformAnimations extends Component {
     }
 
     /**
-     * Makes the animation start at 0 again by
-     * setting {@link #recalculateOnNextStep} to
-     * true.
+     * Makes the animation start at 0 again by setting {@link
+     * #recalculateOnNextStep} to true.
      */
     public void startOver() {
         recalculateOnNextStep = true;
     }
 
     /**
-     * Starts the animation by enabling this
-     * component using {@link #enable()}.
+     * Starts the animation by enabling this component using {@link #enable()}.
      */
     public void start() {
         enable();
     }
 
     /**
-     * Pauses the animations by using {@link
-     * #disable()}.
+     * Pauses the animations by using {@link #disable()}.
      */
     public void pause() {
         disable();
     }
 
     /**
-     * Stops the animation by calling {@link
-     * #animation}.setCurrentFrame(0) and
-     * disabling this component using {@link
-     * #disable()}.
+     * Stops the animation by calling {@link #animation}.setCurrentFrame(0) and
+     * disabling this component using {@link #disable()}.
      */
     public void stop() {
         animation.setCurrentFrame(0);
@@ -183,8 +173,7 @@ public class LinearTransformAnimations extends Component {
     }
 
     /**
-     * Adds the given {@link Keyframe} to the
-     * {@link #animation} by using {@link
+     * Adds the given {@link Keyframe} to the {@link #animation} by using {@link
      * LinearKeyframeAnimation#add(Keyframe)}.
      *
      * @param keyframe the keyframe to be added
@@ -194,12 +183,10 @@ public class LinearTransformAnimations extends Component {
     }
 
     /**
-     * Adds anew {@link Keyframe} with the given
-     * timing and value to the {@link
+     * Adds anew {@link Keyframe} with the given timing and value to the {@link
      * #animation}.
      *
-     * @param timing the timing of the new
-     *               keyframe
+     * @param timing the timing of the new keyframe
      * @param value  the value of the keyframe
      */
     public void addKeyframe(final int timing, final float value) {
@@ -214,19 +201,16 @@ public class LinearTransformAnimations extends Component {
     }
 
     /**
-     * Sets the value of {@link #loop} to the
-     * given boolean.
+     * Sets the value of {@link #loop} to the given boolean.
      *
-     * @param loop the new value for {@link
-     *             #loop}.
+     * @param loop the new value for {@link #loop}.
      */
     public void setLoop(final boolean loop) {
         this.loop = loop;
     }
 
     /**
-     * Describes which part of the {@link
-     * de.edgelord.saltyengine.transform.Transform}
+     * Describes which part of the {@link de.edgelord.saltyengine.transform.Transform}
      * is to be animated.
      *
      * <code>WIDTH</code> meaning the width of it

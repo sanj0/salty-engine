@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;

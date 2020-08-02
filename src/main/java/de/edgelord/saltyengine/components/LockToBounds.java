@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.Components;
@@ -24,18 +23,15 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
 
 /**
- * Locks its parent to the given {@link Transform}
- * by using either its {@link de.edgelord.saltyengine.hitbox.Hitbox}
- * or its {@link Transform}. What to use is
- * defined in {@link #mode}. The default is {@link
- * #MODE_TRANSFORM}
+ * Locks its parent to the given {@link Transform} by using either its {@link
+ * de.edgelord.saltyengine.hitbox.Hitbox} or its {@link Transform}. What to use
+ * is defined in {@link #mode}. The default is {@link #MODE_TRANSFORM}
  */
 public class LockToBounds extends Component<GameObject> {
     public static final int MODE_HITBOX = 0;
     public static final int MODE_TRANSFORM = 1;
     /**
-     * The rectangular bounds to which the {@link
-     * #getParent()} is locked
+     * The rectangular bounds to which the {@link #getParent()} is locked
      */
     private final Transform bounds;
     private final int mode = MODE_TRANSFORM;

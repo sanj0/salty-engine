@@ -17,8 +17,8 @@
 package de.edgelord.saltyengine.core.animation;
 
 /**
- * A <code>Keyframe</code> stores a {@link
- * #timecode} and a corresponding {@link #value}
+ * A <code>Keyframe</code> stores a {@link #timecode} and a corresponding {@link
+ * #value}
  */
 public class Keyframe {
 
@@ -55,8 +55,7 @@ public class Keyframe {
     /**
      * Sets {@link #timecode}.
      *
-     * @param timecode the new value of {@link
-     *                 #timecode}
+     * @param timecode the new value of {@link #timecode}
      */
     public void setTimecode(final int timecode) {
         this.timecode = timecode;
@@ -74,8 +73,7 @@ public class Keyframe {
     /**
      * Sets {@link #value}.
      *
-     * @param value the new value of {@link
-     *              #value}
+     * @param value the new value of {@link #value}
      */
     public void setValue(final float value) {
         this.value = value;

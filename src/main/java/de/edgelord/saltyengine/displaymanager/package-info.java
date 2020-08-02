@@ -15,7 +15,7 @@
  */
 /**
  * The default {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager}
- * {@link de.edgelord.saltyengine.core.Host} for a
- * {@link de.edgelord.saltyengine.core.Game}.
+ * {@link de.edgelord.saltyengine.core.Host} for a {@link
+ * de.edgelord.saltyengine.core.Game}.
  */
 package de.edgelord.saltyengine.displaymanager;

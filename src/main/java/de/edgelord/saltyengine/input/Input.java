@@ -36,20 +36,17 @@ public class Input {
     public static boolean inputLeft = false;
     public static char lastInputKey;
     /**
-     * You have to add a ifn check if you use
-     * this!
+     * You have to add a ifn check if you use this!
      */
     public static KeyEvent lastInput = null;
     /**
-     * For input that is not meant for typing use
-     * this! Please use this for every input that
-     * has to do with controls etc etc
+     * For input that is not meant for typing use this! Please use this for
+     * every input that has to do with controls etc etc
      */
     public static Keyboard keyboardInput = new Keyboard();
     /**
-     * The absolute (meaning relative to the
-     * normal userspace) position of the mouse
-     * cursor.
+     * The absolute (meaning relative to the normal userspace) position of the
+     * mouse cursor.
      */
     public static Vector2f cursorPosition = new Vector2f(0, 0);
     public static boolean mouseDrags = false;

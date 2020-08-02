@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 /**
- * The package for everything having to do with
- * general collision detection. This package is
- * fully documented right now.
+ * The package for everything having to do with general collision detection.
+ * This package is fully documented right now.
  */
 package de.edgelord.saltyengine.collision;

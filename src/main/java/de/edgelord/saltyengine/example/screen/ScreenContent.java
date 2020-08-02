@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.example.screen;
 
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

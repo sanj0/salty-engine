@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 /**
- * The package for everything related to {@link
- * de.edgelord.saltyengine.scene.Scene}s.
+ * The package for everything related to {@link de.edgelord.saltyengine.scene.Scene}s.
  */
 package de.edgelord.saltyengine.scene;

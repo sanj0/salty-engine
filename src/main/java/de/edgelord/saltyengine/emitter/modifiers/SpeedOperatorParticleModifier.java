@@ -22,32 +22,27 @@ import de.edgelord.saltyengine.emitter.ParticleModifier;
 /**
  * A {@link ParticleModifier} that modifies the
  * <code>speed</code> of the {@link Particle}s
- * with the given {@link Operation} by the given
- * {@link #factor}.
+ * with the given {@link Operation} by the given {@link #factor}.
  */
 public class SpeedOperatorParticleModifier implements ParticleModifier {
 
     /**
-     * The factory to be used as the second part
-     * of the math operations.
+     * The factory to be used as the second part of the math operations.
      */
     private float factor;
 
     /**
-     * The math operation do apply to each {@link
-     * Particle}'s speed.
+     * The math operation do apply to each {@link Particle}'s speed.
      */
     private Operation operation;
 
     /**
      * The constructor.
      *
-     * @param factor    the factory to be used as
-     *                  the second part of the
-     *                  math operations.
-     * @param operation the math operation do
-     *                  apply to each {@link
-     *                  Particle}'s speed
+     * @param factor    the factory to be used as the second part of the math
+     *                  operations.
+     * @param operation the math operation do apply to each {@link Particle}'s
+     *                  speed
      */
     public SpeedOperatorParticleModifier(final float factor, final Operation operation) {
         this.factor = factor;
@@ -90,33 +85,29 @@ public class SpeedOperatorParticleModifier implements ParticleModifier {
     }
 
     /**
-     * The kind of math operation to complete with
-     * the speed of the particles.
+     * The kind of math operation to complete with the speed of the particles.
      */
     public enum Operation {
         /**
-         * Adding {@link #factor} to the speed of
-         * the {@link Particle}s each fixed tick.
+         * Adding {@link #factor} to the speed of the {@link Particle}s each
+         * fixed tick.
          */
         ADD,
 
         /**
-         * Subtracting {@link #factor} from the
-         * speed of the {@link Particle}s each
-         * fixed tick.
+         * Subtracting {@link #factor} from the speed of the {@link Particle}s
+         * each fixed tick.
          */
         SUBTRACT,
 
         /**
-         * Dividing the speed of the {@link
-         * Particle}s by {@link #factor} each
+         * Dividing the speed of the {@link Particle}s by {@link #factor} each
          * fixed tick.
          */
         DIVIDE,
 
         /**
-         * Multiply the speed of the {@link
-         * Particle}s by {@link #factor} each
+         * Multiply the speed of the {@link Particle}s by {@link #factor} each
          * fixed tick.
          */
         MULTIPLY

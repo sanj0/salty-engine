@@ -22,11 +22,9 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import java.awt.*;
 
 /**
- * This component is used for simplifying the
- * process of rendering an oval.
+ * This component is used for simplifying the process of rendering an oval.
  * <p>
- * The only thing that is LEFT for the user to
- * call is
+ * The only thing that is LEFT for the user to call is
  * <code>GameObject.addComponent(new
  * OvalRender(this, "some_id_name"));</code>
  */

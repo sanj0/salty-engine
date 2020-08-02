@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * Required core-stereotype-classes. Currently
- * only {@link de.edgelord.saltyengine.core.stereotypes.ComponentContainer}
+ * Required core-stereotype-classes. Currently only {@link
+ * de.edgelord.saltyengine.core.stereotypes.ComponentContainer}
  */
 package de.edgelord.saltyengine.core.stereotypes;

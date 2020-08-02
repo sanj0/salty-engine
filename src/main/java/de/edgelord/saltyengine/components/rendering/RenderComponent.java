@@ -16,7 +16,7 @@
 
 package de.edgelord.saltyengine.components.rendering;
 
-import de.edgelord.saltyengine.core.Component;
+import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;

@@ -19,16 +19,13 @@ package de.edgelord.saltyengine.core;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 
 /**
- * Contains the delay and the task itself of a
- * task that is scheduled for later execution by
- * {@link Game#executeLater(Runnable, long)}.
+ * Contains the delay and the task itself of a task that is scheduled for later
+ * execution by {@link Game#executeLater(Runnable, long)}.
  * <p>
- * Any instance of this class that lives until its
- * {@link #delay} is reached will {@link
- * Runnable#run() run} its {@link #task task} and
- * {@link java.util.List#remove(Object) removes}
- * itself from the list of scheduled tasks within
- * {@link Engine}.
+ * Any instance of this class that lives until its {@link #delay} is reached
+ * will {@link Runnable#run() run} its {@link #task task} and {@link
+ * java.util.List#remove(Object) removes} itself from the list of scheduled
+ * tasks within {@link Engine}.
  */
 public class ScheduledTask implements FixedTickRoutine {
 

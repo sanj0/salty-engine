@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.Component;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
@@ -25,9 +24,8 @@ import de.edgelord.saltyengine.gameobject.Components;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * Uses a {@link LinearKeyframeAnimation} to make
- * its parent grow and shrink again when the
- * cursor touches is.
+ * Uses a {@link LinearKeyframeAnimation} to make its parent grow and shrink
+ * again when the cursor touches is.
  */
 public class DeflectionOnMouseOverComponent extends Component<ComponentContainer> {
 
@@ -41,9 +39,8 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     private float totalDeflection = 0f;
 
     /**
-     * Whether to loop the animation or only
-     * playing it whenever the cursor enters the
-     * parent
+     * Whether to loop the animation or only playing it whenever the cursor
+     * enters the parent
      */
     private boolean loop;
 
@@ -58,14 +55,10 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      *
      * @param parent   the parent of this component
      * @param name     the name of this component
-     * @param distance the distance of the
-     *                 focus-animation
-     * @param interval the amount of ticks between
-     *                 the deflections
-     * @param loop     whether to loop the
-     *                 animation or only playing
-     *                 it whenever the cursor
-     *                 enters the parent
+     * @param distance the distance of the focus-animation
+     * @param interval the amount of ticks between the deflections
+     * @param loop     whether to loop the animation or only playing it whenever
+     *                 the cursor enters the parent
      */
     public DeflectionOnMouseOverComponent(final ComponentContainer parent, final String name, final float distance, final int interval, final boolean loop) {
         super(parent, name, Components.GFX_COMPONENT);
@@ -143,11 +136,9 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     /**
-     * Updates the return position to which this
-     * component's parent returns after the mouse
-     * leaves it again. This is called every fixed
-     * tick, so there should be no need to call it
-     * manually.
+     * Updates the return position to which this component's parent returns
+     * after the mouse leaves it again. This is called every fixed tick, so
+     * there should be no need to call it manually.
      */
     public void updatePosition() {
 
@@ -183,10 +174,8 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     /**
-     * Cancels the animation and resets
-     * everything. If {@link #loop} is true, the
-     * animation start again when the cursor
-     * enters the parent again.
+     * Cancels the animation and resets everything. If {@link #loop} is true,
+     * the animation start again when the cursor enters the parent again.
      */
     public void cancel() {
         resetTransform();

@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.resource;
 
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.io.SystemDependentFiles;
 import de.edgelord.saltyengine.utils.SaltySystem;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * The core events of Salty Engine, currently only
- * {@link de.edgelord.saltyengine.core.event.CollisionEvent}.
+ * The core events of Salty Engine, currently only {@link
+ * de.edgelord.saltyengine.core.event.CollisionEvent}.
  */
 package de.edgelord.saltyengine.core.event;

@@ -20,17 +20,17 @@ import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
-import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
 import de.edgelord.saltyengine.core.interfaces.InitializeAble;
 import de.edgelord.saltyengine.core.physics.Force;
-import de.edgelord.saltyengine.effect.light.LightSystem;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.FixedTask;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
+import de.edgelord.saltyengine.graphics.light.LightSystem;
 import de.edgelord.saltyengine.ui.UISystem;
 
 import java.awt.geom.AffineTransform;
@@ -38,23 +38,17 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * This class represents what is currently drawn
- * and calculated. This includes: {@link Layer}s
- * within {@link #layers}, {@link FixedTask}s
- * within {@link #fixedTasks}, {@link
- * DrawingRoutine}s within {@link #drawingRoutines}
- * and the {@link UISystem} {@link #ui} as well as
- * a {@link LightSystem} stored in {@link
- * #lightSystem}
+ * This class represents what is currently drawn and calculated. This includes:
+ * {@link Layer}s within {@link #layers}, {@link FixedTask}s within {@link
+ * #fixedTasks}, {@link DrawingRoutine}s within {@link #drawingRoutines} and the
+ * {@link UISystem} {@link #ui} as well as a {@link LightSystem} stored in
+ * {@link #lightSystem}
  * <p>
- * The current scene is stored in {@link
- * SceneManager#getCurrentScene()}. For more
- * information, please take a look at the
- * documentation of that class.
+ * The current scene is stored in {@link SceneManager#getCurrentScene()}. For
+ * more information, please take a look at the documentation of that class.
  * <p>
- * Any initializing should be done within {@link
- * #initialize()} instead of a constructor, which
- * is called after setting a new instance of a
+ * Any initializing should be done within {@link #initialize()} instead of a
+ * constructor, which is called after setting a new instance of a
  * <code>Scene</code> object as the {@link
  * SceneManager#setCurrentScene(Scene) current}.
  */
@@ -62,10 +56,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     public static final Object concurrentBlock = new Object();
     /**
-     * The name of the default layer. {@link
-     * GameObject}s added to a <code>Scene</code>
-     * via {@link #addGameObject(GameObject)} are
-     * added to the corresponding layer.
+     * The name of the default layer. {@link GameObject}s added to a
+     * <code>Scene</code> via {@link #addGameObject(GameObject)} are added to
+     * the corresponding layer.
      * <p>
      * The default layer is added to the
      * <code>Scene</code> in its constructor and
@@ -77,21 +70,17 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**
-     * If this is <code>true</code>, all {@link
-     * GameObject}s int his Scene will constantly
-     * move down with a force of {@link
-     * #gravity}.
+     * If this is <code>true</code>, all {@link GameObject}s int his Scene will
+     * constantly move down with a force of {@link #gravity}.
      */
     private final boolean gravityEnabled = false;
     private List<Layer> layerList = new ArrayList<>();
     /**
-     * The gravity used by all {@link GameObject}s
-     * in this Scene.
+     * The gravity used by all {@link GameObject}s in this Scene.
      */
     private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
     /**
-     * The friction used by all {@link
-     * GameObject}s in this Scene.
+     * The friction used by all {@link GameObject}s in this Scene.
      */
     private float friction = Force.DEFAULT_FRICTION;
     private LightSystem lightSystem = null;
@@ -104,9 +93,8 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     /**
-     * Initializes the <code>Scene</code> and all
-     * its initial components. Is invokes by
-     * {@link SceneManager#setCurrentScene(Scene)}
+     * Initializes the <code>Scene</code> and all its initial components. Is
+     * invokes by {@link SceneManager#setCurrentScene(Scene)}
      */
     @Override
     public abstract void initialize();
@@ -226,8 +214,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * <code>GameObject</code> in any of the
      * {@link #layers}.
      *
-     * @param gameObject the <code>GameObject</code>
-     *                   to remove from one of the
+     * @param gameObject the <code>GameObject</code> to remove from one of the
      *                   {@link #layers}
      *
      * @return <code>true</code> if the given
@@ -290,10 +277,8 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     /**
-     * Iterates through the {@link #layers} and
-     * adds all {@link GameObject}s from every
-     * {@link Layer} to a <code>List</code> and
-     * returns that list.
+     * Iterates through the {@link #layers} and adds all {@link GameObject}s
+     * from every {@link Layer} to a <code>List</code> and returns that list.
      *
      * @return a constructed list of all
      * <code>GameObjects</code> from all {@link
@@ -328,11 +313,9 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     /**
-     * Adds a copy of the given {@link Layer} to
-     * this <code>Scene</code>.
+     * Adds a copy of the given {@link Layer} to this <code>Scene</code>.
      *
-     * @param layer the <code>Layer</code> to copy
-     *              from
+     * @param layer the <code>Layer</code> to copy from
      * @param name  the name of the new <code>Layer</code>
      * @param index the  of the new <code>Layer</code>
      *

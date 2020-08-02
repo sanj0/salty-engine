@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 /**
- * All the required classes for the {@link
- * de.edgelord.saltyengine.displaymanager.display.Display}
+ * All the required classes for the {@link de.edgelord.saltyengine.displaymanager.display.Display}
  * and the display itself.
  */
 package de.edgelord.saltyengine.displaymanager.display;

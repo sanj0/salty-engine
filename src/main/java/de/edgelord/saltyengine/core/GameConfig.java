@@ -48,28 +48,25 @@ public class GameConfig {
     }
 
     /**
-     * Loads configurations from the file with the
-     * given path relative to the given
+     * Loads configurations from the file with the given path relative to the
+     * given
      * <code>Resource</code> using {@link
      * #load(File)}.
      *
      * @param path     the path to the file
-     * @param resource the <code>Resource</code>
-     *                 providing the file
+     * @param resource the <code>Resource</code> providing the file
      *
-     * @return a <code>GameConfig</code> object
-     * representing the given file's properties
-     * @throws IOException when something goes
-     *                     wrong
+     * @return a <code>GameConfig</code> object representing the given file's
+     * properties
+     * @throws IOException when something goes wrong
      */
     public static GameConfig load(final String path, final Resource resource) throws IOException {
         return load(resource.getFileResource(path));
     }
 
     /**
-     * Loads configurations from the given file
-     * using {@link Properties}. The format is as
-     * specified in {@link Properties#load(InputStream)}.
+     * Loads configurations from the given file using {@link Properties}. The
+     * format is as specified in {@link Properties#load(InputStream)}.
      * <p> Example: <p>
      * <pre>
      * game-width: 1200
@@ -78,13 +75,11 @@ public class GameConfig {
      * fixed-tick-millis: 1
      * </pre>
      *
-     * @param file the file to read the configuration
-     *             from
+     * @param file the file to read the configuration from
      *
-     * @return a <code>GameConfig</code> object
-     * representing the given file's properties
-     * @throws IOException if something goes
-     *                     horribly wrong
+     * @return a <code>GameConfig</code> object representing the given file's
+     * properties
+     * @throws IOException if something goes horribly wrong
      */
     public static GameConfig load(final File file) throws IOException {
         final Properties properties = new Properties();

@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.ui.elements;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.event.MouseEvent;

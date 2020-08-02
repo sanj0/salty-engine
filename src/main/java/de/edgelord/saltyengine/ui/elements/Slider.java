@@ -16,11 +16,11 @@
 
 package de.edgelord.saltyengine.ui.elements;
 
-import de.edgelord.saltyengine.core.GraphicsConfiguration;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.effect.geom.EnumShape;
-import de.edgelord.saltyengine.effect.geom.SaltyShape;
-import de.edgelord.saltyengine.effect.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
+import de.edgelord.saltyengine.graphics.geom.EnumShape;
+import de.edgelord.saltyengine.graphics.geom.SaltyShape;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -60,8 +60,7 @@ public class Slider extends UIElement {
     }
 
     /**
-     * Returns the value of this <code>Slider</code>
-     * between 0f and 1f.
+     * Returns the value of this <code>Slider</code> between 0f and 1f.
      *
      * @return the 0f-1f value of this <code>Slider</code>
      */
