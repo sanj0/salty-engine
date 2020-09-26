@@ -139,6 +139,7 @@ public class Layer extends GameObject {
                 gameObject.initialize();
                 gameObject.setInitialized(true);
             }
+            gameObject.doFixedTick();
         }
         doComponentOnFixedTick();
     }
@@ -146,7 +147,7 @@ public class Layer extends GameObject {
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
 
-        //TODO: use added() method from physics branche instead of this tmp
+        //TODO: use added() method from physics branch instead of this tmp
         //TODO: clipping!
         //final Vector2f tmpVector = new Vector2f(getPosition());
         //saltyGraphics.setClip(new Transform(tmpVector.add(Game.getCamera().getPosition()), getDimensions()));

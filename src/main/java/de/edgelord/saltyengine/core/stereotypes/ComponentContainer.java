@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.core.stereotypes;
 import de.edgelord.saltyengine.components.Component;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.transform.Transform;
@@ -105,6 +106,22 @@ public abstract class ComponentContainer implements TransformedObject {
         getComponents().forEach(component -> {
             if (component.isEnabled()) {
                 component.onFixedTick();
+            }
+        });
+    }
+
+    public void doComponentOnCollision(final CollisionEvent collisionEvent) {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.onCollision(collisionEvent);
+            }
+        });
+    }
+
+    public void doComponentOnCollisionDetectionFinish(final List<CollisionEvent> collisions) {
+        getComponents().forEach(component -> {
+            if (component.isEnabled()) {
+                component.onCollisionDetectionFinish(collisions);
             }
         });
     }

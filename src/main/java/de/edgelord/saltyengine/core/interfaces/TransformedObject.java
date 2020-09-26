@@ -130,7 +130,6 @@ public interface TransformedObject {
     }
 
     default void basicMove(final float delta, final Directions.BasicDirection direction) {
-
         if (direction == Directions.BasicDirection.x) {
             moveX(delta);
         } else {
@@ -143,9 +142,12 @@ public interface TransformedObject {
             return;
         }
 
+        // TODO: this conversion doesn't make sence
+        // and seems like very unpredictable behaviour
+        //
         // Check if delta is negative and if so, mirror its value
         if (delta < 0f) {
-            delta = delta * (-1);
+            delta = -delta;
         }
 
         switch (direction) {
@@ -167,7 +169,6 @@ public interface TransformedObject {
     }
 
     default void moveY(final float delta) {
-
         if (delta > 0f) {
             if (getLockedDirections().hasDirection(Directions.Direction.DOWN)) {
                 return;

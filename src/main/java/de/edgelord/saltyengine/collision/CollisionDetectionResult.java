@@ -16,6 +16,8 @@
 
 package de.edgelord.saltyengine.collision;
 
+import de.edgelord.saltyengine.core.event.CollisionEvent;
+import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.utils.Directions;
 
 /**
@@ -51,6 +53,10 @@ public class CollisionDetectionResult {
     public CollisionDetectionResult(final boolean collision, final Directions.Direction rootCollisionDirection) {
         this.collision = collision;
         this.rootCollisionDirection = rootCollisionDirection;
+    }
+
+    public CollisionEvent toCollisionEvent(final GameObject otherGameObject) {
+        return new CollisionEvent(otherGameObject, rootCollisionDirection);
     }
 
     public boolean isCollision() {

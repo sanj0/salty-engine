@@ -16,11 +16,13 @@
 
 package de.edgelord.saltyengine.scene;
 
+import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
 import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.SceneManager;
+import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.core.interfaces.FixedTickRoutine;
@@ -32,9 +34,12 @@ import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
 import de.edgelord.saltyengine.graphics.light.LightSystem;
 import de.edgelord.saltyengine.ui.UISystem;
+import de.edgelord.saltyengine.utils.Directions;
 
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -67,6 +72,11 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     public static final String DEFAULT_LAYER = "default-layer";
     private final Map<String, Layer> layers = new ConcurrentHashMap<>();
     private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
+    // potentially a decent fix of the collision detection problem
+    // as the list only stores references and thus does not need
+    // much memory
+    private final List<GameObject> allGameObjects = new ArrayList<>();
+
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**
@@ -157,19 +167,42 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     @Override
     public void onFixedTick() {
-        doFixedTasks();
-
         synchronized (concurrentBlock) {
+            doFixedTasks();
+
             for (int i = 0; i < layerList.size(); i++) {
                 final Layer layer = layerList.get(i);
                 layer.onFixedTick();
             }
-        }
 
-        Game.getDefaultGFXController().doGFXFixedTick();
+            for (int i = 0; i < allGameObjects.size(); i++) {
+                final GameObject gameObject = allGameObjects.get(i);
+                for (int j = i + 1; j < allGameObjects.size(); j++) {
+                    final GameObject otherGameObject = allGameObjects.get(j);
+                    final CollisionDetectionResult result = sceneCollider.checkCollision(gameObject, otherGameObject);
+                    if (result.isCollision()) {
+                        final CollisionEvent event1 = result.toCollisionEvent(otherGameObject);
+                        final CollisionEvent event2 = new CollisionEvent(gameObject,
+                                Directions.mirrorDirection(result.getRootCollisionDirection()));
+                        gameObject.onCollision(event1);
+                        gameObject.doComponentOnCollision(event1);
+                        otherGameObject.onCollision(event2);
+                        otherGameObject.doComponentOnCollision(event2);
 
-        if (ui != null) {
-            ui.onFixedTick();
+                        gameObject.getCollisions().add(event1);
+                        otherGameObject.getCollisions().add(event2);
+                    }
+                }
+                gameObject.onCollisionDetectionFinish(gameObject.getCollisions());
+                gameObject.doComponentOnCollisionDetectionFinish(gameObject.getCollisions());
+                gameObject.getCollisions().clear();
+            }
+
+            Game.getDefaultGFXController().doGFXFixedTick();
+
+            if (ui != null) {
+                ui.onFixedTick();
+            }
         }
     }
 
@@ -189,6 +222,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
             gameObject.getPhysics().setGravityEnabled(gravityEnabled);
             layers.get(layer).add(index, gameObject);
+            allGameObjects.add(gameObject);
         }
     }
 
@@ -196,6 +230,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
         synchronized (concurrentBlock) {
             gameObject.getPhysics().setGravityEnabled(gravityEnabled);
             layers.get(layer).add(gameObject);
+            allGameObjects.add(gameObject);
         }
     }
 
@@ -205,7 +240,11 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     public boolean removeGameObject(final GameObject gameObject, final String layer) {
         synchronized (concurrentBlock) {
-            return layers.get(layer).remove(gameObject);
+            final boolean removed = layers.get(layer).remove(gameObject);
+            if (removed) {
+                allGameObjects.remove(gameObject);
+            }
+            return removed;
         }
     }
 
@@ -240,6 +279,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
             for (int i = 0; i < layers.size(); i++) {
                 layerList.get(i).clear();
             }
+            allGameObjects.clear();
         }
     }
 

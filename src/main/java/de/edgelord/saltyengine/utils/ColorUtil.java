@@ -40,6 +40,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -188,10 +189,17 @@ public class ColorUtil {
      * Returns a random entry from {@link #allColors} using {@link
      * GeneralUtil#randomObjectFromList(List)}.
      *
+     * @param exclude the colors to exclude from the random selection
      * @return a random color
      */
-    public static Color randomColor() {
-        return GeneralUtil.randomObjectFromList(allColors);
+    public static Color randomColor(Color... exclude) {
+        Color color = null;
+        final List<Color> excludeList = Arrays.asList(exclude);
+
+        while (color == null || excludeList.contains(color)) {
+            color = GeneralUtil.randomObjectFromList(allColors);
+        }
+        return color;
     }
 
     /**

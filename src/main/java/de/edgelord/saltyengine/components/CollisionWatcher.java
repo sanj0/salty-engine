@@ -20,9 +20,8 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * A utility component that adds functionality to collision response via the two
@@ -31,7 +30,7 @@ import java.util.Set;
  */
 public abstract class CollisionWatcher extends Component<GameObject> {
 
-    private final Set<GameObject> currentlyTouching = new HashSet<>();
+    private final Set<GameObject> currentlyTouching = Collections.synchronizedSet(new HashSet<>());
 
     public CollisionWatcher(final GameObject parent, final String name) {
         super(parent, name, Components.UTILITY_COMPONENT);
@@ -48,7 +47,7 @@ public abstract class CollisionWatcher extends Component<GameObject> {
 
     /**
      * Called when this component's parent does no longer touch a
-     * <code>GameObject</code> it touched in the previous fixdd tick.
+     * <code>GameObject</code> it touched in the previous fixed tick.
      *
      * @param gameObject the <code>GameObject</code> who stopped touching this
      *                   component's parent
@@ -67,7 +66,7 @@ public abstract class CollisionWatcher extends Component<GameObject> {
 
     @Override
     public void onCollision(final CollisionEvent e) {
-        if (currentlyTouching.contains(e.getOtherGameObject())) {
+        if (!currentlyTouching.contains(e.getOtherGameObject())) {
             currentlyTouching.add(e.getOtherGameObject());
             onCollisionStart(e);
         }
@@ -75,12 +74,14 @@ public abstract class CollisionWatcher extends Component<GameObject> {
 
     @Override
     public void onCollisionDetectionFinish(final List<CollisionEvent> collisions) {
+        final List<GameObject> toRemove = new LinkedList<>();
         for (final GameObject gameObject : currentlyTouching) {
             if (!containsCollisionWith(gameObject, collisions)) {
-                currentlyTouching.remove(gameObject);
+                toRemove.add(gameObject);
                 onCollisionEnd(gameObject);
             }
         }
+        currentlyTouching.removeAll(toRemove);
     }
 
     private boolean containsCollisionWith(final GameObject gameObject, final List<CollisionEvent> collisions) {

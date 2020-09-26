@@ -302,6 +302,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
         hitbox.recalculate();
         onFixedTick();
+        doComponentOnFixedTick();
     }
 
     /**

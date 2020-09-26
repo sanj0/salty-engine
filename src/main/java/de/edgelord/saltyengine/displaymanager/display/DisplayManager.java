@@ -76,6 +76,11 @@ public class DisplayManager extends Host {
     }
 
     @Override
+    public Color getBackgroundColor() {
+        return stage.getBackground();
+    }
+
+    @Override
     public boolean showConfirmDialog(final String message) {
         return JOptionPane.showConfirmDialog(display, message, "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }

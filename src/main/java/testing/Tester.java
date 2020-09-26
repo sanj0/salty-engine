@@ -37,7 +37,8 @@ public class Tester extends Game {
     private static AudioPlayer audioPlayer;
 
     private static void initGame() throws IOException {
-        init(GameConfig.load("config.txt", SaltySystem.defaultResource));
+        //init(GameConfig.load("config.txt", SaltySystem.defaultResource));
+        init(GameConfig.config(1200, 900, "testing", 1));
 
         System.out.println("Welcome to Salty Engine v" + SaltySystem.versionTag);
 

@@ -84,7 +84,6 @@ public class InnerResource implements Resource {
     }
 
     private File makeTemporaryFile(final String relativePath) throws IOException {
-
         checkTmpDir();
 
         final InputStream inputStream = this.classLoader.getResourceAsStream(this.arrangePath(relativePath));
