@@ -40,6 +40,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -154,19 +155,36 @@ public class ColorUtil {
     public static final Color TRANSPARENT_COLOR = new Color(0, 0, 0, 0);
 
     // Plain Colors:
-    public static final Color PLAIN_RED = new Color(255, 0, 0);
+    public static final Color MAX_RED = new Color(255, 0, 0);
     public static final Color RED = new Color(210, 50, 50);
 
-    public static final Color PLAIN_GREEN = new Color(0, 255, 0);
+    public static final Color MAX_GREEN = new Color(0, 255, 0);
     public static final Color GREEN = new Color(50, 210, 50);
 
-    public static final Color PLAIN_BLUE = new Color(0, 0, 255);
+    public static final Color MAX_BLUE = new Color(0, 0, 255);
     public static final Color BLUE = new Color(50, 50, 210);
 
-    public static final Color PLAIN_YELLOW = new Color(255, 255, 0);
+    public static final Color MAX_YELLOW = new Color(255, 255, 0);
     public static final Color YELLOW = new Color(210, 210, 50);
 
+    public static final Color MAX_CYAN = new Color(0, 255, 255);
+
+    public static final Color MAX_MAGENTA = new Color(255, 0, 255);
+
+    public static final Color MAX_BLACK = new Color(0, 0, 0);
+
+    public static final Color MAX_WHITE = new Color(255, 255, 255);
+
+    public static final Color MAX_GRAY = new Color(127, 127, 127);
+
     protected static final List<Color> allColors = new LinkedList<>();
+
+    /**
+     * The list of colors defined in this class that start with {@code MAX_} and
+     * therefore the colors considered the maximum value in a certain
+     * direction.
+     */
+    public static final List<Color> maxColors = new LinkedList<>();
 
     static {
         final Field[] fields = ColorUtil.class.getFields();
@@ -180,9 +198,107 @@ public class ColorUtil {
                 }
             }
         }
+
+        maxColors.add(MAX_RED);
+        maxColors.add(MAX_GREEN);
+        maxColors.add(MAX_BLUE);
+        maxColors.add(MAX_YELLOW);
+        maxColors.add(MAX_CYAN);
+        maxColors.add(MAX_MAGENTA);
+        maxColors.add(MAX_BLACK);
+        maxColors.add(MAX_WHITE);
+        maxColors.add(MAX_GRAY);
     }
 
     private ColorUtil() {
+    }
+
+    /**
+     * Returns the {@link #maxColors max color} closest to the given color,
+     * using {@link #getClosestMaxColor(Color)}.
+     *
+     * @param color a color
+     *
+     * @return the {@link #maxColors max color} closest to the given color
+     */
+    public static Color getClosestMaxColor(final Color color) {
+        return getClosestColor(color, maxColors);
+    }
+
+    /**
+     * Returns the list of colors defined in this class that are closer to the
+     * given {@link #maxColors max color} than to any other {@link #maxColors
+     * max color}.
+     *
+     * @param maxColor a {@link #maxColors max color}
+     *
+     * @return the list of colors defined in this class that are closer to the
+     * given {@link #maxColors max color} than to any other {@link #maxColors
+     * max color}
+     */
+    public static List<Color> getColorsOfMaxColor(final Color maxColor) {
+        if (!maxColors.contains(maxColor)) {
+            throw new IllegalArgumentException("only max colors allowed");
+        }
+
+        final List<Color> colors = new ArrayList<>();
+
+        for (final Color c : allColors) {
+            if (getClosestColor(c, maxColors).equals(maxColor)) {
+                colors.add(c);
+            }
+        }
+
+        return colors;
+    }
+
+    /**
+     * Returns the one color from the given list, that is closest to the given
+     * color or {@code null} if the given list is empty. The distance between
+     * two colors is calculated using {@link #euclideanDistanceSquared(Color,
+     * Color) their eucledean distance}. If two or more colors from the list
+     * share the closest distance, the last of them is returned.
+     *
+     * @param color   a color
+     * @param choices a list of colors to choose the closest to the given from
+     *
+     * @return the one color from the list that is closest to the given, or
+     * {@code null} if the given list is empty
+     */
+    public static Color getClosestColor(final Color color, final List<Color> choices) {
+        // initialize the closest distance with the maximum
+        // distance plus one, meaning
+        // 256^2 * 3 + 1
+        double closestDistance = 196_609;
+        Color closestColor = null;
+
+        for (final Color c : choices) {
+            final double distance = euclideanDistanceSquared(color, c);
+            if (distance < closestDistance) {
+                closestColor = c;
+                closestDistance = distance;
+            }
+        }
+
+        return closestColor;
+    }
+
+    /**
+     * Returns the euclidean distance between the two given colors, without
+     * taking the square root to save performance. If the result of this method
+     * is to be used for anything other than comparing it to other result of
+     * this method, one would likely want to take the square root of the result,
+     * using {@link Math#sqrt(double)}.
+     *
+     * @param a a color
+     * @param b another color
+     *
+     * @return the square of the euclidean distance between the two colors
+     */
+    public static double euclideanDistanceSquared(final Color a, final Color b) {
+        return GeneralUtil.square(b.getRed() - a.getRed()) +
+                GeneralUtil.square(b.getGreen() - a.getGreen()) +
+                GeneralUtil.square(b.getBlue() - a.getBlue());
     }
 
     /**
@@ -190,6 +306,7 @@ public class ColorUtil {
      * GeneralUtil#randomObjectFromList(List)}.
      *
      * @param exclude the colors to exclude from the random selection
+     *
      * @return a random color
      */
     public static Color randomColor(Color... exclude) {

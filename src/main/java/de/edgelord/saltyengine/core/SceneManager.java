@@ -31,6 +31,9 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SceneManager {
 
+    private SceneManager() {
+    }
+
     /**
      * The <code>Scene</code> that is currently being rendered and processed.
      */
@@ -85,7 +88,6 @@ public class SceneManager {
      *                               args
      */
     public static void reloadCurrentScene(final Object... args) throws NoSuchMethodException {
-
         if (currentScene == null) {
             throw new IllegalStateException("cannot reload the current scene if it is null");
         }

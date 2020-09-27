@@ -40,6 +40,18 @@ public class GeneralUtil {
     private static final SecureRandom random = new SecureRandom();
 
     /**
+     * Returns the square of the given number using {@link Math#pow(double,
+     * double)}.
+     *
+     * @param d a number
+     *
+     * @return the square of the given number
+     */
+    public static double square(final double d) {
+        return Math.pow(d, 2);
+    }
+
+    /**
      * Returns the given value inside the given range. So for the given value
      * {@code v} and the range {@code min} to {@code max}, this method would
      * return <p> {@code v} if it lies between {@code min} ... {@code max}
