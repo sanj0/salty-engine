@@ -171,11 +171,9 @@ public class ColorUtil {
 
     public static final Color MAX_MAGENTA = new Color(255, 0, 255);
 
-    public static final Color MAX_BLACK = new Color(0, 0, 0);
+    public static final Color PLAIN_BLACK = new Color(0, 0, 0);
 
-    public static final Color MAX_WHITE = new Color(255, 255, 255);
-
-    public static final Color MAX_GRAY = new Color(127, 127, 127);
+    public static final Color PLAIN_WHITE = new Color(255, 255, 255);
 
     protected static final List<Color> allColors = new LinkedList<>();
 
@@ -205,9 +203,6 @@ public class ColorUtil {
         maxColors.add(MAX_YELLOW);
         maxColors.add(MAX_CYAN);
         maxColors.add(MAX_MAGENTA);
-        maxColors.add(MAX_BLACK);
-        maxColors.add(MAX_WHITE);
-        maxColors.add(MAX_GRAY);
     }
 
     private ColorUtil() {
