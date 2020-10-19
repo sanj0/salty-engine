@@ -25,6 +25,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
 
+@Deprecated
 public class PaneledGameHost extends Host {
 
     private final Dimensions dimensions;

@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.components.rendering;
 
 import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
+import de.edgelord.saltyengine.utils.ColorUtil;
 
 import java.awt.*;
 
@@ -26,6 +27,10 @@ public class RectangleRender extends PrimitiveRenderComponent {
 
     public RectangleRender(final ComponentContainer parent, final String name, final Color color) {
         super(parent, name, color);
+    }
+
+    public RectangleRender(final ComponentContainer parent, final String name) {
+        this(parent, name, ColorUtil.BLACK);
     }
 
     @Override

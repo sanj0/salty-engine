@@ -233,8 +233,20 @@ public class Game {
      * #init(Host, String, long)} has to be called first.
      */
     public static void start() {
-
         GameStarter.startGame(-1);
+    }
+
+    /**
+     * Starts the game with no fps cap and
+     * sets the given {@link Scene} as the
+     * current one.
+     *
+     * @param scene the scene that the game starts with
+     * @see #start()
+     */
+    public static void start(final Scene scene) {
+        start();
+        SceneManager.setCurrentScene(scene);
     }
 
     /**
@@ -244,8 +256,20 @@ public class Game {
      * @param fixedFPS the fps with which the game should run
      */
     public static void start(final long fixedFPS) {
-
         GameStarter.startGame(fixedFPS);
+    }
+
+    /**
+     * Starts the game with the given fps cap
+     * and sets the given scene to be the current.
+     *
+     * @param fixedFPS the fpx cap of the game
+     * @param scene the scene that the game start with
+     * @see #start(long)
+     */
+    public static void start(final long fixedFPS, final Scene scene) {
+        start(fixedFPS);
+        SceneManager.setCurrentScene(scene);
     }
 
     /**
