@@ -26,6 +26,7 @@ import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.io.serialization.DataWriter;
 import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -64,6 +65,8 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     private boolean upRightMove = false;
     private boolean downLeftMove = false;
     private boolean downRightMove = false;
+    private boolean rectangleMove = false;
+    private Vector2f dragStart = Vector2f.zero();
 
     RectangleCreator() {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
@@ -127,23 +130,28 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
 
     @Override
     public void mouseDragged(final MouseEvent e) {
-
         if (originMove) {
-            origin.positionByCentre(Input.getCursorPosition());
+            origin.setPosition(dragStart.subtracted(Input.getCursorPosition()));
             upRight.setY(origin.getY());
             downLeft.setX(origin.getX());
         } else if (upRightMove) {
-            upRight.positionByCentre(Input.getCursorPosition());
+            upRight.setPosition(dragStart.subtracted(Input.getCursorPosition()));
             origin.setY(upRight.getY());
             downRight.setX(upRight.getX());
         } else if (downLeftMove) {
-            downLeft.positionByCentre(Input.getCursorPosition());
+            downLeft.setPosition(dragStart.subtracted(Input.getCursorPosition()));
             origin.setX(downLeft.getX());
             downRight.setY(downLeft.getY());
         } else if (downRightMove) {
-            downRight.positionByCentre(Input.getCursorPosition());
+            downRight.setPosition(dragStart.subtracted(Input.getCursorPosition()));
             upRight.setX(downRight.getX());
             downLeft.setY(downRight.getY());
+        } else if (rectangleMove) {
+            currentTransform.setPosition(dragStart.subtracted(Input.getCursorPosition()));
+            origin.positionByCentre(currentTransform.getPosition());
+            upRight.positionByCentre(new Vector2f(currentTransform.getMaxX(), currentTransform.getY()));
+            downLeft.positionByCentre(new Vector2f(currentTransform.getX(), currentTransform.getMaxY()));
+            downRight.positionByCentre(new Vector2f(currentTransform.getMaxX(), currentTransform.getMaxY()));
         }
 
         calculateCurrentTransform();
@@ -152,26 +160,35 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
     @Override
     public void mousePressed(final MouseEvent e) {
 
-        final Transform cursor = Input.getCursor();
+        if (currentTransform != null) {
+            final Transform cursor = Input.getCursor();
 
-        if (origin.contains(cursor)) {
-            originMove = true;
-        } else if (upRight.contains(cursor)) {
-            upRightMove = true;
-        } else if (downLeft.contains(cursor)) {
-            downLeftMove = true;
-        } else if (downRight.contains(cursor)) {
-            downRightMove = true;
+            if (origin.contains(cursor)) {
+                originMove = true;
+                dragStart = cursor.getPosition().subtracted(origin.getPosition());
+            } else if (upRight.contains(cursor)) {
+                upRightMove = true;
+                dragStart = cursor.getPosition().subtracted(upRight.getPosition());
+            } else if (downLeft.contains(cursor)) {
+                downLeftMove = true;
+                dragStart = cursor.getPosition().subtracted(downLeft.getPosition());
+            } else if (downRight.contains(cursor)) {
+                downRightMove = true;
+                dragStart = cursor.getPosition().subtracted(downRight.getPosition());
+            } else if (currentTransform.contains(cursor)) {
+                rectangleMove = true;
+                dragStart = cursor.getPosition().subtracted(currentTransform.getPosition());
+            }
         }
     }
 
     @Override
     public void mouseReleased(final MouseEvent e) {
-
         originMove = false;
         upRightMove = false;
         downLeftMove = false;
         downRightMove = false;
+        rectangleMove = false;
     }
 
     @Override
