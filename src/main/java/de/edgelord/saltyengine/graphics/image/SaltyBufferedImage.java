@@ -63,6 +63,11 @@ public class SaltyBufferedImage implements SaltyImage {
     }
 
     @Override
+    public Color colorAt(final int x, final int y) {
+        return new Color(image.getRGB(x, y));
+    }
+
+    @Override
     public void draw(final SaltyGraphics saltyGraphics, final Vector2f position, final float width, final float height) {
         saltyGraphics.drawImage(image, position, new Dimensions(width, height));
     }

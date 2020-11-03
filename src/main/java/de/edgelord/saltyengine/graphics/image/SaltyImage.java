@@ -54,6 +54,8 @@ public interface SaltyImage {
         graphics.getGraphics2D().dispose();
     }
 
+    Color colorAt(final int x, final int y);
+
     void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 
     void draw(SaltyGraphics saltyGraphics, Vector2f position);
