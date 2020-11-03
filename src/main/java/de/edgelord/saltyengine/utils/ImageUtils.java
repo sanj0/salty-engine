@@ -45,6 +45,30 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_GIF = "gif";
 
     /**
+     * Changes the size of the given image by adding borders of the given color.
+     * This does not scale the image but rather enlarges it by embedding it in a
+     * bigger images of the given color.
+     *
+     * @return a new image which has the given image in the centre of an image
+     * of the given size and color
+     */
+    public static SaltyImage letterBoxScale(final SaltyImage source, final Dimensions size, final Color color) {
+        final SaltyImage image = SaltySystem.createPreferredImage(size.getWidth(), size.getHeight());
+        final SaltyGraphics graphics = image.getGraphics();
+        graphics.setColor(color);
+        graphics.drawRect(Vector2f.zero(), size);
+        final float width = size.getWidth();
+        final float height = size.getHeight();
+        final float scale = Math.min(width / source.getWidth(), height / source.getHeight());
+        final int imageDisplayWidth = (int) (source.getWidth() * scale);
+        final int imageDisplayHeight = (int) (source.getHeight() * scale);
+        final float xPos = (width - imageDisplayWidth) / 2f;
+        final float yPos = Math.max((height - imageDisplayHeight) / 2, 0);
+        graphics.drawImage(source, xPos, yPos, imageDisplayWidth, imageDisplayHeight);
+        return image;
+    }
+
+    /**
      * Creates a new {@link SaltyImage} with the given width and height and
      * draws the given image onto it, filling the new image entirely.
      *
