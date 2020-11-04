@@ -118,4 +118,9 @@ public class PaneledGameHost extends Host {
     public void toggleFullscreen() {
         throw new UnsupportedOperationException("Cannot toggle fullscreen from a PaneledGame!");
     }
+
+    @Override
+    public boolean isFullscreen() {
+        return false;
+    }
 }

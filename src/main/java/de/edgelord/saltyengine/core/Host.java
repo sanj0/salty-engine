@@ -144,4 +144,11 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
     public boolean isFullscreenToggleF() {
         return fullscreenToggleF;
     }
+
+    /**
+     * Is the host currently in fullscreen?
+     *
+     * @return whether the host is in fullscreen mode or not
+     */
+    public abstract boolean isFullscreen();
 }

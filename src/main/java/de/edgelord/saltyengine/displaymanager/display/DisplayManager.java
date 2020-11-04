@@ -120,6 +120,11 @@ public class DisplayManager extends Host {
         display.setFullscreen(!display.isFullscreen());
     }
 
+    @Override
+    public boolean isFullscreen() {
+        return display.isFullscreen();
+    }
+
 
     public void createKeyListener() {
 
