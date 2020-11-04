@@ -39,6 +39,21 @@ public class Dimensions {
         this(dimensions.width, dimensions.height);
     }
 
+    public Vector2f toVector2f() {
+        return new Vector2f(width, height);
+    }
+
+    public Dimensions abs() {
+        width = Math.abs(width);
+        height = Math.abs(height);
+        return this;
+    }
+
+    public Dimensions absed() {
+        final Dimensions absed = new Dimensions(this);
+        return absed.abs();
+    }
+
     public static Dimensions zero() {
         return new Dimensions(0, 0);
     }
