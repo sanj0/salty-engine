@@ -34,6 +34,21 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
+    public Dimensions toDimensions() {
+        return new Dimensions(x, y);
+    }
+
+    public Vector2f abs() {
+        x = Math.abs(x);
+        y = Math.abs(y);
+        return this;
+    }
+
+    public Vector2f absed() {
+        final Vector2f absed = new Vector2f(this);
+        return absed.abs();
+    }
+
     public static Vector2f zero() {
         return new Vector2f(0, 0);
     }
