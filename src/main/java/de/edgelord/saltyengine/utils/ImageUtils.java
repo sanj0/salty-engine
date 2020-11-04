@@ -198,7 +198,7 @@ public class ImageUtils {
         return target;
     }
 
-    private static void copyImageTo(final Image source, final Image target) {
+    public static void copyImageTo(final Image source, final Image target) {
         final Graphics2D graphics2D = (Graphics2D) target.getGraphics();
         graphics2D.setBackground(ColorUtil.TRANSPARENT_COLOR);
         graphics2D.clearRect(0, 0, source.getWidth(null), source.getHeight(null));

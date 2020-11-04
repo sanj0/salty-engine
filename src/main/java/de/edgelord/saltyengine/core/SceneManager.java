@@ -89,7 +89,7 @@ public class SceneManager {
      */
     public static void reloadCurrentScene(final Object... args) throws NoSuchMethodException {
         if (currentScene == null) {
-            throw new IllegalStateException("cannot reload the current scene if it is null");
+            throw new IllegalStateException("there is no scene to reload");
         }
 
         final Class[] argTypes = new Class[args.length];

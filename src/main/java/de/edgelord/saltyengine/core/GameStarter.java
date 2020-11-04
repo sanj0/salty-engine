@@ -27,6 +27,5 @@ public class GameStarter {
             Game.getEngine().start(fps);
         }
         Game.forEachGameListener(GameListener::onStart);
-
     }
 }

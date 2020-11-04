@@ -18,6 +18,7 @@ package de.edgelord.saltyengine.core;
 
 import java.awt.*;
 
+@Deprecated
 public class PaneledGame extends Game {
 
     public PaneledGame(final Container container, final int x, final int y, final int width, final int height, final long fixedTicksMillis, final String gameName) {

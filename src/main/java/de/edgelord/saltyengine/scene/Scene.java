@@ -48,7 +48,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link #lightSystem}
  * <p>
  * The current scene is stored in {@link SceneManager#getCurrentScene()}. For
- * more information, please take a look at the documentation of that class.
+ * more information, refer to the documentation of said class.
  * <p>
  * Any initializing should be done within {@link #initialize()} instead of a
  * constructor, which is called after setting a new instance of a
@@ -182,6 +182,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
                         final CollisionEvent event1 = result.toCollisionEvent(otherGameObject);
                         final CollisionEvent event2 = new CollisionEvent(gameObject,
                                 Directions.mirrorDirection(result.getRootCollisionDirection()));
+                        Game.forEachGameListener(gl -> gl.onCollision(gameObject, event1));
                         gameObject.onCollision(event1);
                         gameObject.doComponentOnCollision(event1);
                         otherGameObject.onCollision(event2);

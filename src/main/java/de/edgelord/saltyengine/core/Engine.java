@@ -25,9 +25,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * The {@link Game#getEngine() engine} handles the repainting of the {@link
- * Host} and the fixed ticks. The user of this library normally doesn't need to
- * get in contact with this class.
+ * The <code>Engine</code> handles
+ * the periodic invocation of the
+ * functions responsible for repainting
+ * and fixed tick tasks and actions.
+ * Teh working instance is {@link Game#getEngine()}.
  */
 public class Engine {
 
