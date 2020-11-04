@@ -40,6 +40,7 @@ public class RoundRectRender extends PrimitiveRenderComponent {
         super(parent, name, color);
 
         this.arc = arc;
+        updateImage();
     }
 
     public float getArc() {
