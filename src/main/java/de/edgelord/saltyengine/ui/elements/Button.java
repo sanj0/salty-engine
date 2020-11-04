@@ -44,7 +44,7 @@ public abstract class Button extends UIElement {
         this.text = text;
     }
 
-    public Button(final String text, final Transform transform, final String tag) {
+    public Button(final String text, final Transform transform) {
         this(text, transform.getPosition(), transform.getWidthAsInt(), transform.getHeightAsInt());
     }
 
