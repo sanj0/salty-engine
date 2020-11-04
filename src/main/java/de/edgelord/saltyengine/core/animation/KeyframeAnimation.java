@@ -82,7 +82,7 @@ public abstract class KeyframeAnimation {
      *               with
      */
     public KeyframeAnimation(final Keyframe... frames) {
-        this(Arrays.asList(frames));
+        this(new ArrayList<>(Arrays.asList(frames)));
     }
 
     /**
