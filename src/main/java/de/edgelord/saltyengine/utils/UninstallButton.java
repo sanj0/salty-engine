@@ -40,6 +40,9 @@ public class UninstallButton extends Button {
 
     @Override
     public void onClick(final MouseEvent e) {
+        if (Game.getHost().isFullscreen()) {
+            Game.getHost().toggleFullscreen();
+        }
         if (Game.getHost().showConfirmDialog("This will delete all local game files (including save files of game states!)" +
                 " but not the game itself and exist the game. Proceed?")) {
             SaltySystem.writePrivilege = false;
