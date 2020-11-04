@@ -36,10 +36,8 @@ import de.edgelord.saltyengine.graphics.light.LightSystem;
 import de.edgelord.saltyengine.ui.UISystem;
 import de.edgelord.saltyengine.utils.Directions;
 
-import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -344,6 +342,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     public void addLayer(final Layer layer) {
         layers.put(layer.getTag(), layer);
+        allGameObjects.addAll(layer.getGameObjects());
         updateLayerList();
     }
 
@@ -371,12 +370,14 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     }
 
     public void removeLayer(final String name) {
-        layers.remove(name);
+        allGameObjects.removeAll(layers.remove(name).getGameObjects());
         updateLayerList();
     }
 
     public void removeLayer(final Layer layer) {
         layers.remove(layer.getTag(), layer);
+        allGameObjects.removeAll(layer.getGameObjects());
+        updateLayerList();
     }
 
     public List<Layer> getLayerList() {
