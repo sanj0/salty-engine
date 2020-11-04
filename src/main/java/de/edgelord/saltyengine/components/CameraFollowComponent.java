@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.utils.Directions;
 
 /**
  * This implementation of {@link Component} makes the {@link
@@ -41,6 +42,7 @@ public class CameraFollowComponent extends Component<GameObject> {
 
     private Transform whiteZone;
     private float speed = 0.75f;
+    private Directions.BasicDirection lockedDirection = null;
 
     public CameraFollowComponent(final GameObject parent, final String name) {
         super(parent, name, Components.CAMERA_COMPONENT);
@@ -53,6 +55,11 @@ public class CameraFollowComponent extends Component<GameObject> {
         whiteZone = new Transform(defaultWhiteZoneX, defaultWhiteZoneY, defaultWhiteZoneWidth, defaultWhiteZoneHeight);
     }
 
+    public CameraFollowComponent(final GameObject parent, final String name, Directions.BasicDirection lockedDirection) {
+        this(parent, name);
+        this.lockedDirection = lockedDirection;
+    }
+
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
         // nothing to draw
@@ -60,14 +67,18 @@ public class CameraFollowComponent extends Component<GameObject> {
 
     @Override
     public void onFixedTick() {
-
         final Transform renderedPlayerTransform = new Transform(getParent().getX() - Game.getCamera().getX() * Game.getCamera().getScale(),
                 getParent().getY() - Game.getCamera().getY() * Game.getCamera().getScale(),
                 getParent().getWidth(), getParent().getHeight());
 
         if (!whiteZone.intersects(getParent().getTransform())) {
-            Game.getCamera().move(whiteZone.getFreeRelationX(renderedPlayerTransform), -speed);
-            Game.getCamera().move(whiteZone.getFreeRelationY(renderedPlayerTransform), -speed);
+            if (lockedDirection == null || lockedDirection != Directions.BasicDirection.x) {
+                Game.getCamera().move(whiteZone.getFreeRelationX(renderedPlayerTransform), -speed);
+            }
+
+            if (lockedDirection == null || lockedDirection != Directions.BasicDirection.y) {
+                Game.getCamera().move(whiteZone.getFreeRelationY(renderedPlayerTransform), -speed);
+            }
         }
     }
 
@@ -106,5 +117,23 @@ public class CameraFollowComponent extends Component<GameObject> {
 
     public void setSpeed(final float speed) {
         this.speed = speed;
+    }
+
+    /**
+     * Gets {@link #lockedDirection}.
+     *
+     * @return the value of {@link #lockedDirection}
+     */
+    public Directions.BasicDirection getLockedDirection() {
+        return lockedDirection;
+    }
+
+    /**
+     * Sets {@link #lockedDirection}.
+     *
+     * @param lockedDirection the new value of {@link #lockedDirection}
+     */
+    public void setLockedDirection(final Directions.BasicDirection lockedDirection) {
+        this.lockedDirection = lockedDirection;
     }
 }
