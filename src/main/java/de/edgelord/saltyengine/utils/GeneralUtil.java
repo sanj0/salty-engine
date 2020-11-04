@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.utils;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 
+import java.awt.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
@@ -38,6 +39,10 @@ public class GeneralUtil {
      * The <code>Random</code> instance used for all utils that need one.
      */
     private static final SecureRandom random = new SecureRandom();
+
+    public static Stroke dashedStroke(final float width, final float dashPhase, final float... dash) {
+        return new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, dash, dashPhase);
+    }
 
     /**
      * Returns the square of the given number using {@link Math#pow(double,
