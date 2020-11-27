@@ -141,7 +141,6 @@ public class SystemDependentFiles {
 
     private static void checkOS() {
         if (os == null) {
-
             if (System.getProperty("os.name").toLowerCase().contains(macOSSearchPhrase)) {
                 os = OS.MAC_OS;
             } else if (System.getProperty("os.name").toLowerCase().contains(linuxSearchPhrase)) {

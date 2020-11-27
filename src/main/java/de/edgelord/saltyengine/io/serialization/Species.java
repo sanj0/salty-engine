@@ -19,6 +19,7 @@ package de.edgelord.saltyengine.io.serialization;
 import java.util.LinkedList;
 import java.util.List;
 
+@Deprecated
 public class Species {
 
     private final String name;
