@@ -23,9 +23,9 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
 import de.edgelord.saltyengine.io.FileWriter;
-import de.edgelord.saltyengine.io.serialization.DataWriter;
-import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.sanjo.SJClass;
+import de.edgelord.sanjo.SanjoFile;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -39,7 +39,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class RectangleCreator extends DrawingRoutine implements MouseInputHandler {
 
-    private static final Species rects = new Species("points");
+    private static final SJClass rects = new SJClass("rects");
     private static final StringBuilder simpleRepresentation = new StringBuilder();
     public static Color SAVED_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.RED, .25f);
     public static Color CURRENT_TRANSFORMS_COLOR = ColorUtil.withAlpha(Color.BLUE, .25f);
@@ -53,7 +53,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
      * </pre>
      */
     public static String format = "new Transform(%x, %y, %w, %h)";
-    private static DataWriter writer;
+    private static FileWriter writer;
     private final List<Transform> savedTransforms = new CopyOnWriteArrayList<>();
     private final Transform origin = new Transform(0, 0, 30, 30);
     private final Transform upRight = new Transform(0, 0, 30, 30);
@@ -76,16 +76,12 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
         SceneManager.getCurrentScene().addDrawingRoutine(rectangleCreator);
         Input.addMouseInputHandler(rectangleCreator);
 
-        try {
-            writer = new DataWriter(SaltySystem.defaultOuterResource.getFileResource("rects.sdb"));
-        } catch (final IOException e) {
-            e.printStackTrace();
-        }
+        writer = new FileWriter(SaltySystem.defaultOuterResource.getFileResource("rects" + SanjoFile.FILE_EXTENSION));
+
 
         WindowClosingHooks.addShutdownHook(() -> {
-            writer.addSpecies(rects);
             try {
-                writer.syncFile();
+                writer.writeThrough(rects.write());
                 new FileWriter(SaltySystem.defaultOuterResource.getFileResource("rects_formatted.txt")).writeThrough(simpleRepresentation.toString());
                 System.out.println("Rects have been written to " + writer.getFile().getAbsolutePath());
             } catch (final IOException e) {
@@ -194,7 +190,7 @@ public class RectangleCreator extends DrawingRoutine implements MouseInputHandle
             downLeft.setY(y + 100);
         } else if (e.isShiftDown() || e.isAltDown()) {
             savedTransforms.add(currentTransform);
-            rects.addTag("rect" + savedTransforms.size(), currentTransform.getX() + "f, " + currentTransform.getY() + "f, " + currentTransform.getWidth() + "f, " + currentTransform.getHeight() + "f");
+            rects.addValue("rect" + savedTransforms.size(), currentTransform.getX() + "f, " + currentTransform.getY() + "f, " + currentTransform.getWidth() + "f, " + currentTransform.getHeight() + "f");
             simpleRepresentation.append(format()).append("\n");
             currentTransform = null;
         }

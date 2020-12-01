@@ -22,12 +22,12 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.input.MouseInputHandler;
-import de.edgelord.saltyengine.io.serialization.DataReader;
-import de.edgelord.saltyengine.io.serialization.DataWriter;
-import de.edgelord.saltyengine.io.serialization.Species;
+import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.sanjo.SJClass;
+import de.edgelord.sanjo.SanjoFile;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -45,18 +45,18 @@ import java.util.Scanner;
 public class PointLogger extends DrawingRoutine implements MouseInputHandler {
 
     private static final List<Vector2f> savedPoints = new ArrayList<>();
-    private static final Species points = new Species("points");
+    private static final SJClass points = new SJClass("points");
     private static final Scanner scanner = new Scanner(System.in);
     public static Dimensions POINTS_VISUALIZING_DIMENSIONS = new Dimensions(20, 20);
     public static Color SAVED_POINTS_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.BLUE, 0.5f);
     public static Color POINT_VISUALIZING_COLOR = ColorUtil.withAlpha(ColorUtil.RED, 0.35f);
     private static Vector2f lastPoint = Vector2f.zero();
-    private static DataWriter writer;
+    private static FileWriter writer;
 
     private PointLogger(final String fileName) throws IOException {
         super(DrawingPosition.AFTER_GAMEOBJECTS);
 
-        writer = new DataWriter(SaltySystem.defaultOuterResource.getFileResource(fileName));
+        writer = new FileWriter(SaltySystem.defaultOuterResource.getFileResource(fileName));
     }
 
     /**
@@ -69,17 +69,16 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
      *
      * @return the created <code>PointLogger</code>.
      * @throws IOException if something does wrong when creating the {@link
-     *                     DataWriter}.
+     *                     FileWriter}.
      */
     public static PointLogger init(final String fileName) throws IOException {
 
-        final PointLogger logger = new PointLogger(fileName + DataReader.SDB_FILE_EXTENSION);
+        final PointLogger logger = new PointLogger(fileName + SanjoFile.FILE_EXTENSION);
         SceneManager.getCurrentScene().addDrawingRoutine(logger);
         Input.addMouseInputHandler(logger);
         WindowClosingHooks.addShutdownHook(() -> {
-            writer.addSpecies(points);
             try {
-                writer.syncFile();
+                writer.writeThrough(points.write());
                 System.out.println("Points have been written to " + writer.getFile().getAbsolutePath());
             } catch (final IOException e) {
                 e.printStackTrace();
@@ -133,7 +132,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
         if (e.isAltDown() || e.isShiftDown()) {
             System.out.println("Enter a name for point " + getPointIndicator(lastPoint) + " and press [ENTER]");
             final String name = scanner.nextLine();
-            points.addTag(name, lastPoint.getX() + ", " + lastPoint.getY());
+            points.addValue(name, lastPoint.getX() + ", " + lastPoint.getY());
             savedPoints.add(lastPoint);
             System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
         } else {

@@ -30,10 +30,10 @@ import de.edgelord.saltyengine.graphics.sprite.Spritesheet;
 import de.edgelord.saltyengine.graphics.sprite.SpritesheetAnimation;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.Directions;
+import de.edgelord.sanjo.SJClass;
 
 public class Bird extends GameObject implements Serializable {
 
@@ -123,13 +123,13 @@ public class Bird extends GameObject implements Serializable {
     }
 
     @Override
-    public void serialize(Species species) {
-        species.addTag("just-a-random-test-value", "something-really-important" + getClass().hashCode());
+    public void serialize(final SJClass data) {
+        data.addValue("just-a-random-test-value", "something-really-important" + getClass().hashCode());
     }
 
     @Override
-    public void deserialize(Species species) {
-        System.out.println(species.getTagValue("just-a-random-test-value"));
+    public void deserialize(final SJClass data) {
+        System.out.println(data.getValue("just-a-random-test-value"));
     }
 
     @Override

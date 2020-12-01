@@ -26,7 +26,6 @@ import de.edgelord.saltyengine.graphics.light.GradientLight;
 import de.edgelord.saltyengine.graphics.light.Light;
 import de.edgelord.saltyengine.graphics.light.LightSystem;
 import de.edgelord.saltyengine.input.Input;
-import de.edgelord.saltyengine.io.LanguageManager;
 import de.edgelord.saltyengine.io.serialization.Serializer;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.scene.Scene;
@@ -52,12 +51,6 @@ public class TestingScene extends Scene {
     @Override
     public void initialize() {
         setFriction(0.005f);
-
-        try {
-            LanguageManager.init("res/lyrics", SaltySystem.defaultResource);
-        } catch (final IOException e) {
-            e.printStackTrace();
-        }
 
         addLight();
         initForcesTest();
@@ -137,7 +130,7 @@ public class TestingScene extends Scene {
         SaltySystem.defaultFont = SaltySystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
-        RoundedTextBox textBox = new RoundedTextBox(LanguageManager.getText("textBox"), 10, 600, 1180, 100, 25, 50);
+        RoundedTextBox textBox = new RoundedTextBox("LanguageManager.getText(\"textBox\")", 10, 600, 1180, 100, 25, 50);
 
         progress.setCornerArc(20);
         progress.setBackgroundColor(ColorUtil.ACTIVE_GREEN);

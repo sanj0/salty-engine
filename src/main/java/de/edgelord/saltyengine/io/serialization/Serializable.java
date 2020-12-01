@@ -16,11 +16,13 @@
 
 package de.edgelord.saltyengine.io.serialization;
 
+import de.edgelord.sanjo.SJClass;
+
 public interface Serializable {
 
-    void serialize(Species species);
+    void serialize(final SJClass data);
 
-    void deserialize(Species species);
+    void deserialize(final SJClass data);
 
     String getDataSetName();
 }
