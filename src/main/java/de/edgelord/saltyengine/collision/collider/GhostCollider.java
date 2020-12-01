@@ -23,8 +23,9 @@ import de.edgelord.saltyengine.utils.Directions;
 /**
  * A collider that always returns {@code new CollisionDetectionResult(false,
  * Directions.Direction.EMPTY)}, hence making its parent "ghostly" by means that
- * it won't ever be involved a collision. The priority of the collider is {@link
- * Integer#MAX_VALUE}
+ * it won't ever be involved in a collision. The priority of the collider is {@link
+ * Integer#MAX_VALUE}, thus it will always be prioritized by the default
+ * {@link de.edgelord.saltyengine.collision.PrioritySceneCollider}.
  */
 public class GhostCollider extends Collider {
 
