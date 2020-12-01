@@ -54,4 +54,16 @@ public interface RenderContext {
 
         return graphics;
     }
+
+    /**
+     * Return a new <code>RenderContext</code>,
+     * that applies the given color when {@link #applyConfiguration(SaltyGraphics)}
+     * is called.
+     *
+     * @param color the desired color
+     * @return a new RenderContext, that applies the given color
+     */
+    static RenderContext color(final Color color) {
+        return g -> g.setColor(color);
+    }
 }
