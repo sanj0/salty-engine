@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.utils.SaltySystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class Display extends JFrame {
@@ -32,14 +33,18 @@ public class Display extends JFrame {
     private boolean fullscreen = false;
 
     public Display(final DisplayRatio displayRatio, final String windowTitle) {
-
+        setUndecorated(SaltySystem.displayUndecorated);
+        if (SaltySystem.displayUndecorated) {
+            setShape(new RoundRectangle2D.Float(0, 0, displayRatio.getCurrentDimensions().getWidth(),
+                    displayRatio.getCurrentDimensions().getHeight(), SaltySystem.arcWidth, SaltySystem.arcHeight));
+        }
         getContentPane().setPreferredSize(new Dimension((int) displayRatio.getCurrentDimensions().getWidth(), (int) displayRatio.getCurrentDimensions().getHeight()));
+
         pack();
         this.windowTitle = windowTitle;
     }
 
     public void create() {
-
         setTitle(windowTitle + " [Salty Engine " + SaltySystem.versionTag + "]");
         setLocationRelativeTo(null);
         setVisible(true);

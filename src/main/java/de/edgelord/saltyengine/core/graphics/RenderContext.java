@@ -56,11 +56,11 @@ public interface RenderContext {
     }
 
     /**
-     * Return a new <code>RenderContext</code>,
-     * that applies the given color when {@link #applyConfiguration(SaltyGraphics)}
-     * is called.
+     * Return a new <code>RenderContext</code>, that applies the given color
+     * when {@link #applyConfiguration(SaltyGraphics)} is called.
      *
      * @param color the desired color
+     *
      * @return a new RenderContext, that applies the given color
      */
     static RenderContext color(final Color color) {

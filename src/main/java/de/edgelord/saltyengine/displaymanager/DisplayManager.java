@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Malte Dostal
+ * Copyright 2020 Malte Dostal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package de.edgelord.saltyengine.displaymanager.display;
+package de.edgelord.saltyengine.displaymanager;
 
 import de.edgelord.saltyengine.core.Engine;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.Host;
+import de.edgelord.saltyengine.displaymanager.display.Display;
+import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
+import de.edgelord.saltyengine.displaymanager.display.NativeDisplayKeyListener;
 import de.edgelord.saltyengine.displaymanager.stage.Stage;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.input.KeyboardInputHandler;

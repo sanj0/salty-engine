@@ -317,7 +317,6 @@ public class SaltyGraphics {
      * @param point3 the third point of the triangle
      */
     public void drawTriangle(final Vector2f point1, final Vector2f point2, final Vector2f point3) {
-
         renderPolygon(false, point1, point2, point3);
     }
 
@@ -330,7 +329,6 @@ public class SaltyGraphics {
      * @param point3 the third point of the triangle
      */
     public void outlineTriangle(final Vector2f point1, final Vector2f point2, final Vector2f point3) {
-
         renderPolygon(true, point1, point2, point3);
     }
 
@@ -347,7 +345,6 @@ public class SaltyGraphics {
      * @param points the points of the polygon
      */
     public void drawPolygon(final Vector2f... points) {
-
         renderPolygon(false, points);
     }
 
@@ -360,26 +357,24 @@ public class SaltyGraphics {
      * @param points the points of the polygon
      */
     public void outlinePolygon(final Vector2f... points) {
-
         renderPolygon(true, points);
     }
 
     private void renderPolygon(final boolean outline, final Vector2f... points) {
-        final int[] xPoints = new int[points.length];
-        final int[] yPoints = new int[points.length];
+        final int nPoints = points.length;
+        final int[] xPoints = new int[nPoints];
+        final int[] yPoints = new int[nPoints];
 
-        for (int i = 0; i < xPoints.length; i++) {
-            xPoints[i] = Math.round(points[i].getX());
-        }
-
-        for (int i = 0; i < yPoints.length; i++) {
-            xPoints[i] = Math.round(points[i].getY());
+        for (int i = 0; i < nPoints; i++) {
+            final Vector2f point = points[i];
+            xPoints[i] = Math.round(point.getX());
+            yPoints[i] = Math.round(point.getY());
         }
 
         if (outline) {
-            graphics2D.drawPolygon(xPoints, yPoints, points.length);
+            graphics2D.drawPolygon(xPoints, yPoints, nPoints);
         } else {
-            graphics2D.fillPolygon(xPoints, yPoints, points.length);
+            graphics2D.fillPolygon(xPoints, yPoints, nPoints);
         }
     }
 

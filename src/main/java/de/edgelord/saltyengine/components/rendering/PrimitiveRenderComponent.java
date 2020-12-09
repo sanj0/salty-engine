@@ -89,10 +89,10 @@ public abstract class PrimitiveRenderComponent extends RenderComponent {
         saltyGraphics.setStroke(new BasicStroke(lineWidth));
     }
 
-    public abstract void updateImageData();
+    public abstract void generateImage();
 
     public void updateImage() {
-        updateImageData();
+        generateImage();
         primitiveImage = ImageUtils.createPrimitiveImage(saltyGraphics -> {
             setUpGraphics(saltyGraphics);
             primitiveDraw.draw(saltyGraphics);

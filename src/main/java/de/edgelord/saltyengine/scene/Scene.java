@@ -73,7 +73,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     // potentially a decent fix of the collision detection problem
     // as the list only stores references and thus does not need
     // much memory
-    private final List<GameObject> allGameObjects = new ArrayList<>();
+    protected final List<GameObject> allGameObjects = new ArrayList<>();
 
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());

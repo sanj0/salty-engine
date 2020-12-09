@@ -20,6 +20,7 @@ import de.edgelord.saltyengine.core.interfaces.CentrePositionProvider;
 import de.edgelord.saltyengine.core.interfaces.Creatable;
 import de.edgelord.saltyengine.core.interfaces.CurrentDimensionsProvider;
 import de.edgelord.saltyengine.core.interfaces.Repaintable;
+import de.edgelord.saltyengine.displaymanager.DisplayManager;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 
@@ -29,7 +30,7 @@ import java.awt.image.ImageObserver;
 
 /**
  * This is the class to implement for the host of a game. The default host is
- * {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager}
+ * {@link DisplayManager}
  * <p>
  * Every host has to be repaintable, has to provide centre position for better
  * placing of objects inside the game, it has to provide its dimensions, has to

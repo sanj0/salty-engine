@@ -34,7 +34,7 @@ public class RectangleRender extends PrimitiveRenderComponent {
     }
 
     @Override
-    public void updateImageData() {
+    public void generateImage() {
         setPrimitiveDraw(saltyGraphics -> {
             if (isFill()) {
                 saltyGraphics.drawRect(0, 0, getParent().getWidth(), getParent().getHeight());

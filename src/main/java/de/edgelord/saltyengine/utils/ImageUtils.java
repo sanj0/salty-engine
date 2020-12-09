@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.core.interfaces.Drawable;
 import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
 import de.edgelord.saltyengine.graphics.geom.EnumShape;
 import de.edgelord.saltyengine.graphics.geom.SaltyShape;
+import de.edgelord.saltyengine.graphics.image.SaltyBufferedImage;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
@@ -31,6 +32,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.io.IOException;
@@ -43,6 +45,22 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_PNG = "png";
     public static String IMAGE_FORMAT_JPG = "jpg";
     public static String IMAGE_FORMAT_GIF = "gif";
+
+    private ImageUtils() {
+    }
+
+    public static SaltyImage rotate(final SaltyImage source, final float degrees) {
+        final int rotatedImageSize = (int) Math.round(Math.sqrt(GeneralUtil.square(source.getWidth()) +
+                GeneralUtil.square(source.getHeight())));
+        final SaltyImage rotatedImage = SaltySystem.createPreferredImage(rotatedImageSize, rotatedImageSize);
+        final SaltyGraphics graphics = rotatedImage.getGraphics();
+        graphics.setBackground(ColorUtil.TRANSPARENT_COLOR);
+        graphics.clear(0, 0, rotatedImageSize, rotatedImageSize);
+        final AffineTransformOp affineTransformOp =
+                new AffineTransformOp(AffineTransform.getRotateInstance(Math.toRadians(degrees), source.getWidth() / 2f, source.getHeight() / 2f),
+                        AffineTransformOp.TYPE_BILINEAR);
+        return new SaltyBufferedImage(affineTransformOp.filter(source.toBufferedImage(), rotatedImage.toBufferedImage()));
+    }
 
     /**
      * Changes the size of the given image by adding borders of the given color.
@@ -158,7 +176,6 @@ public class ImageUtils {
      * @return the given image as a {@link BufferedImage}
      */
     public static BufferedImage toBufferedImage(final Image image) {
-
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;
         }

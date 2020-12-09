@@ -91,7 +91,6 @@ public class OuterResource implements Resource {
     }
 
     private void prepareSourceDirectory() {
-
         if (hidden) {
             sourceDirectory = SystemDependentFiles.getUserFile("." + Game.gameName);
         } else {
@@ -108,12 +107,9 @@ public class OuterResource implements Resource {
     }
 
     public BufferedImage getImage(final String relativePath) throws IOException {
-
         if (relativePath.startsWith("/")) {
-
             return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + relativePath));
         } else {
-
             return ImageIO.read(new File(sourceDirectory.getAbsolutePath() + "/" + relativePath));
         }
     }

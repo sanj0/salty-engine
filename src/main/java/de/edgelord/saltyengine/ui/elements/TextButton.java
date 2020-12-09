@@ -21,7 +21,7 @@ import de.edgelord.saltyengine.core.animation.Keyframe;
 import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
 import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
-import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
+import de.edgelord.saltyengine.displaymanager.DisplayManager;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 

@@ -243,6 +243,7 @@ public class Layer extends GameObject {
     }
 
     public boolean remove(final Object o) {
+
         return gameObjects.remove(o);
     }
 
@@ -252,5 +253,6 @@ public class Layer extends GameObject {
 
     public void clear() {
         gameObjects.clear();
+        container.allGameObjects.removeAll(gameObjects);
     }
 }

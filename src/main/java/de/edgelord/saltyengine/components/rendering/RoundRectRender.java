@@ -52,7 +52,7 @@ public class RoundRectRender extends PrimitiveRenderComponent {
     }
 
     @Override
-    public void updateImageData() {
+    public void generateImage() {
         setPrimitiveDraw(saltyGraphics -> {
             if (isFill()) {
                 saltyGraphics.drawRoundRect(0, 0, getParent().getWidth(), getParent().getHeight(), getArc());

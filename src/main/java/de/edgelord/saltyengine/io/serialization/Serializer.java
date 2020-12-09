@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.io.serialization;
 
+import de.edgelord.saltyengine.displaymanager.DisplayManager;
 import de.edgelord.saltyengine.io.FileReader;
 import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.resource.OuterResource;
@@ -41,7 +42,7 @@ public class Serializer {
     private static final List<Serializable> consumer = new ArrayList<>();
     /**
      * The name of the file this process should be saving the data to when the
-     * display is closing (only works when using {@link de.edgelord.saltyengine.displaymanager.display.DisplayManager}
+     * display is closing (only works when using {@link DisplayManager}
      * as the {@link de.edgelord.saltyengine.core.Host}, which is default). This
      * is to be relative and without any file extensions.
      */
