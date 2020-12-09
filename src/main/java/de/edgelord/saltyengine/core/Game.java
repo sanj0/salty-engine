@@ -17,7 +17,7 @@
 package de.edgelord.saltyengine.core;
 
 import de.edgelord.saltyengine.components.Component;
-import de.edgelord.saltyengine.displaymanager.display.DisplayManager;
+import de.edgelord.saltyengine.displaymanager.DisplayManager;
 import de.edgelord.saltyengine.displaymanager.display.DisplayRatio;
 import de.edgelord.saltyengine.factory.FontFactory;
 import de.edgelord.saltyengine.factory.ImageFactory;

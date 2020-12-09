@@ -55,7 +55,6 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
 
     public static SaltyShape createShape(final EnumShape shapeType, final Transform transform, final float... arcIfRoundRect) {
         switch (shapeType) {
-
             case RECTANGLE:
                 return new RectangleShape(transform);
             case OVAL:
@@ -75,9 +74,6 @@ public abstract class SaltyShape implements Drawable, TransformedObject {
 
         return null;
     }
-
-    @Override
-    public abstract void draw(SaltyGraphics saltyGraphics);
 
     @Override
     public Transform getTransform() {

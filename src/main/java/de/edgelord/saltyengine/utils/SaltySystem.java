@@ -25,6 +25,7 @@ import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.graphics.image.SaltyVolatileImage;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.resource.OuterResource;
+import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.ui.UIElement;
 
 import java.awt.*;
@@ -41,6 +42,10 @@ public class SaltySystem {
     public static boolean audioEnabled = true;
 
     public static boolean writePrivilege = true;
+
+    public static boolean displayUndecorated = false;
+    public static float arcWidth = 50;
+    public static float arcHeight = 50;
 
     /**
      * The type of image that should be used by e.g. the {@link
@@ -88,18 +93,22 @@ public class SaltySystem {
         }
     }
 
-    public static SaltyImage createPreferredImage(final float width, final float height) {
-        final int imageWidth = Math.round(width);
-        final int imageHeight = Math.round(height);
+    public static SaltyImage createPreferredImage(final Dimensions size) {
+        final int imageWidth = Math.round(size.getWidth());
+        final int imageHeight = Math.round(size.getHeight());
 
         switch (preferredImageType) {
             case BUFFERED:
                 return new SaltyBufferedImage(imageWidth, imageHeight);
             case VOLATILE:
-                return new SaltyVolatileImage(width, height);
+                return new SaltyVolatileImage(imageWidth, imageWidth);
         }
 
         return null;
+    }
+
+    public static SaltyImage createPreferredImage(final float width, final float height) {
+        return createPreferredImage(new Dimensions(width, height));
     }
 
     public static SaltyImage createPreferredImage(final String path) {

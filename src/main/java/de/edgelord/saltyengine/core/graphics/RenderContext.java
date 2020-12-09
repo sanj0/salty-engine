@@ -54,4 +54,14 @@ public interface RenderContext {
 
         return graphics;
     }
+
+    /**
+     * Returns a
+     *
+     * @param color
+     * @return
+     */
+    static RenderContext color(final Color color) {
+        return graphics -> graphics.setColor(color);
+    }
 }

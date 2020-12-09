@@ -65,11 +65,11 @@ public class TriangleShape extends SaltyShape {
 
         maxX = point1.getX();
         maxX = Math.max(point2.getX(), maxX);
-        maxX = Math.min(point3.getX(), maxX);
+        maxX = Math.max(point3.getX(), maxX);
 
         maxY = point1.getY();
         maxY = Math.max(point2.getY(), maxY);
-        maxY = Math.min(point3.getY(), maxY);
+        maxY = Math.max(point3.getY(), maxY);
 
         return new Transform(x, y, maxX - x, maxY - y);
     }
