@@ -29,9 +29,9 @@ import de.edgelord.saltyengine.graphics.sprite.Spritesheet;
 import de.edgelord.saltyengine.graphics.sprite.SpritesheetAnimation;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.sanjo.SJClass;
 
 public class BirdPlayer extends GameObject implements Serializable {
 
@@ -134,13 +134,13 @@ public class BirdPlayer extends GameObject implements Serializable {
     }
 
     @Override
-    public void serialize(Species species) {
-        species.addTag("camPos", Game.getCamera().getX() + "," + Game.getCamera().getY());
+    public void serialize(final SJClass data) {
+        data.addValue("camPos", Game.getCamera().getX() + "," + Game.getCamera().getY());
         System.out.println("serializing!");
     }
 
     @Override
-    public void deserialize(Species species) {
+    public void deserialize(final SJClass data) {
         System.out.println("Deserializing!");
     }
 

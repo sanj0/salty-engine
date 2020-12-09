@@ -18,7 +18,7 @@ package de.edgelord.saltyengine.example.serialization;
 
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.saltyengine.io.serialization.Species;
+import de.edgelord.sanjo.SJClass;
 
 public class AdvancedSaver implements Serializable {
 
@@ -28,18 +28,18 @@ public class AdvancedSaver implements Serializable {
     private int counter = 0;
 
     @Override
-    public void serialize(final Species species) {
-        species.addTag(COUNTER_TAG, ++counter);
-        species.addTag(REDUNDANT_MESSAGE_TAG, "This is a redundant message to show that you don't have to encode spaces with these weird combinations of stars and underscores any more!");
-        species.addTag(CAMERA_POSITION_TAG, Game.getCamera().getX() + "," + Game.getCamera().getY());
+    public void serialize(final SJClass data) {
+        data.addValue(COUNTER_TAG, ++counter);
+        data.addValue(REDUNDANT_MESSAGE_TAG, "This is just some random longer string");
+        data.addValue(CAMERA_POSITION_TAG, Game.getCamera().getX() + "," + Game.getCamera().getY());
     }
 
     @Override
-    public void deserialize(final Species species) {
-        counter = Integer.parseInt(species.getTagValue(COUNTER_TAG));
+    public void deserialize(final SJClass data) {
+        counter = data.getValue(COUNTER_TAG).intValue();
 
         System.out.println("This example started " + counter + " times before on this computer!");
-        System.out.println(species.getTagValue(REDUNDANT_MESSAGE_TAG));
+        System.out.println(data.getValue(REDUNDANT_MESSAGE_TAG));
     }
 
     @Override

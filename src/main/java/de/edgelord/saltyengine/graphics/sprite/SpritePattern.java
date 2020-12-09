@@ -16,15 +16,14 @@
 
 package de.edgelord.saltyengine.graphics.sprite;
 
-import de.edgelord.saltyengine.io.serialization.DataReader;
-import de.edgelord.saltyengine.io.serialization.Species;
-import de.edgelord.saltyengine.io.serialization.ValueToListConverter;
+import de.edgelord.sanjo.SJClass;
 
 import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+@Deprecated
 public class SpritePattern {
 
     private final File spritePattern;
@@ -37,9 +36,10 @@ public class SpritePattern {
         spritePattern = file;
     }
 
+    /*
     public void loadPattern() throws Exception {
 
-        final DataReader dataReader = new DataReader(spritePattern);
+        final SJClass dataReader = new DataReader(spritePattern);
         List<Integer> currentRectangleData;
 
         final int sprites;
@@ -59,7 +59,7 @@ public class SpritePattern {
             this.pattern.put(currentRectangleData.get(4), new Rectangle(currentRectangleData.get(0), currentRectangleData.get(1), currentRectangleData.get(2), currentRectangleData.get(3)));
         }
 
-    }
+    }*/
 
     public Rectangle getRectangle(final int id) {
 

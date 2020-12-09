@@ -21,15 +21,16 @@ import de.edgelord.saltyengine.gameobject.DrawingRoutine;
 import de.edgelord.saltyengine.gameobject.EmptyGameObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
-import de.edgelord.saltyengine.io.serialization.DataReader;
-import de.edgelord.saltyengine.io.serialization.Species;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.SaltySystem;
+import de.edgelord.sanjo.SJClass;
+import de.edgelord.sanjo.SanjoFile;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -123,31 +124,31 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      * @throws IOException when the file can't be read
      */
     public static StaticTileGrid readSTM(final File stm, final Vector2f position, final DrawingPosition drawingPosition) throws IOException {
+        final SJClass root = new SanjoFile(stm.getAbsolutePath()).parser().parse();
+        final SJClass metaInf = root.getChild("meta-inf");
+        final SJClass images = root.getChild("images");
+        final SJClass tiles = root.getChild("tiles");
 
-        final DataReader dataReader = new DataReader(stm);
-        final Species metaInf = dataReader.getSpecies("meta-inf");
-        final Species images = dataReader.getSpecies("images");
-        final Species tiles = dataReader.getSpecies("tiles");
-
-        return new StaticTileGrid(drawingPosition, position, new Dimensions(Float.parseFloat(metaInf.getTagValue("tile-height")), Float.parseFloat(metaInf.getTagValue("tile-width")))) {
+        return new StaticTileGrid(drawingPosition, position, new Dimensions(metaInf.getValue("tile-height").floatValue(),
+                metaInf.getValue("tile-width").floatValue())) {
             @Override
             public void buildTileGrid(final HashMap<Coordinates, SaltyImage> grid) {
 
                 final Map<String, SaltyImage> imageMap = new HashMap<>();
-                final int imagesCount = Integer.parseInt(images.getTagValue("entry-count"));
-                final int tilesCount = Integer.parseInt(tiles.getTagValue("entry-count"));
+                final int imagesCount = images.getValue("entry-count").intValue();
+                final int tilesCount = tiles.getValue("entry-count").intValue();
 
                 for (int i = 0; i < imagesCount; i++) {
-                    final String value = images.getTagValue("image" + i);
+                    final String value = images.getValue("image" + i).string();
                     final String[] values = value.split(",");
                     imageMap.put(values[0], SaltySystem.defaultImageFactory.getImageResource(values[1]));
                 }
 
                 for (int i = 0; i < tilesCount; i++) {
-                    final String value = tiles.getTagValue("tile" + i);
+                    final String value = tiles.getValue("tile" + i).string();
                     final String[] values = value.split(",");
                     final String[] coordinates = values[1].split("#");
-                    grid.put(new Coordinates(Integer.valueOf(coordinates[0]), Integer.valueOf(coordinates[1])), imageMap.get(values[0]));
+                    grid.put(new Coordinates(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])), imageMap.get(values[0]));
                 }
 
                 System.out.println(grid.size());

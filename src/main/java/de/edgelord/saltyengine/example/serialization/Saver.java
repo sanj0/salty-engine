@@ -17,26 +17,27 @@
 package de.edgelord.saltyengine.example.serialization;
 
 import de.edgelord.saltyengine.io.serialization.Serializable;
-import de.edgelord.saltyengine.io.serialization.Species;
+import de.edgelord.sanjo.SJClass;
 
 public class Saver implements Serializable {
 
     private int highScore = 99;
 
     @Override
-    public void serialize(final Species species) {
+    public void serialize(final SJClass data) {
         // This method saves the data. With the given Species, you can add tags and values to the file
         // for example the Integer highScore, saved with the tag-name "highScore". You could use any other name there
-        species.addTag("highScore", highScore);
+        data.addValue("highScore", highScore);
 
         // And that's it. The data is being saved into a file!
     }
 
     @Override
-    public void deserialize(final Species species) {
-        // This method reads the data. With the given Species, you can read tag values. All tags you add to the species won't be
+    public void deserialize(final SJClass data) {
+        // This method reads the data. With the given SJClass,
+        // you can read tag values. All tags you add to the class won't be
         // saved.
-        highScore = Integer.parseInt(species.getTagValue("highScore"));
+        highScore = data.getValue("highScore").intValue();
     }
 
     @Override

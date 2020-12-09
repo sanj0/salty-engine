@@ -20,6 +20,9 @@ import de.edgelord.saltyengine.io.FileReader;
 import de.edgelord.saltyengine.io.FileWriter;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.utils.SaltySystem;
+import de.edgelord.sanjo.SJClass;
+import de.edgelord.sanjo.SanjoFile;
+import de.edgelord.sanjo.SanjoParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,16 +60,13 @@ public class Serializer {
         }
     }
 
-    private static void serialize(final DataWriter writer) throws IOException {
+    private static void serialize(final FileWriter writer, final SJClass root) throws IOException {
         consumer.forEach(serializable -> {
-            final Species species = new Species(serializable.getDataSetName(), "");
-
-            serializable.serialize(species);
-
-            writer.addSpecies(species);
+            final SJClass data = root.addChild(serializable.getDataSetName());
+            serializable.serialize(data);
         });
 
-        writer.syncFile();
+        writer.writeThrough(root.write());
 
         if (addChecksum) {
             final FileReader saveReader = new FileReader(writer.getFile());
@@ -77,8 +77,7 @@ public class Serializer {
         }
     }
 
-    private static boolean deserialize(final DataReader reader) throws IOException {
-
+    private static boolean deserialize(final FileReader reader, final SJClass root) throws IOException {
         final boolean isCorrupt;
         boolean alreadySaid = false;
 
@@ -110,14 +109,14 @@ public class Serializer {
         }
 
         for (final Serializable serializable : consumer) {
-            final Species species;
+            final SJClass data;
             try {
-                species = reader.getSpecies(serializable.getDataSetName());
+                data = root.getChild(serializable.getDataSetName());
             } catch (final Exception e) {
                 System.out.println("Never serialized something for " + serializable.getDataSetName() + " so cannot deserialize for it!");
                 continue;
             }
-            serializable.deserialize(species);
+            serializable.deserialize(data);
         }
 
         return isCorrupt;
@@ -135,14 +134,13 @@ public class Serializer {
      * Serializes all {@link Serializable}s within {@link #consumer} in a file
      * with the given name relative to a hidden {@link OuterResource}. The
      * extension of the file will be automatically added as {@link
-     * DataReader#SDB_FILE_EXTENSION}.
      *
      * @param name the name of the save file
      *
      * @throws IOException when the I/O process with the file fails
      */
     public static void doSerialization(final String name) throws IOException {
-        serialize(new DataWriter(SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION)));
+        serialize(new FileWriter(SaltySystem.defaultHiddenOuterResource.getFileResource(name + SanjoFile.FILE_EXTENSION)), new SJClass(name));
     }
 
     /**
@@ -159,7 +157,7 @@ public class Serializer {
      * Deserialize all {@link Serializable}s within {@link #consumer} from a
      * file with the given name relative to a hidden {@link OuterResource}. The
      * extension of the file will be automatically added as {@link
-     * DataReader#SDB_FILE_EXTENSION}.
+     * SanjoFile#FILE_EXTENSION}.
      *
      * @param name the name of the save file
      *
@@ -169,15 +167,10 @@ public class Serializer {
      * @throws IOException when the I/O process with the file fails
      */
     public static boolean doDeserialization(final String name) throws IOException {
+        final File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + SanjoFile.FILE_EXTENSION);
+        final SanjoParser parser = new SanjoParser(new SanjoFile(file.getAbsolutePath()));
 
-        final File file = SaltySystem.defaultHiddenOuterResource.getFileResource(name + DataReader.SDB_FILE_EXTENSION);
-
-        if (file.getTotalSpace() < 5) {
-            final DataWriter writer = new DataWriter(file);
-            writer.syncFile();
-        }
-
-        return deserialize(new DataReader(file));
+        return deserialize(new FileReader(file), parser.parse());
     }
 
     /**
