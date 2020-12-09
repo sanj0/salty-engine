@@ -21,6 +21,7 @@ import de.edgelord.saltyengine.io.FileReader;
 import java.io.File;
 import java.io.IOException;
 
+@Deprecated
 public class DataReader {
 
     public static String SDB_FILE_EXTENSION = ".sdb";

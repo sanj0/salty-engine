@@ -48,11 +48,12 @@ import java.io.IOException;
  * You can use any languages, you just have to make sure that {@link #language}
  * is one the ones you used.
  */
+@Deprecated
 public class LanguageManager {
 
     /**
-     * The language to use. This can be any, but it has to be used in the text
-     * file as well
+     * The language to use. The value of this fields has to be present in the
+     * text file.
      */
     private static String language = "english";
 

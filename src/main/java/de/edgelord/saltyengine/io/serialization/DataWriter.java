@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+@Deprecated
 public class DataWriter {
 
     private final LinkedList<Species> speciesList = new LinkedList<>();
