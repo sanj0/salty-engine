@@ -134,7 +134,7 @@ public class Serializer {
     /**
      * Serializes all {@link Serializable}s within {@link #consumer} in a file
      * with the given name relative to a hidden {@link OuterResource}. The
-     * extension of the file will be automatically added as {@link
+     * extension of the file will be automatically added.
      *
      * @param name the name of the save file
      *
