@@ -36,6 +36,9 @@ import java.util.function.Predicate;
 /**
  * Static fields and methods for serializing and deserializing data easily
  * within the engine.
+ * <br>
+ * For usage, refer to {@link de.edgelord.saltyengine.example.serialization.SerializationMain
+ * the examples}
  */
 public class Serializer {
 

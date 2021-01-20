@@ -17,7 +17,6 @@
 package de.edgelord.saltyengine.graphics.geom;
 
 public enum EnumShape {
-
     RECTANGLE,
     OVAL,
     ROUND_RECTANGLE,

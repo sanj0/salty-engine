@@ -27,6 +27,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 
+/**
+ * An implementation of {@link SaltyImage} that uses a {@link VolatileImage} as
+ * the underlying storage for the image data.
+ */
 public class SaltyVolatileImage implements SaltyImage {
 
     private VolatileImage image;
