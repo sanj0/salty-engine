@@ -96,9 +96,25 @@ public class ImageUtils {
      *
      * @return a new image which contains the old image
      */
-    public static SaltyImage resize(final SaltyImage image, final float width, final float height) {
+    public static SaltyImage resize(final SaltyImage image, final float width, final float height, final Object interpolation) {
+        return resize(image, width, height, new RenderingHints(RenderingHints.KEY_INTERPOLATION, interpolation));
+    }
+
+    /**
+     * Creates a new {@link SaltyImage} with the given width and height and
+     * draws the given image onto it, filling the new image entirely.
+     *
+     * @param image  the image to resize
+     * @param width  the width of the new image
+     * @param height the height of the new image
+     * @param hints the RenderingHints to be used for drawing the scaled image
+     *
+     * @return a new image which contains the old image
+     */
+    public static SaltyImage resize(final SaltyImage image, final float width, final float height, final RenderingHints hints) {
         final SaltyImage destination = SaltySystem.createPreferredImage(width, height);
         final Graphics2D graphics2D = destination.createGraphics();
+        graphics2D.setRenderingHints(hints);
         final AffineTransform transform = AffineTransform.getScaleInstance((double) width / image.getWidth(), (double) height / image.getHeight());
         graphics2D.drawImage(image.getImage(), transform, null);
 

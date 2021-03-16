@@ -28,6 +28,8 @@ import de.edgelord.saltyengine.utils.Directions;
 import de.edgelord.saltyengine.utils.ImageUtils;
 import de.edgelord.saltyengine.utils.SaltySystem;
 
+import java.awt.*;
+
 /**
  * The engine-default implementation of {@link Camera}.
  * <p>
@@ -65,7 +67,7 @@ public class Camera2D implements Camera, TransformedObject {
         final SaltyGraphics graphics = new SaltyGraphics(image.createGraphics());
         graphics.setTransform(getAffineTransform());
         subject.draw(graphics.copy());
-        image = ImageUtils.resize(image, getSize().getWidth(), getSize().getHeight());
+        image = ImageUtils.resize(image, getSize().getWidth(), getSize().getHeight(), RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
         return image;
     }
