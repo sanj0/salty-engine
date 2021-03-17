@@ -64,7 +64,6 @@ public class Bird extends GameObject implements Serializable {
 
     @Override
     public void initialize() {
-
         getPhysics().addForce("testing.Bird.testingForce", Directions.Direction.RIGHT);
         System.out.println("Info: Initialised a new Bird");
     }

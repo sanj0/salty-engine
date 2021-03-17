@@ -126,7 +126,6 @@ public class TestingScene extends Scene {
     }
 
     private void addUI() {
-
         SaltySystem.defaultFont = SaltySystem.defaultFont.deriveFont(20f);
 
         PauseButton pauseButton = new PauseButton();
@@ -142,7 +141,6 @@ public class TestingScene extends Scene {
     }
 
     private void initPhysicsTest() {
-
         final ImageFactory imageFactory = new ImageFactory(new InnerResource());
         final SaltyImage birdSpritesheet = imageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
@@ -163,7 +161,6 @@ public class TestingScene extends Scene {
     }
 
     public void initForcesTest() {
-
         final SaltyImage birdSpritesheet = SaltySystem.defaultImageFactory.getImageResource("res/pictures/spritesheets/bird_spritesheet.png");
 
         final Bird upperBird = new Bird(birdSpritesheet, 2, 2);
