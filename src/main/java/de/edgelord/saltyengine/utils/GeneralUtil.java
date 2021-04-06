@@ -83,7 +83,7 @@ public class GeneralUtil {
      * @return the angle between the given two points as degrees
      */
     public static float getAngle(final Vector2f p1, final Vector2f p2) {
-        final double arc = Math.atan2(p2.getY() - (p1.getY()), p2.getX() - (p1.getX()));
+        final double arc = Math.atan2(p2.getY() - p1.getY(), p2.getX() - (p1.getX()));
         return (float) toDegrees(arc) + 90f;
     }
 

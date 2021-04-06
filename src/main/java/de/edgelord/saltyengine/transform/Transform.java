@@ -479,10 +479,10 @@ public class Transform {
      * Returns the {@link #position} as {@link Coordinates}.
      *
      * @return {@link #position} as {@link Coordinates}
-     * @see Vector2f#convertToCoordinates()
+     * @see Vector2f#toCoordinates()
      */
     public Coordinates getCoordinates() {
-        return position.convertToCoordinates();
+        return position.toCoordinates();
     }
 
     /**

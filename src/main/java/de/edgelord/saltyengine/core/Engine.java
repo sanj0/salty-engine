@@ -104,19 +104,24 @@ public class Engine {
     public void startFixedTicks() {
         SaltySystem.fixedTickMillis = fixedTickMillis;
 
-        System.out.println("engine starting the fixed tick thread...");
-        fixedTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (!Game.isPaused()) {
-                    SceneManager.getCurrentScene().onFixedTick();
+        if (fixedTickMillis != -1) {
+            System.out.println("engine starting the fixed tick thread...");
+            fixedTimer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if (!Game.isPaused()) {
+                        SceneManager.getCurrentScene().onFixedTick();
 
-                    for (int i = 0; i < scheduledTasks.size(); i++) {
-                        scheduledTasks.get(i).onFixedTick();
+                        for (int i = 0; i < scheduledTasks.size(); i++) {
+                            scheduledTasks.get(i).onFixedTick();
+                        }
                     }
                 }
-            }
-        }, 0, fixedTickMillis);
+            }, 0, fixedTickMillis);
+        } else {
+            System.out.println("skipped starting the fixed tick thread due to " +
+                    "ftm = -1");
+        }
     }
 
     /**

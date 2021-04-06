@@ -205,7 +205,7 @@ public abstract class UIElement extends ComponentContainer implements Drawable, 
 
     @Override
     public Coordinates getCoordinates() {
-        return getPosition().convertToCoordinates();
+        return getPosition().toCoordinates();
     }
 
     public boolean isSuppressClipping() {

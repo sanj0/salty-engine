@@ -226,8 +226,7 @@ public class Vector2f {
         return subtract(pos1.getX(), pos1.getY());
     }
 
-    public Coordinates convertToCoordinates() {
-
+    public Coordinates toCoordinates() {
         return new Coordinates((int) getX(), (int) getY());
     }
 

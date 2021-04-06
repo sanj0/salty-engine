@@ -26,6 +26,9 @@ import java.awt.*;
  */
 public class GraphicsConfiguration {
 
+    private GraphicsConfiguration() {
+    }
+
     /**
      * The {@link RenderingHints} that should be used by every render
      * operation.

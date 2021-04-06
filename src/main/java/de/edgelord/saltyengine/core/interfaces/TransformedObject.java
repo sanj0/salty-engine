@@ -48,7 +48,7 @@ public interface TransformedObject {
     }
 
     default Coordinates getCoordinates() {
-        return getPosition().convertToCoordinates();
+        return getPosition().toCoordinates();
     }
 
     default Rotation getRotation() {
