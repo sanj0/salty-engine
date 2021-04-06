@@ -157,6 +157,18 @@ public class Grid {
     }
 
     /**
+     * Returns the coordinates of the tile the given Vector2f points to.
+     *
+     * @param point the point
+     *
+     * @return the coordinates of the tile the given point points to
+     */
+    public Coordinates pointingTile(final Vector2f point) {
+        return new Coordinates((int) Math.floor(point.getX() / tileSize.getWidth()),
+                (int) Math.floor(point.getY() / tileSize.getHeight()));
+    }
+
+    /**
      * Gets {@link #tileSize}.
      *
      * @return value of {@link #tileSize}

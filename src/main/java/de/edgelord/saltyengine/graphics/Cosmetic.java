@@ -20,6 +20,5 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 public interface Cosmetic {
-
     void draw(SaltyGraphics saltyGraphics, Vector2f position, float width, float height);
 }

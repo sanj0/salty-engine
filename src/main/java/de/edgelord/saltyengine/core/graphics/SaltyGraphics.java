@@ -1322,8 +1322,7 @@ public class SaltyGraphics {
      * <br> - the {@link Paint} {@link #getPaint()} ()} <br> - the {@link
      * Stroke} {@link #getStroke()} ()} <br> - the alpha value
      * <code>ColorUtil.intARGBToFloat(getColor().getAlpha())</code>
-     * <br> - the {@link Font} {@link #getFont()}
-     * ()} <br>
+     * <br> - the {@link Font} {@link #getFont()} <br>
      *
      * @return a new {@link BasicRenderContext} that represents the current
      * basic configuration of this graphics

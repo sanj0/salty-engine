@@ -210,7 +210,7 @@ public class ColorUtil {
 
     /**
      * Returns the {@link #maxColors max color} closest to the given color,
-     * using {@link #getClosestMaxColor(Color)}.
+     * using {@link #getClosestColor(Color, List)}
      *
      * @param color a color
      *
@@ -503,7 +503,6 @@ public class ColorUtil {
      * with an alpha of 0.
      */
     public static RadialGradientPaint createRadialGradientPaint(final Transform bounds, final Color color) {
-        System.out.println(bounds);
         return createRadialGradientPaint(bounds, color, 0);
     }
 

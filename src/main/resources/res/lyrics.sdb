@@ -1,19 +1,13 @@
 This is the language file.
 
 {stdf}
-
     (version)1.2(*version)
-
     (forward-compatible)true(*forward-compatible)
-
     (backwards-compatible)true(*backwards-compatible)
-
     (mask-spaces)false(*mask-spaces)
-
 {*stdf}
 
 {textBox}
-
     (english)Hello World! This is the testing scene for Salty Engine! It looks a bit messy, but it's just testing. We hope that you make amazing games with this Library!(*english)
     (german)Hello World! das is die Test-Scene von Salty Engine. Es sieht ein bisschen unordentlich aus, aber das ist nur testing. Wir hoffen, das ihr mit dieser library tolle Spiele macht!(*german)
     (simple-leet)H3110 W021d! Th15 15 7h3 73571n9 5c3n3 f02 5417y 3n91n3! 17 l00k5 a b17 m355y, bu7 17'5 ju57 73571n9. W3 h0p3 7h47 y0u m4k3 4m4z1n9 94m35 w17h 7h15 11b242y!(*simple-leet)
