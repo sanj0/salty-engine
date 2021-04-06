@@ -31,6 +31,8 @@ public class GameConfig {
     public static final String GAME_NAME_KEY = "game-name";
     public static final String FIXED_TICK_MILLIS_KEY = "fixed-tick-millis";
 
+    public static final long NO_FIXED_TICKS = -1;
+
     private final float resWidth;
     private final float resHeight;
     private final long fixedTickMillis;
