@@ -163,7 +163,7 @@ public class Game {
         initSaltySystem(gameName);
     }
 
-    private static void initSaltySystem(final String gameName) {
+    protected static void initSaltySystem(final String gameName) {
         Game.gameName = gameName;
         camera = new Camera2D(new Vector2f(0, 0), getGameDimensions(), getGameDimensions(), 1f);
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
