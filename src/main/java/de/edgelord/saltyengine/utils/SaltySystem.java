@@ -33,9 +33,9 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static final String versionTag = "0.14.20-local";
-    public static final String version = "0.14.20";
-    public static final VersionMode versionMode = VersionMode.LOCAL;
+    public static final String versionTag = "0.14.21-SNAPSHOT";
+    public static final String version = "0.14.21";
+    public static final VersionMode versionMode = VersionMode.SNAPSHOT;
     public static final GraphicsConfiguration GC =
             GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     public static long fixedTickMillis = 1;
@@ -101,7 +101,7 @@ public class SaltySystem {
             case BUFFERED:
                 return new SaltyBufferedImage(imageWidth, imageHeight);
             case VOLATILE:
-                return new SaltyVolatileImage(imageWidth, imageWidth);
+                return new SaltyVolatileImage(imageWidth, imageHeight);
         }
 
         return null;
