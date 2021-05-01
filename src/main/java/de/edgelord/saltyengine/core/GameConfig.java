@@ -69,7 +69,7 @@ public class GameConfig {
     /**
      * Loads configurations from the given file using {@link Properties}. The
      * format is as specified in {@link Properties#load(InputStream)}.
-     * <p> Example: <p>
+     * <p> Example:
      * <pre>
      * game-width: 1200
      * game-height: 900

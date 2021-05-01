@@ -67,6 +67,10 @@ public class ImageUtils {
      * This does not scale the image but rather enlarges it by embedding it in a
      * bigger images of the given color.
      *
+     * @param source the source image to scale
+     * @param size   the size to scale the image to
+     * @param color  the color to use for the letter box margins
+     *
      * @return a new image which has the given image in the centre of an image
      * of the given size and color
      */
@@ -93,8 +97,10 @@ public class ImageUtils {
      * @param image  the image to resize
      * @param width  the width of the new image
      * @param height the height of the new image
+     * @param interpolation the interpolation rendering hint to be used
      *
      * @return a new image which contains the old image
+     * @see RenderingHints
      */
     public static SaltyImage resize(final SaltyImage image, final float width, final float height, final Object interpolation) {
         return resize(image, width, height, new RenderingHints(RenderingHints.KEY_INTERPOLATION, interpolation));

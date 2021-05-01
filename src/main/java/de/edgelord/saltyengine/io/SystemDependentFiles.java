@@ -23,7 +23,6 @@ import java.io.File;
  * on the current user and the Operating System.
  * <p>
  * Tested and working on: <code>macOS</code>
- * <p>
  */
 public class SystemDependentFiles {
 

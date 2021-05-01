@@ -34,6 +34,7 @@ public class RoundRectRender extends PrimitiveRenderComponent {
      * @param parent the parent of the Component, so where to take the e.g. the
      *               Coordinate info from
      * @param name   the id-name for this Component
+     * @param color  the color to use for rendering
      * @param arc    the diameter of the circle at the corner
      */
     public RoundRectRender(final ComponentContainer parent, final String name, final Color color, final float arc) {

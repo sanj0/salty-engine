@@ -51,6 +51,7 @@ public abstract class PrimitiveRenderComponent extends RenderComponent {
      * @param parent the parent of the Component, so where to take the e.g. the
      *               Coordinate info from
      * @param name   the id-name for this Component
+     * @param color  the color this renderer should use
      *
      * @see Component
      */

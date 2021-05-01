@@ -645,7 +645,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      *
      * @param isStatic the new value of {@link #isStatic}
      */
-    public void setStatic(final boolean aStatic) {
-        isStatic = aStatic;
+    public void setStatic(final boolean isStatic) {
+        this.isStatic = isStatic;
     }
 }
