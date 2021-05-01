@@ -32,6 +32,7 @@ import de.edgelord.saltyengine.transform.Vector2f;
  * <p>
  * Inside the {@link #initialize()}, this GameObject is set to ignore the
  * gravity using {@link de.edgelord.saltyengine.components.SimplePhysicsComponent#setGravityEnabled(boolean)}
+ * and is set to <code>static</code> using {@link #setStatic(boolean)}
  */
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
 public class EmptyGameObject extends GameObject {
@@ -63,6 +64,7 @@ public class EmptyGameObject extends GameObject {
     @Override
     public void initialize() {
         getPhysics().setGravityEnabled(false);
+        setStatic(true);
     }
 
     @Override

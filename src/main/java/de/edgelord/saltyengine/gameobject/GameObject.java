@@ -107,6 +107,15 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     private boolean isTrigger = false;
 
     /**
+     * if this is <code>true</code>, no collision detection will be made by this
+     * GameObject, yet it will still be detected by other GameObjects.
+     * <p>
+     * This is a major performance increase to collision detection in a scene
+     * with only a few moving objects.
+     */
+    private boolean isStatic = false;
+
+    /**
      * The <code>Hitbox</code> of a <code>GameObject</code> may be used by
      * {@link Collider}s, like for example the default {@link HitboxCollider}.
      */
@@ -620,5 +629,23 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
 
     public void setClearCollisions(final boolean clearCollisions) {
         this.clearCollisions = clearCollisions;
+    }
+
+    /**
+     * Gets {@link #isStatic}.
+     *
+     * @return the value of {@link #isStatic}
+     */
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    /**
+     * Sets {@link #isStatic}.
+     *
+     * @param isStatic the new value of {@link #isStatic}
+     */
+    public void setStatic(final boolean aStatic) {
+        isStatic = aStatic;
     }
 }

@@ -175,6 +175,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
             for (int i = 0; i < allGameObjects.size(); i++) {
                 final GameObject gameObject = allGameObjects.get(i);
+                if (gameObject.isStatic()) continue;
                 for (int j = i + 1; j < allGameObjects.size(); j++) {
                     final GameObject otherGameObject = allGameObjects.get(j);
                     final CollisionDetectionResult result = sceneCollider.checkCollision(gameObject, otherGameObject);
