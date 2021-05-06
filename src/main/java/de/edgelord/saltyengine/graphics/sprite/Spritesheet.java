@@ -42,7 +42,6 @@ public class Spritesheet implements Flushable {
     }
 
     public List<Frame> getFrames(final Coordinates... coordinates) {
-
         final List<Frame> frames = new LinkedList<>();
 
         for (final Coordinates currentCoordinates : coordinates) {

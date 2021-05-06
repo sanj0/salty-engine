@@ -231,7 +231,6 @@ public class Vector2f {
     }
 
     public void parseCoordinates2f(final Coordinates coordinates) {
-
         setX((float) coordinates.getX());
         setY((float) coordinates.getY());
     }

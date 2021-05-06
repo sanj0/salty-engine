@@ -44,7 +44,6 @@ public class SpritesheetAnimation {
     }
 
     public void nextFrame() {
-
         if (getFrames().size() - 1 <= currentFrame) {
 
             currentFrame = 0;
@@ -55,7 +54,6 @@ public class SpritesheetAnimation {
     }
 
     public void addFrame(final Frame frame) {
-
         this.getFrames().add(frame);
     }
 
