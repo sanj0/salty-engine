@@ -150,7 +150,6 @@ public class BasicRenderContext implements RenderContext {
      * @param graphics the graphics to configure.
      */
     public void applyConfiguration(final SaltyGraphics graphics) {
-
         graphics.setColor(getColorWithAlpha());
         graphics.setPaint(paint);
         graphics.setStroke(stroke);
