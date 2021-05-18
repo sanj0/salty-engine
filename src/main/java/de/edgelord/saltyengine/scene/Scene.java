@@ -78,10 +78,10 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**
-     * If this is <code>true</code>, all {@link GameObject}s int his Scene will
+     * If this is <code>true</code>, all {@link GameObject}s in his Scene will
      * constantly move down with a force of {@link #gravity}.
      */
-    private final boolean gravityEnabled = false;
+    private boolean gravityEnabled = false;
     private List<Layer> layerList = new ArrayList<>();
     /**
      * The gravity used by all {@link GameObject}s in this Scene.
@@ -102,16 +102,10 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     /**
      * Initializes the <code>Scene</code> and all its initial components. Is
-     * invokes by {@link SceneManager#setCurrentScene(Scene)}
+     * invoked by {@link SceneManager#setCurrentScene(Scene)}
      */
     @Override
     public abstract void initialize();
-
-    /**
-     * Sorts the
-     */
-    public void sortLayers() {
-    }
 
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
@@ -431,6 +425,24 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
 
     public void setGravity(final float gravity) {
         this.gravity = gravity;
+    }
+
+    /**
+     * Gets {@link #gravityEnabled}.
+     *
+     * @return the value of {@link #gravityEnabled}
+     */
+    public boolean isGravityEnabled() {
+        return gravityEnabled;
+    }
+
+    /**
+     * Sets {@link #gravityEnabled}.
+     *
+     * @param gravityEnabled the new value of {@link #gravityEnabled}
+     */
+    public void setGravityEnabled(final boolean gravityEnabled) {
+        this.gravityEnabled = gravityEnabled;
     }
 
     public float getFriction() {
