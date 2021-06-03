@@ -30,7 +30,6 @@ import de.edgelord.sanjo.SJClass;
 import de.edgelord.sanjo.SanjoFile;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -125,27 +124,27 @@ public abstract class StaticTileGrid extends DrawingRoutine {
      */
     public static StaticTileGrid readSTM(final File stm, final Vector2f position, final DrawingPosition drawingPosition) throws IOException {
         final SJClass root = new SanjoFile(stm.getAbsolutePath()).parser().parse();
-        final SJClass metaInf = root.getChild("meta-inf");
-        final SJClass images = root.getChild("images");
-        final SJClass tiles = root.getChild("tiles");
+        final SJClass metaInf = root.getChild("meta-inf").get();
+        final SJClass images = root.getChild("images").get();
+        final SJClass tiles = root.getChild("tiles").get();
 
-        return new StaticTileGrid(drawingPosition, position, new Dimensions(metaInf.getValue("tile-height").floatValue(),
-                metaInf.getValue("tile-width").floatValue())) {
+        return new StaticTileGrid(drawingPosition, position, new Dimensions(metaInf.getValue("tile-height").get().floatValue(),
+                metaInf.getValue("tile-width").get().floatValue())) {
             @Override
             public void buildTileGrid(final HashMap<Coordinates, SaltyImage> grid) {
 
                 final Map<String, SaltyImage> imageMap = new HashMap<>();
-                final int imagesCount = images.getValue("entry-count").intValue();
-                final int tilesCount = tiles.getValue("entry-count").intValue();
+                final int imagesCount = images.getValue("entry-count").get().intValue();
+                final int tilesCount = tiles.getValue("entry-count").get().intValue();
 
                 for (int i = 0; i < imagesCount; i++) {
-                    final String value = images.getValue("image" + i).string();
+                    final String value = images.getValue("image" + i).get().string();
                     final String[] values = value.split(",");
                     imageMap.put(values[0], SaltySystem.defaultImageFactory.getImageResource(values[1]));
                 }
 
                 for (int i = 0; i < tilesCount; i++) {
-                    final String value = tiles.getValue("tile" + i).string();
+                    final String value = tiles.getValue("tile" + i).get().string();
                     final String[] values = value.split(",");
                     final String[] coordinates = values[1].split("#");
                     grid.put(new Coordinates(Integer.parseInt(coordinates[0]), Integer.parseInt(coordinates[1])), imageMap.get(values[0]));

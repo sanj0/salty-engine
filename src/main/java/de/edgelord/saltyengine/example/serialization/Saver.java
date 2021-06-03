@@ -37,7 +37,7 @@ public class Saver implements Serializable {
         // This method reads the data. With the given SJClass,
         // you can read tag values. All tags you add to the class won't be
         // saved.
-        highScore = data.getValue("highScore").intValue();
+        highScore = data.getValue("highScore").get().intValue();
     }
 
     @Override

@@ -36,7 +36,7 @@ public class AdvancedSaver implements Serializable {
 
     @Override
     public void deserialize(final SJClass data) {
-        counter = data.getValue(COUNTER_TAG).intValue();
+        counter = data.getValue(COUNTER_TAG).get().intValue();
 
         System.out.println("This example started " + counter + " times before on this computer!");
         System.out.println(data.getValue(REDUNDANT_MESSAGE_TAG));

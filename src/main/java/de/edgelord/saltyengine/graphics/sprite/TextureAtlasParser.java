@@ -29,10 +29,7 @@ import de.edgelord.sanjo.SanjoFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class describes and reads a sanjo-based file format to read different
@@ -118,11 +115,11 @@ public class TextureAtlasParser {
             final Object textureObject;
 
             if (type.equals(VALUE_IMAGE)) {
-                final Vector2f position = readPosition(object.getValue(KEY_SPRITE).string(), absolutePosition, size);
+                final Vector2f position = readPosition(object.getValue(KEY_SPRITE).get().string(), absolutePosition, size);
                 textureObject = srcImage.subImage((int) position.getX(),
                         (int) position.getY(), (int) size.getWidth(), (int) size.getHeight());
             } else if (type.equals(VALUE_ANIMATION)) {
-                final List<String> positionStrings = object.getValue(KEY_SPRITES).getList();
+                final List<String> positionStrings = object.getValue(KEY_SPRITES).get().getList();
                 final List<Coordinates> spriteCoordinates = new ArrayList<>(positionStrings.size());
 
                 for (final String position : positionStrings) {
@@ -139,7 +136,7 @@ public class TextureAtlasParser {
     }
 
     private static String readType(final SJClass object) {
-        return object.getValue(KEY_TYPE).string();
+        return object.getValue(KEY_TYPE).get().string();
     }
 
     private static Vector2f readLiteralPosition(final String text) {
@@ -153,38 +150,38 @@ public class TextureAtlasParser {
     }
 
     private static boolean wantsAbsolutePosition(final SJClass object, final String path) {
-        final SJValue position = object.getValue(KEY_POSITION);
-        if (position instanceof SJValue.Empty || position.string().equals(VALUE_RELATIVE)) {
+        final Optional<SJValue> position = object.getValue(KEY_POSITION);
+        if (!position.isPresent() || position.get().string().equals(VALUE_RELATIVE)) {
             return false;
-        } else if (position.string().equals(VALUE_ABSOLUTE)) {
+        } else if (position.get().string().equals(VALUE_ABSOLUTE)) {
             return true;
         } else {
-            throw new TextureAtlasFormatError(path, "unknown position type " + position.string());
+            throw new TextureAtlasFormatError(path, "unknown position type " + position.get().string());
         }
     }
 
     private static Dimensions readSpriteSize(final SJClass dataRoot, final String path) {
-        final SJValue val = dataRoot.getValue(KEY_SPRITE_SIZE);
-        if (val instanceof SJValue.Empty) {
+        final Optional<SJValue> val = dataRoot.getValue(KEY_SPRITE_SIZE);
+        if (!val.isPresent()) {
             throw new TextureAtlasFormatError(path, "missing sprite size <sprite-size>");
         }
-        final String[] parts = val.string().split(SPRITE_SIZE_SEPARATOR);
+        final String[] parts = val.get().string().split(SPRITE_SIZE_SEPARATOR);
         return new Dimensions(Float.parseFloat(parts[0]), Float.parseFloat(parts[1]));
     }
 
     private static SaltyImage readSourceImage(final SJClass dataRoot, final String path, final Resource resource) {
-        final SJValue imageValue = dataRoot.getValue(KEY_SOURCE_PATH);
-        if (imageValue instanceof SJValue.Empty) {
+        final Optional<SJValue> imageValue = dataRoot.getValue(KEY_SOURCE_PATH);
+        if (!imageValue.isPresent()) {
             throw new TextureAtlasFormatError(path, "missing source image path <source-path>");
         }
-        return resource.getImageResource(imageValue.string());
+        return resource.getImageResource(imageValue.get().string());
     }
 
     private static Resource readResource(final SJClass dataRoot, final String path) {
-        final SJValue resourceValue = dataRoot.getValue(KEY_RESOURCE);
-        if (resourceValue instanceof SJValue.Empty || resourceValue.string().equals(VALUE_INNER_RESOURCE)) {
+        final Optional<SJValue> resourceValue = dataRoot.getValue(KEY_RESOURCE);
+        if (!resourceValue.isPresent() || resourceValue.get().string().equals(VALUE_INNER_RESOURCE)) {
             return DEFAULT_INNER_RESOURCE;
-        } else if (resourceValue.string().equals(VALUE_OUTER_RESOURCE)) {
+        } else if (resourceValue.get().string().equals(VALUE_OUTER_RESOURCE)) {
             // cannot use default instance due to game name potentially
             // not being correct at static class member initialization
             return new OuterResource(false);

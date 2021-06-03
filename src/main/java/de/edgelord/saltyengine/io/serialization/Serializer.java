@@ -115,7 +115,7 @@ public class Serializer {
         for (final Serializable serializable : consumer) {
             final SJClass data;
             try {
-                data = root.getChild(serializable.getDataSetName());
+                data = root.getChild(serializable.getDataSetName()).get();
             } catch (final Exception e) {
                 System.out.println("Never serialized something for " + serializable.getDataSetName() + " so cannot deserialize for it!");
                 continue;
