@@ -469,7 +469,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @param direction the direction of the default force to be manipulated
      */
     public void accelerateTo(final float velocity, final Directions.Direction direction) {
-
         if (getLockedDirections().hasDirection(direction)) {
             return;
         }
@@ -506,7 +505,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * @see #accelerateTo(float, Directions.Direction)
      */
     public void accelerateTo(final float velocity, final Directions directions) {
-
         if (directions.hasDirection(Directions.Direction.UP)) {
             accelerateTo(velocity, Directions.Direction.UP);
         }

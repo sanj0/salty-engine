@@ -116,7 +116,6 @@ public class SimplePhysicsComponent extends Component<GameObject> {
 
     @Override
     public void onFixedTick() {
-
         if (gravityForThisEnabled) {
             getForce(DEFAULT_GRAVITY).setAcceleration(SceneManager.getCurrentScene().getGravity());
         } else {
@@ -128,7 +127,6 @@ public class SimplePhysicsComponent extends Component<GameObject> {
         final int deltaT = (int) SaltySystem.fixedTickMillis;
 
         for (final Force force : forces) {
-
             final float deltaDistance = force.deltaDistance(deltaT);
 
             if (deltaDistance <= threshold) {
