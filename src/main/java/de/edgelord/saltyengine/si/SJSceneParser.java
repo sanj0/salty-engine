@@ -33,10 +33,6 @@ import static de.edgelord.saltyengine.si.SJFormatKeys.KEY_NAME;
 
 /**
  * Parses a {@link de.edgelord.saltyengine.scene.Scene} from a sanjo file.
- * <p> Format:<br>
- * ?name=Name >prefab NAME ?id=identifier ?size=50, 50 >layer NAME ?name=Layer
- * name >object NAME ?is:PREFAB_NAME ?position=x, y >object NAME ?id=identifier
- * ?transform=x, y, w, h
  */
 public abstract class SJSceneParser {
 
