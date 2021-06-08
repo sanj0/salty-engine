@@ -17,6 +17,7 @@
 package de.edgelord.saltyengine.si;
 
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.sanjo.SJValue;
 
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,12 @@ public class SJScene extends Scene {
 
     private final SJGameObjectParser parser;
     private final List<Map<String, Object>> objectMaps;
+    private final Map<String, SJValue> rootAttributes;
 
-    public SJScene(final SJGameObjectParser parser, final List<Map<String, Object>> objectMaps) {
+    public SJScene(final SJGameObjectParser parser, final List<Map<String, Object>> objectMaps, final Map<String, SJValue> rootAttributes) {
         this.parser = parser;
         this.objectMaps = objectMaps;
+        this.rootAttributes = rootAttributes;
     }
 
     @Override
@@ -36,5 +39,9 @@ public class SJScene extends Scene {
         for (final Map<String, Object> objectMap : objectMaps) {
             addGameObject(parser.parseGameObject(objectMap));
         }
+    }
+
+    public Map<String, SJValue> getRootAttributes() {
+        return rootAttributes;
     }
 }

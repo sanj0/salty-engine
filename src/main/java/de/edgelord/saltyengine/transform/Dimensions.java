@@ -39,6 +39,11 @@ public class Dimensions {
         this(dimensions.width, dimensions.height);
     }
 
+    public static Dimensions parseDimensions(final String s) {
+        final String[] components = s.split(",");
+        return new Dimensions(Float.parseFloat(components[0].trim()), Float.parseFloat(components[1].trim()));
+    }
+
     public Vector2f toVector2f() {
         return new Vector2f(width, height);
     }

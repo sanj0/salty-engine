@@ -18,6 +18,10 @@ package de.edgelord.saltyengine.si;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.Scene;
+import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.sanjo.SJClass;
 import de.edgelord.sanjo.SJValue;
 import de.edgelord.sanjo.SanjoFile;
@@ -26,10 +30,11 @@ import de.edgelord.sanjo.SanjoParser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static de.edgelord.saltyengine.si.SJFormatKeys.KEY_NAME;
+import static de.edgelord.saltyengine.si.SJFormatKeys.*;
 
 /**
  * Parses a {@link de.edgelord.saltyengine.scene.Scene} from a sanjo file.
@@ -46,28 +51,38 @@ public abstract class SJSceneParser {
         sanjoData = SanjoFile.readLines(f);
     }
 
-    public Scene parseScene(final SJGameObjectParser gameObjectParser) {
+    public SJScene parseScene(final SJGameObjectParser gameObjectParser) {
         final SJClass dataRoot = new SanjoParser().parse(sanjoData);
         final String name = dataRoot.getValue(KEY_NAME).orElse(SJValue.forValue("")).string();
         final List<Map<String, Object>> objectMaps = new ArrayList<>();
+        final Map<String, SJValue> rootAttributes = dataRoot.getValues();
 
         for (final SJClass child : dataRoot.getChildren()) {
-            //TODO: all the parsing
+            final Map<String, Object> attributes = new HashMap<>();
+            for (final SJValue value : child.getValues().values()) {
+                attributes.put(value.getKey(), parseAttribute(value));
+            }
+            objectMaps.add(attributes);
         }
-        return new SJScene(gameObjectParser, objectMaps);
+        return new SJScene(gameObjectParser, objectMaps, rootAttributes);
     }
 
-    /**
-     * Parses a {@link GameObject} from the given map of attributes. The
-     * attributes may or may not contain some or all or none of the attributes
-     * declared in {@link SJFormatKeys} plus some or none custom attributes that
-     * are up for the implementor to parse accordingly and pack into a {@link
-     * GameObject}.
-     *
-     * @param attributes some or no attributes to parse a {@link GameObject}
-     *                   from
-     *
-     * @return a {@link GameObject} handcrafted from the given attributes
-     */
-    public abstract GameObject parseGameObject(final Map<String, Object> attributes);
+    private Object parseAttribute(final SJValue value) {
+        switch (value.getKey()) {
+            case KEY_ANIMATION_FPS:
+                return value.intValue();
+            case KEY_COLOR:
+                return ColorUtil.parseColor(value.string());
+            case KEY_POSITION:
+                return Vector2f.parseVector2f(value.string());
+            case KEY_SIZE:
+                return Dimensions.parseDimensions(value.string());
+            case KEY_TRANSFORM:
+                return Transform.parseTransform(value.string());
+            case KEY_NAME:
+            case KEY_ID:
+            default:
+                return value.string();
+        }
+    }
 }
