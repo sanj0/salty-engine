@@ -297,6 +297,9 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
      * the {@link #hitbox}.
      */
     public void doFixedTick() {
+        hitbox.recalculate();
+        onFixedTick();
+        doComponentOnFixedTick();
         // Remove acceleration from default forces
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_LEFTWARDS_FORCE).setAcceleration(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_FORCE).setAcceleration(0f);
@@ -308,10 +311,6 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_RIGHTWARDS_VELOCITY_FORCE).setVelocity(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_UPWARDS_VELOCITY_FORCE).setVelocity(0f);
         getPhysics().getForce(SimplePhysicsComponent.DEFAULT_DOWNWARDS_VELOCITY_FORCE).setVelocity(0f);
-
-        hitbox.recalculate();
-        onFixedTick();
-        doComponentOnFixedTick();
     }
 
     /**
