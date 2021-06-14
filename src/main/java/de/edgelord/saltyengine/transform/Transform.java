@@ -144,6 +144,14 @@ public class Transform {
         return random(min, max, min, max);
     }
 
+    public static Transform parseTransform(String s) {
+        final String[] components = s.split(",");
+        return new Transform(Float.parseFloat(components[0].trim()),
+                Float.parseFloat(components[1].trim()),
+                Float.parseFloat(components[2].trim()),
+                Float.parseFloat(components[3].trim()));
+    }
+
     /**
      * Returns whether the rectangle described by this <code>Transform</code>
      * intersects the one of the given.

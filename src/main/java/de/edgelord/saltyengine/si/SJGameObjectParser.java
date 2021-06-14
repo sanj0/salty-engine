@@ -19,7 +19,9 @@ package de.edgelord.saltyengine.si;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.TransformRelationMode;
 import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.utils.TransformRelationUtil;
 
 import java.util.Map;
 
@@ -28,14 +30,19 @@ import java.util.Map;
  */
 @FunctionalInterface
 public interface SJGameObjectParser {
-
     static Transform parseTransform(final Map<String, Object> attributes,
                                     final Vector2f defaultPosition,
                                     final Dimensions defaultDimensions) {
         final Vector2f position = (Vector2f) attributes.getOrDefault(SJFormatKeys.KEY_POSITION, defaultPosition);
         final Dimensions size = (Dimensions) attributes.getOrDefault(SJFormatKeys.KEY_SIZE, defaultDimensions);
+        final Transform transform = new Transform(position, size);
 
-        return new Transform(position, size);
+        if (attributes.containsKey(SJFormatKeys.KEY_POSITION_ANCHOR)) {
+            final TransformRelationMode anchor = TransformRelationMode.valueOf(attributes.get(SJFormatKeys.KEY_POSITION_ANCHOR).toString());
+            TransformRelationUtil.positionRelativeTo(anchor, new Transform(position, Dimensions.zero()), transform);
+        }
+
+        return transform;
     }
 
     /**

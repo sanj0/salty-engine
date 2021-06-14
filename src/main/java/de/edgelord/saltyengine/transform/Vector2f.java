@@ -34,6 +34,11 @@ public class Vector2f {
         this(position.getX(), position.getY());
     }
 
+    public static Vector2f parseVector2f(final String s) {
+        final String[] components = s.split(",");
+        return new Vector2f(Float.parseFloat(components[0].trim()), Float.parseFloat(components[1].trim()));
+    }
+
     public Dimensions toDimensions() {
         return new Dimensions(x, y);
     }

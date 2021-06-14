@@ -40,9 +40,7 @@ import de.edgelord.saltyengine.transform.Transform;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
 public class ColorUtil {
@@ -176,6 +174,7 @@ public class ColorUtil {
     public static final Color PLAIN_WHITE = new Color(255, 255, 255);
 
     protected static final List<Color> allColors = new LinkedList<>();
+    protected static final Map<String, Color> colors = new HashMap<>();
 
     /**
      * The list of colors defined in this class that start with {@code MAX_} and
@@ -190,7 +189,9 @@ public class ColorUtil {
         for (final Field field : fields) {
             if (field.getType() == Color.class) {
                 try {
-                    allColors.add((Color) field.get(null));
+                    final Color c = (Color) field.get(null);
+                    allColors.add(c);
+                    colors.put(field.getName(), c);
                 } catch (final IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -206,6 +207,32 @@ public class ColorUtil {
     }
 
     private ColorUtil() {
+    }
+
+    /**
+     * Parses the given string to a color.
+     * <p>supported formats:
+     * <br>"CONSTANT_NAME"
+     * <br>#html
+     * <br>r, g, b, (a)
+     * <p>returns null if s is not in the correct format
+     * @param s a string that represents a color
+     * @return the Color represented by the given string or null
+     */
+    public static Color parseColor(final String s) {
+        if (s.startsWith("\"") && s.endsWith("\"")) {
+            return colors.get(s.substring(1, s.length() - 1));
+        } else if (s.startsWith("#")) {
+            return Color.decode(s);
+        } else {
+            final String[] components = s.split(",");
+            final int alpha = components.length == 4 ? Integer.parseInt(components[3].trim()) : 255;
+            if (components.length > 4 || components.length < 3) {
+                return null;
+            }
+            return new Color(Integer.parseInt(components[0].trim()),
+                        Integer.parseInt(components[1].trim()), Integer.parseInt(components[2].trim()), alpha);
+        }
     }
 
     /**
