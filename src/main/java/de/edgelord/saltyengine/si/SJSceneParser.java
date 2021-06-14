@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.si;
 
-import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.sanjo.SJClass;
 import de.edgelord.sanjo.SJValue;
@@ -34,7 +33,7 @@ import static de.edgelord.saltyengine.si.SJFormatKeys.KEY_NAME;
 /**
  * Parses a {@link de.edgelord.saltyengine.scene.Scene} from a sanjo file.
  */
-public abstract class SJSceneParser {
+public class SJSceneParser {
 
     private final List<String> sanjoData;
 
@@ -56,18 +55,4 @@ public abstract class SJSceneParser {
         }
         return new SJScene(gameObjectParser, objectMaps);
     }
-
-    /**
-     * Parses a {@link GameObject} from the given map of attributes. The
-     * attributes may or may not contain some or all or none of the attributes
-     * declared in {@link SJFormatKeys} plus some or none custom attributes that
-     * are up for the implementor to parse accordingly and pack into a {@link
-     * GameObject}.
-     *
-     * @param attributes some or no attributes to parse a {@link GameObject}
-     *                   from
-     *
-     * @return a {@link GameObject} handcrafted from the given attributes
-     */
-    public abstract GameObject parseGameObject(final Map<String, Object> attributes);
 }
