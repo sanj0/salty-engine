@@ -66,7 +66,7 @@ public class SJSceneParser {
         return new SJScene(gameObjectParser, objectMaps, rootAttributes);
     }
 
-    private Object parseAttribute(final SJValue value) {
+    public static Object parseAttribute(final SJValue value) {
         switch (value.getKey()) {
             case KEY_ANIMATION_FPS:
                 return value.intValue();
