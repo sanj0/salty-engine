@@ -28,18 +28,16 @@ import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.DraggableSceneMouseInputHandler;
-import de.edgelord.sanjo.SJClass;
-import de.edgelord.sanjo.SJValue;
-import de.edgelord.sanjo.SanjoFile;
-import de.edgelord.sanjo.SanjoParser;
+import de.edgelord.saltyengine.utils.ResizeCage;
+import de.edgelord.sanjo.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 import static de.edgelord.saltyengine.si.SJSceneParser.parseAttribute;
@@ -50,6 +48,7 @@ public class DesignerScene extends Scene {
     private final SJGameObjectDeParser deParser;
     private List<GameObject> selectedGameObjects = new ArrayList<>();
     private Map<String, Object> selectedDefault = null;
+    private ResizeCage resizeCage = null;
 
     public DesignerScene(final String configPath, final File scene, final SJGameObjectParser gameObjectParser, SJGameObjectDeParser deParser) throws IOException {
         this.gameObjectParser = gameObjectParser;
@@ -61,6 +60,7 @@ public class DesignerScene extends Scene {
         }
 
         final SJClass defaultsRoot = new SanjoParser().parse(SanjoFile.readLines(new InnerResource().getFileResource(configPath)));
+        final Optional<SJValue> defaultId = defaultsRoot.get(SJAddress.forString(">meta-inf?default-id"));
         for (final SJClass child : defaultsRoot.getChildren()) {
             final Map<String, Object> attributes = new HashMap<>();
             for (final SJValue value : child.getValues().values()) {
@@ -69,6 +69,7 @@ public class DesignerScene extends Scene {
             attributes.put(SJFormatKeys.KEY_ID, child.getName());
             defaults.put(child.getName(), attributes);
         }
+        defaultId.ifPresent(sjValue -> selectedDefault = defaults.get(sjValue.string()));
 
         Input.addKeyboardInputHandler(new KeyboardInputAdapter() {
             @Override
@@ -91,32 +92,6 @@ public class DesignerScene extends Scene {
                         }
                         selectedGameObjects.clear();
                         break;
-                    case '+':
-                        if (e.isShiftDown()) {
-                            selectedGameObjects.forEach(g -> {
-                                g.setHeight(g.getHeight() + sizeDelta);
-                                g.setY(g.getY() - sizeDelta / 2f);
-                            });
-                        } else {
-                            selectedGameObjects.forEach(g -> {
-                                g.setWidth(g.getWidth() + sizeDelta);
-                                g.setX(g.getX() - sizeDelta / 2f);
-                            });
-                        }
-                        break;
-                    case '-':
-                        if (e.isShiftDown()) {
-                            selectedGameObjects.forEach(g -> {
-                                g.setHeight(g.getHeight() - sizeDelta);
-                                g.setY(g.getY() + sizeDelta / 2f);
-                            });
-                        } else {
-                            selectedGameObjects.forEach(g -> {
-                                g.setWidth(g.getWidth() - sizeDelta);
-                                g.setX(g.getX() + sizeDelta / 2f);
-                            });
-                        }
-                        break;
                 }
             }
         });
@@ -125,10 +100,16 @@ public class DesignerScene extends Scene {
             Vector2f dragStart = null;
             @Override
             public void mouseDragged(MouseEvent e) {
+                if (resizeCage != null) {
+                    if (resizeCage.clicked(Input.getCursor())) {
+                        return;
+                    }
+                }
                 for (final GameObject g : selectedGameObjects) {
                     if (e.getButton() == MouseEvent.BUTTON1) {
                         final Vector2f mousePos = Input.getCursorPosition();
                         g.getPosition().add(mousePos.subtracted(dragStart));
+                        resizeCage.update(g.getTransform());
                         dragStart = mousePos;
                     }
                 }
@@ -137,12 +118,21 @@ public class DesignerScene extends Scene {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
+                    if (resizeCage != null) {
+                        if (resizeCage.clicked(Input.getCursor())) {
+                            return;
+                        }
+                    }
                     dragStart = Input.getCursorPosition();
                     if (Input.getKeyboardInput().isControl()) {
                         for (final GameObject g : getGameObjects()) {
                             if (g.getTransform().contains(Input.getCursor())) {
                                 if (selectedGameObjects.contains(g)) {
                                     selectedGameObjects.remove(g);
+                                    if (resizeCage != null) {
+                                        removeGameObject(resizeCage);
+                                        resizeCage = null;
+                                    }
                                 } else {
                                     selectedGameObjects.add(g);
                                 }
@@ -151,12 +141,18 @@ public class DesignerScene extends Scene {
                         }
                     } else {
                         selectedGameObjects.clear();
+                        if (resizeCage != null) {
+                            removeGameObject(resizeCage);
+                            resizeCage = null;
+                        }
                         for (final GameObject g : getGameObjects()) {
                             if (g.getTransform().contains(Input.getCursor())) {
                                 if (selectedGameObjects.contains(g)) {
                                     selectedGameObjects.remove(g);
                                 } else {
                                     selectedGameObjects.add(g);
+                                    resizeCage = new ResizeCage(g, 20, ColorUtil.RED);
+                                    addGameObject(resizeCage);
                                 }
                                 break;
                             }
