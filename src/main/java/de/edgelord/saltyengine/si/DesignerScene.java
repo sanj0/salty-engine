@@ -50,7 +50,7 @@ public class DesignerScene extends Scene {
     private Map<String, Object> selectedDefault = null;
     private ResizeCage resizeCage = null;
 
-    public DesignerScene(final String configPath, final File scene, final SJGameObjectParser gameObjectParser, SJGameObjectDeParser deParser) throws IOException {
+    public DesignerScene(final String configPath, final File scene, final SJGameObjectParser gameObjectParser, final SJGameObjectDeParser deParser) throws IOException {
         this.gameObjectParser = gameObjectParser;
         this.deParser = deParser;
         if (scene.exists()) {
