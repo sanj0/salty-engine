@@ -33,6 +33,9 @@ public interface SJGameObjectParser {
     static Transform parseTransform(final Map<String, Object> attributes,
                                     final Vector2f defaultPosition,
                                     final Dimensions defaultDimensions) {
+        if (attributes.containsKey(SJFormatKeys.KEY_TRANSFORM)) {
+            return (Transform) attributes.get(SJFormatKeys.KEY_TRANSFORM);
+        }
         final Vector2f position = (Vector2f) attributes.getOrDefault(SJFormatKeys.KEY_POSITION, defaultPosition);
         final Dimensions size = (Dimensions) attributes.getOrDefault(SJFormatKeys.KEY_SIZE, defaultDimensions);
         final Transform transform = new Transform(position, size);

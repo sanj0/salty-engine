@@ -28,10 +28,11 @@ public class SJScene extends Scene {
     private final List<Map<String, Object>> objectMaps;
     private final Map<String, SJValue> rootAttributes;
 
-    public SJScene(final SJGameObjectParser parser, final List<Map<String, Object>> objectMaps, final Map<String, SJValue> rootAttributes) {
+    public SJScene(final SJGameObjectParser parser, final List<Map<String, Object>> objectMaps, final Map<String, SJValue> rootAttributes, final float gravity) {
         this.parser = parser;
         this.objectMaps = objectMaps;
         this.rootAttributes = rootAttributes;
+        setGravity(gravity);
     }
 
     @Override

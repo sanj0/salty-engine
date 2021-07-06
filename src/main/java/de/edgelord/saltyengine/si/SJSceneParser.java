@@ -16,7 +16,6 @@
 
 package de.edgelord.saltyengine.si;
 
-import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -28,10 +27,7 @@ import de.edgelord.sanjo.SanjoParser;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static de.edgelord.saltyengine.si.SJFormatKeys.*;
 
@@ -55,6 +51,9 @@ public class SJSceneParser {
         final String name = dataRoot.getValue(KEY_NAME).orElse(SJValue.forValue("")).string();
         final List<Map<String, Object>> objectMaps = new ArrayList<>();
         final Map<String, SJValue> rootAttributes = dataRoot.getValues();
+        final Optional<SJClass> sceneClass = dataRoot.getChild("scene");
+        final Optional<SJValue> gravity = sceneClass.isPresent() ? sceneClass.get().getValue("gravity") : Optional.empty();
+        sceneClass.ifPresent(sjClass -> dataRoot.getChildren().remove(sjClass));
 
         for (final SJClass child : dataRoot.getChildren()) {
             final Map<String, Object> attributes = new HashMap<>();
@@ -63,7 +62,7 @@ public class SJSceneParser {
             }
             objectMaps.add(attributes);
         }
-        return new SJScene(gameObjectParser, objectMaps, rootAttributes);
+        return new SJScene(gameObjectParser, objectMaps, rootAttributes, gravity.orElse(SJValue.forValue(1000)).floatValue());
     }
 
     public static Object parseAttribute(final SJValue value) {

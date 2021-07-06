@@ -40,8 +40,8 @@ import de.edgelord.saltyengine.transform.Transform;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class ColorUtil {
 
@@ -173,8 +173,8 @@ public class ColorUtil {
 
     public static final Color PLAIN_WHITE = new Color(255, 255, 255);
 
-    protected static final List<Color> allColors = new LinkedList<>();
-    protected static final Map<String, Color> colors = new HashMap<>();
+    public static final List<Color> allColors = new LinkedList<>();
+    public static final Map<String, Color> colors = new HashMap<>();
 
     /**
      * The list of colors defined in this class that start with {@code MAX_} and

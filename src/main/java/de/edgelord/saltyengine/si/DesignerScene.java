@@ -186,13 +186,14 @@ public class DesignerScene extends Scene {
                         System.out.println(selectedDefault.toString());
                         break;
                     case "write":
-                        if (components.length == 2) {
-                            final SJClass root = SJClass.defaultClass();
-                            for (final GameObject g : getGameObjects()) {
-                                root.addChild(deParser.deparse(g));
-                            }
-                            System.out.println(root.write());
+                        final SJClass root = SJClass.defaultClass();
+                        final SJClass sceneClass = new SJClass("scene");
+                        sceneClass.addValue("gravity", getGravity());
+                        root.addChild(sceneClass);
+                        for (final GameObject g : getGameObjects()) {
+                            root.addChild(deParser.deparse(g));
                         }
+                        System.out.println(root.write());
                         break;
                 }
             } while (true);
