@@ -4,7 +4,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
-import de.edgelord.saltyengine.hitbox.SimpleHitbox;
+import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -60,32 +60,40 @@ public class ResizeCage extends GameObject {
             final Transform cursor = Input.getCursor();
             // aaaaaaaaaah
             if (checkHandleGrab(handle0, cursor)) {
+                draggedHandle = handle0;
             } else if (checkHandleGrab(handle1, cursor)) {
+                draggedHandle = handle1;
             } else if (checkHandleGrab(handle2, cursor)) {
+                draggedHandle = handle2;
             } else if (checkHandleGrab(handle3, cursor)) {
+                draggedHandle = handle3;
             }
+            return;
         } else if (!Input.mouseDown) {
             draggedHandle = null;
             dragOffset = Vector2f.zero();
+            return;
         }
 
-        if (Input.mouseDrags && draggedHandle != null) {
+        if (Input.mouseDrags) {
             draggedHandle.positionByCentre(Input.getCursorPosition().added(dragOffset));
             getPartnerHandleX(draggedHandle).setX(draggedHandle.getX());
             getPartnerHandleY(draggedHandle).setY(draggedHandle.getY());
         }
 
         final Vector2f position = handle0.getCentre();
-        final Dimensions size = handle2.getCentre().subtracted(position).toDimensions();
+        final Dimensions size = new Dimensions(handle1.getCentre().getX() - handle0.getCentre().getX(),
+                handle3.getCentre().getY() - handle0.getCentre().getY());
         subject.setTransform(new Transform(position, size));
         if (subject instanceof GameObject) {
-            ((GameObject) subject).setHitbox(new SimpleHitbox((GameObject) subject, subject.getWidth(), subject.getHeight(), 0, 0));
+            final Hitbox hb = ((GameObject) subject).getHitbox();
+            hb.getTransform().setPosition(subject.getPosition());
+            hb.getTransform().setDimensions(subject.getDimensions());
         }
     }
 
     private boolean checkHandleGrab(final Transform handle, final Transform cursor) {
         if (handle.contains(cursor)) {
-            draggedHandle = handle;
             dragOffset = handle.getCentre().subtracted(cursor.getPosition());
             return true;
         }
@@ -103,26 +111,26 @@ public class ResizeCage extends GameObject {
 
     private Transform getPartnerHandleX(final Transform handle) {
         if (handle.equals(handle0)) {
-            return handle1;
-        } else if (handle.equals(handle1)) {
-            return handle0;
-        } else if (handle.equals(handle2)) {
             return handle3;
-        } else if (handle.equals(handle3)) {
+        } else if (handle.equals(handle1)) {
             return handle2;
+        } else if (handle.equals(handle2)) {
+            return handle1;
+        } else if (handle.equals(handle3)) {
+            return handle0;
         }
         return null;
     }
 
     private Transform getPartnerHandleY(final Transform handle) {
         if (handle.equals(handle0)) {
-            return handle3;
-        } else if (handle.equals(handle1)) {
-            return handle2;
-        } else if (handle.equals(handle2)) {
             return handle1;
-        } else if (handle.equals(handle3)) {
+        } else if (handle.equals(handle1)) {
             return handle0;
+        } else if (handle.equals(handle2)) {
+            return handle3;
+        } else if (handle.equals(handle3)) {
+            return handle2;
         }
         return null;
     }

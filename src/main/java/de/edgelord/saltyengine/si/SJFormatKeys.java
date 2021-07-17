@@ -45,6 +45,7 @@ public class SJFormatKeys {
      */
     public static final String KEY_POSITION_ANCHOR = "position-anchor";
 
+    public static final String KEY_IMAGE = "image";
     public static final String KEY_COLOR = "color";
     public static final String KEY_SPRITE_NAME = "sprite-name";
     public static final String KEY_ANIMATION_NAME = "animation-name";

@@ -17,6 +17,8 @@
 package de.edgelord.saltyengine.si;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.image.ImageObject;
+import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.TransformRelationMode;
@@ -30,6 +32,32 @@ import java.util.Map;
  */
 @FunctionalInterface
 public interface SJGameObjectParser {
+
+    /**
+     * Parses default objects.
+     * <br>Inlcudes:
+     * <ul>
+     *     <li>{@link de.edgelord.saltyengine.graphics.image.ImageObject}</li>
+     * </ul>
+     *
+     * @param attributes the attributes map
+     *
+     * @return a defaultly parsed object or null
+     */
+    static GameObject defaultParsing(final Map<String, Object> attributes) {
+        final Transform t = parseTransform(attributes, Vector2f.zero(), Dimensions.zero());
+        switch (attributes.get(SJFormatKeys.KEY_ID).toString()) {
+            case ImageObject.TAG:
+                final String imgPath = SJSceneParser.getOriginalValue(attributes, SJFormatKeys.KEY_IMAGE);
+                final SaltyImage img = (SaltyImage) attributes.get(SJFormatKeys.KEY_IMAGE);
+                t.setX(t.getX() - img.getWidth() / 2f);
+                t.setY(t.getY() - img.getHeight() / 2f);
+                return new ImageObject(parseTransform(attributes, Vector2f.zero(), img.getDimensions()), img, imgPath);
+            default:
+                return null;
+        }
+    }
+
     static Transform parseTransform(final Map<String, Object> attributes,
                                     final Vector2f defaultPosition,
                                     final Dimensions defaultDimensions) {

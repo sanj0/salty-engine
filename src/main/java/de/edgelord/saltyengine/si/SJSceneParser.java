@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.si;
 
+import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
@@ -36,6 +37,7 @@ import static de.edgelord.saltyengine.si.SJFormatKeys.*;
  */
 public class SJSceneParser {
 
+    public static final String ORIGINAL_VALUE_PREFIX = "orig.";
     private final List<String> sanjoData;
 
     public SJSceneParser(final List<String> sanjoData) {
@@ -59,6 +61,7 @@ public class SJSceneParser {
             final Map<String, Object> attributes = new HashMap<>();
             for (final SJValue value : child.getValues().values()) {
                 attributes.put(value.getKey(), parseAttribute(value));
+                attributes.put(ORIGINAL_VALUE_PREFIX + value.getKey(), value.string());
             }
             objectMaps.add(attributes);
         }
@@ -77,10 +80,16 @@ public class SJSceneParser {
                 return Dimensions.parseDimensions(value.string());
             case KEY_TRANSFORM:
                 return Transform.parseTransform(value.string());
+            case KEY_IMAGE:
+                return new InnerResource().getImageResource(value.string());
             case KEY_NAME:
             case KEY_ID:
             default:
                 return value.string();
         }
+    }
+
+    public static String getOriginalValue(final Map<String, Object> attribs, final String key) {
+        return attribs.get(ORIGINAL_VALUE_PREFIX + key).toString();
     }
 }

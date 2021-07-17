@@ -1,6 +1,7 @@
 package de.edgelord.saltyengine.si;
 
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.graphics.image.ImageObject;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.sanjo.SJClass;
@@ -11,13 +12,27 @@ import java.util.Map;
 
 public interface SJGameObjectDeParser {
     /**
-     * Deparses the given GameObject into an SJClass
-     * used to re-parse it via {@link SJGameObjectParser}
+     * Deparses the given GameObject into an SJClass used to re-parse it via
+     * {@link SJGameObjectParser}
      *
      * @param object an object
+     *
      * @return the SJClass representation of the object
      */
     SJClass deparse(final GameObject object);
+
+    static SJClass defaultDeparsing(final GameObject object, final String className) {
+        final SJClass clazz = new SJClass(className);
+        switch (object.getTag()) {
+            case ImageObject.TAG:
+                clazz.addValue(SJFormatKeys.KEY_ID, ImageObject.TAG);
+                clazz.addValue(SJFormatKeys.KEY_TRANSFORM, object.getTransform());
+                clazz.addValue(SJFormatKeys.KEY_IMAGE, ((ImageObject) object).getImgPath());
+                return clazz;
+            default:
+                return null;
+        }
+    }
 
     static SJValue deparseTransform(final Transform t) {
         return new SJValue(SJFormatKeys.KEY_TRANSFORM, t.getX() + ", " + t.getY() + ", " + t.getWidth() + ", " + t.getHeight());
