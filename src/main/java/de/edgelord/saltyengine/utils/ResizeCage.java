@@ -4,6 +4,7 @@ import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.interfaces.TransformedObject;
 import de.edgelord.saltyengine.gameobject.GameObject;
+import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.input.Input;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -77,6 +78,9 @@ public class ResizeCage extends GameObject {
         final Vector2f position = handle0.getCentre();
         final Dimensions size = handle2.getCentre().subtracted(position).toDimensions();
         subject.setTransform(new Transform(position, size));
+        if (subject instanceof GameObject) {
+            ((GameObject) subject).setHitbox(new SimpleHitbox((GameObject) subject, subject.getWidth(), subject.getHeight(), 0, 0));
+        }
     }
 
     private boolean checkHandleGrab(final Transform handle, final Transform cursor) {
