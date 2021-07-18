@@ -64,6 +64,7 @@ public class DesignerSceneKeyboardHandler extends KeyboardInputAdapter {
             case 'r':
                 Game.getCamera().setPosition(Vector2f.zero());
                 Game.getCamera().setScale(1.0f);
+                break;
         }
     }
 }

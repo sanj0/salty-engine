@@ -98,6 +98,21 @@ public class DesignerScene extends Scene {
     }
 
     @Override
+    public void onFixedTick() {
+        super.onFixedTick();
+        if (Input.isInputLeft()) {
+            Game.getCamera().moveX(-.02f);
+        } else if (Input.isInputRight()) {
+            Game.getCamera().moveY(.02f);
+        }
+        if (Input.isInputUp()) {
+            Game.getCamera().moveY(-0.2f);
+        } else if (Input.isInputDown()) {
+            Game.getCamera().moveY(.02f);
+        }
+    }
+
+    @Override
     public void initialize() {
         System.out.println("welcome to the salty engine level editor! Try \"objects\" for a list of available objects that can be placed using 'n'");
         CompletableFuture.runAsync(() -> {
