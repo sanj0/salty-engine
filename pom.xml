@@ -22,10 +22,10 @@
 
     <groupId>de.edgelord.salty-engine</groupId>
     <artifactId>salty-engine</artifactId>
-    <version>0.14.21-SNAPSHOT</version>
+    <version>0.15-SNAPSHOT</version>
 
     <name>Salty Engine</name>
-    <url>https://github.com/edgelord314/salty-engine/</url>
+    <url>https://github.com/sanj0/salty-engine/</url>
 
     <dependencies>
         <dependency>
