@@ -16,15 +16,13 @@
 
 package de.edgelord.saltyengine.si;
 
+import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.resource.InnerResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
-import de.edgelord.sanjo.SJClass;
-import de.edgelord.sanjo.SJValue;
-import de.edgelord.sanjo.SanjoFile;
-import de.edgelord.sanjo.SanjoParser;
+import de.edgelord.sanjo.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,11 +81,15 @@ public class SJSceneParser {
 
     public SJScene parseScene(final SJGameObjectParser gameObjectParser) {
         final SJClass dataRoot = new SanjoParser().parse(sanjoData);
-        final String name = dataRoot.getValue(KEY_NAME).orElse(SJValue.forValue("")).string();
         final List<Map<String, Object>> objectMaps = new ArrayList<>();
         final Map<String, SJValue> rootAttributes = dataRoot.getValues();
         final Optional<SJClass> sceneClass = dataRoot.getChild("scene");
-        final Optional<SJValue> gravity = sceneClass.isPresent() ? sceneClass.get().getValue("gravity") : Optional.empty();
+        final Optional<SJValue> gravity = dataRoot.get(SJAddress.forString(">scene?gravity"));
+        final Optional<SJValue> camPos = dataRoot.get(SJAddress.forString(">scene?camera-position"));
+        final Optional<SJValue> camScale = dataRoot.get(SJAddress.forString(">scene?camera-scale"));
+
+        camPos.ifPresent(v -> Game.getCamera().setPosition(Vector2f.parseVector2f(v.string())));
+        camScale.ifPresent(v -> Game.getCamera().setScale(v.floatValue()));
         sceneClass.ifPresent(sjClass -> dataRoot.getChildren().remove(sjClass));
 
         for (final SJClass child : dataRoot.getChildren()) {

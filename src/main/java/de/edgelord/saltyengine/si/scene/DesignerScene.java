@@ -43,6 +43,7 @@ import static de.edgelord.saltyengine.si.SJSceneParser.parseAttribute;
 
 public class DesignerScene extends Scene {
     private final Map<String, Map<String, Object>> defaults = new HashMap<>();
+    private final Map<Character, String> hotkeys = new HashMap<>();
     private final SJGameObjectParser gameObjectParser;
     private final SJGameObjectDeParser deParser;
     private List<GameObject> selectedGameObjects = new ArrayList<>();
@@ -65,12 +66,18 @@ public class DesignerScene extends Scene {
 
     private void loadConfig(final String configPath) throws IOException {
         final SJClass defaultsRoot = new SanjoParser().parse(SanjoFile.readLines(new InnerResource().getFileResource(configPath)));
+        final Optional<SJClass> metaInf = defaultsRoot.getChild("meta-inf");
         final Optional<SJValue> defaultId = defaultsRoot.get(SJAddress.forString(">meta-inf?default-id"));
+        metaInf.ifPresent(c -> defaultsRoot.getChildren().remove(c));
         for (final SJClass child : defaultsRoot.getChildren()) {
             final Map<String, Object> attributes = new HashMap<>();
             for (final SJValue value : child.getValues().values()) {
-                attributes.put(value.getKey(), parseAttribute(value));
-                attributes.put(SJSceneParser.ORIGINAL_VALUE_PREFIX + value.getKey(), value);
+                if (value.getKey().equals("editor-hotkey")) {
+                    hotkeys.put(value.string().charAt(0), child.getName());
+                } else {
+                    attributes.put(value.getKey(), parseAttribute(value));
+                    attributes.put(SJSceneParser.ORIGINAL_VALUE_PREFIX + value.getKey(), value);
+                }
             }
             attributes.put(SJFormatKeys.KEY_ID, child.getName());
             defaults.put(child.getName(), attributes);
@@ -122,6 +129,8 @@ public class DesignerScene extends Scene {
                         final SJClass root = SJClass.defaultClass();
                         final SJClass sceneClass = new SJClass("scene");
                         sceneClass.addValue("gravity", getGravity());
+                        sceneClass.addValue("camera-position", Game.getCamera().getX() + ", " + Game.getCamera().getY());
+                        sceneClass.addValue("camera-scale", Game.getCamera().getScale());
                         root.addChild(sceneClass);
                         for (final GameObject g : getGameObjects()) {
                             final SJClass clazz = deParser.deparse(g);
@@ -267,5 +276,14 @@ public class DesignerScene extends Scene {
      */
     public File getSceneFile() {
         return sceneFile;
+    }
+
+    /**
+     * Gets {@link #hotkeys}.
+     *
+     * @return the value of {@link #hotkeys}
+     */
+    public Map<Character, String> getHotkeys() {
+        return hotkeys;
     }
 }

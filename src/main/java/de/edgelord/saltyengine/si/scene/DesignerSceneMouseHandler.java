@@ -29,6 +29,7 @@ import java.util.List;
 
 public class DesignerSceneMouseHandler extends MouseInputAdapter {
     private Vector2f dragStart = null;
+    private boolean draggingObject = false;
     private final DesignerScene owner;
 
     public DesignerSceneMouseHandler(final DesignerScene owner) {
@@ -39,10 +40,11 @@ public class DesignerSceneMouseHandler extends MouseInputAdapter {
     public void mouseDragged(MouseEvent e) {
         final ResizeCage resizeCage = owner.getResizeCage();
         if (resizeCage != null) {
-            if (resizeCage.clicked(Input.getCursor())) {
+            if (!draggingObject && resizeCage.clicked(Input.getCursor())) {
                 return;
             }
         }
+        draggingObject = true;
         for (final GameObject g : owner.getSelectedGameObjects()) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 final Vector2f mousePos = Input.getCursorPosition();
@@ -58,7 +60,7 @@ public class DesignerSceneMouseHandler extends MouseInputAdapter {
         final ResizeCage resizeCage = owner.getResizeCage();
         if (e.getButton() == MouseEvent.BUTTON1) {
             if (resizeCage != null) {
-                if (resizeCage.clicked(Input.getCursor())) {
+                if (!draggingObject && resizeCage.clicked(Input.getCursor())) {
                     return;
                 }
             }
@@ -91,12 +93,17 @@ public class DesignerSceneMouseHandler extends MouseInputAdapter {
                         if (!owner.getSelectedGameObjects().remove(g)) {
                             owner.getSelectedGameObjects().add(g);
                             owner.setResizeCage(new ResizeCage(g, 20 / Game.getCamera().getScale(), ColorUtil.RED));
-                            owner.addGameObject(resizeCage);
+                            owner.addGameObject(owner.getResizeCage());
                         }
                         break;
                     }
                 }
             }
         }
+    }
+
+    @Override
+    public void mouseReleased(final MouseEvent e) {
+        draggingObject = false;
     }
 }

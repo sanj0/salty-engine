@@ -37,6 +37,9 @@ public class DesignerSceneKeyboardHandler extends KeyboardInputAdapter {
 
     @Override
     public void keyTyped(final KeyEvent e) {
+        if (owner.getHotkeys().containsKey(e.getKeyChar())) {
+            owner.setSelectedDefault(owner.getDefaults().get(owner.getHotkeys().get(e.getKeyChar())));
+        }
         switch (e.getKeyChar()) {
             case 'n':
                 final Map<String, Object> attributes = new HashMap<>(owner.getSelectedDefault());
