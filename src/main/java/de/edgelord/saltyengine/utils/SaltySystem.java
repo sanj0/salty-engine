@@ -33,8 +33,8 @@ import java.awt.image.VolatileImage;
 
 public class SaltySystem {
 
-    public static final String versionTag = "0.14.21-SNAPSHOT";
-    public static final String version = "0.14.21";
+    public static final String versionTag = "0.15-SNAPSHOT";
+    public static final String version = "0.15";
     public static final VersionMode versionMode = VersionMode.SNAPSHOT;
     public static final GraphicsConfiguration GC =
             GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
