@@ -47,19 +47,19 @@ public abstract class Host implements Repaintable, CentrePositionProvider, Curre
     private boolean fullscreenToggleF = true;
 
     /**
+     * Returns the background color of the game.
+     *
+     * @return the background color of the game
+     */
+    public abstract Color getBackgroundColor();
+
+    /**
      * This method sets the background color of the host. This is the color that
      * is seen there, where nothing is drawn.
      *
      * @param color the new background color
      */
     public abstract void setBackgroundColor(Color color);
-
-    /**
-     * Returns the background color of the game.
-     *
-     * @return the background color of the game
-     */
-    public abstract Color getBackgroundColor();
 
     public abstract boolean showConfirmDialog(String message);
 

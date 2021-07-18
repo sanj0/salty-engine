@@ -46,10 +46,10 @@ public class DesignerScene extends Scene {
     private final Map<Character, String> hotkeys = new HashMap<>();
     private final SJGameObjectParser gameObjectParser;
     private final SJGameObjectDeParser deParser;
+    private final File sceneFile;
     private List<GameObject> selectedGameObjects = new ArrayList<>();
     private Map<String, Object> selectedDefault = null;
     private ResizeCage resizeCage = null;
-    private final File sceneFile;
 
     public DesignerScene(final String configPath, final File scene, final SJGameObjectParser gameObjectParser, final SJGameObjectDeParser deParser) throws IOException {
         this.gameObjectParser = gameObjectParser;
@@ -99,6 +99,7 @@ public class DesignerScene extends Scene {
 
     @Override
     public void initialize() {
+        System.out.println("welcome to the salty engine level editor! Try \"objects\" for a list of available objects that can be placed using 'n'");
         CompletableFuture.runAsync(() -> {
             String input;
             final Scanner stdin = new Scanner(System.in);
@@ -118,10 +119,13 @@ public class DesignerScene extends Scene {
                             System.err.println("set syntax: set key value");
                         } else if (!selectedGameObjects.isEmpty()) {
                             final GameObject go = selectedGameObjects.get(0);
+                            removeGameObject(go);
                             final SJClass deparsedData = deParser.deparse(go);
                             deparsedData.addValue(components[1], components[2]);
-                            removeGameObject(go);
-                            addGameObject(gameObjectParser.parseGameObject(SJSceneParser.readAttributes(deparsedData)));
+                            final GameObject newGo = gameObjectParser.parseGameObject(SJSceneParser.readAttributes(deparsedData));
+                            addGameObject(newGo);
+                            selectedGameObjects.clear();
+                            selectedGameObjects.add(newGo);
                         }
                         break;
                     case "write":
@@ -133,9 +137,11 @@ public class DesignerScene extends Scene {
                         sceneClass.addValue("camera-scale", Game.getCamera().getScale());
                         root.addChild(sceneClass);
                         for (final GameObject g : getGameObjects()) {
-                            final SJClass clazz = deParser.deparse(g);
-                            if (!clazz.getValues().isEmpty()) {
-                                root.addChild(deParser.deparse(g));
+                            if (g != resizeCage) {
+                                final SJClass clazz = deParser.deparse(g);
+                                if (!clazz.getValues().isEmpty()) {
+                                    root.addChild(deParser.deparse(g));
+                                }
                             }
                         }
                         if (components.length == 1) {
@@ -160,6 +166,13 @@ public class DesignerScene extends Scene {
                             i++;
                         }
                         break;
+                    case "objects":
+                        System.out.println("available objects (selected is marked):");
+                        for (final String id : defaults.keySet()) {
+                            System.out.print(defaults.get(id) == selectedDefault ? "*" : " ");
+                            System.out.println("   " + id);
+                        }
+                        break;
                     case "remove":
                         if (components.length != 2) {
                             System.err.println("remove syntax: remove index");
@@ -176,7 +189,7 @@ public class DesignerScene extends Scene {
         super.draw(saltyGraphics);
         saltyGraphics.setTransform(Game.getCamera().getAffineTransform());
         saltyGraphics.setColor(ColorUtil.ORANGE_RED);
-        final float[] dash1 = { 2f, 0f, 2f };
+        final float[] dash1 = {2f, 0f, 2f};
         saltyGraphics.setStroke(new BasicStroke(1,
                 BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_ROUND,

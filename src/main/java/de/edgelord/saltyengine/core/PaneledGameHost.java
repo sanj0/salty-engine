@@ -71,13 +71,13 @@ public class PaneledGameHost extends Host {
     }
 
     @Override
-    public void setBackgroundColor(final Color color) {
-        stage.setBackground(color);
+    public Color getBackgroundColor() {
+        return stage.getBackground();
     }
 
     @Override
-    public Color getBackgroundColor() {
-        return stage.getBackground();
+    public void setBackgroundColor(final Color color) {
+        stage.setBackground(color);
     }
 
     @Override

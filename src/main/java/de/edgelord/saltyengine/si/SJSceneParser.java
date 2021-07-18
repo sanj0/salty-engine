@@ -79,6 +79,10 @@ public class SJSceneParser {
         }
     }
 
+    public static String getOriginalValue(final Map<String, Object> attribs, final String key) {
+        return attribs.get(ORIGINAL_VALUE_PREFIX + key).toString();
+    }
+
     public SJScene parseScene(final SJGameObjectParser gameObjectParser) {
         final SJClass dataRoot = new SanjoParser().parse(sanjoData);
         final List<Map<String, Object>> objectMaps = new ArrayList<>();
@@ -96,9 +100,5 @@ public class SJSceneParser {
             objectMaps.add(readAttributes(child));
         }
         return new SJScene(gameObjectParser, objectMaps, rootAttributes, gravity.orElse(SJValue.forValue(1000)).floatValue());
-    }
-
-    public static String getOriginalValue(final Map<String, Object> attribs, final String key) {
-        return attribs.get(ORIGINAL_VALUE_PREFIX + key).toString();
     }
 }

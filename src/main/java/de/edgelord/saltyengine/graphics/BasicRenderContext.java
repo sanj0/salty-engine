@@ -25,8 +25,7 @@ import java.awt.*;
 /**
  * A basic implementation of {@link RenderContext} with: <br> - a{@link Color}
  * <br> - a {@link Paint} <br> - a {@link Stroke} <br> - a {@link #alpha} <br>
- * -
- * and a {@link Font}
+ * - and a {@link Font}
  */
 public class BasicRenderContext implements RenderContext {
 

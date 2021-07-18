@@ -39,21 +39,6 @@ public class Vector2f {
         return new Vector2f(Float.parseFloat(components[0].trim()), Float.parseFloat(components[1].trim()));
     }
 
-    public Dimensions toDimensions() {
-        return new Dimensions(x, y);
-    }
-
-    public Vector2f abs() {
-        x = Math.abs(x);
-        y = Math.abs(y);
-        return this;
-    }
-
-    public Vector2f absed() {
-        final Vector2f absed = new Vector2f(this);
-        return absed.abs();
-    }
-
     public static Vector2f zero() {
         return new Vector2f(0, 0);
     }
@@ -76,6 +61,21 @@ public class Vector2f {
 
     public static Vector2f negativeOne() {
         return new Vector2f(-1, -1);
+    }
+
+    public Dimensions toDimensions() {
+        return new Dimensions(x, y);
+    }
+
+    public Vector2f abs() {
+        x = Math.abs(x);
+        y = Math.abs(y);
+        return this;
+    }
+
+    public Vector2f absed() {
+        final Vector2f absed = new Vector2f(this);
+        return absed.abs();
     }
 
     public float dotProduct(final Vector2f v1) {

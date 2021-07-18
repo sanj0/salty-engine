@@ -16,6 +16,7 @@
 
 package de.edgelord.saltyengine.si;
 
+import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.scene.Scene;
 import de.edgelord.sanjo.SJValue;
 
@@ -39,7 +40,11 @@ public class SJScene extends Scene {
     @Override
     public void initialize() {
         for (final Map<String, Object> objectMap : objectMaps) {
-            addGameObject(parser.parseGameObject(objectMap));
+            final GameObject g = parser.parseGameObject(objectMap);
+            if (g == null) {
+                throw new IllegalArgumentException("couldn't parse gameobject (id=" + objectMap.get(SJFormatKeys.KEY_ID) + ")");
+            }
+            addGameObject(g);
         }
     }
 

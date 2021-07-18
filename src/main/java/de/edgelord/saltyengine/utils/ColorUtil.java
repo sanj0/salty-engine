@@ -151,6 +151,7 @@ public class ColorUtil {
     public static final Color SEA_SHELL = new Color(255, 245, 238);
     public static final Color OLD_LACE = new Color(253, 245, 230);
     public static final Color TRANSPARENT_COLOR = new Color(0, 0, 0, 0);
+    public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 
     // Plain Colors:
     public static final Color MAX_RED = new Color(255, 0, 0);
@@ -216,7 +217,9 @@ public class ColorUtil {
      * <br>#html
      * <br>r, g, b, (a)
      * <p>returns null if s is not in the correct format
+     *
      * @param s a string that represents a color
+     *
      * @return the Color represented by the given string or null
      */
     public static Color parseColor(final String s) {
@@ -231,7 +234,7 @@ public class ColorUtil {
                 return null;
             }
             return new Color(Integer.parseInt(components[0].trim()),
-                        Integer.parseInt(components[1].trim()), Integer.parseInt(components[2].trim()), alpha);
+                    Integer.parseInt(components[1].trim()), Integer.parseInt(components[2].trim()), alpha);
         }
     }
 

@@ -26,25 +26,23 @@ import java.awt.*;
  */
 public class GraphicsConfiguration {
 
-    private GraphicsConfiguration() {
-    }
-
     /**
      * The {@link RenderingHints} that should be used by every render
      * operation.
      */
     public static RenderingHints renderingHints = Stage.hqRenderingHints;
-
     /**
      * Controls if a {@link de.edgelord.saltyengine.scene.Scene} renders it
      * {@link de.edgelord.saltyengine.graphics.light.LightSystem} or not.
      */
     public static boolean renderLight = true;
-
     /**
      * Decides whether or not graphics effects should be rendered or not. In the
      * engine, this flag e.g. disables and enables the render process of {@link
      * de.edgelord.saltyengine.emitter.EmitterComponent}
      */
     public static boolean renderGFX = true;
+
+    private GraphicsConfiguration() {
+    }
 }

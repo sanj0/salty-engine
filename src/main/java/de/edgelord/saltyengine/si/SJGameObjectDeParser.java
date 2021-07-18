@@ -11,16 +11,6 @@ import java.awt.*;
 import java.util.Map;
 
 public interface SJGameObjectDeParser {
-    /**
-     * Deparses the given GameObject into an SJClass used to re-parse it via
-     * {@link SJGameObjectParser}
-     *
-     * @param object an object
-     *
-     * @return the SJClass representation of the object
-     */
-    SJClass deparse(final GameObject object);
-
     static SJClass defaultDeparsing(final GameObject object, final String className) {
         final SJClass clazz = new SJClass(className);
         switch (object.getTag()) {
@@ -39,14 +29,15 @@ public interface SJGameObjectDeParser {
     }
 
     /**
-     * Deparses the given color into a {@link SJValue}.
-     * When {@code tryName} is true, this method will try to
-     * match the given Color with one from the {@link de.edgelord.saltyengine.utils.ColorUtil}
-     * class and deparse it as the name of that color instead.
+     * Deparses the given color into a {@link SJValue}. When {@code tryName} is
+     * true, this method will try to match the given Color with one from the
+     * {@link de.edgelord.saltyengine.utils.ColorUtil} class and deparse it as
+     * the name of that color instead.
      *
      * @param c       a color
-     * @param tryName try to match it to a {@link de.edgelord.saltyengine.utils.ColorUtil} color
-     *                and deparse it as the name of it?
+     * @param tryName try to match it to a {@link de.edgelord.saltyengine.utils.ColorUtil}
+     *                color and deparse it as the name of it?
+     *
      * @return the deparsed color
      */
     static SJValue deparseColor(final Color c, final boolean tryName) {
@@ -59,4 +50,14 @@ public interface SJGameObjectDeParser {
         }
         return new SJValue(SJFormatKeys.KEY_COLOR, c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
     }
+
+    /**
+     * Deparses the given GameObject into an SJClass used to re-parse it via
+     * {@link SJGameObjectParser}
+     *
+     * @param object an object
+     *
+     * @return the SJClass representation of the object
+     */
+    SJClass deparse(final GameObject object);
 }

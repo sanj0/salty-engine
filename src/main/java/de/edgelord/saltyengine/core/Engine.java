@@ -25,11 +25,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * The <code>Engine</code> handles
- * the periodic invocation of the
- * functions responsible for repainting
- * and fixed tick tasks and actions.
- * Teh working instance is {@link Game#getEngine()}.
+ * The <code>Engine</code> handles the periodic invocation of the functions
+ * responsible for repainting and fixed tick tasks and actions. Teh working
+ * instance is {@link Game#getEngine()}.
  */
 public class Engine {
 

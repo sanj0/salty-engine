@@ -28,9 +28,9 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class DesignerSceneMouseHandler extends MouseInputAdapter {
+    private final DesignerScene owner;
     private Vector2f dragStart = null;
     private boolean draggingObject = false;
-    private final DesignerScene owner;
 
     public DesignerSceneMouseHandler(final DesignerScene owner) {
         this.owner = owner;

@@ -45,9 +45,9 @@ public class Serializer {
     private static final List<Serializable> consumer = new ArrayList<>();
     /**
      * The name of the file this process should be saving the data to when the
-     * display is closing (only works when using {@link DisplayManager}
-     * as the {@link de.edgelord.saltyengine.core.Host}, which is default). This
-     * is to be relative and without any file extensions.
+     * display is closing (only works when using {@link DisplayManager} as the
+     * {@link de.edgelord.saltyengine.core.Host}, which is default). This is to
+     * be relative and without any file extensions.
      */
     private static String saveFileName = "save0";
     /**

@@ -31,13 +31,13 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SceneManager {
 
-    private SceneManager() {
-    }
-
     /**
      * The <code>Scene</code> that is currently being rendered and processed.
      */
     private static Scene currentScene = new EmptyScene();
+
+    private SceneManager() {
+    }
 
     /**
      * Gets {@link #currentScene}.

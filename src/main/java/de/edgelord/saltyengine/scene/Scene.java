@@ -68,13 +68,12 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
      * has an of <code>0</code>.
      */
     public static final String DEFAULT_LAYER = "default-layer";
-    private final Map<String, Layer> layers = new ConcurrentHashMap<>();
-    private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
     // potentially a decent fix of the collision detection problem
     // as the list only stores references and thus does not need
     // much memory
     protected final List<GameObject> allGameObjects = new ArrayList<>();
-
+    private final Map<String, Layer> layers = new ConcurrentHashMap<>();
+    private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
     private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
     /**

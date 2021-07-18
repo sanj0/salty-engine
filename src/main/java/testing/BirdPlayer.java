@@ -36,14 +36,13 @@ import de.edgelord.sanjo.SJClass;
 public class BirdPlayer extends GameObject implements Serializable {
 
     private static final float speed = 2500f;
-    private SpritesheetAnimation spritesheetAnimation;
     private final LinearTransformAnimations keyFrameAnimationX = new LinearTransformAnimations(this, "mySuperAnimationX", LinearTransformAnimations.Control.X_POS);
     private final LinearTransformAnimations keyFrameAnimationRotation = new LinearTransformAnimations(this, "mySuperAnimationRotation", LinearTransformAnimations.Control.ROTATION);
     private final LinearTransformAnimations keyFrameAnimationWidth = new LinearTransformAnimations(this, "mySuperAnimationWidth", LinearTransformAnimations.Control.WIDTH);
     private final LinearTransformAnimations keyFrameAnimationHeight = new LinearTransformAnimations(this, "mySuperAnimationHeight", LinearTransformAnimations.Control.HEIGHT);
-
     private final AnimationRender animationRender;
     private final FixedRate soundTiming = new FixedRate(this, "soundTiming", 350);
+    private SpritesheetAnimation spritesheetAnimation;
 
     public BirdPlayer(final Vector2f position, final SaltyImage spriteSheetImage) {
         super(position.getX(), position.getY(), 0, 0, "testing.birdPlayer");

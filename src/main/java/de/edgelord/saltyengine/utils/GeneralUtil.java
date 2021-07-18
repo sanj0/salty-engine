@@ -32,13 +32,13 @@ import static java.lang.Math.toDegrees;
  */
 public class GeneralUtil {
 
-    private GeneralUtil() {
-    }
-
     /**
      * The <code>Random</code> instance used for all utils that need one.
      */
     private static final SecureRandom random = new SecureRandom();
+
+    private GeneralUtil() {
+    }
 
     public static Stroke dashedStroke(final float width, final float dashPhase, final float... dash) {
         return new BasicStroke(width, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, dash, dashPhase);

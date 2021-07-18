@@ -44,21 +44,6 @@ public class Dimensions {
         return new Dimensions(Float.parseFloat(components[0].trim()), Float.parseFloat(components[1].trim()));
     }
 
-    public Vector2f toVector2f() {
-        return new Vector2f(width, height);
-    }
-
-    public Dimensions abs() {
-        width = Math.abs(width);
-        height = Math.abs(height);
-        return this;
-    }
-
-    public Dimensions absed() {
-        final Dimensions absed = new Dimensions(this);
-        return absed.abs();
-    }
-
     public static Dimensions zero() {
         return new Dimensions(0, 0);
     }
@@ -77,6 +62,21 @@ public class Dimensions {
 
     public static Dimensions one() {
         return new Dimensions(1, 1);
+    }
+
+    public Vector2f toVector2f() {
+        return new Vector2f(width, height);
+    }
+
+    public Dimensions abs() {
+        width = Math.abs(width);
+        height = Math.abs(height);
+        return this;
+    }
+
+    public Dimensions absed() {
+        final Dimensions absed = new Dimensions(this);
+        return absed.abs();
     }
 
     public float getWidth() {

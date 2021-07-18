@@ -94,9 +94,9 @@ public class ImageUtils {
      * Creates a new {@link SaltyImage} with the given width and height and
      * draws the given image onto it, filling the new image entirely.
      *
-     * @param image  the image to resize
-     * @param width  the width of the new image
-     * @param height the height of the new image
+     * @param image         the image to resize
+     * @param width         the width of the new image
+     * @param height        the height of the new image
      * @param interpolation the interpolation rendering hint to be used
      *
      * @return a new image which contains the old image
@@ -113,7 +113,7 @@ public class ImageUtils {
      * @param image  the image to resize
      * @param width  the width of the new image
      * @param height the height of the new image
-     * @param hints the RenderingHints to be used for drawing the scaled image
+     * @param hints  the RenderingHints to be used for drawing the scaled image
      *
      * @return a new image which contains the old image
      */

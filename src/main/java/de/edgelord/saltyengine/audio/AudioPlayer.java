@@ -65,8 +65,7 @@ public class AudioPlayer {
     /**
      * This method loads a new <code>Clip</code> from the
      * <code>AudioFactory</code> into a new <code>Audio</code> together with
-     * the
-     * name and adds it to the list.
+     * the name and adds it to the list.
      *
      * @param name         the id-name for the new
      *                     <code>Audio</code>
