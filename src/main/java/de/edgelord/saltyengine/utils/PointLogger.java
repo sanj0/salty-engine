@@ -137,7 +137,7 @@ public class PointLogger extends DrawingRoutine implements MouseInputHandler {
             System.out.println("Successfully added the point " + name + " to the save-queue. Exiting the game will automatically save them all.");
         } else {
             lastPoint = Input.getCursorPosition();
-            System.out.println("Temporally saved " + getPointIndicator(lastPoint) + " as the last point. Click while holding shift or alt to save it.");
+            System.out.println("Temporarily saved " + getPointIndicator(lastPoint) + " as the last point. Click while holding shift or alt to save it.");
         }
     }
 

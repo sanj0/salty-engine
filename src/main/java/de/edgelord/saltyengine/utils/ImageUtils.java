@@ -201,7 +201,7 @@ public class ImageUtils {
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;
         }
-        final BufferedImage bufferedImage = SaltySystem.GC.createCompatibleImage(image.getWidth(Game.getHost().getImageObserver()), image.getHeight(Game.getHost().getImageObserver()), BufferedImage.TYPE_INT_ARGB);
+        final BufferedImage bufferedImage = SaltySystem.GC.createCompatibleImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         copyImageTo(image, bufferedImage);
 
         return bufferedImage;

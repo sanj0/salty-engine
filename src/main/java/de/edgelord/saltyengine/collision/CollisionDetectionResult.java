@@ -28,7 +28,7 @@ public class CollisionDetectionResult {
 
     /**
      * This is <code>true</code> when the two {@link de.edgelord.saltyengine.gameobject.GameObject}s
-     * collides and <code>false</code> when not.
+     * collide and <code>false</code> when not.
      */
     private final boolean collision;
 

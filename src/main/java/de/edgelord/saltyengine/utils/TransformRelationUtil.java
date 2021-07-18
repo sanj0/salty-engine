@@ -37,12 +37,10 @@ public class TransformRelationUtil {
     }
 
     public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final List<GameObject> transforms) {
-
         positionRelativeTo(mode, superTransform, transforms.toArray(new GameObject[0]));
     }
 
     public static void positionRelativeTo(final TransformRelationMode mode, final GameObject superTransform, final GameObject... transforms) {
-
         final Transform[] transformsFromGameObjects = new Transform[transforms.length];
 
         for (int i = 0; i < transforms.length; i++) {
@@ -53,9 +51,7 @@ public class TransformRelationUtil {
     }
 
     public static void positionRelativeTo(final TransformRelationMode mode, final Transform superTransform, final Transform... transforms) {
-
         switch (mode) {
-
             case CENTRE:
                 final Vector2f centre = superTransform.getCentre();
 

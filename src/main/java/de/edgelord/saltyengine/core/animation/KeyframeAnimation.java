@@ -22,6 +22,7 @@ import java.util.*;
  * An abstract implementation of the
  * <code>Keyframe animation</code> concept.
  */
+// fixme HORRRRRRRIBLEEEEEEEEEEEEEEEEEEE
 public abstract class KeyframeAnimation {
 
     // v = u0 * (1 - x)^3 + 3 * u1 * (1 - x)^2 * x + 3 * u2 * (1 - x) * x^2 + u3 * x^3

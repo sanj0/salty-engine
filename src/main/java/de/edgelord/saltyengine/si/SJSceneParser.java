@@ -48,27 +48,19 @@ public class SJSceneParser {
         sanjoData = SanjoFile.readLines(f);
     }
 
-    public SJScene parseScene(final SJGameObjectParser gameObjectParser) {
-        final SJClass dataRoot = new SanjoParser().parse(sanjoData);
-        final String name = dataRoot.getValue(KEY_NAME).orElse(SJValue.forValue("")).string();
-        final List<Map<String, Object>> objectMaps = new ArrayList<>();
-        final Map<String, SJValue> rootAttributes = dataRoot.getValues();
-        final Optional<SJClass> sceneClass = dataRoot.getChild("scene");
-        final Optional<SJValue> gravity = sceneClass.isPresent() ? sceneClass.get().getValue("gravity") : Optional.empty();
-        sceneClass.ifPresent(sjClass -> dataRoot.getChildren().remove(sjClass));
-
-        for (final SJClass child : dataRoot.getChildren()) {
-            final Map<String, Object> attributes = new HashMap<>();
-            for (final SJValue value : child.getValues().values()) {
-                attributes.put(value.getKey(), parseAttribute(value));
-                attributes.put(ORIGINAL_VALUE_PREFIX + value.getKey(), value.string());
-            }
-            objectMaps.add(attributes);
+    public static Map<String, Object> readAttributes(final SJClass data) {
+        final Map<String, Object> attributes = new HashMap<>();
+        for (final SJValue value : data.getValues().values()) {
+            attributes.put(value.getKey(), parseAttribute(value));
+            attributes.put(ORIGINAL_VALUE_PREFIX + value.getKey(), value.string());
         }
-        return new SJScene(gameObjectParser, objectMaps, rootAttributes, gravity.orElse(SJValue.forValue(1000)).floatValue());
+        return attributes;
     }
 
     public static Object parseAttribute(final SJValue value) {
+        if (!(value.getValue() instanceof String)) {
+            return value.getValue();
+        }
         switch (value.getKey()) {
             case KEY_ANIMATION_FPS:
                 return value.intValue();
@@ -87,6 +79,21 @@ public class SJSceneParser {
             default:
                 return value.string();
         }
+    }
+
+    public SJScene parseScene(final SJGameObjectParser gameObjectParser) {
+        final SJClass dataRoot = new SanjoParser().parse(sanjoData);
+        final String name = dataRoot.getValue(KEY_NAME).orElse(SJValue.forValue("")).string();
+        final List<Map<String, Object>> objectMaps = new ArrayList<>();
+        final Map<String, SJValue> rootAttributes = dataRoot.getValues();
+        final Optional<SJClass> sceneClass = dataRoot.getChild("scene");
+        final Optional<SJValue> gravity = sceneClass.isPresent() ? sceneClass.get().getValue("gravity") : Optional.empty();
+        sceneClass.ifPresent(sjClass -> dataRoot.getChildren().remove(sjClass));
+
+        for (final SJClass child : dataRoot.getChildren()) {
+            objectMaps.add(readAttributes(child));
+        }
+        return new SJScene(gameObjectParser, objectMaps, rootAttributes, gravity.orElse(SJValue.forValue(1000)).floatValue());
     }
 
     public static String getOriginalValue(final Map<String, Object> attribs, final String key) {

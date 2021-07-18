@@ -30,7 +30,6 @@ public class SpritesheetFactory extends Factory {
     }
 
     public Spritesheet getSpritesheet(final String relativePath, final int spriteWidth, final int spriteHeight) {
-
         return new Spritesheet(getResource().getImageResource(relativePath), spriteWidth, spriteHeight);
     }
 }

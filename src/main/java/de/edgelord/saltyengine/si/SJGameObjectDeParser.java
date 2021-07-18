@@ -26,7 +26,7 @@ public interface SJGameObjectDeParser {
         switch (object.getTag()) {
             case ImageObject.TAG:
                 clazz.addValue(SJFormatKeys.KEY_ID, ImageObject.TAG);
-                clazz.addValue(SJFormatKeys.KEY_TRANSFORM, object.getTransform());
+                clazz.addValue(SJFormatKeys.KEY_TRANSFORM, deparseTransform(object.getTransform()));
                 clazz.addValue(SJFormatKeys.KEY_IMAGE, ((ImageObject) object).getImgPath());
                 return clazz;
             default:

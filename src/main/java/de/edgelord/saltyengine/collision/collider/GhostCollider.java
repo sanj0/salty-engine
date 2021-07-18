@@ -36,6 +36,17 @@ public class GhostCollider extends Collider {
         super(Integer.MAX_VALUE, GHOST_COLLIDER);
     }
 
+    /**
+     * Always returns a
+     * <br>{@code new CollisionDetectionResult(false, Directions.Direction.EMPTY)}
+     * <br>to never allow for a collision to happen.
+     *
+     * @param object1 the first <code>GameObject</code>
+     * @param object2 the second {@link GameObject}
+     *
+     * @return a {@link CollisionDetectionResult} that always says "no collision
+     * here!"
+     */
     @Override
     public CollisionDetectionResult checkCollision(final GameObject object1, final GameObject object2) {
         return new CollisionDetectionResult(false, Directions.Direction.EMPTY);

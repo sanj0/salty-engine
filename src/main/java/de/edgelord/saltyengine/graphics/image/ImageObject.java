@@ -22,6 +22,10 @@ import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Transform;
 
+/**
+ * A GameObject that's basically an image. It's collider is a {@link
+ * GhostCollider}.
+ */
 public class ImageObject extends GameObject {
 
     public static final String TAG = "image";

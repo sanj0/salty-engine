@@ -50,8 +50,6 @@ public interface SJGameObjectParser {
             case ImageObject.TAG:
                 final String imgPath = SJSceneParser.getOriginalValue(attributes, SJFormatKeys.KEY_IMAGE);
                 final SaltyImage img = (SaltyImage) attributes.get(SJFormatKeys.KEY_IMAGE);
-                t.setX(t.getX() - img.getWidth() / 2f);
-                t.setY(t.getY() - img.getHeight() / 2f);
                 return new ImageObject(parseTransform(attributes, Vector2f.zero(), img.getDimensions()), img, imgPath);
             default:
                 return null;

@@ -22,6 +22,7 @@ import java.util.List;
  * A {@link KeyframeAnimation} implementation which uses linear transitions
  * between values.
  */
+// fixme PLEEEEEEAAAASEEE god why did I do it with a Map??????????
 public class LinearKeyframeAnimation extends KeyframeAnimation {
 
     /**
