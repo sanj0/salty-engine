@@ -100,11 +100,11 @@ public class DesignerScene extends Scene {
     @Override
     public void onFixedTick() {
         super.onFixedTick();
-        final float camSpeed = Input.getKeyboardInput().isShift() ? 1.5f : 3f;
+        final float camSpeed = Input.getKeyboardInput().isShift() ? 3f : 5f;
         if (Input.isInputLeft()) {
             Game.getCamera().moveX(-camSpeed);
         } else if (Input.isInputRight()) {
-            Game.getCamera().moveY(camSpeed);
+            Game.getCamera().moveX(camSpeed);
         }
         if (Input.isInputUp()) {
             Game.getCamera().moveY(-camSpeed);
