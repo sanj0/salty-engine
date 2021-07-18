@@ -101,14 +101,14 @@ public class DesignerScene extends Scene {
     public void onFixedTick() {
         super.onFixedTick();
         if (Input.isInputLeft()) {
-            Game.getCamera().moveX(-.02f);
+            Game.getCamera().moveX(-1f);
         } else if (Input.isInputRight()) {
-            Game.getCamera().moveY(.02f);
+            Game.getCamera().moveY(1f);
         }
         if (Input.isInputUp()) {
-            Game.getCamera().moveY(-0.2f);
+            Game.getCamera().moveY(-1f);
         } else if (Input.isInputDown()) {
-            Game.getCamera().moveY(.02f);
+            Game.getCamera().moveY(1f);
         }
     }
 
