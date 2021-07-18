@@ -19,7 +19,6 @@ package de.edgelord.saltyengine.scene;
 import de.edgelord.saltyengine.collision.CollisionDetectionResult;
 import de.edgelord.saltyengine.collision.PrioritySceneCollider;
 import de.edgelord.saltyengine.collision.SceneCollider;
-import de.edgelord.saltyengine.components.SimplePhysicsComponent;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.SceneManager;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
@@ -85,7 +84,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     /**
      * The gravity used by all {@link GameObject}s in this Scene.
      */
-    private float gravity = SimplePhysicsComponent.DEFAULT_GRAVITY_ACCELERATION;
+    private float gravity = 1200;
     /**
      * The friction used by all {@link GameObject}s in this Scene.
      */
