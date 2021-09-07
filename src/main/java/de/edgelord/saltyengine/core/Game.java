@@ -40,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static de.edgelord.saltyengine.transform.TransformCreator.t;
+
 /**
  * The central core class of a Salty Engine game. To start a game, call either
  * {@link #init(GameConfig)} or {@link #init(Host, String, long)} <br>
@@ -74,10 +76,9 @@ public class Game {
      */
     private static Camera2D camera;
     /**
-     * The original dimensions of the game aka it's resolution. This will be
-     * it's resolution at any time, a bigger window will only resist in scaling
-     * up, not in a higher resolution as this is easier in terms of logic for
-     * the user of this library and in terms of rendering for this library.
+     * The original dimensions of the game aka it's resolution. This will be its
+     * resolution at any time, a bigger window will only result in scaling up,
+     * not in a higher resolution as this is way easier.
      */
     private static Dimensions gameDimensions;
     /**
@@ -165,7 +166,7 @@ public class Game {
 
     protected static void initSaltySystem(final String gameName) {
         Game.gameName = gameName;
-        camera = new Camera2D(new Vector2f(0, 0), getGameDimensions(), getGameDimensions(), 1f);
+        camera = new Camera2D(t(new Vector2f(0, 0), getGameDimensions()), getGameDimensions(), 1f);
         SaltySystem.defaultHiddenOuterResource = new OuterResource(true);
         SaltySystem.defaultOuterResource = new OuterResource(false);
         SaltySystem.defaultResource = new InnerResource();
@@ -203,7 +204,7 @@ public class Game {
      * @return the virtual <code>Transform</code> of the game
      */
     public static Transform getGameTransform() {
-        return new Transform(Vector2f.zero(), Game.getGameDimensions());
+        return t(Vector2f.zero(), Game.getGameDimensions());
     }
 
     public static Dimensions getGameDimensions() {

@@ -28,13 +28,22 @@ public class Spritesheet implements Flushable {
 
     private final SaltyImage image;
     private int spriteWidth, spriteHeight;
+    private int offsetX, offsetY;
+    private boolean startsWithOffset;
 
-
-    public Spritesheet(final SaltyImage image, final float spriteWidth, final float spriteHeight) {
+    public Spritesheet(final SaltyImage image, final float spriteWidth, final float spriteHeight,
+                       final int offsetX, final int offsetY, final boolean startsWithOffset) {
         this.spriteWidth = Math.round(spriteWidth);
         this.spriteHeight = Math.round(spriteHeight);
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.startsWithOffset = startsWithOffset;
 
         this.image = image;
+    }
+
+    public Spritesheet(final SaltyImage image, final float spriteWidth, final float spriteHeight) {
+        this(image, spriteWidth, spriteHeight, 0, 0, false);
     }
 
     public SpritesheetAnimation getAnimation(final Coordinates... coordinates) {
@@ -52,7 +61,9 @@ public class Spritesheet implements Flushable {
     }
 
     public Frame getFrame(final int x, final int y) {
-        return new Frame(image.getSubImage(x * getSpriteWidth(), y * getSpriteHeight(), getSpriteWidth(), getSpriteHeight()));
+        final int oX = x * offsetX + (startsWithOffset ? offsetX : 0);
+        final int oY = x * offsetY + (startsWithOffset ? offsetY : 0);
+        return new Frame(image.getSubImage(x * getSpriteWidth() + oX, y * getSpriteHeight() + oY, getSpriteWidth(), getSpriteHeight()));
     }
 
     public int getSpriteWidth() {

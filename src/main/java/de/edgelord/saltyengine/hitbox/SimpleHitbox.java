@@ -20,6 +20,7 @@ import de.edgelord.saltyengine.core.annotations.DefaultPlacement;
 import de.edgelord.saltyengine.gameobject.GameObject;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.TransformCreator;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 @DefaultPlacement(method = DefaultPlacement.Method.PARENT)
@@ -33,7 +34,7 @@ public class SimpleHitbox implements Hitbox {
         this.parent = parent;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        this.transform = new Transform(new Vector2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
+        this.transform = TransformCreator.t(new Vector2f(parent.getX() + offsetX, parent.getY() + offsetY), new Dimensions(width, height));
     }
 
     public void recalculate() {

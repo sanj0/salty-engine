@@ -24,6 +24,8 @@ import de.edgelord.saltyengine.graphics.geom.EnumShape;
 import de.edgelord.saltyengine.graphics.geom.SaltyShape;
 import de.edgelord.saltyengine.graphics.image.SaltyBufferedImage;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
+import de.edgelord.saltyengine.graphics.sprite.Frame;
+import de.edgelord.saltyengine.graphics.sprite.SpritesheetAnimation;
 import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
@@ -36,6 +38,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +50,21 @@ public class ImageUtils {
     public static String IMAGE_FORMAT_GIF = "gif";
 
     private ImageUtils() {
+    }
+
+    public static SpritesheetAnimation flipAnimation(final SpritesheetAnimation animation, final boolean horizontally, final boolean vertically) {
+        final SpritesheetAnimation flipped = new SpritesheetAnimation(new ArrayList<>(animation.getFrames().size()));
+        for (final Frame f : animation.getFrames()) {
+            flipped.addFrame(new Frame(flip(f.getImage(), horizontally, vertically)));
+        }
+        return flipped;
+    }
+
+    public static SaltyImage flip(final SaltyImage image, final boolean horizontally, final boolean vertically) {
+        final AffineTransform tx = AffineTransform.getScaleInstance(horizontally ? -1 : 1, vertically ? -1 : 1);
+        tx.translate(horizontally ? -image.getWidth() : 0, vertically ? -image.getHeight() : 0);
+        final AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        return new SaltyBufferedImage(op.filter(image.toBufferedImage(), null));
     }
 
     public static SaltyImage rotate(final SaltyImage source, final float degrees) {

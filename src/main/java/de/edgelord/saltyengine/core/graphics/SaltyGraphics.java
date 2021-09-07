@@ -23,6 +23,7 @@ import de.edgelord.saltyengine.graphics.GraphicsConfiguration;
 import de.edgelord.saltyengine.graphics.image.SaltyImage;
 import de.edgelord.saltyengine.transform.Dimensions;
 import de.edgelord.saltyengine.transform.Transform;
+import de.edgelord.saltyengine.transform.TransformCreator;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.saltyengine.utils.ColorUtil;
 import de.edgelord.saltyengine.utils.SaltySystem;
@@ -1121,8 +1122,9 @@ public class SaltyGraphics {
      * @param width  the width of the clipping rect
      * @param height the height of the clipping rect
      */
+    @Deprecated
     public void setClip(final float x, final float y, final float width, final float height) {
-        setClip(new Transform(x, y, width, height));
+        setClip(TransformCreator.t(x, y, width, height));
     }
 
     /**

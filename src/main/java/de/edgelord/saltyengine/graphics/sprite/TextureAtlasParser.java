@@ -22,6 +22,7 @@ import de.edgelord.saltyengine.resource.OuterResource;
 import de.edgelord.saltyengine.resource.Resource;
 import de.edgelord.saltyengine.transform.Coordinates;
 import de.edgelord.saltyengine.transform.Dimensions;
+import de.edgelord.saltyengine.transform.Transform;
 import de.edgelord.saltyengine.transform.Vector2f;
 import de.edgelord.sanjo.SJClass;
 import de.edgelord.sanjo.SJValue;
@@ -39,13 +40,19 @@ import java.util.*;
  * <pre>
  * .resource=[inner/outer] # defaults to "inner"
  * .source-path=path/to/the/image
- * .sprite-size=widthxheight
+ * .sprite-size=width, height
+ * .sprite-offset=offsetX,offsetY [optional - default: 0,0]
+ * .starts-with-offset=true/false [optional - default: false]
  * :idOfObject1
  *     .type=animation
- *     .sprites[]=x1:y1,x2:y2,x3:y3:...
+ *     .sprites=x1, y1;x2, y2; ...
  * :idOfObject2
  *     .type=image
- *     .sprite=x:y
+ *     .sprite=x, y
+ * :idOfObject3
+ *     .type=animation
+ *     .position=absolute
+ *     .sprites=0, 0, 10, 10;0, 10, 10, 10; ...
  * </pre>
  * <p>
  * Optionally, {@code .position=absolute} together with an own {@code
@@ -64,7 +71,10 @@ public class TextureAtlasParser {
     public static final String KEY_SPRITE_SIZE = "sprite-size";
     public static final String SPRITE_SIZE_SEPARATOR = "x";
 
-    public static final String COORDINATE_SEPARATOR = ":";
+    public static final String KEY_SPRITE_OFFSET = "sprite-offset";
+    public static final String KEY_STARTS_WITH_OFFSET = "starts-with-offset";
+
+    public static final String VALUE_SEPARATOR = ";";
 
     public static final String KEY_POSITION = "position";
     public static final String VALUE_ABSOLUTE = "absolute";
@@ -104,28 +114,46 @@ public class TextureAtlasParser {
         final Resource resource = readResource(dataRoot, path);
         final SaltyImage srcImage = readSourceImage(dataRoot, path, resource);
         final Dimensions spriteSize = readSpriteSize(dataRoot, path);
-        final Spritesheet spritesheet = new Spritesheet(srcImage, spriteSize.getWidth(), spriteSize.getHeight());
+        final Coordinates spriteOffset = readSpriteOffset(dataRoot).toCoordinates();
+        final boolean startsWithOffset = readStartsWithOffset(dataRoot);
+        final Spritesheet spritesheet = new Spritesheet(srcImage, spriteSize.getWidth(), spriteSize.getHeight(),
+                spriteOffset.getX(), spriteOffset.getY(), startsWithOffset);
 
         for (final SJClass object : dataRoot.getChildren()) {
             final boolean absolutePosition = wantsAbsolutePosition(object, path);
-            final Dimensions size = absolutePosition ? readSpriteSize(object, path) : spriteSize;
-            spritesheet.setSpriteWidth((int) size.getWidth());
-            spritesheet.setSpriteHeight((int) size.getHeight());
             final String type = readType(object);
             final Object textureObject;
 
             if (type.equals(VALUE_IMAGE)) {
-                final Vector2f position = readPosition(object.getValue(KEY_SPRITE).get().string(), absolutePosition, size);
-                textureObject = srcImage.subImage((int) position.getX(),
-                        (int) position.getY(), (int) size.getWidth(), (int) size.getHeight());
-            } else if (type.equals(VALUE_ANIMATION)) {
-                final List<String> positionStrings = object.getValue(KEY_SPRITES).get().getList();
-                final List<Coordinates> spriteCoordinates = new ArrayList<>(positionStrings.size());
-
-                for (final String position : positionStrings) {
-                    spriteCoordinates.add(readLiteralPosition(position).toCoordinates());
+                if (absolutePosition) {
+                    final Transform spriteTransform = Transform.parseTransform(object.getValue(KEY_SPRITE).get().string());
+                    textureObject = srcImage.subImage((int) spriteTransform.getX(),
+                            (int) spriteTransform.getY(), (int) spriteTransform.getWidth(), (int) spriteTransform.getHeight());
+                } else {
+                    final Vector2f position = readPosition(object.getValue(KEY_SPRITE).get().string());
+                    final Coordinates c = position.toCoordinates();
+                    textureObject = spritesheet.getFrame(c.getX(), c.getY()).getImage();
                 }
-                textureObject = spritesheet.getAnimation(spriteCoordinates.toArray(new Coordinates[0]));
+            } else if (type.equals(VALUE_ANIMATION)) {
+                final List<String> strings = Arrays.asList(object.getValue(KEY_SPRITES).get().string().split(VALUE_SEPARATOR));
+
+                if (absolutePosition) {
+                    final SpritesheetAnimation animation = new SpritesheetAnimation(new ArrayList<>(strings.size()));
+                    for (final String s : strings) {
+                        final Transform t = Transform.parseTransform(s);
+                        animation.getFrames().add(new Frame(srcImage.subImage((int) t.getX(), (int) t.getY(), (int) t.getWidth(), (int) t.getHeight())));
+                    }
+                    textureObject = animation;
+                } else {
+                    final Coordinates[] spriteCoordinates = new Coordinates[strings.size()];
+
+                    int i = 0;
+                    for (final String s : strings) {
+                        spriteCoordinates[i] = readLiteralPosition(s).toCoordinates();
+                        i++;
+                    }
+                    textureObject = spritesheet.getAnimation(spriteCoordinates);
+                }
             } else {
                 throw new TextureAtlasFormatError(path, "unknown object type " + type);
             }
@@ -140,13 +168,11 @@ public class TextureAtlasParser {
     }
 
     private static Vector2f readLiteralPosition(final String text) {
-        final String[] components = text.split(COORDINATE_SEPARATOR);
-        return new Vector2f(Float.parseFloat(components[0]), Float.parseFloat(components[1]));
+        return Vector2f.parseVector2f(text);
     }
 
-    private static Vector2f readPosition(final String text, final boolean absolute, final Dimensions spriteSize) {
-        final Vector2f abs = readLiteralPosition(text);
-        return absolute ? abs : abs.multiply(spriteSize.toVector2f());
+    private static Vector2f readPosition(final String text) {
+        return readLiteralPosition(text);
     }
 
     private static boolean wantsAbsolutePosition(final SJClass object, final String path) {
@@ -165,8 +191,17 @@ public class TextureAtlasParser {
         if (!val.isPresent()) {
             throw new TextureAtlasFormatError(path, "missing sprite size <sprite-size>");
         }
-        final String[] parts = val.get().string().split(SPRITE_SIZE_SEPARATOR);
-        return new Dimensions(Float.parseFloat(parts[0]), Float.parseFloat(parts[1]));
+        return Dimensions.parseDimensions(val.get().string());
+    }
+
+    private static Vector2f readSpriteOffset(final SJClass dataRoot) {
+        final Optional<SJValue> val = dataRoot.getValue(KEY_SPRITE_OFFSET);
+        return val.map(sjValue -> Vector2f.parseVector2f(sjValue.string())).orElseGet(Vector2f::zero);
+    }
+
+    private static boolean readStartsWithOffset(final SJClass dataRoot) {
+        final Optional<SJValue> val = dataRoot.getValue(KEY_STARTS_WITH_OFFSET);
+        return val.map(sjValue -> Boolean.parseBoolean(sjValue.string())).orElse(false);
     }
 
     private static SaltyImage readSourceImage(final SJClass dataRoot, final String path, final Resource resource) {

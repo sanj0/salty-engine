@@ -45,7 +45,6 @@ public class SpritesheetAnimation {
 
     public void nextFrame() {
         if (getFrames().size() - 1 <= currentFrame) {
-
             currentFrame = 0;
             return;
         }

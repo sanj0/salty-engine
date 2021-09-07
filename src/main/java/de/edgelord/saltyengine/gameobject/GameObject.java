@@ -33,10 +33,7 @@ import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.hitbox.Hitbox;
 import de.edgelord.saltyengine.hitbox.SimpleHitbox;
 import de.edgelord.saltyengine.input.Input;
-import de.edgelord.saltyengine.transform.Coordinates;
-import de.edgelord.saltyengine.transform.Dimensions;
-import de.edgelord.saltyengine.transform.Transform;
-import de.edgelord.saltyengine.transform.Vector2f;
+import de.edgelord.saltyengine.transform.*;
 import de.edgelord.saltyengine.utils.Directions;
 
 import java.util.List;
@@ -148,7 +145,7 @@ public abstract class GameObject extends ComponentContainer implements Drawable,
     public GameObject(final float xPos, final float yPos, final float width, final float height, final String tag) {
         super(tag);
 
-        setTransform(new Transform(new Vector2f(xPos, yPos), new Dimensions(width, height)));
+        setTransform(TransformCreator.t(new Vector2f(xPos, yPos), new Dimensions(width, height)));
         hitbox = new SimpleHitbox(this, getWidth(), getHeight(), 0, 0);
 
         physicsComponent = new SimplePhysicsComponent(this, GameObject.DEFAULT_PHYSICS_NAME);

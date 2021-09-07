@@ -25,6 +25,8 @@ import java.util.Objects;
 /**
  * This class resembles a rectangle with a {@link #position}, {@link
  * #dimensions} and a {@link #rotation}.
+ * <p>A Transform can comfortably be created by usage of a respective method
+ * of the utility class {@link TransformCreator} from any form of input.
  */
 public class Transform {
 
@@ -126,6 +128,7 @@ public class Transform {
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
+    @Deprecated
     public static Transform random(final int posMin, final int posMax, final int dimMin, final int dimMax) {
         return new Transform(Vector2f.random(posMin, posMax), Dimensions.random(dimMin, dimMax));
     }
@@ -140,6 +143,7 @@ public class Transform {
      * @see Vector2f#random(int, int)
      * @see Dimensions#random(int, int)
      */
+    @Deprecated
     public static Transform random(final int min, final int max) {
         return random(min, max, min, max);
     }
@@ -162,7 +166,6 @@ public class Transform {
      * @see Rectangle2D#intersects(Rectangle2D)
      */
     public boolean intersects(final Transform other) {
-
         final int xOther = Math.round(other.getX());
         final int yOther = Math.round(other.getY());
         final int widthOther = Math.round(other.getWidth());
@@ -190,6 +193,7 @@ public class Transform {
      * @return whether the rectangle described by this transform is inside the
      * view of the {@link Game#getCamera() camera} or not
      */
+    // fixme: ignores scale (and rotation?)
     public boolean isVisible() {
         return intersects(new Transform(Game.getCamera().getPosition(), Game.getGameDimensions()));
     }
@@ -221,7 +225,6 @@ public class Transform {
      * and the given <code>Transform</code>
      */
     public Directions.Direction getFreeRelationX(final Transform other) {
-
         if (this.getX() + this.getWidth() < other.getX()) {
             return Directions.Direction.LEFT;
         } else if (this.getX() > other.getX() + other.getWidth()) {
@@ -245,7 +248,6 @@ public class Transform {
      * and the given <code>Transform</code>
      */
     public Directions.Direction getFreeRelationY(final Transform other) {
-
         if (this.getY() + this.getHeight() < other.getY()) {
             return Directions.Direction.UP;
         } else if (this.getY() > other.getY() + other.getHeight()) {

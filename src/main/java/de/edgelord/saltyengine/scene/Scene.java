@@ -38,6 +38,7 @@ import de.edgelord.saltyengine.utils.Directions;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class represents what is currently drawn and calculated. This includes:
@@ -74,7 +75,7 @@ public abstract class Scene implements Drawable, FixedTickRoutine, InitializeAbl
     private final Map<String, Layer> layers = new ConcurrentHashMap<>();
     private final Comparator<Layer> layerSorter = Comparator.comparingInt(Layer::getIndex);
     private final List<FixedTask> fixedTasks = Collections.synchronizedList(new ArrayList<>());
-    private final List<DrawingRoutine> drawingRoutines = Collections.synchronizedList(new ArrayList<>());
+    private final List<DrawingRoutine> drawingRoutines = new CopyOnWriteArrayList<>();
     /**
      * If this is <code>true</code>, all {@link GameObject}s in his Scene will
      * constantly move down with a force of {@link #gravity}.

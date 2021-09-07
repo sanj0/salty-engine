@@ -49,8 +49,8 @@ public class Camera2D implements Camera, TransformedObject {
 
     private Directions lockedDirections = new Directions();
 
-    public Camera2D(final Vector2f position, final Dimensions size, final Dimensions resolution, final float scale) {
-        transform = new Transform(position, size);
+    public Camera2D(final Transform viewportSize, final Dimensions resolution, final float scale) {
+        transform = viewportSize;
         this.resolution = resolution;
         this.scale = scale;
     }

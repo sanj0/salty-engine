@@ -142,6 +142,15 @@ public class AudioPlayer {
     }
 
     /**
+     * Stops all audios.
+     */
+    public void stopAll() {
+        if (SaltySystem.audioEnabled) {
+            audios.forEach(Audio::stop);
+        }
+    }
+
+    /**
      * Searches for a <code>Audio</code> with the given name in the list and
      * when found pauses it. The methods returns after the first found
      * <code>Audio</code> and triggering its
@@ -156,6 +165,15 @@ public class AudioPlayer {
     public void pause(final String name) {
         if (SaltySystem.audioEnabled) {
             getAudio(name).pause();
+        }
+    }
+
+    /**
+     * Pauses all audios
+     */
+    public void pauseAll() {
+        if (SaltySystem.audioEnabled) {
+            audios.forEach(Audio::pause);
         }
     }
 

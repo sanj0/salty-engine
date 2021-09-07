@@ -80,6 +80,7 @@ public class Stage extends JPanel {
     }
 
     protected void init(final int x, final int y, final int width, final int height) {
+        setIgnoreRepaint(true);
         setBounds(x, y, width, height);
         this.originWidth = width;
         this.originHeight = height;

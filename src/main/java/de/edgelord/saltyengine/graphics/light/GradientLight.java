@@ -29,11 +29,12 @@ import de.edgelord.saltyengine.utils.ImageUtils;
 import java.awt.*;
 
 @DefaultPlacement(method = DefaultPlacement.Method.TOP_LEFT_CORNER)
+//fixme: insanely bad performance - gradient creation sucks!!
 public class GradientLight extends Light {
 
     private final float[] arcIfRoundRect;
-    private SaltyImage light;
-    private SaltyImage coloredLight;
+    protected SaltyImage light;
+    protected SaltyImage coloredLight;
     private EnumShape shape;
 
     public GradientLight(final Transform transform, final Color color, final EnumShape shape, final float... arcIfRoundRect) {

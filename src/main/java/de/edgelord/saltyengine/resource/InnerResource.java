@@ -35,6 +35,8 @@ public class InnerResource implements Resource {
     private final ClassLoader classLoader = InnerResource.class.getClassLoader();
     private File tmpDir = null;
 
+    public static final InnerResource DEFAULT = new InnerResource();
+
     @Override
     public SaltyImage getImageResource(final String relativePath) {
 

@@ -147,6 +147,12 @@ public class Vector2f {
         return (float) Math.hypot(ac, cb);
     }
 
+    public float distanceSquared(final Vector2f point) {
+        final double ac = Math.abs(point.y - y);
+        final double cb = Math.abs(point.x - x);
+        return (float) (ac * ac + cb * cb);
+    }
+
     public float getX() {
         return x;
     }

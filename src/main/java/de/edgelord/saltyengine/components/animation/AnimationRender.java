@@ -91,7 +91,6 @@ public class AnimationRender extends RenderComponent {
      */
     @Override
     public void draw(final SaltyGraphics saltyGraphics) {
-
         if (spritesheetAnimation != null) {
             spritesheetAnimation.drawCurrentFrame(getParent(), saltyGraphics);
         }
