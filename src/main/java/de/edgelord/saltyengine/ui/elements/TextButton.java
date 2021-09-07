@@ -19,7 +19,7 @@ package de.edgelord.saltyengine.ui.elements;
 import de.edgelord.saltyengine.core.Game;
 import de.edgelord.saltyengine.core.animation.Keyframe;
 import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
-import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.TransitionFunction;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.displaymanager.DisplayManager;
 import de.edgelord.saltyengine.transform.Transform;
@@ -34,8 +34,8 @@ import java.awt.*;
  */
 public abstract class TextButton extends Button {
 
-    private KeyframeAnimation enterAnimation = new LinearKeyframeAnimation();
-    private KeyframeAnimation exitAnimation = new LinearKeyframeAnimation();
+    private KeyframeAnimation enterAnimation = new KeyframeAnimation(TransitionFunction.easeInSine());
+    private KeyframeAnimation exitAnimation = new KeyframeAnimation(TransitionFunction.easeInSine());
     private Keyframe enterAnimationKeyframe = new Keyframe(20, 15);
     private Keyframe exitAnimationKeyframe = new Keyframe(5, -15);
 
@@ -86,10 +86,10 @@ public abstract class TextButton extends Button {
     @Override
     public void onFixedTick() {
         super.onFixedTick();
-        if (!enterAnimation.animationEnded()) {
-            fontSize += enterAnimation.nextDelta();
-        } else if (!exitAnimation.animationEnded()) {
-            fontSize += exitAnimation.nextDelta();
+        if (!enterAnimation.finished()) {
+            fontSize = enterAnimation.nextValue();
+        } else if (!exitAnimation.finished()) {
+            fontSize = exitAnimation.nextValue();
         } else if (!mouseHoversOver()) {
             fontSize = requestedFontSize;
         }
@@ -105,14 +105,16 @@ public abstract class TextButton extends Button {
     @Override
     public void mouseEntered(final Transform cursor) {
         fontSize = requestedFontSize;
-        enterAnimation = new LinearKeyframeAnimation(enterAnimationKeyframe);
-        enterAnimation.calculateAnimation();
+        enterAnimation = new KeyframeAnimation(TransitionFunction.easeInSine().inverse());
+        enterAnimation.appendFrame(0, requestedFontSize);
+        enterAnimation.appendFrame(20, requestedFontSize + 15);
     }
 
     @Override
     public void mouseExited(final Transform cursor) {
-        exitAnimation = new LinearKeyframeAnimation(exitAnimationKeyframe);
-        exitAnimation.calculateAnimation();
+        exitAnimation = new KeyframeAnimation(TransitionFunction.easeInSine());
+        enterAnimation.appendFrame(0, requestedFontSize + 15);
+        enterAnimation.appendFrame(5, requestedFontSize);
     }
 
     @Override

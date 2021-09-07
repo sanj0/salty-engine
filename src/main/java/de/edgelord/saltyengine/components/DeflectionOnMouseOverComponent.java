@@ -16,25 +16,24 @@
 
 package de.edgelord.saltyengine.components;
 
-import de.edgelord.saltyengine.core.animation.LinearKeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.KeyframeAnimation;
+import de.edgelord.saltyengine.core.animation.TransitionFunction;
 import de.edgelord.saltyengine.core.event.CollisionEvent;
 import de.edgelord.saltyengine.core.graphics.SaltyGraphics;
 import de.edgelord.saltyengine.core.stereotypes.ComponentContainer;
 import de.edgelord.saltyengine.transform.Vector2f;
 
 /**
- * Uses a {@link LinearKeyframeAnimation} to make its parent grow and shrink
- * again when the cursor touches is.
+ * Uses a {@link KeyframeAnimation} to make its parent grow and shrink again
+ * when the cursor touches is.
  */
 public class DeflectionOnMouseOverComponent extends Component<ComponentContainer> {
 
     /**
      * The animation that is used.
      */
-    private final LinearKeyframeAnimation keyframeAnimation = new LinearKeyframeAnimation();
-
+    private final KeyframeAnimation keyframeAnimation = new KeyframeAnimation(TransitionFunction.easeInOutSine());
     private final Vector2f returnPosition;
-
     private float totalDeflection = 0f;
 
     /**
@@ -42,11 +41,8 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      * enters the parent
      */
     private boolean loop;
-
     private boolean shouldPlay = false;
-
     private boolean singleDeflection = false;
-
     private boolean impact = false;
 
     /**
@@ -64,9 +60,9 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
 
         this.loop = loop;
 
-        keyframeAnimation.add(interval, distance);
-        keyframeAnimation.add(interval * 2, 0);
-        keyframeAnimation.calculateAnimation();
+        keyframeAnimation.appendFrame(0, 0);
+        keyframeAnimation.appendFrame(interval, distance);
+        keyframeAnimation.appendFrame(interval * 2, 0);
 
         final Vector2f currentCentre = getParent().getTransform().getCentre();
         returnPosition = new Vector2f(currentCentre.getX(), currentCentre.getY());
@@ -74,7 +70,6 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
 
     @Override
     public void onCursorEntersParent() {
-
         if (!loop) {
             singleDeflection = true;
         } else {
@@ -88,7 +83,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         singleDeflection = false;
         shouldPlay = false;
         totalDeflection = 0f;
-        keyframeAnimation.restart();
+        keyframeAnimation.reset();
     }
 
     @Override
@@ -98,15 +93,13 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
 
     @Override
     public void onFixedTick() {
-
-        if (keyframeAnimation.animationEnded()) {
-
+        if (keyframeAnimation.finished()) {
             if (impact) {
                 resetTransform();
                 impact = false;
             }
 
-            keyframeAnimation.restart();
+            keyframeAnimation.reset();
             if (!loop) {
                 singleDeflection = false;
             }
@@ -125,7 +118,7 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
     }
 
     private void nextFrame() {
-        final float delta = keyframeAnimation.nextDelta();
+        final float delta = keyframeAnimation.nextValue() - totalDeflection;
         totalDeflection += delta;
 
         getParent().setWidth(getParent().getWidth() + delta);
@@ -140,7 +133,6 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
      * there should be no need to call it manually.
      */
     public void updatePosition() {
-
         final Vector2f centre = getParent().getTransform().getCentre();
         returnPosition.setX(centre.getX());
         returnPosition.setY(centre.getY());
@@ -182,6 +174,6 @@ public class DeflectionOnMouseOverComponent extends Component<ComponentContainer
         impact = false;
         shouldPlay = false;
         totalDeflection = 0f;
-        keyframeAnimation.restart();
+        keyframeAnimation.reset();
     }
 }
