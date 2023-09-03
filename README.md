@@ -1,3 +1,8 @@
+# Archived as of 2023-09-04
+This was my first big software project as a kid. I worked on this for hours every day for years and I was really proud of it.
+Heck, I even made a real game with this so for me it did exactly what it was intended for.
+Looking back now, the code here is obviously mostly very bad and immature so I'm archiving this for later amusement and nostalgia.
+
 ![Java CI with Maven](https://github.com/edgelord314/salty-engine/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 ![license-badge](https://img.shields.io/hexpm/l/plug.svg) <p> 
 
